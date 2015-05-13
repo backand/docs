@@ -1,4 +1,5 @@
 site_name: Backand Documentation
+use_directory_urls: false
 pages:
 - ['index.md', 'Introduction']
 - ['security.md', 'Security Concepts']
