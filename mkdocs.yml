@@ -1,1 +1,7 @@
-site_name: My Docs
+site_name: Backand Documentation
+pages:
+- [index.md]
+- [security.md]
+- [custom_actions.md]
+- [queries.md]
+- [api_description.md]
