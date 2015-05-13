@@ -1,1 +1,0 @@
-Search.setIndex({envversion:46,filenames:["index"],objects:{},objnames:{},objtypes:{},terms:{chocol:0,content:0,index:0,modul:0,page:0,sauc:0,search:0},titles:["Welcome to Backand&#8217;s documentation!"],titleterms:{backand:0,document:0,indic:0,tabl:0,welcom:0}})
