@@ -1,1 +1,7 @@
 site_name: Backand Documentation
+pages:
+- ['index.md', 'Introduction']
+- ['security.md', 'Security Concepts']
+- ['customactions.md', 'Custom Actions']
+- ['queries.md', 'Queries']
+- ['apidescripxtion.md', 'API Description']
