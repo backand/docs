@@ -33,6 +33,14 @@
         <!-- Collapsed navigation -->
         <div class="navbar-header">
             
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
 
             <!-- Main title -->
             <a class="navbar-brand" href=".">My Docs</a>
@@ -41,7 +49,42 @@
         <!-- Expanded navigation -->
         <div class="navbar-collapse collapse">
             
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li class="active">
+                        <a href=".">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="test/">Test</a>
+                    </li>
+                
+                
+                </ul>
+            
 
+            
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                
+                <li class="disabled">
+                    <a rel="next" >
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="test/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+                
+            </ul>
             
         </div>
     </div>
@@ -52,33 +95,345 @@
                 <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
     
-        <li class="main active"><a href="#welcome-to-mkdocs">Welcome to MkDocs</a></li>
+        <li class="main active"><a href="#api-documentation">API Documentation</a></li>
         
-            <li><a href="#commands">Commands</a></li>
+            <li><a href="#what-is-backand">What is Backand</a></li>
         
-            <li><a href="#project-layout">Project layout</a></li>
+    
+        <li class="main "><a href="#security-concepts">Security Concepts</a></li>
+        
+            <li><a href="#authentication">Authentication</a></li>
+        
+            <li><a href="#sign-up">Sign Up</a></li>
+        
+            <li><a href="#remove-user-from-the-app">Remove user from the app</a></li>
+        
+            <li><a href="#anonymous-access">Anonymous Access</a></li>
+        
+            <li><a href="#link-your-apps-users-with-backands-users">Link your app's users with Backand's users</a></li>
+        
+            <li><a href="#roles-security-templates">Roles  Security Templates</a></li>
+        
+    
+        <li class="main "><a href="#custom-actions">Custom Actions</a></li>
+        
+            <li><a href="#server-side-javascript-code">Server Side Javascript code</a></li>
+        
+            <li><a href="#transactional-database-script">Transactional database script</a></li>
+        
+            <li><a href="#send-email">Send Email</a></li>
+        
+    
+        <li class="main "><a href="#queries">Queries</a></li>
+        
+    
+        <li class="main "><a href="#api-description">API Description</a></li>
+        
+            <li><a href="#security-authentication">Security  Authentication</a></li>
+        
+            <li><a href="#rest-api-crud-operations">REST API CRUD Operations</a></li>
+        
+            <li><a href="#custom-actions_1">Custom Actions</a></li>
+        
+            <li><a href="#queries_1">Queries</a></li>
+        
+            <li><a href="#experience-more">Experience more</a></li>
         
     
     </ul>
 </div></div>
                 <div class="col-md-9" role="main">
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>HGELLLOOOOOOO
-For full documentation visit <a href="http://mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
+<h1 id="api-documentation">API Documentation</h1>
+<h2 id="what-is-backand">What is Backand</h2>
+<p>Backand's goal is to free up the front end development of web applications by providing a rich, robust, and scalable back end with minimal impact on the development process. The key feature offered by Backand is the <a href="http://en.wikipedia.org/wiki/Object-relational_mapping">ORM</a>, but most application back ends require more than just object management. Backand provides you with most of what your application needs automatically, offering features like tracking data changes, logging, role-based security, back-office connectivity, and much more. You can even create your own server side actions with JavaScript, running custom server side queries and easily integrating with third party services.</p>
+<h3 id="backand-orm">Backand ORM</h3>
+<p>Backand <a href="http://en.wikipedia.org/wiki/Object-relational_mapping">ORM</a> automatically provides you with a REST API to perform <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operations against your database. You can connect an existing database you already have, or create a new database with the Backand dashboard. When you create a database at Backand it is automatically populated in Amazon's AWS Relational Database Service (AWS RDS), providing an isolated database server that you can scale automatically, or even use in other applications entirely independent of Backand. Even though Backand focuses on software services as opposed to platform services, when you register a database with Backand it is truly your database.</p>
+<h3 id="sql-and-nosql-the-best-of-both-worlds">SQL and NoSQL - The Best of Both Worlds</h3>
+<p>Through the flexibility of Backand's API, you have the ability to work with your data at whatever level you desire. You can perform basic <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operations in a couple ways. In one way you can mimic a SQL database by simply returning a shallow representation of the object, with foreign key references remaining as simple IDs in the response data. However, you can also perform deep queries that resolve all of the underlying data objects into a single set of response data, giving you the level of object detail that you often see with NoSQL databases. With a simple parameter change, you can switch between the two patterns at will!</p>
+<h1 id="security-concepts">Security Concepts</h1>
+<h3 id="authentication">Authentication</h3>
+<p>The default authentication setup for Backand applications relies on <a href="http://oauth.net/2/">OAuth2</a> to provide tokenize authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use Backand's angular infrastructure to help you save the access token. Using the <a href="https://docs.angularjs.org/api/ngCookies">ngCookies</a> wrapper, you can adjust the default request header to include your current access token, greatly easing the process of securing your API communications. Backand also offers Anonymous Access, which allows you to access your application without the need to authenticate via username and password.</p>
+<h3 id="sign-up">Sign Up</h3>
+<p>Registering with Backand, and creating an application, automatically sets you as a user with an "Admin" role in your new project (see Roles for more info). By default your application is marked private, which means that only users that you have personally invited can sign up for your app. This can be changed in the dashboard by setting your application to Public in the Security &amp; Auth --&gt; Configuration menu. Setting your application to public allows any user to register for - and use - your application. These users are assigned a default role, which needs to be configured when you enable public usage of your app (see Roles for more details). For security reasons you cannot change the role of a user through API calls - this can only be accomplished either by having an admin change the appropriate settings on the Security &amp; Auth -&gt; Users page, or by creating a custom server-side action that performs this task. For a private application the registration steps are as follow:</p>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs help</code> - Print this help message.</li>
+<li>First, set your application's registration page on the Security &amp; Auth --&gt; Configuration page.</li>
+<li>Once you have a registration page, enter the emails to invite on the Security &amp; Auth --&gt; Users page. Once you have entered the emails you wish to invite, click the "Invite User(s)" button. This will send an email to each new user with a link to the registration page that you created.
+<strong>The following steps are the same for both Public and Private apps:</strong></li>
+<li>The user enters his/her email, name and password on your registration page</li>
+<li>After the user submits their registration, Backand sends a verification email to authenticate the user's identity</li>
+<li>After the user clicks on the link in the verification email, Backand completes the registration process and redirects to the "Custom Verified Email Page" URL for your application. Configure this on the Security &amp; Auth --&gt; Configuration page
+Here is the api of the Sign Up</li>
 </ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
-</code></pre></div>
+<h3 id="remove-user-from-the-app">Remove user from the app</h3>
+<p>There are two ways to remove a user from the application. You can permanently remove a user from the application by deleting a user from the Users grid in your application's admin section. This requires the user to register again if they wish to continue using your app. Alternatively, you can un-check the "approved" checkbox in the user's row on the Security &amp; Auth --&gt; Users page. This allows you to reinstate the user simply by re-checking the "approved" column.</p>
+<h3 id="anonymous-access">Anonymous Access</h3>
+<p>If you wish to enable anonymous access to your application, you need to perform a couple steps. First, you need to turn on the Anonymous Access option in you application's settings. Once that's done, you are given the option to create an AnonymousToken value. By passing this value in a request header (e.g. AnonymousToken=<your token here>) you can perform api actions for your application. finally, you need to set the default role of an anonymous user within your application's settings (see Roles for more info).</p>
+<h3 id="link-your-apps-users-with-backands-users">Link your app's users with Backand's users</h3>
+<p>We offer full capability to link your application's users with Backand users. However, to ensure that you can restrict access to your application without impacting the Backand user's experiece, we recommend that you create another table for your app's users with a unique email address column. This allows you to build rules specific to your app, but still link to Backand's users without affecting their overall experience.</p>
+<h3 id="roles-security-templates">Roles &amp; Security Templates</h3>
+<p>Each user has a role. When you created your app, you were automatically assigned with an "Admin" role. The "Admin" role is a special role that allows you to make configuration changes in your app with Backand's administration tools. Non-admin roles, which should be used to secure your application, are used to define the permissions for each of the <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions for your objects and queries. Each Object and Query in your application is associated with a Security Template. In the security template, you assign different permissions for the possible <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions to each user role, allowing you to control your user's access to the system's create, read, update and delete actions for your objects. Template configuration is found on the Security &amp; Auth --&gt; Security Template page.</p>
+<p>While Security Templates provide reusable permissions platforms that can be spread across a number of roles, you can also override security template settings and provide specific permissions for each individual role. This allows you to have more granular control over the <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions that can be performed by the users in your system. When a user with insufficient security access tries to perform an action for which they do not have permission, a 403 (Forbidden) error response is returned.</p>
+<h1 id="custom-actions">Custom Actions</h1>
+<p>In Backand's system, you can create server-side activity called Actions. These actions can be used for the purpose of security, integration, performance, notification and data integrity, among others, providing you with more flexibility in your app's design. There are two types of Actions that can be created. The first are initiated via a direct web request. These are known as "On Demand" actions. Additionally, you can create automated actions that take place based upon a data interaction event. These automated actions can occur whenever you create, update, or delete an item in your system. On Demand actions are associated with a specific object, and can be found on the Object --&gt; {name} page in the Actions tab. The automated Create, Update and Delete actions are associated with a specific object that is compatible with a specific row in a table, while On Demand actions make association with a specific role optional.</p>
+<p>There are 3 kinds of actions that can be created for either action type:
+- Server side JavaScript code actions
+- Transactional database script actions
+- Send Email actions
+All 3 types of actions use the following common parameters:
+<em> A Where condition - a SQL where clause that determines if the action will be performed.
+</em> Input Parameters, added to the query string of the request that triggers the action, that will serve as variable values that you can supply to your action's code. These parameters will serve as tokens in the action definition and will be replaced with the actual values when the code executes.</p>
+<h4 id="server-side-javascript-code">Server Side Javascript code</h4>
+<p>You can run standard JavaScript on the server. It runs on the <a href="http://en.wikipedia.org/wiki/V8_(JavaScript_engine)">V8 engine</a>. To execute the JavaScript action, put your code into the following function:</p>
+<pre><code>function backandCallback(userInput, dbRow, parameters, userProfile) {
+    // write your code here
+    return {};
+}
+</code></pre>
+
+<p>The function parameters are:
+<em> <strong>userInput</strong>: This parameter is only provided for Create and Update actions, and is the object that was sent to the action. It is null for Delete actions, as well as for On Demand actions.
+</em> <strong>dbRow</strong>: This parameter is populated in After Create, Update, and Delete automated actions, and if you supply an optional ID to an On Demand action. The dbRow parameter will contain the row's entry in the database prior to any changes made.
+<em> <strong>parameters</strong>: This parameter represents the variables sent in the query string for the action.
+</em> <strong>userProfile</strong>: This parameter stores the current username, the user's role, and the access token used by the user to perform the action. It is of the format {"username": "string", "role": "string", "token": "string"}.
+In addition to the above parameters, you can also make use of the following global objects:
+<em> $http - a service for AJAX calls
+</em> <code>$http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample" , headers: {"Authorization":userProfile.token}});</code>
+<em> CONSTS - CONSTS.apiUrl for Backands API URL
+</em> <code>console.log(message, object)</code> and <code>console.error(message, object)</code>, to debug your code
+Automated actions will have a response that matches the format expected by the triggering call (such as the return value of a CREATE call). On Demand actions, though, will return whatever is returned by the custom server code, which can be any properly-formatted JSON.</p>
+<h5 id="error-handling">Error Handling</h5>
+<p>If your code results in an error (for example, if you write the following: <code>throw new Error("An error occurred!"))</code>, the request will return HTTP status 417, and the response body will contain the associated error message.</p>
+<h4 id="transactional-database-script">Transactional database script</h4>
+<p>Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided the event occurs in the object event "During the data save before the object is committed". This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.</p>
+<h4 id="send-email">Send Email</h4>
+<p>Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. In addition, you can provide an object ID to obtain a deep object to use in the action.</p>
+<h1 id="queries">Queries</h1>
+<p>You can create and call your own custom queries in your application. You can use parameters as tokens that will be replaced with the actual parameter values, similar to how Custom Actions work. You can create your own filters, sorting, and paging, as well as use aggregation to summarize information.</p>
+<h1 id="api-description">API Description</h1>
+<h3 id="security-authentication">Security &amp; Authentication</h3>
+<p>Backand provides role-based security that allows you to determine specific permissions for each group of users. Backand uses <a href="http://oauth.net/2/">OAuth2</a> authentication to identify users. Backand's implementation of OAuth2 authentication requires you to send the username, password, and appname (application name). In response, you receive an authentication token that must be supplied for all further communication with Backand.</p>
+<p>You can either provide this token with each request, or use a cookie to persist the authentication token (recommended). Providing this token is required to use Backand's REST API. We have prepared a Backand Provider that will help you the authentication activities. Start by including the Backand SDK script files in your app:</p>
+<pre><code>      &lt;!-- We use client cookies to save the REST API token --&gt;
+      &lt;script src=&quot;//code.angularjs.org/1.3.0/angular-cookies.min.js&quot;&gt;&lt;/script&gt;
+      &lt;!-- Backand SDK for Angular --&gt;
+      &lt;script src=&quot;//cdn.backand.net/backand/dist/1.5.1/backand.min.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>You will also need to add the Backand and angular-cookies dependencies to your angular app definition:</p>
+<pre><code>      //app.js
+      angular.module('YOUR-APP-NAME', ['backand', 'ngCookies'])
+</code></pre>
+
+<p>Once this is complete, you are ready to sign in to Backand, for other users to sign up to your app read about it here. There is also an option for anonymous access, read about it here.</p>
+<h4 id="sign-in">Sign In</h4>
+<p>Use the Backand provider with the following parameters to get an OAuth2 access token:</p>
+<ul>
+<li><strong>username</strong> - Backand's username.</li>
+<li><strong>password</strong> - Backand's .password</li>
+<li><strong>appName</strong> - The application name.</li>
+</ul>
+<pre><code>      // SignInCtrl.js
+      function SignInCtrl(Backand, $cookieStore) {
+        $scope.signIn = function() {
+          Backand.signin($scope.username, $scope.password, $scope.appName)
+          .then(
+            function (token) {
+              //save the token in the cookie
+              $cookieStore.put(Backand.configuration.tokenName, token);
+            },
+            function (data, status, headers, config) {
+              //handle error
+            }
+          );
+        }
+      }
+      // Use an Angular HTTP Interceptor to add the authentication token to each HTTP request
+      function httpInterceptor($q, $log, $cookieStore) {
+        return {
+          request: function(config) {
+            config.headers['Authorization'] = $cookieStore.get('backand_token');
+            return config;
+          }
+        };
+      }
+
+</code></pre>
+
+<h4 id="sign-up_1">Sign Up</h4>
+<p>With the <code>/user/signup</code> api you can enable other users to sign up to your app. The sign up process consists of the following steps:</p>
+<ul>
+<li>From your app's registration page, call the <code>/user/signup</code> action</li>
+<li>The email sent contains a verification link. When the user clicks the included link, Backand verifies the user's email address and completes the sign-up process by redirecting the user to a pre-defined success page (typically the application's sign-in page).</li>
+</ul>
+<p>The sign up api uses the SignUpToken in the request header. You can find this token in the Security &amp; Auth Configuration menu 
+(*) Configuration of the sign up process is located in the App left side menu: Security &amp; Auth --&gt; Configuration</p>
+<p>The parameters for the sign-up call are:
+<em> <strong>SignUpToken</strong> - A security token to prevent malicious attacks. this should be added to the header
+</em> <strong>user</strong> - A JSON object representing the user's first name, last name, email, and password.</p>
+<pre><code>{
+  &quot;firstName&quot;: &quot;string&quot;,
+  &quot;lastName&quot;: &quot;string&quot;,
+  &quot;email&quot;: &quot;string&quot;,
+  &quot;password&quot;: &quot;string&quot;,
+  &quot;confirmPassword&quot;: &quot;string&quot;
+}
+</code></pre>
+
+<pre><code>  self.signUp = function (user, signUpToken) {
+      return $http({
+          method: 'POST',
+          url : Backand.configuration.apiUrl + '/1/user/signup,
+          headers: {
+            'SignUpToken': signUpToken
+          },
+          data: user
+      })
+  };
+</code></pre>
+
+<h4 id="anonymous-access_1">Anonymous Access</h4>
+<p>If you want to allow anonymous users to access the application (i.e. without username and password), you can use the AnonymousToken parameter:</p>
+<pre><code>      // Use an Angular HTTP Interceptor to add the anonymous token to each HTTP request
+      function httpInterceptor($q, $log) {
+        return {
+          request: function(config) {
+            config.headers['AnonymousToken'] = anonymousToken;
+            return config;
+          }
+        };
+      }
+
+</code></pre>
+
+<h3 id="rest-api-crud-operations">REST API CRUD Operations</h3>
+<p>Once authentication is completed, you can perform all relevant <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operations in your application:</p>
+<h4 id="list-of-objects">List of Objects</h4>
+<p>Call <code>/objects/{name}</code> with the following parameters to get a list of items:</p>
+<ul>
+<li><strong>pageSize</strong> - The number of returned items in each getList call (default 20).</li>
+<li><strong>pageNumber</strong> - The page number starting with 1 (1-based, default 1).</li>
+<li><strong>filter</strong> - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type.</li>
+<li><strong>sort</strong> - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc".</li>
+<li><strong>search</strong> - Free text filter search.</li>
+<li><strong>deep</strong> - When set to true, brings the related parent items in the relatedTables property.</li>
+</ul>
+<pre><code>  self.getList = function (name, pageSize, pageNumber, filter, sort) {
+      return $http({
+          method: 'GET',
+          url: Backand.configuration.apiUrl + '/1/objects/' + name,
+          params: {
+            pageSize: pageSize,
+            pageNumber: pageNumber,
+            sort: sort,
+            filter: filter
+          }
+      });
+  };
+</code></pre>
+
+<h4 id="one-object">One Object</h4>
+<p>Call <code>/objects/{name}/{id}</code> with a specific item id and with the following parameters to get a specific item:</p>
+<ul>
+<li><strong>id</strong> - The item's id, which is the primary key value for the item's database table</li>
+<li><strong>deep</strong> - When set to true, brings the related parent items in the relatedTables property</li>
+</ul>
+<pre><code>  self.getOne = function (name, id, deep) {
+      return $http({
+          method: 'GET',
+          url: Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id
+          params: {
+            deep: deep
+          }
+      });
+  };
+</code></pre>
+
+<h4 id="create">Create</h4>
+<p>POST to <code>/objects/{name}</code> with a new object to create (stored in the data portion of the AJAX call) using the following parameters:</p>
+<ul>
+<li><strong>returnObject</strong> - Set this to true when you have server side business rules that causes additional changes to the object. This will force the server to return the object after all business rules have taken effect. If false, it will return the object prior to any business rules running</li>
+</ul>
+<pre><code>  self.create = function (name, data, returnObject) {
+      return $http({
+          method: 'POST',
+          url : Backand.configuration.apiUrl + '/1/objects/' + name,
+          data: data,
+          params: {
+            returnObject: returnObject
+          }
+      })
+  };
+</code></pre>
+
+<h4 id="update">Update</h4>
+<p>PUT to <code>/objects/{name}/{id}</code> to update an existing object (with changes provided in the data portion of the AJAX call). You must also supply the following parameters:</p>
+<ul>
+<li><strong>id</strong> - The item's id, which is the primary key value for the item's database table </li>
+<li><strong>returnObject</strong> - Set this to true when you have server side business rules that causes additional changes to the object. This will force the server to return the object after all business rules have taken effect. If false, it will return the object prior to any business rules running.</li>
+</ul>
+<pre><code>  self.update = function (name, id, data, returnObject) {
+      return $http({
+          method: 'PUT',
+          url : Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id,
+          data: data,
+          params: {
+            returnObject: returnObject
+          }
+      })
+  };
+</code></pre>
+
+<h4 id="delete">Delete</h4>
+<p>DELETE to <code>/objects/{name}/{id}</code> to remove an item:</p>
+<ul>
+<li><strong>id</strong> - The item's id, which is the primary key value for the item's database table.</li>
+</ul>
+<pre><code>  self.delete = function (name, id) {
+      return $http({
+          method: 'DELETE',
+          url : Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id
+      })
+  };
+</code></pre>
+
+<h3 id="custom-actions_1">Custom Actions</h3>
+<p>Custom actions can be called by sending a GET request to <code>/objects/action/{objectName}/{id}</code> The custom action is associated with an object list in order to simplify security configuration. It can also be associated with a specific object id, which is used as an input to the action, but this is optional. You can also define additional parameters in the request, which are passed through to the function. The action returns a custom JSON response.</p>
+<ul>
+<li><strong>actionName</strong> - The custom action name.</li>
+<li><strong>parameters</strong> - A JSON object with all predefined parameters for the action.</li>
+</ul>
+<pre><code>self.callAction = function (objectName, id, actionName, parameters) {
+      return $http({
+          method: 'GET',
+          url: Backand.configuration.apiUrl + '/1/objects/action/' + objectName + '/' + id
+          params: {
+             parameters: parameters
+          }
+      });
+  };
+</code></pre>
+
+<p><strong>Note</strong>: You can find a configuration and testing environment for each of the custom actions in the right side menu for your application on an object's Actions tab. </p>
+<h3 id="queries_1">Queries</h3>
+<p>You can run custom pre-configured queries by sending a GET request to <code>/query/data/{queryName}</code> The query syntax must follow the SQL rules of the underlying database that your application is using. You can include predefined parameters in your request that are then used by your query.</p>
+<ul>
+<li><strong>parameters</strong> - A JSON object with all predefined query parameters provided.</li>
+</ul>
+<pre><code>self.query = function (queryName, parameters) {
+      return $http({
+          method: 'GET',
+          url: Backand.configuration.apiUrl + '/1/query/data/' + queryName
+          params: {
+             parameters: parameters
+          }
+      });
+  };
+</code></pre>
+
+<p><strong>Note</strong>: You can find a configuration and testing environment for custom queries in the Application dashboard's right side menu, under "Queries". </p>
+<h3 id="experience-more">Experience more</h3>
+<p>To dive deeper into Backand's functionality, clone our Angular demo application on <a href="https://github.com/backand/angular-yeoman-todos">github</a></p></div>
             
         </div>
 
@@ -97,7 +452,7 @@ docs/
 
         <!--
         MkDocs version  : 0.12.2
-        Docs Build Date : 2015-05-12 05:51:05.454899
+        Docs Build Date : 2015-05-12 06:56:36.073962
         -->
     </body>
 </html>
