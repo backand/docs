@@ -1,5 +1,6 @@
 # API Description
 ###Security & Authentication
+   
 Backand provides role-based security that allows you to determine specific permissions for each group of users. Backand uses [OAuth2](http://oauth.net/2/) authentication to identify users. Backand's implementation of OAuth2 authentication requires you to send the username, password, and appname (application name). In response, you receive an authentication token that must be supplied for all further communication with Backand.
 
 You can either provide this token with each request, or use a cookie to persist the authentication token (recommended). Providing this token is required to use Backand's REST API. We have prepared a Backand Provider that will help you the authentication activities. Start by including the Backand SDK script files in your app:
@@ -107,6 +108,11 @@ If you want to allow anonymous users to access the application (i.e. without use
       }
     
 ```
+  
+
+To learn more about Backand's security and how to work with users and roles, look at the <a href="https://github.com/backand/angular-yeoman-todos/tree/todo-with-users">todo-with-users</a> example.
+  
+  
 ###REST API CRUD Operations
 Once authentication is completed, you can perform all relevant [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations in your application:
 
