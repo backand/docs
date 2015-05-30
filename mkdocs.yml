@@ -11,6 +11,6 @@ pages:
 - ['customactions/index.md', 'Custom Actions']
 - ['customactions/serverside.md', 'Custom Actions', 'Server Side Javascript Code']
 - ['customactions/transactional.md', 'Custom Actions', 'Transactional database script']
-- ['customactions/sendemail','Custom Actions','Send Email']
+- ['customactions/sendemail.md','Custom Actions','Send Email']
 - ['queries/queries.md', 'Queries']
 - ['apidescription/apidescription.md', 'API Description']
