@@ -12,7 +12,7 @@ pages:
 - ['customactions/serverside.md', 'Custom Actions', 'Server Side Javascript Code']
 - ['customactions/transactional.md', 'Custom Actions', 'Transactional database script']
 - ['customactions/sendemail.md','Custom Actions','Send Email']
-- ['queries.md','Queries']
+- ['queries/queries.md','Queries', 'Home']
 - ['apidescription/security.md', 'API Description', 'Security & Authentication']
 - ['apidescription/crud.md', 'API Description', 'REST API CRUD Operations']
 - ['apidescription/custom.md', 'API Description', 'Custom Actions']
