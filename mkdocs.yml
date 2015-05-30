@@ -8,7 +8,7 @@ pages:
 - ['security/anonymousaccess.md', 'Security Concepts', "Anonymous Access"]
 - ['security/linkusers.md', 'Security Concepts', "Link your app's users with Backand's users"]
 - ['security/roles.md', 'Security Concepts', "Roles & Security Templates"]
-- ['customactions.md', 'Custom Actions']
+- ['customactions/customactions.md', 'Custom Actions', 'Home']
 - ['customactions/serverside.md', 'Custom Actions', 'Server Side Javascript Code']
 - ['customactions/transactional.md', 'Custom Actions', 'Transactional database script']
 - ['customactions/sendemail.md','Custom Actions','Send Email']
