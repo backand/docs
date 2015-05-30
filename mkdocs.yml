@@ -2,7 +2,12 @@ site_name: Backand Documentation
 use_directory_urls: false
 pages:
 - ['index.md', 'Introduction']
-- ['security.md', 'Security Concepts']
+- ['security/authentication.md', 'Security Concepts', "Authentication"]
+- ['security/signup.md', 'Security Concepts', "Sign Up"]
+- ['security/removeuser.md', 'Security Concepts', "Remove user from the app"]
+- ['security/anonymousaccess.md', 'Security Concepts', "Anonymous Access"]
+- ['security/linkusers.md', 'Security Concepts', "Link your app's users with Backand's users"]
+- ['security/roles.md', 'Security Concepts', "Roles & Security Templates"]
 - ['customactions.md', 'Custom Actions']
 - ['queries.md', 'Queries']
 - ['apidescription.md', 'API Description']

@@ -1,0 +1,2 @@
+#Remove user from the app
+There are two ways to remove a user from the application. You can permanently remove a user from the application by deleting a user from the Users grid in your application's admin section. This requires the user to register again if they wish to continue using your app. Alternatively, you can un-check the "approved" checkbox in the user's row on the Security & Auth --> Users page. This allows you to reinstate the user simply by re-checking the "approved" column.
