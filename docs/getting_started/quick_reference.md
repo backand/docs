@@ -13,13 +13,15 @@ All requests must be made using JSON request bodies. Make sure to set the `Conte
 All responses are returned as JSON objects. The status code of the response indicates the success (2xx) or failure (4xx) of the request.
 
 ## Security & Authentication
-|| URL || HTTP Verb || Functionality ||
+| URL | HTTP Verb | Functionality |
+|-----|-----------|---------------|
 | /token | POST | Obtains a 24-hour acccess token. A Backand username and password must be provided, along with the application name |
 | /user/signup | POST | Registers a new user with the application. Must use a SignUpToken, which is configured for the application |
 
 
 ## Manipulating objects
-|| URL || HTTP Verb || Functionality ||
+| URL | HTTP Verb | Functionality |
+|-----|-----------|---------------|
 | /objects/{object name} | GET | Gets a list of all objects of type {object name} |
 | /objects/{object name} | POST | Creates an object of type {object name} |
 | /objects/{object name}/{id} | GET | Gets an object of type {object name} with ID {id} |
@@ -27,10 +29,12 @@ All responses are returned as JSON objects. The status code of the response indi
 | /objects/{object name}/{id} | DELETE | Deletes an object of type {object name} with ID {id} |
 
 ## Custom Object Actions
-|| URL || HTTP Verb || Functionality ||
+| URL | HTTP Verb | Functionality |
+|-----|-----------|---------------|
 | /objects/action/{object name}/{id}?actionName={action name} | GET | Executes custom action {action name} on object {object name} with an id of {id} |
 
 ## Queries
-|| URL || HTTP Verb || Functionality ||
+| URL | HTTP Verb | Functionality |
+|-----|-----------|---------------|
 | /query/data/{query name} | GET | Executes custom query {query name} |
 
