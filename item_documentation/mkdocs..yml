@@ -1,4 +1,0 @@
-site_name: Getting Started
-use_directory_urls: false
-pages:
-- ['index.md', 'Getting Started']

@@ -1,8 +1,0 @@
-site_name: Common Use Cases
-use_directory_urls: false
-pages:
-- ['index.md', 'What would you like to do?']
-- ['database.md', 'Database Setup & Configuration']
-- ['rest.md', 'REST API Playground']
-- ['security.md', 'Role-based Security Configuration']
-- ['actions.md', 'Custom Actions']
