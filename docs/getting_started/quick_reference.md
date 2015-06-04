@@ -14,14 +14,14 @@ All responses are returned as JSON objects. The status code of the response indi
 
 ## Security & Authentication
 | URL | HTTP Verb | Functionality |
-|-----|-----------|---------------|
+| ----- | ----------- | --------------- |
 | /token | POST | Obtains a 24-hour acccess token. A Backand username and password must be provided, along with the application name |
 | /user/signup | POST | Registers a new user with the application. Must use a SignUpToken, which is configured for the application |
 
 
 ## Manipulating objects
 | URL | HTTP Verb | Functionality |
-|-----|-----------|---------------|
+| ----- | ----------- | --------------- |
 | /objects/{object name} | GET | Gets a list of all objects of type {object name} |
 | /objects/{object name} | POST | Creates an object of type {object name} |
 | /objects/{object name}/{id} | GET | Gets an object of type {object name} with ID {id} |
@@ -30,11 +30,11 @@ All responses are returned as JSON objects. The status code of the response indi
 
 ## Custom Object Actions
 | URL | HTTP Verb | Functionality |
-|-----|-----------|---------------|
+| ----- | ----------- | --------------- |
 | /objects/action/{object name}/{id}?actionName={action name} | GET | Executes custom action {action name} on object {object name} with an id of {id} |
 
 ## Queries
 | URL | HTTP Verb | Functionality |
-|-----|-----------|---------------|
+| ----- | ----------- | --------------- |
 | /query/data/{query name} | GET | Executes custom query {query name} |
 
