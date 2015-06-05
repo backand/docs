@@ -108,7 +108,7 @@ If you want to allow anonymous users to access the application (i.e. without use
     
 ```
 
-#REST API CRUD Operations
+# REST API CRUD Operations
 
 Once authentication is completed, you can perform all relevant [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations in your application:
 

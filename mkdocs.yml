@@ -2,6 +2,7 @@ site_name: Backand Documentation
 use_directory_urls: false
 pages:
 <<<<<<< HEAD
+<<<<<<< HEAD
 - ['index.md', 'Introduction']
 - ['security/authentication.md', 'Security Concepts', "Authentication"]
 - ['security/signup.md', 'Security Concepts', "Sign Up"]
@@ -16,6 +17,8 @@ pages:
 - ['queries/queries.md', 'Queries']
 - ['apidescription/apidescription.md', 'API Description']
 =======
+=======
+>>>>>>> 44ad1595118d6b6cb7539946a0d90d865603ece3
 - ['index.md', 'Backand Documentation']
 - ['getting_started/index.md', 'Getting Started', 'Introduction']
 - ['getting_started/quick_reference.md', 'Getting Started', 'Quick Reference']
@@ -24,6 +27,14 @@ pages:
 - ['getting_started/security_auth.md', 'Getting Started', 'Security & Auth']
 - ['getting_started/log.md', 'Getting Started', 'Log']
 - ['getting_started/settings.md', 'Getting Started', 'Settings']
+<<<<<<< HEAD
+=======
+- ['apidocs/index.md', 'API Documentation',  'Introduction']
+- ['apidocs/security.md', 'API Documentation',  'Security Concepts']
+- ['apidocs/customactions.md', 'API Documentation',  'Custom Actions']
+- ['apidocs/queries.md', 'API Documentation',  'Queries']
+- ['apidocs/apidescription.md', 'API Documentation',  'API Description']
+>>>>>>> 44ad1595118d6b6cb7539946a0d90d865603ece3
 - ['what_would_you_like_to_do/index.md', 'Common Use Cases', 'What would you like to do?']
 - ['what_would_you_like_to_do/database.md', 'Common Use Cases', 'Database Setup & Configuration']
 - ['what_would_you_like_to_do/rest.md', 'Common Use Cases', 'REST API Playground']
@@ -33,6 +44,7 @@ pages:
 - ['scenarios/simple_web.md', 'Scenarios',  'Simple Web App with REST API']
 - ['scenarios/ionic.md', 'Scenarios',  'Ionic with Backand']
 - ['scenarios/simple_todo.md', 'Scenarios',  'Simple ToDo App']
+<<<<<<< HEAD
 - ['scenarios/todo_users.md', 'Scenarios',  'ToDo With Users']
 - ['apidocs/index.md', 'API Documentation',  'Introduction']
 - ['apidocs/security.md', 'API Documentation',  'Security Concepts']
@@ -40,3 +52,6 @@ pages:
 - ['apidocs/queries.md', 'API Documentation',  'Queries']
 - ['apidocs/apidescription.md', 'API Documentation',  'API Description']
 >>>>>>> 0d30ce160c44227a107639ba74b7ef2af6d36aae
+=======
+- ['scenarios/todo_users.md', 'Scenarios',  'ToDo With Users']
+>>>>>>> 44ad1595118d6b6cb7539946a0d90d865603ece3
