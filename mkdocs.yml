@@ -1,24 +1,6 @@
 site_name: Backand Documentation
 use_directory_urls: false
 pages:
-<<<<<<< HEAD
-<<<<<<< HEAD
-- ['index.md', 'Introduction']
-- ['security/authentication.md', 'Security Concepts', "Authentication"]
-- ['security/signup.md', 'Security Concepts', "Sign Up"]
-- ['security/removeuser.md', 'Security Concepts', "Remove user from the app"]
-- ['security/anonymousaccess.md', 'Security Concepts', "Anonymous Access"]
-- ['security/linkusers.md', 'Security Concepts', "Link your app's users with Backand's users"]
-- ['security/roles.md', 'Security Concepts', "Roles & Security Templates"]
-- ['customactions/index.md', 'Custom Actions']
-- ['customactions/serverside.md', 'Custom Actions', 'Server Side Javascript Code']
-- ['customactions/transactional.md', 'Custom Actions', 'Transactional database script']
-- ['customactions/sendemail.md','Custom Actions','Send Email']
-- ['queries/queries.md', 'Queries']
-- ['apidescription/apidescription.md', 'API Description']
-=======
-=======
->>>>>>> 44ad1595118d6b6cb7539946a0d90d865603ece3
 - ['index.md', 'Backand Documentation']
 - ['getting_started/index.md', 'Getting Started', 'Introduction']
 - ['getting_started/quick_reference.md', 'Getting Started', 'Quick Reference']
@@ -27,14 +9,11 @@ pages:
 - ['getting_started/security_auth.md', 'Getting Started', 'Security & Auth']
 - ['getting_started/log.md', 'Getting Started', 'Log']
 - ['getting_started/settings.md', 'Getting Started', 'Settings']
-<<<<<<< HEAD
-=======
 - ['apidocs/index.md', 'API Documentation',  'Introduction']
 - ['apidocs/security.md', 'API Documentation',  'Security Concepts']
 - ['apidocs/customactions.md', 'API Documentation',  'Custom Actions']
 - ['apidocs/queries.md', 'API Documentation',  'Queries']
 - ['apidocs/apidescription.md', 'API Documentation',  'API Description']
->>>>>>> 44ad1595118d6b6cb7539946a0d90d865603ece3
 - ['what_would_you_like_to_do/index.md', 'Common Use Cases', 'What would you like to do?']
 - ['what_would_you_like_to_do/database.md', 'Common Use Cases', 'Database Setup & Configuration']
 - ['what_would_you_like_to_do/rest.md', 'Common Use Cases', 'REST API Playground']
@@ -44,14 +23,4 @@ pages:
 - ['scenarios/simple_web.md', 'Scenarios',  'Simple Web App with REST API']
 - ['scenarios/ionic.md', 'Scenarios',  'Ionic with Backand']
 - ['scenarios/simple_todo.md', 'Scenarios',  'Simple ToDo App']
-<<<<<<< HEAD
 - ['scenarios/todo_users.md', 'Scenarios',  'ToDo With Users']
-- ['apidocs/index.md', 'API Documentation',  'Introduction']
-- ['apidocs/security.md', 'API Documentation',  'Security Concepts']
-- ['apidocs/customactions.md', 'API Documentation',  'Custom Actions']
-- ['apidocs/queries.md', 'API Documentation',  'Queries']
-- ['apidocs/apidescription.md', 'API Documentation',  'API Description']
->>>>>>> 0d30ce160c44227a107639ba74b7ef2af6d36aae
-=======
-- ['scenarios/todo_users.md', 'Scenarios',  'ToDo With Users']
->>>>>>> 44ad1595118d6b6cb7539946a0d90d865603ece3
