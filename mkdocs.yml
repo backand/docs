@@ -1,6 +1,6 @@
 site_name: Backand Documentation
 use_directory_urls: false
-theme: Bootstrap
+theme: cosmo
 pages:
 - ['index.md', 'Backand Documentation']
 - ['getting_started/index.md', 'Getting Started', 'Introduction']
