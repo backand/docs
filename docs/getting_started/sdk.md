@@ -4,13 +4,47 @@ This section covers [Backand's JavaScript SDK](https://github.com/backand/angula
 
 These methods are used to configure your application's usage of Backand
 
-### manageDefaultHeaders 
+### manageDefaultHeaders
+#### Usage
+Tells Backand to manage the default headers, which automatically populates the backand configuration with all relevant tokens when requests are made. 
+#### Returns
+Nothing
+
 ### setAnonymousToken
+#### Usage
+Sets the value of the anonymous use token
+#### Returns
+Nothing
+
 ### setSignUpToken
+#### Usage
+Sets the value of the user registration token
+#### Returns
+Nothing
+
 ### getApiUrl
+#### Usage
+Returns the base API URL for this application
+#### Returns
+A string representing the base API URL
+
 ### setApiUrl
+#### Usage
+Sets the base API url for this application
+#### Returns
+Nothing
+
 ### getTokenName
-### setTokenName | string | sets the token name |
+#### Usage
+Gets the currently-configured API authorization token name
+#### Returns
+The token name
+
+### setTokenName
+#### Usage
+Sets the currently-configured API authorization token name
+#### Returns
+Nothing
 
 ## Methods
 

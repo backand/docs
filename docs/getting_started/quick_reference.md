@@ -45,16 +45,16 @@ All responses are returned as JSON objects. The status code of the response indi
 ### Configuration methods
 | Function/Property | Type/Return Value | Usage |
 | ----------------- | ----------------- | ----- |
-| manageDefaultHeaders | void | sets backand's token in the authorization header for all requests |
+| manageDefaultHeaders | void | tells Backand to manage all necessary authorization and authentication tokens for each request |
 | setAnonymousToken | string | allows anonymous access to the app |
 | setSignUpToken | string | allows users to register for the app |
 | getApiUrl | string | returns the current API URL |
 | setApiUrl | string | sets the API URL |
-| getTokenName | string | gets the token name |
-| setTokenName | string | sets the token name |
+| getTokenName | string | gets the authorization token name |
+| setTokenName | string | sets the authorization token name |
 
 ### Live-use Methods
-| Function | arguments | Usage |
+| Function | Arguments | Usage |
 | -------- | --------- | ----- |
 | signIn | username, password, appname | signs the user into the application |
 | signUp | firstname, lastname, email, password, confirmPassword | registers the user with the application |
@@ -62,6 +62,6 @@ All responses are returned as JSON objects. The status code of the response indi
 | requestResetPassword | email, appname | sends a one-time use password reset token to the user with the specified email |
 | resetPassword | newPassword, resetToken | resets the current user's password, consuming the one-time use token |
 | changePassword | oldPassword, newPassword | Changes the current user's  password from the old value to the new. |
-| getToken | none | returns the current authentication token |
-| getTokenName | none | returns the configured token name |
+| getToken | none | returns the current authorization token |
+| getTokenName | none | returns the configured authorization token name |
 | getApiUrl | none | gets the current URL for the API |
