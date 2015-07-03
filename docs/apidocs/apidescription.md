@@ -60,7 +60,7 @@ Use the Backand provider with the following parameters to get an OAuth2 access t
 With the `/user/signup` api you can enable other users to sign up to your app. The sign up process consists of the following steps:
 
 - From your app's registration page, call the `/user/signup` action
-- The email sent contains a verification link. When the user clicks the included link, Backand verifies the user's email address and completes the sign-up process by redirecting the user to a pre-defined success page (typically the application's sign-in page).
+- If Sign-Up Email Verification is enabled, an email is sent that contains a verification link. When the user clicks the included link, Backand verifies the user's email address and completes the sign-up process by redirecting the user to a pre-defined success page (typically the application's sign-in page).
 
 The sign up api uses the SignUpToken in the request header. You can find this token in the Security & Auth Configuration menu 
 (*) Configuration of the sign up process is located in the App left side menu: Security & Auth --> Configuration
@@ -90,6 +90,58 @@ The parameters for the sign-up call are:
       })
   };
 ```
+
+####Request Reset Password
+
+With the `/user/requestResetPassword` api you can request a password reset for a particular user (for example, when they have forgotten their password). The process consists of the following steps:
+
+- From your app's registration page, call the `/user/requestResetPassword` action
+- An email is sent containing a one-time use token that  your user can use to reset their passowrd. See the Reset Password section below for more information on this process.
+
+The parameters for the requestResetPassword call are:
+* **appName** - A string containing your application's name
+* **userName** - A string containing the user name requesting the password reset
+
+```
+  self.requestResetPassword = function (userName) {
+      return $http({
+          method: 'POST',
+          url : Backand.configuration.apiUrl + '/1/user/requestResetPassword,
+          data: 
+            {
+              "appName": "string",
+              "userName": userNames
+            }
+      })
+  };
+```
+
+####Reset Password
+
+With the `/user/resetPassword` api you can reset a password for a particular user (for example, when they have forgotten their password). The process consists of the following steps:
+
+- Ensure that the user has already requested a password reset.
+- Obtain the one-time token from the user that was sent via email.
+- Use the ResetPassword API to record the user's new password, including the one-time use token
+
+The parameters for the requestResetPassword call are:
+* **resetToken** - the one-time use token the user received via email
+* **newPassword** - the new password for the user.
+
+```
+  self.resetPassword = function (resetToken, newPassword) {
+      return $http({
+          method: 'POST',
+          url : Backand.configuration.apiUrl + '/1/user/resetPassword,
+          data: 
+            {
+              "resetToken": resetToken,
+              "newPassword": newPassword
+            }
+      })
+  };
+```
+
 ####Anonymous Access
 
 If you want to allow anonymous users to access the application (i.e. without username and password), you can use the AnonymousToken parameter:

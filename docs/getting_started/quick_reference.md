@@ -17,7 +17,9 @@ All responses are returned as JSON objects. The status code of the response indi
 | ----- | ----------- | --------------- |
 | /token | POST | Obtains a 24-hour acccess token. A Backand username and password must be provided, along with the application name |
 | /user/signup | POST | Registers a new user with the application. Must use a SignUpToken, which is configured for the application |
-
+| /user/requestResetPassword | POST | Sends an email to the provided username with a single-use token that can be used to reset the user's password |
+| /user/resetPassword | POST | Resets the user's password after verification using a one-time  access token |
+| /user/changePassword | POST | Changes the user's password |
 
 ## Manipulating objects
 | URL | HTTP Verb | Functionality |
@@ -38,3 +40,28 @@ All responses are returned as JSON objects. The status code of the response indi
 | ----- | ----------- | --------------- |
 | /query/data/{query name} | GET | Executes custom query {query name} |
 
+## Backand SDK
+
+### Configuration methods
+| Function/Property | Type/Return Value | Usage |
+| ----------------- | ----------------- | ----- |
+| manageDefaultHeaders | void | tells Backand to manage all necessary authorization and authentication tokens for each request |
+| setAnonymousToken | string | allows anonymous access to the app |
+| setSignUpToken | string | allows users to register for the app |
+| getApiUrl | string | returns the current API URL |
+| setApiUrl | string | sets the API URL |
+| getTokenName | string | gets the authorization token name |
+| setTokenName | string | sets the authorization token name |
+
+### Live-use Methods
+| Function | Arguments | Usage |
+| -------- | --------- | ----- |
+| signIn | username, password, appname | signs the user into the application |
+| signUp | firstname, lastname, email, password, confirmPassword | registers the user with the application |
+| signOut | none | signs the current user out of the application |
+| requestResetPassword | email, appname | sends a one-time use password reset token to the user with the specified email |
+| resetPassword | newPassword, resetToken | resets the current user's password, consuming the one-time use token |
+| changePassword | oldPassword, newPassword | Changes the current user's  password from the old value to the new. |
+| getToken | none | returns the current authorization token |
+| getTokenName | none | returns the configured authorization token name |
+| getApiUrl | none | gets the current URL for the API |

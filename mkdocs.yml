@@ -4,6 +4,7 @@ pages:
 - ['index.md', 'Backand Documentation']
 - ['getting_started/index.md', 'Getting Started', 'Introduction']
 - ['getting_started/quick_reference.md', 'Getting Started', 'Quick Reference']
+- ['getting_started/sdk.md', 'Getting Started', 'Backand SDK']
 - ['getting_started/objects.md', 'Getting Started', 'Objects']
 - ['getting_started/queries.md', 'Getting Started', 'Queries']
 - ['getting_started/security_auth.md', 'Getting Started', 'Security & Auth']
