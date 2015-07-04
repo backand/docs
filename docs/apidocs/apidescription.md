@@ -142,6 +142,26 @@ The parameters for the requestResetPassword call are:
   };
 ```
 
+####Change Password
+
+With the `/user/changePassword` api you can change the password for a particular user. The parameters for the changePassword call are:
+* **oldPassword** - the old password for the user
+* **newPassword** - the new password to assign to the user
+
+```
+  self.changePassword = function (oldPassword, newPassword) {
+      return $http({
+          method: 'POST',
+          url : Backand.configuration.apiUrl + '/1/user/changePassword,
+          data: 
+            {
+              "oldPassword": oldPassword,
+              "newPassword": newPassword
+            }
+      })
+  };
+```
+
 ####Anonymous Access
 
 If you want to allow anonymous users to access the application (i.e. without username and password), you can use the AnonymousToken parameter:
