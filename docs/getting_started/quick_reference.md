@@ -6,7 +6,7 @@ The base URL for your application will be `https://api.backand.com:8078/1` - all
 
 ## Request Format
 
-All requests must be made using JSON request bodies. Make sure to set the `Content-Type` header to `application/json`. Additionally, all requests must include an authentication token in the request headers. This process is deatiled in our [documentation](http://docs.backand.com/en/latest/security/index.html).
+All requests must be made using JSON request bodies. Make sure to set the `Content-Type` header to `application/json`. Additionally, all requests must include an authentication token in the request headers. This process is detailed in our [documentation](http://docs.backand.com/en/latest/security/index.html).
 
 ## Response Format
 
