@@ -26,7 +26,7 @@ The function parameters are:
 * **userProfile**: This parameter stores the current username, the user's role, and the access token used by the user to perform the action. It is of the format {"username": "string", "role": "string", "token": "string"}.
 In addition to the above parameters, you can also make use of the following global objects:
 * $http - a service for HTTP calls, similar to Angular $http but without the promise, since it is a server side function it always runs in sync;
-** `var response = $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample", params:{filter:[{fieldName:"fieldexample", operator:"contains", value:"somestring"}]}, headers: {"Authorization":userProfile.token}});`
+  * GET example: `var response = $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample", params:{filter:[{fieldName:"fieldexample", operator:"contains", value:"somestring"}]}, headers: {"Authorization":userProfile.token}});`
 * CONSTS - CONSTS.apiUrl for Backands API URL
 * `console.log(message, object)` and `console.error(message, object)`, to debug your code
 Automated actions will have a response that matches the format expected by the triggering call (such as the return value of a CREATE call). On Demand actions, though, will return whatever is returned by the custom server code, which can be any properly-formatted JSON.
