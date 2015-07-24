@@ -32,10 +32,10 @@ The function parameters are:
 In addition to the above parameters, you can also make use of the following global objects:
 
 * $http - a service for HTTP calls, similar to Angular $http but without the promise, since it is a server side function it always runs in sync;
-  * GET example: `var response = $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample", params:{filter:[{fieldName:"fieldexample", operator:"contains", value:"somestring"}]}, headers: {"Authorization":userProfile.token}});`
-  * POST example: `var response = $http({method:"POST",url:CONSTS.apiUrl + "/1/objects/objectexample", data:{fieldexample1:"somevalue",fieldexample2:"somevalue"}, headers: {"Authorization":userProfile.token}});`
-  * PUT example: `var response = $http({method:"PUT",url:CONSTS.apiUrl + "/1/objects/objectexample/5", data:{fieldexample1:"somevalue",fieldexample2:"somevalue"}, headers: {"Authorization":userProfile.token}});`
-  * DELETE example: `var response = $http({method:"DELETE",url:CONSTS.apiUrl + "/1/objects/objectexample/5", fieldexample2:"somevalue"}, headers: {"Authorization":userProfile.token}});`
+    * GET example: `var response = $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample", params:{filter:[{fieldName:"fieldexample", operator:"contains", value:"somestring"}]}, headers: {"Authorization":userProfile.token}});`
+    * POST example: `var response = $http({method:"POST",url:CONSTS.apiUrl + "/1/objects/objectexample", data:{fieldexample1:"somevalue",fieldexample2:"somevalue"}, headers: {"Authorization":userProfile.token}});`
+    * PUT example: `var response = $http({method:"PUT",url:CONSTS.apiUrl + "/1/objects/objectexample/5", data:{fieldexample1:"somevalue",fieldexample2:"somevalue"}, headers: {"Authorization":userProfile.token}});`
+    * DELETE example: `var response = $http({method:"DELETE",url:CONSTS.apiUrl + "/1/objects/objectexample/5", fieldexample2:"somevalue"}, headers: {"Authorization":userProfile.token}});`
 * CONSTS - CONSTS.apiUrl for Backands API URL
 * `console.log(object)` and `console.error(object)`, to debug your code
 
