@@ -44,7 +44,7 @@ Nothing
 #### Usage
 Gets the cookie name where the authorization token is stored
 #### Returns
-The token name
+The cookie name
 
 ### setTokenName
 #### Usage
@@ -73,6 +73,26 @@ Registers a user for the application
 * email - the new user's email address
 * password - The new user's desired password
 * confirmPassword - the user's desired password again, used as confirmation of correct entry
+
+### socialSignIn
+#### Usage
+Signs the specified user into the application using a social provider
+#### Arguments
+* provider - one of the following: google, facebook, github
+* returnAddress - the url to return to, after the user signs in
+
+### socialSignUp
+#### Usage
+Registers a user for the application using a social provider
+#### Arguments
+* provider - one of the following: google, facebook, github
+* returnAddress - the url to return to, after the user signs up
+
+### getSocialProviders
+#### Usage
+get a providers object where each of its field is a social provider that has a name, label, url, css and id
+#### Returns
+providers object
 
 ### signOut
 #### Usage
