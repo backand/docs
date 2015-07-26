@@ -59,6 +59,8 @@ All responses are returned as JSON objects. The status code of the response indi
 | -------- | --------- | ----- |
 | signIn | username, password, appname | signs the user into the application |
 | signUp | firstname, lastname, email, password, confirmPassword | registers the user with the application |
+| socialSignIn | provider, returnAddress | Signs the specified user into the application using a social provider |
+| socialSignUp | provider, returnAddress | Registers a user for the application using a social provider |
 | signOut | none | signs the current user out of the application |
 | requestResetPassword | email, appname | sends a one-time use password reset token to the user with the specified email |
 | resetPassword | newPassword, resetToken | resets the current user's password, consuming the one-time use token |
