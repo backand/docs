@@ -114,7 +114,7 @@ Following is the client side controller code that uses the above action:
       reader.readAsDataURL(photoFile);
     };
 ```
-Following the markup:
+Following is the markup:
 ```
     <div>
         <img ng-src="{{ noteCtrl.note.image }}" style="max-width:250px;" />
