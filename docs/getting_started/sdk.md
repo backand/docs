@@ -94,21 +94,3 @@ Changes the authenticated user's password
 #### Arguments
 * oldPassword - The user's old password
 * newPassword - The user's desired new password
-
-### getToken 
-#### Usage
-Returns the current authentication token
-#### Arguments
-None 
-
-### getTokenName
-#### Usage
-Returns the configured token name
-#### Arguments 
-None
-
-### getApiUrl
-#### Usage
-Returns the URL for the API for this application
-#### Arguments
-None
