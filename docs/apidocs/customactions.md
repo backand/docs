@@ -45,6 +45,46 @@ Automated actions will have a response that matches the format expected by the t
 
 If your code results in an error (for example, if you write the following: `throw new Error("An error occurred!"))`, the request will return HTTP status 417, and the response body will contain the associated error message.
 
+##3rd Parties Inegrations
+
+You can use the above server side javascript to integrate with 3rd parties that have a rest api integration capabilities.
+Following are examples for such integrations:
+
+###S3
+For security reasons you can create the following action that uses your S3 account credential in the server side. From the client, you can call this action without your account credentials but under the Backand security which means that only authorized users may use it. In this example the action parameters are the file name and a binary sream of the content of the file, it return a url of the uploaded file.
+Create the following action under the relevant object, the relevant object can be the object that you would like to store the url of the uploaded file:
+* **Action Name** what ever name that you want
+* **Event Trigger** On Demand
+* **type** Server Side Javascript Code
+* **Input Parameters** filename, filedata
+* **JavaScript Code** put the following code under the // write your code here
+```
+var data = 
+    {
+        // enter your aws key
+        "key" : <your account key>, 
+
+        // enter your aws secret key
+        "secret" : <your account secret>, 
+
+        // this should be sent in post body
+        "filename" : parameters.filename, 
+        "filedata" : parameters.filedata,         
+
+        // enter your s3 bucket name
+        "bucket" : <your S3 bucket name>
+
+    }
+    // this is a short and simple backand's S3 api, call this only from the server side
+    var response = $http({method:"PUT",url:CONSTS.apiUrl + "/1/file/s3" , 
+               data: data, headers: {"Authorization":userProfile.token}});
+
+    // returns {url:"http://someurl"}
+    return response;
+```
+
+
+
 # Transactional Database Scripts
 
 Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided the event occurs in the object event "During the data save before the object is committed". This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.
