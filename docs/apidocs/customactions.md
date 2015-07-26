@@ -50,9 +50,9 @@ If your code results in an error (for example, if you write the following: `thro
 You can use the above server side javascript to integrate with 3rd parties that have a rest api integration capabilities.
 Following are examples for such integrations:
 
-###S3
+### Upload File to S3
 For security reasons you can create the following action that uses your S3 account credential in the server side. From the client, you can call this action without your account credentials but under the Backand security which means that only authorized users may use it. In this example the action parameters are the file name and a binary sream of the content of the file, it return a url of the uploaded file.
-Create the following action under the relevant object, the relevant object can be the object that you would like to store the url of the uploaded file:
+Create the following action under the relevant object, the relevant object can be the object that you would like to store the url of the uploaded file for display purpose:
 * **Action Name** what ever name that you want
 * **Event Trigger** On Demand
 * **type** Server Side Javascript Code
@@ -82,8 +82,48 @@ var data =
     // returns {url:"http://someurl"}
     return response;
 ```
+Following is the client side controller code that uses the above action:
+```
+    self.s3FileUpload = function(filename, filedata, success, error)
+    {
+      return $http ({
+        method: 'POST',
+        url: Backand.getApiUrl() + '/1/objects/action/<the relevant object name>?name=<the action name>',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data:
+        {
+          "filename":filename,
+          "filedata": filedata.substr(filedata.indexOf(',')+1, filedata.length) //need to remove the file prefix type
+        }
+      });
+    };
+    
+    self.imageChanged = function(data) {
 
+      self.loading = true;
 
+      //read file content
+      var photoFile = data.files[0];
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        self.s3FileUpload({fileName: photoFile.name, fileData: e.currentTarget.result});
+      };
+      reader.readAsDataURL(photoFile);
+    };
+```
+Following the markup:
+```
+    <div>
+        <img ng-src="{{ noteCtrl.note.image }}" style="max-width:250px;" />
+        <input
+            onchange="angular.element(this).scope().noteCtrl.imageChanged(this)"
+            type="file" accept="*/*" style="width: 83px;"/>
+    </div>
+```
+You can review this example in [simple-noterious-app](https://github.com/backand/simple-noterious-app)
 
 # Transactional Database Scripts
 
