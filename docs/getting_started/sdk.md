@@ -42,13 +42,13 @@ Nothing
 
 ### getTokenName
 #### Usage
-Gets the currently-configured API authorization token name
+Gets the cookie name where the authorization token is stored
 #### Returns
 The token name
 
 ### setTokenName
 #### Usage
-Sets the currently-configured API authorization token name
+Sets the cookie name where the authorization token is stored
 #### Returns
 Nothing
 
