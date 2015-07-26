@@ -10,6 +10,12 @@ Tells Backand to manage the default headers, which automatically populates the b
 #### Returns
 Nothing
 
+### setAppName
+#### Usage
+Sets the Backand's app name
+#### Returns
+Nothing
+
 ### setAnonymousToken
 #### Usage
 Sets the value of the anonymous use token
@@ -56,7 +62,7 @@ Signs the specified user into the application
 #### Arguments
 * username - the user to authenticate
 * password - the user's password
-* appname - the app the user is signing in to
+* appname - the app the user is signing in to, optinal if you already set the app name in the setAppName configuration property
 
 ### signUp
 #### Usage
