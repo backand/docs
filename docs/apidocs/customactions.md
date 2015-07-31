@@ -39,20 +39,23 @@ In addition to the above parameters, you can also make use of the following glob
 			                       params:{filter:[{fieldName:"fieldexample", operator:"contains", value:"somestring"}]}, 
 			                      headers: {"Authorization":userProfile.token}});
 			```
+
     * POST example: 
     
 			```
 			var response = $http({method:"POST",url:CONSTS.apiUrl + "/1/objects/objectexample", 
 			                      data:{fieldexample1:"somevalue",fieldexample2:"somevalue"}, 
 			                      headers: {"Authorization":userProfile.token}});
-			``` 
+			```
+
     * PUT example: 
     
 			```
 			var response = $http({method:"PUT",url:CONSTS.apiUrl + "/1/objects/objectexample/5", 
 			                      data:{fieldexample1:"somevalue",fieldexample2:"somevalue"}, 
 			                      headers: {"Authorization":userProfile.token}});
-			``` 
+			```
+
     * DELETE example: 
 
 			```
