@@ -1,4 +1,4 @@
-This section covers [Backand's JavaScript SDK](https://github.com/backand/angularbknd-sdk)
+This section covers [Backand's JavaScript SDK 1.7.1](https://github.com/backand/angularbknd-sdk)
 
 ## Configuration Properties
 
@@ -7,6 +7,12 @@ These methods are used to configure your application's usage of Backand
 ### manageDefaultHeaders
 #### Usage
 Tells Backand to manage the default headers, which automatically populates the backand configuration with all relevant tokens when requests are made. 
+#### Returns
+Nothing
+
+### setAppName
+#### Usage
+Sets the Backand's app name
 #### Returns
 Nothing
 
@@ -36,13 +42,13 @@ Nothing
 
 ### getTokenName
 #### Usage
-Gets the currently-configured API authorization token name
+Gets the cookie name where the authorization token is stored
 #### Returns
-The token name
+The cookie name
 
 ### setTokenName
 #### Usage
-Sets the currently-configured API authorization token name
+Sets the cookie name where the authorization token is stored
 #### Returns
 Nothing
 
@@ -56,7 +62,7 @@ Signs the specified user into the application
 #### Arguments
 * username - the user to authenticate
 * password - the user's password
-* appname - the app the user is signing in to
+* appname - the app the user is signing in to, optinal if you already set the app name in the setAppName configuration property
 
 ### signUp
 #### Usage
@@ -67,6 +73,26 @@ Registers a user for the application
 * email - the new user's email address
 * password - The new user's desired password
 * confirmPassword - the user's desired password again, used as confirmation of correct entry
+
+### socialSignIn
+#### Usage
+Signs the specified user into the application using a social provider
+#### Arguments
+* provider - one of the following: google, facebook, github
+* returnAddress - the url to return to, after the user signs in
+
+### socialSignUp
+#### Usage
+Registers a user for the application using a social provider
+#### Arguments
+* provider - one of the following: google, facebook, github
+* returnAddress - the url to return to, after the user signs up
+
+### getSocialProviders
+#### Usage
+get a providers object where each of its field is a social provider that has a name, label, url, css and id
+#### Returns
+providers object
 
 ### signOut
 #### Usage
@@ -94,21 +120,3 @@ Changes the authenticated user's password
 #### Arguments
 * oldPassword - The user's old password
 * newPassword - The user's desired new password
-
-### getToken 
-#### Usage
-Returns the current authentication token
-#### Arguments
-None 
-
-### getTokenName
-#### Usage
-Returns the configured token name
-#### Arguments 
-None
-
-### getApiUrl
-#### Usage
-Returns the URL for the API for this application
-#### Arguments
-None
