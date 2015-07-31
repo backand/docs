@@ -85,7 +85,7 @@ Now create your mobile app, naming it ‘PlaylistsApp’, with the Ionic command
 Your Ionic app has a ‘www’ folder which is a single page application (SPA) built with AngularJS.  You will need to include the Backand libraries in your application. Either download them or use bower to obtain them. Then, copy them into your ‘index.html’.
 
 * [angularbknd-sdk](https://github.com/backand/angularbknd-sdk), install with bower using:
-	`bower install angularbknd-sdk`
+    `bower install angularbknd-sdk`
 * Include in your ‘index.html':
 ```html
      <script src="lib/angularbknd-sdk/dist/backand.min.js"></script>
@@ -159,25 +159,25 @@ Now you will need to define a service to make the database operations.  In your 
 Define a ‘DatabaseService’, require ‘Backand':
 
 ```javascript
-    .service('DatabaseService', function($http, Backand){	
+    .service('DatabaseService', function($http, Backand){    
  
       var baseUrl = '/1/table/data/';
-	    
+        
       return {
  
         // read all rows in the table
-	      readAll: function(tableName) {  
-	        return $http({
-	          method: 'GET',
-	          url: Backand.configuration.apiUrl + baseUrl + tableName
-	       }).then(
+          readAll: function(tableName) {  
+            return $http({
+              method: 'GET',
+              url: Backand.configuration.apiUrl + baseUrl + tableName
+           }).then(
           function(response) {
-	          return response.data.data;
-	        });
-  	    },
+              return response.data.data;
+            });
+          },
  
         // read one row with given id
-  	    readOne: function(tableName, id) {
+          readOne: function(tableName, id) {
           return $http({
             method: 'GET',
             url: Backand.configuration.apiUrl + baseUrl + self.tableName 
@@ -186,7 +186,7 @@ Define a ‘DatabaseService’, require ‘Backand':
             function(response) {
               return response.data;
             });
-  	    }
+          }
       };
     });
 ```
@@ -209,7 +209,7 @@ In your controller, require ‘DatabaseService’, and make calls like:
  
       // a click handler for selecting a playlist
       $scope.clickPlaylist = function(id){
-				DatabaseService.readOne('playlists', id). 
+                DatabaseService.readOne('playlists', id). 
            then(function(data){});
       });
       
