@@ -64,19 +64,22 @@ Automated actions will have a response that matches the format expected by the t
 
 If your code results in an error (for example, if you write the following: `throw new Error("An error occurred!"))`, the request will return HTTP status 417, and the response body will contain the associated error message.
 
-##3rd Parties Inegrations
+##Third Party Integrations
 
-You can use the above server side javascript to integrate with 3rd parties that have a rest api integration capabilities.
-Following are examples for such integrations:
+Utilizing the above server-side JavaScript code, we can integrate with any third party that exposes an HTTP API REST interface! Below are some examples of common third-party service integrations:
 
-### Upload File to S3
-For security reasons you can create the following action that uses your S3 account credential in the server side. From the client, you can call this action without your account credentials but under the Backand security which means that only authorized users may use it. In this example the action parameters are the file name and a binary sream of the content of the file, it return a url of the uploaded file.
-Create the following action under the relevant object, the relevant object can be the object that you would like to store the url of the uploaded file for display purpose:
-* **Action Name** what ever name that you want
-* **Event Trigger** On Demand
-* **type** Server Side Javascript Code
-* **Input Parameters** filename, filedata
-* **JavaScript Code** put the following code under the // write your code here
+### Upload a File to S3
+
+This code shows how to upload a file to S3 using a server-side action. For security reasons, it is best to store your Amazon S3 account credentials in the server-side action itself, rather than passing the credentials as a parameter. This allows you to call the custom action without providing your sensitive credentials, and the entire authentication process is performed behind Backand's security layer - ensuring that only users that have access to your application dashboard can see your login information. In this example, the action parameters are the name of the file to upload and a binary content stream representing the file data. This action returns a URL representing the uploaded file.
+
+To upload a file, start by creating a new action in a relevant `Object` in your system. The relevant `Object` will end up storing the URL of the uploaded file for display purposes. Use the following parameters when creating the custom action:
+
+* **Action Name** - enter a memorable name
+* **Event Trigger** - On Demand
+* **type** - Server Side Javascript Code
+* **Input Parameters** - filename, filedata
+* **JavaScript Code** - enter the following code under the line `// write your code here`
+
 ```
 var data = 
     {
@@ -94,20 +97,22 @@ var data =
         "bucket" : <your S3 bucket name>
 
     }
-    // this is a short and simple backand's S3 api, call this only from the server side
+    // this is a simplified way to call backand's S3 api. Call this only from the server side
     var response = $http({method:"PUT",url:CONSTS.apiUrl + "/1/file/s3" , 
                data: data, headers: {"Authorization":userProfile.token}});
 
     // returns {url:"http://someurl"}
     return response;
 ```
-Following is the client side controller code that uses the above action:
+
+Next, use the following JavaScript in your client-side code to call the custom action. Make sure to replace "relevant object name" and "action name" with the correct values for your custom action:
+
 ```
     self.s3FileUpload = function(filename, filedata, success, error)
     {
       return $http ({
         method: 'POST',
-        url: Backand.getApiUrl() + '/1/objects/action/<the relevant object name>?name=<the action name>',
+        url: Backand.getApiUrl() + '/1/objects/action/<relevant object name>?name=<action name>',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -133,7 +138,9 @@ Following is the client side controller code that uses the above action:
       reader.readAsDataURL(photoFile);
     };
 ```
-Following is the markup:
+
+Finally, you can use the following HTML markup to upload the file to Amazon S3:
+
 ```
     <div>
         <img ng-src="{{ noteCtrl.note.image }}" style="max-width:250px;" />
@@ -142,7 +149,8 @@ Following is the markup:
             type="file" accept="*/*" style="width: 83px;"/>
     </div>
 ```
-You can review this example in [simple-noterious-app](https://github.com/backand/simple-noterious-app)
+
+See this code in action in the Noterious app: [simple-noterious-app](https://github.com/backand/simple-noterious-app)
 
 # Transactional Database Scripts
 

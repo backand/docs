@@ -12,7 +12,7 @@ Nothing
 
 ### setAppName
 #### Usage
-Sets the Backand's app name
+Sets the Backand app name for your application
 #### Returns
 Nothing
 
@@ -42,13 +42,13 @@ Nothing
 
 ### getTokenName
 #### Usage
-Gets the cookie name where the authorization token is stored
+Gets the name of the cookie in which the authorization token is stored
 #### Returns
 The cookie name
 
 ### setTokenName
 #### Usage
-Sets the cookie name where the authorization token is stored
+Sets the name of the cookie in which the authorization token is stored
 #### Returns
 Nothing
 
@@ -62,7 +62,7 @@ Signs the specified user into the application
 #### Arguments
 * username - the user to authenticate
 * password - the user's password
-* appname - the app the user is signing in to, optinal if you already set the app name in the setAppName configuration property
+* appname - the app the user is signing in to (optional if you have already set the app name using the setAppName configuration property)
 
 ### signUp
 #### Usage
@@ -76,21 +76,21 @@ Registers a user for the application
 
 ### socialSignIn
 #### Usage
-Signs the specified user into the application using a social provider
+Signs the specified user into the application using a third-party social media provider
 #### Arguments
 * provider - one of the following: google, facebook, github
 * returnAddress - the url to return to, after the user signs in
 
 ### socialSignUp
 #### Usage
-Registers a user for the application using a social provider
+Registers a user for the application using a third-party social media provider
 #### Arguments
 * provider - one of the following: google, facebook, github
 * returnAddress - the url to return to, after the user signs up
 
 ### getSocialProviders
 #### Usage
-get a providers object where each of its field is a social provider that has a name, label, url, css and id
+Returns a providers object containing a list of providers each with a name, label, url, css, and ID
 #### Returns
 providers object
 
