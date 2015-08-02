@@ -15,7 +15,7 @@ All responses are returned as JSON objects. The status code of the response indi
 ## Security & Authentication
 | URL | HTTP Verb | Functionality |
 | ----- | ----------- | --------------- |
-| /token | POST | Obtains a 24-hour acccess token. A Backand username and password must be provided, along with the app the user is signing in to, this is optinal if you already set the app name in the setAppName configuration property |
+| /token | POST | Obtains a 24-hour acccess token. A Backand username and password must be provided, along with the app the user is signing in to. Note that the app parameter is optional if you have already set the app name in the setAppName configuration property |
 | /user/signup | POST | Registers a new user with the application. Must use a SignUpToken, which is configured for the application |
 | /user/requestResetPassword | POST | Sends an email to the provided username with a single-use token that can be used to reset the user's password |
 | /user/resetPassword | POST | Resets the user's password after verification using a one-time  access token |
@@ -51,8 +51,8 @@ All responses are returned as JSON objects. The status code of the response indi
 | setSignUpToken | string | allows users to register for the app |
 | getApiUrl | string | returns the current API URL |
 | setApiUrl | string | sets the API URL |
-| getTokenName | string | gets the cookie name where the authorization token is stored |
-| setTokenName | string | sets the cookie name where the authorization token is stored |
+| getTokenName | string | gets the name of the cookie where the authorization token is stored |
+| setTokenName | string | sets the name of the cookie where the authorization token is stored |
 
 ### Live-use Methods
 | Function | Arguments | Usage |

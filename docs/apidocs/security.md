@@ -22,20 +22,32 @@ There are two ways to remove a user from the application. You can permanently re
 If you wish to enable anonymous access to your application, you need to perform a couple steps. First, you need to turn on the Anonymous Access option in you application's settings. Once that's done, you are given the option to create an AnonymousToken value. By passing this value in a request header (e.g. AnonymousToken=<your token here>) you can perform api actions for your application. finally, you need to set the default role of an anonymous user within your application's settings (see [roles](security.md#roles) for more info).
 
 # Link your app's users with Backand's registered users
-Backand maintains an internal registered users table to handle the security aspects. Most apps require users table to handle the specific business logic of the app. Backand offer an automatic and custom trigger actions to sync between the two tables. If your model has a users object that has the following fields: email, firstName and lastName then every time you add a Backand registered user, either from the Backand panel or through the signup api, a new instance of user will be added to the users object. Also, every time you will add a user instance to your users object, a new instance will be added into the Backand registered users with a random password. How is it done? and how can you sync between your users object if it has a different name or different fields names? There are 3 sync actions located in Configuration -> Security & Auth triggered by the the Backand registered users:
-Create My App User, Update My App User and Delete My App User. Those are Transactional SQL actions. You can change the SQL statements and adjust it to your users table structure. By default Backands set the Where Condition to "false" if it detects that you do not have a users object in your model, so after you adjust the SQL, please set the Where Condition to "true".
-If you have a users object in your model, Backand adds the following action during create:
+
+Backand maintains an internal registered users table which is used to manage your application's security. However, most apps will have their own "users" table, which is used when implementing the app's business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two tables. If you have an object in your system named `users`, and if that object has the fields `email`, `firstName`, and `lastName`, then every user that is registered with Backand for your app will automatically have an entry created in your custom `users` object. This takes place no matter how the user is added - both the signup API and the Backand dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand's internal registered users table. This new user will be given a randomized password, which can then be provided to the user for access to your application.
+
+Below we'll look more in-depth at how this process is managed. Additionally, we'll explore what happens when the users object has an unexpected name (i.e. something other than "users"), or if the fields of the users object are named differently.
+
+There are 3 sync actions located in Configuration -> Security & Auth that are triggered by Backand user registration:
+
+1. Create My App User
+1. Update My App User
+1. Delete My App User. 
+
+Those are Transactional SQL actions. You can directly modify the SQL statements used to match your application's specific table structure. By default, Backand sets the Where Condition of the action to "false" if it detects that you do not have a users object in your model, meaning that the action will never run. Thus, it is important that after modifying the SQL for your object model, you then set the "Where" condition to "true".
+
+If you have a users object in your model, Backand adds the following action, which runs during user creation:
+
 ```
 function backandCallback(userInput, dbRow, parameters, userProfile) {
-	
-	var randomPassword = function(length){
-	    if (!length) length = 10;
-	    return Math.random().toString(36).slice(-length);
-	}
+    
+    var randomPassword = function(length){
+        if (!length) length = 10;
+        return Math.random().toString(36).slice(-length);
+    }
     if (!parameters.password){
         parameters.password = randomPassword();
     }
-	
+    
     var backandUser = {
         password: parameters.password,
         confirmPassword: parameters.password,
@@ -44,9 +56,9 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
         lastName: userInput.lastName
     };
     
-    // uncomment if you want to debug debug
+    // uncomment if you want to debug
     //console.log(parameters);
-	
+    
     var x = $http({method:"POST",url:CONSTS.apiUrl + "1/user" ,data:backandUser, headers: {"Authorization":userProfile.token, "AppName":userProfile.app}});
 
     // uncomment if you want to return the password and sign in as this user
@@ -54,7 +66,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
     return { };
 }
 ```
-This action does the other way around, each time you create a new instance to users, it also adds a Backand registered user. If you use a different name then "users" for you users object, you can add the above action into that object. You will need to adjust the backandUser according to your specific object, the userInput may have a different structure then the above, so you need to adjust it as well.
+This action implements the other side of the relationship - after creating an instance in your custom `users` object, this code creates the corresponding entry in Backand's internal users table. If have named your custom user object anything other than "users", you can add the above action into that object manually to achieve the same functionality. You will need to adjust the backandUser object creation to use the columns in your specific object, as the userInput object may have a different structure than that assumed above..
 
 # <a name="roles"></a>Roles & Security Templates
 
