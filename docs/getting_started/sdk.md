@@ -1,4 +1,4 @@
-This section covers [Backand's JavaScript SDK 1.7.1](https://github.com/backand/angularbknd-sdk)
+This section covers [Backand's JavaScript SDK 1.7.x](https://github.com/backand/angularbknd-sdk)
 
 ## Configuration Properties
 
