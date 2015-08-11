@@ -78,8 +78,24 @@ For more details on <a href="https://developers.google.com/console/help/new/" ta
 
 ### Facebook App Configuration
 
-In order to add Google app follow these steps:
+In order to add Facebook app follow these steps:
 
+1. Click and un-check 'Use Back& app for signing in with Facebook'  
+1. Go to the <a href="Open https://developers.facebook.com/" target="_blank">Facebook Developers</a>.
+1. Optional: Click MyApps and register as developer
+1. Under My Apps select **Add a new app**
+1. Select WWW (web site)
+1. In the wizard provide your app's name and click **Create New Facebook App ID**
+1. Choose Category and Sub-Category and click **Create App ID**
+1. Click on the **Skip Quick Start** (In the upper right side of the window)
+1. In the sidebar on the left, select **Settings**
+1. Click on **Advanced** Tab
+1. In **Valid OAuth redirect URIs** enter: https://api.backand.com/1/user/facebook/auth
+1. Click **Save Changes**
+1. In the sidebar on the left, select **Dashboard**    
+1. Copy the **App ID** into the Client ID field in Backand
+1. Click **Show** near **App Secret**, enter your Facebook password.
+1. Copy the **App Secret** into the Secret ID field in Backand
 
 
 ## Security Templates
