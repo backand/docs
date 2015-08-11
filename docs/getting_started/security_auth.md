@@ -47,10 +47,10 @@ In this section you can configure the social app for each company (GitHub, Googl
 In order to add GitHub app follow these steps:
 
 1. Click and un-check 'Use Back& app for signing in with GitHub'  
-2. Register your application under [Developer Applications Tab](https://github.com/settings/applications/new) with the following mandatory details:
-* **Application name**: Something users will recognize and trust
-* **Homepage URL**: Your application's url (could start with http://localhost)
-* **Authorization callback URL**: https://api.backand.com/1/user/github/auth
+2. Register your application under <a href="https://github.com/settings/applications/new" target="_blank">Developer Applications Tab</a> with the following mandatory details:
+    * **Application name**: Something users will recognize and trust
+    * **Homepage URL**: Your application's url (could start with http://localhost)
+    * **Authorization callback URL**: https://api.backand.com/1/user/github/auth
 
 After the app was created copy from GitHub the Client ID and Client Secret to the corresponding fields in Backand.
 For more details on <a href="https://developer.github.com/v3/oauth/#redirect-urls/" target="_blank">GitHub</a>
