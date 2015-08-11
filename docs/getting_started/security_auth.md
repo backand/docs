@@ -47,13 +47,40 @@ In this section you can configure the social app for each company (GitHub, Googl
 In order to add GitHub app follow these steps:
 
 1. Click and un-check 'Use Back& app for signing in with GitHub'  
-2. Register your application under <a href="https://github.com/settings/applications/new" target="_blank">Developer Applications Tab</a> with the following mandatory details:
+1. Register your application under <a href="https://github.com/settings/applications/new" target="_blank">Developer Applications Tab</a> with the following mandatory details:
     * **Application name**: Something users will recognize and trust
     * **Homepage URL**: Your application's url (could start with http://localhost)
     * **Authorization callback URL**: https://api.backand.com/1/user/github/auth
+1. After the app was created copy from GitHub the Client ID and Client Secret to the corresponding fields in Backand.
 
-After the app was created copy from GitHub the Client ID and Client Secret to the corresponding fields in Backand.
 For more details on <a href="https://developer.github.com/v3/oauth/#redirect-urls/" target="_blank">GitHub</a>
+
+
+### Google App Configuration
+
+In order to add Google app follow these steps:
+
+1. Click and un-check 'Use Back& app for signing in with Google'  
+1. Go to the <a href="https://console.developers.google.com/project" target="_blank">Google Developers Console</a>. Click Create Project, enter a name and a project ID, or accept the defaults, and click Create. 
+1. After the project created from, Google Developer Console, expand **APIs & auth** from the left sidebar.
+1. Click **APIs** to view the API Library, which lists all available APIs. The APIs are grouped by product family and popularity. Click on **Google+ API** under *8Social APIs**
+1. Click **Enable API** (You should see under the button Google+ API)
+1. In the sidebar on the left, select **Consent screen** and enter product name (can be your app name)
+1. In the sidebar on the left, select **Credentials**.
+1. Click **Create new Client ID** and update the following details:
+    * **Application type**: Web application (default)
+    * **Authorized JavaScript origins**: Need to be empty (Delete the default example URL)
+    * **Authorized redirect URIs**: https://api.backand.com/1/user/google/auth (delete the default example url)
+1. Click **Create Client ID**
+1. Under **Client ID for web application**  copy from Google the Client ID and Client Secret to the corresponding fields in Backand.
+
+For more details on <a href="https://developers.google.com/console/help/new/" target="_blank">Google</a>
+
+### Facebook App Configuration
+
+In order to add Google app follow these steps:
+
+
 
 ## Security Templates
 
