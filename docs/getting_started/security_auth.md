@@ -93,9 +93,9 @@ In order to add Facebook app follow these steps:
 1. In **Valid OAuth redirect URIs** enter: https://api.backand.com/1/user/facebook/auth
 1. Click **Save Changes**
 1. In the sidebar on the left, select **Dashboard**    
-1. Copy the **App ID** into the Client ID field in Backand
+1. Copy the **App ID** into the App ID field in Backand
 1. Click **Show** near **App Secret**, enter your Facebook password.
-1. Copy the **App Secret** into the Secret ID field in Backand
+1. Copy the **App Secret** into the App Secret field in Backand
 
 
 ## Security Templates
