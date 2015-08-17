@@ -28,74 +28,79 @@ There are several actions provided by default by Backand. The User Invitation Em
 
 ## Social & Keys
 
-In this page you can find the token keys required for sign-up and access the app without username or password. The social part let you configure your own social applications.
+The Social & Keys page consists of two parts - the tokens, and the social media configurations. These settings are used in your app to enable integration with social media providers, allowing your users to sign into your app using their social media accounts.
 
 ### Master Token
 
-The master Token is a token that you use to access Backand without username and password. Use this token carfully as it gives full access. This token mast be sent with the user GUID token.
+The master Token is a token that you can use to access your Backand app without a username or password. **NOTE**: Use this token carfully, as it gives the user full access to your application.. This token mast be sent with the user's GUID token.
 
 ### API Signup Token
 
-The API Signup Token is a token that you use whenever you contact the Backand API to register a new user with your application.
+The API Signup Token is used whenever you contact the Backand API to register a new user with your application.
 
 ### Social Configuration
 
 In this section you can configure the social app for each company (GitHub, Google and Facebook). By default you can use Backand as the social app, unless you add your own client and secret ids.
 
-### GitHub App Configuration
+#### GitHub App Configuration
 
-In order to add GitHub app follow these steps:
+In order to enable signing in with Github credentials, follow these steps:
 
-1. Click and un-check 'Use Back& app for signing in with GitHub'  
-1. Register your application under <a href="https://github.com/settings/applications/new" target="_blank">Developer Applications Tab</a> with the following mandatory details:
-    * **Application name**: Something users will recognize and trust
-    * **Homepage URL**: Your application's url (could start with http://localhost)
+1. Un-check the 'Use Back& app for signing in with GitHub' toggle
+1. Register your application on Github's <a href="https://github.com/settings/applications/new" target="_blank">Developer Applications Tab</a>. Include the following details, which are mandatory for new applications:
+    * **Application name**: A name for your app. Something users will recognize and trust
+    * **Homepage URL**: Your application's url (you can use http://localhost for testing purposes)
     * **Authorization callback URL**: https://api.backand.com/1/user/github/auth
-1. After the app was created copy from GitHub the Client ID and Client Secret to the corresponding fields in Backand.
+1. Record the Client ID and the Client Secret from Github
+1. In Backand's Social Configuration section, enter the Client ID and Client Secret in the correct fields in the Github section..
 
-For more details on <a href="https://developer.github.com/v3/oauth/#redirect-urls/" target="_blank">GitHub</a>
+More details on Github integrations are available in <a href="https://developer.github.com/v3/oauth/#redirect-urls/" target="_blank">developer documentation</a>.
 
 
-### Google App Configuration
+#### Google App Configuration
 
-In order to add Google app follow these steps:
+In order to add Google app sign-in, follow these steps:
 
-1. Click and un-check 'Use Back& app for signing in with Google'  
-1. Go to the <a href="https://console.developers.google.com/project" target="_blank">Google Developers Console</a>. Click Create Project, enter a name and a project ID, or accept the defaults, and click Create. 
-1. After the project created from, Google Developer Console, expand **APIs & auth** from the left sidebar.
-1. Click **APIs** to view the API Library, which lists all available APIs. The APIs are grouped by product family and popularity. Click on **Google+ API** under *8Social APIs**
-1. Click **Enable API** (You should see under the button Google+ API)
-1. In the sidebar on the left, select **Consent screen** and enter product name (can be your app name)
-1. In the sidebar on the left, select **Credentials**.
-1. Click **Create new Client ID** and update the following details:
-    * **Application type**: Web application (default)
-    * **Authorized JavaScript origins**: Need to be empty (Delete the default example URL)
-    * **Authorized redirect URIs**: https://api.backand.com/1/user/google/auth (delete the default example url)
-1. Click **Create Client ID**
-1. Under **Client ID for web application**  copy from Google the Client ID and Client Secret to the corresponding fields in Backand.
+1. Un-check the 'Use Back& app for signing in with Google' toggle/
+1. Open the <a href="https://console.developers.google.com/project" target="_blank">Google Developer's Console</a>. 
+    1. In the Google Developer's Console, Click **Create Project**.
+    1. Enter a name and a project ID, or accept the defaults, and click **Create**. 
+    1. After the project has been created, expand the **APIs & auth** section on the left sidebar.
+    1. Click **APIs** to view the API Library, which lists all available APIs. The APIs are grouped by product family and popularity. Click on **Google+ API** under **Social APIs**
+    1. Click **Enable API** (You should see this under the Google+ API button).
+    1. In the sidebar on the left, select **Consent screen** and enter your product name (this can be your Backand app name).
+    1. In the sidebar on the left, select **Credentials**.
+    1. Click **Create new Client ID** and enter the following details:
+        * **Application type**: Web application (default)
+        * **Authorized JavaScript origins**: Delete the default example URL and leave this field empty
+        * **Authorized redirect URIs**: Replace the default example URL with `https://api.backand.com/1/user/google/auth`
+    1. Click **Create Client ID**
+    1. Record your Client ID and Client Secret from the dashboard. They can be found in the **Client ID for web application** section.
+1. Finally, on the **Social & Keys** section of the Backand app management dashboard, fill out the Client ID and Client Secret you copied down in the last step.
 
-For more details on <a href="https://developers.google.com/console/help/new/" target="_blank">Google</a>
+For more details on integrating with Google, review their <a href="https://developers.google.com/console/help/new/" target="_blank">developer documentation</a>.
 
-### Facebook App Configuration
+#### Facebook App Configuration
 
-In order to add Facebook app follow these steps:
+In order to add Facebook login integration, follow these steps:
 
-1. Click and un-check 'Use Back& app for signing in with Facebook'  
-1. Go to the <a href="Open https://developers.facebook.com/" target="_blank">Facebook Developers</a>.
+1. Un-check the 'Use Back& app for signing in with Facebook' toggle. 
+1. Go to the <a href="Open https://developers.facebook.com/" target="_blank">Facebook Developers console</a>.
 1. Optional: Click MyApps and register as developer
-1. Under My Apps select **Add a new app**
-1. Select WWW (web site)
-1. In the wizard provide your app's name and click **Create New Facebook App ID**
-1. Choose Category and Sub-Category and click **Create App ID**
-1. Click on the **Skip Quick Start** (In the upper right side of the window)
-1. In the sidebar on the left, select **Settings**
-1. Click on **Advanced** Tab
-1. In **Valid OAuth redirect URIs** enter: https://api.backand.com/1/user/facebook/auth
-1. Click **Save Changes**
-1. In the sidebar on the left, select **Dashboard**    
-1. Copy the **App ID** into the App ID field in Backand
-1. Click **Show** near **App Secret**, enter your Facebook password.
-1. Copy the **App Secret** into the App Secret field in Backand
+    1. Under **My Apps**, select **Add a new app**
+    1. Select **WWW (web site)**
+    1. In the wizard that follows, provide your app's name and click **Create New Facebook App ID**
+    1. Choose a Category and a Sub-Category, then click **Create App ID**
+    1. Click on **Skip Quick Start** (In the upper right side of the window)
+    1. In the sidebar on the left, select **Settings**
+    1. Click on the **Advanced** Tab
+    1. In **Valid OAuth redirect URIs** enter: `https://api.backand.com/1/user/facebook/auth`
+    1. Click **Save Changes**
+    1. In the sidebar on the left, select **Dashboard**    
+    1. Record the **App ID**
+    1. Click **Show** (near **App Secret**) and enter your Facebook password.
+    1. Record the **App Secret**
+1. In the Backand dashboard, copy the App ID and App Secret you recorded into the appropriate fields in the Facebook integration section.
 
 
 ## Security Templates
