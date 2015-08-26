@@ -38,7 +38,7 @@ return $http ({
     name: 'mandrillapp',
     parameters: {
       message: 'Anything you can put your mind on',
-      name: 'Relly'
+      name: '<your name here>'
     }
   }
 });
