@@ -14,21 +14,14 @@ To send an email with Mailgun, you need to create a server side action. You can 
 function backandCallback(userInput, dbRow, parameters, userProfile) {
 	// write your code here
 	
-	var apiBaseUrl = "https://api.mailgun.net/v3/sandbox4bffb0c5ad584267a13048507cc4b502.mailgun.org/messages";
+	var apiBaseUrl = "https://api.mailgun.net/v3/sandbox<your sendbox key here>.mailgun.org/messages";
 
     var apiKey = "api:<you mailgun key here>";
                   
     var encodedAuth = btoa(apiKey);
     //console.log(encodedAuth);
     
-    /*curl -s --user 'api:key-bbdfb498e1c10e8cb3f818ad1b4139b7' \
-    https://api.mailgun.net/v3/sandbox4bffb0c5ad584267a13048507cc4b502.mailgun.org/messages \
-    -d from='Excited User <mailgun@sandbox4bffb0c5ad584267a13048507cc4b502.mailgun.org>' \
-    -d to=itay@backand.com \
-    -d subject='Hello' \
-    -d text='Testing some Mailgun awesomness!'*/
-    
-	var response = $http(
+    	var response = $http(
 	    {
 	        method:"POST",
 	        url: apiBaseUrl, 
