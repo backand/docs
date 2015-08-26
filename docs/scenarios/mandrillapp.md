@@ -20,14 +20,14 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
             "message":{"html":parameter.message,
             "subject":"Example for Mandrill Integration",
             "from_email":userProfile.username,"from_name":parameters.name,
-            "to":[{"email":"itay@backand.com","name":"itay to","type":"to"}],
+            "to":[{"email":userProfile.username,"name":parameters.name,"type":"to"}],
             "headers":{"Reply-To":"message.reply@backand.com"}}}
     });
     console.log(response);
 	return {};
 }
 ```
-in this example the app user can send any message that he wants to itay@backand.com. Please replace the "key" property with your mandrill key.
+in this example the app user can send any message that he wants to himself. Please replace the "key" property with your mandrill key.
 
 In your app, use the following code:
 ```
