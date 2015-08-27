@@ -28,5 +28,5 @@ pages:
 - ['scenarios/todo_users.md', 'Scenarios',  'ToDo With Users']
 - ['scenarios/amazon.md', 'Scenarios', 'Amazon AWS and S3 Integration']
 - ['scenarios/stripe.md', 'Scenarios', 'Stripe Integration']
-- ['scenarios/stripe.md', 'Scenarios', 'mandrillapp']
-- ['scenarios/stripe.md', 'Scenarios', 'mailgun']
+- ['scenarios/mandrillapp.md', 'Scenarios', 'Mandrillapp']
+- ['scenarios/mailgun.md', 'Scenarios', 'mailgun']
