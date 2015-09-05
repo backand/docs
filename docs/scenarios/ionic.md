@@ -22,56 +22,53 @@ You can use the following JSON mode:
 [
   {
     "name": "users",
-    "fields": [
-      {
-        "name": "email",
-        "type": "ShortText"
+    "fields": {
+      "email": {
+        "type": "string"
       },
-      {
-        "name": "name",
-        "type": "ShortText"
+      "name": {
+        "type": "string"
       },
-      {
-        "name": "is_approved",
-        "type": "Boolean"
+      "is_approved": {
+        "type": "boolean"
+      },
+      "list": {
+        "collection": "playlists",
+        "via": "user"
       }
-    ]
+    }
   },
   {
     "name": "playlists",
-    "fields": [
-      {
-        "name": "name",
-        "type": "ShortText"
+    "fields": {
+      "name": {
+        "type": "string"
       },
-      {
-        "name": "user",
-        "type": "SingleSelect",
-        "relatedTable": "users"
+      "description": {
+        "type": "text"
       },
-      {
-        "name": "description",
-        "type": "LongText"
+      "user": {
+        "object": "users"
+      },
+      "songs": {
+        "collection": "songs",
+        "via": "playlist"
       }
-    ]
+    }
   },
   {
     "name": "songs",
-    "fields": [
-      {
-        "name": "name",
-        "type": "ShortText"
+    "fields": {
+      "name": {
+        "type": "string"
       },
-      {
-        "name": "playlist",
-        "type": "SingleSelect",
-        "relatedTable": "playlists"
+      "order_date": {
+        "type": "datetime"
       },
-      {
-        "name": "order_date",
-        "type": "DateTime"
+      "playlist": {
+        "object": "playlists"
       }
-    ]
+    }
   }
 ]
 ```
