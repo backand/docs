@@ -1,11 +1,12 @@
-#What is Mailgun?
-Mailgun is an email automation service provided by Rackspace. It offers a complete cloud-based email service for sending, receiving and tracking email sent through your websites and applications.
+# What is Mailgun?
+Mailgun is an email automation service provided by Rackspace. It offers a complete cloud-based email service for sending, receiving, and tracking email nessages sent by your registered websites and applications.
 
-#Send Email with Mailgun API
-Mailgun has an API that you can use to send emails and a lot of other functionalities. By translating the curl to $http you can easily integrate Mailgun with Backand.
-To send an email with Mailgun, you need to create a server side action. You can either trigger this action to an object CRUD action or to call it on demand from the client. The following example shows the on demand option. Go to one of your objects Actions tab and create a new on demand, server side javascript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action SendEmail, add message and name to the Input Parameters and Paste the following code in the code editor so it will show the following:
+# Send Email with Mailgun API
+Mailgun provides an API that can be used to easily send email, among many other features. By translating Mailgun's provided cURL examples to JavaScript $http calls, you can easily integrate Mailgun with Backand.
 
-```
+To send an email with Mailgun, you need to create a server side action.You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action ,ao;gim, add message and name to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
+
+```javascript
 /* globals
   $http - service for AJAX calls - $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/yourObject" , headers: {"Authorization":userProfile.token}});
   CONSTS - CONSTS.apiUrl for Backands API URL
@@ -14,9 +15,9 @@ To send an email with Mailgun, you need to create a server side action. You can 
 function backandCallback(userInput, dbRow, parameters, userProfile) {
 	// write your code here
 	
-	var apiBaseUrl = "https://api.mailgun.net/v3/sandbox<your sendbox key here>.mailgun.org/messages";
+	var apiBaseUrl = "https://api.mailgun.net/v3/sandbox<your mailgun sandbox key here>.mailgun.org/messages";
 
-    var apiKey = "api:<you mailgun key here>";
+    var apiKey = "api:<your mailgun key here>";
                   
     var encodedAuth = btoa(apiKey);
     //console.log(encodedAuth);
@@ -43,10 +44,11 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 	return {};
 }
 ```
-in this example the app user can send any message that he wants to himself. Please replace the "key" property with your mailgun key.
+in this example the app user can send any message that he wants to himself. Please replace the "apiKey" property, as well as the sandbox URL, with your associated mailgun values.
 
-In your app, use the following code:
-```
+Next, add the following JavaScript code to your app's client-side code base:
+
+```javascript
 return $http ({
   method: 'GET',
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>/1',
@@ -60,4 +62,4 @@ return $http ({
 });
 
 ```
-Replace <your object name> with the object associated with the action you created.
+Replace <your object name> with the object associated with the action you created, and you are ready to send messages via Mailgun!
