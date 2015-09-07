@@ -29,4 +29,4 @@ pages:
 - ['scenarios/amazon.md', 'Scenarios', 'Amazon AWS and S3 Integration']
 - ['scenarios/stripe.md', 'Scenarios', 'Stripe Integration']
 - ['scenarios/mandrillapp.md', 'Scenarios', 'Mandrillapp']
-- ['scenarios/mailgun.md', 'Scenarios', 'mailgun']
+- ['scenarios/mailgun.md', 'Scenarios', 'Mailgun']
