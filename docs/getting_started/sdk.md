@@ -1,56 +1,90 @@
-This section covers [Backand's JavaScript SDK 1.7.x](https://github.com/backand/angularbknd-sdk)
+This section covers [Backand's JavaScript SDK 1.8.x](https://github.com/backand/angularbknd-sdk)
 
-## Configuration Properties
+## Getting Started
 
-These methods are used to configure your application's usage of Backand
+Backand SDK provides methods for easily communicating with the Backand server and performing common tasks, such as managing users. To use the SDK, first include the Backand SDK script files in your app:
 
-### manageDefaultHeaders
-#### Usage
-Tells Backand to manage the default headers, which automatically populates the backand configuration with all relevant tokens when requests are made. 
-#### Returns
-Nothing
+```
+      <!-- Backand SDK for Angular -->
+      <script src="//cdn.backand.net/backand/dist/1.5.1/backand.min.js"></script>
+``` 
+
+Then add the Backand dependency to your angular app definition:
+```
+      //app.js
+      angular.module('YOUR-APP-NAME', ['backand']);
+```
+## Configuration Properties Setters
+
+These methods are used to configure your application's usage of Backand. Call these methods in the application config stage, on BackandProvider. For example, the following code snippet sets the application name and tokens:
+
+```
+    angular.module('YOUR-APP-NAME')
+      .config(function (BackandProvider) {
+          BackandProvider.setAppName(APP_NAME)
+            .setAnonymousToken(ANONYMOUS_TOKEN)
+            .setSignUpToken(SIGN_UP_TOKEN);
+```
 
 ### setAppName
 #### Usage
 Sets the Backand app name for your application
 #### Returns
-Nothing
+BackandProvider
 
 ### setAnonymousToken
 #### Usage
 Sets the value of the anonymous use token
 #### Returns
-Nothing
+BackandProvider
 
 ### setSignUpToken
 #### Usage
 Sets the value of the user registration token
 #### Returns
-Nothing
+BackandProvider
+
+### manageHttpInterceptor
+#### Usage
+Tells Backand to manage the default headers, which automatically populates the backand configuration with all relevant tokens when requests are made. 
+#### Default
+true
+#### Returns
+BackandProvider
+
+### manageRefreshToken
+#### Usage
+Tells Backand to manage re-authenticating using the refresh token when the session has expired. Backand's http interceptor stores the rejected requests, performs the authentication, and sends again the request. The process is seemless to the user. For enabling this option, the application must be configured to use refresh tokens (in Security & Auth --> Social & Keys --> Session Length) and to manage interceptor through the SDK (manageHttpInterceptor).
+#### Default
+true
+#### Returns
+BackandProvider
+
+### runSigninAfterSignup
+#### Usage
+Tells Backand to seemlessly perform signing in after a user signes up.
+#### Default
+true
+#### Returns
+BackandProvider
+
+### setApiUrl
+#### Usage
+Sets the base API url for this application
+#### Default
+"https://api.backand.com"
+#### Returns
+BackandProvider
+
+## Configuration Properties Getters
+
+Use these methods to get configuration properties in the config stage of your application.
 
 ### getApiUrl
 #### Usage
 Returns the base API URL for this application
 #### Returns
 A string representing the base API URL
-
-### setApiUrl
-#### Usage
-Sets the base API url for this application
-#### Returns
-Nothing
-
-### getTokenName
-#### Usage
-Gets the name of the cookie in which the authorization token is stored
-#### Returns
-The cookie name
-
-### setTokenName
-#### Usage
-Sets the name of the cookie in which the authorization token is stored
-#### Returns
-Nothing
 
 ## Methods
 
