@@ -219,7 +219,7 @@ Returns true if the application is configured to use the Backand SDK HTTP interc
 #### Returns
 Boolean
 
-isManagingRefreshToken
+### isManagingRefreshToken
 #### Usage
 Returns true if the application is using refresh tokens (unlimited session length) and is configured to let Backand SDK manage re-authenticating when the session has expired. When true, Backand's HTTP interceptor stores the rejected requests, performs the authentication, and sends again the requests. Notice that isManagingHttpInterceptor should also be true in order for the process described above to occur.
 #### Returns
