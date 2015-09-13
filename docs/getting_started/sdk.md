@@ -165,7 +165,6 @@ Signs the currently authenticated user out of the application and removes all th
 Initiates the password reset process, triggering an email containing a one-time password reset token to be sent to the user.
 #### Arguments
 * email - the email of the user whose password is to be reset
-* appName - the name of the application the user is registered with
 
 ### resetPassword
 #### Usage
