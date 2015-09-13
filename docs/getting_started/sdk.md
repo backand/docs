@@ -133,6 +133,7 @@ Registers a user for the application. Broadcasts Backand.EVENTS.SIGNUP upon succ
 * email - the new user's email address
 * password - The new user's desired password
 * confirmPassword - the user's desired password again, used as confirmation of correct entry
+* parameters - additional parameters to be sent, i.e. CAPTCHA
 
 ### socialSignin
 #### Usage
@@ -146,6 +147,7 @@ Signs the specified user into the application using a third-party social media p
 Registers a user for the application using a third-party social media provider. Broadcasts Backand.EVENTS.SIGNUP upon success.
 #### Arguments
 * provider - a string, one of the following: google, facebook, github
+* parameters - additional parameters to be sent, i.e. CAPTCHA
 * spec - a string of the spec of the pop-up window used to authenticate the user. Default value: 'left=1, top=1, width=600, height=600'. See [W3Schools: Window open() Method](http://www.w3schools.com/jsref/met_win_open.asp) for more options.
 
 ### getSocialProviders
