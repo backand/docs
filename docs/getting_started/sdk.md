@@ -227,5 +227,5 @@ Boolean
 ### setAppName
 #### Usage
 Sets the Backand app name for your application. Used mainly for demo applications, in which you can configure the application name using its UI, instead of inserting it in the application's code.
-### Arguments
+#### Arguments
 * appName - a string of the application name
