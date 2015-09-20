@@ -110,7 +110,7 @@ A string representing the base API URL
 ## Methods
 
 ### Events
-Backand.EVENTS holds the following strings which are broadcasted from the $rootScope when authentication actions are performed via Backand SDK:
+Backand.EVENTS holds the following strings which are broadcast from the $rootScope when authentication actions are performed via Backand SDK:
 * SIGNIN: 'BackandSignIn'
 * SIGNUP: 'BackandSignUp'
 * SIGNOUT: 'BackandSignOut'
@@ -139,14 +139,14 @@ Registers a user for the application. Broadcasts Backand.EVENTS.SIGNUP upon succ
 #### Usage
 Signs the specified user into the application using a third-party social media provider. Broadcasts Backand.EVENTS.SIGNIN upon success.
 #### Arguments
-* provider - a string, one of the following: google, facebook, github
+* provider - a string, one of the following: Google, Facebook, GitHub
 * spec - a string of the spec of the pop-up window used to authenticate the user. Default value: 'left=1, top=1, width=600, height=600'. See [W3Schools: Window open() Method](http://www.w3schools.com/jsref/met_win_open.asp) for more options.
 
 ### socialSignup
 #### Usage
 Registers a user for the application using a third-party social media provider. Broadcasts Backand.EVENTS.SIGNUP upon success.
 #### Arguments
-* provider - a string, one of the following: google, facebook, github
+* provider - a string, one of the following: Google, Facebook, GitHub
 * parameters - additional parameters to be sent, i.e. CAPTCHA
 * spec - a string of the spec of the pop-up window used to authenticate the user. Default value: 'left=1, top=1, width=600, height=600'. See [W3Schools: Window open() Method](http://www.w3schools.com/jsref/met_win_open.asp) for more options.
 
