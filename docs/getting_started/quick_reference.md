@@ -15,7 +15,7 @@ All responses are returned as JSON objects. The status code of the response indi
 ## Security & Authentication
 | URL | HTTP Verb | Functionality |
 | ----- | ----------- | --------------- |
-| /token | POST | Obtains a 24-hour acccess token. A Backand username and password must be provided, along with the app the user is signing in to. Note that the app parameter is optional if you have already set the app name in the setAppName configuration property |
+| /token | POST | Obtains a 24-hour access token. A Backand username and password must be provided, along with the app the user is signing in to. Note that the app parameter is optional if you have already set the app name in the setAppName configuration property |
 | /user/signup | POST | Registers a new user with the application. Must use a SignUpToken, which is configured for the application |
 | /user/requestResetPassword | POST | Sends an email to the provided username with a single-use token that can be used to reset the user's password |
 | /user/resetPassword | POST | Resets the user's password after verification using a one-time  access token |

@@ -12,7 +12,7 @@
 * removed backend stuff
 * e2e testing support with protractor
 * using purecss + SMACSS
-* following AngularJS styleguide by todd motto
+* following AngularJS style guide by todd motto
 
 # 0.0.2 (2013-12-11)
 

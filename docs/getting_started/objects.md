@@ -2,7 +2,7 @@ The "Objects" section of the dashboard allows you to modify the specific objects
 
 ## Model
 
-The Model parent tab allows you to modify the JSON schema of your database's model structure, adding new objeccts and establishing the relationship between them. Below is a brief overview of how to use this interface:
+The Model parent tab allows you to modify the JSON schema of your database's model structure, adding new objects and establishing the relationship between them. Below is a brief overview of how to use this interface:
 
 ###Example
 
@@ -165,7 +165,7 @@ The security settings allow you to enable or disable actions on the object based
 
 ## Settings
 
-The Settings tab allows you to modify high-level aspects of the object, such as the object name. It also allows you to enable change tracking for this object, and set the column that contains the object's description. This is used when setting the object as a relatedTable relation to another object, and will drive the contents of each drop-down and multiselect provided as a result.
+The Settings tab allows you to modify high-level aspects of the object, such as the object name. It also allows you to enable change tracking for this object, and set the column that contains the object's description. This is used when setting the object as a relatedTable relation to another object, and will drive the contents of each drop-down and multi select provided as a result.
 
 ## Data
 

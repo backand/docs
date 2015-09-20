@@ -24,7 +24,7 @@ This enables or disables automated user email verification. When enabled, users 
 
 The actions on this page, much like those on the other pages of the application, allow you to define custom actions to occur at each point in the transactional CRUD conversation against a database table, or when called by accessing a specific URL. These actions, though, are tied specifically to the internal Backand Users table, which manages your application''s security. All of the standard custom action options are available for use in this section, and you can easily create new actions, edit existing actions, and test the actions you have created.
 
-There are several actions provided by default by Backand. The User Invitation Email and Admin Invitiation Email actions allow you to modify the emails sent to a user when they are invited to the application. The User Approval action allows you to modify the approval email received by the user after email verification. The New User Verification action allows you to modify the generic verification email sent when sign-up verification is enabled. Finally, the Request Reset Password action allows you to modify the email sent when a user requests a password reset token.
+There are several actions provided by default by Backand. The User Invitation Email and Admin Invitation Email actions allow you to modify the emails sent to a user when they are invited to the application. The User Approval action allows you to modify the approval email received by the user after email verification. The New User Verification action allows you to modify the generic verification email sent when sign-up verification is enabled. Finally, the Request Reset Password action allows you to modify the email sent when a user requests a password reset token.
 
 ## Social & Keys
 
@@ -32,7 +32,7 @@ The Social & Keys page consists of two parts - the tokens, and the social media 
 
 ### Master Token
 
-The master Token is a token that you can use to access your Backand app without a username or password. **NOTE**: Use this token carfully, as it gives the user full access to your application.. This token mast be sent with the user's GUID token.
+The master Token is a token that you can use to access your Backand app without a username or password. **NOTE**: Use this token carefully, as it gives the user full access to your application.. This token mast be sent with the user's GUID token.
 
 ### API Signup Token
 
@@ -44,17 +44,17 @@ In this section you can configure the social app for each company (GitHub, Googl
 
 #### GitHub App Configuration
 
-In order to enable signing in with Github credentials, follow these steps:
+In order to enable signing in with GitHub credentials, follow these steps:
 
 1. Un-check the 'Use Back& app for signing in with GitHub' toggle
-1. Register your application on Github's <a href="https://github.com/settings/applications/new" target="_blank">Developer Applications Tab</a>. Include the following details, which are mandatory for new applications:
+1. Register your application on GitHub's <a href="https://github.com/settings/applications/new" target="_blank">Developer Applications Tab</a>. Include the following details, which are mandatory for new applications:
     * **Application name**: A name for your app. Something users will recognize and trust
     * **Homepage URL**: Your application's url (you can use http://localhost for testing purposes)
     * **Authorization callback URL**: https://api.backand.com/1/user/github/auth
-1. Record the Client ID and the Client Secret from Github
-1. In Backand's Social Configuration section, enter the Client ID and Client Secret in the correct fields in the Github section..
+1. Record the Client ID and the Client Secret from GitHub
+1. In Backand's Social Configuration section, enter the Client ID and Client Secret in the correct fields in the GitHub section..
 
-More details on Github integrations are available in <a href="https://developer.github.com/v3/oauth/#redirect-urls/" target="_blank">developer documentation</a>.
+More details on GitHub integrations are available in <a href="https://developer.github.com/v3/oauth/#redirect-urls/" target="_blank">developer documentation</a>.
 
 
 #### Google App Configuration

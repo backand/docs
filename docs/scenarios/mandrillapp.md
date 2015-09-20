@@ -2,7 +2,7 @@
 Mandrill is an email infrastructure service that focuses on transactional emails. Using Mandrill, you can send personalized e-commerce messages on a one-to-one basis, or automated transactional messages for things like password resets, order confirmations, and welcome messages.
 
 #Send Email with Mandrillapp API
-Mandrill has an API that you can use to send emails, along with a lot of other functionalty. By translating their provided cURL commands to Angular $http calls, you can easily integrate Mandrill with Backand.
+Mandrill has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate Mandrill with Backand.
 
 To send an email with Mandrill, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action mandrillapp, add message and name to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
 

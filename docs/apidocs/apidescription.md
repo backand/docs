@@ -93,7 +93,7 @@ The parameters for the sign-up call are:
 With the `/user/requestResetPassword` api you can request a password reset for a particular user (for example, when they have forgotten their password). The process consists of the following steps:
 
 - From your app's registration page, call the `/user/requestResetPassword` action
-- An email is sent containing a one-time use token that  your user can use to reset their passowrd. See the Reset Password section below for more information on this process.
+- An email is sent containing a one-time use token that  your user can use to reset their password. See the Reset Password section below for more information on this process.
 
 The parameters for the requestResetPassword call are:
 * **appName** - A string containing your application's name

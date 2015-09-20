@@ -51,7 +51,7 @@ Pure Change History
 ### Forms
 
 * Improved how `<input type="color">` elements look in Chrome by fixing
-  paddings. ([#283][] @jpetto)
+  padding. ([#283][] @jpetto)
 
 * Removed `font-size` rules from `<input>`, `<legend>`, and `<fieldset>`
   elements within `.pure-form`. Font sizes are now inherited from the
@@ -161,7 +161,7 @@ Pure Change History
 ### Base
 
 * __[!]__ Removed Normalize.css from checked-in `src/`. Bower is now used to
-  programmatically import Normalize.css into `bower_components/` if it's not
+  pragmatically import Normalize.css into `bower_components/` if it's not
   already installed. Normalize.css is still bundled with Pure, this change is a
   development-time change only. ([#160][])
 

@@ -6,7 +6,7 @@ Backand SDK provides methods for easily communicating with the Backand server an
 
 ```
       <!-- Backand SDK for Angular -->
-      <script src="//cdn.backand.net/backand/dist/1.5.1/backand.min.js"></script>
+      <script src="//cdn.backand.net/backand/dist/1.8.0/backand.min.js"></script>
 ``` 
 
 Then add the Backand dependency to your angular app definition:
@@ -182,7 +182,7 @@ Changes the authenticated user's password
 
 ### getUserDetails
 #### Usage
-An asyncronous methods that gets all the information about the current signed in user: username, user ID, full name, role, tokens, etc. This information is first received when the user signs in, and stored in local storage.
+An asynchronous methods that gets all the information about the current signed in user: username, user ID, full name, role, tokens, etc. This information is first received when the user signs in, and stored in local storage.
 #### Arguments
 * force - If true, gets the user profile (username, fullName and role) from the server and updates the local storage with the retrieved data. Otherwise, gets it from the local storage. Either way, the rest of the details are taken from the local storage.
 
@@ -203,9 +203,9 @@ A string representing the user's role
 
 ### getToken
 #### Usage
-Returns the acess token used to communicate with Backand.
+Returns the access token used to communicate with Backand.
 #### Returns
-A string of the accees token.
+A string of the access token.
 
 ### getApiUrl
 #### Usage
