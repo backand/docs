@@ -2,7 +2,7 @@ Here are a few basic URL guidelines for quickly accessing your application's dat
 
 ## Base URL
 
-The base URL for your application will be `https://api.backand.com:8078/1` - all of your access will be driven from this URL
+The base URL for your application will be `https://api.backand.com/1` - all of your access will be driven from this URL
 
 ## Request Format
 
