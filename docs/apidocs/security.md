@@ -4,7 +4,7 @@ The following Security Concepts section describes the Backand concepts of how to
 
 # Authentication
 
-The default authentication setup for Backand applications relies on [OAuth2](http://oauth.net/2/) to provide tokenize authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use [Backand's SDK](https://github.com/backand/angularbknd-sdk) to help you manage the access token. You can change the default 24 hours token expiration or to make it last forever by using a refresh token. The refresh token is an encryption of the master and user keys. By changing them you can revoke one or all of you users refresh tokens and re-authenticate them. To ease to work with other servers you can also use [basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) where the username is the master key and the password is the user key. Backand also offers Anonymous Access, which allows you to access your application without the need to authenticate via username and password.
+The default authentication setup for Backand applications relies on [OAuth2](http://oauth.net/2/) to provide tokenize authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use [Backand's SDK](https://github.com/backand/angularbknd-sdk) to help you manage the access token. You can change the default 24 hours token expiration or to make it last forever by using a refresh token. The refresh token is an encryption of the master and user keys. By changing them you can revoke one or all of you users refresh tokens and re-authenticate them. To ease to work with other servers you can also use [basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) where the username is the master key and the password is the user key. Backand also offers Anonymous Access, which allows you to access your application without the need to authenticate via username and password. See the [API Description](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#user-authentication)
 
 # Sign Up
 Registering with Backand, and creating an application, automatically sets you as a user with an "Admin" role in your new project (see [roles](security.md#roles) for more info). By default your application is marked private, which means that only users that you have personally invited can sign up for your app. This can be changed in the dashboard by setting your application to Public in the Security & Auth --> Configuration menu. Setting your application to public allows any user to register for - and use - your application. These users are assigned a default role, which needs to be configured when you enable public usage of your app (see [roles](security.md#roles) for more details). For security reasons you cannot change the role of a user through API calls - this can only be accomplished either by having an admin change the appropriate settings on the Security & Auth -> Users page, or by creating a custom server-side action that performs this task. For a private application the registration steps are as follow:
@@ -41,7 +41,7 @@ Those are Transactional SQL actions. You can directly modify the SQL statements 
 
 If you have a users object in your model, Backand adds the following actions, which run before and during user creation
 
-## Before Create: Validate Backand Register User
+* Before Create: Validate Backand Register User
 
 ```
 function backandCallback(userInput, dbRow, parameters, userProfile) {
@@ -68,7 +68,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 }
 ```
 
-## During Create: Create Backand Register User
+* During Create: Create Backand Register User
 
 ```
 function backandCallback(userInput, dbRow, parameters, userProfile) {
