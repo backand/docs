@@ -2,40 +2,47 @@
 
 Backand provides role-based security that allows you to determine specific permissions for each group of users. Backand uses [OAuth2](http://oauth.net/2/) authentication to identify users. Backand's implementation of OAuth2 authentication requires you to send the username, password, and appname (application name). In response, you receive an authentication token that must be supplied for all further communication with Backand.
 
-You can either provide this token with each request, or use a cookie to persist the authentication token (recommended). Providing this token is required to use Backand's REST API. We have prepared a Backand Provider that will help you the authentication activities. Start by including the Backand SDK script files in your app:
+You can either provide this token with each request, or use the Backand SDK interceptor to append it (recommended). Providing this token is required to use Backand's REST API. We have prepared a Backand Provider that will help you the authentication activities. Start by including the Backand SDK script files in your app:
 
 ```
-      <!-- We use client cookies to save the REST API token -->
-      <script src="//code.angularjs.org/1.3.0/angular-cookies.min.js"></script>
       <!-- Backand SDK for Angular -->
-      <script src="//cdn.backand.net/backand/dist/1.5.1/backand.min.js"></script>
+      <script src="//cdn.backand.net/backand/dist/1.8.0/backand.min.js"></script>
 ``` 
-You will also need to add the Backand and angular-cookies dependencies to your angular app definition:
+You will also need to add the Backand dependency to your angular app definition:
 
 ```
       //app.js
-      angular.module('YOUR-APP-NAME', ['backand', 'ngCookies'])
+      angular.module('YOUR-APP-MODULE', ['backand'])
+```
+Configure the application name and tokens, which can be found in Backand Security & Auth --> Configuration and Social & Keys pages:
+```
+      angular.module('YOUR-APP-MODULE')
+            .config(function (BackandProvider) {
+                  BackandProvider.setAppName(YOUR-APP-NAME)
+                        .setAnonymousToken(ANONYMOUS-TOKEN)
+                        .setSignUpToken(SIGN-UP-TOKEN);
+            }
 ```
  
-Once this is complete, you are ready to sign in to Backand, for other users to sign up to your app read about it here. There is also an option for anonymous access, read about it here.
+Once this is complete you can use Backand SDK functions for authenticating the users of your application, as described below.
 
+
+####User Authentication
 
 ####Sign In
 Use the Backand provider with the following parameters to get an OAuth2 access token:
 
-* **username** - Backand's username.
-* **password** - Backand's .password
-* **appName** - The application name.
+* **username** - Backand's user username.
+* **password** - Backand's user password
 
 ```
       // SignInCtrl.js
-      function SignInCtrl(Backand, $cookieStore) {
-        $scope.signIn = function() {
-          Backand.signin($scope.username, $scope.password, $scope.appName)
+      function SignInCtrl(Backand) {
+        this.signIn = function() {
+          Backand.signin(username, password)
           .then(
-            function (token) {
-              //save the token in the cookie
-              $cookieStore.put(Backand.configuration.tokenName, token);
+            function () {
+              //enter session
             },
             function (data, status, headers, config) {
               //handle error
@@ -43,16 +50,6 @@ Use the Backand provider with the following parameters to get an OAuth2 access t
           );
         }
       }
-      // Use an Angular HTTP Interceptor to add the authentication token to each HTTP request
-      function httpInterceptor($q, $log, $cookieStore) {
-        return {
-          request: function(config) {
-            config.headers['Authorization'] = $cookieStore.get('backand_token');
-            return config;
-          }
-        };
-      }
-    
 ```
 
 ####Sign Up
