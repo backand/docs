@@ -77,7 +77,7 @@ BackandProvider
 
 ### runSigninAfterSignup
 #### Usage
-Tells Backand to seemlessly perform signing in after a user signes up. This configuration is irrelevant when signing up with a social provider, since the user is always signed in after signing up.
+Tells Backand to seamlessly perform signing in after a user signes up. This configuration is irrelevant when signing up with a social provider, since the user is always signed in after signing up.
 #### Arguments
 * runSigninAfterSignup - a boolean, true if Backand should perform signing in after a user signes up.
 
@@ -230,3 +230,16 @@ Boolean
 Sets the Backand app name for your application. Used mainly for demo applications, in which you can configure the application name using its UI, instead of inserting it in the application's code.
 #### Arguments
 * appName - a string of the application name
+
+## Deprecated Methods
+### manageDefaultHeaders
+#### Reason
+Replaced by manageHttpInterceptor. Managing the Authorization headers is not done by default headers any more but by implementing httpInterceptor internally. 
+
+### getTokenName
+#### Reason
+This version doesn't use cookie any more. The token name was used as the cookie name. 
+
+### setTokenName
+#### Reason
+This version doesn't use cookie any more. The token name was used as the cookie name. 
