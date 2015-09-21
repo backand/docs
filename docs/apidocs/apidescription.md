@@ -290,7 +290,7 @@ Call `/objects/{name}/{id}/{collection}` with the following parameters to get a 
 
 Call `/objects/{name}/filter1/{collection}` with the following parameters to get a list of items of a specific collection:
 
-* **filter1** - This is the name of the query string parameter that will filter the parent objects to return all their collections
+* **filter1** - This is the name of the query string parameter that will filter the parent objects to return all their collections. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more on filter
 * **collection** - A name of a collection field
 * **pageSize** - The number of returned items in each getList call (default 20).
 * **pageNumber** - The page number starting with 1 (1-based, default 1).
