@@ -188,8 +188,36 @@ Call `/objects/{name}` with the following parameters to get a list of items:
 
 * **pageSize** - The number of returned items in each getList call (default 20).
 * **pageNumber** - The page number starting with 1 (1-based, default 1).
-* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type.
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type.  
+An example for filter: 
+```
+[{"fieldName":"firstName","operand":"contains","value":"el"},{"fieldName":"lastName","operand":"startsWith","value":"ri"}]
+```
+following are the possible operands depending on the field type:  
+**numeric or date fields:**  
+-- equals  
+-- notEquals  
+-- greaterThan  
+-- greaterThanOrEqualsTo  
+-- lessThan  
+-- lessThanOrEqualsTo  
+-- empty  
+-- notEmpty  
+**textual fields:**  
+-- equals  
+-- notEquals  
+-- startsWith  
+-- contains  
+-- notContains  
+-- empty  
+-- notEmpty  
+**object fields:**  
+-- in  
 * **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc".
+An example for sort: 
+```
+[{"fieldName":"firstName","order":"desc"}]
+```
 * **search** - Free text filter search.
 * **deep** - When set to true, brings the related parent items in the relatedTables property.
 
@@ -213,15 +241,73 @@ Call `/objects/{name}` with the following parameters to get a list of items:
 Call `/objects/{name}/{id}` with a specific item id and with the following parameters to get a specific item:
 
 * **id** - The item's id, which is the primary key value for the item's database table
-* **deep** - When set to true, brings the related parent items in the relatedTables property
+* **deep** - When set to true, brings the related collections and objects
+* **level** - When deep is set to true, this parameter determines the collection relations dept level. The default is 3 (grandchildren)
 
 ```
-  self.getOne = function (name, id, deep) {
+  self.getOne = function (name, id, deep, level) {
       return $http({
           method: 'GET',
           url: Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id
           params: {
-            deep: deep
+            deep: deep,
+            level: level
+          }
+      });
+  };
+```
+
+####List of Objects of a Specific Collection
+
+
+Call `/objects/{name}/{id}/{collection}` with the following parameters to get a list of items of a specific collection:
+
+* **id** - The item's id, which is the primary key value for the item's database table
+* **collection** - A name of a collection field
+* **pageSize** - The number of returned items in each getList call (default 20).
+* **pageNumber** - The page number starting with 1 (1-based, default 1).
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type.  
+An example for filter: 
+```
+[{"fieldName":"firstName","operand":"contains","value":"el"},{"fieldName":"lastName","operand":"startsWith","value":"ri"}]
+```
+following are the possible operands depending on the field type:  
+**numeric or date fields:**  
+-- equals  
+-- notEquals  
+-- greaterThan  
+-- greaterThanOrEqualsTo  
+-- lessThan  
+-- lessThanOrEqualsTo  
+-- empty  
+-- notEmpty  
+**textual fields:**  
+-- equals  
+-- notEquals  
+-- startsWith  
+-- contains  
+-- notContains  
+-- empty  
+-- notEmpty  
+**object fields:**  
+-- in  
+* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc".
+An example for sort: 
+```
+[{"fieldName":"firstName","order":"desc"}]
+```
+* **search** - Free text filter search.
+
+```
+  self.getList = function (name, id, collection, pageSize, pageNumber, filter, sort) {
+      return $http({
+          method: 'GET',
+          url: Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id + '/' + collection,
+          params: {
+            pageSize: pageSize,
+            pageNumber: pageNumber,
+            sort: sort,
+            filter: filter
           }
       });
   };
