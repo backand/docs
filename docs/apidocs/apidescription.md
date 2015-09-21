@@ -257,7 +257,7 @@ Call `/objects/{name}/{id}` with a specific item id and with the following param
   };
 ```
 
-####List of Objects of a Specific Collection
+####List of Objects of a Specific Collection of a Specific id
 
 
 Call `/objects/{name}/{id}/{collection}` with the following parameters to get a list of items of a specific collection:
@@ -266,36 +266,8 @@ Call `/objects/{name}/{id}/{collection}` with the following parameters to get a 
 * **collection** - A name of a collection field
 * **pageSize** - The number of returned items in each getList call (default 20).
 * **pageNumber** - The page number starting with 1 (1-based, default 1).
-* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type.  
-An example for filter: 
-```
-[{"fieldName":"firstName","operand":"contains","value":"el"},{"fieldName":"lastName","operand":"startsWith","value":"ri"}]
-```
-following are the possible operands depending on the field type:  
-**numeric or date fields:**  
--- equals  
--- notEquals  
--- greaterThan  
--- greaterThanOrEqualsTo  
--- lessThan  
--- lessThanOrEqualsTo  
--- empty  
--- notEmpty  
-**textual fields:**  
--- equals  
--- notEquals  
--- startsWith  
--- contains  
--- notContains  
--- empty  
--- notEmpty  
-**object fields:**  
--- in  
-* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc".
-An example for sort: 
-```
-[{"fieldName":"firstName","order":"desc"}]
-```
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more   
+* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more
 * **search** - Free text filter search.
 
 ```
@@ -308,6 +280,35 @@ An example for sort:
             pageNumber: pageNumber,
             sort: sort,
             filter: filter
+          }
+      });
+  };
+```
+
+####List of Objects of a Specific Collection of filtered parents
+
+
+Call `/objects/{name}/filter1/{collection}` with the following parameters to get a list of items of a specific collection:
+
+* **filter1** - This is the name of the query string parameter that will filter the parent objects to return all their collections
+* **collection** - A name of a collection field
+* **pageSize** - The number of returned items in each getList call (default 20).
+* **pageNumber** - The page number starting with 1 (1-based, default 1).
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more   
+* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more
+* **search** - Free text filter search.
+
+```
+  self.getList = function (name, filter1, collection, pageSize, pageNumber, filter, sort) {
+      return $http({
+          method: 'GET',
+          url: Backand.configuration.apiUrl + '/1/objects/' + name + '/filter1/' + collection,
+          params: {
+            pageSize: pageSize,
+            pageNumber: pageNumber,
+            sort: sort,
+            filter: filter,
+            filter1: filter1
           }
       });
   };
