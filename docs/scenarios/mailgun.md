@@ -1,5 +1,5 @@
 # What is Mailgun?
-Mailgun is an email automation service provided by Rackspace. It offers a complete cloud-based email service for sending, receiving, and tracking email nessages sent by your registered websites and applications.
+Mailgun is an email automation service provided by Rackspace. It offers a complete cloud-based email service for sending, receiving, and tracking email messages sent by your registered websites and applications.
 
 # Send Email with Mailgun API
 Mailgun provides an API that can be used to easily send email, among many other features. By translating Mailgun's provided cURL examples to JavaScript $http calls, you can easily integrate Mailgun with Backand.
@@ -9,7 +9,7 @@ To send an email with Mailgun, you need to create a server side action.You can e
 ```javascript
 /* globals
   $http - service for AJAX calls - $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/yourObject" , headers: {"Authorization":userProfile.token}});
-  CONSTS - CONSTS.apiUrl for Backands API URL
+  CONSTS - CONSTS.apiUrl for Backand's API URL
 */
 'use strict';
 function backandCallback(userInput, dbRow, parameters, userProfile) {
@@ -33,7 +33,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 	        data: {
 	            from: userProfile.username, 
 	            to: userProfile.username, 
-	            subject: 'testing mailgum with backand', 
+	            subject: 'testing mailgun with backand', 
 	            text: parameters.message
 	        }
 	        

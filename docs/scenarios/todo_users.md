@@ -1,4 +1,4 @@
-Recently, we released a tutorial on the [Backand Github page](https://github.com/backand/angular-yeoman-todos/tree/todo-with-users) that shows off a lot of the features available by default in a Backand-powered application. After completing the tutorial, you'll have a simple ToDo list application with full support for user and role-based security. Below we'll discuss each of the features demonstrated in the tutorial, and cover any items remaining that are necessary for a full deployment.
+Recently, we released a tutorial on the [Backand GitHub page](https://github.com/backand/angular-yeoman-todos/tree/todo-with-users) that shows off a lot of the features available by default in a Backand-powered application. After completing the tutorial, you'll have a simple ToDo list application with full support for user and role-based security. Below we'll discuss each of the features demonstrated in the tutorial, and cover any items remaining that are necessary for a full deployment.
 
 # RESTful API Out-of-the-Box
 

@@ -2,40 +2,47 @@
 
 Backand provides role-based security that allows you to determine specific permissions for each group of users. Backand uses [OAuth2](http://oauth.net/2/) authentication to identify users. Backand's implementation of OAuth2 authentication requires you to send the username, password, and appname (application name). In response, you receive an authentication token that must be supplied for all further communication with Backand.
 
-You can either provide this token with each request, or use a cookie to persist the authentication token (recommended). Providing this token is required to use Backand's REST API. We have prepared a Backand Provider that will help you the authentication activities. Start by including the Backand SDK script files in your app:
+You can either provide this token with each request, or use the Backand SDK interceptor to append it (recommended). Providing this token is required to use Backand's REST API. We have prepared a Backand Provider that will help you the authentication activities. Start by including the Backand SDK script files in your app:
 
 ```
-      <!-- We use client cookies to save the REST API token -->
-      <script src="//code.angularjs.org/1.3.0/angular-cookies.min.js"></script>
       <!-- Backand SDK for Angular -->
-      <script src="//cdn.backand.net/backand/dist/1.5.1/backand.min.js"></script>
+      <script src="//cdn.backand.net/backand/dist/1.8.0/backand.min.js"></script>
 ``` 
-You will also need to add the Backand and angular-cookies dependencies to your angular app definition:
+You will also need to add the Backand dependency to your angular app definition:
 
 ```
       //app.js
-      angular.module('YOUR-APP-NAME', ['backand', 'ngCookies'])
+      angular.module('YOUR-APP-MODULE', ['backand'])
+```
+Configure the application name and tokens, which can be found in Backand Security & Auth --> Configuration and Social & Keys pages:
+```
+      angular.module('YOUR-APP-MODULE')
+            .config(function (BackandProvider) {
+                  BackandProvider.setAppName(YOUR-APP-NAME)
+                        .setAnonymousToken(ANONYMOUS-TOKEN)
+                        .setSignUpToken(SIGN-UP-TOKEN);
+            }
 ```
  
-Once this is complete, you are ready to sign in to Backand, for other users to sign up to your app read about it here. There is also an option for anonymous access, read about it here.
+Once this is complete you can use Backand SDK functions for authenticating the users of your application, as described below.
 
+
+####User Authentication
 
 ####Sign In
 Use the Backand provider with the following parameters to get an OAuth2 access token:
 
-* **username** - Backand's username.
-* **password** - Backand's .password
-* **appName** - The application name.
+* **username** - Backand's user username.
+* **password** - Backand's user password
 
 ```
       // SignInCtrl.js
-      function SignInCtrl(Backand, $cookieStore) {
-        $scope.signIn = function() {
-          Backand.signin($scope.username, $scope.password, $scope.appName)
+      function SignInCtrl(Backand) {
+        this.signIn = function() {
+          Backand.signin(username, password)
           .then(
-            function (token) {
-              //save the token in the cookie
-              $cookieStore.put(Backand.configuration.tokenName, token);
+            function () {
+              //enter session
             },
             function (data, status, headers, config) {
               //handle error
@@ -43,16 +50,6 @@ Use the Backand provider with the following parameters to get an OAuth2 access t
           );
         }
       }
-      // Use an Angular HTTP Interceptor to add the authentication token to each HTTP request
-      function httpInterceptor($q, $log, $cookieStore) {
-        return {
-          request: function(config) {
-            config.headers['Authorization'] = $cookieStore.get('backand_token');
-            return config;
-          }
-        };
-      }
-    
 ```
 
 ####Sign Up
@@ -96,7 +93,7 @@ The parameters for the sign-up call are:
 With the `/user/requestResetPassword` api you can request a password reset for a particular user (for example, when they have forgotten their password). The process consists of the following steps:
 
 - From your app's registration page, call the `/user/requestResetPassword` action
-- An email is sent containing a one-time use token that  your user can use to reset their passowrd. See the Reset Password section below for more information on this process.
+- An email is sent containing a one-time use token that  your user can use to reset their password. See the Reset Password section below for more information on this process.
 
 The parameters for the requestResetPassword call are:
 * **appName** - A string containing your application's name
@@ -191,8 +188,36 @@ Call `/objects/{name}` with the following parameters to get a list of items:
 
 * **pageSize** - The number of returned items in each getList call (default 20).
 * **pageNumber** - The page number starting with 1 (1-based, default 1).
-* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type.
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type.  
+An example for filter: 
+```
+[{"fieldName":"firstName","operand":"contains","value":"el"},{"fieldName":"lastName","operand":"startsWith","value":"ri"}]
+```
+following are the possible operands depending on the field type:  
+**numeric or date fields:**  
+-- equals  
+-- notEquals  
+-- greaterThan  
+-- greaterThanOrEqualsTo  
+-- lessThan  
+-- lessThanOrEqualsTo  
+-- empty  
+-- notEmpty  
+**textual fields:**  
+-- equals  
+-- notEquals  
+-- startsWith  
+-- contains  
+-- notContains  
+-- empty  
+-- notEmpty  
+**object fields:**  
+-- in  
 * **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc".
+An example for sort: 
+```
+[{"fieldName":"firstName","order":"desc"}]
+```
 * **search** - Free text filter search.
 * **deep** - When set to true, brings the related parent items in the relatedTables property.
 
@@ -216,15 +241,74 @@ Call `/objects/{name}` with the following parameters to get a list of items:
 Call `/objects/{name}/{id}` with a specific item id and with the following parameters to get a specific item:
 
 * **id** - The item's id, which is the primary key value for the item's database table
-* **deep** - When set to true, brings the related parent items in the relatedTables property
+* **deep** - When set to true, brings the related collections and objects
+* **level** - When deep is set to true, this parameter determines the collection relations dept level. The default is 3 (grandchildren)
 
 ```
-  self.getOne = function (name, id, deep) {
+  self.getOne = function (name, id, deep, level) {
       return $http({
           method: 'GET',
           url: Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id
           params: {
-            deep: deep
+            deep: deep,
+            level: level
+          }
+      });
+  };
+```
+
+####List of Objects of a Specific Collection of a Specific id
+
+
+Call `/objects/{name}/{id}/{collection}` with the following parameters to get a list of items of a specific collection:
+
+* **id** - The item's id, which is the primary key value for the item's database table
+* **collection** - A name of a collection field
+* **pageSize** - The number of returned items in each getList call (default 20).
+* **pageNumber** - The page number starting with 1 (1-based, default 1).
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more   
+* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more
+* **search** - Free text filter search.
+
+```
+  self.getList = function (name, id, collection, pageSize, pageNumber, filter, sort) {
+      return $http({
+          method: 'GET',
+          url: Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id + '/' + collection,
+          params: {
+            pageSize: pageSize,
+            pageNumber: pageNumber,
+            sort: sort,
+            filter: filter
+          }
+      });
+  };
+```
+
+####List of Objects of a Specific Collection of filtered parents
+
+
+Call `/objects/{name}/filter1/{collection}` with the following parameters to get a list of items of a specific collection:
+
+* **filter1** - This is the name of the query string parameter that will filter the parent objects to return all their collections. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more on filter
+* **collection** - A name of a collection field
+* **pageSize** - The number of returned items in each getList call (default 20).
+* **pageNumber** - The page number starting with 1 (1-based, default 1).
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more   
+* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more
+* **search** - Free text filter search.
+
+```
+  self.getList = function (name, filter1, collection, pageSize, pageNumber, filter, sort) {
+      return $http({
+          method: 'GET',
+          url: Backand.configuration.apiUrl + '/1/objects/' + name + '/filter1/' + collection,
+          params: {
+            pageSize: pageSize,
+            pageNumber: pageNumber,
+            sort: sort,
+            filter: filter,
+            filter1: filter1
           }
       });
   };
