@@ -2,7 +2,7 @@ This section covers [Backand's JavaScript SDK 1.8.x](https://github.com/backand/
 
 ## Getting Started
 
-Backand SDK provides methods for easily communicating with the Backand server and performing common tasks, such as managing users. To use the SDK, first include the Backand SDK script files in your app:
+The Backand SDK provides methods for easily communicating with the Backand server and performing common tasks, such as managing users. To use the SDK, first include the Backand SDK script files in your app:
 
 ```
       <!-- Backand SDK for Angular -->
@@ -66,7 +66,7 @@ BackandProvider
 
 ### manageRefreshToken
 #### Usage
-Tells Backand to manage re-authenticating using the refresh token when the session has expired. Backand's HTTP interceptor stores the rejected requests, performs the authentication, and sends again the requests. The process is seemless to the user. For enabling this option, the application must be configured to use refresh tokens (in Security & Auth --> Social & Keys --> Session Length) and to manage interceptor through the SDK (manageHttpInterceptor).
+Tells Backand to manage re-authenticating using the refresh token when the session has expired. Backand's HTTP interceptor stores the rejected requests, performs the authentication, and resends the requests. The process is seamless to the user. The application must be configured to use refresh tokens in order to enable this option (in Security & Auth --> Social & Keys --> Session Length), as well as to manage the interceptor through the SDK (manageHttpInterceptor).
 #### Arguments
 * isManagingRefreshToken - a boolean, true if Backand should manage re-authenticating using the refresh token.
 
@@ -77,7 +77,7 @@ BackandProvider
 
 ### runSigninAfterSignup
 #### Usage
-Tells Backand to seamlessly perform signing in after a user signes up. This configuration is irrelevant when signing up with a social provider, since the user is always signed in after signing up.
+Tells Backand to seamlessly perform a sign in after a user signs up for your application. This configuration is irrelevant when signing up with a social provider, since the user is always signed in after sign-up.
 #### Arguments
 * runSigninAfterSignup - a boolean, true if Backand should perform signing in after a user signes up.
 
@@ -182,7 +182,7 @@ Changes the authenticated user's password
 
 ### getUserDetails
 #### Usage
-An asynchronous methods that gets all the information about the current signed in user: username, user ID, full name, role, tokens, etc. This information is first received when the user signs in, and stored in local storage.
+`getUserDetails` is an asynchronous method that retrieves all information about the current authenticated user: username, user ID, full name, role, tokens, etc. This information is pulled down when the user signs in, and stored in local storage.
 #### Arguments
 * force - If true, gets the user profile (username, fullName and role) from the server and updates the local storage with the retrieved data. Otherwise, gets it from the local storage. Either way, the rest of the details are taken from the local storage.
 
@@ -197,7 +197,7 @@ A string of the user's username
 
 ### getUserRole
 #### Usage
-Returns the currently signed-in user's role (User, Admin, Public or ReadOnly) which was saved in local storage when the user signed in.
+Returns the currently signed-in user's role (User, Admin, Public or ReadOnly), which was saved in local storage when the user signed in.
 #### Returns
 A string representing the user's role
 
@@ -221,7 +221,7 @@ Boolean
 
 ### isManagingRefreshToken
 #### Usage
-Returns true if the application is using refresh tokens (unlimited session length) and is configured to let Backand SDK manage re-authenticating when the session has expired. When true, Backand's HTTP interceptor stores the rejected requests, performs the authentication, and sends again the requests. Notice that isManagingHttpInterceptor should also be true in order for the process described above to occur.
+Returns true if the application is using refresh tokens (unlimited session length) and is configured to let Backand SDK manage re-authenticating when the session has expired. When true, Backand's HTTP interceptor stores the rejected requests, performs the authentication, and resends the requests. Notice that isManagingHttpInterceptor should also be true in order for the process described above to occur.
 #### Returns
 Boolean
 
@@ -238,8 +238,8 @@ Replaced by manageHttpInterceptor. Managing the Authorization headers is not don
 
 ### getTokenName
 #### Reason
-This version doesn't use cookie any more. The token name was used as the cookie name. 
+The latest version no longer uses cookies. The token name was used as the cookie name. 
 
 ### setTokenName
 #### Reason
-This version doesn't use cookie any more. The token name was used as the cookie name. 
+The latest version no longer uses cookies. The token name was used as the cookie name. 

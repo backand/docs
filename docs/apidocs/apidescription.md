@@ -2,7 +2,7 @@
 
 Backand provides role-based security that allows you to determine specific permissions for each group of users. Backand uses [OAuth2](http://oauth.net/2/) authentication to identify users. Backand's implementation of OAuth2 authentication requires you to send the username, password, and appname (application name). In response, you receive an authentication token that must be supplied for all further communication with Backand.
 
-You can either provide this token with each request, or use the Backand SDK interceptor to append it (recommended). Providing this token is required to use Backand's REST API. We have prepared a Backand Provider that will help you the authentication activities. Start by including the Backand SDK script files in your app:
+You can either provide this token with each request, or use the Backand SDK interceptor to append it to each request automatically (recommended). Providing this token is required to use Backand's REST API. We have prepared a Backand Provider that will help you the authentication activities. Start by including the Backand SDK script files in your app:
 
 ```
       <!-- Backand SDK for Angular -->
@@ -257,17 +257,17 @@ Call `/objects/{name}/{id}` with a specific item id and with the following param
   };
 ```
 
-####List of Objects of a Specific Collection of a Specific id
+####List Collection Objects from a Collection Field for a Specific Object ID
 
 
-Call `/objects/{name}/{id}/{collection}` with the following parameters to get a list of items of a specific collection:
+To obtain a list of collection objects stored in a collection field on a specific object, call  `/objects/{name}/{id}/{collection}` with the following parameters:
 
 * **id** - The item's id, which is the primary key value for the item's database table
-* **collection** - A name of a collection field
+* **collection** - A name of a collection field in the item's database table
 * **pageSize** - The number of returned items in each getList call (default 20).
-* **pageNumber** - The page number starting with 1 (1-based, default 1).
-* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more   
-* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more
+* **pageNumber** - The page number, starting with 1 (1-based, default 1).
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information.
+* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information.
 * **search** - Free text filter search.
 
 ```
@@ -285,17 +285,17 @@ Call `/objects/{name}/{id}/{collection}` with the following parameters to get a 
   };
 ```
 
-####List of Objects of a Specific Collection of filtered parents
+####List Specific Collection Objects From a Set of Filtered Parent Objects
 
 
-Call `/objects/{name}/filter1/{collection}` with the following parameters to get a list of items of a specific collection:
+To list all of the collection objects for a specific collection field within a filtered set of objects, call `/objects/{name}/filter1/{collection}` with the following parameters:
 
-* **filter1** - This is the name of the query string parameter that will filter the parent objects to return all their collections. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more on filter
-* **collection** - A name of a collection field
-* **pageSize** - The number of returned items in each getList call (default 20).
-* **pageNumber** - The page number starting with 1 (1-based, default 1).
-* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more   
-* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more
+* **filter1** - This specifies which filter to apply to the object table, and is applied prior to obtaining the collection fields. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information on filters.
+* **collection** - A name of a collection field in the object.
+* **pageSize** - The number of items returned by this call (default 20).
+* **pageNumber** - The page number to obtain starting with 1 (1-based, default 1).
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator, and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information on the filter parameter.   
+* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information on the sort parameter.
 * **search** - Free text filter search.
 
 ```
