@@ -140,7 +140,7 @@ In Person:
 
 ####Example of many-to-many Model
 
-** Start with Model with 2 objects that has no relationship:
+* Start with Model with 2 objects that has no relationship:
 
 ```json
 [
@@ -169,7 +169,7 @@ In Person:
 ]
 ```
   
-** Add the new object and the relationship fields:
+* Add the new object and the relationship fields:
 
 ```json
 [
