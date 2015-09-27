@@ -142,7 +142,7 @@ In Person:
 
 1. Start with Model with 2 objects that has no relationship:
 
-  ```json
+```json
 [
   {
     "name": "pet",
@@ -167,55 +167,55 @@ In Person:
     }
   }
 ]
-  ```
+```
   
 2. Add the new object and the relationship fields:
 
-  ```json
-  [
-    {
-      "name": "pet",
-      "fields": {
-        "name": {
-          "type": "string"
-        },
-        "persons": {
-          "collection": "person_pet",
-          "via": "pet"
-        }
-      }
-    },
-    {
-      "name": "person_pet",
-      "fields": {
-        "pet": {
-          "object": "pet"
-        },
-        "person": {
-          "object": "person"
-        }
-      }
-    },
-    {
-      "name": "person",
-      "fields": {
-        "email": {
-          "type": "string"
-        },
-        "firstName": {
-          "type": "string"
-        },
-        "lastName": {
-          "type": "string"
-        },
-        "pets": {
-          "collection": "person_pet",
-          "via": "person"
-        }
+```json
+[
+  {
+    "name": "pet",
+    "fields": {
+      "name": {
+        "type": "string"
+      },
+      "persons": {
+        "collection": "person_pet",
+        "via": "pet"
       }
     }
-  ]
-  ```
+  },
+  {
+    "name": "person_pet",
+    "fields": {
+      "pet": {
+        "object": "pet"
+      },
+      "person": {
+        "object": "person"
+      }
+    }
+  },
+  {
+    "name": "person",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "pets": {
+        "collection": "person_pet",
+        "via": "person"
+      }
+    }
+  }
+]
+```
 
 ## Fields
 
