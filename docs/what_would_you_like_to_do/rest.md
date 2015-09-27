@@ -2,7 +2,7 @@ Once your web application's data has been imported and configured, the next step
 
 # What is REST?
 
-REST stands for Representational State Transfer. It is a software architectural style that is designed for the creation of (and interaction with) scalable web services. Most RESTful web services – including Backand's implementation – use HTTP verbs such as GET, POST, PUT, and DELETE, to perform specific actions on the server. The end result is a stateless representation of object interaction, providing a clearly-defined interface to an underlying set of objects in an application. This allows for communication with the server to occur as a series of object changes, reducing the complex server logic needed with other, more stateful architectures.
+REST stands for Representational (RE) State (S) Transfer (T). It is a software architectural style that is designed for the creation of (and interaction with) scalable web services. Most RESTful web services – including Backand's implementation – use HTTP verbs such as GET, POST, PUT, and DELETE, to perform specific actions on the server. The end result is a stateless representation of object interaction, providing a clearly-defined interface to an underlying set of objects in an application. This allows for communication with the server to occur as a series of object changes, reducing the complex server logic needed with other, more stateful architectures.
 
 # Automatically Building an API
 

@@ -31,7 +31,7 @@ The function parameters are:
 
 In addition to the above parameters, you can also make use of the following global objects:
 
-* $http - a service for HTTP calls, similar to Angular $http but without the promise, since it is a server side function it always runs in sync;
+* $http - a service for HTTP calls, similar to Angular $http but without the promise, since it is a server side function it always runs in sync. [See the full API description for more details](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#rest-api-crud-operations):
     * GET example: 
 
 			var response = $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample", 

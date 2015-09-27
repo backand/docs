@@ -2,7 +2,7 @@
 
 Backand provides role-based security that allows you to determine specific permissions for each group of users. Backand uses [OAuth2](http://oauth.net/2/) authentication to identify users. Backand's implementation of OAuth2 authentication requires you to send the username, password, and appname (application name). In response, you receive an authentication token that must be supplied for all further communication with Backand.
 
-You can either provide this token with each request, or use the Backand SDK interceptor to append it (recommended). Providing this token is required to use Backand's REST API. We have prepared a Backand Provider that will help you the authentication activities. Start by including the Backand SDK script files in your app:
+You can either provide this token with each request, or use the Backand SDK interceptor to append it to each request automatically (recommended). Providing this token is required to use Backand's REST API. We have prepared a Backand Provider that will help you the authentication activities. Start by including the Backand SDK script files in your app:
 
 ```
       <!-- Backand SDK for Angular -->
@@ -188,8 +188,36 @@ Call `/objects/{name}` with the following parameters to get a list of items:
 
 * **pageSize** - The number of returned items in each getList call (default 20).
 * **pageNumber** - The page number starting with 1 (1-based, default 1).
-* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type.
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type.  
+An example for filter: 
+```
+[{"fieldName":"firstName","operand":"contains","value":"el"},{"fieldName":"lastName","operand":"startsWith","value":"ri"}]
+```
+following are the possible operands depending on the field type:  
+**numeric or date fields:**  
+-- equals  
+-- notEquals  
+-- greaterThan  
+-- greaterThanOrEqualsTo  
+-- lessThan  
+-- lessThanOrEqualsTo  
+-- empty  
+-- notEmpty  
+**textual fields:**  
+-- equals  
+-- notEquals  
+-- startsWith  
+-- contains  
+-- notContains  
+-- empty  
+-- notEmpty  
+**object fields:**  
+-- in  
 * **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc".
+An example for sort: 
+```
+[{"fieldName":"firstName","order":"desc"}]
+```
 * **search** - Free text filter search.
 * **deep** - When set to true, brings the related parent items in the relatedTables property.
 
@@ -213,15 +241,74 @@ Call `/objects/{name}` with the following parameters to get a list of items:
 Call `/objects/{name}/{id}` with a specific item id and with the following parameters to get a specific item:
 
 * **id** - The item's id, which is the primary key value for the item's database table
-* **deep** - When set to true, brings the related parent items in the relatedTables property
+* **deep** - When set to true, brings the related collections and objects
+* **level** - When deep is set to true, this parameter determines the collection relations dept level. The default is 3 (grandchildren)
 
 ```
-  self.getOne = function (name, id, deep) {
+  self.getOne = function (name, id, deep, level) {
       return $http({
           method: 'GET',
           url: Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id
           params: {
-            deep: deep
+            deep: deep,
+            level: level
+          }
+      });
+  };
+```
+
+####List Collection Objects from a Collection Field for a Specific Object ID
+
+
+To obtain a list of collection objects stored in a collection field on a specific object, call  `/objects/{name}/{id}/{collection}` with the following parameters:
+
+* **id** - The item's id, which is the primary key value for the item's database table
+* **collection** - A name of a collection field in the item's database table
+* **pageSize** - The number of returned items in each getList call (default 20).
+* **pageNumber** - The page number, starting with 1 (1-based, default 1).
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information.
+* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information.
+* **search** - Free text filter search.
+
+```
+  self.getList = function (name, id, collection, pageSize, pageNumber, filter, sort) {
+      return $http({
+          method: 'GET',
+          url: Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id + '/' + collection,
+          params: {
+            pageSize: pageSize,
+            pageNumber: pageNumber,
+            sort: sort,
+            filter: filter
+          }
+      });
+  };
+```
+
+####List Specific Collection Objects From a Set of Filtered Parent Objects
+
+
+To list all of the collection objects for a specific collection field within a filtered set of objects, call `/objects/{name}/filter1/{collection}` with the following parameters:
+
+* **filter1** - This specifies which filter to apply to the object table, and is applied prior to obtaining the collection fields. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information on filters.
+* **collection** - A name of a collection field in the object.
+* **pageSize** - The number of items returned by this call (default 20).
+* **pageNumber** - The page number to obtain starting with 1 (1-based, default 1).
+* **filter** - An array of JSON objects where each item has the properties fieldName, operator, and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information on the filter parameter.   
+* **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information on the sort parameter.
+* **search** - Free text filter search.
+
+```
+  self.getList = function (name, filter1, collection, pageSize, pageNumber, filter, sort) {
+      return $http({
+          method: 'GET',
+          url: Backand.configuration.apiUrl + '/1/objects/' + name + '/filter1/' + collection,
+          params: {
+            pageSize: pageSize,
+            pageNumber: pageNumber,
+            sort: sort,
+            filter: filter,
+            filter1: filter1
           }
       });
   };
