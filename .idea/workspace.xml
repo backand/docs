@@ -5,9 +5,7 @@
     <option name="CUSTOM_SCOPE_NAME" value="Current File" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="423b4f66-b4c9-4b89-b67d-2809381f7a36" name="Default" comment="Merge branch 'master' of https://github.com/evilstickman/docs into evilstickman-master&#10;&#10;# Conflicts:&#10;#&#9;docs/apidocs/apidescription.md&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/getting_started/objects.md" afterPath="$PROJECT_DIR$/docs/getting_started/objects.md" />
-    </list>
+    <list default="true" id="423b4f66-b4c9-4b89-b67d-2809381f7a36" name="Default" comment="Merge branch 'master' of https://github.com/evilstickman/docs into evilstickman-master&#10;&#10;# Conflicts:&#10;#&#9;docs/apidocs/apidescription.md&#10;" />
     <ignored path="docs.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
