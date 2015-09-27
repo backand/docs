@@ -77,9 +77,9 @@ A field may have one of the following types:
 
 ###One-to-Many Relationship
 
-One-to-many relationship between tables are specified using relationship fields. A relationship field will generate the appropriate foreign-key relationship fields in the corresponding relation objects.
+One-to-many relationship between objects are specified using relationship fields. A relationship field will generate the appropriate foreign-key relationship fields in the corresponding relation objects.
 
-Say, for example, that we have a one to many relationship between tables R and S. This means that for each row in R, there are many potentially corresponding rows in S.
+Say, for example, that we have a one to many relationship between objects R and S. This means that for each row in R, there are many potentially corresponding rows in S.
 
 In the 'many' side of the relationship (object S), we specify that each row relates to one row in the other object R by providing an object field link:
 
@@ -93,9 +93,9 @@ In the 'one' side of the relationship (object R), we specify that each row relat
 "Rs" : { "collection": "S", "via" : "myR" }
 ```
 
-In the database, a foreign-key constraint will be added between objects S to R, represented by a foreign key field `myR` being created on the object S's data table. This field will hold the primary key of the corresponding row in R for each row in S.
+In the database, a foreign-key constraint will be added between tables S to R, represented by a foreign key field `myR` being created on the object S's data table. This field will hold the primary key of the corresponding row in R for each row in S.
 
-As an example, consider a database describing pet ownership. It has two tables, `person` and `pet`. Each person can own several pets, but a pet has a single owner. Thus, the person-pet relationship is a one to many relationship between person and pet:
+As an example, consider a model describing pet ownership. It has two objects, `person` and `pet`. Each person can own several pets, but a pet has a single owner. Thus, the person-pet relationship is a one to many relationship between person and pet:
 
 The `person` object will have a `pets` a relationship field, which establishes the 'one' side of the relationship by creating a collection of pet objects for each person in the database:
 
@@ -108,6 +108,113 @@ The `pet` table will have an `owner` a relationship field, which establishes the
 ```json
 "owner": { "object": "person" }
 ```
+
+###Many-to-Many Relationship
+Many-to-Many relationship between objects done by adding a new object that has one-to-many relationship with 
+each object. Please review [One-to-many relationship](objects.md#one-to-many-relationship) before continue with this section.
+
+Say, for example, that we have a many to many relationship between objects R and S. This means that for many rows in R, there are many potentially corresponding rows in S.
+
+As an example, consider a model describing pet ownership. It has two objects, `person` and `pet`. Each person can own several pets, and each pet can have several owners. Thus, the person-pet relationship is many to many relationship between person and pet:
+
+First we need to add the new object `person_pet` with relationships to objects `pet` and `person` correspondingly:
+
+```json
+"pet": { "object": "pet" }
+"person": { "object": "person" }
+```
+
+In the corresponding objects `person` and `pet` we need to complete the one-to-many relationship:
+
+In Pets:
+
+```json
+"persons": {"collection": "person_pet", "via": "pet"}
+```
+  
+In Person:
+
+```json
+"pets": {"collection": "person_pet", "via": "person"}
+```
+
+####Example of many-to-many Model
+
+1. Start with Model with 2 objects that has no relationship:
+
+  ```json
+  [
+    {
+      "name": "pet",
+      "fields": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "person",
+      "fields": {
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        }
+      }
+    }
+  ]
+  ```
+2. Add the new object and the relationship fields:
+
+  ```json
+  [
+    {
+      "name": "pet",
+      "fields": {
+        "name": {
+          "type": "string"
+        },
+        "persons": {
+          "collection": "person_pet",
+          "via": "pet"
+        }
+      }
+    },
+    {
+      "name": "person_pet",
+      "fields": {
+        "pet": {
+          "object": "pet"
+        },
+        "person": {
+          "object": "person"
+        }
+      }
+    },
+    {
+      "name": "person",
+      "fields": {
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "pets": {
+          "collection": "person_pet",
+          "via": "person"
+        }
+      }
+    }
+  ]
+  ```
 
 ## Fields
 
