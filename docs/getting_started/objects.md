@@ -142,7 +142,7 @@ In Person:
 
 1. Start with Model with 2 objects that has no relationship:
 
-  ```json
+  ```
   [
     {
       "name": "pet",
@@ -168,6 +168,7 @@ In Person:
     }
   ]
   ```
+  
 2. Add the new object and the relationship fields:
 
   ```json
