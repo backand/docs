@@ -142,31 +142,31 @@ In Person:
 
 1. Start with Model with 2 objects that has no relationship:
 
-  ```
-  [
-    {
-      "name": "pet",
-      "fields": {
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    {
-      "name": "person",
-      "fields": {
-        "email": {
-          "type": "string"
-        },
-        "firstName": {
-          "type": "string"
-        },
-        "lastName": {
-          "type": "string"
-        }
+  ```json
+[
+  {
+    "name": "pet",
+    "fields": {
+      "name": {
+        "type": "string"
       }
     }
-  ]
+  },
+  {
+    "name": "person",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      }
+    }
+  }
+]
   ```
   
 2. Add the new object and the relationship fields:
