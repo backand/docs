@@ -9,28 +9,34 @@ The Model parent tab allows you to modify the JSON schema of your database's mod
 ```json
 [
   {
-    "name": "tasks",
-    "fields": {
-      "description": {
-        "type": "string"
-      },
-      "completed": {
-        "type": "boolean"
-      },
-      "members": {
-        "collection": "members",
-        "via": "task"
-      }
-    }
-  },
-  {
-    "name": "members",
+    "name": "items",
     "fields": {
       "name": {
         "type": "string"
       },
-      "task": {
-        "object": "tasks"
+      "description": {
+        "type": "text"
+      },
+      "user": {
+        "object": "users"
+      }
+    }
+  },
+  {
+    "name": "users",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "items": {
+        "collection": "items",
+        "via": "user"
       }
     }
   }
@@ -95,18 +101,57 @@ In the 'one' side of the relationship (object R), we specify that each row relat
 
 In the database, a foreign-key constraint will be added between tables S to R, represented by a foreign key field `myR` being created on the object S's data table. This field will hold the primary key of the corresponding row in R for each row in S.
 
-As an example, consider a model describing pet ownership. It has two objects, `person` and `pet`. Each person can own several pets, but a pet has a single owner. Thus, the person-pet relationship is a one to many relationship between person and pet:
+As an example, consider a model describing pet ownership. It has two objects, `users` and `pets`. Each user can own several pets, but a pet has a single owner. Thus, the users-pets relationship is a one to many relationship between users and pets:
 
-The `person` object will have a `pets` a relationship field, which establishes the 'one' side of the relationship by creating a collection of pet objects for each person in the database:
+The `users` object will have a `pets` a relationship field, which establishes the 'many' side of the relationship by creating a collection of pets objects for each user in the model.
+
+In `users`:
 
 ```json
-"pets": { "collection": "pet", "via": "owner" }
+"pets": { "collection": "pets", "via": "owner" }
 ```
 
-The `pet` table will have an `owner` a relationship field, which establishes the 'many' side of the relationship by linking each pet back to an individual owner instance of type 'person':
+The `pets` object will have an `owner` a relationship field, which establishes the 'one' side of the relationship by linking each pet back to an individual owner.
+
+In `pets`: 
 
 ```json
-"owner": { "object": "person" }
+"owner": { "object": "users" }
+```
+####Example of one-to-many Model
+
+```json
+[
+  {
+    "name": "pets",
+    "fields": {
+      "name": {
+        "type": "string"
+      },
+      "owner": {
+        "object": "users"
+      }
+    }
+  },
+  {
+    "name": "users",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "pets": {
+        "collection": "pets",
+        "via": "owner"
+      }
+    }
+  }
+]
 ```
 
 ###Many-to-Many Relationship
@@ -115,27 +160,29 @@ each object. Please review [One-to-many relationship](objects.md#one-to-many-rel
 
 Say, for example, that we have a many to many relationship between objects R and S. This means that for many rows in R, there are many potentially corresponding rows in S.
 
-As an example, consider a model describing pet ownership. It has two objects, `person` and `pet`. Each person can own several pets, and each pet can have several owners. Thus, the person-pet relationship is many to many relationship between person and pet:
+As an example, consider a model describing pet ownership. It has two objects, `users` and `pets`. Each owner can own several pets, and each pet can have several owners. Thus, the users-pets relationship is many to many relationship between owners and pets:
 
-First we need to add the new object `person_pet` with relationships to objects `pet` and `person` correspondingly:
+First we need to add the new object `users-pets` with relationships to objects `pets` and `users` correspondingly.
+
+In `users-pets`:
 
 ```json
-"pet": { "object": "pet" }
-"person": { "object": "person" }
+"pet": { "object": "pets" }
+"owner": { "object": "users" }
 ```
 
-In the corresponding objects `person` and `pet` we need to complete the one-to-many relationship:
+In the corresponding objects `users` and `pets` we need to complete the one-to-many relationship:
 
-In Pets:
+In `pets`:
 
 ```json
-"persons": {"collection": "person_pet", "via": "pet"}
+"owners": {"collection": "users-pets", "via": "pet"}
 ```
   
-In Person:
+In `users`:
 
 ```json
-"pets": {"collection": "person_pet", "via": "person"}
+"pets": {"collection": "users-pets", "via": "owner"}
 ```
 
 ####Example of many-to-many Model
@@ -145,7 +192,7 @@ In Person:
 ```json
 [
   {
-    "name": "pet",
+    "name": "pets",
     "fields": {
       "name": {
         "type": "string"
@@ -153,7 +200,7 @@ In Person:
     }
   },
   {
-    "name": "person",
+    "name": "users",
     "fields": {
       "email": {
         "type": "string"
@@ -174,30 +221,30 @@ In Person:
 ```json
 [
   {
-    "name": "pet",
+    "name": "pets",
     "fields": {
       "name": {
         "type": "string"
       },
-      "persons": {
-        "collection": "person_pet",
+      "owners": {
+        "collection": "users-pets",
         "via": "pet"
       }
     }
   },
   {
-    "name": "person_pet",
+    "name": "users-pets",
     "fields": {
       "pet": {
-        "object": "pet"
+        "object": "pets"
       },
-      "person": {
-        "object": "person"
+      "owner": {
+        "object": "users"
       }
     }
   },
   {
-    "name": "person",
+    "name": "users",
     "fields": {
       "email": {
         "type": "string"
@@ -209,8 +256,8 @@ In Person:
         "type": "string"
       },
       "pets": {
-        "collection": "person_pet",
-        "via": "person"
+        "collection": "users-pets",
+        "via": "owner"
       }
     }
   }
