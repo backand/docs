@@ -118,6 +118,7 @@ In `pets`:
 ```json
 "owner": { "object": "users" }
 ```
+
 ####Example of one-to-many Model
 
 ```json
