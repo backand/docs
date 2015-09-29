@@ -311,6 +311,20 @@ The Security tab allows you to restrict access to the database actions for this 
 
 The pre-defined filter can be used to add additional restrictions to the data loaded, such as only loading data associated with the current username.
 
+There are 2 place holders (tokens) that you can use: username - {{sys::username}} and user role - {{sys::role}}.
+
+In order to make sure items will be only shows for the current user logged in, use the following SQL syntax:
+
+```SQL
+items.user in (select id from users where email = '{{sys::username}}')
+```
+
+To add an option that Admin will see all the data use the user role place holder (token):
+
+```SQL
+'Admin' = '{{sys::role}}' or (items.user in (select id from users where email = '{{sys::username}}'))
+```
+
 ### Security Template & Override
 
 This allows you to select a security template to apply to the object or, if you choose, override the selected security template with the following security settings.
