@@ -99,11 +99,11 @@ In the 'one' side of the relationship (object R), we specify that each row relat
 "Rs" : { "collection": "S", "via" : "myR" }
 ```
 
-In the database, a foreign-key constraint will be added between tables S to R, represented by a foreign key field `myR` being created on the object S's data table. This field will hold the primary key of the corresponding row in R for each row in S.
+In the database, a foreign-key constraint will be added between tables S and R (pointing in the direction of R), represented by a foreign key field `myR` being created in the object S's data table. This field will hold the primary key of the corresponding row in R for each row in S.
 
-As an example, consider a model describing pet ownership. It has two objects, `users` and `pets`. Each user can own several pets, but a pet has a single owner. Thus, the users-pets relationship is a one to many relationship between users and pets:
+As an example, consider a model describing pet ownership. It has two objects, `users` and `pets`. Each user can own several pets, but a pet has a single owner (user). Thus, the users-pets relationship is a one to many relationship between users and pets:
 
-The `users` object will have a `pets` a relationship field, which establishes the 'many' side of the relationship by creating a collection of pets objects for each user in the model.
+The `users` object will have a `pets` relationship field, which establishes the 'many' side of the relationship by creating a collection of pets objects for each user in the model.
 
 In `users`:
 
@@ -111,7 +111,7 @@ In `users`:
 "pets": { "collection": "pets", "via": "owner" }
 ```
 
-The `pets` object will have an `owner` a relationship field, which establishes the 'one' side of the relationship by linking each pet back to an individual owner.
+The `pets` object will have an `owner` relationship field, which establishes the 'one' side of the relationship by linking each pet back to an individual owner.
 
 In `pets`: 
 
@@ -156,14 +156,13 @@ In `pets`:
 ```
 
 ###Many-to-Many Relationship
-Many-to-Many relationship between objects done by adding a new object that has one-to-many relationship with 
-each object. Please review [One-to-many relationship](objects.md#one-to-many-relationship) before continue with this section.
+Many-to-Many relationships between objects are added by adding a new object that has a one-to-many relationship with each object participating in the many-to-many relation. Please review [One-to-many relationship](objects.md#one-to-many-relationship) before continuing with this section.
 
 Say, for example, that we have a many to many relationship between objects R and S. This means that for many rows in R, there are many potentially corresponding rows in S.
 
-As an example, consider a model describing pet ownership. It has two objects, `users` and `pets`. Each owner can own several pets, and each pet can have several owners. Thus, the users-pets relationship is many to many relationship between owners and pets:
+As an example, consider a different model describing pet ownership. It has two objects, `users` and `pets`. Each user can own several pets, and each pet can have several owners. Thus, the users-pets relationship is many to many relationship between users and pets:
 
-First we need to add the new object `users-pets` with relationships to objects `pets` and `users` correspondingly.
+First we need to add a new object - `users-pets` - with one-to-many relationships to both `pets` and `users` objects.
 
 In `users-pets`:
 
@@ -172,7 +171,7 @@ In `users-pets`:
 "owner": { "object": "users" }
 ```
 
-In the corresponding objects `users` and `pets` we need to complete the one-to-many relationship:
+In the corresponding objects `users` and `pets`, we need to add a reference to `users-pets` to complete the one-to-many relationship:
 
 In `pets`:
 
@@ -188,7 +187,7 @@ In `users`:
 
 ####Example of many-to-many Model
 
-* Start with Model with 2 objects that has no relationship:
+* Start with a Model that contains 2 objects that have no relations between them:
 
 ```json
 [
@@ -309,17 +308,15 @@ The Security tab allows you to restrict access to the database actions for this 
 
 ### Pre-defined Filter
 
-The pre-defined filter can be used to add additional restrictions to the data loaded, such as only loading data associated with the current username.
+The pre-defined filter can be used to add additional restrictions to the data loaded, such as only loading data associated with the current username. There are 2 placeholders (tokens) that you can use: username - {{sys::username}} and user role - {{sys::role}}.
 
-There are 2 place holders (tokens) that you can use: username - {{sys::username}} and user role - {{sys::role}}.
-
-In order to make sure items will be only shows for the current user logged in, use the following SQL syntax:
+For example, the following SQL filter restricts the display of items to only show those items whose corresponding user is the user that is currently logged-in:
 
 ```SQL
 items.user in (select id from users where email = '{{sys::username}}')
 ```
 
-To add an option that Admin will see all the data use the user role place holder (token):
+Then, we can add an option so that an Admin user can see all of the items added by other application users, in addition to showing the items created by the user currently logged-in:
 
 ```SQL
 'Admin' = '{{sys::role}}' or (items.user in (select id from users where email = '{{sys::username}}'))
