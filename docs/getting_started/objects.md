@@ -9,28 +9,34 @@ The Model parent tab allows you to modify the JSON schema of your database's mod
 ```json
 [
   {
-    "name": "tasks",
-    "fields": {
-      "description": {
-        "type": "string"
-      },
-      "completed": {
-        "type": "boolean"
-      },
-      "members": {
-        "collection": "members",
-        "via": "task"
-      }
-    }
-  },
-  {
-    "name": "members",
+    "name": "items",
     "fields": {
       "name": {
         "type": "string"
       },
-      "task": {
-        "object": "tasks"
+      "description": {
+        "type": "text"
+      },
+      "user": {
+        "object": "users"
+      }
+    }
+  },
+  {
+    "name": "users",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "items": {
+        "collection": "items",
+        "via": "user"
       }
     }
   }
@@ -77,9 +83,9 @@ A field may have one of the following types:
 
 ###One-to-Many Relationship
 
-One-to-many relationship between tables are specified using relationship fields. A relationship field will generate the appropriate foreign-key relationship fields in the corresponding relation objects.
+One-to-many relationship between objects are specified using relationship fields. A relationship field will generate the appropriate foreign-key relationship fields in the corresponding relation objects.
 
-Say, for example, that we have a one to many relationship between tables R and S. This means that for each row in R, there are many potentially corresponding rows in S.
+Say, for example, that we have a one to many relationship between objects R and S. This means that for each row in R, there are many potentially corresponding rows in S.
 
 In the 'many' side of the relationship (object S), we specify that each row relates to one row in the other object R by providing an object field link:
 
@@ -93,20 +99,170 @@ In the 'one' side of the relationship (object R), we specify that each row relat
 "Rs" : { "collection": "S", "via" : "myR" }
 ```
 
-In the database, a foreign-key constraint will be added between objects S to R, represented by a foreign key field `myR` being created on the object S's data table. This field will hold the primary key of the corresponding row in R for each row in S.
+In the database, a foreign-key constraint will be added between tables S to R, represented by a foreign key field `myR` being created on the object S's data table. This field will hold the primary key of the corresponding row in R for each row in S.
 
-As an example, consider a database describing pet ownership. It has two tables, `person` and `pet`. Each person can own several pets, but a pet has a single owner. Thus, the person-pet relationship is a one to many relationship between person and pet:
+As an example, consider a model describing pet ownership. It has two objects, `users` and `pets`. Each user can own several pets, but a pet has a single owner. Thus, the users-pets relationship is a one to many relationship between users and pets:
 
-The `person` object will have a `pets` a relationship field, which establishes the 'one' side of the relationship by creating a collection of pet objects for each person in the database:
+The `users` object will have a `pets` a relationship field, which establishes the 'many' side of the relationship by creating a collection of pets objects for each user in the model.
+
+In `users`:
 
 ```json
-"pets": { "collection": "pet", "via": "owner" }
+"pets": { "collection": "pets", "via": "owner" }
 ```
 
-The `pet` table will have an `owner` a relationship field, which establishes the 'many' side of the relationship by linking each pet back to an individual owner instance of type 'person':
+The `pets` object will have an `owner` a relationship field, which establishes the 'one' side of the relationship by linking each pet back to an individual owner.
+
+In `pets`: 
 
 ```json
-"owner": { "object": "person" }
+"owner": { "object": "users" }
+```
+
+####Example of one-to-many Model
+
+```json
+[
+  {
+    "name": "pets",
+    "fields": {
+      "name": {
+        "type": "string"
+      },
+      "owner": {
+        "object": "users"
+      }
+    }
+  },
+  {
+    "name": "users",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "pets": {
+        "collection": "pets",
+        "via": "owner"
+      }
+    }
+  }
+]
+```
+
+###Many-to-Many Relationship
+Many-to-Many relationship between objects done by adding a new object that has one-to-many relationship with 
+each object. Please review [One-to-many relationship](objects.md#one-to-many-relationship) before continue with this section.
+
+Say, for example, that we have a many to many relationship between objects R and S. This means that for many rows in R, there are many potentially corresponding rows in S.
+
+As an example, consider a model describing pet ownership. It has two objects, `users` and `pets`. Each owner can own several pets, and each pet can have several owners. Thus, the users-pets relationship is many to many relationship between owners and pets:
+
+First we need to add the new object `users-pets` with relationships to objects `pets` and `users` correspondingly.
+
+In `users-pets`:
+
+```json
+"pet": { "object": "pets" }
+"owner": { "object": "users" }
+```
+
+In the corresponding objects `users` and `pets` we need to complete the one-to-many relationship:
+
+In `pets`:
+
+```json
+"owners": {"collection": "users-pets", "via": "pet"}
+```
+  
+In `users`:
+
+```json
+"pets": {"collection": "users-pets", "via": "owner"}
+```
+
+####Example of many-to-many Model
+
+* Start with Model with 2 objects that has no relationship:
+
+```json
+[
+  {
+    "name": "pets",
+    "fields": {
+      "name": {
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "users",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      }
+    }
+  }
+]
+```
+  
+* Add the new object and the relationship fields:
+
+```json
+[
+  {
+    "name": "pets",
+    "fields": {
+      "name": {
+        "type": "string"
+      },
+      "owners": {
+        "collection": "users-pets",
+        "via": "pet"
+      }
+    }
+  },
+  {
+    "name": "users-pets",
+    "fields": {
+      "pet": {
+        "object": "pets"
+      },
+      "owner": {
+        "object": "users"
+      }
+    }
+  },
+  {
+    "name": "users",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "pets": {
+        "collection": "users-pets",
+        "via": "owner"
+      }
+    }
+  }
+]
 ```
 
 ## Fields
@@ -154,6 +310,20 @@ The Security tab allows you to restrict access to the database actions for this 
 ### Pre-defined Filter
 
 The pre-defined filter can be used to add additional restrictions to the data loaded, such as only loading data associated with the current username.
+
+There are 2 place holders (tokens) that you can use: username - {{sys::username}} and user role - {{sys::role}}.
+
+In order to make sure items will be only shows for the current user logged in, use the following SQL syntax:
+
+```SQL
+items.user in (select id from users where email = '{{sys::username}}')
+```
+
+To add an option that Admin will see all the data use the user role place holder (token):
+
+```SQL
+'Admin' = '{{sys::role}}' or (items.user in (select id from users where email = '{{sys::username}}'))
+```
 
 ### Security Template & Override
 
