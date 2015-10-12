@@ -14,7 +14,8 @@ In this scenario we’ll provide you with the recipe you need to use the Ionic t
 
 ## Backand
 
-Create an app in Backand using the free database feature. For this example we will demonstrate simple ‘playlists’ app with 3 tables: users, playlists and songs.
+Create an app in Backand using the free database feature. For this example we will demonstrate simple ‘playlists’ app
+ with 3 objects: users, playlists and songs.
 You can use the following JSON mode:
 
 
@@ -158,15 +159,15 @@ Define a ‘DatabaseService’, require ‘Backand':
 ```javascript
     .service('DatabaseService', function($http, Backand){    
  
-      var baseUrl = '/1/table/data/';
+      var baseUrl = '/1/object/data/';
         
       return {
  
-        // read all rows in the table
-          readAll: function(tableName) {  
+        // read all rows in the object
+          readAll: function(objectName) {  
             return $http({
               method: 'GET',
-              url: Backand.configuration.apiUrl + baseUrl + tableName
+              url: Backand.configuration.apiUrl + baseUrl + objectName
            }).then(
           function(response) {
               return response.data.data;
@@ -174,10 +175,10 @@ Define a ‘DatabaseService’, require ‘Backand':
           },
  
         // read one row with given id
-          readOne: function(tableName, id) {
+          readOne: function(objectName, id) {
           return $http({
             method: 'GET',
-            url: Backand.configuration.apiUrl + baseUrl + self.tableName 
+            url: Backand.configuration.apiUrl + baseUrl + self.objectName 
                 + '/' + id
           }).then(
             function(response) {

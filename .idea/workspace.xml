@@ -6,7 +6,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="423b4f66-b4c9-4b89-b67d-2809381f7a36" name="Default" comment="Merge branch 'master' of https://github.com/evilstickman/docs into evilstickman-master&#10;&#10;# Conflicts:&#10;#&#9;docs/apidocs/apidescription.md&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/what_would_you_like_to_do/actions.md" afterPath="$PROJECT_DIR$/docs/what_would_you_like_to_do/actions.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/apidocs/apidescription.md" afterPath="$PROJECT_DIR$/docs/apidocs/apidescription.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/scenarios/ionic.md" afterPath="$PROJECT_DIR$/docs/scenarios/ionic.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/getting_started/objects.md" afterPath="$PROJECT_DIR$/docs/getting_started/objects.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/getting_started/sdk.md" afterPath="$PROJECT_DIR$/docs/getting_started/sdk.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/apidocs/security.md" afterPath="$PROJECT_DIR$/docs/apidocs/security.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/what_would_you_like_to_do/security.md" afterPath="$PROJECT_DIR$/docs/what_would_you_like_to_do/security.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/getting_started/security_auth.md" afterPath="$PROJECT_DIR$/docs/getting_started/security_auth.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="docs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,14 +35,131 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="objects.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="objects.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/getting_started/objects.md">
           <provider editor-type-id="MarkdownPreviewEditor">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9157428">
-              <caret line="326" column="0" selection-start-line="326" selection-start-column="0" selection-end-line="326" selection-end-column="0" />
+            <state vertical-scroll-proportion="13.696428">
+              <caret line="341" column="28" selection-start-line="341" selection-start-column="28" selection-end-line="341" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ionic.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/scenarios/ionic.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.103448">
+              <caret line="216" column="21" selection-start-line="216" selection-start-column="21" selection-end-line="216" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="todo_users.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/scenarios/todo_users.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.06896552">
+              <caret line="4" column="241" selection-start-line="4" selection-start-column="241" selection-end-line="4" selection-end-column="241" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="security.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/apidocs/security.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="47.103447">
+              <caret line="103" column="387" selection-start-line="103" selection-start-column="387" selection-end-line="103" selection-end-column="387" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rest.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/rest.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="5.827586">
+              <caret line="8" column="667" selection-start-line="8" selection-start-column="667" selection-end-line="8" selection-end-column="667" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="security.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/security.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7196653">
+              <caret line="16" column="127" selection-start-line="16" selection-start-column="127" selection-end-line="16" selection-end-column="127" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/getting_started/index.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.9310346">
+              <caret line="6" column="75" selection-start-line="6" selection-start-column="75" selection-end-line="6" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="actions.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/actions.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="20.896551">
+              <caret line="15" column="826" selection-start-line="15" selection-start-column="826" selection-end-line="15" selection-end-column="826" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="database.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/database.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="7.137931">
+              <caret line="8" column="508" selection-start-line="8" selection-start-column="508" selection-end-line="8" selection-end-column="508" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customactions.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/apidocs/customactions.md">
+          <provider editor-type-id="MarkdownPreviewEditor">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="852" selection-start-line="0" selection-start-column="852" selection-end-line="0" selection-end-column="852" />
               <folding />
             </state>
           </provider>
@@ -55,15 +180,19 @@
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/docs/getting_started/quick_reference.md" />
-        <option value="$PROJECT_DIR$/docs/getting_started/sdk.md" />
         <option value="$PROJECT_DIR$/docs/scenarios/todo_users.md" />
         <option value="$PROJECT_DIR$/docs/scenarios/mailgun.md" />
         <option value="$PROJECT_DIR$/docs/scenarios/mandrillapp.md" />
         <option value="$PROJECT_DIR$/docs/what_would_you_like_to_do/rest.md" />
-        <option value="$PROJECT_DIR$/docs/apidocs/security.md" />
         <option value="$PROJECT_DIR$/docs/apidocs/customactions.md" />
+        <option value="$PROJECT_DIR$/docs/getting_started/sdk.md" />
+        <option value="$PROJECT_DIR$/docs/getting_started/security_auth.md" />
         <option value="$PROJECT_DIR$/docs/apidocs/apidescription.md" />
+        <option value="$PROJECT_DIR$/docs/apidocs/security.md" />
         <option value="$PROJECT_DIR$/docs/getting_started/objects.md" />
+        <option value="$PROJECT_DIR$/docs/scenarios/ionic.md" />
+        <option value="$PROJECT_DIR$/docs/what_would_you_like_to_do/actions.md" />
+        <option value="$PROJECT_DIR$/docs/what_would_you_like_to_do/security.md" />
       </list>
     </option>
   </component>
@@ -249,10 +378,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2143906" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2143906" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32011747" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14614774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -264,7 +394,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -292,17 +421,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/getting_started/quick_reference.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="2" selection-start-line="54" selection-start-column="2" selection-end-line="54" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/getting_started/security_auth.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
@@ -600,36 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/getting_started/security_auth.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.931034">
-          <caret line="88" column="17" selection-start-line="88" selection-start-column="17" selection-end-line="88" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/getting_started/sdk.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.275862">
-          <caret line="0" column="25" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/scenarios/todo_users.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3103448">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/apidocs/queries.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
@@ -637,16 +725,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="190" selection-start-line="0" selection-start-column="190" selection-end-line="0" selection-end-column="190" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/getting_started/index.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="273" selection-start-line="0" selection-start-column="273" selection-end-line="0" selection-end-column="273" />
         </state>
       </provider>
     </entry>
@@ -690,39 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/security.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6896553">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/actions.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/apidocs/apidescription.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="292" column="248" selection-start-line="292" selection-start-column="248" selection-end-line="292" selection-end-column="248" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/getting_started/quick_reference.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
@@ -730,17 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="94" selection-start-line="8" selection-start-column="92" selection-end-line="8" selection-end-column="94" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/apidocs/security.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4672544">
-          <caret line="100" column="1" selection-start-line="100" selection-start-column="1" selection-end-line="100" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -756,28 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/rest.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.095717885">
-          <caret line="4" column="32" selection-start-line="4" selection-start-column="32" selection-end-line="4" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/apidocs/customactions.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="95" selection-start-line="36" selection-start-column="95" selection-end-line="36" selection-end-column="95" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/index.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
@@ -789,13 +801,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/database.md">
+    <entry file="file://$PROJECT_DIR$/docs/getting_started/sdk.md">
       <provider editor-type-id="MarkdownPreviewEditor">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-5.3103447">
+          <caret line="68" column="374" selection-start-line="68" selection-start-column="374" selection-end-line="68" selection-end-column="374" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/getting_started/security_auth.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8035714">
+          <caret line="24" column="322" selection-start-line="24" selection-start-column="322" selection-end-line="24" selection-end-column="322" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/apidocs/apidescription.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.6551723">
+          <caret line="362" column="24" selection-start-line="362" selection-start-column="24" selection-end-line="362" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/apidocs/customactions.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="852" selection-start-line="0" selection-start-column="852" selection-end-line="0" selection-end-column="852" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/apidocs/security.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="47.103447">
+          <caret line="103" column="387" selection-start-line="103" selection-start-column="387" selection-end-line="103" selection-end-column="387" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/getting_started/index.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9310346">
+          <caret line="6" column="75" selection-start-line="6" selection-start-column="75" selection-end-line="6" selection-end-column="75" />
           <folding />
         </state>
       </provider>
@@ -805,8 +872,74 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9157428">
-          <caret line="326" column="0" selection-start-line="326" selection-start-column="0" selection-end-line="326" selection-end-column="0" />
+        <state vertical-scroll-proportion="13.696428">
+          <caret line="341" column="28" selection-start-line="341" selection-start-column="28" selection-end-line="341" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/scenarios/todo_users.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.06896552">
+          <caret line="4" column="241" selection-start-line="4" selection-start-column="241" selection-end-line="4" selection-end-column="241" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/scenarios/ionic.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.103448">
+          <caret line="216" column="21" selection-start-line="216" selection-start-column="21" selection-end-line="216" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/actions.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="20.896551">
+          <caret line="15" column="826" selection-start-line="15" selection-start-column="826" selection-end-line="15" selection-end-column="826" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/database.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="7.137931">
+          <caret line="8" column="508" selection-start-line="8" selection-start-column="508" selection-end-line="8" selection-end-column="508" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/rest.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.827586">
+          <caret line="8" column="667" selection-start-line="8" selection-start-column="667" selection-end-line="8" selection-end-column="667" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/security.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7196653">
+          <caret line="16" column="127" selection-start-line="16" selection-start-column="127" selection-end-line="16" selection-end-column="127" />
           <folding />
         </state>
       </provider>

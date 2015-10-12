@@ -262,9 +262,9 @@ Call `/objects/{name}/{id}` with a specific item id and with the following param
 
 To obtain a list of collection objects stored in a collection field on a specific object, call  `/objects/{name}/{id}/{collection}` with the following parameters:
 
-* **id** - The item's id, which is the primary key value for the item's database table
-* **collection** - A name of a collection field in the item's database table
-* **pageSize** - The number of returned items in each getList call (default 20).
+* **id** - The item's id
+* **collection** - A name of a collection field in the object
+* **pageSize** - The number of returned rows in each getList call (default 20).
 * **pageNumber** - The page number, starting with 1 (1-based, default 1).
 * **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information.
 * **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information.
@@ -290,9 +290,9 @@ To obtain a list of collection objects stored in a collection field on a specifi
 
 To list all of the collection objects for a specific collection field within a filtered set of objects, call `/objects/{name}/filter1/{collection}` with the following parameters:
 
-* **filter1** - This specifies which filter to apply to the object table, and is applied prior to obtaining the collection fields. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information on filters.
+* **filter1** - This specifies which filter to apply to the object, and is applied prior to obtaining the collection fields. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information on filters.
 * **collection** - A name of a collection field in the object.
-* **pageSize** - The number of items returned by this call (default 20).
+* **pageSize** - The number of rows returned by this call (default 20).
 * **pageNumber** - The page number to obtain starting with 1 (1-based, default 1).
 * **filter** - An array of JSON objects where each item has the properties fieldName, operator, and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information on the filter parameter.   
 * **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information on the sort parameter.
@@ -339,7 +339,7 @@ POST to `/objects/{name}` with a new object to create (stored in the data portio
 
 PUT to `/objects/{name}/{id}` to update an existing object (with changes provided in the data portion of the AJAX call). You must also supply the following parameters:
 
-* **id** - The item's id, which is the primary key value for the item's database table 
+* **id** - The item's id 
 * **returnObject** - Set this to true when you have server side business rules that causes additional changes to the object. This will force the server to return the object after all business rules have taken effect. If false, it will return the object prior to any business rules running.
 
 ```
@@ -360,7 +360,7 @@ PUT to `/objects/{name}/{id}` to update an existing object (with changes provide
 
 DELETE to `/objects/{name}/{id}` to remove an item:
 
-* **id** - The item's id, which is the primary key value for the item's database table.
+* **id** - The item's id
 
 ```
   self.delete = function (name, id) {

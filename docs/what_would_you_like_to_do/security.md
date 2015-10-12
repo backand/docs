@@ -8,7 +8,7 @@ Once your app is stable and your security is fully configured (or even before if
 
 # Role-based Security
 
-Backand uses role-based security to secure access to your application data. This is accomplished by assigning each user in your application a role. Roles have varying permission levels throughout your app, from table-specific restrictions on record modification all the way up to full access to your application's configuration. Each role's permission set is configurable at a macro level as well as at a table level, allowing you true flexibility in securing your application.
+Backand uses role-based security to secure access to your application data. This is accomplished by assigning each user in your application a role. Roles have varying permission levels throughout your app, from object-specific restrictions on record modification all the way up to full access to your application's configuration. Each role's permission set is configurable at a macro level as well as at an object level, allowing you true flexibility in securing your application.
 
 New users created from the admin dashboard are created in the “admin” role. One of your first steps should be adding an additional security role for new users – whether invited in private mode or registering organically in public mode – that will serve as the default for user sign-ups. Once this default role is set, all new users are assigned the new role automatically. You can then make any permission or access changes you need to from the administrative dashboard.
 

@@ -29,7 +29,7 @@ If you wish to enable anonymous access to your application, you need to perform 
 
 # Link your app's users with Backand's registered users
 
-Backand maintains an internal registered users table which is used to manage your application's security. However, most apps will have their own "users" table, which is used when implementing the app's business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two tables. If you have an object in your system named `users`, and if that object has the fields `email`, `firstName`, and `lastName`, then every user that is registered with Backand for your app will automatically have an entry created in your custom `users` object. This takes place no matter how the user is added - both the signup API and the Backand dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand's internal registered users table. This new user will be given a randomized password, which can then be provided to the user for access to your application.
+Backand maintains an internal registered users object which is used to manage your application's security. However, most apps will have their own "users" object, which is used when implementing the app's business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two objects. If you have an object in your system named `users`, and if that object has the fields `email`, `firstName`, and `lastName`, then every user that is registered with Backand for your app will automatically have an entry created in your custom `users` object. This takes place no matter how the user is added - both the signup API and the Backand dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand's internal registered users object. This new user will be given a randomized password, which can then be provided to the user for access to your application.
 
 Below we'll look more in-depth at how this process is managed. Additionally, we'll explore what happens when the users object has an unexpected name (i.e. something other than "users"), or if the fields of the users object are named differently.
 
@@ -39,7 +39,7 @@ There are 3 sync actions located in Configuration -> Security & Auth that are tr
 1. Update My App User
 1. Delete My App User. 
 
-Those are Transactional SQL actions. You can directly modify the SQL statements used to match your application's specific table structure. By default, Backand sets the Where Condition of the action to "false" if it detects that you do not have a users object in your model, meaning that the action will never run. Thus, it is important that after modifying the SQL for your object model, you then set the "Where" condition to "true".
+Those are Transactional SQL actions. You can directly modify the SQL statements used to match your application's specific object structure. By default, Backand sets the Where Condition of the action to "false" if it detects that you do not have a users object in your model, meaning that the action will never run. Thus, it is important that after modifying the SQL for your object model, you then set the "Where" condition to "true".
 
 If you have a users object in your model, Backand adds the following actions, which run before and during user creation
 
@@ -101,9 +101,9 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
     return { };
 }
 ```
-This action implements the other side of the relationship - after creating an instance in your custom `users` object, this code creates the corresponding entry in Backand's internal users table. If have named your custom user object anything other than "users", you can add the above action into that object manually to achieve the same functionality. You will need to adjust the backandUser object creation to use the columns in your specific object, as the userInput object may have a different structure than that assumed above.
+This action implements the other side of the relationship - after creating an instance in your custom `users` object, this code creates the corresponding entry in Backand's internal users object. If have named your custom user object anything other than "users", you can add the above action into that object manually to achieve the same functionality. You will need to adjust the backandUser object creation to use the columns in your specific object, as the userInput object may have a different structure than that assumed above.
 
-# <a name="roles"></a>Roles & Security Templates
+# Roles & Security Templates
 
 Each user has a role. When you created your app, you were automatically assigned with an "Admin" role. The "Admin" role is a special role that allows you to make configuration changes in your app with Backand's administration tools. Non-admin roles, which should be used to secure your application, are used to define the permissions for each of the [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions for your objects and queries. Each Object and Query in your application is associated with a Security Template. In the security template, you assign different permissions for the possible [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions to each user role, allowing you to control your user's access to the system's create, read, update and delete actions for your objects. Template configuration is found on the Security & Auth --> Security Template page.
 

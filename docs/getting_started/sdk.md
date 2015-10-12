@@ -66,7 +66,7 @@ BackandProvider
 
 ### manageRefreshToken
 #### Usage
-Tells Backand to manage re-authenticating using the refresh token when the session has expired. Backand's HTTP interceptor stores the rejected requests, performs the authentication, and resends the requests. The process is seamless to the user. The application must be configured to use refresh tokens in order to enable this option (in Security & Auth --> Social & Keys --> Session Length), as well as to manage the interceptor through the SDK (manageHttpInterceptor).
+Tells Backand to manage re-authenticating using the refresh token when the session has expired. Backand's HTTP interceptor stores the rejected requests, performs the authentication, and resend the requests. The process is seamless to the user. The application must be configured to use refresh tokens in order to enable this option (in Security & Auth --> Social & Keys --> Session Length), as well as to manage the interceptor through the SDK (manageHttpInterceptor).
 #### Arguments
 * isManagingRefreshToken - a boolean, true if Backand should manage re-authenticating using the refresh token.
 
