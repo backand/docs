@@ -17,108 +17,103 @@ don't forget to change the PayPal credential in the code below, to get these cre
 
 ```javascript
 
-  try {
-    return processPaymentStage();
-  }
-  catch (err) {
-    if (err.name == 401) {
-      cookie.remove('paypal_token');
-      return processPaymentStage();
-    }
-    else {
-      throw err;
-    }
-  }
+ if (parameters.process == 'payment') {
+     var payment = postPayment();
+     return payment.links[1].href;
+   }
+   else if (parameters.process == 'approval') {
+     return postApproval();
+   }
 
-  var processPaymentStage = function () {
 
-    if (parameters.process == 'payment') {
-      var payment = postPayment();
-      return payment.links[1].href;
-    }
-    else if (parameters.process == 'approval') {
-      return postApproval();
-    }
-  };
+   var paypalUrl = 'https://api.sandbox.paypal.com/';
 
-  var paypalUrl = 'https://api.sandbox.paypal.com/';
+   var getAccessToken = function () {
+     var token = cookie.get('paypal_token');
+     if (!token) {
+       var ClientId = 'YOUR_PayPal_CLIENT_ID';
+       var Secret = 'YOUR_PayPal_SECRET_KEY';
+       var user = btoa(ClientId + ":" + Secret);
+       try {
+         token = $http(
+           {
+             method: 'POST',
+             url: paypalUrl + 'v1/oauth2/token',
+             data: 'grant_type=client_credentials',
+             headers: {
+               "Accept-Language": "en_US",
+               "Authorization": "Basic " + user
+             }
 
-  var getAccessToken = function () {
-    var token = cookie.get('paypal_token');
-    if (!token) {
-      var ClientId = 'YOUR_PayPal_CLIENT_ID';
-      var Secret = 'YOUR_PayPal_SECRET_KEY';
-      var user = btoa(ClientId + ":" + Secret);
-      try {
-        token = $http(
-          {
-            method: 'POST',
-            url: paypalUrl + 'v1/oauth2/token',
-            data: 'grant_type=client_credentials',
-            headers: {
-              "Accept-Language": "en_US",
-              "Authorization": "Basic " + user
-            }
+           });
+       }
+       catch (err) {
+         if (err.name == 401) {
+           var e = new Error("Unauthorized (401), check client id and secret");
+           e.name = err.name;
+           throw e;
+         }
+         else {
+           throw err;
+         }
+       }
+       cookie.put('paypal_token', token);
+     }
+     return token;
+   };
 
-          });
-      }
-      catch (err) {
-        if (err.name == 401) {
-          var e = new Error("Unauthorized (401), check client id and secret");
-          e.name = err.name;
-          throw e;
-        }
-        else {
-          throw err;
-        }
-      }
-      cookie.put('paypal_token', token);
-    }
-    return token;
-  };
+   var postApproval = function () {
+     var authorization = "Bearer " + getAccessToken().access_token;
+     var payer = {"payer_id": parameters.payerId};
+     try {
+       return $http({
+         method: 'POST',
+         url: paypalUrl + 'v1/payments/payment/' + parameters.paymentId + '/execute/',
+         data: JSON.stringify(payer),
+         headers: {"Content-Type": "application/json", "Accept-Language": "en_US", "Authorization": authorization}
+       });
+     }
+     catch (err) {
+       if (err.name == 401) {
+         cookie.remove('paypal_token');
+         return postApproval();
+       }
+       else {
+         throw err;
+       }
+     }
+   };
 
-  var postApproval = function () {
-    var authorization = "Bearer " + getAccessToken().access_token;
-    var payer = {"payer_id": parameters.payerId};
+   var postPayment = function () {
+     var authorization = "Bearer " + getAccessToken().access_token;
+     var payment = {
+       "intent": "sale",
+       "redirect_urls": {
+         "return_url": "http://localhost:3000/#/paypal",
+         "cancel_url": "http://localhost:3000/#/paypal?fail=true"
+       },
+       "payer": {"payment_method": "paypal"},
+       "transactions": [
+         {
+           "amount": {
+             "total": parameters.amount,
+             "currency": "USD"
+           }
+         }
+       ]
+     };
+     return $http({
+       method: 'POST',
+       url: paypalUrl + 'v1/payments/payment',
+       data: payment,
+       headers: {
+         "Content-Type": "application/json",
+         "Accept-Language": "en_US",
+         "Authorization": authorization
 
-    return $http({
-      method: 'POST',
-      url: paypalUrl + 'v1/payments/payment/' + parameters.paymentId + '/execute/',
-      data: JSON.stringify(payer),
-      headers: {"Content-Type": "application/json", "Accept-Language": "en_US", "Authorization": authorization}
-    });
-  };
-
-  var postPayment = function () {
-    var authorization = "Bearer " + getAccessToken().access_token;
-    var payment = {
-      "intent": "sale",
-      "redirect_urls": {
-        "return_url": "http://localhost:3000/#/paypal",
-        "cancel_url": "http://localhost:3000/#/paypal?fail=true"
-      },
-      "payer": {"payment_method": "paypal"},
-      "transactions": [
-        {
-          "amount": {
-            "total": parameters.amount,
-            "currency": "USD"
-          }
-        }
-      ]
-    };
-    return $http({
-      method: 'POST',
-      url: paypalUrl + 'v1/payments/payment',
-      data: payment,
-      headers: {
-        "Content-Type": "application/json",
-        "Accept-Language": "en_US",
-        "Authorization": authorization
-
-      }
-    });
-  };
+       }
+     });
+   };
 
 ```
 
