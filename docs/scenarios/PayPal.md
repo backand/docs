@@ -17,7 +17,11 @@ don't forget to change the PayPal credential in the code below, to get these cre
 
 ```javascript
 
- if (parameters.process == 'payment') {
+   var paypalUrl = 'https://api.sandbox.paypal.com/';
+
+   // PayPal has a 2 stage process where: // the first stage prepares the payment and a returns a url for the user to pay
+   // and the sconde stage (where the payment is actually done) is where the application send an approval API call to PayPal
+   if (parameters.process == 'payment') {
      var payment = postPayment();
      return payment.links[1].href;
    }
@@ -25,15 +29,77 @@ don't forget to change the PayPal credential in the code below, to get these cre
      return postApproval();
    }
 
+   function postPayment() {
+     var authorization = "Bearer " + getAccessToken().access_token;
+     var payment = {
+       "intent": "sale",
+       "redirect_urls": {
+         "return_url": "http://localhost:3000/#/paypal",
+         "cancel_url": "http://localhost:3000/#/paypal?fail=true"
+       },
+       "payer": {"payment_method": "paypal"},
+       "transactions": [
+         {
+           "amount": {
+             "total": parameters.amount,
+             "currency": "USD"
+           }
+         }
+       ]
+     };
+     try {
+       return $http({
+         method: 'POST',
+         url: paypalUrl + 'v1/payments/payment',
+         data: payment,
+         headers: {
+           "Content-Type": "application/json",
+           "Accept-Language": "en_US",
+           "Authorization": authorization
 
-   var paypalUrl = 'https://api.sandbox.paypal.com/';
+         }
+       });
+     }
+     catch (err) {
+       if (err.name == 401) {
+         cookie.remove('paypal_token');
+         return postPayment();
+       }
+       else {
+         throw err;
+       }
+     }
+   }
 
-   var getAccessToken = function () {
+   function postApproval() {
+     var authorization = "Bearer " + getAccessToken().access_token;
+     var payer = {"payer_id": parameters.payerId};
+     try {
+       return $http({
+         method: 'POST',
+         url: paypalUrl + 'v1/payments/payment/' + parameters.paymentId + '/execute/',
+         data: JSON.stringify(payer),
+         headers: {"Content-Type": "application/json", "Accept-Language": "en_US", "Authorization": authorization}
+       });
+     }
+     catch (err) {
+       if (err.name == 401) {
+         cookie.remove('paypal_token');
+         return postApproval();
+       }
+       else {
+         throw err;
+       }
+     }
+   }
+
+   function getAccessToken() {
      var token = cookie.get('paypal_token');
      if (!token) {
        var ClientId = 'YOUR_PayPal_CLIENT_ID';
        var Secret = 'YOUR_PayPal_SECRET_KEY';
        var user = btoa(ClientId + ":" + Secret);
+
        try {
          token = $http(
            {
@@ -60,60 +126,7 @@ don't forget to change the PayPal credential in the code below, to get these cre
        cookie.put('paypal_token', token);
      }
      return token;
-   };
-
-   var postApproval = function () {
-     var authorization = "Bearer " + getAccessToken().access_token;
-     var payer = {"payer_id": parameters.payerId};
-     try {
-       return $http({
-         method: 'POST',
-         url: paypalUrl + 'v1/payments/payment/' + parameters.paymentId + '/execute/',
-         data: JSON.stringify(payer),
-         headers: {"Content-Type": "application/json", "Accept-Language": "en_US", "Authorization": authorization}
-       });
-     }
-     catch (err) {
-       if (err.name == 401) {
-         cookie.remove('paypal_token');
-         return postApproval();
-       }
-       else {
-         throw err;
-       }
-     }
-   };
-
-   var postPayment = function () {
-     var authorization = "Bearer " + getAccessToken().access_token;
-     var payment = {
-       "intent": "sale",
-       "redirect_urls": {
-         "return_url": "http://localhost:3000/#/paypal",
-         "cancel_url": "http://localhost:3000/#/paypal?fail=true"
-       },
-       "payer": {"payment_method": "paypal"},
-       "transactions": [
-         {
-           "amount": {
-             "total": parameters.amount,
-             "currency": "USD"
-           }
-         }
-       ]
-     };
-     return $http({
-       method: 'POST',
-       url: paypalUrl + 'v1/payments/payment',
-       data: payment,
-       headers: {
-         "Content-Type": "application/json",
-         "Accept-Language": "en_US",
-         "Authorization": authorization
-
-       }
-     });
-   };
+   }
 
 ```
 
