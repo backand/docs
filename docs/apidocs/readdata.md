@@ -8,4 +8,18 @@ We will discuss two options to read complex object. Deep and Lazy Load. But firs
   "items":[{"title":"....",...},...]
 }
 ```
-
+In most cases, most objects are complex objects. Backand supports two approaches to read them: Deep and Lazy Load. To perform a deep read for a specific user, simply add deep=true to the query string.
+```
+https://api.backand.com/1/objects/users/5?deep=true
+```
+This will result with the above json.  
+It takes two requests to perform a Lazy Load. The first request is a shallow request for users or a specific user.
+```
+https://api.backand.com/1/objects/users
+or 
+https://api.backand.com/1/objects/users/5
+```
+The second request is for all the items of a specific user.
+```
+https://api.backand.com/1/objects/users/5/items
+```
