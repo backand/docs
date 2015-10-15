@@ -30,4 +30,8 @@ https://api.backand.com/1/objects/items
 You can use the other query string parameters such as paging filtering and sorting. see [List Collection Objects from a Collection Field for a Specific Object ID](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-collection-objects-from-a-collection-field-for-a-specific-object-id)
 There is not a clear answer for which approach to use. For huje complex object it is recommended to use the Lazy Load another rule says that is you are going to display the entire complex object in a single view then go with deep but if you first display the higher level and only if the user clicks to drill down into the lower levels of the object then use the lazy load.
 # Filter and Predefined Filter
-When requesting a list of objects you can set a query string filter to get only a partial list which match the filter. This featcher may be usefull for development or you may provide your users with the appropriate UI so they may slice the data they wish to see.
+When requesting a list of objects you can set a query string filter to get only a partial list which match the filter. This featcher may be usefull for development or you may provide your users with the appropriate UI so they may slice the data they wish to see. There are two ways to structure a filter, either with NoSQL syntax, see (NoSQL Query Language)[NoSQL_Query_Language], or with field name, operator and value.
+```
+[{"fieldName":"firstName","operator":"contains","value":"oh"}]
+```
+See (getting a list of objects)[http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects] for full details
