@@ -34,4 +34,6 @@ When requesting a list of objects you can set a query string filter to get only 
 ```
 [{"fieldName":"firstName","operator":"contains","value":"oh"}]
 ```
-See [etting a list of objects](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for full details
+See [getting a list of objects](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for full details
+## Predefined Filter
+Sometimes, for security reasons you may want to force reading of partial data, usually depending on the current user or current user role. The option to force it from the server side is called Predefined Filter and you can find it at the Security tab of each object. The predefined fiilter acts as a SQL where statement condition. If you add additional filter that were described above then they will be added with an "AND" logic. You can write the predefined filter either as a SQL statement or as a NoSQL statement see [NoSQL Query Language](NoSQL_Query_Language).
