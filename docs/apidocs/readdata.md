@@ -23,3 +23,8 @@ The second request is for all the items of a specific user.
 ```
 https://api.backand.com/1/objects/users/5/items
 ```
+This request is similar to get the entire list of items
+```
+https://api.backand.com/1/objects/items
+```
+You can use the other query string parameters such as paging filtering and sorting.
