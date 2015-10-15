@@ -27,4 +27,4 @@ This request is similar to get the entire list of items
 ```
 https://api.backand.com/1/objects/items
 ```
-You can use the other query string parameters such as paging filtering and sorting.
+You can use the other query string parameters such as paging filtering and sorting. see [List Collection Objects from a Collection Field for a Specific Object ID](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-collection-objects-from-a-collection-field-for-a-specific-object-id)
