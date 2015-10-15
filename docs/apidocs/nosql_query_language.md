@@ -1,4 +1,4 @@
-#JSON Query Language
+#NOSQL Query Language
 
 The language is inspired by MongoDB.
 
