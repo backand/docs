@@ -1,6 +1,6 @@
 # Read Data
 # Deep vs. Lazy Load
-We will discuss two options to read complex object. Deep and Lazy Load. But first, what is a complex object? A complex object is an object with relations to other object. For example, in the default model that you get when you start a new Backand app there are two objects: users and items. There is a one-to-many relation between users and items which means that a specific user may have many items were each of those items relate into one specific user. In this example both users and items are complex objects. We are more interesting in the users object since the relation to items is described as a collection field and reads into json as an array of items objects.
+We will discuss two options to read complex objects. Deep and Lazy Load. But first, what is a complex object? A complex object is an object with relations to other objects. For example, in the default model that you get when you start a new Backand app there are two objects: users and items. There is a one-to-many relation between users and items which means that a specific user may have many items were each of those items relates to one specific user. In this example both users and items are complex objects. We are more interesting in the users object since the relation to items is described as a collection field and reads into json as an array of items objects.
 ```
 {
   "email":"....",
@@ -28,3 +28,4 @@ This request is similar to get the entire list of items
 https://api.backand.com/1/objects/items
 ```
 You can use the other query string parameters such as paging filtering and sorting. see [List Collection Objects from a Collection Field for a Specific Object ID](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-collection-objects-from-a-collection-field-for-a-specific-object-id)
+There is not a clear answer for which approach to use. For huje complex object it is recommended to use the Lazy Load another rule says that is you are going to display the entire complex object in a single view then go with deep but if you first display the higher level and only if the user clicks to drill down into the lower levels of the object then use the lazy load.
