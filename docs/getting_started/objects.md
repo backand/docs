@@ -266,7 +266,7 @@ In `users`:
 
 ## Fields
 
-The Fields tab allows you to modify details about each column in the object's database table. For every column, you can perform the following actions:
+The Fields tab allows you to modify details about each column in the object. For every column, you can perform the following actions:
 
 * Change the name
 * Make the column searchable in the text search filter field
