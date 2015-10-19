@@ -30,3 +30,5 @@ pages:
 - ['scenarios/stripe.md', 'Scenarios', 'Stripe Integration']
 - ['scenarios/mandrillapp.md', 'Scenarios', 'Mandrillapp']
 - ['scenarios/mailgun.md', 'Scenarios', 'Mailgun']
+- ['scenarios/PayPal.md', 'Scenarios', 'PayPal']
+- ['scenarios/Segment.md', 'Scenarios', 'Segment.io']
