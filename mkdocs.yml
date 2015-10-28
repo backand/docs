@@ -1,4 +1,5 @@
 site_name: Backand Documentation
+site_url: https://www.backand.com
 use_directory_urls: false
 pages:
 - ['index.md', 'Backand Documentation']
