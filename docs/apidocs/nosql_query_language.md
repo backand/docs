@@ -174,41 +174,44 @@ The result of the sub-query should retrieve a single field for this to work.
 We use the sub-query in a query retrieving all employees of departments located in New York, where the `deptId` field
  is a reference from the `employees` table to the `department` table, as:
 
-    { 
-        object: "employees", 
-        "q" : { 
-            "deptId" : { 
-                $in: { 
-                    object: "department", 
-                    "q": { 
-                        "city" : "New York" 
-                    }, 
-                    "fields" : ["id"] 
-                }
+```JSON
+{ 
+    "object": "employees", 
+    "q" : { 
+        "deptId" : { 
+            "$in": { 
+                "object": "department", 
+                "q": { 
+                    "city" : "New York" 
+                }, 
+                "fields" : ["id"] 
             }
+        }
 
-        } 
     } 
+}
+```
 
 A more complicated query is to retrieve all employees whose department is located in New York such that the employee is located in Boston. We use an AND expression on the two conditions:
- 
-    { 
-        object: "employees", 
-        "q" : { 
-            deptId": 
-            { 
-                $in: { 
-                    object: "department", 
-                    q: { 
-                        "city" : "New York" 
-                    }, 
-                    fields : ["id"] 
-                }
-            },
-            location: "Boston"
-        } 
-    }
 
+```JSON
+{ 
+    "object": "employees", 
+    "q" : { 
+        "deptId": 
+        { 
+            "$in": { 
+                "object": "department", 
+                "q": { 
+                    "city" : "New York" 
+                }, 
+                "fields" : ["id"] 
+            }
+        },
+        "location": "Boston"
+    } 
+}
+```
 
 # Conditions on Fields
 
@@ -240,29 +243,31 @@ use a not equal operator:
 
 A group by query aggregates on fields, and then applies aggregation operators to some of the fields. For instance, to group by `Country`, and then concat the `Location` field:
 
-    {
-        "object" : "Employees",
-        "q" : {
-            "$or" : [
-                {
-                    "Budget" : {
-                        "$gt" : 20
-                    }
-                },
-                {
-                    "Location" : { 
-                        "$like" :  "Tel Aviv"
-                    }
+```JSON
+{
+    "object" : "Employees",
+    "q" : {
+        "$or" : [
+            {
+                "Budget" : {
+                    "$gt" : 20
                 }
-            ]
-        },
-        fields: ["Location", "Country"],
-        order: [["Budget", "desc"]],
-        groupBy: ["Country"],
-        aggregate: {
-            Location: "$concat"
-        }
+            },
+            {
+                "Location" : { 
+                    "$like" :  "Palo Alto"
+                }
+            }
+        ]
+    },
+    "fields": ["Location", "Country"],
+    "order": [["Budget", "desc"]],
+    "groupBy": ["Country"],
+    "aggregate": {
+        "Location": "$concat"
     }
+}
+```
 
 # Algorithm to Generate SQL from JSON Queries
 
