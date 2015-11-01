@@ -1,21 +1,21 @@
 #NOSQL Query Language
 
-The language is inspired by MongoDB.
+This query language is inspired by [MongoDB](https://www.mongodb.com/).
 
 A query consists of these parts:
 
 1. fields to be extracted 
-2. table
-3. expression for filtering the rows
-4. groupby - group by fields
+2. table to extract the records from
+3. expression for filtering the table rows
+4. groupby - fields to group the data under
 5. aggregate functions to be applied to columns in fields
-6. orderby - order by fields
-7. limit - limit by integer
+6. orderby - fields to order the return data by
+7. limit - an integer number of records to return.
 
-Only the table and the expression are mandatory
+Only the table and expression parameters are mandatory.
 
 
-Corresponding to the SQL query:
+The NoSQL queries are then constructed into a SQL query of the following form:
 
 ```SQL
   SELECT fields with aggregation
@@ -26,7 +26,7 @@ Corresponding to the SQL query:
   LIMIT limit
 ```
 
-We write a query is a JSON object of the form:
+NoSQL queries are constructed using JSON objects. Below is an example:
 
 ```JSON
 { 
@@ -38,13 +38,13 @@ We write a query is a JSON object of the form:
 }
 ```
 
-The  shortest query omitting fields is,
+For example, the shortest query you can write would be:
 
 ```JSON
 { "object": "String", "q": "Expression" }
 ```    
 
-in which case it becomes:
+This NoSQL object is converted into:
 
 ```SQL
   SELECT *
@@ -54,7 +54,7 @@ in which case it becomes:
 
 # Examples
 
-A simple query to retrieve the name and salary of all employees in position of "Sales Manager" is:
+This simple query retrieves the name and salary of all employees in position of "Sales Manager":
 
 ```JSON
 { 
@@ -66,9 +66,7 @@ A simple query to retrieve the name and salary of all employees in position of "
 }
 ```
 
-Queries can compare fields to constants using all the conventional comparison operators. 
-
-To retrieve all fields of employees under the age of 25, 
+Queries can also be used to compare an object's  fields to constant values using common comparison operators. For example, to retrieve all fields for all employees under the age of 25, you can use the following query:
 
 ```JSON
 { 
@@ -81,25 +79,30 @@ To retrieve all fields of employees under the age of 25,
 
 # Expressions
 
-More generally, an expression can be either an AND expression or an OR expression or a UNION query
+An expression can be either an AND expression, an OR expression, or a UNION query.
 
-* an AND expression is a conjunction of conditions on fields. An AND expression is a JSON of the form `{ A: condition, B: condition, ... }`
+## AND expressions
+An AND expression is a conjunction of conditions on fields. An AND expression is a JSON of the form `{ A: condition, B: condition, ... }`
 
-To test employees on age, position, and city, use the and expression:
+For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the following query:
 
 ```JSON
 { "position": "Sales Manager", "age" : { "$lt" : 25 }, "city": "Boston" }
 ```
 
-* an OR expression is a disjunction of conditions, `{ $or: [ Expression1, Expression2, ...   ] }` 
+## OR expressions
 
-To find all departments having more than 30 employees, or located in "Palo Alto", 
+An OR expression is a disjunction of conditions, `{ $or: [ Expression1, Expression2, ...   ] }` 
+
+For example, use the following query to find all offices that are either larger than 30 employees, or located in Palo Alto:
 
 ```JSON
 { "$or": [ { "num_employees": { "$gt": 30 } }, { "location": "Palo Alto" }  ]  }
 ```
 
-* a UNION query is a union of query: `{ $union: [ Query1, Query2, ...   ] }`
+## UNION queries
+
+A UNION query is a union of the results of queries: `{ $union: [ Query1, Query2, ...   ] }`. For example:
 
 ```JSON
 {
@@ -136,10 +139,10 @@ To find all departments having more than 30 employees, or located in "Palo Alto"
 
 # Conditions on Fields
 
-Generally, a condition on a field is a predicate can can do one of the following:
+A condition on a field is a predicate that can perform one of the following actions:
 
-1. Test equality of field to a constant value, e.g.  `{ A: 6 }`. Is `A` equal to 6?
-2. Comparison of a field using a comparison operator, e.g. `{ A: { $gt: 8 }}`. Is `A` greater than 8? The set of comparison operators is quite extensive and includes: `$lte, $lt, $gte, $gt, $eq, $neq, $not`
+1. Test equality of field to a constant value, e.g.  `{ A: 6 }` => `Is `A` equal to 6?`
+2. Compare a field using a comparison operator, e.g. `{ A: { $gt: 8 }}` => `Is `A` greater than 8?`. The set of comparison operators is quite extensive and includes: `$lte, $lt, $gte, $gt, $eq, $neq, $not`
 3. Test if the value of the field is IN  or NOT IN the result of a sub-query.
 4. Test for the negation of a comparison. For example, to test if the location field is not Boston, we can do:
 
@@ -149,13 +152,14 @@ Generally, a condition on a field is a predicate can can do one of the following
 
 # Sub Queries
 
-If we have a sub-query that retrieves the department id of each department in New York, 
+The following sub-query retrieves the department ID of each department in New York:
 
 ```JSON
 { "object": "department", "q": { "city" : "New York" }, "fields" : ["id"]}
 ```
 
-we test a field dept_id with respect to the result of the subquery as:
+Using this subquery, we can now test a new field - dept_id - with respect to the results of the subqeury. We simply use the `$in` operator, and the query, as follows:
+
 ```JSON
 { 
     "dept_id": { 
@@ -169,10 +173,9 @@ we test a field dept_id with respect to the result of the subquery as:
 }
 ```
 
-The result of the sub-query should retrieve a single field for this to work.
+This technique relies upon retrieving a single field from the sub-query. Using more than one field would prove more complex.
 
-We use the sub-query in a query retrieving all employees of departments located in New York, where the `deptId` field
- is a reference from the `employees` table to the `department` table, as:
+We can now use this sub-query as a part of a larger query retrieving all employees employed in departments that are located in New York. In this example, the `deptId` field is a reference field referring the employees table to the department table:
 
 ```JSON
 { 
@@ -192,7 +195,7 @@ We use the sub-query in a query retrieving all employees of departments located 
 }
 ```
 
-A more complicated query is to retrieve all employees whose department is located in New York such that the employee is located in Boston. We use an AND expression on the two conditions:
+If we wanted to look at a more complex query, we could modify this a bit. Let's say we wanted to retrieve all employees whose department is located in New York, but the employee is located in Boston. To accomplish this, we use an AND expression to combine the two conditions:
 
 ```JSON
 { 
@@ -217,31 +220,33 @@ A more complicated query is to retrieve all employees whose department is locate
 
 
 Formally, a condition on a field is a key-value expression of the form: 
-     
-      Key : ValueExpression
 
-* Key - name of field
-* ValueExpression - which has one of the following forms:
+```     
+      Key : ValueExpression
+```
+
+Where the fields are defined as follows:
+
+* Key - name of the field
+* ValueExpression - An expression which has one of the following forms:
 
     1. Constant - is the field value equal to the constant
     2. Comparison with a comparison operator to a constant 
     3. Inclusion or exclusion in result of a sub query
     3. Negation of another comparison
 
-Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can
-
-use negation:
+Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can use negation as follows:
 
     { $not: { location : "Paris" }}
 
 
-use a not equal operator: 
+Or we can also use a not-equal  operator: 
 
     { location: { $neq: "Paris" }}
 
 # Group By Queries
 
-A group by query aggregates on fields, and then applies aggregation operators to some of the fields. For instance, to group by `Country`, and then concat the `Location` field:
+A group by query aggregates on fields, and then applies aggregation operators to the specified fields. For instance, to group by `Country`, and then concatenate the `Location` field, use the following example code:
 
 ```JSON
 {
@@ -271,7 +276,7 @@ A group by query aggregates on fields, and then applies aggregation operators to
 
 # Algorithm to Generate SQL from JSON Queries
 
-The algorithm transforms a JSON to SQL by top-down transformation. 
+The algorithm transforms from JSON to SQL using a top-down transformation. 
 
 ## Usage
 
@@ -281,10 +286,10 @@ The parameters are:
 
 1. `json` - JSON query or filter
 2. `sqlSchema` - JSON schema of database
-3. `isFilter` - boolean if `json` is filter
-4. `callback` - `function(err, result)`
+3. `isFilter` - boolean - true if `json` is a filter
+4. `callback` - `function(err, result)`, called upon completion
 
-The result is a structure with fields:
+The result is a structure with the following fields:
 
     {
         str: <SQL statement for query>,
@@ -298,16 +303,16 @@ The result is a structure with fields:
 
 ## Escaping
 
-All constants appearing in the JSON query are escaped when transformed to SQL.
+All constants appearing in the JSON query are escaped when transformed into SQL.
 
 ## Filters
 
-For the case of filter, the query can include variables. Variables take the form of:
+For the case of filters, the query can include variables. Variables take the form of:
 
     {{<variable name>}}
 
-and should be enclosed in quotes for the JSON query to be a valid JSON. 
+and should be enclosed in quotes in order for the final JSON query to be composed of valid JSON. 
 
-Variables are not escaped because we can escape only constants.
+Variables are not escaped in this instance - only constants can be escaped by Backand.
 
-The generated SQL statement will include the variables. Variables will be substituted later by constants.
+The generated SQL statement will include the variables specified. Variables will later be substituted for the equivalent constants.
