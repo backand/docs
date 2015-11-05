@@ -307,12 +307,10 @@ All constants appearing in the JSON query are escaped when transformed into SQL.
 
 ## Filters
 
-For the case of filters, the query can include variables. Variables take the form of:
+You also have the ability to mark a particular NoSQL query as a filter. This allows you to use variables in your query, which are populated on the server side from either parameters sent in with the filter, or from database data in your system. Variables take the form of:
 
     {{<variable name>}}
 
-and should be enclosed in quotes in order for the final JSON query to be composed of valid JSON. 
+Variables should be enclosed in quotes (e.g. `'{{variable_name}}'` instead of `{{variable_name}}`) so that the final objet sent to the server can be marked as valid JSON. 
 
-Variables are not escaped in this instance - only constants can be escaped by Backand.
-
-The generated SQL statement will include the variables specified. Variables will later be substituted for the equivalent constants.
+Variables are not escaped when used as part of a filter or query - only constants can be escaped by Backand. With this in mind, you want to make sure that variables tied directly to user input are properly sanitized before being sent to the back-end. The SQL statement generated for the filter object will include the variables you provide verbatims. The variables will be substituted for the equivalent values prior to the execution of the query.
