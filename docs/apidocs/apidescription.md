@@ -79,7 +79,7 @@ The parameters for the sign-up call are:
   self.signUp = function (user, signUpToken) {
       return $http({
           method: 'POST',
-          url : Backand.configuration.apiUrl + '/1/user/signup,
+          url : Backand.getApiUrl() + '/1/user/signup,
           headers: {
             'SignUpToken': signUpToken
           },
@@ -103,7 +103,7 @@ The parameters for the requestResetPassword call are:
   self.requestResetPassword = function (userName) {
       return $http({
           method: 'POST',
-          url : Backand.configuration.apiUrl + '/1/user/requestResetPassword,
+          url : Backand.getApiUrl() + '/1/user/requestResetPassword,
           data: 
             {
               "appName": "string",
@@ -129,7 +129,7 @@ The parameters for the requestResetPassword call are:
   self.resetPassword = function (resetToken, newPassword) {
       return $http({
           method: 'POST',
-          url : Backand.configuration.apiUrl + '/1/user/resetPassword,
+          url : Backand.getApiUrl() + '/1/user/resetPassword,
           data: 
             {
               "resetToken": resetToken,
@@ -149,7 +149,7 @@ With the `/user/changePassword` api you can change the password for a particular
   self.changePassword = function (oldPassword, newPassword) {
       return $http({
           method: 'POST',
-          url : Backand.configuration.apiUrl + '/1/user/changePassword,
+          url : Backand.getApiUrl() + '/1/user/changePassword,
           data: 
             {
               "oldPassword": oldPassword,
@@ -225,7 +225,7 @@ An example for sort:
   self.getList = function (name, pageSize, pageNumber, filter, sort) {
       return $http({
           method: 'GET',
-          url: Backand.configuration.apiUrl + '/1/objects/' + name,
+          url: Backand.getApiUrl() + '/1/objects/' + name,
           params: {
             pageSize: pageSize,
             pageNumber: pageNumber,
@@ -248,7 +248,7 @@ Call `/objects/{name}/{id}` with a specific item id and with the following param
   self.getOne = function (name, id, deep, level) {
       return $http({
           method: 'GET',
-          url: Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id
+          url: Backand.getApiUrl() + '/1/objects/' + name + '/' + id,
           params: {
             deep: deep,
             level: level
@@ -274,7 +274,7 @@ To obtain a list of collection objects stored in a collection field on a specifi
   self.getList = function (name, id, collection, pageSize, pageNumber, filter, sort) {
       return $http({
           method: 'GET',
-          url: Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id + '/' + collection,
+          url: Backand.getApiUrl() + '/1/objects/' + name + '/' + id + '/' + collection,
           params: {
             pageSize: pageSize,
             pageNumber: pageNumber,
@@ -302,7 +302,7 @@ To list all of the collection objects for a specific collection field within a f
   self.getList = function (name, filter1, collection, pageSize, pageNumber, filter, sort) {
       return $http({
           method: 'GET',
-          url: Backand.configuration.apiUrl + '/1/objects/' + name + '/filter1/' + collection,
+          url: Backand.getApiUrl() + '/1/objects/' + name + '/filter1/' + collection,
           params: {
             pageSize: pageSize,
             pageNumber: pageNumber,
@@ -325,7 +325,7 @@ POST to `/objects/{name}` with a new object to create (stored in the data portio
   self.create = function (name, data, returnObject) {
       return $http({
           method: 'POST',
-          url : Backand.configuration.apiUrl + '/1/objects/' + name,
+          url : Backand.getApiUrl() + '/1/objects/' + name,
           data: data,
           params: {
             returnObject: returnObject
@@ -346,7 +346,7 @@ PUT to `/objects/{name}/{id}` to update an existing object (with changes provide
   self.update = function (name, id, data, returnObject) {
       return $http({
           method: 'PUT',
-          url : Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id,
+          url : Backand.getApiUrl() + '/1/objects/' + name + '/' + id,
           data: data,
           params: {
             returnObject: returnObject
@@ -366,7 +366,7 @@ DELETE to `/objects/{name}/{id}` to remove an item:
   self.delete = function (name, id) {
       return $http({
           method: 'DELETE',
-          url : Backand.configuration.apiUrl + '/1/objects/' + name + '/' + id
+          url : Backand.getApiUrl() + '/1/objects/' + name + '/' + id
       })
   };
 ```
@@ -382,7 +382,7 @@ DELETE to `/objects/{name}/{id}` to remove an item:
 self.callAction = function (objectName, id, actionName, parameters) {
       return $http({
           method: 'GET',
-          url: Backand.configuration.apiUrl + '/1/objects/action/' + objectName + '/' + id
+          url: Backand.getApiUrl() + '/1/objects/action/' + objectName + '/' + id
           params: {
              parameters: parameters
           }
@@ -401,7 +401,7 @@ You can run custom pre-configured queries by sending a GET request to `/query/da
 self.query = function (queryName, parameters) {
       return $http({
           method: 'GET',
-          url: Backand.configuration.apiUrl + '/1/query/data/' + queryName
+          url: Backand.getApiUrl() + '/1/query/data/' + queryName
           params: {
              parameters: parameters
           }
