@@ -191,9 +191,9 @@ Call `/objects/{name}` with the following parameters to get a list of items:
 * **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type.  
 An example for filter: 
 ```
-[{"fieldName":"firstName","operand":"contains","value":"el"},{"fieldName":"lastName","operand":"startsWith","value":"ri"}]
+[{"fieldName":"firstName","operator":"contains","value":"el"},{"fieldName":"lastName","operator":"startsWith","value":"ri"}]
 ```
-following are the possible operands depending on the field type:  
+following are the possible operators depending on the field type:  
 **numeric or date fields:**  
 -- equals  
 -- notEquals  
