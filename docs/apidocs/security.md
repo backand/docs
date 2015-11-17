@@ -23,7 +23,7 @@ Registering with [Backand](https://www.backand.com), and creating an application
 For more information, see the [API Description](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#sign-up).
 
 # SSO (Single Sign On)
-A common scenario in organization is that you have a central authentication service for all apps such as Active Directory. For this case Backand provides an override server side action. In this action you can perform your own authentication and return either "allow" or "deny" to override the Backand auth and provide a denied message, or "ignore" to ignore this action and use the Backand default authentication. This action is located in Security & Auth => Security Actions. In case of "allow" you can return additional information in the "additionalTokenInfo" that will be added to backand auth result.
+A common scenario in organization is that you have a central authentication service for all apps such as Active Directory. For this case Backand provides an override server side action. In this action you can perform your own authentication and return either "allow" or "deny" to override the Backand auth and provide a denied message, or "ignore" to ignore this action and use the Backand default authentication. This action is located in Security & Auth => Security Actions. In case of "allow" you can return additional information in the "additionalTokenInfo" that will be added to backand authentication result.
 You may access this later by using the getUserDetails function of the Backand SDK. 
 
 # Remove user from the app
