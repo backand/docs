@@ -12,6 +12,7 @@ pages:
 - ['getting_started/settings.md', 'Getting Started', 'Settings']
 - ['apidocs/index.md', 'API Documentation',  'Introduction']
 - ['apidocs/security.md', 'API Documentation',  'Security Concepts']
+- ['apidocs/realtime.md', 'API Documentation',  'Realtime Database Communication']
 - ['apidocs/customactions.md', 'API Documentation',  'Custom Actions']
 - ['apidocs/queries.md', 'API Documentation',  'Queries']
 - ['apidocs/nosql_query_language.md', 'API Documentation',  'NOSQL Query Language']
