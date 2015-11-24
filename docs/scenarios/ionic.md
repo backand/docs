@@ -167,7 +167,7 @@ Define a ‘DatabaseService’, require ‘Backand':
           readAll: function(objectName) {  
             return $http({
               method: 'GET',
-              url: Backand.configuration.apiUrl + baseUrl + objectName
+              url: Backand.getApiUrl() + baseUrl + objectName
            }).then(
           function(response) {
               return response.data.data;
@@ -178,7 +178,7 @@ Define a ‘DatabaseService’, require ‘Backand':
           readOne: function(objectName, id) {
           return $http({
             method: 'GET',
-            url: Backand.configuration.apiUrl + baseUrl + self.objectName 
+            url: Backand.getApiUrl() + baseUrl + self.objectName 
                 + '/' + id
           }).then(
             function(response) {
