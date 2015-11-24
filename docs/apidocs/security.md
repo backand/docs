@@ -23,8 +23,13 @@ Registering with [Backand](https://www.backand.com), and creating an application
 For more information, see the [API Description](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#sign-up).
 
 # SSO (Single Sign On)
-A common scenario in organization is that you have a central authentication service for all apps such as Active Directory. For this case Backand provides an override server side action. In this action you can perform your own authentication and return either "allow" or "deny" to override the Backand auth and provide a denied message, or "ignore" to ignore this action and use the Backand default authentication. This action is located in Security & Auth => Security Actions. In case of "allow" you can return additional information in the "additionalTokenInfo" that will be added to backand authentication result.
-You may access this later by using the getUserDetails function of the Backand SDK. 
+Many organizations make use of tools like Active Directory in order to provide a central source of user-based authentication. This system is often used to drive a Single Sign On (SSO) feature in the organization, allowing users to simply use one set of credentials for all of the apps that they need to work with. Backand provides a method to incorporate SSO functionality using an override server-side action. This action allows you to perform your own authentication (via web-service calls to the domain controller, for example), and lets you return one of three actions. 
+
+* Returning "allow" allows the user access to the requested resource = in this case, you can return additional information in the "additionalTokenInfo" variable, which is added to the Backand authentication result. You may access this later by using the getUserDetails function of the Backand SDK. 
+* Returning "deny" overrides Backand's auth, and provides an "Access Denied" mesage. 
+* Returning "ignore" allows you to ignore the custom action, instead relying upon Backand's default authentication methods. 
+
+You can configure this action in the Backand dashboard, under Security & Auth => Security Actions.
 
 # Remove user from the app
 There are two ways to remove a user from the application. You can permanently remove a user from the application by deleting a user from the Registered Users grid. This requires the user to register again if they wish to continue using your app. Alternatively, you can un-check the "approved" checkbox in the user's row on the Security & Auth --> Users page. This allows you to reinstate the user simply by re-checking the "approved" column.
