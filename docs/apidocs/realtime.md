@@ -13,8 +13,8 @@ Using the real-time capability you can improve your app with instant updates to 
 2. Include the following script in the index.html page:
 
   ```
-&lt;!-- Backand Realtime --&gt;
-  &lt;script src=&quot;https://api.backand.com:4000/socket.io/socket.io.js&quot;&gt;&lt;/script&gt;
+<!-- Backand Realtime -->
+  <script src="https://api.backand.com:4000/socket.io/socket.io.js"></script>
   ```
 
 3. Update Angular configuration section with:
