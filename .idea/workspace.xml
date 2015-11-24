@@ -6,9 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="423b4f66-b4c9-4b89-b67d-2809381f7a36" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/apidocs/realtime.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/apidocs/customactions.md" afterPath="$PROJECT_DIR$/docs/apidocs/customactions.md" />
     </list>
     <ignored path="docs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,17 +41,27 @@
         <entry file="file://$PROJECT_DIR$/docs/apidocs/realtime.md">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="81" column="3" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
+              <caret line="0" column="32" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mkdocs.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mkdocs.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mkdocs.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.08755761">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state vertical-scroll-proportion="-2.8888888">
+              <caret line="14" column="20" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customactions.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/docs/apidocs/customactions.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.781106">
+              <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -86,7 +94,6 @@
         <option value="$PROJECT_DIR$/docs/scenarios/todo_users.md" />
         <option value="$PROJECT_DIR$/docs/scenarios/mailgun.md" />
         <option value="$PROJECT_DIR$/docs/scenarios/mandrillapp.md" />
-        <option value="$PROJECT_DIR$/docs/apidocs/customactions.md" />
         <option value="$PROJECT_DIR$/docs/getting_started/security_auth.md" />
         <option value="$PROJECT_DIR$/docs/getting_started/objects.md" />
         <option value="$PROJECT_DIR$/docs/what_would_you_like_to_do/actions.md" />
@@ -94,7 +101,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/docs/getting_started/sdk.md" />
         <option value="$PROJECT_DIR$/docs/apidocs/nosql_query_language.md" />
-        <option value="$PROJECT_DIR$/mkdocs.yml" />
         <option value="$PROJECT_DIR$/docs/apidocs/security.md" />
         <option value="$PROJECT_DIR$/docs/apidocs/queries.md" />
         <option value="$PROJECT_DIR$/docs/scenarios/ionic.md" />
@@ -102,7 +108,9 @@
         <option value="$PROJECT_DIR$/docs/scenarios/Segment.md" />
         <option value="$PROJECT_DIR$/docs/what_would_you_like_to_do/rest.md" />
         <option value="$PROJECT_DIR$/docs/what_would_you_like_to_do/i18n.md" />
+        <option value="$PROJECT_DIR$/mkdocs.yml" />
         <option value="$PROJECT_DIR$/docs/apidocs/realtime.md" />
+        <option value="$PROJECT_DIR$/docs/apidocs/customactions.md" />
       </list>
     </option>
   </component>
@@ -704,18 +712,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/apidocs/customactions.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="852" selection-start-line="0" selection-start-column="852" selection-end-line="0" selection-end-column="852" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/apidocs/apidescription.md">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="27" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/apidocs/realtime.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="32" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="32" />
           <folding />
         </state>
       </provider>
@@ -728,18 +736,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/apidocs/realtime.md">
+    <entry file="file://$PROJECT_DIR$/mkdocs.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="81" column="3" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
+        <state vertical-scroll-proportion="-2.8888888">
+          <caret line="14" column="20" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mkdocs.yml">
+    <entry file="file://$PROJECT_DIR$/docs/apidocs/customactions.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.08755761">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.781106">
+          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding />
         </state>
       </provider>
