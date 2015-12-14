@@ -37,6 +37,9 @@ To deploy your local Angular project run this command:
 ```
 
   **--app**: The current app name
+  
   **--master**: The master token of the app (get it from Social & Keys)
+  
   **--user**: The token of the current user (get it from Team and click on key icon)
+  
   **--folder**: The path of the local Angular folder to sync and deploy
