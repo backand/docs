@@ -8,7 +8,7 @@ Your project files will be available on https://hosting.backand.io/Your-App-Name
 
 The Backand CLI (command-line interface) require Node.js and npm, which can both be installed by following the instructions on [https://nodejs.org](https://nodejs.org). Installing Node.js also installs npm.
 
-### First Time Installation
+#### First Time Installation
 
 ```bash
 
@@ -18,7 +18,7 @@ The Backand CLI (command-line interface) require Node.js and npm, which can both
   # sudo npm install -g backand
 ```
 
-### Update previous Backand CLI
+#### Update previous Backand CLI
 
 ```bash
 
@@ -28,7 +28,7 @@ The Backand CLI (command-line interface) require Node.js and npm, which can both
   # sudo npm update -g backand
 ```
 
-### Deploy the Angular Project
+#### Deploy the Angular Project
 
 To deploy and sync your local Angular project folder, run this command:
 
@@ -45,7 +45,7 @@ To deploy and sync your local Angular project folder, run this command:
   **--folder**: The path of the local Angular folder to sync and deploy
   
   
-### Configure Sync in Gulp
+## Configure Sync in Gulp
 
 Sync and deploy a local folder to Backand hosting.
 
