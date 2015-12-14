@@ -32,7 +32,7 @@ The Backand CLI (command-line interface) require Node.js and npm, which can both
 
 To deploy your local Angular project run this command:
 
-```
+```bash
   backand sync --app {{appName}} --master {{master-token}} --user {{user-token}} --folder /path/to/project/folder
 ```
 
