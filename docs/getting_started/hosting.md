@@ -47,7 +47,7 @@ To deploy and sync your local Angular project folder, run this command:
   
 ## Configure Sync in Gulp
 
-Sync and deploy a local folder to Backand hosting as part of (gulpjs)[http://gulpjs.com/].
+Sync and deploy a local folder to Backand hosting as part of [gulpjs](http://gulpjs.com).
 
 To make the deployment work as Gulp task, follow these steps:
 
