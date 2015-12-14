@@ -30,7 +30,7 @@ The Backand CLI (command-line interface) require Node.js and npm, which can both
 
 ### Deploy the Angular Project
 
-To deploy your local Angular project run this command:
+To deploy and sync your local Angular project folder, run this command:
 
 ```bash
   backand sync --app {{appName}} --master {{master-token}} --user {{user-token}} --folder /path/to/project/folder
@@ -43,3 +43,49 @@ To deploy your local Angular project run this command:
   **--user**: The token of the current user (get it from Team and click on key icon)
   
   **--folder**: The path of the local Angular folder to sync and deploy
+  
+  
+### Configure Sync in Gulp
+
+Sync and deploy a local folder to Backand hosting.
+
+To make the deployment work as Gulp task, follow these steps:
+
+1. Install Backand hosting gulp plugin
+
+```
+  npm install backand-hosting-s3
+```
+
+2. At the top of the gulpfile.js add the `require`
+
+```
+  var backandSync = require('../sync-module');
+```  
+
+3. Set credentials. Credentials will be stored in file `.backand-credentials.json`:
+
+```
+  gulp.task('sts', function(){
+      var masterToken = "your master backand token";
+      var userToken = "your user backand token"; 
+      return backandSync.sts(masterToken, userToken);
+  });
+```
+
+4. Sync folder `./src`
+
+```
+  gulp.task('dist', function() {   
+      var folder = "./src";
+      return backandSync.dist(folder, appName);
+  });
+```
+
+4. Syncing is done via local cache file `.awspublish-<bucketname>`. Repeated add/delete of the same file may confuse it. To clean the cache do:
+
+```
+  gulp.task('clean', function() {
+      return backandSync.clean();
+  });
+```
