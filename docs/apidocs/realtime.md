@@ -1,11 +1,10 @@
 #Realtime Database Communication
 
-The real-time communication is based on the popular open source Socket.io framework, which lets you add real-time functionality to your application. Backand’s Real-Time Database Communication sends events and JSON-formatted data to any authorized connected client. Based on server-side logic in Backand's Actions you can send real-time information to your application.
-Instead of having to wait for the user refresh the page, the events are picked up as they happened.
+Backand's real-time communication functionalty is based on the popular open-source Socket.io framework, which lets you add real-time functionality to your application. Backand’s Real-Time Database Communication sends events and JSON-formatted data to any authorized connected client. With Real-Time Communcation from Backand, you can send real-time information to your application based on server-side logic in your application's custom actions. With this new feature events are picked up as they happen, rather than having to wait for a user-driven event to trigger a data reload.
 
-Backand’s real-time database communications are completely secure. They provide you with total control over data access, allowing you to restrict transmission of sensitive data to only authorized roles. And since all communication is SSL-encrypted, you don’t have to worry about the security of your data as it is transmitted to the web.
+Backand’s real-time database communications are completely secure. They provide you with total control over data access, allowing you to restrict transmission of sensitive data to only authorized roles. And since all communication is SSL-encrypted, you don’t have to worry about the security of your data as it is transmitted across the web.
 
-Using the real-time capability you can improve your app with instant updates to any Angular page, update charts, counters, logs, and other data-driven elements.
+Using the real-time capability can enahnce your app with instant updates to any Angular page, including updating charts, counters, logs, and other data-driven elements.
 
 #Setup
 
@@ -25,9 +24,9 @@ BackandProvider.runSocket(true);
 
 # Angular client code
 
-The backand's SDK already includes all the code needed by the socket.io client JavaScript code. All you need to do is to add a listener in your Angular controller or service. In case you need to implement the client on other platform then JavaScript, please review this the [iOS](http://socket.io/blog/socket-io-on-ios/) and [Android](http://socket.io/blog/native-socket-io-and-android/) documentations.
+Backand's SDK already includes all the code needed for the client-side Socket.IO JavaScript integration. All you need to do is add a listener in your Angular controller or service. In the event that you need to implement your client on a platform other than JavaScript, review the relevant [iOS](http://socket.io/blog/socket-io-on-ios/) or [Android](http://socket.io/blog/native-socket-io-and-android/) documentation.
 
-Using Backand's SDK, you only need this line for the listening:
+Using Backand's SDK, you can add event listening to your application with a simple function:
 
 ```
 Backand.on('items_updated', function (data) {
@@ -36,18 +35,17 @@ Backand.on('items_updated', function (data) {
 });
 ```
 
-The emit event is not needed, when you update a data just use Backand REST API commands.
+And that's it! You don't even need to provide an emit event to track changes - Backand will automatically update you whenever you change data using Backand's REST API out of the box.
 
 # Server side code
 
-Using Backand's Action in the Backand dashboard, add the "emit" command to notify the client of updates based upon events and sent data.
-The actions can be based on database triggered (Create, Update or Delete) or in the on-demand action driven by client code logic.
+When working with a Custom JavaScript Action in the Backand dashboard, you can add the "emit" command to notify the client of updates based upon events and sent data that are important to your use case. The actions can be based on database triggers (Create, Update or Delete), or in an on-demand action called from client-side logic.
 
-There 3 type of emit commands you can use in order to notify on event and send data:
+There 3 type of emit commands you can use in order to notify consuming applications of event data:
 
-* socket.emitUsers: ```socket.emitUsers('event_Name',object, []);``
+* socket.emitUsers: `socket.emitUsers('event_Name',object, []);`
 
-This command sends event only to the users specified in the array. In case you need to make this array dynamic use Backand Query. First call the Query and then convert the JSON into the array of users.
+This command sends event only to users specified in the second argument, which should be formatted as an array. To make this array dynamic, you'll need to use a Backand Query action. First call the Query to obtain the users, then convert the JSON into an array of user IDs (email addresses).
 
 Example:
 
@@ -59,7 +57,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 * socket.emitRole: ```socket.emitUsers('event_Name',object, 'role');``
 
-This command sends event to all the users in a specified role. Be aware that this command is overriding any data security filter you may have.
+This command sends the event to all the users in a specified role. Be aware that this command will overrided any data security filter you may have configured for your application.
 
 Example:
 
@@ -71,7 +69,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 * socket.emitAll: ```socket.emitAll('event_Name',object);```
 
-This command sends event to all the connected users, regardless there role or permission. Be aware that this command is overriding any data security you may have. Use this for general event broadcasting.
+This command sends event to all connected users, regardless of their role or permission settings. Be aware that this command verrides any data security filters you may have configured for your application. Use this emit type for general event broadcasting.
 
 Example:
 

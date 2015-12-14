@@ -31,8 +31,8 @@ The function parameters are:
 
 In addition to the above parameters, you can also make use of the following global objects:
 
-* $http: a service for HTTP calls, similar to Angular $http but without the promise, since it is a server side
-function it always runs in sync. [See the full API description for more details](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#rest-api-crud-operations):
+* $http: a service for HTTP calls, similar to Angular's $http without the promise (since it is a server side
+function it always runs in sync). [See the full API description for more details](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#rest-api-crud-operations):
     * GET example: 
 
 			var response = $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample", 
@@ -58,36 +58,35 @@ function it always runs in sync. [See the full API description for more details]
 
 * CONSTS: CONSTS.apiUrl for Backand's API URL
 
-* Config: Global configuration. You can maintain global JSON configuration for the app and consume it in the action
-using Config. To update the JSON go to Settings --> General menu.
+* Config: Global configuration. You can maintain a global JSON configuration for your app. Your JSON configuration is consumed in the Config action. To update the configuration JSON, go to section "General" in the "Settings" menu on the Backand dashboard.
 
-* Emit: Send real-time communication event and data to the client. Emit has 3 methods: socket.emitUsers, socket
-.emitRole, socket.emitAll. Read more about [Realtime Database Communication](http://docs.backand
+* Emit: Emit is a function that allows you to send real-time communication events and data to the client. Emit has 3 methods: socket.emitUsers, socket
+.emitRole, and socket.emitAll. Read more about [Realtime Database Communication here](http://docs.backand
 .com/en/latest/apidocs/realtime/index.html).
 
 ## Debugging
 
-In order to debug use either console.log or console.error. For example:
+Debugging should be done using either console.log or console.error. For example, to dump the contents of variable `object`:
 `console.log(object)`
 
 `console.error(object)`
 
 ##Error Handling
 
-If your code results in an error (for example, if you write the following: `throw new Error("An error occurred!"))`, the request will return HTTP status 417, and the response body will contain the associated error message.
+If your code results in an error (for example, if you write the following: `throw new Error("An error occurred!")`), the request will return HTTP status 417, and the response body will contain the associated error message.
 
 ## Return values
 
-Triggers actions will have a response that matches the format expected by the triggering call (such as the return value
+Triggered actions will have a response that matches the format expected by the triggering call (such as the return value
 of a CREATE call).
 
-On Demand actions, though, will return whatever is returned by the custom server code, which can be any properly-formatted JSON.
+On Demand actions, though, will return whatever value is returned by the custom server code, which can be any properly-formatted JSON string.
 
 # Transactional Database Scripts
 
-Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided the event occurs in the object event "During the data save before the object is committed". This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.
+Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided that the event occurs during the object event "During the data save before the object is committed". This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.
 
 # Send Emails
 
-Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. In addition, you can provide an object ID to obtain a deep object to use in the action.
+Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.
 

@@ -24,6 +24,7 @@ pages:
 - ['what_would_you_like_to_do/third_party.md', 'Common Use Cases', 'Integrating with Third Parties']
 - ['what_would_you_like_to_do/actions.md', 'Common Use Cases', 'Custom Actions']
 - ['what_would_you_like_to_do/retrieve_data.md', 'Common Use Cases', 'Retrieving Data']
+- ['what_would_you_like_to_do/i18n.md', 'Common Use Cases', 'Internationalization']
 - ['scenarios/index.md', 'Scenarios',  'Introduction']
 - ['scenarios/simple_web.md', 'Scenarios',  'Simple Web App with REST API']
 - ['scenarios/ionic.md', 'Scenarios',  'Ionic with Backand']
