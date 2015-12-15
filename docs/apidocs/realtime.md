@@ -63,7 +63,7 @@ Example:
 
 ```
 function backandCallback(userInput, dbRow, parameters, userProfile) {
-  socket.emitRole("items_updated",userInput, "User");
+  socket.emitRole("items_updated",userInput, "Role");
 }
 ```
 
