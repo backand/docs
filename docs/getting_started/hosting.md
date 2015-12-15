@@ -1,14 +1,14 @@
-## Backand Hosting & Deployment
-High-performance, reliable and secure hosting for AngularJS applications.
+## Hosting & Deployment
+Backand offers high-performane, reliable, and secure hosting for AngularJS applications through the hosting and deploymment tool. Built off of AWS, Backand's hosting gives you an effortless way to deploy your Angular project to a hosted server.
 
-Backand hosting built on AWS and it’s super-easy, effortlessly deploy your local Angular project files with the
-hosted server.
+Your project files will be available on https://hosting.backand.io/Your-App-Name, providing you an easy way to see what gets deployed for your project.
 
-Your project files will be available on https://hosting.backand.io/Your-App-Name
 
-The Backand CLI (command-line interface) require Node.js and npm, which can both be installed by following the instructions on [https://nodejs.org](https://nodejs.org). Installing Node.js also installs npm.
+*Note*: The Backand CLI (command-line interface) requires Node.js and Node Package Manager (NPM). To install Node and NPM, follow the instructions at [https://nodejs.org](https://nodejs.org). This one process handles both NodeJS and NPM.
 
 #### First Time Installation
+
+The hosting and deployment functionality is provided with the Backand node package. Simply install the package from the command line as follows:
 
 ```bash
 
@@ -18,7 +18,9 @@ The Backand CLI (command-line interface) require Node.js and npm, which can both
   # sudo npm install -g backand
 ```
 
-#### Update previous Backand CLI
+#### Updating a Prior Version
+
+If you've installed the Backand node package before, you will need to perform an update to get the new hosting and deployment functionality. Follow these steps to update your locally-installed version of Backand:
 
 ```bash
 
@@ -30,11 +32,13 @@ The Backand CLI (command-line interface) require Node.js and npm, which can both
 
 #### Deploy the Angular Project
 
-To deploy and sync your local Angular project folder, run this command:
+The Backand CLI, which we installed using NPM, provides the capability to deploy your project, as well as sync your local project folder. To deploy and sync, use the following command from the command line:
 
 ```bash
   backand sync --app {{appName}} --master {{master-token}} --user {{user-token}} --folder /path/to/project/folder
 ```
+
+The parameters for this call are:
 
   **--app**: The current app name
   
@@ -47,23 +51,23 @@ To deploy and sync your local Angular project folder, run this command:
   
 ## Configure Sync in Gulp
 
-Sync and deploy a local folder to Backand hosting as part of [gulpjs](http://gulpjs.com).
+Backand can integrate with your existing [gulpjs](http://gulpjs.com) configuration, allowing you to easily control deployment as you would the rest of your project. Below, we'll create a Gulp task to perform the deployment. This can then be used to deploy your application as a part of your standard build process.
 
-To make the deployment work as Gulp task, follow these steps:
+To create the new Gulp deployment task:
 
-1. Install Backand hosting gulp plugin
+1. Install the Backand hosting gulp plugin using NPM:
 
 ```
   npm install backand-hosting-s3
 ```
 
-2. At the top of the gulpfile.js add the `require`
+2. At the top of gulpfile.js add the `require` call below:
 
 ```
   var backandSync = require('../sync-module');
 ```  
 
-3. Set credentials. Credentials will be stored in file `.backand-credentials.json`:
+3. Set your Backand credentials for the task. Credentials will be stored in file `.backand-credentials.json`:
 
 ```
   gulp.task('sts', function(){
@@ -73,7 +77,7 @@ To make the deployment work as Gulp task, follow these steps:
   });
 ```
 
-4. Sync folder `./src`
+4. Configure the task to Sync folder `./src`:
 
 ```
   gulp.task('dist',['sts'], function() {   
@@ -82,7 +86,7 @@ To make the deployment work as Gulp task, follow these steps:
   });
 ```
 
-4. Syncing is done via local cache file `.awspublish-<bucketname>`. Repeated add/delete of the same file may confuse it. To clean the cache do:
+4. Syncing is performed via a local cache file named `.awspublish-<bucketname>`. This file cache can become corrupted after multiple uses, so we need to create one more task to perform cleanup after the deployment has completed:
 
 ```
   gulp.task('clean', function() {
