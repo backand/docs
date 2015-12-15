@@ -10,6 +10,7 @@ pages:
 - ['getting_started/security_auth.md', 'Getting Started', 'Security & Auth']
 - ['getting_started/log.md', 'Getting Started', 'Log']
 - ['getting_started/settings.md', 'Getting Started', 'Settings']
+- ['getting_started/hosting.md', 'Getting Started', 'Hosting']
 - ['apidocs/index.md', 'API Documentation',  'Introduction']
 - ['apidocs/security.md', 'API Documentation',  'Security Concepts']
 - ['apidocs/realtime.md', 'API Documentation',  'Realtime Database Communication']
