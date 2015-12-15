@@ -1,7 +1,7 @@
 ## Hosting & Deployment
 Backand offers high-performance, reliable, and secure hosting for AngularJS applications through the hosting and deploymment tool. Built off of AWS, Backand Hosting gives you an effortless way to deploy your Angular project to a hosted server.
 
-Your project files will be available on https://hosting.backand.io/Your-App-Name, providing you an easy way to see what gets deployed for your project.
+Your project files will be available on **https://hosting.backand.io/Your-App-Name**, providing you an easy way to see what gets deployed for your project.
 
 
 *Note*: The Backand CLI (command-line interface) requires Node.js and Node Package Manager (NPM). To install Node and NPM, follow the instructions at [https://nodejs.org](https://nodejs.org). This one process handles both NodeJS and NPM.
@@ -49,7 +49,7 @@ The parameters for this call are:
   **--folder**: The path of the local Angular folder to sync and deploy
   
 #### Browse to your app
-Your app is now on air, just browse to https://hosting.backand.com/YourAppName and see it live.
+Your app is now on air, just browse to **https://hosting.backand.com/YourAppName** and see it live.
 
 ## Configure Sync in Gulp
 
