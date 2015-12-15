@@ -48,7 +48,9 @@ The parameters for this call are:
   
   **--folder**: The path of the local Angular folder to sync and deploy
   
-  
+#### Browse to your app
+Your app is now on air, just browse to https://hosting.backand.com/YourAppName and see it live.
+
 ## Configure Sync in Gulp
 
 Backand can integrate with your existing [gulpjs](http://gulpjs.com) configuration, allowing you to easily control deployment as you would the rest of your project. Below, we'll create a Gulp task to perform the deployment. This can then be used to deploy your application as a part of your standard build process.
