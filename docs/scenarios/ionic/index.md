@@ -201,7 +201,7 @@ In your controller, require ‘DatabaseService’, and make calls like:
       
       // read all playlists for a user
       DatabaseService.readAll('playlists').then(
-        function9data){
+        function(data){
         $scope.playlists = data; 
       });
  
