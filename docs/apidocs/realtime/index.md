@@ -19,6 +19,7 @@ Using the real-time capability can enahnce your app with instant updates to any 
   ```
 BackandProvider.runSocket(true);
   ```
+
 ### Angular client code
 
 Backand's SDK already includes all the code needed for the client-side Socket.IO JavaScript integration. All you need to do is add a listener in your Angular controller or service. In the event that you need to implement your client on a platform other than JavaScript, review the relevant [iOS](http://socket.io/blog/socket-io-on-ios/) or [Android](http://socket.io/blog/native-socket-io-and-android/) documentation.
