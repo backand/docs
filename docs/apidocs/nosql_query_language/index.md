@@ -1,5 +1,4 @@
-
-
+##Introduction
 This query language is inspired by [MongoDB](https://www.mongodb.com/).
 
 A query consists of these parts:
@@ -52,7 +51,7 @@ This NoSQL object is converted into:
   WHERE query
 ```
 
-# Examples
+## Examples
 
 This simple query retrieves the name and salary of all employees in position of "Sales Manager":
 
@@ -77,11 +76,11 @@ Queries can also be used to compare an object's  fields to constant values using
 } 
 ```
 
-# Expressions
+## Expressions
 
 An expression can be either an AND expression, an OR expression, or a UNION query.
 
-## AND expressions
+### AND expressions
 An AND expression is a conjunction of conditions on fields. An AND expression is a JSON of the form `{ A: condition, B: condition, ... }`
 
 For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the following query:
@@ -90,7 +89,7 @@ For example, to retrieve all employees that are 25-years-old, a Sales manager, A
 { "position": "Sales Manager", "age" : { "$lt" : 25 }, "city": "Boston" }
 ```
 
-## OR expressions
+### OR expressions
 
 An OR expression is a disjunction of conditions, `{ $or: [ Expression1, Expression2, ...   ] }` 
 
@@ -100,7 +99,7 @@ For example, use the following query to find all offices that are either larger 
 { "$or": [ { "num_employees": { "$gt": 30 } }, { "location": "Palo Alto" }  ]  }
 ```
 
-## UNION queries
+### UNION queries
 
 A UNION query is a union of the results of queries: `{ $union: [ Query1, Query2, ...   ] }`. For example:
 
@@ -137,7 +136,7 @@ A UNION query is a union of the results of queries: `{ $union: [ Query1, Query2,
 }
 ```
 
-# Conditions on Fields
+## Conditions on Fields
 
 A condition on a field is a predicate that can perform one of the following actions:
 
@@ -150,7 +149,7 @@ A condition on a field is a predicate that can perform one of the following acti
 { "$not": { "location" : "Boston" }}
 ```    
 
-# Sub Queries
+## Sub Queries
 
 The following sub-query retrieves the department ID of each department in New York:
 
@@ -216,7 +215,7 @@ If we wanted to look at a more complex query, we could modify this a bit. Let's 
 }
 ```
 
-# Conditions on Fields
+## Conditions on Fields
 
 
 Formally, a condition on a field is a key-value expression of the form: 
@@ -244,7 +243,7 @@ Or we can also use a not-equal  operator:
 
     { location: { $neq: "Paris" }}
 
-# Group By Queries
+## Group By Queries
 
 A group by query aggregates on fields, and then applies aggregation operators to the specified fields. For instance, to group by `Country`, and then concatenate the `Location` field, use the following example code:
 
@@ -274,11 +273,11 @@ A group by query aggregates on fields, and then applies aggregation operators to
 }
 ```
 
-# Algorithm to Generate SQL from JSON Queries
+## Algorithm to Generate SQL from JSON Queries
 
 The algorithm transforms from JSON to SQL using a top-down transformation. 
 
-## Usage
+### Usage
 
     transformJson(json, sqlSchema, isFilter, callback) 
 
@@ -301,11 +300,11 @@ The result is a structure with the following fields:
         limit: <limit clause>     
     }
 
-## Escaping
+### Escaping
 
 All constants appearing in the JSON query are escaped when transformed into SQL.
 
-## Filters
+### Filters
 
 You also have the ability to mark a particular NoSQL query as a filter. This allows you to use variables in your query, which are populated on the server side from either parameters sent in with the filter, or from database data in your system. Variables take the form of:
 
