@@ -11,7 +11,7 @@ All 3 types of actions use the following common parameters:
 * A Where condition - a SQL where clause that determines if the action will be performed.
 * Input Parameters, added to the query string of the request that triggers the action, that will serve as variable values that you can supply to your action's code. These parameters will serve as tokens in the action definition and will be replaced with the actual values when the code executes.
 
-# Server-side JavaScript Code
+## Server-side JavaScript Code
 
 You can run standard JavaScript on the server. It runs on the [V8 engine](http://en.wikipedia.org/wiki/V8_(JavaScript_engine)). To execute the JavaScript action, put your code into the following function:
 
