@@ -1,4 +1,4 @@
-#Introduction
+## Introduction
 Backand users typically fall into one of two categories. The first category works with the underlying data system as a series of objects, and doesn't spend a lot of time focused on the database underpinning the application. The second category, though, work with databases as a matter of course. Often they have existing databases that they want to build an interface on top of, with complex existing relationships that need to be modeled accurately by any framework put in front of it. Below we'll cover the database connectivity functionality offered by Backand, and how it can fit even the most complex of database needs.
 
 ## Bringing Your Own Database
