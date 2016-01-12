@@ -62,8 +62,7 @@ function it always runs in sync). [See the full API description for more details
 * Config: Global configuration. You can maintain a global JSON configuration for your app. Your JSON configuration is consumed in the Config action. To update the configuration JSON, go to section "General" in the "Settings" menu on the Backand dashboard.
 
 * Emit: Emit is a function that allows you to send real-time communication events and data to the client. Emit has 3 methods: socket.emitUsers, socket
-.emitRole, and socket.emitAll. Read more about [Realtime Database Communication here](http://docs.backand
-.com/en/latest/apidocs/realtime/index.html).
+.emitRole, and socket.emitAll. Read more about [Realtime Database Communication here](http://docs.backand.com/en/latest/apidocs/realtime/index.html).
 
 ## Debugging
 
