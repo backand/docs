@@ -75,7 +75,9 @@ Queries can also be used to compare an object's  fields to constant values using
     }  
 } 
 ```
-To retrieve all cities within `25km` (`25000m`) from a given `[latitude, longitude]`, e.g. `[32.0638130, 34.7745390]`, 
+
+To retrieve all cities within 25km (25000m) from a given [latitude, longitude], e.g. [32.0638130, 34.7745390], 
+
 ```JSON
 { 
     "object": "city", 
