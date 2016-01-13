@@ -75,7 +75,16 @@ Queries can also be used to compare an object's  fields to constant values using
     }  
 } 
 ```
-
+To retrieve all cities within `25km` (`25000m`) from a given `[latitude, longitude]`, e.g. `[32.0638130, 34.7745390]`, 
+```JSON
+{ 
+    "object": "city", 
+    "q": { 
+        "location" : { $within : [[32.0638130, 34.7745390], 25000] 
+    } 
+  } 
+}
+```
 ## Expressions
 
 An expression can be either an AND expression, an OR expression, or a UNION query.
@@ -141,7 +150,7 @@ A UNION query is a union of the results of queries: `{ $union: [ Query1, Query2,
 A condition on a field is a predicate that can perform one of the following actions:
 
 1. Test equality of field to a constant value, e.g.  `{ A: 6 }` => `Is `A` equal to 6?`
-2. Compare a field using a comparison operator, e.g. `{ A: { $gt: 8 }}` => `Is `A` greater than 8?`. The set of comparison operators is quite extensive and includes: `$lte, $lt, $gte, $gt, $eq, $neq, $not`
+2. Compare a field using a comparison operator, e.g. `{ A: { $gt: 8 }}` => `Is `A` greater than 8?`. The set of comparison operators is quite extensive and includes: `$lte, $lt, $gte, $gt, $eq, $neq, $not, $within`
 3. Test if the value of the field is IN  or NOT IN the result of a sub-query.
 4. Test for the negation of a comparison. For example, to test if the location field is not Boston, we can do:
 
