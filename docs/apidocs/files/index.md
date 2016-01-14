@@ -129,6 +129,7 @@ HTML
 ```
 
 ### Server side code
+Both upload and delete are written in the same action and it is the method the you are using to call it that determines the functionality. When the method is POST then the action performs upload and when it is DELETE the action performs delete. You can use the userProfile for restrictions or file name manipulations.
 
 ```
 /* globals
