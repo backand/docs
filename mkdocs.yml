@@ -13,6 +13,7 @@ pages:
 - ['getting_started/hosting/index.md', 'Getting Started', 'Hosting']
 - ['apidocs/index.md', 'API Documentation',  'Introduction']
 - ['apidocs/security/index.md', 'API Documentation',  'Security Concepts']
+- ['apidocs/files/index.md', 'API Documentation',  'Backand Storage']
 - ['apidocs/realtime/index.md', 'API Documentation',  'Realtime Database Communication']
 - ['apidocs/customactions/index.md', 'API Documentation',  'Custom Actions']
 - ['apidocs/queries/index.md', 'API Documentation',  'Queries']
