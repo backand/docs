@@ -33,7 +33,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 ```
 
 ### Angular client code
-We have created a simple example in Angular to expirience the upoad functionality. 
+We have created a simple example in Angular to experience the upload functionality. 
 You can execute the below code in [codepen](http://codepen.io/backand/pen/ZQaYEV)
 
 HTML
@@ -105,7 +105,7 @@ function DemoCtrl($scope, $http, Backand) {
     reader.readAsDataURL(file);
   };
 
-  // register to change enent on input file 
+  // register to change event on input file 
   function initUpload() {
     var fileInput = document.getElementById('fileInput');
 
