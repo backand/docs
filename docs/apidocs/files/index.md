@@ -1,9 +1,58 @@
 ### Introduction
-Backand's Files provides you the functionality to upload and delete files in Backand storage. This is done in the server side through Backand's actions. It does not requires any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage count of the amount of files per users. The upload action returns a url that links to the file you uploaded. This is a public url. The storage is managed per Backand's app.  
+Backand's Files provides you the functionality to upload and delete files in Backand robust storage. This is done in the server side through Backand's actions. It does not requires any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage count of the amount of files per users. 
+
+The files.upload command returns a url that links to the file you uploaded. This is a public url. The storage is managed per Backand's app.  
+
+### Backand Server side code
+Both upload and delete are written in the same action and it is the method the you are using to call it that determines the functionality. When the method is POST then the action performs upload and when it is DELETE the action performs delete. You can use the userProfile for restrictions or file name manipulations. You do not need to copy this code it is ready for you when you click on the Backand *File Storage* action template.
+
+```
+/* globals
+  $http - Service for AJAX calls 
+  CONSTS - CONSTS.apiUrl for Backands API URL
+  Config - Global Configuration
+  socket - Send realtime database communication
+  files - file handler, performs upload and delete of files
+  request - the current http request
+*/
+'use strict';
+function backandCallback(userInput, dbRow, parameters, userProfile) {
+  console.log(userProfile); // gets the current user role and id that enables you to perform security restrictions
+	// upload file
+    if (request.method == "POST"){
+        var url = files.upload(parameters.filename, parameters.filedata);
+        return {"url": url};
+    }
+    // delete file
+    else if (request.method == "DELETE"){
+        files.delete(parameters.filename);
+        return {};    
+    }
+	
+}
+```
 
 ### Angular client code
+We have created a simple example in Angular to expirience the upoad functionality. 
+You can execute the below code in [codepen](http://codepen.io/backand/pen/ZQaYEV)
 
-Following is a working example in [codepen](http://codepen.io/backand/pen/ZQaYEV)
+HTML
+
+```
+<body class="container" ng-app="app" ng-controller="DemoCtrl" ng-init="initCtrl()">
+  <h2>Backand Simple Upload File</h2>
+  <br/>
+  <form role="form" name="uploadForm">
+    <div class="row">
+        <img ng-src="{{imageUrl}}" ng-show="imageUrl" />
+        <input id="fileInput" type="file" accept="*/*" ng-model="filename" />
+        <input type="button" value="x" class="delete-file" title="Delete file" ng-disabled="!imageUrl" ng-click="deleteFile()" />
+      
+    </div>
+  </form>
+</body>
+```
+
 
 Javascript:
 
@@ -119,49 +168,5 @@ function DemoCtrl($scope, $http, Backand) {
 }
 ```
 
-HTML
 
-```
-<body class="container" ng-app="app" ng-controller="DemoCtrl" ng-init="initCtrl()">
-  <h2>Backand Simple Upload File</h2>
-  <br/>
-  <form role="form" name="uploadForm">
-    <div class="row">
-        <img ng-src="{{imageUrl}}" ng-show="imageUrl" />
-        <input id="fileInput" type="file" accept="*/*" ng-model="filename" />
-        <input type="button" value="x" class="delete-file" title="Delete file" ng-disabled="!imageUrl" ng-click="deleteFile()" />
-      
-    </div>
-  </form>
-</body>
-```
-
-### Server side code
-Both upload and delete are written in the same action and it is the method the you are using to call it that determines the functionality. When the method is POST then the action performs upload and when it is DELETE the action performs delete. You can use the userProfile for restrictions or file name manipulations. You do not need to copy this code it is ready for you when you click on the Backand File Storage action template.
-
-```
-/* globals
-  $http - Service for AJAX calls 
-  CONSTS - CONSTS.apiUrl for Backands API URL
-  Config - Global Configuration
-  socket - Send realtime database communication
-  files - file handler, performs upload and delete of files
-  request - the current http request
-*/
-'use strict';
-function backandCallback(userInput, dbRow, parameters, userProfile) {
-  console.log(userProfile); // gets the current user role and id that enables you to perform security restrictions
-	// upload file
-    if (request.method == "POST"){
-        var url = files.upload(parameters.filename, parameters.filedata);
-        return {"url": url};
-    }
-    // delete file
-    else if (request.method == "DELETE"){
-        files.delete(parameters.filename);
-        return {};    
-    }
-	
-}
-```
 
