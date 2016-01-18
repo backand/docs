@@ -3,20 +3,19 @@ Backand's Files provides you the functionality to upload and delete files in Bac
 
 ### Angular client code
 
-Following is a working example in [codepen](http://codepen.io/relly/pen/mVMOwZ)
+Following is a working example in [codepen](http://codepen.io/backand/pen/ZQaYEV)
 
 Javascript:
 
 ```
-var myApp = angular.module('myTodoApp', ['backand']);
+var myApp = angular.module('app', ['backand']);
 
 // Backand security configuration for your app
 myApp.config(function(BackandProvider) {
   // enter your app name here
-  BackandProvider.setAppName('filetest01');
+  BackandProvider.setAppName('YourAppName');
   // enter your app anonymous token here
-  BackandProvider.setAnonymousToken('de8d5df4-2178-4ad2-a4f3-5933bc653e97');
-  BackandProvider.setApiUrl("http://localhost:4110");
+  BackandProvider.setAnonymousToken('YourAnonymousToken');
 })
 
 myApp.controller('DemoCtrl', ['$scope', '$http', 'Backand', DemoCtrl]);
@@ -24,13 +23,14 @@ myApp.controller('DemoCtrl', ['$scope', '$http', 'Backand', DemoCtrl]);
 function DemoCtrl($scope, $http, Backand) {
 
   // Create a server side action in backand
-  // by going into the items object actions tab 
+  // by going into the todo object actions tab 
   // and click on the S3 icon.
   // Name your action files
   // Backand consts:
   var baseUrl = '/1/objects/';
-  var objectName = 'items';
-  var filesActionName = 'files';
+  var baseActionUrl = baseUrl + 'action/'
+  var objectName = 'YourObjectName';
+  var filesActionName = 'YourServersideActionName';
   
   // Display the image after upload
   $scope.imageUrl = null;
@@ -49,8 +49,11 @@ function DemoCtrl($scope, $http, Backand) {
       upload(file.name, e.currentTarget.result).then(function(res) {
         $scope.imageUrl = res.data.url;
         $scope.filename = file.name;
+      }, function(err){
+        alert(err.data);
       });
     };
+   
     reader.readAsDataURL(file);
   };
 
@@ -69,7 +72,7 @@ function DemoCtrl($scope, $http, Backand) {
     // an upload of the file into AWS S3
     return $http({
       method: 'POST',
-      url: Backand.getApiUrl() + '/1/objects/action/items?name=' + filesActionName,
+      url : Backand.getApiUrl() + baseActionUrl +  objectName + '?name=' + filesActionName,
       headers: {
         'Content-Type': 'application/json'
       },
@@ -90,7 +93,7 @@ function DemoCtrl($scope, $http, Backand) {
     // a deletion of the file from AWS S3
     $http({
       method: 'DELETE',
-      url: Backand.getApiUrl() + '/1/objects/action/items?name=' + filesActionName,
+      url: Backand.getApiUrl() + '/1/objects/action/todo?name=' + filesActionName,
       headers: {
         'Content-Type': 'application/json'
       },
@@ -114,7 +117,7 @@ function DemoCtrl($scope, $http, Backand) {
 HTML
 
 ```
-<body class="container" ng-app="myTodoApp" ng-controller="DemoCtrl" ng-init="initCtrl()">
+<body class="container" ng-app="app" ng-controller="DemoCtrl" ng-init="initCtrl()">
   <h2>Backand Simple Upload File</h2>
   <br/>
   <form role="form" name="uploadForm">
