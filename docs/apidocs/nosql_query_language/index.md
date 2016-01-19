@@ -82,7 +82,7 @@ To retrieve all cities within 25km (25000m) from a given [latitude, longitude], 
 { 
     "object": "city", 
     "q": { 
-        "location" : { $within : [[32.0638130, 34.7745390], 25000] 
+        "location" : { "$within" : [[32.0638130, 34.7745390], 25000] 
     } 
   } 
 }
