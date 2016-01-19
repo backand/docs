@@ -4,9 +4,9 @@ Backand lets you store geography points as fields as part of any object.
 geography point is an array of latitude and longitude which represents a location on a map.
 
 With Backand geography query you can easily find distance between points or objects that match a distance to a 
-specific location of a device or point on the map.
+specific location.
 
-## Geography Point
+## Add a Point
 
 To add new point field, open Backand Model, select add field with *point* type.
 To POST new data point for latitude 10 and longitude 20 just send the following array:
