@@ -393,9 +393,10 @@ self.callAction = function (objectName, id, actionName, parameters) {
 
 ## Queries
 
-You can run custom pre-configured queries by sending a GET request to `/query/data/{queryName}` The query syntax must follow the SQL rules of the underlying database that your application is using. You can include predefined parameters in your request that are then used by your query.
+You can run custom pre-configured queries by sending a GET or a POST request to `/query/data/{queryName}` The query syntax must follow the SQL rules of the underlying database that your application is using. You can include predefined parameters in your request that are then used by your query.
 
-* **parameters** - A JSON object with all predefined query parameters provided.
+* **parameters** - A JSON object with all predefined query parameters provided.   
+Using a GET method:
 
 ```
 self.query = function (queryName, parameters) {
@@ -403,6 +404,20 @@ self.query = function (queryName, parameters) {
           method: 'GET',
           url: Backand.getApiUrl() + '/1/query/data/' + queryName
           params: {
+             parameters: parameters
+          }
+      });
+  };
+```
+
+Using a POST method:
+
+```
+self.query = function (queryName, parameters) {
+      return $http({
+          method: 'POST',
+          url: Backand.getApiUrl() + '/1/query/data/' + queryName
+          data: {
              parameters: parameters
           }
       });
