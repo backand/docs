@@ -17,17 +17,19 @@ To POST new data point for latitude 10 and longitude 20 just send the following 
 
 ## Query Point
 
-To retrieve all cities within 25km you need to provide it in meters (25000 meters) from a given [latitude, longitude], 
-e.g. [37.8019859, -122.4414805]. To find the distance in Miles you need to multiple by 1.609, e.g. 25 miles => 40.222
- KM ==> 4022.5 Meters
+To query a distance within a geography point you can use any of the follow commands:
+`$withinMiles`
+`$withinFeet`
+`$withinKilometers`
+`$within` (in meters)
 
-Getting all the restaurants within 25 Miles of San Francisco Marina District [37.8019859, -122.4414805]: 
+To get all the restaurants within 25 Miles of San Francisco Marina District [37.8019859, -122.4414805]: 
 
 ```json
 { 
   "object": "restaurants", 
   "q": {
-    "location" : { "$within" : [[37.8019859, -122.4414805], 4022.5] } 
+    "location" : { "$withinMiles" : [[37.8019859, -122.4414805], 25] } 
   } 
 }
 ```
@@ -36,9 +38,24 @@ The above noSql is translated into MySQL syntax using the new ST_Distance() func
  
 ```SQL
 
-SELECT * FROM `restaurants` WHERE (ST_Distance ( `restaurants`.`location`, ST_GeomFromText('POINT( 37.8019859 -122.4414805 )') ) <= 0.03622413943151704)
+SELECT * FROM `restaurants` WHERE (ST_Distance ( `restaurants`.`location`, ST_GeomFromText('POINT( 37.8019859 -122.4414805 )') ) <= 25 /(69))
    
 ```
+
+## Query Point with Parameters
+
+In order to query get geography points dynamically, use [Query](http://docs.backand.com/en/latest/getting_started/queries/index.html) with parameters
+1. Add this *Input Parameters*: lan, lon, dist
+2. In the Query use tokens ("{{lan}}", "{{lon}}" and "{{dist}}") to represent the input parameters:
+
+  ```json
+  { 
+    "object": "restaurants", 
+    "q": {
+      "location" : { "$withinMiles" : [["{{lan}}", "{{lon}}"], "{{dist}}"] } 
+    } 
+  }
+  ```
 
 ## Filter Point
 
@@ -54,7 +71,7 @@ return $http ({
   params: {
     filter: {
       "q": { 
-        "location" : { "$within" : [[37.8019859, -122.4414805], 4022.5]} 
+        "location" : { "$withinMiles" : [[37.8019859, -122.4414805], 25]} 
       } 
     }
   }
