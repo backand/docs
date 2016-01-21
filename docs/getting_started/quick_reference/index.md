@@ -2,7 +2,7 @@ Here are a few basic URL guidelines for quickly accessing your application's dat
 
 ## API Endpoint
 
-All API URLs start with the following base part: `https://api.backand.com/1`. For example, the /user/signup API call is reachable at `https://api.backand.com/1/user/signup`.
+All API URLs start with the following base part: *https://api.backand.com/1*. For example, the /user/signup API call is reachable at *https://api.backand.com/1/user/signup*
 
 ## Security & Authentication
 | URL | HTTP Verb | Functionality |
