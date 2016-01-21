@@ -1,21 +1,14 @@
 Here are a few basic URL guidelines for quickly accessing your application's data:
 
-## Base URL
+## API Endpoint
 
-The base URL for your application will be `https://api.backand.com/1` - all of your access will be driven from this URL
-
-## Request Format
-
-All requests must be made using JSON request bodies. Make sure to set the `Content-Type` header to `application/json`. Additionally, all requests must include an authentication token in the request headers. This process is detailed in our [documentation](http://docs.backand.com/en/latest/security/index.html).
-
-## Response Format
-
-All responses are returned as JSON objects. The status code of the response indicates the success (2xx) or failure (4xx) of the request.
+All API URLs start with the following base part: `https://api.backand.com/1`. For example, the /user/signup API call is reachable at `https://api.backand.com/1/user/signup`.
 
 ## Security & Authentication
 | URL | HTTP Verb | Functionality |
 | ----- | ----------- | --------------- |
-| /token | POST | Obtains a 24-hour access token. A Backand username and password must be provided, along with the app the user is signing in to. Note that the app parameter is optional if you have already set the app name in the setAppName configuration property |
+| /token | POST | Obtains an access token (24-hour by default). A Backand username and password must be provided, along 
+with the app the user is signing in to. Note that the app parameter is optional if you have already set the app name in the setAppName configuration property |
 | /user/signup | POST | Registers a new user with the application. Must use a SignUpToken, which is configured for the application |
 | /user/requestResetPassword | POST | Sends an email to the provided username with a single-use token that can be used to reset the user's password |
 | /user/resetPassword | POST | Resets the user's password after verification using a one-time  access token |
@@ -44,18 +37,6 @@ All responses are returned as JSON objects. The status code of the response indi
 
 For further details, please see [Backand SDK Documentation](http://docs.backand.com/en/latest/getting_started/sdk/index.html)
 
-### Configuration methods
-| Function | Argument Type | Return Value | Usage |
-| ----------------- | ------------ | ----------- | ----- |
-| setAppName | string | BackandProvider | Sets the Backand app name |
-| setAnonymousToken | string | BackandProvider | allows anonymous access to the app |
-| setSignUpToken | string | BackandProvider | allows users to register for the app |
-| manageHttpInterceptor | boolean | BackandProvider | tells Backand to manage all necessary authorization and authentication tokens for each request |
-| manageRefreshToken | boolean | BackandProvider | tells Backand to manage re-authenticating using a refresh token when the session has expired |
-| runSigninAfterSignup | boolean | BackandProvider | tells Backand to perform signing in after a user signs up |
-| setApiUrl | string |  BackandProvider | sets the API URL |
-| getApiUrl | void | string | returns the current API URL |
-
 ### Live-use Methods
 | Function | Arguments | Usage |
 | -------- | --------- | ----- |
@@ -75,3 +56,22 @@ For further details, please see [Backand SDK Documentation](http://docs.backand.
 | isManagingHttpInterceptor | none | returns whether Backand manages all necessary authorization and authentication tokens for each request|
 | isManagingRefreshToken | none | returns whether Backand manages re-authenticating using a refresh token when the session has expired |
 
+### Configuration methods
+| Function | Argument Type | Return Value | Usage |
+| ----------------- | ------------ | ----------- | ----- |
+| setAppName | string | BackandProvider | Sets the Backand app name |
+| setAnonymousToken | string | BackandProvider | allows anonymous access to the app |
+| setSignUpToken | string | BackandProvider | allows users to register for the app |
+| manageHttpInterceptor | boolean | BackandProvider | tells Backand to manage all necessary authorization and authentication tokens for each request |
+| manageRefreshToken | boolean | BackandProvider | tells Backand to manage re-authenticating using a refresh token when the session has expired |
+| runSigninAfterSignup | boolean | BackandProvider | tells Backand to perform signing in after a user signs up |
+| setApiUrl | string |  BackandProvider | sets the API URL |
+| getApiUrl | void | string | returns the current API URL |
+
+## Request Format
+
+All requests must be made using JSON request bodies. Make sure to set the `Content-Type` header to `application/json`. Additionally, all requests must include an authentication token in the request headers. This process is detailed in our [documentation](http://docs.backand.com/en/latest/security/index.html).
+
+## Response Format
+
+All responses are returned as JSON objects. The status code of the response indicates the success (2xx) or failure (4xx) of the request.
