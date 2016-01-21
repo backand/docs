@@ -5,26 +5,36 @@ This section covers [Backand's JavaScript SDK 1.8.x](https://github.com/backand/
 The Backand SDK provides methods for easily communicating with the Backand server and performing common tasks, such as managing users. To use the SDK, first include the Backand SDK script files in your app:
 
 ```
-      <!-- Backand SDK for Angular -->
-      <script src="//cdn.backand.net/backand/dist/1.8.0/backand.min.js"></script>
+
+    <!-- Backand SDK for Angular -->
+    <script src="//cdn.backand.net/backand/dist/1.8.2/backand.min.js"></script>
+    
 ``` 
 
 Then add the Backand dependency to your angular app definition:
+
 ```
-      //app.js
-      angular.module('YOUR-APP-NAME', ['backand']);
+
+    //app.js
+    angular.module('YOUR-APP-NAME', ['backand']);
+    
 ```
+
 ### Configuration Properties Setters
 
 These methods are used to configure your application's usage of Backand. Call these methods in the application config stage, on BackandProvider. For example, the following code snippet sets the application name and tokens:
 
 ```
+
     angular.module('YOUR-APP-NAME')
       .config(function (BackandProvider) {
+      
           BackandProvider.setAppName(APP_NAME)
             .setAnonymousToken(ANONYMOUS_TOKEN)
             .setSignUpToken(SIGN_UP_TOKEN);
+            
 ```
+### Properties
 
 #### setAppName
 ##### Usage
