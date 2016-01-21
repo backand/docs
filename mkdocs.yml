@@ -34,7 +34,7 @@ pages:
 - ['scenarios/todo_users/index.md', 'Scenarios',  'ToDo With Users']
 - ['scenarios/amazon/index.md', 'Scenarios', 'Amazon AWS and S3 Integration']
 - ['scenarios/stripe/index.md', 'Scenarios', 'Stripe Integration']
-- ['scenarios/mandrillapp/index.md', 'Scenarios', 'Mandrillapp']
+- ['scenarios/mandrillapp/index.md', 'Scenarios', 'Mandrill']
 - ['scenarios/mailgun/index.md', 'Scenarios', 'Mailgun']
 - ['scenarios/sendGrid/index.md', 'Scenarios', 'SendGrid']
 - ['scenarios/PayPal/index.md', 'Scenarios', 'PayPal']
