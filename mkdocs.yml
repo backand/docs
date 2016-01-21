@@ -36,5 +36,6 @@ pages:
 - ['scenarios/stripe/index.md', 'Scenarios', 'Stripe Integration']
 - ['scenarios/mandrillapp/index.md', 'Scenarios', 'Mandrillapp']
 - ['scenarios/mailgun/index.md', 'Scenarios', 'Mailgun']
+- ['scenarios/sendGrid/index.md', 'Scenarios', 'SendGrid']
 - ['scenarios/PayPal/index.md', 'Scenarios', 'PayPal']
 - ['scenarios/Segment/index.md', 'Scenarios', 'Segment.io']
