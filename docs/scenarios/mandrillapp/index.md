@@ -18,7 +18,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
       method: "POST",
       url: "https://mandrillapp.com/api/1.0/messages/send.json",
       data: {"key":<enter your mandrill key>,
-            "message":{"html":parameter.message,
+            "message":{"html":parameters.message,
             "subject":"Example for Mandrill Integration",
             "from_email":userProfile.username,"from_name":parameters.name,
             "to":[{"email":userProfile.username,"name":parameters.name,"type":"to"}],
