@@ -9,4 +9,4 @@ ALTER TABLE database.table CONVERT TO CHARACTER SET utf8;
 On each VARCHAR column on that table run :
 
 ALTER TABLE database.table MODIFY COLUMN col VARCHAR(255)
-    CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+    CHARACTER SET utf8 COLLATE utf8_general_ci;
