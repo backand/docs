@@ -47,6 +47,6 @@ return $http ({
 
 ```
 
-Replace <your object name> with the object associated with the action you created.
+Replace \<your object name> with the object associated with the action you created.
 
 Once this is done, you'll be able to easily trigger emails via Mandrill using Backand's custom action API.
