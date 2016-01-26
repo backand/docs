@@ -50,14 +50,20 @@ In order to query get geography points dynamically, use [Query](http://docs.back
 1. Add this *Input Parameters*: lan, lon, dist
 2. In the Query use tokens ("&#123;&#123;lan}}", "&#123;&#123;lon}}" and "&#123;&#123;dist}}") to represent the input parameters:
 
+```HTML
+  { 
+    "object": "restaurants", 
+    "q": {
+      "location" : { "$withinMiles" : [["{{lan}}", "{{lon}}"], "{{dist}}"] } 
+    } 
+  }
 ```
   { 
     "object": "restaurants", 
     "q": {
-      "location" : { "$withinMiles" : [[\"{{lan}}\", "{ {lon} }"], "{{dist}}"] } 
+      "location" : { "$withinMiles" : [["{{lan}}", "{{lon}}"], "{{dist}}"] } 
     } 
   }
-```
 
 ## Filter Point
 
