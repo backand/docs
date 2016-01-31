@@ -56,6 +56,6 @@ return $http ({
 
 ```
 
-Replace <your object name> with the object associated with the action you created.
+Replace \<your object name> with the object associated with the action you created and <your destination email> .
 
 Once this is done, you'll be able to easily trigger emails via SendGrid using Backand's custom action API.
