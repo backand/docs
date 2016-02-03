@@ -40,3 +40,4 @@ pages:
 - ['scenarios/send_grid/index.md', 'Scenarios', 'SendGrid']
 - ['scenarios/PayPal/index.md', 'Scenarios', 'PayPal']
 - ['scenarios/Segment/index.md', 'Scenarios', 'Segment.io']
+- ['scenarios/twilio/index.md', 'Scenarios', 'Twilio']
