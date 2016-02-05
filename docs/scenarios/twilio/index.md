@@ -63,6 +63,6 @@ return $http ({
 
 ```
 
-Replace '<your object name>' with the object associated with the action you created and \<your destination phone number> with a vaild phone number (when using twilio trial account you first need to validate this phone number)
+Replace '<your object name>' with the object associated with the action you created and '<your destination phone number>' with a vaild phone number (when using twilio trial account you first need to validate this phone number)
 
 Once this is done, you'll be able to easily trigger SMS via twilio using Backand's custom action API.
