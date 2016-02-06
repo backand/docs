@@ -46,13 +46,13 @@ In this section you can configure the social app for each company (GitHub, Googl
 
 In order to enable signing in with GitHub credentials, follow these steps:
 
-1. Un-check the 'Use Back& app for signing in with GitHub' toggle
+1. Check the 'Use your credentials for signing in with GitHub' toggle
 1. Register your application on GitHub's <a href="https://github.com/settings/applications/new" target="_blank">Developer Applications Tab</a>. Include the following details, which are mandatory for new applications:
     * **Application name**: A name for your app. Something users will recognize and trust
     * **Homepage URL**: Your application's url (you can use http://localhost for testing purposes)
     * **Authorization callback URL**: https://api.backand.com/1/user/github/auth
 1. Record the Client ID and the Client Secret from GitHub
-1. In Backand's Social Configuration section, enter the Client ID and Client Secret in the correct fields in the GitHub section..
+1. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Client ID and Client Secret in the correct fields in the GitHub section..
 
 More details on GitHub integrations are available in <a href="https://developer.github.com/v3/oauth/#redirect-urls/" target="_blank">developer documentation</a>.
 
@@ -61,7 +61,7 @@ More details on GitHub integrations are available in <a href="https://developer.
 
 In order to add Google app sign-in, follow these steps:
 
-1. Un-check the 'Use Back& app for signing in with Google' toggle/
+1. Check the 'Use your credentials for signing in with Google' toggle/
 1. Open the <a href="https://console.developers.google.com/project" target="_blank">Google Developer's Console</a>. 
     1. In the Google Developer's Console, Click **Create Project**.
     1. Enter a name and a project ID, or accept the defaults, and click **Create**. 
@@ -76,7 +76,7 @@ In order to add Google app sign-in, follow these steps:
         * **Authorized redirect URIs**: Replace the default example URL with `https://api.backand.com/1/user/google/auth`
     1. Click **Create Client ID**
     1. Record your Client ID and Client Secret from the dashboard. They can be found in the **Client ID for web application** section.
-1. Finally, on the **Social & Keys** section of the Backand app management dashboard, fill out the Client ID and Client Secret you copied down in the last step.
+1. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Client ID and Client Secret you copied down in the last step.
 
 For more details on integrating with Google, review their <a href="https://developers.google.com/console/help/new/" target="_blank">developer documentation</a>.
 
@@ -84,8 +84,8 @@ For more details on integrating with Google, review their <a href="https://devel
 
 In order to add Facebook login integration, follow these steps:
 
-1. Un-check the 'Use Back& app for signing in with Facebook' toggle. 
-1. Go to the <a href="Open https://developers.facebook.com/" target="_blank">Facebook Developers console</a>.
+1. Check the 'Use your credentials for signing in with Facebook' toggle.
+1. Go to the <a href="https://developers.facebook.com/" target="_blank">Facebook Developers console</a>.
 1. Optional: Click MyApps and register as developer
     1. Under **My Apps**, select **Add a new app**
     1. Select **WWW (web site)**
@@ -100,7 +100,7 @@ In order to add Facebook login integration, follow these steps:
     1. Record the **App ID**
     1. Click **Show** (near **App Secret**) and enter your Facebook password.
     1. Record the **App Secret**
-1. In the Backand dashboard, copy the App ID and App Secret you recorded into the appropriate fields in the Facebook integration section.
+1.  Finally, on the **Social & Keys** section of the Backand app management dashboard , copy the App ID and App Secret you recorded into the appropriate fields in the Facebook integration section.
 
 
 ## Security Templates
