@@ -20,6 +20,7 @@ Registering with [Backand](https://www.backand.com), and creating an application
 * Once you have entered the emails you wish to invite, click the "Invite User(s)" button. This will send an email to each new user with a link to the registration page that you created.
 **The following steps are the same for both Public and Private apps:**
 * The user enters his/her email, name and password on your registration page
+* The password should have a minimum 6 characters in length and can contains all the following items: uppercase Letters, lowercase Letters, numbers and  Symbols
 * After the user submits their registration, Backand sends a verification email to authenticate the user's identity if Sign-up Email Verification is enabled
 * If Sign-up Email Verification is not enabled, at this point registration is complete.
 * If Sign-up Email Verification is enabled, after the user clicks on the link in the verification email, Backand completes the registration process and redirects to the "Custom Verified Email Page" URL for your application. Configure this on the Security & Auth --> Configuration page  
