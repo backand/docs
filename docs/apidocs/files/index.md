@@ -1,10 +1,10 @@
 ### Introduction
-Backand provides you with the functionality to upload and delete files to and from Backand's robust storage. This is done in the server side through Backand's actions. It does not requires any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage count of the amount of files per users. 
+Backand provides you with the ability to upload and delete files to and from Backand's robust storage. This is done on the server-side through Backand's Actions. It doesn't require any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage counts of the amount of files per user. 
 
-The files.upload command returns a url that links to the file you uploaded. This is a public url. The storage is managed per Backand's app.  
+The files.upload command returns a url that links to the file you uploaded. This is a public url. The storage is managed per Backand app.  
 
-### Backand Server side code
-Both upload and delete are written in the same action and it is the method the you are using to call it that determines the functionality. When the method is POST then the action performs upload and when it is DELETE the action performs delete. You can use the userProfile for restrictions or file name manipulations. You do not need to copy this code it is ready for you when you click on the Backand *File Storage* action template.
+### Backand Server-Side Code
+Both upload and delete are written in the same action and the method you use to call it determines the functionality. When the method is POST then the action performs upload and when it is DELETE the action performs delete. You can use the userProfile for restrictions or file name manipulations. You do not need to copy this code. It is ready for you when you click on the Backand *File Storage* action template.
 
 ```
 /* globals
@@ -32,8 +32,8 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 }
 ```
 
-### Angular client code
-We have created a simple example in Angular to experience the upload functionality. 
+### Angular Client Code
+We created a simple example in Angular to experience the upload functionality. 
 You can execute the below code in [codepen](http://codepen.io/backand/pen/ZQaYEV)
 
 HTML
