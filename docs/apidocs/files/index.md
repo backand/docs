@@ -1,5 +1,5 @@
 ### Introduction
-Backand's Files provides you the functionality to upload and delete files in Backand robust storage. This is done in the server side through Backand's actions. It does not requires any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage count of the amount of files per users. 
+Backand provides you with the functionality to upload and delete files to and from Backand's robust storage. This is done in the server side through Backand's actions. It does not requires any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage count of the amount of files per users. 
 
 The files.upload command returns a url that links to the file you uploaded. This is a public url. The storage is managed per Backand's app.  
 
