@@ -75,7 +75,7 @@ PREPARE stmt FROM
 " SELECT    *
   FROM      Users
   LIMIT     ?, ?";
--- {{page}} is the client side parameter reprisenting the requested page number
-SET @offset := @records * ( {{page}} -1 );
+-- {{pageNum}} is the client side parameter reprisenting the requested page number
+SET @offset := @records * ( {{pageNum}} -1 );
 EXECUTE stmt USING @offset,@records;
 ```
