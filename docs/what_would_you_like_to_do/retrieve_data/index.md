@@ -69,7 +69,7 @@ So far we have discussed how to read objects that were defined in the database m
 #### Pagination
 
 The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on [JavaScript action](../apidocs/customactions/index.html#server-side-javascript-code) or by using a prepared statement:
-```
+```SQL
 SET @records := 5;
 PREPARE stmt FROM
 " SELECT    *
