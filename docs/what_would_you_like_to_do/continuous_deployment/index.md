@@ -32,8 +32,8 @@ You can use this feature to rollback when ever you need or where changes you've 
 
 
 To rollback to a previous version :
-Go to Settings => Configuration
-Click the Set link which corresponds to the version you wont to rollback to.
+1. Go to Settings => Configuration
+2. Click the Set link which corresponds to the version you wont to rollback to.
 
 To save a backup of a version just click the 'Export' link, this will save backup of the app configuration to your file system.
 
