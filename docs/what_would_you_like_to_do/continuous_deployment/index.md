@@ -1,15 +1,15 @@
-## Continuous Deployment (CD) and Versions
+## Continuous Deployment (CD) & Versions
 
 
-### Continuous Deployment
+## Introduction
 A common use case is where development environment and production environment are separated, often with several stages in between (testing, qa, staging), in order to allow phased deployment (rollout), testing, and rollback in case of problems.
 The goal of Continuous Deployment is to enable a constant flow of changes from development into production .
 Now days web apps usually contain 3 major components - client-side , server-side and a database.
 The following steps will demonstrate the flow of deploying server-side and databases changes from one environment to the other.
 
 1. First you need to sync the model changes
-    1. Go to your dev app and copy the jsom model (Objects => model => Json model) to the clipboard
-    2. Now go to the QA app and paste the json model
+    1. Go to your dev app and copy the json model ( Objects => model => Model JSON) to the clipboard
+    2. Go to the QA app and paste the json model in the Edit model pan.
     3. Click "Validate & Update
 
 Now the schemas are synced ( if you get errors when applying the schema to the qa app , you need to fix them before you can upload the dev configuration)
@@ -23,11 +23,13 @@ The QA app is now deployed with all the changes you maid in the dev app.
 
 The above steps should be applied the same way when you are deploying QA to Production.
 
-### Versions
+## Versions
 
 On every change you make to backand app we save a copy(version) of the app before the change.
 You can use this feature to rollback when ever you need or where changes you've done cause errors.
 To rollback to a previous version :
 1. Go to Settings => Configuration
 2. Click the Set link which corresponds to the version you wont to rollback to.
+
+To save a backup of a version just click the 'Export' link, this will save backup of the app configuration to your file system.
 
