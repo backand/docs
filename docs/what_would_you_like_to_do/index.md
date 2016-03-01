@@ -4,4 +4,4 @@ The following sections contain details on executing some common tasks using the 
 * [REST API Playground](rest.md) - Explore the functionality available in Backand's REST API Playground
 * [Role-based Security Configuration](security.md) - Learn about Backand's role-based security settings, and how to configure them
 * [Custom Actions](actions.md) - Explore Backand's custom server-side action functionality
-* [Continuous Deployment](actions.md) - Learn about depolying your Backand app.
+* [Continuous Deployment](continuous_deployment.md) - Learn about depolying your Backand app.
