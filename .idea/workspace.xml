@@ -72,8 +72,8 @@
         <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/continuous_deployment/index.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor vertical-scroll-proportion="0.85846865">
-                <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <first_editor vertical-scroll-proportion="0.6218097">
+                <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -704,7 +704,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456839321974</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="new line">
+      <created>1456839594577</created>
+      <option name="number" value="00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1456839594577</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -762,7 +768,8 @@
     <MESSAGE value="pagination" />
     <MESSAGE value="headlines" />
     <MESSAGE value="ident and numering" />
-    <option name="LAST_COMMIT_MESSAGE" value="ident and numering" />
+    <MESSAGE value="new line" />
+    <option name="LAST_COMMIT_MESSAGE" value="new line" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1348,8 +1355,8 @@
     <entry file="file://$PROJECT_DIR$/docs/what_would_you_like_to_do/continuous_deployment/index.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor vertical-scroll-proportion="0.85846865">
-            <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <first_editor vertical-scroll-proportion="0.6218097">
+            <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
