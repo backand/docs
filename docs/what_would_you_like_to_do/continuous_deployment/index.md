@@ -7,6 +7,7 @@ The goal of Continuous Deployment is to enable a constant flow of changes from d
 Now days web apps usually contain 3 major components - client-side , server-side and a database.
 The following steps will demonstrate the flow of deploying server-side and databases changes from one environment to the other.
 
+## Deployment Steps
 1. First you need to sync the model changes
     1. Go to your dev app and copy the json model ( Objects => model => Model JSON) to the clipboard
     2. Go to the QA app and paste the json model in the Edit model pan.
