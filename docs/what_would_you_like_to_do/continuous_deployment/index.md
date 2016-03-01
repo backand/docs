@@ -25,7 +25,7 @@ Apply this process again when deploying QA to Production.
 
 ## Versions
 
-On every change you make to Backand app we save a copy (version) of the app before the change.
+On every change you make to your app, Backand saves a copy (version) of the app before the change.
 You can use this feature to rollback, if needed.
 
 To rollback to a previous version:
