@@ -31,7 +31,9 @@ On every change you make to backand app we save a copy(version) of the app befor
 You can use this feature to rollback when ever you need or where changes you've done cause errors.
 
 
-To rollback to a previous version :
+To rollback to a previous version:
+
+
 1. Go to Settings => Configuration
 2. Click the Set link which corresponds to the version you wont to rollback to.
 
