@@ -3,7 +3,7 @@ A Complex object is an object that has relationships to other objects in the dat
 
 There are two ways in which you can load complex objects: Deep Loading, or Lazy Loading. Deep loading pulls back both the object and all of its related objects. In the Users/Items example, this would pull back both the user, and all items related to that user. Lazy loading, by comparison, only pulls back the parent object, allowing you to more closely control when you pull in the rest of the data. This is important when the number of related objects is large, meaning a significant load time would be necessary.
 
-An example of another complex object would be `email`:
+An example of another complex object would be  `email`:
 
 
 Seeing as most objects in a Backand application tend to  be complex objects, we added an easy way to enable deep loading of objects. Simply append `?deep=true` to the object fetch URL, like so:
@@ -65,3 +65,17 @@ Sometimes, for security reasons you may want to enforce partial reading of objec
 ## Queries and On Demand Actions
 
 So far we have discussed how to read objects that were defined in the database model. To create custom data structures, we can use Queries and On Demand Actions. Queries are identical to SQL database queries but you can write them using NoSQL syntax (see [NoSQL Query Language](../apidocs/nosql_query_language/NoSQL_Query_Language) for more details). With On Demand Actions, you can orchestrate any structure that you want using javascript on the server side. You can request model objects, queries, or other on demand actions. See [On Demand Actions Javascript Code](http://docs.backand.com/en/latest/apidocs/customactions/index.html#server-side-javascript-code) for more information.
+
+#### Pagination
+
+The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on [JavaScript action](../../apidocs/customactions/index.html#server-side-javascript-code) or by using a prepared statement:
+```
+            SET @records := 20;
+            PREPARE stmt FROM
+            " SELECT    *
+              FROM      Users
+              LIMIT     ?, ?";
+            -- {{ "{{pageNum" }}}} is the client side parameter representing the requested page number
+            SET @offset := @records * ({{ "{{pageNum" }}}} -1 );
+            EXECUTE stmt USING @offset,@records;
+```

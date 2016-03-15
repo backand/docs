@@ -220,7 +220,6 @@ An example for sort:
 ```
 * **search** - Free text filter search.
 * **deep** - When set to true, brings the related parent items in the relatedTables property.
-
 ```
   self.getList = function (name, pageSize, pageNumber, filter, sort) {
       return $http({
@@ -234,6 +233,11 @@ An example for sort:
           }
       });
   };
+  
+```
+* **exclude** - Can be set to metadata or totalrows (or both) and retrieves only the data.
+```
+.../objects/trips?exclude=metadata,totalRows
 ```
 ####One Object
 
@@ -242,6 +246,7 @@ Call `/objects/{name}/{id}` with a specific item id and with the following param
 
 * **id** - The item's id, which is the primary key value for the item's database table
 * **deep** - When set to true, brings the related collections and objects
+* **exlude** When set to metadata, retrieves only the data from object.
 * **level** - When deep is set to true, this parameter determines the collection relations dept level. The default is 3 (grandchildren)
 
 ```
@@ -268,6 +273,7 @@ To obtain a list of collection objects stored in a collection field on a specifi
 * **pageNumber** - The page number, starting with 1 (1-based, default 1).
 * **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information.
 * **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc". Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information.
+* * **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc".
 * **search** - Free text filter search.
 
 ```
