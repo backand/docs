@@ -8,13 +8,16 @@ You can either provide this token with each request, or use the Backand SDK inte
   <!-- Backand SDK for Angular -->
   <script src="//cdn.backand.net/backand/dist/1.8.3/backand.min.js"></script>
 ``` 
+
 You will also need to add the Backand dependency to your angular app definition:
 
 ```
   //app.js
   angular.module('YOUR-APP-MODULE', ['backand'])
 ```
+
 Configure the application name and tokens, which can be found in Backand Security & Auth --> Configuration and Social & Keys pages:
+
 ```
   angular.module('YOUR-APP-MODULE').config(function (BackandProvider) {
       BackandProvider.setAppName(YOUR-APP-NAME);
