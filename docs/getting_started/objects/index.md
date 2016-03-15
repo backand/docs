@@ -319,14 +319,18 @@ The pre-defined filter can be used to add additional restrictions to the data lo
 
 For example, the following SQL filter restricts the display of items to only show those items whose corresponding user is the user that is currently logged-in:
 
+{% raw %}
 ```SQL
-items.user in (select id from users where email = '&#123;&#123;sys::username}}')
+items.user in (select id from users where email = '{{sys::username}}')
 ```
+{% endraw %}
 
 Then, we can add an option so that an Admin user can see all of the items added by other application users, in addition to showing the items created by the user currently logged-in:
 
 ```SQL
+{% raw %}
 'Admin' = '{{sys::role}}' or (items.user in (select id from users where email = '{{sys::username}}'))
+{% endraw %}
 ```
 
 ### Security Template & Override
