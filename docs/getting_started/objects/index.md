@@ -327,11 +327,11 @@ items.user in (select id from users where email = '{{sys::username}}')
 
 Then, we can add an option so that an Admin user can see all of the items added by other application users, in addition to showing the items created by the user currently logged-in:
 
-```SQL
 {% raw %}
+```SQL
 'Admin' = '{{sys::role}}' or (items.user in (select id from users where email = '{{sys::username}}'))
-{% endraw %}
 ```
+{% endraw %}
 
 ### Security Template & Override
 

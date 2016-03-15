@@ -92,7 +92,8 @@ To retrieve all cities within 25km (25000m) from a given [latitude, longitude], 
 An expression can be either an AND expression, an OR expression, or a UNION query.
 
 ### AND expressions
-An AND expression is a conjunction of conditions on fields. An AND expression is a JSON of the form `{ A: condition, B: condition, ... }`
+An AND expression is a conjunction of conditions on fields. An AND expression is a JSON of the form '{ A: condition, 
+B: condition, ... }'
 
 For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the following query:
 
@@ -102,7 +103,7 @@ For example, to retrieve all employees that are 25-years-old, a Sales manager, A
 
 ### OR expressions
 
-An OR expression is a disjunction of conditions, `{ $or: [ Expression1, Expression2, ...   ] }` 
+An OR expression is a disjunction of conditions, '{ $or: [ Expression1, Expression2, ...   ] }' 
 
 For example, use the following query to find all offices that are either larger than 30 employees, or located in Palo Alto:
 
@@ -112,7 +113,7 @@ For example, use the following query to find all offices that are either larger 
 
 ### UNION queries
 
-A UNION query is a union of the results of queries: `{ $union: [ Query1, Query2, ...   ] }`. For example:
+A UNION query is a union of the results of queries: '{ $union: [ Query1, Query2, ...   ] }'. For example:
 
 ```JSON
 {
@@ -151,8 +152,9 @@ A UNION query is a union of the results of queries: `{ $union: [ Query1, Query2,
 
 A condition on a field is a predicate that can perform one of the following actions:
 
-1. Test equality of field to a constant value, e.g.  `{ A: 6 }` => `Is `A` equal to 6?`
-2. Compare a field using a comparison operator, e.g. `{ A: { $gt: 8 }}` => `Is `A` greater than 8?`. The set of comparison operators is quite extensive and includes: `$lte, $lt, $gte, $gt, $eq, $neq, $not, $within`
+1. Test equality of field to a constant value, e.g.  { A: 6 } => Is A equal to 6?
+2. Compare a field using a comparison operator, e.g. { A: { $gt: 8 }} => Is A greater than 8?. The set of 
+comparison operators is quite extensive and includes: '$lte, $lt, $gte, $gt, $eq, $neq, $not, $within'
 3. Test if the value of the field is IN  or NOT IN the result of a sub-query.
 4. Test for the negation of a comparison. For example, to test if the location field is not Boston, we can do:
 
@@ -168,9 +170,10 @@ The following sub-query retrieves the department ID of each department in New Yo
 { "object": "department", "q": { "city" : "New York" }, "fields" : ["id"]}
 ```
 
-Using this subquery, we can now test a new field - dept_id - with respect to the results of the subqeury. We simply use the `$in` operator, and the query, as follows:
+Using this sub-query, we can now test a new field - dept_id - with respect to the results of the sub-query. We simply 
+use the '$in' operator, and the query, as follows:
 
-```JSON
+``JSON
 { 
     "dept_id": { 
         "$in": {  
@@ -185,7 +188,7 @@ Using this subquery, we can now test a new field - dept_id - with respect to the
 
 This technique relies upon retrieving a single field from the sub-query. Using more than one field would prove more complex.
 
-We can now use this sub-query as a part of a larger query retrieving all employees employed in departments that are located in New York. In this example, the `deptId` field is a reference field referring the employees table to the department table:
+We can now use this sub-query as a part of a larger query retrieving all employees employed in departments that are located in New York. In this example, the 'deptId' field is a reference field referring the employees table to the department table:
 
 ```JSON
 { 
@@ -232,7 +235,7 @@ If we wanted to look at a more complex query, we could modify this a bit. Let's 
 Formally, a condition on a field is a key-value expression of the form: 
 
 ```     
-      Key : ValueExpression
+  Key : ValueExpression
 ```
 
 Where the fields are defined as follows:
@@ -247,16 +250,19 @@ Where the fields are defined as follows:
 
 Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can use negation as follows:
 
-    { $not: { location : "Paris" }}
-
+```
+    { $not: { location : "Paris" } }
+```
 
 Or we can also use a not-equal  operator: 
 
-    { location: { $neq: "Paris" }}
+```
+    { location: { $neq: "Paris" } }
+```    
 
 ## Group By Queries
 
-A group by query aggregates on fields, and then applies aggregation operators to the specified fields. For instance, to group by `Country`, and then concatenate the `Location` field, use the following example code:
+A group by query aggregates on fields, and then applies aggregation operators to the specified fields. For instance, to group by 'Country', and then concatenate the 'Location' field, use the following example code:
 
 ```JSON
 {
@@ -290,26 +296,30 @@ The algorithm transforms from JSON to SQL using a top-down transformation.
 
 ### Usage
 
-    transformJson(json, sqlSchema, isFilter, callback) 
+```
+    transformJson(json, sqlSchema, isFilter, callback)
+```     
 
 The parameters are:
 
-1. `json` - JSON query or filter
-2. `sqlSchema` - JSON schema of database
-3. `isFilter` - boolean - true if `json` is a filter
-4. `callback` - `function(err, result)`, called upon completion
+1. 'json' - JSON query or filter
+2. 'sqlSchema' - JSON schema of database
+3. 'isFilter' - boolean - true if 'json' is a filter
+4. 'callback' - 'function(err, result)', called upon completion
 
 The result is a structure with the following fields:
 
-    {
-        str: <SQL statement for query>,
-        select: <select clause>,
-        from: <from clause>,
-        where: <where clause>,
-        group: <group by clause>,
-        order: <order by clause>,
-        limit: <limit clause>     
-    }
+```
+{
+    str: <SQL statement for query>,
+    select: <select clause>,
+    from: <from clause>,
+    where: <where clause>,
+    group: <group by clause>,
+    order: <order by clause>,
+    limit: <limit clause>     
+}
+```    
 
 ### Escaping
 
@@ -319,8 +329,12 @@ All constants appearing in the JSON query are escaped when transformed into SQL.
 
 You also have the ability to mark a particular NoSQL query as a filter. This allows you to use variables in your query, which are populated on the server side from either parameters sent in with the filter, or from database data in your system. Variables take the form of:
 
-    {{<variable name>}}
+{% raw %}
+```
+  {{<variable name>}}
+```
 
-Variables should be enclosed in quotes (e.g. `'{{variable_name}}'` instead of `{{variable_name}}`) so that the final objet sent to the server can be marked as valid JSON. 
+Variables should be enclosed in quotes (e.g. '{{variable_name}}' instead of {{variable_name}}) so that the final object sent to the server can be marked as valid JSON. 
+{% endraw %}
 
-Variables are not escaped when used as part of a filter or query - only constants can be escaped by Backand. With this in mind, you want to make sure that variables tied directly to user input are properly sanitized before being sent to the back-end. The SQL statement generated for the filter object will include the variables you provide verbatims. The variables will be substituted for the equivalent values prior to the execution of the query.
+Variables are not escaped when used as part of a filter or query - only constants can be escaped by Backand. With this in mind, you want to make sure that variables tied directly to user input are properly sanitized before being sent to the back-end. The SQL statement generated for the filter object will include the variables you provide. The variables will be substituted for the equivalent values prior to the execution of the query.

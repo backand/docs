@@ -54,9 +54,10 @@ Use the Backand provider with the following parameters to get an OAuth2 access t
 
 ####Sign Up
 
-With the `/user/signup` api you can enable other users to sign up to your app. The sign up process consists of the following steps:
+With the '/user/signup' api you can enable other users to sign up to your app. The sign up process consists of the 
+following steps:
 
-- From your app's registration page, call the `/user/signup` action
+- From your app's registration page, call the '/user/signup' action
 - If Sign-Up Email Verification is enabled, an email is sent that contains a verification link. When the user clicks the included link, Backand verifies the user's email address and completes the sign-up process by redirecting the user to a pre-defined success page (typically the application's sign-in page).
 
 The sign up api uses the SignUpToken in the request header. You can find this token in the Security & Auth Configuration menu 
@@ -90,9 +91,10 @@ The parameters for the sign-up call are:
 
 ####Request Reset Password
 
-With the `/user/requestResetPassword` api you can request a password reset for a particular user (for example, when they have forgotten their password). The process consists of the following steps:
+With the '/user/requestResetPassword' api you can request a password reset for a particular user (for example, when 
+they have forgotten their password). The process consists of the following steps:
 
-- From your app's registration page, call the `/user/requestResetPassword` action
+- From your app's registration page, call the '/user/requestResetPassword' action
 - An email is sent containing a one-time use token that  your user can use to reset their password. See the Reset Password section below for more information on this process.
 
 The parameters for the requestResetPassword call are:
@@ -115,7 +117,8 @@ The parameters for the requestResetPassword call are:
 
 ####Reset Password
 
-With the `/user/resetPassword` api you can reset a password for a particular user (for example, when they have forgotten their password). The process consists of the following steps:
+With the '/user/resetPassword' api you can reset a password for a particular user (for example, when they have 
+forgotten their password). The process consists of the following steps:
 
 - Ensure that the user has already requested a password reset.
 - Obtain the one-time token from the user that was sent via email.
@@ -141,7 +144,8 @@ The parameters for the requestResetPassword call are:
 
 ####Change Password
 
-With the `/user/changePassword` api you can change the password for a particular user. The parameters for the changePassword call are:
+With the '/user/changePassword' api you can change the password for a particular user. The parameters for the 
+changePassword call are:
 * **oldPassword** - the old password for the user
 * **newPassword** - the new password to assign to the user
 
@@ -184,7 +188,7 @@ Once authentication is completed, you can perform all relevant [CRUD](http://en.
 ####List of Objects
 
 
-Call `/objects/{name}` with the following parameters to get a list of items:
+Call '/objects/{name}' with the following parameters to get a list of items:
 
 * **pageSize** - The number of returned items in each getList call (default 20).
 * **pageNumber** - The page number starting with 1 (1-based, default 1).
@@ -242,7 +246,7 @@ An example for sort:
 ####One Object
 
 
-Call `/objects/{name}/{id}` with a specific item id and with the following parameters to get a specific item:
+Call '/objects/{name}/{id}' with a specific item id and with the following parameters to get a specific item:
 
 * **id** - The item's id, which is the primary key value for the item's database table
 * **deep** - When set to true, brings the related collections and objects
@@ -323,7 +327,8 @@ To list all of the collection objects for a specific collection field within a f
 ####Create
 
 
-POST to `/objects/{name}` with a new object to create (stored in the data portion of the AJAX call) using the following parameters:
+POST to '/objects/{name}' with a new object to create (stored in the data portion of the AJAX call) using the 
+following parameters:
 
 * **returnObject** - Set this to true when you have server side business rules that causes additional changes to the object. This will force the server to return the object after all business rules have taken effect. If false, it will return the object prior to any business rules running
 
@@ -343,7 +348,8 @@ POST to `/objects/{name}` with a new object to create (stored in the data portio
 ####Update
 
 
-PUT to `/objects/{name}/{id}` to update an existing object (with changes provided in the data portion of the AJAX call). You must also supply the following parameters:
+PUT to '/objects/{name}/{id}' to update an existing object (with changes provided in the data portion of the AJAX 
+call). You must also supply the following parameters:
 
 * **id** - The item's id 
 * **returnObject** - Set this to true when you have server side business rules that causes additional changes to the object. This will force the server to return the object after all business rules have taken effect. If false, it will return the object prior to any business rules running.
@@ -364,7 +370,7 @@ PUT to `/objects/{name}/{id}` to update an existing object (with changes provide
 ####Delete
 
 
-DELETE to `/objects/{name}/{id}` to remove an item:
+DELETE to '/objects/{name}/{id}' to remove an item:
 
 * **id** - The item's id
 
@@ -379,7 +385,8 @@ DELETE to `/objects/{name}/{id}` to remove an item:
 
 ## Custom Actions
 
-[Custom actions](customactions.md) can be called by sending a GET request to `/objects/action/{objectName}/{id}` The custom action is associated with an object list in order to simplify security configuration. It can also be associated with a specific object id, which is used as an input to the action, but this is optional. You can also define additional parameters in the request, which are passed through to the function. The action returns a custom JSON response.
+[Custom actions](customactions.md) can be called by sending a GET request to '/objects/action/{objectName}/{id}' The 
+custom action is associated with an object list in order to simplify security configuration. It can also be associated with a specific object id, which is used as an input to the action, but this is optional. You can also define additional parameters in the request, which are passed through to the function. The action returns a custom JSON response.
 
 * **actionName** - The custom action name.
 * **parameters** - A JSON object with all predefined parameters for the action.
@@ -399,7 +406,8 @@ self.callAction = function (objectName, id, actionName, parameters) {
 
 ## Queries
 
-You can run custom pre-configured queries by sending a GET or a POST request to `/query/data/{queryName}` The query syntax must follow the SQL rules of the underlying database that your application is using. You can include predefined parameters in your request that are then used by your query.
+You can run custom pre-configured queries by sending a GET or a POST request to '/query/data/{queryName}' The query 
+syntax must follow the SQL rules of the underlying database that your application is using. You can include predefined parameters in your request that are then used by your query.
 
 * **parameters** - A JSON object with all predefined query parameters provided.   
 Using a GET method:

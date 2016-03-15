@@ -66,14 +66,16 @@ function it always runs in sync). [See the full API description for more details
 
 ## Debugging
 
-Debugging should be done using either console.log or console.error. For example, to dump the contents of variable `object`:
-`console.log(object)`
+Debugging should be done using either console.log or console.error. For example, to dump the contents of variable 
+'object':
+'console.log(object)'
 
-`console.error(object)`
+'console.error(object)'
 
 ##Error Handling
 
-If your code results in an error (for example, if you write the following: `throw new Error("An error occurred!")`), the request will return HTTP status 417, and the response body will contain the associated error message.
+If your code results in an error (for example, if you write the following: 'throw new Error("An error occurred!")'), 
+the request will return HTTP status 417, and the response body will contain the associated error message.
 
 ## Return values
 
