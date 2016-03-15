@@ -79,7 +79,7 @@ To create the new Gulp deployment task:
   });
 ```
 
-4. Configure the task to Sync folder `./src`:
+4. Configure the task to Sync folder './src':
 
 ```
   gulp.task('dist',['sts'], function() {   
@@ -88,7 +88,8 @@ To create the new Gulp deployment task:
   });
 ```
 
-4. Syncing is performed via a local cache file named `.awspublish-<bucketname>`. This file cache can become corrupted after multiple uses, so we need to create one more task to perform cleanup after the deployment has completed:
+4. Syncing is performed via a local cache file named '.awspublish-<bucketname>'. This file cache can become corrupted
+ after multiple uses, so we need to create one more task to perform cleanup after the deployment has completed:
 
 ```
   gulp.task('clean', function() {

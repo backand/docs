@@ -3,10 +3,11 @@ A Complex object is an object that has relationships to other objects in the dat
 
 There are two ways in which you can load complex objects: Deep Loading, or Lazy Loading. Deep loading pulls back both the object and all of its related objects. In the Users/Items example, this would pull back both the user, and all items related to that user. Lazy loading, by comparison, only pulls back the parent object, allowing you to more closely control when you pull in the rest of the data. This is important when the number of related objects is large, meaning a significant load time would be necessary.
 
-An example of another complex object would be  `email`:
+An example of another complex object would be 'email':
 
 
-Seeing as most objects in a Backand application tend to  be complex objects, we added an easy way to enable deep loading of objects. Simply append `?deep=true` to the object fetch URL, like so:
+Seeing as most objects in a Backand application tend to  be complex objects, we added an easy way to enable deep 
+loading of objects. Simply append '?deep=true' to the object fetch URL, like so:
 
 ```
 https://api.backand.com/1/objects/users/5?deep=true
@@ -48,7 +49,8 @@ Regarding which approach to use - lazy or deep loading - there is no clear answe
 
 ## Filter and Predefined Filter
 
-You can supply a query string parameter named `filter` to filter your objects during fetch. This could be useful in developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see [NoSQL Query Language](../apidocs/nosql_query_language/NoSQL_Query_Language) for syntax), or with JSON containing a field name, an operator, and a value:
+You can supply a query string parameter named 'filter' to filter your objects during fetch. This could be useful in 
+developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see [NoSQL Query Language](../apidocs/nosql_query_language/NoSQL_Query_Language) for syntax), or with JSON containing a field name, an operator, and a value:
 
 ```
 [{"fieldName":"firstName","operator":"contains","value":"oh"}]
@@ -58,9 +60,11 @@ See [getting a list of objects](http://docs.backand.com/en/latest/apidocs/apides
 
 ### Predefined Filter
 
-Sometimes, for security reasons you may want to enforce partial reading of object data, usually based upon the current user or their role. This can be accomplished on the server-side using a Predefined Filter. Predefined Filters can be found in the Security tab of each object. They act as a SQL `where` condition. Filters are combined using the `AND` operator. You can write the filter using either a SQL statement or the NoSQL Query Language
-
- reading of partial data, usually depending on the current user or current user role. The option to force it from the server side is called Predefined Filter and you can find it at the Security tab of each object. The predefined filter acts as a SQL where statement condition. If you add additional filter that were described above then they will be added with an "AND" logic. You can write the predefined filter either as a SQL statement or as a [NoSQL Query Language](../apidocs/nosql_query_language/NoSQL_Query_Language) statement.
+Sometimes, for security reasons you may want to enforce partial reading of object data, usually based upon the 
+current user or their role. This can be accomplished on the server-side using a Predefined Filter. Predefined Filters
+ can be found in the Security tab of each object. They act as a SQL 'where' condition. Filters are combined using the
+  'AND' operator. You can write the filter using either a SQL statement or the NoSQL Query Language reading of 
+  partial data, usually depending on the current user or current user role. The option to force it from the server side is called Predefined Filter and you can find it at the Security tab of each object. The predefined filter acts as a SQL where statement condition. If you add additional filter that were described above then they will be added with an "AND" logic. You can write the predefined filter either as a SQL statement or as a [NoSQL Query Language](../apidocs/nosql_query_language/NoSQL_Query_Language) statement.
 
 ## Queries and On Demand Actions
 
@@ -69,6 +73,7 @@ So far we have discussed how to read objects that were defined in the database m
 #### Pagination
 
 The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on [JavaScript action](../../apidocs/customactions/index.html#server-side-javascript-code) or by using a prepared statement:
+
 ```
             SET @records := 20;
             PREPARE stmt FROM

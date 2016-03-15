@@ -192,7 +192,8 @@ Changes the authenticated user's password
 
 #### getUserDetails
 ##### Usage
-`getUserDetails` is an asynchronous method that retrieves all information about the current authenticated user: username, user ID, full name, role, tokens, etc. This information is pulled down when the user signs in, and stored in local storage.
+'getUserDetails' is an asynchronous method that retrieves all information about the current authenticated user: 
+username, user ID, full name, role, tokens, etc. This information is pulled down when the user signs in, and stored in local storage.
 ##### Arguments
 * force - If true, gets the user profile (username, fullName and role) from the server and updates the local storage with the retrieved data. Otherwise, gets it from the local storage. Either way, the rest of the details are taken from the local storage.
 

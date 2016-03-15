@@ -73,7 +73,7 @@ In order to add Google app sign-in, follow these steps:
     1. Click **Create new Client ID** and enter the following details:
         * **Application type**: Web application (default)
         * **Authorized JavaScript origins**: Delete the default example URL and leave this field empty
-        * **Authorized redirect URIs**: Replace the default example URL with `https://api.backand.com/1/user/google/auth`
+        * **Authorized redirect URIs**: Replace the default example URL with 'https://api.backand.com/1/user/google/auth'
     1. Click **Create Client ID**
     1. Record your Client ID and Client Secret from the dashboard. They can be found in the **Client ID for web application** section.
 1. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Client ID and Client Secret you copied down in the last step.
@@ -95,7 +95,7 @@ In order to add Facebook login integration, follow these steps:
     1. In the sidebar on the left, select **Settings**
     1. In Basic tab add your **Contact Email**
     1. Click on the **Advanced** Tab
-    1. In **Valid OAuth redirect URIs** enter: `https://api.backand.com/1/user/facebook/auth`
+    1. In **Valid OAuth redirect URIs** enter: 'https://api.backand.com/1/user/facebook/auth'
     1. Click **Save Changes**
     1. In the sidebar on the left, select **Dashboard**    
     1. Record the **App ID**

@@ -5,23 +5,22 @@ Backand provides role-based security that allows you to determine specific permi
 You can either provide this token with each request, or use the Backand SDK interceptor to append it to each request automatically (recommended). Providing this token is required to use Backand's REST API. We have prepared a Backand Provider that will help you the authentication activities. Start by including the Backand SDK script files in your app:
 
 ```
-      <!-- Backand SDK for Angular -->
-      <script src="//cdn.backand.net/backand/dist/1.8.0/backand.min.js"></script>
+  <!-- Backand SDK for Angular -->
+  <script src="//cdn.backand.net/backand/dist/1.8.3/backand.min.js"></script>
 ``` 
 You will also need to add the Backand dependency to your angular app definition:
 
 ```
-      //app.js
-      angular.module('YOUR-APP-MODULE', ['backand'])
+  //app.js
+  angular.module('YOUR-APP-MODULE', ['backand'])
 ```
 Configure the application name and tokens, which can be found in Backand Security & Auth --> Configuration and Social & Keys pages:
 ```
-      angular.module('YOUR-APP-MODULE')
-            .config(function (BackandProvider) {
-                  BackandProvider.setAppName(YOUR-APP-NAME)
-                        .setAnonymousToken(ANONYMOUS-TOKEN)
-                        .setSignUpToken(SIGN-UP-TOKEN);
-            }
+  angular.module('YOUR-APP-MODULE').config(function (BackandProvider) {
+      BackandProvider.setAppName(YOUR-APP-NAME);
+      BackandProvider.setAnonymousToken(ANONYMOUS-TOKEN);
+      BackandProvider.setSignUpToken(SIGN-UP-TOKEN);
+  }
 ```
  
 Once this is complete you can use Backand SDK functions for authenticating the users of your application, as described below.
@@ -36,20 +35,20 @@ Use the Backand provider with the following parameters to get an OAuth2 access t
 * **password** - Backand's user password
 
 ```
-      // SignInCtrl.js
-      function SignInCtrl(Backand) {
-        this.signIn = function() {
-          Backand.signin(username, password)
-          .then(
-            function () {
-              //enter session
-            },
-            function (data, status, headers, config) {
-              //handle error
-            }
-          );
+  // SignInCtrl.js
+  function SignInCtrl(Backand) {
+    this.signIn = function() {
+      Backand.signin(username, password)
+      .then(
+        function () {
+          //enter session
+        },
+        function (data, status, headers, config) {
+          //handle error
         }
-      }
+      );
+    }
+  }
 ```
 
 ####Sign Up
@@ -68,14 +67,15 @@ The parameters for the sign-up call are:
 * **user** - A JSON object representing the user's first name, last name, email, and password.
 
 ```
-{
-  "firstName": "string",
-  "lastName": "string",
-  "email": "string",
-  "password": "string",
-  "confirmPassword": "string"
-}
+  {
+    "firstName": "string",
+    "lastName": "string",
+    "email": "string",
+    "password": "string",
+    "confirmPassword": "string"
+  }
 ```
+
 ```
   self.signUp = function (user, signUpToken) {
       return $http({
@@ -167,17 +167,16 @@ changePassword call are:
 
 If you want to allow anonymous users to access the application (i.e. without username and password), you can use the AnonymousToken parameter:
 
-
 ```
-      // Use an Angular HTTP Interceptor to add the anonymous token to each HTTP request
-      function httpInterceptor($q, $log) {
-        return {
-          request: function(config) {
-            config.headers['AnonymousToken'] = anonymousToken;
-            return config;
-          }
-        };
+  // Use an Angular HTTP Interceptor to add the anonymous token to each HTTP request
+  function httpInterceptor($q, $log) {
+    return {
+      request: function(config) {
+        config.headers['AnonymousToken'] = anonymousToken;
+        return config;
       }
+    };
+  }
     
 ```
 
@@ -187,16 +186,17 @@ Once authentication is completed, you can perform all relevant [CRUD](http://en.
 
 ####List of Objects
 
-
 Call '/objects/{name}' with the following parameters to get a list of items:
 
 * **pageSize** - The number of returned items in each getList call (default 20).
 * **pageNumber** - The page number starting with 1 (1-based, default 1).
 * **filter** - An array of JSON objects where each item has the properties fieldName, operator and value. The operator options depend on the field type.  
 An example for filter: 
+
 ```
-[{"fieldName":"firstName","operator":"contains","value":"el"},{"fieldName":"lastName","operator":"startsWith","value":"ri"}]
+  [{"fieldName":"firstName","operator":"contains","value":"el"},{"fieldName":"lastName","operator":"startsWith","value":"ri"}]
 ```
+
 following are the possible operators depending on the field type:  
 **numeric or date fields:**  
 -- equals  
@@ -219,11 +219,14 @@ following are the possible operators depending on the field type:
 -- in  
 * **sort** - An array of JSON objects where each item has the properties fieldName and order. The order options are "asc" or "desc".
 An example for sort: 
+
 ```
-[{"fieldName":"firstName","order":"desc"}]
+  [{"fieldName":"firstName","order":"desc"}]
 ```
+
 * **search** - Free text filter search.
 * **deep** - When set to true, brings the related parent items in the relatedTables property.
+
 ```
   self.getList = function (name, pageSize, pageNumber, filter, sort) {
       return $http({
@@ -239,18 +242,19 @@ An example for sort:
   };
   
 ```
+
 * **exclude** - Can be set to metadata or totalrows (or both) and retrieves only the data.
+
 ```
-.../objects/trips?exclude=metadata,totalRows
+  .../objects/trips?exclude=metadata,totalRows
 ```
 ####One Object
-
 
 Call '/objects/{name}/{id}' with a specific item id and with the following parameters to get a specific item:
 
 * **id** - The item's id, which is the primary key value for the item's database table
 * **deep** - When set to true, brings the related collections and objects
-* **exlude** When set to metadata, retrieves only the data from object.
+* **exclude** When set to metadata, retrieves only the data from object.
 * **level** - When deep is set to true, this parameter determines the collection relations dept level. The default is 3 (grandchildren)
 
 ```
@@ -298,7 +302,7 @@ To obtain a list of collection objects stored in a collection field on a specifi
 ####List Specific Collection Objects From a Set of Filtered Parent Objects
 
 
-To list all of the collection objects for a specific collection field within a filtered set of objects, call `/objects/{name}/filter1/{collection}` with the following parameters:
+To list all of the collection objects for a specific collection field within a filtered set of objects, call '/objects/{name}/filter1/{collection}' with the following parameters:
 
 * **filter1** - This specifies which filter to apply to the object, and is applied prior to obtaining the collection fields. Click [here](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for more information on filters.
 * **collection** - A name of a collection field in the object.
@@ -402,6 +406,7 @@ self.callAction = function (objectName, id, actionName, parameters) {
       });
   };
 ```
+
 **Note**: You can find a configuration and testing environment for each of the [custom actions](customactions.md) in the right side menu for your application on an object's Actions tab. 
 
 ## Queries
@@ -439,7 +444,6 @@ self.query = function (queryName, parameters) {
 ```
 
 **Note**: You can find a configuration and testing environment for custom queries in the Application dashboard's right side menu, under "Queries". 
-
 
 ## Experience More
 
