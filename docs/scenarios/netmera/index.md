@@ -21,7 +21,7 @@ Netmera has a rest API that can be used to remotely send push notifications. You
 'use strict';
 function backandCallback(userInput, dbRow, parameters, userProfile) {
     // Netmera REST API key. Get it from https://cp.netmera.com/backand-test/admin/overview when logged in
-    var NETMERA_API_KEY = 'IERqFD2KavC1q6ZmoIZ8F0KF1p4ZsV20o921O7YAUhpzqMqlNCTNcQ';
+    var NETMERA_API_KEY = 'IERqDFg3tdgGDFZ8F0KF546FHg4564O7YAUhpzqMqlNCTNcQ';
 
     // Notification title for logging purposes (does not appear on the notification itself)
     var notificationTitle = parameters.notificationTitle;
