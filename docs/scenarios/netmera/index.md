@@ -10,7 +10,9 @@ Netmera is a cloud based service that can be used to send Push Notifications to 
 Netmera has a rest API that can be used to remotely send push notifications. You can integrate Netmera with Backand by using Backand server-side actions. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. 
 In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action by clicking on 'Netmera' under 'Push Notifications'.
 
-** You have just created your first push notification action! In order to call the function from your angular app, use the following code:
+**You have just created your first push notification action!**
+
+In order to call the function from your angular app, use the following code:
 
 ```javascript
 return $http ({
