@@ -3,19 +3,18 @@ Pushwoosh is a cloud based service that can be used to send Push Notifications t
 ## Get Started with PushWoosh
 
 1. Register an account in PushWoosh and proceed to create an application. Using the PushWoosh control panel, configure your application to support Android including [configuring GCM (Google Cloud Messaging](http://docs.pushwoosh.com/docs/gcm-configuration))
-
 2. You can either get the starter app or to integrate in an existing app. 
 To get a starter app: clone the PushWoosh Android SDK:
-```
-git clone https://github.com/Pushwoosh/pushwoosh-android-sdk.git 
-```
-open /Samples/Android-Simple directory in Android Studio and build the app.
+ ```
+  git clone https://github.com/Pushwoosh/pushwoosh-android-sdk.git 
+ ```
+ open /Samples/Android-Simple directory in Android Studio and build the app.
 
-To integrate in an existing app: [use the following guide](http://docs.pushwoosh.com/docs/native-android-sdk) – include the SDK .jar and add the relevant code to your application.
+3. To integrate in an existing app [use the following guide](http://docs.pushwoosh.com/docs/native-android-sdk) – include the SDK.jar and add the relevant code to your application.
+  [Make the relevant changes to your AndroidManifest.xml file](http://docs.pushwoosh.com/docs/androidmanifestxml-modifications) – if you're using the starter app just change the App ID and Project ID.
 
-a. [Make the relevant changes to your AndroidManifest.xml file](http://docs.pushwoosh.com/docs/androidmanifestxml-modifications) – if you're using the starter app just change the App ID and Project ID.
-
-b. Send push notifications - PushWoosh has an API that can be used to send Push Notifications. You can integrate PushWoosh with Backand by using Backand server-side actions. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action SendPushNotification, add notificationContent to the input parameters and paste the following code:
+## Integrating PushWoosh with Backand 
+PushWoosh has an API that can be used to send Push Notifications. You can integrate PushWoosh with Backand by using Backand server-side actions. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action SendPushNotification, add notificationContent to the input parameters and paste the following code:
 ```javascript
 /* globals
  $http - Service for AJAX calls
