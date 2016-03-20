@@ -16,6 +16,7 @@ To get a starter app: clone the PushWoosh Android SDK:
 
 ## Integrating PushWoosh with Backand 
 PushWoosh has an API that can be used to send Push Notifications. You can integrate PushWoosh with Backand by using Backand server-side actions. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code.
+
 In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action by clicking on 'PushWoosh' under 'Push Notifications'.
 
 **You have just created your first push notification action!**
