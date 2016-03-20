@@ -13,7 +13,6 @@ In the Backand dashboard, open the Actions tab for one of your application's obj
 **You have just created your first push notification action!**
 
 In order to call the function from your angular app, use the following code:
-
 ```javascript
 return $http ({
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>',
