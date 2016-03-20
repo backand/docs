@@ -7,7 +7,8 @@ Netmera is a cloud based service that can be used to send Push Notifications to 
 4. Follow this [Android guide](https://netmera.readme.io/docs/netmera-push-notification-android) and [iOS guid](https://netmera.readme.io/docs/netmera-push-notification-ios) to configure push notifications on the app and get the key from Google Cloud Messaging. If you use the starter app you only need the first 3 steps to get started (unless you want to trigger advanced features like tags).
 
 ## Integrating Netmera with Backand
-Netmera has a rest API that can be used to remotely send push notifications. You can integrate Netmera with Backand by using Backand server-side actions. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. 
+Netmera has a rest API that can be used to remotely send push notifications. You can integrate Netmera with Backand by using Backand server-side actions. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code.
+
 In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action by clicking on 'Netmera' under 'Push Notifications'.
 
 **You have just created your first push notification action!**
@@ -20,7 +21,7 @@ return $http ({
       name: 'SendPushNotification',
       parameters: {
         notificationTitle: 'My First Push Notification',
-	notificationContent: 'Hello! This is my first notification!'
+	    notificationContent: 'Hello! This is my first notification!'
       }
     }
 });
