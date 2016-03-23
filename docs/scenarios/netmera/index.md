@@ -5,6 +5,7 @@ Netmera is a cloud based service that can be used to send Push Notifications to 
 2. Download the Netmera SDK from [here](https://netmera.readme.io/docs/android-sdk-download) or their [starter app](https://cp.netmera.com/nm/admin/sdkDownload/overview/android/final?isNewProject=true).
 3. Check out their guide to [set up your app/the starter app with the Netmera SDK](https://netmera.readme.io/docs/android-guide)
 4. Follow this [Android guide](https://netmera.readme.io/docs/netmera-push-notification-android) and [iOS guid](https://netmera.readme.io/docs/netmera-push-notification-ios) to configure push notifications on the app and get the key from Google Cloud Messaging. If you use the starter app you only need the first 3 steps to get started (unless you want to trigger advanced features like tags).
+5. For Ionic you would need to implement the SDK for [PhoneGap Plugin](https://netmera.readme.io/docs/phonegap)
 
 ## Integrating Netmera with Backand
 Netmera has a rest API that can be used to remotely send push notifications. You can integrate Netmera with Backand by using Backand server-side actions. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code.
