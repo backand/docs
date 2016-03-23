@@ -13,6 +13,7 @@ To get a starter app: clone the PushWoosh Android SDK:
 3. To integrate in an existing app use the following [Android guide](http://docs.pushwoosh.com/docs/native-android-sdk) – include the SDK.jar and add the relevant code to your application.
   [Make the relevant changes to your AndroidManifest.xml file](http://docs.pushwoosh.com/docs/androidmanifestxml-modifications) – if you're using the starter app just change the App ID and Project ID.
 4. To integrate in an existing app use the following [iOS guide](http://docs.pushwoosh.com/docs/apns-configuration)
+5. For Ionic you would need to implement the SDK for [Cordova / PhoneGap](http://docs.pushwoosh.com/docs/cordova-phonegap) and check this example for [PhoneGap Build](http://docs.pushwoosh.com/docs/phonegap-build)
 
 ## Integrating PushWoosh with Backand 
 PushWoosh has an API that can be used to send Push Notifications. You can integrate PushWoosh with Backand by using Backand server-side actions. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code.
