@@ -84,12 +84,8 @@ For more details on integrating with Google, review their <a href="https://devel
 
 In order to add Facebook login integration, follow these steps:
 
-<<<<<<< HEAD
-1. Un-check the 'Use Back& app for signing in with Facebook' toggle. 
-=======
 1. Check the 'Use your credentials for signing in with Facebook' toggle.
->>>>>>> master
-1. Go to the <a href="https://developers.facebook.com/" target="_blank">Facebook Developers console</a>.
+1. Open the <a href="https://developers.facebook.com/" target="_blank">Facebook Developers console</a>.
 1. Optional: Click MyApps and register as developer
     1. Under **My Apps**, select **Add a new app**
     1. Select **WWW (web site)**

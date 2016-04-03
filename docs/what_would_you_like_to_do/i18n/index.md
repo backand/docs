@@ -15,12 +15,6 @@ On each VARCHAR column on that table run :
 ALTER TABLE `<YOUR_SCHEMA_NAME>`.`<YOUR_TABLE_NAME>` MODIFY COLUMN col VARCHAR(255)
     CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-<<<<<<< HEAD
-The final step is to edit your database details. For that you need to go to Settings / Database / Edit Connection
- (https://www.backand.com/#/app/<YOUR_APP_NAME>/database/edit)
-
- and add '; CharSet=utf8'  to your DB username ( don't forget to re-enter the password).
-=======
  The Last step is to edit the connection details
 
  1. Go to Setting => Database
@@ -29,4 +23,3 @@ The final step is to edit your database details. For that you need to go to Sett
  3. On the username text box  add ;CharSet=utf8;
  4. Paste the password from the clipboard
  5. Click Save
->>>>>>> master
