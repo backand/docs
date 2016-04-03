@@ -85,7 +85,7 @@ For more details on integrating with Google, review their <a href="https://devel
 In order to add Facebook login integration, follow these steps:
 
 1. Check the 'Use your credentials for signing in with Facebook' toggle.
-1. Go to the <a href="https://developers.facebook.com/" target="_blank">Facebook Developers console</a>.
+1. Open the <a href="https://developers.facebook.com/" target="_blank">Facebook Developers console</a>.
 1. Optional: Click MyApps and register as developer
     1. Under **My Apps**, select **Add a new app**
     1. Select **WWW (web site)**
@@ -102,6 +102,23 @@ In order to add Facebook login integration, follow these steps:
     1. Click **Show** (near **App Secret**) and enter your Facebook password.
     1. Record the **App Secret**
 1.  Finally, on the **Social & Keys** section of the Backand app management dashboard , copy the App ID and App Secret you recorded into the appropriate fields in the Facebook integration section.
+
+
+#### Twitter App Configuration
+
+In order to add Twitter login integration, follow these steps:
+
+1. Un-check the 'Use Back& app for signing in with Twitter' toggle.
+1. If you haven't added your phone number to Twitter you'll need to add it before creating Twitter app, please follow <a href="https://support.twitter.com/articles/110250">these instructions</a>
+1. Open the <a href="https://apps.twitter.com/" target="_blank">Twitter Apps console</a>.
+1. Click **Create New App** button
+    1. Enter the App details - Name, Description, Website
+    1. In the Callback URL enter: `https://api.backand.com/1/user/twitter/auth`
+    1. Check **Yes, I agree**  in the developer agreement
+    1. Click **Create your Twitter application** button
+    1. In the **Detail** tab of your newly created app scroll down to the Application Setting area and click the **manage keys and access tokens** link
+    1. Record the **Consumer Key (API Key)** and the **Consumer Secret (API Secret)**
+1. In the Backand dashboard, copy the Consumer Key and API Secret you recorded into the appropriate fields in the Twitter integration section.
 
 
 ## Security Templates
