@@ -1,16 +1,16 @@
 ### Introduction
-Backand's real-time communication functionalty is based on the popular open-source Socket.io framework, which lets you add real-time functionality to your application. Backand’s Real-Time Database Communication sends events and JSON-formatted data to any authorized connected client. With Real-Time Communcation from Backand, you can send real-time information to your application based on server-side logic in your application's custom actions. With this new feature events are picked up as they happen, rather than having to wait for a user-driven event to trigger a data reload.
+Backand's real-time communication functionality is based on the popular open-source Socket.io framework, which lets you add real-time functionality to your application. Backand’s Real-Time Database Communication sends events and JSON-formatted data to any authorized connected client. With Real-Time Communication from Backand, you can send real-time information to your application based on server-side logic in your application's custom actions. With this new feature events are picked up as they happen, rather than having to wait for a user-driven event to trigger a data reload.
 
 Backand’s real-time database communications are completely secure. They provide you with total control over data access, allowing you to restrict transmission of sensitive data to only authorized roles. And since all communication is SSL-encrypted, you don’t have to worry about the security of your data as it is transmitted across the web.
 
-Using the real-time capability can enahnce your app with instant updates to any Angular page, including updating charts, counters, logs, and other data-driven elements.
+Using the real-time capability can enhance your app with instant updates to any Angular page, including updating charts, counters, logs, and other data-driven elements.
 ###Setup
 
 1. Upgrade to Backand SDK 1.8.2 or above.
 2. Include the following script in the index.html page:
 
   ```
-<!-- Backand Realtime -->
+<!-- Backand Real-time -->
   <script src="https://api.backand.com:4000/socket.io/socket.io.js"></script>
   ```
 
@@ -40,7 +40,7 @@ When working with a Custom JavaScript Action in the Backand dashboard, you can a
 
 There 3 type of emit commands you can use in order to notify consuming applications of event data:
 
-* socket.emitUsers: `socket.emitUsers('event_Name',object, []);`
+* socket.emitUsers: 'socket.emitUsers('event_Name',object, []);'
 
 This command sends event only to users specified in the second argument, which should be formatted as an array. To make this array dynamic, you'll need to use a Backand Query action. First call the Query to obtain the users, then convert the JSON into an array of user IDs (email addresses).
 
@@ -52,9 +52,9 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 }
 ```
 
-* socket.emitRole: ```socket.emitUsers('event_Name',object, 'role');``
+* socket.emitRole: 'socket.emitUsers('event_Name',object, 'role');'
 
-This command sends the event to all the users in a specified role. Be aware that this command will overrided any data security filter you may have configured for your application.
+This command sends the event to all the users in a specified role. Be aware that this command will override any data security filter you may have configured for your application.
 
 Example:
 
@@ -64,9 +64,9 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 }
 ```
 
-* socket.emitAll: ```socket.emitAll('event_Name',object);```
+* socket.emitAll: 'socket.emitAll('event_Name',object);'
 
-This command sends event to all connected users, regardless of their role or permission settings. Be aware that this command verrides any data security filters you may have configured for your application. Use this emit type for general event broadcasting.
+This command sends event to all connected users, regardless of their role or permission settings. Be aware that this command vertices any data security filters you may have configured for your application. Use this emit type for general event broadcasting.
 
 Example:
 

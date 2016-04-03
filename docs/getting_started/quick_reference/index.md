@@ -70,7 +70,8 @@ For further details, please see [Backand SDK Documentation](http://docs.backand.
 
 ## Request Format
 
-All requests must be made using JSON request bodies. Make sure to set the `Content-Type` header to `application/json`. Additionally, all requests must include an authentication token in the request headers. This process is detailed in our [documentation](http://docs.backand.com/en/latest/security/index.html).
+All requests must be made using JSON request bodies. Make sure to set the 'Content-Type' header to 'application/json'
+. Additionally, all requests must include an authentication token in the request headers. This process is detailed in our [documentation](http://docs.backand.com/en/latest/security/index.html).
 
 ## Response Format
 

@@ -185,7 +185,7 @@ Once you've got the server-side action, you are just about ready to start accept
       }
 ```
 
-Once this code has been added to your project, we need to implement the service that calls Backand's server side payment action. This service wraps a HTTP request to the on-demand custom action that we created earlier in the tutorial. It assumes the action name is `PayPalPayment`, so be sure to change it as appropriate to match your actual implementation:
+Once this code has been added to your project, we need to implement the service that calls Backand's server side payment action. This service wraps a HTTP request to the on-demand custom action that we created earlier in the tutorial. It assumes the action name is 'PayPalPayment', so be sure to change it as appropriate to match your actual implementation:
 
 ```javascript
 /Call PayPalPayment on demand action
