@@ -90,7 +90,7 @@ Simply change the 'url' parameter of each action hash to match your object's end
 
 As you can see above, this bulk operation will add two new objects of type `news` to your application. The first will have the heading of "Breaking News", while the second will have the heading of "Politics".
 
- ### Example 2: Deleting multiple rows
+### Example 2: Deleting multiple rows
 
 To delete multiple objects from your application, simply provide multiple DELETE action hashes in your request's data array. The general form of the request will be:
 
