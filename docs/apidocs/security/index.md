@@ -49,8 +49,8 @@ curl https://api.backand.com/1/objects/items -H "AnonymousToken: e3482745-8a40-4
  
 ## Sign Up
 
-Registering with [Backand](https://www.backand.com), and creating an application, automatically sets you as a user with an "Admin" role in your new project (see [roles](index.md#roles) for more info). By default your application is marked public witch mean any user can register to your application.
-These users are assigned a default role 'User', which has full CRUD access to your app. You needs to be configured when you enable public usage of your app (see [roles](index.md#roles) for more details).
+Registering with [Backand](https://www.backand.com), and creating an application, automatically sets you as a user with an "Admin" role in your new project (see [roles](security.md#roles) for more info). By default your application is marked public witch mean any user can register to your application.
+These users are assigned a default role 'User', which has full CRUD access to your app. You needs to be configured when you enable public usage of your app (see [roles](security.md#roles) for more details).
 
 **Note**: For security reasons you cannot change the role from the sign-up API - this can only be accomplished either by having an admin change the appropriate settings on the Security & Auth -> Registered Users page, or by creating a custom server-side action 
 with Admin rights. Create new Security Action in Before Create trigger with the following code (this will update the 
