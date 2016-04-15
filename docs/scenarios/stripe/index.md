@@ -86,7 +86,9 @@ Once you've set your publishable key, you're ready to start tokenizing payment m
   }
 ```
 
-Once this code has been created, we need to write one additional function. This function wraps a HTTP request to the custom action we created previously. It assumes that the action's name is `makePayment`, so be sure to change it to something that matches your actual implementation:
+Once this code has been created, we need to write one additional function. This function wraps a HTTP request to the 
+custom action we created previously. It assumes that the action's name is 'makePayment', so be sure to change it to 
+something that matches your actual implementation:
 
 ```javascript
 factory.makePayment = function(amount, token){

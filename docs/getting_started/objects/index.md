@@ -99,21 +99,26 @@ In the 'one' side of the relationship (object R), we specify that each row relat
 "Rs" : { "collection": "S", "via" : "myR" }
 ```
 
-In the database, a foreign-key constraint will be added between tables S and R (pointing in the direction of R), represented by a foreign key field `myR` being created in the object S's data table. This field will hold the primary key of the corresponding row in R for each row in S.
+In the database, a foreign-key constraint will be added between tables S and R (pointing in the direction of R), 
+represented by a foreign key field 'myR' being created in the object S's data table. This field will hold the primary
+ key of the corresponding row in R for each row in S.
 
-As an example, consider a model describing pet ownership. It has two objects, `users` and `pets`. Each user can own several pets, but a pet has a single owner (user). Thus, the users-pets relationship is a one to many relationship between users and pets:
+As an example, consider a model describing pet ownership. It has two objects, 'users' and 'pets'. Each user can own 
+several pets, but a pet has a single owner (user). Thus, the users-pets relationship is a one to many relationship between users and pets:
 
-The `users` object will have a `pets` relationship field, which establishes the 'many' side of the relationship by creating a collection of pets objects for each user in the model.
+The 'users' object will have a 'pets' relationship field, which establishes the 'many' side of the relationship by 
+creating a collection of pets objects for each user in the model.
 
-In `users`:
+In 'users':
 
 ```json
 "pets": { "collection": "pets", "via": "owner" }
 ```
 
-The `pets` object will have an `owner` relationship field, which establishes the 'one' side of the relationship by linking each pet back to an individual owner.
+The 'pets' object will have an 'owner' relationship field, which establishes the 'one' side of the relationship by 
+linking each pet back to an individual owner.
 
-In `pets`: 
+In 'pets': 
 
 ```json
 "owner": { "object": "users" }
@@ -160,26 +165,28 @@ Many-to-Many relationships between objects are added by adding a new object that
 
 Say, for example, that we have a many to many relationship between objects R and S. This means that for many rows in R, there are many potentially corresponding rows in S.
 
-As an example, consider a different model describing pet ownership. It has two objects, `users` and `pets`. Each user can own several pets, and each pet can have several owners. Thus, the users-pets relationship is many to many relationship between users and pets:
+As an example, consider a different model describing pet ownership. It has two objects, 'users' and 'pets'. Each user
+ can own several pets, and each pet can have several owners. Thus, the users-pets relationship is many to many relationship between users and pets:
 
-First we need to add a new object - `users-pets` - with one-to-many relationships to both `pets` and `users` objects.
+First we need to add a new object - 'users-pets' - with one-to-many relationships to both 'pets' and 'users' objects.
 
-In `users-pets`:
+In 'users-pets':
 
 ```json
 "pet": { "object": "pets" }
 "owner": { "object": "users" }
 ```
 
-In the corresponding objects `users` and `pets`, we need to add a reference to `users-pets` to complete the one-to-many relationship:
+In the corresponding objects 'users' and 'pets', we need to add a reference to 'users-pets' to complete the 
+one-to-many relationship:
 
-In `pets`:
+In 'pets':
 
 ```json
 "owners": {"collection": "users-pets", "via": "pet"}
 ```
   
-In `users`:
+In 'users':
 
 ```json
 "pets": {"collection": "users-pets", "via": "owner"}
@@ -308,19 +315,23 @@ The Security tab allows you to restrict access to the database actions for this 
 
 ### Pre-defined Filter
 
-The pre-defined filter can be used to add additional restrictions to the data loaded, such as only loading data associated with the current username. There are 2 placeholders (tokens) that you can use: username - {{sys::username}} and user role - {{sys::role}}.
+The pre-defined filter can be used to add additional restrictions to the data loaded, such as only loading data associated with the current username. There are 2 placeholders (tokens) that you can use: username - &#123;&#123;sys::username&#125;&#125; and user role - &#123;&#123;sys::role&#125;&#125;.
 
 For example, the following SQL filter restricts the display of items to only show those items whose corresponding user is the user that is currently logged-in:
 
+{% raw %}
 ```SQL
 items.user in (select id from users where email = '{{sys::username}}')
 ```
+{% endraw %}
 
 Then, we can add an option so that an Admin user can see all of the items added by other application users, in addition to showing the items created by the user currently logged-in:
 
+{% raw %}
 ```SQL
 'Admin' = '{{sys::role}}' or (items.user in (select id from users where email = '{{sys::username}}'))
 ```
+{% endraw %}
 
 ### Security Template & Override
 

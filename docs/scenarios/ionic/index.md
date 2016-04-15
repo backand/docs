@@ -80,21 +80,26 @@ Now create your mobile app, naming it ‘PlaylistsApp’, with the Ionic command
 
 ### JS Libraries
 
-Your Ionic app has a ‘www’ folder which is a single page application (SPA) built with AngularJS.  You will need to include the Backand libraries in your application. Either download them or use bower to obtain them. Then, copy them into your ‘index.html’.
+Your Ionic app has a ‘www’ folder which is a single page application (SPA) built with AngularJS.  You will need to include the Backand libraries in your application. Either download them or use bower to obtain them. Then, copy them into your 'index.html'.
 
 * [angularbknd-sdk](https://github.com/backand/angularbknd-sdk), install with bower using:
-    `bower install angularbknd-sdk`
-* Include in your ‘index.html':
-```html
+
+  ```bash
+    bower install angularbknd-sdk
+  ```
+
+* Include in your 'index.html':
+
+  ```html
      <script src="lib/angularbknd-sdk/dist/backand.min.js"></script>
      <script src="lib/angular-cookies/angular-cookies.js"></script>
-```
+  ```
 
 ### Authorization
 
-Backand uses authorization headers in HTTP requests. The token for authorization is obtained upon sign in to Backand and is then stored using cookies via ‘ngCookies’. The Backand sdk adds authorization headers to each HTTP request using an ‘$http’ interceptor.
+Backand uses authorization headers in HTTP requests. The token for authorization is obtained upon sign in to Backand and is then stored using cookies via 'ngCookies'. The Backand sdk adds authorization headers to each HTTP request using an ‘$http’ interceptor.
 
-In your main ‘js’ file, ‘app.js’ requires ‘backand':
+In your main 'js' file, 'app.js' requires ‘backand':
 
 ```javascript
      var myApp = angular.module('starter', ['ionic', 

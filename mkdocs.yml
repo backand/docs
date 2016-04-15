@@ -27,6 +27,7 @@ pages:
 - ['what_would_you_like_to_do/geo/index.md', 'Common Use Cases', 'Geography Points']
 - ['what_would_you_like_to_do/actions/index.md', 'Common Use Cases', 'Custom Actions']
 - ['what_would_you_like_to_do/retrieve_data/index.md', 'Common Use Cases', 'Retrieving Data']
+- ['what_would_you_like_to_do/continuous_deployment/index.md', 'Common Use Cases', 'Continuous Deployment (CD) & Versions']
 - ['what_would_you_like_to_do/i18n/index.md', 'Common Use Cases', 'Internationalization']
 - ['scenarios/index.md', 'Scenarios',  'Introduction']
 - ['scenarios/simple_web/index.md', 'Scenarios',  'Simple Web App with REST API']
@@ -41,3 +42,5 @@ pages:
 - ['scenarios/PayPal/index.md', 'Scenarios', 'PayPal']
 - ['scenarios/Segment/index.md', 'Scenarios', 'Segment.io']
 - ['scenarios/twilio/index.md', 'Scenarios', 'Twilio']
+- ['scenarios/netmera/index.md', 'Scenarios', 'Netmera']
+- ['scenarios/pushwoosh/index.md', 'Scenarios', 'PushWoosh']
