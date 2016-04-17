@@ -32,7 +32,7 @@ The key element of this operation is the "headers" parameter. This represents th
 Headers:{"Authorization": Bearer **YOUR_ACCESS_TOKEN**, "AppName": **YOUR_APP_NAME**}
 ```
 
-Simply replace "YOUR_ACCESS_TOKEN" with your application's access token, and "YOUR_APP_NAME" with your application's name that was specified during app creation. Each action hash can accept a different header parameter, allowing multiple operations to be undertaken by multiple users as a part of the same bulk request. If the `headers` parameter is not included, the headers used for the call to the bulk operations endpoint are used for the relevant action instead.
+The value for "YOUR_ACCESS_TOKEN" is obtained via a call to `https://api.backand.com/token` - simply replace "YOUR_ACCESS_TOKEN" with the bearer token returned by this endpoint, and "YOUR_APP_NAME" with your application's name that was specified during app creation. Each action hash can accept a different header parameter, allowing multiple operations to be undertaken by multiple users as a part of the same bulk request. If the `headers` parameter is not included, the headers used for the call to the bulk operations endpoint are used for the relevant action instead.
 
 Requests to perform bulk actions are sent as HTTP POST requests to the bulk operations URL, which is:
 
