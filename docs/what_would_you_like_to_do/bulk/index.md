@@ -107,8 +107,11 @@ To delete multiple objects from your application, simply provide multiple DELETE
     "url": "https://api.backand.com/1/objects/YOUR_OBJECT_NAME/OBJECT_ID2"
   }
 ]
+
 ```
+
 By changing the YOUR_OBJECT_NAME and OBJECT_ID# parameters, you can select which specific IDs will be deleted in your application. For example, if you wanted to delete 'news' objects with IDs of 2 and 3, you would use the following set of action hashes:
+
 ```
 [
     {
@@ -127,7 +130,9 @@ By changing the YOUR_OBJECT_NAME and OBJECT_ID# parameters, you can select which
 
 You can mix and match operations to be performed to match whatever actions you need to take. For example, the following set of action hashes will create a new 'news' object, create a new 'authors' object, update an existing 'authors' object with an ID of 1, and delete a 'news' object with an ID of 3:
 
+
 ```
+
 [
   {
     "method": "POST",
@@ -158,5 +163,6 @@ You can mix and match operations to be performed to match whatever actions you n
     "url": "https://api.backand.com/1/objects/news/3"
   }
 ]
+
 ```
 
