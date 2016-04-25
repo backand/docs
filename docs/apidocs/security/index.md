@@ -60,6 +60,30 @@ role to 'Public'):
   userInput.Role = 'Public';
 ```
 
+### Saving Additional Parameters in the Sign up
+In many cases we would like to collect more information from the user during sign up. The additional information 
+should be added to the **users** object of the app. This option can be done by sending **parameters** in the client and 
+in the server the 'Create My App User' Security Action will copy the values. In this example we will collect the 
+company name of the user:
+
+1. Update the Model and add company field to **users** object:
+    1. Go to **Objects --> Model**
+    2. Add this element to the **users** object: **"company": {"type": "string"}**
+    3. Click on **Validate & Update**
+
+2. In the code when calling to Backand.signup() send parameters object as the last input parameter. The code looks 
+like this:
+
+```javascript
+    Backand.signup(firstName, lastName, username, password, password, {company: self.company}).then(...);
+```
+3. In the server side there is no need to do anything, new parameters are handled by the Action 'Create My App 
+User' under the **Security Actions** menu.
+
+4. In the UI make sure you collect the 'company' value.
+    
+Upon sign up completed you can see the company name in the **users** object Data tab.
+
 ### Private app
 
 You can change the default public app to be private. This can be changed in the dashboard by setting to false your application to Public in the Security & Auth --> Configuration menu. For a private app the registration steps are as follow:
