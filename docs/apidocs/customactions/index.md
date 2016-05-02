@@ -1,13 +1,14 @@
 ##Introduction
 In Backand's system, you can create server-side activity called Actions. These actions can be used for the purpose of security, integration, performance, notification and data integrity, among others, providing you with more flexibility in your app's design. There are two types of Actions that can be created. The first are initiated via a direct web request. These are known as "On Demand" actions. Additionally, you can create automated actions that take place based upon a data interaction event. These automated actions can occur whenever you create, update, or delete an item in your system. On Demand actions are associated with a specific object, and can be found on the Object --> {name} page in the Actions tab. The automated Create, Update and Delete actions are associated with a specific object that is compatible with a specific row in a table, while On Demand actions make association with a specific role optional.
 
-There are 3 kinds of actions that can be created for either action type:
+There are 4 kinds of actions that can be created for either action type:
 
 - Server side JavaScript code actions
+- Server side node.js code actions
 - Transactional database script actions
 - Send Email actions
 
-All 3 types of actions use the following common parameters:
+All 4 types of actions use the following common parameters:
 
 * A Where condition - a SQL where clause that determines if the action will be performed.
 * Input Parameters, added to the query string of the request that triggers the action, that will serve as variable values that you can supply to your action's code. These parameters will serve as tokens in the action definition and will be replaced with the actual values when the code executes.
@@ -83,6 +84,54 @@ Triggered actions will have a response that matches the format expected by the t
 of a CREATE call).
 
 On Demand actions, though, will return whatever value is returned by the custom server code, which can be any properly-formatted JSON string.
+
+# Server-side node.js Code
+
+You can develop distributed node.js actions and host them on Backand. This works with Backand CLI.
+The Backand CLI (command-line interface), which is used to control deployment, requires Node.js and npm to be installed. Both can be installed by following the instructions at [https://nodejs.org/](https://nodejs.org/).
+
+Run the following command to install Backand CLI tool: 
+
+
+```
+			$ npm install -g backand
+
+                    # or use sudo (with caution) if required by your system permissions
+                    # sudo npm install -g backand
+```
+
+## Initiate action
+
+To initiate your local node.js action folder with the server, use the following command on the command line:
+
+
+```
+			$ backand action init --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
+```
+
+--app:		The current app name  
+--object:		The object that the action belongs to  
+--action:		The action name  
+--master:		The master token of the app (get it from Social & Keys)  
+--user:		The token of the current user (get it from Team and click on key icon)  
+
+
+## Deploy action
+
+
+To Deploy your local node.js action folder with the server, use the following command on the command line:
+
+
+```
+			$ backand action deploy --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
+```
+
+--app:		The current app name  
+--object:		The object that the action belongs to  
+--action:		The action name  
+--master:		The master token of the app (get it from Social & Keys)  
+--user:		The token of the current user (get it from Team and click on key icon)  
+
 
 # Transactional Database Scripts
 
