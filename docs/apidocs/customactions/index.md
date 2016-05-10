@@ -130,7 +130,6 @@ Run the following command to install Backand CLI tool:
 To initiate on your local folder the node.js code for the action, use the following command on the command line
 
 ```
-
     $ backand action init --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
 ```
 
@@ -146,7 +145,6 @@ To initiate on your local folder the node.js code for the action, use the follow
 To deploy your local node.js code to Back&, use the following command on the command line:
 
 ```
-
     $ backand action deploy --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
 ```
 
@@ -163,13 +161,14 @@ In order to call objects or other actions in Back& you need to install Back& SDK
 use it is included in index.js in remark.
 
 ```
-    
     $ npm install backandsdk --save
 ```
+
 
 ## Transactional Database Scripts
 
 Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided that the event occurs during the object event "During the data save before the object is committed". This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.
+
 
 ## Send Emails
 
