@@ -97,12 +97,12 @@ The project is been developed like any other node.js project and can be fully de
 Back& server you just call the deploy command.
 
 Follow these steps to initiate and run the action with the server side node.js code:
+
 * First, name the action and use the init command by copy paste "backand action init...". The action init command 
 creates two levels of folders on your local file system. The top level folder is the name of the object and the 
 second level folder is the name of the action. We recommend to run the **action init** command for additional actions
  from the root folder of the app's project. This means you will have sub folder for each object and under it sub 
  folder for each action.
-
 * Second, build your node.js code in the **action** folder like any other project using your local IDE. Add npm 
 packages as many as you need.
 * Your code **must** start with the index.js file.
@@ -156,6 +156,16 @@ To deploy your local node.js code to Back&, use the following command on the com
   **--master**:		The master token of the app (get it from Social & Keys)  
   **--user**:		  The token of the current user (get it from Team and click on key icon)  
   **--folder**:   Optional, By default the deployment is from the current folder, specify for other location
+  
+### Add Backand SDK to node.js
+
+In order to call objects or other actions in Back& you need to install Back& SDK for node.js. Code example on how to 
+use it is included in index.js in remark.
+
+```
+    
+    $ npm install backandsdk --save
+```
 
 ## Transactional Database Scripts
 
