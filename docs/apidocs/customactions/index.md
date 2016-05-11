@@ -85,38 +85,35 @@ of a CREATE call).
 
 On Demand actions, though, will return whatever value is returned by the custom server code, which can be any properly-formatted JSON string.
 
-## Server-side node.js Code
+### Server-Side Node.js Code
 
-You can develop distributed node.js actions and host them on Backand - Hassle-Free Server-Side - No additional servers
- needed!
-Using server-side node.js action you can implement any npm package on Back&, build sophisticated solutions, complex 
+You can develop distributed Node.js actions and host them on Backand with no additional servers
+ needed. Using server-side Node.js actions, you can implement any npm package on Back&, build sophisticated solutions, perform complex 
 coding and more.
 
-The server side node.js code is developed on your local computer, and runs on Back& server.
-The project is been developed like any other node.js project and can be fully debug locally. To have it running on 
-Back& server you just call the deploy command.
+Node.js code is developed on your local machine, and runs on the Back& server. It works like any other Node.js project, and can be fully debugged locally. To have it running on the Back& server, just call the deploy command.
 
-Follow these steps to initiate and run the action with the server side node.js code:
+Follow these steps to initiate and run the action with server-side Node.js code:
 
-* First, name the action and use the init command by copy paste "backand action init...". The action init command 
+* First, name the action and use the init command by copy-pasting "backand action init...". The action init command 
 creates two levels of folders on your local file system. The top level folder is the name of the object and the 
-second level folder is the name of the action. We recommend to run the **action init** command for additional actions
- from the root folder of the app's project. This means you will have sub folder for each object and under it sub 
- folder for each action.
-* Second, build your node.js code in the **action** folder like any other project using your local IDE. Add npm 
-packages as many as you need.
+second level folder is the name of the action. We recommend that you run the **action init** command for additional actions
+ from the root folder of the app's project. This means you will have a sub-folder for each object, and under it, a sub 
+-folder for each action.
+* Second, build your Node.js code in the **action** folder like any other project using your local IDE. Add as many npm 
+packages as you need.
 * Your code **must** start with the index.js file.
 * To debug your code locally, run the debug.js file (the debug.js file is ignored on the Back& server).
-* In order to run your code on Back& server, use the deploy command by copy paste "backand action deploy...". The 
-deploy command will be available in this page **after** running the init action.
-* To test the action on Back& you can do it from the Test section on this page.
+* To run your code on the Back& server, use the deploy command by copy-pasting "backand action deploy...". The 
+deploy command will be available on this page **after** running the init action.
+* You can test the action on Back& from the Test section on the page.
 
 ### Backand CLI
 
-The Backand CLI (command-line interface), which is used to control deployment, requires Node.js and npm to be installed. 
+The Backand CLI (Command-Line Interface), which is used to control deployment, requires Node.js and npm to be installed. 
 Both can be installed by following the instructions at [https://nodejs.org/](https://nodejs.org/).
 
-Run the following command to install Backand CLI tool: 
+Run the following command to install the Backand CLI tool: 
 
 ```
     $ npm install -g backand
@@ -127,7 +124,7 @@ Run the following command to install Backand CLI tool:
 
 ### Initiate action
 
-To initiate on your local folder the node.js code for the action, use the following command on the command line
+To initiate the node.js code for the action on your local folder, use the following command on the command line
 
 ```
     $ backand action init --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
@@ -142,7 +139,7 @@ To initiate on your local folder the node.js code for the action, use the follow
 
 ### Deploy action
 
-To deploy your local node.js code to Back&, use the following command on the command line:
+To deploy your local Node.js code to Back&, use the following command on the command line:
 
 ```
     $ backand action deploy --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
@@ -155,10 +152,10 @@ To deploy your local node.js code to Back&, use the following command on the com
   **--user**:		  The token of the current user (get it from Team and click on key icon)  
   **--folder**:   Optional, By default the deployment is from the current folder, specify for other location
   
-### Add Backand SDK to node.js
+### Add Backand SDK to Node.js
 
-In order to call objects or other actions in Back& you need to install Back& SDK for node.js. Code example on how to 
-use it is included in index.js in remark.
+To call objects or other actions in Back&, you need to install the Back& SDK for Node.js. Code examples of how to 
+use it are included in index.js in the remarks.
 
 ```
     $ npm install backandsdk --save
