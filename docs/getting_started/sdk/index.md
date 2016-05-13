@@ -149,14 +149,14 @@ Registers a user for the application. Broadcasts Backand.EVENTS.SIGNUP upon succ
 ##### Usage
 Signs the specified user into the application using a third-party social media provider. Broadcasts Backand.EVENTS.SIGNIN upon success.
 ##### Arguments
-* provider - a string, one of the following: 'google', 'facebook', 'gitHub'
+* provider - a string, one of the following: 'google', 'facebook', 'gitHub', 'twitter'
 * spec - a string of the spec of the pop-up window used to authenticate the user. Default value: 'left=1, top=1, width=600, height=600'. See [W3Schools: Window open() Method](http://www.w3schools.com/jsref/met_win_open.asp) for more options.
 
 #### socialSignup
 ##### Usage
 Registers a user for the application using a third-party social media provider. Broadcasts Backand.EVENTS.SIGNUP upon success.
 ##### Arguments
-* provider - a string, one of the following: 'google', 'facebook', 'github'
+* provider - a string, one of the following: 'google', 'facebook', 'github', 'twitter'
 * parameters - additional parameters to be sent, i.e. CAPTCHA
 * spec - a string of the spec of the pop-up window used to authenticate the user. Default value: 'left=1, top=1, width=600, height=600'. See [W3Schools: Window open() Method](http://www.w3schools.com/jsref/met_win_open.asp) for more options.
 
