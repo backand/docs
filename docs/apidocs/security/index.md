@@ -34,6 +34,13 @@ You can also use  [basic auth](https://en.wikipedia.org/wiki/Basic_access_authen
 curl https://api.backand.com/1/objects/items -u 517f8654-eadd-478b-a65b-66dd5625458e:27b90578-c2dc-11e5-be83-0ed7053426cb
 
 ```
+You can also send the basic authorization token through the query string:
+```bash
+
+curl https://api.backand.com/1/objects/items?authorization=basic%20517f8654-eadd-478b-a65b-66dd5625458e:27b90578-c2dc-11e5-be83-0ed7053426cb
+
+```
+Note that the space between the 'basic' and the token is encoded to %20
 
 **Warning**: Do not use this method from the client as it exposed your tokens - this is server side call only.
 
@@ -46,7 +53,13 @@ Backand also offers Anonymous Access, which allows you to access your applicatio
 curl https://api.backand.com/1/objects/items -H "AnonymousToken: e3482745-8a40-4a2a-ae6d-7e12a4996643"
 
 ``` 
- 
+You can also send the anonymous token through the query string:
+```bash
+
+curl https://api.backand.com/1/objects/items?AnonymousToken=e3482745-8a40-4a2a-ae6d-7e12a4996643
+
+``` 
+
 ## Sign Up
 
 Registering with [Backand](https://www.backand.com), and creating an application, automatically sets you as a user with an "Admin" role in your new project (see [roles](security.md#roles) for more info). By default your application is marked public witch mean any user can register to your application.
