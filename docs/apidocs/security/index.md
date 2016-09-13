@@ -35,6 +35,7 @@ curl https://api.backand.com/1/objects/items -u 517f8654-eadd-478b-a65b-66dd5625
 
 ```
 You can also send the basic authorization token through the query string:
+
 ```bash
 
 curl https://api.backand.com/1/objects/items?authorization=basic%20517f8654-eadd-478b-a65b-66dd5625458e:27b90578-c2dc-11e5-be83-0ed7053426cb
@@ -53,7 +54,9 @@ Backand also offers Anonymous Access, which allows you to access your applicatio
 curl https://api.backand.com/1/objects/items -H "AnonymousToken: e3482745-8a40-4a2a-ae6d-7e12a4996643"
 
 ``` 
+
 You can also send the anonymous token through the query string:
+
 ```bash
 
 curl https://api.backand.com/1/objects/items?AnonymousToken=e3482745-8a40-4a2a-ae6d-7e12a4996643
