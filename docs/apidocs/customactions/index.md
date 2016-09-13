@@ -58,6 +58,9 @@ function it always runs in sync). [See the full API description for more details
 			var response = $http({method:"DELETE",url:CONSTS.apiUrl + "/1/objects/objectexample/5", fieldexample2:"somevalue"}, 
 			                      headers: {"Authorization":userProfile.token}});
 
+-- A Note About The Authorization Header:  
+Sending the authorization header to the $http function is optional. When you make a $http request with an authorization header and the value of the userProfile.token like in the examples above, the request will run under the current user and with his role. The other option is not to send authorization header. In this case the action will run under an admin role. Choose the first option if you are going to use information about the current user in the action. 
+
 * CONSTS: CONSTS.apiUrl for Backand's API URL
 
 * Config: Global configuration. You can maintain a global JSON configuration for your app. Your JSON configuration is consumed in the Config action. To update the configuration JSON, go to section "General" in the "Settings" menu on the Backand dashboard.
