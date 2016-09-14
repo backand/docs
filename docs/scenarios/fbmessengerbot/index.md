@@ -8,7 +8,7 @@ While they offer a lot of functionality and platform-level integration for free,
 In this tutorial, we'll walk through creating your own messenger bot with a back-end ready to go, powered by Backand and live - all in 10 minutes.
 
 ## Demo
-You can chat with the simple bot example to see the end result: http://m.me/1150283998341709
+You can [chat with the simple bot example](http://m.me/1150283998341709) to see the end result.
 
 ### Let's start
 
