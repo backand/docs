@@ -2,7 +2,7 @@
 
 <img align="right" src="https://www.backand.com/wp-content/uploads/2016/09/bot-iphone.png">
 
-Facebook recently opened up their Messenger platform to enable bots to converse with users through Facebook Apps and on Facebook Pages. In support of this, the Facebook Messenger team created a comprehensive set of [documentation](https://developers.facebook.com/docs/messenger-platform/quickstart) describing the functionality on offer.
+Facebook recently opened up their Messenger platform to enable bots to converse with users through Facebook Apps and on Facebook Pages. In support of this, the Facebook Messenger team created comprehensive [documentation](https://developers.facebook.com/docs/messenger-platform/quickstart) describing the functionality on offer.
 While they offer a lot of functionality and platform-level integration for free, you still need to create a publicly-accessible application that Facebook can communicate with in order to communicate with your end users. 
 
 In this tutorial, we'll walk through creating your own messenger bot with a back-end ready to go, powered by Backand and live - all in 10 minutes.
