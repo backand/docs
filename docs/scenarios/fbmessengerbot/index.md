@@ -67,7 +67,7 @@ https://api.backand.com/1/objects/action/items?
 name=FBMessengerBot&Authorization=basic+<master token>:<user key>
 ```
 
-_Note:_ The webhook URL uses Backand's [basic authentication](http://docs.backand.com/en/latest/apidocs/security/index.html#basic-authentication). You can find the '&lt;master token&gt;' in the 'Security & Auth--> Configuration' section. It also requires a <user key> for your app - you can find this in the 'Security & Auth--> Team' section. Simply click on the key icon near one of the Admins to obtain the user key.
+_Note:_ The webhook URL uses Backand's [basic authentication](http://docs.backand.com/en/latest/apidocs/security/index.html#basic-authentication). You can find the '&lt;master token&gt;' in the 'Security & Auth--> Configuration' section. It also requires a '&lt;<user key>&gt;' for your app - you can find this in the 'Security & Auth--> Team' section. Simply click on the key icon near one of the Admins to obtain the user key.
 
 * Verify Token: my_test_token
 
@@ -103,9 +103,9 @@ As a part of their initial documentation, Facebook provided an easy method to ad
 
 #### *Create a shortlink*
 
-You can also implement a shortlink that can be used to initiate a chat with your app. Simply use a URL of the form 'https://m.me/<PAGE_USERNAME>' to begin a Messenger chat.
+You can also implement a shortlink that can be used to initiate a chat with your app. Simply use a URL of the form 'https://m.me/&lt;PAGE_USERNAME&gt;' to begin a Messenger chat.
 
-### 💡 What's next?
+### What's next?
 
 At this point, you have a chatbot interacting with Facebook Messenger, driven by Backand as a back-end. You can customize the bot's code to meet your needs by following the information available in the following section of *Customize the Bot's Code in a Backand Action*.
 
@@ -121,7 +121,7 @@ Finally, you can enhance your app's intelligence with an AI integration. Find ou
 
 All callbacks and webhooks from Facebook will end up in your object's Facebook Action code. The JavaScript for this action is solely responsible for listening to the incoming POST calls, and responding appropriately. The template code handles all webhooks from Facebook by default. For example, receiving messages is handled by looking for the 'messagingEvent.message' field in the webhook, and then calling the 'receivedMessage()' function as follows:
 
-```javascript
+```
 if (request.method == "POST"){
 
     var data = request.body;
@@ -157,7 +157,7 @@ if (request.method == "POST"){
 
 In receivedMessage, we've added logic that can send a message back to the user. The default behavior is to echo back the text that was received, with some static modifications ('Back& bot says'...):
 
-```javascript
+```
 function receivedMessage(event) {
 
     var senderID = event.sender.id;
@@ -208,7 +208,7 @@ function receivedMessage(event) {
 
 *sendTextMessage* formats the message to be sent to Facebook, then calls the appropriate API endpoint:
 
-```javascript
+```
 function sendTextMessage(recipientId, messageText) {
     var messageData = {
         recipient: {
