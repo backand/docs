@@ -9,10 +9,7 @@ In this tutorial, we'll walk through creating your own messenger bot with a back
 
 ## Demo
 You can chat with the simple bot example to see the end result: http://m.me/1150283998341709
-<br/>
-<br/>
-<br/>
 
 ### Let's start
 
-[Go here](https://gist.github.com/itayher/abcd197459c1718de24a8f4ead5c1c05)
+#### For the complete documentation and step by step guide [Go here](https://gist.github.com/itayher/abcd197459c1718de24a8f4ead5c1c05)
