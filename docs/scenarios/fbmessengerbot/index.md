@@ -9,10 +9,8 @@ While they offer a lot of functionality and platform-level integration for free,
 In this tutorial, we'll walk through creating your own messenger bot with a back-end ready to go, powered by Backand and live - all in 10 minutes.
 
 ## Demo
-You can chat with the simple bot example to see the end result: http://m.me/1150283998341709
-<br/>
-<br/>
-<br/>
+You can chat with the simple bot example to see the end result: [http://m.me/1150283998341709](http://m
+.me/1150283998341709)
 
 ## Let's start
 
@@ -24,11 +22,11 @@ Luckily, Backand handles the majority of the server and connectivity functionali
 
 Follow these steps to build out the back-end to your bot:
 
-1. Sign up for free at https://www.backand.com (if you don't already have an account).
+1. Sign up for free at [backand.com](https://www.backand.com) (if you don't already have an account).
 
 2. Create a new app in the Backand dashboard, then navigate to that app's management page.
 
-3. In the new app, open menu `Objects --> Items`, and click on the `Actions` tab. In the Actions tab, click on the `Facebook Messanger Bot` template.
+3. In the new app, open menu 'Objects --> Items', and click on the 'Actions' tab. In the Actions tab, click on the 'Facebook Messanger Bot' template.
 
 4. Click 'Save'
 
@@ -51,7 +49,7 @@ Once you have the app's page up and running, you need to configure the Facebook 
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-create-new-app-info.png)
 
-* Next, skip the quick start and go to the App Dashboard and click `Add Product` under the heading `Product Settings`. Once there, select `Messenger` from the available options:
+* Next, skip the quick start and go to the App Dashboard and click 'Add Product' under the heading 'Product Settings'. Once there, select 'Messenger' from the available options:
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-add-new-product-1.png)
 
@@ -59,7 +57,7 @@ Once you have the app's page up and running, you need to configure the Facebook 
 
 Once the app page is created, and the app registered, you need to tell Facebook where to send its messages for processing. You can do this with the following steps:
 
-* In the `Webhooks` section, click `Setup Webhooks`.
+* In the 'Webhooks' section, click 'Setup Webhooks'.
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-set-webhook1.png)
 
@@ -70,7 +68,7 @@ https://api.backand.com/1/objects/action/items?
 name=FBMessengerBot&Authorization=basic+{{master token}}:{{user key}}
 ```
 
-_Note:_ The webhook URL uses Backand's [basic authentication](http://docs.backand.com/en/latest/apidocs/security/index.html#basic-authentication) {{master token}}. You can find the master token in the `Security & Auth--> Configuration` section. It also requires a {{user key}} for your app - you can find this in the `Security & Auth--> Team` section. Simply click on the key icon near one of the Admins to obtain the user key.
+_Note:_ The webhook URL uses Backand's [basic authentication](http://docs.backand.com/en/latest/apidocs/security/index.html#basic-authentication) {{master token}}. You can find the master token in the 'Security & Auth--> Configuration' section. It also requires a {{user key}} for your app - you can find this in the 'Security & Auth--> Team' section. Simply click on the key icon near one of the Admins to obtain the user key.
 
 * Verify Token: my_test_token
 
@@ -79,12 +77,12 @@ _Note:_ The webhook URL uses Backand's [basic authentication](http://docs.backan
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-setup-webhook.png)
 
 #### *Get a Page Access Token*
-Once you've configured the app in Facebook, it's time to tie it back into your Backand application. In the Token Generation section, select your Page. A `Page Access Token` will be generated for you. Copy this `Page Access Token`, and navigate back to your Backand app. Open the `Action` section of your `Items` object, and paste the token into the Backand Action where indicated (PAGE_ACCESS_TOKEN).
+Once you've configured the app in Facebook, it's time to tie it back into your Backand application. In the Token Generation section, select your Page. A 'Page Access Token' will be generated for you. Copy this 'Page Access Token', and navigate back to your Backand app. Open the 'Action' section of your 'Items' object, and paste the token into the Backand Action where indicated (PAGE_ACCESS_TOKEN).
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-select-page.png)
 
 #### *Subscribe the App to the Page*
-Finally, you need to subscribe to the webhooks available for your page. This is managed in the `Webhooks` section of the Facebook configuration:
+Finally, you need to subscribe to the webhooks available for your page. This is managed in the 'Webhooks' section of the Facebook configuration:
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-page-subscribe.png)
 
@@ -106,7 +104,7 @@ As a part of their initial documentation, Facebook provided an easy method to ad
 
 #### *Create a shortlink*
 
-You can also implement a shortlink that can be used to initiate a chat with your app. Simply use a URL of the form `https://m.me/<PAGE_USERNAME>` to begin a Messenger chat.
+You can also implement a shortlink that can be used to initiate a chat with your app. Simply use a URL of the form 'https://m.me/<PAGE_USERNAME>' to begin a Messenger chat.
 
 ### 💡 What's next?
 
@@ -122,7 +120,7 @@ Finally, you can enhance your app's intelligence with an AI integration. Find ou
 
 ### *Receive Messages*
 
-All callbacks and webhooks from Facebook will end up in your object's Facebook Action code. The JavaScript for this action is solely responsible for listening to the incoming POST calls, and responding appropriately. The template code handles all webhooks from Facebook by default. For example, receiving messages is handled by looking for the `messagingEvent.message` field in the webhook, and then calling the `receivedMessage()` function as follows:
+All callbacks and webhooks from Facebook will end up in your object's Facebook Action code. The JavaScript for this action is solely responsible for listening to the incoming POST calls, and responding appropriately. The template code handles all webhooks from Facebook by default. For example, receiving messages is handled by looking for the 'messagingEvent.message' field in the webhook, and then calling the 'receivedMessage()' function as follows:
 
 ```javascript
 if (request.method == "POST"){
@@ -308,9 +306,9 @@ function sendGenericMessage(recipientId) {
 ```
 
 ### *Handle Postbacks*
-Structured messages use `postbacks` to communicate with your application when a user clicks on one of the provided enhanced objects. The postback message contains the payload that was created for the button in the original Structured Message. Buttons on Structured Messages support both opening URLs and communicating via postbacks.
+Structured messages use 'postbacks' to communicate with your application when a user clicks on one of the provided enhanced objects. The postback message contains the payload that was created for the button in the original Structured Message. Buttons on Structured Messages support both opening URLs and communicating via postbacks.
 
-In our webhook handler, we handle the postback by calling the function `receivedPostback()`:
+In our webhook handler, we handle the postback by calling the function 'receivedPostback()':
 
 ```
 ....
