@@ -9,7 +9,7 @@ While they offer a lot of functionality and platform-level integration for free,
 In this tutorial, we'll walk through creating your own messenger bot with a back-end ready to go, powered by Backand and live - all in 10 minutes.
 
 ## Demo
-You can chat with the simple bot example to see the end result [here](http://m.me/1150283998341709){:target="_blank"}
+You can chat with the simple bot example to see the end result <a hreh="http://m.me/1150283998341709" target="_blank">http://m.me/1150283998341709</a>
 
 ## Let's start
 
@@ -64,10 +64,10 @@ Once the app page is created, and the app registered, you need to tell Facebook 
 
 ```
 https://api.backand.com/1/objects/action/items?
-name=FBMessengerBot&Authorization=basic+{{master token}}:{{user key}}
+name=FBMessengerBot&Authorization=basic+<master token>:<user key>
 ```
 
-_Note:_ The webhook URL uses Backand's [basic authentication](http://docs.backand.com/en/latest/apidocs/security/index.html#basic-authentication) {{master token}}. You can find the master token in the 'Security & Auth--> Configuration' section. It also requires a {{user key}} for your app - you can find this in the 'Security & Auth--> Team' section. Simply click on the key icon near one of the Admins to obtain the user key.
+_Note:_ The webhook URL uses Backand's [basic authentication](http://docs.backand.com/en/latest/apidocs/security/index.html#basic-authentication) <master token>. You can find the master token in the 'Security & Auth--> Configuration' section. It also requires a <user key> for your app - you can find this in the 'Security & Auth--> Team' section. Simply click on the key icon near one of the Admins to obtain the user key.
 
 * Verify Token: my_test_token
 
