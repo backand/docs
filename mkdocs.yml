@@ -45,4 +45,4 @@ pages:
 - ['scenarios/twilio/index.md', 'Scenarios', 'Twilio']
 - ['scenarios/netmera/index.md', 'Scenarios', 'Netmera']
 - ['scenarios/pushwoosh/index.md', 'Scenarios', 'PushWoosh']
-- ['scenarios/fbmessengerbot/index.md', 'Scenarios', 'FB Messenger Bot']
+- ['scenarios/fbmessengerbot/index.md', 'Scenarios', 'Facebook Messenger Bot']
