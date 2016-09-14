@@ -9,8 +9,7 @@ While they offer a lot of functionality and platform-level integration for free,
 In this tutorial, we'll walk through creating your own messenger bot with a back-end ready to go, powered by Backand and live - all in 10 minutes.
 
 ## Demo
-You can chat with the simple bot example to see the end result: [http://m.me/1150283998341709](http://m
-.me/1150283998341709)
+You can chat with the simple bot example to see the end result [here](http://m.me/1150283998341709){:target="_blank"}
 
 ## Let's start
 
@@ -26,7 +25,7 @@ Follow these steps to build out the back-end to your bot:
 
 2. Create a new app in the Backand dashboard, then navigate to that app's management page.
 
-3. In the new app, open menu 'Objects --> Items', and click on the 'Actions' tab. In the Actions tab, click on the 'Facebook Messanger Bot' template.
+3. In the new app, open menu 'Objects --> Items', and click on the 'Actions' tab. In the Actions tab, click on the 'Facebook Messenger Bot' template.
 
 4. Click 'Save'
 
@@ -35,13 +34,13 @@ At this point you have a back-end server that is ready to integrate with Faceboo
 
 ### *Create a Facebook App and Page*
 
-Once you have the back-end and are ready to integrate, the first thing you need to do is create a Facebook Page at https://www.facebook.com/pages/create/?ref_type=pages_browser. This page will serve as the central integration point between your Backand application and Facebook, as the messenger bot is authorized to interact with Facebook on behalf of this page.
+Once you have the back-end and are ready to integrate, the first thing you need to do is create a Facebook Page at [https://www.facebook.com/pages/create/?ref_type=pages_browser](https://www.facebook.com/pages/create/?ref_type=pages_browser). This page will serve as the central integration point between your Backand application and Facebook, as the messenger bot is authorized to interact with Facebook on behalf of this page.
 
 #### Facebook App Creation
 
 Once you have the app's page up and running, you need to configure the Facebook integration. To do so:
 
-* Add a new app at https://developers.facebook.com/quickstarts/?platform=web. Name it and click  "Create New Facebook App ID":
+* Add a new app at [https://developers.facebook.com/quickstarts/?platform=web](https://developers.facebook.com/quickstarts/?platform=web). Name it and click "Create New Facebook App ID":
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-create-new-app.png)
 
@@ -108,7 +107,7 @@ You can also implement a shortlink that can be used to initiate a chat with your
 
 ### 💡 What's next?
 
-At this point, you have a chatbot interacting with Facebook Messenger, driven by Backand as a back-end. You can customize the bot's code to meet your needs by following the informationa available in the following section of *Customize the Bot's Code in a Backand Action*.
+At this point, you have a chatbot interacting with Facebook Messenger, driven by Backand as a back-end. You can customize the bot's code to meet your needs by following the information available in the following section of *Customize the Bot's Code in a Backand Action*.
 
 You can also review Facebook's [complete guide on Messenger integration](https://developers.facebook.com/docs/messenger-platform/product-overview/setup), which provides more comprehensive detail on the platform's capabilities. These can be used to enhance your message responses, adding web-enabled content that your users can follow.
 
