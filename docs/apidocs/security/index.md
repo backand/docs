@@ -8,13 +8,23 @@ The following section describes how to manage your app's users within Backand's 
 
 The default authentication setup for [Backand](https://www.backand.com) applications relies on [OAuth2](http://oauth.net/2/) to provide tokenized authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use [Backand's SDK](https://github.com/backand/angularbknd-sdk) to help you manage the access token. You can change the default expiration of 24 hours by using a refresh token, which allows you to reuse the authentication token indefinitely. The refresh token is an encrypted hash of the master and user keys. You can revoke one (or all) of your user's refresh tokens by changing the refresh token and requiring users to re-authenticate. For more information, see the [API Description](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#user-authentication).
 
-To sign-in and get access token:
+To sign-in with username and password and get an access token:
 
 ```curl
 
 curl https://api.backand.com/token -d username=guest@backand.com -d password=guest1234 -d grant_type=password -d appName=bkndexample
 
 ```
+
+To sign-in with social access token and get a Backand access token:
+
+```curl
+
+curl -X GET https://api.backand.com/1/user/facebook/token?accessToken=EAAPutOqBPlkBANfUQXdmp7xseF16JpSknTGxZBBZAwd1TDigDUqC9i5NixlDOKFNpNQQwqJFHHPs059STwG0qzodlfzOvnE2q4EPxXM43ZBZBUOV44lCjpmFhMwJmeXUgRSBlwxJaKrvZAH7vW7NdBQa3dMLQZAv4RTXRZAcgqNVQZDZD&appName=bkndexample&signupIfNotSignedIn=true
+
+```
+
+--signupIfNotSignedIn If set to true then, if the user is not signed up then he be will automatically signed up to the app. The default is false and then if the user tries to sign in without signing up first he gets the error: "The user is not signed up to {appName}"
 
 To call any api use the "access_token":
 
