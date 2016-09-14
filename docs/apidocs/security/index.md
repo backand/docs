@@ -48,10 +48,9 @@ You can also send the basic authorization token through the query string:
 
 ```bash
 
-curl https://api.backand.com/1/objects/items?authorization=basic%20517f8654-eadd-478b-a65b-66dd5625458e:27b90578-c2dc-11e5-be83-0ed7053426cb
+curl https://api.backand.com/1/objects/items?authorization=basic+517f8654-eadd-478b-a65b-66dd5625458e:27b90578-c2dc-11e5-be83-0ed7053426cb
 
 ```
-Note that the space between the 'basic' and the token is encoded to %20
 
 **Warning**: Do not use this method from the client as it exposed your tokens - this is server side call only.
 
