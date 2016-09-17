@@ -29,14 +29,16 @@ The above represents an array of parameter hashes. Each parameter hash represent
 The key element of this operation is the "headers" parameter. This represents the HTTP headers used to perform the request, and are used to uniquely identify your application as each request as made. The headers parameter should have the following form:
 
 ```
-Headers:{"Authorization": Bearer **YOUR_ACCESS_TOKEN**, "AppName": **YOUR_APP_NAME**}
+  Headers:{"Authorization": Bearer **YOUR_ACCESS_TOKEN**, "AppName": **YOUR_APP_NAME**}
 ```
 
-The value for "YOUR_ACCESS_TOKEN" is obtained via a call to `https://api.backand.com/token` - simply replace "YOUR_ACCESS_TOKEN" with the bearer token returned by this endpoint, and "YOUR_APP_NAME" with your application's name that was specified during app creation. Each action hash can accept a different header parameter, allowing multiple operations to be undertaken by multiple users as a part of the same bulk request. If the `headers` parameter is not included, the headers used for the call to the bulk operations endpoint are used for the relevant action instead.
+The value for "YOUR_ACCESS_TOKEN" is obtained via a call to 'https://api.backand.com/token' - simply replace "YOUR_ACCESS_TOKEN" with the bearer token returned by this endpoint, and "YOUR_APP_NAME" with your application's name that was specified during app creation. Each action hash can accept a different header parameter, allowing multiple operations to be undertaken by multiple users as a part of the same bulk request. If the 'headers' parameter is not included, the headers used for the call to the bulk operations endpoint are used for the relevant action instead.
 
-Requests to perform bulk actions are sent as HTTP POST requests to the bulk operations URL, which is:
+Requests to perform bulk actions are sent as HTTP POST requests to the bulk operations URL:
 
-```url: https://api.backand.com/1/bulk```
+```
+  https://api.backand.com/1/bulk
+```
 
 Below are several examples of the types of bulk actions that can be performed using this new functionality.
 
@@ -62,7 +64,7 @@ To add multiple objects to your application, simply provide multiple POST action
   }
 ]
 ```
-Simply change the 'url' parameter of each action hash to match your object's endpoint in your application. Let's look at a specific example that adds multiple `news` objects to an application:
+Simply change the 'url' parameter of each action hash to match your object's endpoint in your application. Let's look at a specific example that adds multiple 'news' objects to an application:
 
 ```
 [
@@ -88,7 +90,7 @@ Simply change the 'url' parameter of each action hash to match your object's end
 
 ```
 
-As you can see above, this bulk operation will add two new objects of type `news` to your application. The first will have the heading of "Breaking News", while the second will have the heading of "Politics".
+As you can see above, this bulk operation will add two new objects of type 'news' to your application. The first will have the heading of "Breaking News", while the second will have the heading of "Politics".
 
 ### Example 2: Deleting multiple rows
 
@@ -105,8 +107,11 @@ To delete multiple objects from your application, simply provide multiple DELETE
     "url": "https://api.backand.com/1/objects/YOUR_OBJECT_NAME/OBJECT_ID2"
   }
 ]
+
 ```
-By changing the YOUR_OBJECT_NAME and OBJECT_ID# parameters, you can select which specific IDs will be deleted in your application. For example, if you wanted to delete `news` objects with IDs of 2 and 3, you would use the following set of action hashes:
+
+By changing the YOUR_OBJECT_NAME and OBJECT_ID# parameters, you can select which specific IDs will be deleted in your application. For example, if you wanted to delete 'news' objects with IDs of 2 and 3, you would use the following set of action hashes:
+
 ```
 [
     {
@@ -123,9 +128,11 @@ By changing the YOUR_OBJECT_NAME and OBJECT_ID# parameters, you can select which
 
 ### Example 3: Multiple commands
 
-You can mix and match operations to be performed to match whatever actions you need to take. For example, the following set of action hashes will create a new `news` object, create a new `authors` object, update an existing `authors` object with an ID of 1, and delete a `news` object with an ID of 3:
+You can mix and match operations to be performed to match whatever actions you need to take. For example, the following set of action hashes will create a new 'news' object, create a new 'authors' object, update an existing 'authors' object with an ID of 1, and delete a 'news' object with an ID of 3:
+
 
 ```
+
 [
   {
     "method": "POST",
@@ -156,5 +163,6 @@ You can mix and match operations to be performed to match whatever actions you n
     "url": "https://api.backand.com/1/objects/news/3"
   }
 ]
+
 ```
 

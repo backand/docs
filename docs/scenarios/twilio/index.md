@@ -45,7 +45,15 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 }
 ```
-In the example app we're building, the app's users can send SMS  to a phone number sent by the client side in the 'to' parameter and the message content from the client side 'message' parameter. After you register with twilio you should get your Twilio phone number [here]( https://www.twilio.com/user/account/phone-numbers/getting-started)  - you'll need to set FROM_PHONE_NUM with it (dont forget the (+) sign before the number, when you choose your phone number, click on 'Don't like this one? Search for a different number.' and select SMS in capabilities). Make sure you replace the 'ACCOUNT_SID' and 'AUTH_TOKEN' above with your twilio API keys in the getting started page, just click on 'Show API Credentials' on the right side of  'Get Started with Phone Numbers' and than you'll see the ACCOUNT SID and  AUTH TOKEN.
+In the example app we're building, the app's users can send SMS  to a phone number sent by the client side in the 'to' parameter and the message content from the client side 'message' parameter. 
+
+## Setup the FREE account in Twilio
+After you register with twilio you should get your Twilio phone number [here]( https://www.twilio.com/user/account/phone-numbers/getting-started):
+1. Choose your phone number, click on *'Don't like this one? Search for a different number.'* and select SMS in capabilities.
+2. Replace the FROM_PHONE_NUM with the Twilio phone number (dont forget the (+) sign before the number)
+3. Make sure you replace the 'ACCOUNT_SID' and 'AUTH_TOKEN' above with your twilio API keys in the getting started page, just click on 'Show API Credentials' on the right side of  'Get Started with Phone Numbers' and than you'll see the ACCOUNT SID and  AUTH TOKEN.
+
+##Setup client-side code:
 
 Next, add the following JavaScript code to your app's client-side code base:
 

@@ -34,23 +34,39 @@ Once this is complete you can use Backand SDK functions for authenticating the u
 ####Sign In
 Use the Backand provider with the following parameters to get an OAuth2 access token:
 
-* **username** - Backand's user username.
+* **username** - Backand's user username
 * **password** - Backand's user password
+* **parameters** - Send additional information to the sign in api call 
 
 ```
-  // SignInCtrl.js
-  function SignInCtrl(Backand) {
-    this.signIn = function() {
-      Backand.signin(username, password)
-      .then(
-        function () {
-          //enter session
-        },
-        function (data, status, headers, config) {
-          //handle error
-        }
-      );
-    }
+    var userData = {
+      grant_type: "password",
+      username: "email"
+      password: "your password",
+      appname: "app name"
+    };
+```
+
+```
+  self.signIn = function (userData, parameters) {
+      return $http({
+          method: 'POST',
+          url: Backand.getApiUrl() + '/token',
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          transformRequest: function (obj) {
+              var str = [];
+              angular.forEach(obj, function (value, key) {
+                  str.push(encodeURIComponent(key) + "=" + encodeURIComponent(value));
+              });
+              return str.join("&");
+          },
+          params:{
+              parameters: parameters
+          },
+          data: userData
+      })
   }
 ```
 
@@ -68,6 +84,8 @@ The sign up api uses the SignUpToken in the request header. You can find this to
 The parameters for the sign-up call are:
 * **SignUpToken** - A security token to prevent malicious attacks. this should be added to the header
 * **user** - A JSON object representing the user's first name, last name, email, and password.
+* **parameters** - Send additional fields information about the user. Need to make sure to add the fields first to 
+the users object. 
 
 ```
   {
@@ -75,19 +93,25 @@ The parameters for the sign-up call are:
     "lastName": "string",
     "email": "string",
     "password": "string",
-    "confirmPassword": "string"
+    "confirmPassword": "string",
+    parameters:{
+      company: "string"
+    }  
   }
 ```
 
 ```
-  self.signUp = function (user, signUpToken) {
+  self.signUp = function (user, signUpToken, parameters) {
       return $http({
           method: 'POST',
           url : Backand.getApiUrl() + '/1/user/signup,
           headers: {
             'SignUpToken': signUpToken
           },
-          data: user
+          data: user,
+          params: {
+            parameters: parameters
+          }   
       })
   };
 ```

@@ -1,13 +1,14 @@
-##Introduction
+## Introduction
 In Backand's system, you can create server-side activity called Actions. These actions can be used for the purpose of security, integration, performance, notification and data integrity, among others, providing you with more flexibility in your app's design. There are two types of Actions that can be created. The first are initiated via a direct web request. These are known as "On Demand" actions. Additionally, you can create automated actions that take place based upon a data interaction event. These automated actions can occur whenever you create, update, or delete an item in your system. On Demand actions are associated with a specific object, and can be found on the Object --> {name} page in the Actions tab. The automated Create, Update and Delete actions are associated with a specific object that is compatible with a specific row in a table, while On Demand actions make association with a specific role optional.
 
-There are 3 kinds of actions that can be created for either action type:
+There are 4 kinds of actions that can be created for either action type:
 
 - Server side JavaScript code actions
+- Server side node.js code actions
 - Transactional database script actions
 - Send Email actions
 
-All 3 types of actions use the following common parameters:
+All 4 types of actions use the following common parameters:
 
 * A Where condition - a SQL where clause that determines if the action will be performed.
 * Input Parameters, added to the query string of the request that triggers the action, that will serve as variable values that you can supply to your action's code. These parameters will serve as tokens in the action definition and will be replaced with the actual values when the code executes.
@@ -57,6 +58,9 @@ function it always runs in sync). [See the full API description for more details
 			var response = $http({method:"DELETE",url:CONSTS.apiUrl + "/1/objects/objectexample/5", fieldexample2:"somevalue"}, 
 			                      headers: {"Authorization":userProfile.token}});
 
+-- A Note About The Authorization Header:  
+Sending the authorization header to the $http function is optional. When you make a $http request with an authorization header and the value of the userProfile.token like in the examples above, the request will run under the current user and with his role. The other option is not to send authorization header. In this case the action will run under an admin role. Choose the first option if you are going to use information about the current user in the action. 
+
 * CONSTS: CONSTS.apiUrl for Backand's API URL
 
 * Config: Global configuration. You can maintain a global JSON configuration for your app. Your JSON configuration is consumed in the Config action. To update the configuration JSON, go to section "General" in the "Settings" menu on the Backand dashboard.
@@ -64,7 +68,7 @@ function it always runs in sync). [See the full API description for more details
 * Emit: Emit is a function that allows you to send real-time communication events and data to the client. Emit has 3 methods: socket.emitUsers, socket
 .emitRole, and socket.emitAll. Read more about [Realtime Database Communication here](http://docs.backand.com/en/latest/apidocs/realtime/index.html).
 
-## Debugging
+### Debugging
 
 Debugging should be done using either console.log or console.error. For example, to dump the contents of variable 
 'object':
@@ -72,23 +76,101 @@ Debugging should be done using either console.log or console.error. For example,
 
 'console.error(object)'
 
-##Error Handling
+### Error Handling
 
 If your code results in an error (for example, if you write the following: 'throw new Error("An error occurred!")'), 
 the request will return HTTP status 417, and the response body will contain the associated error message.
 
-## Return values
+### Return values
 
 Triggered actions will have a response that matches the format expected by the triggering call (such as the return value
 of a CREATE call).
 
 On Demand actions, though, will return whatever value is returned by the custom server code, which can be any properly-formatted JSON string.
 
-# Transactional Database Scripts
+### Server-Side Node.js Code
+
+You can develop distributed Node.js actions and host them on Backand with no additional servers
+ needed. Using server-side Node.js actions, you can implement any npm package on Back&, build sophisticated solutions, perform complex 
+coding and more.
+
+Node.js code is developed on your local machine, and runs on the Back& server. It works like any other Node.js project, and can be fully debugged locally. To have it running on the Back& server, just call the deploy command.
+
+Follow these steps to initiate and run the action with server-side Node.js code:
+
+* First, name the action and use the init command by copy-pasting "backand action init...". The action init command 
+creates two levels of folders on your local file system. The top level folder is the name of the object and the 
+second level folder is the name of the action. We recommend that you run the **action init** command for additional actions
+ from the root folder of the app's project. This means you will have a sub-folder for each object, and under it, a sub 
+-folder for each action.
+* Second, build your Node.js code in the **action** folder like any other project using your local IDE. Add as many npm 
+packages as you need.
+* Your code **must** start with the index.js file.
+* To debug your code locally, run the debug.js file (the debug.js file is ignored on the Back& server).
+* To run your code on the Back& server, use the deploy command by copy-pasting "backand action deploy...". The 
+deploy command will be available on this page **after** running the init action.
+* You can test the action on Back& from the Test section on the page.
+
+### Backand CLI
+
+The Backand CLI (Command-Line Interface), which is used to control deployment, requires Node.js and npm to be installed. 
+Both can be installed by following the instructions at [https://nodejs.org/](https://nodejs.org/).
+
+Run the following command to install the Backand CLI tool: 
+
+```
+    $ npm install -g backand
+
+    # or use sudo (with caution) if required by your system permissions
+    # sudo npm install -g backand
+```
+
+### Initiate action
+
+To initiate the node.js code for the action on your local folder, use the following command on the command line
+
+```
+    $ backand action init --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
+```
+
+  **--app**:		  The current app name  
+  **--object**:		The object that the action belongs to  
+  **--action**:		The action name  
+  **--master**:		The master token of the app (get it from Social & Keys)  
+  **--user**:		  The token of the current user (get it from Team and click on key icon)  
+
+
+### Deploy action
+
+To deploy your local Node.js code to Back&, use the following command on the command line:
+
+```
+    $ backand action deploy --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
+```
+
+  **--app**:		  The current app name  
+  **--object**:		The object that the action belongs to  
+  **--action**:		The action name  
+  **--master**:		The master token of the app (get it from Social & Keys)  
+  **--user**:		  The token of the current user (get it from Team and click on key icon)  
+  **--folder**:   Optional, By default the deployment is from the current folder, specify for other location
+  
+### Add Backand SDK to Node.js
+
+To call objects or other actions in Back&, you need to install the Back& SDK for Node.js. Code examples of how to 
+use it are included in index.js in the remarks.
+
+```
+    $ npm install backandsdk --save
+```
+
+
+## Transactional Database Scripts
 
 Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided that the event occurs during the object event "During the data save before the object is committed". This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.
 
-# Send Emails
+
+## Send Emails
 
 Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.
 
