@@ -4,3 +4,6 @@ This section handles a few basic usage scenarios. You can use these as an exampl
 * Integrating Ionic with Backand and Angular
 * Creating a simple ToDo application using Backand
 * Expanding the ToDo application to include users and security roles
+* Writing a Facebook Messenger bot, powered by Backand
+* Integrating with AWS
+* Integrating with several types of third-party providers

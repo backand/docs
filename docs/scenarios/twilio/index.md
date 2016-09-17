@@ -1,13 +1,14 @@
-## What is twilio?
-twilio  take care of the messy telecom hardware and expose a globally available cloud API that developers can interact with to build intelligent and complex communications systems. As your app's usage scales up or down, Twilio automatically scales with you.
-## Who is twilio for?
+## What is Twilio?
+[Twilio](https://www.twilio.com) takes care of dealing with messy telecom hardware, exposing a globally available cloud API that developers can interact with to build intelligent and complex communications systems. As your app's usage scales up or down, Twilio automatically scales with you.
 
-twilio  is for anyone that needs to send SMS, MMS, VoIP along with a lot of other communications functionality embedded into web, desktop, and mobile software.
+## Who is Twilio for?
 
-## Send SMS with twilio API
-twilio has an API that you can use to send SMS. By translating their provided cURL commands to Angular $http calls, you can easily integrate twilio with Backand.
+Twilio is for anyone that needs to send SMS, MMS, or VoIP, along with a lot of other communication channels embedded into web, desktop, and mobile software.
 
-To send SMS with twilio, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action TwilioSendSMS, add to and message to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
+## Send SMS with Twilio API
+Twilio has an API that you can use to send SMS. By translating their provided cURL commands to Angular $http calls, you can easily integrate Twilio with Backand.
+
+To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action TwilioSendSMS, add to and message to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
 
 ```javascript
 /* globals
@@ -45,13 +46,14 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 }
 ```
-In the example app we're building, the app's users can send SMS  to a phone number sent by the client side in the 'to' parameter and the message content from the client side 'message' parameter. 
+In the example app we're building, the app's users can send a SMS message to a phone number. The phone number is sent, from the client side, in the 'to' parameter, while the message content is sent in the 'message' parameter. 
 
-## Setup the FREE account in Twilio
-After you register with twilio you should get your Twilio phone number [here]( https://www.twilio.com/user/account/phone-numbers/getting-started):
-1. Choose your phone number, click on *'Don't like this one? Search for a different number.'* and select SMS in capabilities.
-2. Replace the FROM_PHONE_NUM with the Twilio phone number (dont forget the (+) sign before the number)
-3. Make sure you replace the 'ACCOUNT_SID' and 'AUTH_TOKEN' above with your twilio API keys in the getting started page, just click on 'Show API Credentials' on the right side of  'Get Started with Phone Numbers' and than you'll see the ACCOUNT SID and  AUTH TOKEN.
+## Setup a FREE account in Twilio
+
+After you register with Twilio, you can get your Twilio phone number [here]( https://www.twilio.com/user/account/phone-numbers/getting-started):
+1. To choose a different phone number from the one provided, click on *'Don't like this one? Search for a different number.'* and select SMS in capabilities.
+2. Replace the FROM_PHONE_NUM in the code with the Twilio phone number obtained in the prior step (dont forget the (+) sign before the number)
+3. Make sure you replace the 'ACCOUNT_SID' and 'AUTH_TOKEN' in the code with your Twilio API keys (from the getting started page). Simply click on 'Show API Credentials' on the right side of  'Get Started with Phone Numbers,' and than you'll see the ACCOUNT SID and AUTH TOKEN values.
 
 ##Setup client-side code:
 
@@ -71,6 +73,6 @@ return $http ({
 
 ```
 
-Replace 'your object name' with the object associated with the action you created and 'your destination phone number' with a vaild phone number (when using twilio trial account you first need to validate this phone number)
+Replace 'your object name' with the object associated with the action you created and 'your destination phone number' with a vaild phone number (when using Twilio trial account you first need to validate this phone number)
 
-Once this is done, you'll be able to easily trigger SMS via twilio using Backand's custom action API.
+Once this is done, you'll be able to easily trigger SMS via Twilio using Backand's custom action API.

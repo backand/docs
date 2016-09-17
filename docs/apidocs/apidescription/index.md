@@ -84,8 +84,7 @@ The sign up api uses the SignUpToken in the request header. You can find this to
 The parameters for the sign-up call are:
 * **SignUpToken** - A security token to prevent malicious attacks. this should be added to the header
 * **user** - A JSON object representing the user's first name, last name, email, and password.
-* **parameters** - Send additional fields information about the user. Need to make sure to add the fields first to 
-the users object. 
+* **parameters** - Use this field to send additional information about the user in a name-value pair mapping format. Don't forget to add any new fields to the Users object first!
 
 ```
   {
