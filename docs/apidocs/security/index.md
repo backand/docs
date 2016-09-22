@@ -8,7 +8,7 @@ The following section describes how to manage your app's users within Backand's 
 
 The default authentication setup for [Backand](https://www.backand.com) applications relies on [OAuth2](http://oauth.net/2/) to provide tokenized authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use [Backand's SDK](https://github.com/backand/angularbknd-sdk) to help you manage the access token. You can change the default expiration of 24 hours by using a refresh token, which allows you to reuse the authentication token indefinitely. The refresh token is an encrypted hash of the master and user keys. You can revoke one (or all) of your user's refresh tokens by changing the refresh token and requiring users to re-authenticate. For more information, see the [API Description](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#user-authentication).
 
-To sign-in with username and password and get an access token:
+To obtain an access token using a username and password, use the following command:
 
 ```curl
 
@@ -16,7 +16,7 @@ curl https://api.backand.com/token -d username=guest@backand.com -d password=gue
 
 ```
 
-To sign-in with social access token and get a Backand access token:
+To obtain an access token using the Social Media master key, use the following command:
 
 ```curl
 
@@ -24,9 +24,10 @@ curl -X GET https://api.backand.com/1/user/facebook/token?accessToken=EAAPutOqBP
 
 ```
 
---signupIfNotSignedIn If set to true then, if the user is not signed up then he be will automatically signed up to the app. The default is false and then if the user tries to sign in without signing up first he gets the error: "The user is not signed up to {appName}"
+Parameters:
+--signupIfNotSignedIn - (Optional, default false) - If the user tries to sign in without first registering for the application, the user will receive an error message ("The user is not signed up to {appName}"). If this value is set to true, then the user will be automatically registered with the app if they have not yet been signed up
 
-To call any api use the "access_token":
+You can then use the access token to call any Backand API for your application:
 
 ```curl
 
@@ -36,23 +37,22 @@ curl https://api.backand.com/1/objects/items -H "Authorization: Bearer OfKDiw6fQ
 
 ### Basic authentication 
 
-You can also use  [basic auth](https://en.wikipedia.org/wiki/Basic_access_authentication) to ease working with other servers - simply enter the master key as the username, and the user key as the password.
- To get items just make the api call and 
+You can also use [basic auth](https://en.wikipedia.org/wiki/Basic_access_authentication) to ease working with other servers - simply enter the master key as the username, and the user key as the password. You can use this approach to obtain a list of Items by using the following API call:
  
 ```bash
 
-curl https://api.backand.com/1/objects/items -u 517f8654-eadd-478b-a65b-66dd5625458e:27b90578-c2dc-11e5-be83-0ed7053426cb
+curl https://api.backand.com/1/objects/items -u <master key>:<user key>
 
 ```
-You can also send the basic authorization token through the query string:
+You can also send the basic authorization token through as a query string:
 
 ```bash
 
-curl https://api.backand.com/1/objects/items?authorization=basic+517f8654-eadd-478b-a65b-66dd5625458e:27b90578-c2dc-11e5-be83-0ed7053426cb
+curl https://api.backand.com/1/objects/items?authorization=basic+<master key>:<user key>
 
 ```
 
-**Warning**: Do not use this method from the client as it exposed your tokens - this is server side call only.
+**Warning**: Do not use this method from the client as it exposes your app's secret tokens - this is for server-side calls only.
 
 ### Anonymous authentication 
 
@@ -60,15 +60,15 @@ Backand also offers Anonymous Access, which allows you to access your applicatio
 
 ```bash
 
-curl https://api.backand.com/1/objects/items -H "AnonymousToken: e3482745-8a40-4a2a-ae6d-7e12a4996643"
+curl https://api.backand.com/1/objects/items -H "AnonymousToken: <anonymous token>"
 
 ``` 
 
-You can also send the anonymous token through the query string:
+You can also send the anonymous token through in a query string:
 
 ```bash
 
-curl https://api.backand.com/1/objects/items?AnonymousToken=e3482745-8a40-4a2a-ae6d-7e12a4996643
+curl https://api.backand.com/1/objects/items?AnonymousToken=<anonymous token>
 
 ``` 
 
@@ -85,33 +85,30 @@ role to 'Public'):
   userInput.Role = 'Public';
 ```
 
-### Saving Additional Parameters in the Sign up
-In many cases we would like to collect more information from the user during sign up. The additional information 
-should be added to the **users** object of the app. This option can be done by sending **parameters** in the client and 
-in the server the 'Create My App User' Security Action will copy the values. In this example we will collect the 
-company name of the user:
+### Saving Additional Parameters During Sign-up
 
-1. Update the Model and add company field to **users** object:
+In many cases, we would like to collect additional information from the user during sign up. We can automatically populate the related fields on the Users object as a part of the sign-up request by using the **parameters** parameter for the sign-up call. The server, during the "Create My App User" action, will translate these key-value pairs into the appropriate fields on the "Users" object - as such, it is important that all fields provided already exist on the Users object. The following example demonstrates specifying a user's "company" name as a part of the sign-up:
+
+1. Update the Model and add the field **company** to the **users** object:
     1. Go to **Objects --> Model**
-    2. Add this element to the **users** object: **"company": {"type": "string"}**
+    2. Add this line as a data field in the **users** object model: **"company": {"type": "string"}**
     3. Click on **Validate & Update**
 
-2. In the code when calling to Backand.signup() send parameters object as the last input parameter. The code looks 
-like this:
+2. When calling Backand.signup(), send the **parameters** objecct through as the last input parameter for the request. The code will resemble the following:
 
 ```javascript
     Backand.signup(firstName, lastName, username, password, password, {company: self.company}).then(...);
 ```
-3. In the server side there is no need to do anything, new parameters are handled by the Action 'Create My App 
-User' under the **Security Actions** menu.
 
-4. In the UI make sure you collect the 'company' value.
+3. There's no need for server-side modificcations - values for "parameters" are handled automatically by the action 'Create My App User' (found in the **Security Actions** section).
+
+4. Modify the UI to collect the 'company' name for the user.
     
-Upon sign up completed you can see the company name in the **users** object Data tab.
+Now, when sign-up is completed, you can see the company name in the **users** object's Data tab.
 
 ### Private app
 
-You can change the default public app to be private. This can be changed in the dashboard by setting to false your application to Public in the Security & Auth --> Configuration menu. For a private app the registration steps are as follow:
+You can change the default public app to be private. This can be changed in the dashboard by setting the Public flag for your application to 'false' in the Security & Auth --> Configuration menu. For a private app, the registration steps are as follow:
 
 * First, set your app's registration page on the Security & Auth --> Configuration page.
 * Next, if you wish to use automated email verification, enable Sign-up Email Verification on the Security & Auth --> Configuration page

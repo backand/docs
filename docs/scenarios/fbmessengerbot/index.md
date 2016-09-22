@@ -3,21 +3,20 @@
 <img align="right" src="https://www.backand.com/wp-content/uploads/2016/09/bot-iphone.png">
 
 
-Facebook recently opened up their Messenger platform to enable bots to converse with users through Facebook Apps and on Facebook Pages. In support of this, the Facebook Messenger team created a comprehensive set of [documentation](https://developers.facebook.com/docs/messenger-platform/quickstart) describing the functionality on offer.
-While they offer a lot of functionality and platform-level integration for free, you still need to create a publicly-accessible application that Facebook can communicate with in order to communicate with your end users. 
+Facebook recently opened up their Messenger platform to enable bots to converse with users through Facebook Apps and on Facebook Pages. In support of this, the Facebook Messenger team created a comprehensive set of [documentation](https://developers.facebook.com/docs/messenger-platform/quickstart) describing the functionality on offer. While they offer a lot of functionality and platform-level integration for free, you still need to create a publicly-accessible application that Facebook can communicate with in order to automatically interact with your end users. 
 
-In this tutorial, we'll walk through creating your own messenger bot with a back-end ready to go, powered by Backand and live - all in 10 minutes.
+In this tutorial, we'll walk through creating your own messenger bot on the Backand backend-as-a-service system, and make it live - all in 10 minutes.
 
 ## Demo
-You can chat with the simple bot example to see the end result <a hreh="http://m.me/1150283998341709" target="_blank">http://m.me/1150283998341709</a>
+You can chat with the simple bot example to see the end result at <a hreh="http://m.me/1150283998341709" target="_blank">http://m.me/1150283998341709</a>
 
-## Let's start
+## Getting Started
 
 Messenger bots are programs that receive messages from an interface, process those messages, and then send results back to the caller. These results are then displayed to the user by the controlling application - Facebook Messenger in this case. A bot's response can be as simple as echoing text back to the user, or as complex as ordering and shipping new computer components to the end user. The only restrictions are that the bot is authenticated to communicate with Facebook, and that Facebook has approved the bot and allows it to communicate with the world at large. 
 
 Luckily, Backand handles the majority of the server and connectivity functionality for you, allowing you to focus on building out responsive content.
 
-### *Build the server*
+### *Building the server*
 
 Follow these steps to build out the back-end to your bot:
 
@@ -52,9 +51,9 @@ Once you have the app's page up and running, you need to configure the Facebook 
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-add-new-product-1.png)
 
-#### *Setup Webhook*
+#### *Setup Webhooks*
 
-Once the app page is created, and the app registered, you need to tell Facebook where to send its messages for processing. You can do this with the following steps:
+Once the app page is created, and the app is registered, you need to tell Facebook where to send its messages for processing. You can do this with the following steps:
 
 * In the 'Webhooks' section, click 'Setup Webhooks'.
 
@@ -115,7 +114,7 @@ Eventually, you'll want to get your bot approved for use by the public. You can 
 
 Finally, you can enhance your app's intelligence with an AI integration. Find out how to get started at [Wit.ai](https://wit.ai)!
 
-## Customize the Bot's Code in a Backand Action
+## Customizing the Bot's Code in a Backand Action
 
 ### *Receive Messages*
 
