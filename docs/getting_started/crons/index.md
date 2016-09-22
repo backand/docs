@@ -6,7 +6,7 @@ time and frequency the action will be called by Backand's servers at the backgro
 You can add a new cron by clicking on "+ New Cron" in the menu bar.
 To add a new job schedule, give it a name to be displayed in the cron menu, description, start time or frequency and type (Action / Query / External URL).
 
-### Advanced Options
+#### Advanced Options
 You can use additional parameters in the job by using query string or headers information. You can also send long
 text by using POST method.
 
