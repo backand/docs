@@ -5,7 +5,7 @@ Queries are custom database queries, written in SQL, that you can later hit thro
 
 You can add a new query by clicking on "+New Query" in the menu bar. This allows you to name the query, provide any parameters necessary, and then write the query. It also allows you to set a specific security template for the query to use as it executes, and allows you to override the security template settings when running the query.
 
-## Update an existing Query
+## Update an existing query
 
 To update an existing query, select the query from the navigation menu and press the "Edit" button.
 
