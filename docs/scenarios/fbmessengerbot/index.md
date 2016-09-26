@@ -68,7 +68,6 @@ name=FBMessengerBot&Authorization=basic+<master token>:<user key>
 
 _Note:_ The webhook URL uses Backand's [basic authentication](http://docs.backand.com/en/latest/apidocs/security/index.html#basic-authentication).
 You can find the '&lt;master token&gt;' in the 'Security & Auth --> Social & Keys' section.
-
 It also requires a '&lt;user key&gt;' for your app - you can find this in the 'Security & Auth --> Team' section. Simply click on the key icon near one of the Admins to obtain the user key.
 
 * Verify Token: my_test_token
