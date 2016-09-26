@@ -7,7 +7,7 @@ pages:
 - ['getting_started/sdk/index.md', 'Getting Started', 'Backand SDK']
 - ['getting_started/objects/index.md', 'Getting Started', 'Objects']
 - ['getting_started/queries/index.md', 'Getting Started', 'Queries']
-- ['getting_started/crons/index.md', 'Getting Started', 'Crons']
+- ['getting_started/crons/index.md', 'Getting Started', 'Background Jobs']
 - ['getting_started/security_auth/index.md', 'Getting Started', 'Security & Auth']
 - ['getting_started/hosting/index.md', 'Getting Started', 'Hosting']
 - ['getting_started/log/index.md', 'Getting Started', 'Log']
