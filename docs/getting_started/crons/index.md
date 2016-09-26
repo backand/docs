@@ -31,9 +31,16 @@ You can test both new and existing job using the Test buttons on the right hand 
  Use this code to call the job from an action:
 
  ```javascript
-
     var response = $http({
         method: "GET",
         url: CONSTS.apiUrl + "/1/jobs/run/" + cronId
     });
  ```
+
+## Test background job
+In order to test the job and get immediate results or error message use the following code (this code run in sync
+mode and may take long time to finish):
+
+```
+https://api.backand.com/1/jobs/run/{id}/test
+```
