@@ -1,10 +1,10 @@
 ## Multi language support
 
-Supporting multiple languages often requires supporting multibyte character sets. In order to allow for wider international character sets, you will need to run the following MySQL command against your database:
+Supporting multiple languages often requires supporting multi-byte character sets. In order to allow for wider international character sets, you will need to run the following MySQL command against your database:
 
 For the following scripts you'll need your schema_name , you can find it here : https://www.backand.com/#/app/<YOUR_APP_NAME>/database
 
-```
+```sql
 ALTER SCHEMA `<YOUR_SCHEMA_NAME>`  DEFAULT CHARACTER SET utf8;
 ```
 
@@ -16,10 +16,11 @@ ALTER TABLE `<YOUR_SCHEMA_NAME>`.`<YOUR_TABLE_NAME>` CONVERT TO CHARACTER SET ut
 
 On each VARCHAR column on that table run:
 
-ALTER TABLE `<YOUR_SCHEMA_NAME>`.`<YOUR_TABLE_NAME>` MODIFY COLUMN col VARCHAR(255)
-    CHARACTER SET utf8 COLLATE utf8_general_ci;
+```sql
+ALTER TABLE `<YOUR_SCHEMA_NAME>`.`<YOUR_TABLE_NAME>` MODIFY COLUMN col VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci;
+```
 
- The Last step is to edit the connection details
+The Last step is to edit the connection details
 
  1. Go to Setting => Database
  2. Click Get Password and save it to the clipboard
