@@ -95,6 +95,9 @@ In order to add Facebook login integration, follow these steps:
     1. In the sidebar on the left, select **Settings**
     1. In Basic tab add your **Contact Email**
     1. Click on the **Advanced** Tab
+    1. Click on + Add Product under Products
+    1. Click Get Started in the **Facebook Login** product
+    1. Skip the quick start and click on Settings
     1. In **Valid OAuth redirect URIs** enter: 'https://api.backand.com/1/user/facebook/auth'
     1. Click **Save Changes**
     1. In the sidebar on the left, select **Dashboard**    
