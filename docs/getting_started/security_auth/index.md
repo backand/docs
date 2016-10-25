@@ -100,6 +100,8 @@ In order to add Facebook login integration, follow these steps:
     1. Skip the quick start and click on Settings
     1. In **Valid OAuth redirect URIs** enter: 'https://api.backand.com/1/user/facebook/auth'
     1. Click **Save Changes**
+    1. To start using your app, you need to make it public, open App Preview from the left menu and change **Make
+    {{appName}} public?** to **yes**
     1. In the sidebar on the left, select **Dashboard**    
     1. Record the **App ID**
     1. Click **Show** (near **App Secret**) and enter your Facebook password.
