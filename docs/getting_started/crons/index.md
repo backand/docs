@@ -1,4 +1,4 @@
-Background jobs allowing you to run an action, query, or external URL request on a schedule that you define. Simply set the schedule's time and frequency, and the desired task will be executed automatically by Backand's servers. Through this mechanism, you can run periodic queries for things like reports, recurring actions to control you application's behavior, or you can regularly post to external services that support your application's behavior.
+Background jobs allow you to run an action, query, or external URL request on a schedule that you define. Simply set the time and frequency, and the desired task will be executed automatically by Backand's servers. Through this mechanism, you can run periodic queries for things like reports, recurring actions to control your application's behavior, or you can regularly post to external services that support your application's behavior.
 
 ## Create a job
 
