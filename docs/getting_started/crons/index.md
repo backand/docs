@@ -40,7 +40,7 @@ You can test both new and existing jobs using the Test buttons on the right hand
 
 ## Test background job
 To test the job and get immediate results or error messages, use the following code (this code runs in sync
-mode and may take long time to finish):
+mode and may take a long time to finish):
 
 ```
 https://api.backand.com/1/jobs/run/{id}/test
