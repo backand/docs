@@ -142,7 +142,7 @@ Add-AdfsRelyingPartyTrust -Name "Backand QA" -Identifier "https://api.backand.co
 Add-ADFSClient -Name "Backand" -ClientId "188c552d-bf43-409b-9355-a0fb0eb227e3" -RedirectUri "https://api.backand.com/1/user/adfs/auth"
 ```
 
-    * Update the ClientId with any GUID value (Get <a href="https://www.guidgenerator.com/">new GUID</a>)
+  Update the ClientId with any GUID value (Get <a href="https://www.guidgenerator.com/">new GUID</a>)
 
 1. Run this command to configure persistent Single Sign-On and show the "keep me signed in" checkbox:
 
@@ -150,7 +150,7 @@ Add-ADFSClient -Name "Backand" -ClientId "188c552d-bf43-409b-9355-a0fb0eb227e3" 
 Set-AdfsProperties -EnableKmsi $True –KmsiLifetimeMins 43,200
 ```
 
-    * 43,200 are numbers of minutes in 30 days - you may change it to meet your organization requirements
+  43,200 are numbers of minutes in 30 days - you may change it to meet your organization requirements
 
 1. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Client Id and Redirect Uri you entered in the Add-ADFSClient command.
 
