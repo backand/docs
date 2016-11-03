@@ -130,13 +130,13 @@ In order to add Twitter login integration, follow these steps:
 In order to add ADFS login integration, follow these steps:
 
 1. Open windows command shell on the ADFS server with Admin permissions
-1. Run Add-AdfsRelyingPartyTrust command with the following parameters (you may change the defaults as needed):
+2. Run Add-AdfsRelyingPartyTrust command with the following parameters (you may change the defaults as needed):
 
 ```bash
 Add-AdfsRelyingPartyTrust -Name "Backand QA" -Identifier "https://api.backand.com" -TokenLifetime 10 -IssueOAuthRefreshTokensTo AllDevices -EnableJWT $True -IssuanceTransformRules '@RuleTemplate = "PassThroughClaims" @RuleName = "Windows account name" c:[Type=="http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname"] => issue(claim = c); @RuleTemplate = "PassThroughClaims" @RuleName = "UPN" c:[Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn"] => issue(claim = c);' -IssuanceAuthorizationRules '=> issue(Type = "http://schemas.microsoft.com/authorization/claims/permit", Value = "true");'
 ```
 
-1. Run Add-ADFSClient to add Backand as a client application to your ADFS:
+3. Run Add-ADFSClient to add Backand as a client application to your ADFS:
 
 ```bash
 Add-ADFSClient -Name "Backand" -ClientId "188c552d-bf43-409b-9355-a0fb0eb227e3" -RedirectUri "https://api.backand.com/1/user/adfs/auth"
@@ -144,7 +144,7 @@ Add-ADFSClient -Name "Backand" -ClientId "188c552d-bf43-409b-9355-a0fb0eb227e3" 
 
   Update the ClientId with any GUID value (Get <a href="https://www.guidgenerator.com/">new GUID</a>)
 
-1. Run this command to configure persistent Single Sign-On and show the "keep me signed in" checkbox:
+4. Run this command to configure persistent Single Sign-On and show the "keep me signed in" checkbox:
 
 ```bash
 Set-AdfsProperties -EnableKmsi $True –KmsiLifetimeMins 43,200
@@ -152,7 +152,7 @@ Set-AdfsProperties -EnableKmsi $True –KmsiLifetimeMins 43,200
 
   43,200 are numbers of minutes in 30 days - you may change it to meet your organization requirements
 
-1. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Client Id and Redirect Uri you entered in the Add-ADFSClient command.
+5. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Client Id and Redirect Uri you entered in the Add-ADFSClient command.
 
 #### Azure AD App Configuration
 

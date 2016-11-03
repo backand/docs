@@ -61,8 +61,8 @@
       <file leaf-file-name="index.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/getting_started/security_auth/index.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="152" column="6" selection-start-line="152" selection-start-column="6" selection-end-line="152" selection-end-column="6" />
+            <state relative-caret-position="145">
+              <caret line="144" column="2" selection-start-line="144" selection-start-column="2" selection-end-line="144" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -566,7 +566,7 @@
       <workItem from="1477352870588" duration="1269000" />
       <workItem from="1477557580151" duration="434000" />
       <workItem from="1477558299725" duration="780000" />
-      <workItem from="1477639371858" duration="4474000" />
+      <workItem from="1477639371858" duration="4527000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/evilstickman/docs into evilstickman-master&#10;&#10;# Conflicts:&#10;#&#9;docs/apidocs/apidescription.md&#10;">
       <created>1433454491244</created>
@@ -803,7 +803,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28290000" />
+    <option name="totallyTimeSpent" value="28343000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1177" extended-state="6" />
@@ -1191,8 +1191,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/getting_started/security_auth/index.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="152" column="6" selection-start-line="152" selection-start-column="6" selection-end-line="152" selection-end-column="6" />
+        <state relative-caret-position="145">
+          <caret line="144" column="2" selection-start-line="144" selection-start-column="2" selection-end-line="144" selection-end-column="2" />
           <folding />
         </state>
       </provider>
