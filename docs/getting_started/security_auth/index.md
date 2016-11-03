@@ -142,7 +142,7 @@ Add-AdfsRelyingPartyTrust -Name "Backand QA" -Identifier "https://api.backand.co
 Add-ADFSClient -Name "Backand" -ClientId "188c552d-bf43-409b-9355-a0fb0eb227e3" -RedirectUri "https://api.backand.com/1/user/adfs/auth"
 ```
 
-    Update the ClientId with any GUID value (Get <a href="https://www.guidgenerator.com/">new GUID</a>)
+Update the ClientId with any GUID value (Get <a href="https://www.guidgenerator.com/">new GUID</a>)
 
 1. Run this command to configure persistent Single Sign-On and show the "keep me signed in" checkbox:
 
@@ -150,7 +150,7 @@ Add-ADFSClient -Name "Backand" -ClientId "188c552d-bf43-409b-9355-a0fb0eb227e3" 
 Set-AdfsProperties -EnableKmsi $True –KmsiLifetimeMins 43,200
 ```
 
-    43,200 are numbers of minutes in 30 days - you may change it to meet your organization requirements
+43,200 are numbers of minutes in 30 days - you may change it to meet your organization requirements
 
 1. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Client Id and Redirect Uri you entered in the Add-ADFSClient command.
 
@@ -159,13 +159,13 @@ Set-AdfsProperties -EnableKmsi $True –KmsiLifetimeMins 43,200
 In order to add Azure AD application integration, follow these steps:
 
 1. Open the <a href="https://portal.azure.com/" target="_blank">Azure new portal</a>.
-1. Select “Azure Active Directory”
-1. Select “App Registrations”
+1. Select **Azure Active Directory**
+1. Select **App Registrations**
 1. Click **+Add** and use these parameters:
-    1. Name: Backand
-    1. Application Type: Native
-    1. Redirect URI: https://api.backand.com/1/user/azuread/auth
-1. Click “Create”
+    1. Name: **Backand**
+    1. Application Type: **Native**
+    1. Redirect URI: **https://api.backand.com/1/user/azuread/auth**
+1. Click **Create**
 1. Click on the Backand App and copy the Application Id / Client Id (e.g. 7c799275-1102-4aa6-b36a-fac7aa7fee60)
 1. Click on “Endpoints” menu and copy “OAUTH 2.0 AUTHORIZATION ENDPOINT”. In backand just use up to /oauth2 in the OAUTH 2.0 Endpoint filed(e.g. "https://login.windows.net/a652911c-7a2c-4a9c-d1b2-d149256f461b/oauth2")
 
