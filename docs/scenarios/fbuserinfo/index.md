@@ -1,15 +1,17 @@
 ## Retrieving data from Facebook
 
-First you would need to get the user facebook id after the user signup and then start using Facebook graph API to
-retrieve the data.
+In order to retrieve data from FB you would need to get the Facebook user id after the user sign-up your Backand app.
+ After having the Facebook user id you should use Facebook graph API to retrieve the data or perform any other action.
 
 In order to get the Facebook user id (FBId) to Backand, follow these steps:
+
 1. Open Security & Auth >> Security actions menu and Edit **"beforeSocialSignup"** action
 1. Change the **Where Condition** to true (bottom of the page)
-1. uncomment the code that saves the Facebook user id: 'userInput.fuid = parameters.socialProfile.additionalValues.id;'
+1. Uncomment the code that saves the Facebook user id: `userInput.fuid = parameters.socialProfile.additionalValues.id;`
 1. Save the Action
 
 Next you need to add the fuid field in the users object:
+
 1. Open the model page under **objects** menu
 1. Add new Field in the users object named **fuid**
 1. Click **Validate & Update and **Ok** in the dialog
