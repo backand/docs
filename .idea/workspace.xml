@@ -6,6 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="423b4f66-b4c9-4b89-b67d-2809381f7a36" name="Default" comment="update geo">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/scenarios/fbuserinfo/index.md" afterPath="$PROJECT_DIR$/docs/scenarios/fbuserinfo/index.md" />
     </list>
     <list id="4bac997c-8fa3-49cb-99d7-a9cc9195ed6c" name="New changelist" comment="" />
@@ -80,8 +81,8 @@
       <file leaf-file-name="index.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/docs/scenarios/fbuserinfo/index.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+            <state relative-caret-position="551">
+              <caret line="51" column="2" selection-start-line="51" selection-start-column="2" selection-end-line="51" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -568,7 +569,7 @@
       <workItem from="1477352870588" duration="1269000" />
       <workItem from="1477557580151" duration="434000" />
       <workItem from="1477558299725" duration="780000" />
-      <workItem from="1477639371858" duration="8018000" />
+      <workItem from="1477639371858" duration="8577000" />
     </task>
     <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/evilstickman/docs into evilstickman-master&#10;&#10;# Conflicts:&#10;#&#9;docs/apidocs/apidescription.md&#10;">
       <created>1433454491244</created>
@@ -805,7 +806,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31834000" />
+    <option name="totallyTimeSpent" value="32393000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1235,8 +1236,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/scenarios/fbuserinfo/index.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="23" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        <state relative-caret-position="551">
+          <caret line="51" column="2" selection-start-line="51" selection-start-column="2" selection-end-line="51" selection-end-column="2" />
           <folding />
         </state>
       </provider>
