@@ -36,6 +36,7 @@ pages:
 - ['scenarios/ionic/index.md', 'Scenarios',  'Ionic with Backand']
 - ['scenarios/simple_todo/index.md', 'Scenarios',  'Simple ToDo App']
 - ['scenarios/todo_users/index.md', 'Scenarios',  'ToDo With Users']
+- ['scenarios/fbuserinfo/index.md', 'Scenarios',  'Retrieving data from Facebook']
 - ['scenarios/amazon/index.md', 'Scenarios', 'Amazon AWS and S3 Integration']
 - ['scenarios/stripe/index.md', 'Scenarios', 'Stripe Integration']
 - ['scenarios/mandrillapp/index.md', 'Scenarios', 'Mandrill']
