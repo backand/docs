@@ -1,13 +1,13 @@
-This section covers [Backand's JavaScript SDK 1.8.x](https://github.com/backand/angularbknd-sdk)
+This section covers [Backand's Angular 1.x SDK 1.8.x](https://github.com/backand/angularbknd-sdk)
 
 ### Getting Started
 
-The Backand SDK provides methods for easily communicating with the Backand server and performing common tasks, such as managing users. To use the SDK, first include the Backand SDK script files in your app:
+The Backand Angular 1 SDK provides methods for easily communicating with the Backand server and performing common tasks, such as managing users. To use the SDK, first include the Backand SDK script files in your app:
 
 ```
 
     <!-- Backand SDK for Angular -->
-    <script src="//cdn.backand.net/backand/dist/1.8.2/backand.min.js"></script>
+    <script src="//cdn.backand.net/backand/dist/1.8.11/backand.min.js"></script>
     
 ``` 
 
@@ -32,6 +32,8 @@ These methods are used to configure your application's usage of Backand. Call th
           BackandProvider.setAppName(APP_NAME)
             .setAnonymousToken(ANONYMOUS_TOKEN)
             .setSignUpToken(SIGN_UP_TOKEN);
+
+      }
             
 ```
 ### Properties
