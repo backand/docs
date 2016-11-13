@@ -26,6 +26,7 @@ The Backand Angular 2 SDK compatible with AngularJS 2.0.x and provides methods f
 In 'src/app/app.module.ts':
 
 ```
+
     import { BackandService } from 'angular2bknd-sdk';
 
 ```
@@ -49,22 +50,13 @@ In the constructor use it as 'this.backandService':
 
 ## Set Your App Details
 
-1. In 'src/app/app.component.ts':
+In 'src/app/app.component.ts':
 
 ```
 
     this.backandService.setAppName('your app name');
     this.backandService.setSignUpToken('your backand signup token');
     this.backandService.setAnonymousToken('your backand anonymous token');
-
-```
-
-2. Do we call signup if we tried to sign in via a social network, and the user is not signed up for the app? (true by
- default)
-
-```
-
-    this.backandService.setRunSignupAfterErrorInSigninSocial(true);
 
 ```
 
@@ -80,7 +72,7 @@ In 'src/app/app.component.ts':
 
 ## CRUD
 
-To fetch, create, and filter rows, from an object, say `items`, the CRUD functions in BackandService, should receive `'items'` as their first argument:
+To fetch, create, and filter rows, from an object, say `items`, the CRUD functions in BackandService, should receive 'items' as their first argument:
 
 ```
 
