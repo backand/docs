@@ -72,7 +72,7 @@ In 'src/app/app.component.ts':
 
 ## CRUD
 
-To fetch, create, and filter rows, from an object, say `items`, the CRUD functions in BackandService, should receive 'items' as their first argument:
+To fetch, create, and filter rows, from an object, say 'items', the CRUD functions in BackandService, should receive 'items' as their first argument:
 
 ```
 
