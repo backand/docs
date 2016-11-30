@@ -78,6 +78,7 @@ Sign-in with username and password in order to get access_token to be used in al
  you should use anonymous token only. Use this code for signin:
 
 ```
+
     var $obs = this.backandService.signin(username, password);
         $obs.subscribe(
             data => {
@@ -94,6 +95,7 @@ Sign-in with username and password in order to get access_token to be used in al
 In sign-up you must provide the basic details of username email, first name, last name and password:
 
 ```
+
     var $obs = this.backandService.signup(email, signUpPassword, confirmPassword, firstName, lastName);
         $obs.subscribe(
             data => {
@@ -110,6 +112,7 @@ In sign-up you must provide the basic details of username email, first name, las
 Sign-out will clear the local storage and will invalidated the access_token:
 
 ```
+
     this.backandService.signout();
 
 ```
@@ -119,6 +122,7 @@ Sign-out will clear the local storage and will invalidated the access_token:
 Use this code for change password of users:
 
 ```
+
     var $obs = this.backandService.changePassword(oldPassword, newPassword);
         $obs.subscribe(
             data => {
@@ -149,6 +153,7 @@ the social network.
           this.backandService.logError(err)
       },
       () => console.log('Finish Auth'));
+
 ```
 
 ## CRUD
@@ -166,6 +171,7 @@ To fetch, create, and filter rows, from an object, say 'items', the CRUD functio
                 err => this.backandService.logError(err),
                 () => console.log('OK')
             );
+
 ```
 
 * Create
@@ -180,6 +186,7 @@ To fetch, create, and filter rows, from an object, say 'items', the CRUD functio
                 err => this.backandService.logError(err),
                 () => console.log('OK')
             );
+
 ```
 
 * Update
@@ -194,6 +201,7 @@ To fetch, create, and filter rows, from an object, say 'items', the CRUD functio
                 err => this.backandService.logError(err),
                 () => console.log('OK')
             );
+
 ```
 
 * Query
@@ -203,10 +211,11 @@ When 'q' is set to your search pattern, define a filter:
 ```
 
     let filter = [{
-                fieldName: "name",
-                operator: "contains",
-                value: q
-              }];
+        fieldName: "name",
+        operator: "contains",
+        value: q
+    }];
+
 ```
 
 Or use NoSQL syntax:
@@ -223,18 +232,19 @@ Or use NoSQL syntax:
 
 ```
 
-and call 'filterItem'
+Query with filter:
 
 ```
 
     this.backandService.getList('items', null, null, filter)
-            .subscribe(
-                data => {
-                    this.items = data;
-                },
-                err => this.backandService.logError(err),
-                () => console.log('OK')
-            );
+        .subscribe(
+            data => {
+                this.items = data;
+            },
+            err => this.backandService.logError(err),
+            () => console.log('OK')
+        );
+
 ```
 
 * 'provider': facebook, twitter, google, github
