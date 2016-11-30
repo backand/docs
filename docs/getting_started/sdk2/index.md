@@ -70,10 +70,12 @@ In 'src/app/app.component.ts':
 
 ```
 
-## Sign-in / Sign-up
+## Auth
+
+### Sign-in
 
 Sign-in with username and password in order to get access_token to be used in all other calls. If you don't have users
- you can use anonymous access. Use this code for signin:
+ you should use anonymous token only. Use this code for signin:
 
 ```
     var $obs = this.backandService.signin(username, password);
@@ -86,6 +88,8 @@ Sign-in with username and password in order to get access_token to be used in al
             },
             () => console.log('Finish Auth'));
 ```
+
+### Sign-up
 
 In sign-up you must provide the basic details of username email, first name, last name and password:
 
@@ -101,6 +105,7 @@ In sign-up you must provide the basic details of username email, first name, las
             () => console.log('Finish Auth'));
 
 ```
+### Sign-out
 
 Sign-out will clear the local storage and will invalidated the access_token:
 
@@ -109,7 +114,26 @@ Sign-out will clear the local storage and will invalidated the access_token:
 
 ```
 
-## Social Sign-in / Sign-up
+### Change Password
+
+Use this code for change password of users:
+
+```
+    var $obs = this.backandService.changePassword(oldPassword, newPassword);
+        $obs.subscribe(
+            data => {
+                console.log('Password changed);
+            },
+            err => {
+                this.backandService.logError(err)
+            },
+            () => console.log('Finish change password'));
+
+```
+
+## Social Auth
+
+### Sign-in / Sign-up
 
 For social, just call sign-in and by default the user will be signed up if needed. The app opens a dialog supplied by
 the social network.
