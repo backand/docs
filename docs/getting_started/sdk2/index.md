@@ -70,83 +70,43 @@ In 'src/app/app.component.ts':
 
 ```
 
-## CRUD
+## Sign-in / Sign-up
 
-To fetch, create, and filter rows, from an object, say 'items', the CRUD functions in BackandService, should receive 'items' as their first argument:
-
-* Read one row
-
-```
-    this.backandService.getOne('items')
-        .subscribe(
-                data => {
-                },
-                err => this.backandService.logError(err),
-                () => console.log('OK')
-            );
-```
-
-* Create
+Sign-in with username and password in order to get access_token to be used in all other calls. If you don't have users
+ you can use anonymous access. Use this code for signin:
 
 ```
-    //data - input JSON with all fields need for create
-    this.backandService.create('items', data)
-        .subscribe(
-                data => {
-                },
-                err => this.backandService.logError(err),
-                () => console.log('OK')
-            );
+    var $obs = this.backandService.signin(username, password);
+        $obs.subscribe(
+            data => {
+                console.log('Sign in succeeded with user:' + username);
+            },
+            err => {
+                this.backandService.logError(err)
+            },
+            () => console.log('Finish Auth'));
 ```
 
-* Update
-```
-    //data - input JSON with all fields need to be updated
-    this.backandService.update('items', id, data)
-        .subscribe(
-                data => {
-                },
-                err => this.backandService.logError(err),
-                () => console.log('OK')
-            );
-```
-
-* Query
-
-When 'q' is set to your search pattern, define a filter:
+In sign-up you must provide the basic details of username email, first name, last name and password:
 
 ```
-    let filter = [{
-                fieldName: "name",
-                operator: "contains",
-                value: q
-              }];
-```
-
-Or use NoSQL syntax:
-
-```
-    let filter = {
-        "q":{
-            "name" : {
-                "$like" :  q
-            }
-        }
-    }
+    var $obs = this.backandService.signup(email, signUpPassword, confirmPassword, firstName, lastName);
+        $obs.subscribe(
+            data => {
+                console.log('Sign up succeeded with user email:' + email);
+            },
+            err => {
+                this.backandService.logError(err)
+            },
+            () => console.log('Finish Auth'));
 
 ```
 
-and call 'filterItem'
+Sign-out will clear the local storage and will invalidated the access_token:
 
 ```
-    this.backandService.getList('items', null, null, filter)
-            .subscribe(
-                data => {
-                    this.items = data;
-                },
-                err => this.backandService.logError(err),
-                () => console.log('OK')
-            );
+    this.backandService.signout();
+
 ```
 
 ## Social Sign-in / Sign-up
@@ -167,6 +127,92 @@ the social network.
       () => console.log('Finish Auth'));
 ```
 
+## CRUD
+
+To fetch, create, and filter rows, from an object, say 'items', the CRUD functions in BackandService, should receive 'items' as their first argument:
+
+* Read one row
+
+```
+
+    this.backandService.getOne('items')
+        .subscribe(
+                data => {
+                },
+                err => this.backandService.logError(err),
+                () => console.log('OK')
+            );
+```
+
+* Create
+
+```
+
+    //data - input JSON with all fields need for create
+    this.backandService.create('items', data)
+        .subscribe(
+                data => {
+                },
+                err => this.backandService.logError(err),
+                () => console.log('OK')
+            );
+```
+
+* Update
+
+```
+
+    //data - input JSON with all fields need to be updated
+    this.backandService.update('items', id, data)
+        .subscribe(
+                data => {
+                },
+                err => this.backandService.logError(err),
+                () => console.log('OK')
+            );
+```
+
+* Query
+
+When 'q' is set to your search pattern, define a filter:
+
+```
+
+    let filter = [{
+                fieldName: "name",
+                operator: "contains",
+                value: q
+              }];
+```
+
+Or use NoSQL syntax:
+
+```
+
+    let filter = {
+        "q":{
+            "name" : {
+                "$like" :  q
+            }
+        }
+    }
+
+```
+
+and call 'filterItem'
+
+```
+
+    this.backandService.getList('items', null, null, filter)
+            .subscribe(
+                data => {
+                    this.items = data;
+                },
+                err => this.backandService.logError(err),
+                () => console.log('OK')
+            );
+```
+
 * 'provider': facebook, twitter, google, github
 * 'spec': optionally defines the look of the social network sign in window, like: left=1, top=1, width=600, height=600
 
@@ -174,20 +220,20 @@ the social network.
 
 * Socket login and logout are done automatically as part of the login and logout calls, respectively.
 
-* To subscribe to event 'items_updated' from server side via sockets, call 'this.backandService.subscribeSocket' and in your controller, subscribe with:
+* To subscribe to event 'items_updated' from server side via sockets, call 'this.backandService.on' and in your controller, subscribe with:
 
 ```
 
-    this.backandService.subscribeSocket('items_updated')
+    this.backandService.on('items_updated')
       .subscribe(
             data => {
-
+                console.log("items_updated", data);
             },
             err => {
                 console.log(err);
             },
             () => console.log('received update from socket')
-      );
+        );
 
 ```
 
