@@ -74,44 +74,101 @@ In 'src/app/app.component.ts':
 
 To fetch, create, and filter rows, from an object, say 'items', the CRUD functions in BackandService, should receive 'items' as their first argument:
 
-```
-
-  //1. Read
-  this.backandService.getItems('items')
-      .subscribe(
-          data => {
-          },
-          err => this.backandService.logError(err),
-          () => console.log('OK')
-      );
-
-  //2. Create
-  this.backandService.postItem('items', this.name, this.description)
-      .subscribe(
-          data => {
-          },
-          err => this.backandService.logError(err),
-          () => console.log('OK')
-      );
-
-  //3. Query
-
-  //When `q` is set to your search pattern,
-  this.backandService.filterItems('items', q)
-      .subscribe(
-          data => {
-              console.log('subscribe', data);
-              this.items = data;
-          },
-          err => this.backandService.logError(err),
-          () => console.log('OK')
-      );
+* Read one row
 
 ```
+    this.backandService.getOne('items')
+        .subscribe(
+                data => {
+                },
+                err => this.backandService.logError(err),
+                () => console.log('OK')
+            );
+```
 
-## Social Sign-up
+* Create
 
-The app opens a dialog supplied by the social network.
+```
+    //data - input JSON with all fields need for create
+    this.backandService.create('items', data)
+        .subscribe(
+                data => {
+                },
+                err => this.backandService.logError(err),
+                () => console.log('OK')
+            );
+```
+
+* Update
+```
+    //data - input JSON with all fields need to be updated
+    this.backandService.update('items', id, data)
+        .subscribe(
+                data => {
+                },
+                err => this.backandService.logError(err),
+                () => console.log('OK')
+            );
+```
+
+* Query
+
+When 'q' is set to your search pattern, define a filter:
+
+```
+    let filter = [{
+                fieldName: "name",
+                operator: "contains",
+                value: q
+              }];
+```
+
+Or use NoSQL syntax:
+
+```
+    let filter = {
+        "q":{
+            "name" : {
+                "$like" :  q
+            }
+        }
+    }
+
+```
+
+and call 'filterItem'
+
+```
+    this.backandService.getList('items', null, null, filter)
+            .subscribe(
+                data => {
+                    this.items = data;
+                },
+                err => this.backandService.logError(err),
+                () => console.log('OK')
+            );
+```
+
+## Social Sign-in / Sign-up
+
+For social, just call sign-in and by default the user will be signed up if needed. The app opens a dialog supplied by
+the social network.
+
+```
+
+    var $obs = this.backandService.socialSignin(provider, spec);
+    $obs.subscribe(
+      data => {
+          console.log('Sign up succeeded with:' + provider);
+      },
+      err => {
+          this.backandService.logError(err)
+      },
+      () => console.log('Finish Auth'));
+```
+
+* 'provider': facebook, twitter, google, github
+* 'spec': optionally defines the look of the social network sign in window, like: left=1, top=1, width=600, height=600
 
 ## Socket Service
 
@@ -162,7 +219,7 @@ Create a server side action in Backand by going into the 'items' object actions 
 
 ```
 
-    backand.upload('items', 'files', fileName, base64Data).subscribe(
+    backand.uploadFile('items', 'files', fileName, base64Data).subscribe(
         data => {
             console.log(data);
             //data.url is the url of the uploaded file
@@ -177,7 +234,7 @@ Create a server side action in Backand by going into the 'items' object actions 
 
 ```
 
-    backand.delete('items', 'files', fileName).subscribe(
+    backand.deleteFile('items', 'files', fileName).subscribe(
         data => {
         },
         err => backand.logError(err),
