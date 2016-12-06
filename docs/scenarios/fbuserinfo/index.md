@@ -3,7 +3,7 @@
 To retrieve data from Facebook using the Graph API, get the Facebook user ID after the user signed up to your Backand app.
 Once you have the Facebook user ID, use the Facebook graph API to retrieve data or perform other actions.
 
-To get the Facebook user ID (FBId) to Backand, follow these steps:
+To get the Facebook user ID (FUID) to Backand, follow these steps:
 
 1. Open Security & Auth >> Security actions menu and Edit **"beforeSocialSignup"** action
 1. Change the **Where Condition** to true (bottom of the page)
@@ -16,7 +16,7 @@ Next you need to add the fuid field in the users object:
 1. Add new Field in the users object named **fuid**
 1. Click **Validate & Update** and **Ok** in the dialog
 
-Now, when a user signs up to your app using Facebook as a social login provider, you will see the users's FBID in the **users** object.
+Now, when a user signs up to your app using Facebook as a social login provider, you will see the users's FUID in the **users** object.
 
 ### Getting Facebook data in Backand code
 
@@ -45,7 +45,7 @@ Once you have the Facebook user ID, use the Graph API to access any available Fa
 
 ### Getting a Facebook profile image
 
-1. To get the Facebook profile image you just need to point to the following URL with a correct fbId:
+1. To get the Facebook profile image you just need to point to the following URL with a correct FUID:
 
 <a href="#">http://graph.facebook.com/{fuid}/picture</a>
 
