@@ -1,9 +1,9 @@
 ## Retrieving data from Facebook
 
-In order to retrieve data from FB you would need to get the Facebook user id after the user sign-up your Backand app.
- After having the Facebook user id you should use Facebook graph API to retrieve the data or perform any other action.
+To retrieve data from Facebook using the Graph API, get the Facebook user ID after the user signed up to your Backand app.
+Once you have the Facebook user ID, use the Facebook graph API to retrieve data or perform other actions.
 
-In order to get the Facebook user id (FBId) to Backand, follow these steps:
+To get the Facebook user ID (FBId) to Backand, follow these steps:
 
 1. Open Security & Auth >> Security actions menu and Edit **"beforeSocialSignup"** action
 1. Change the **Where Condition** to true (bottom of the page)
@@ -16,11 +16,11 @@ Next you need to add the fuid field in the users object:
 1. Add new Field in the users object named **fuid**
 1. Click **Validate & Update** and **Ok** in the dialog
 
-Now, when a user sign-up to your app using Facebook social provider, you will see the users's fbid in the **users** object.
+Now, when a user signs up to your app using Facebook as a social login provider, you will see the users's FBID in the **users** object.
 
-### Get Facebook data in Backand code
+### Getting Facebook data in Backand code
 
-After you have the facebook user id, you should use Graph api to get any data that is available.
+Once you have the Facebook user ID, use the Graph API to access any available Facebook data.
 
 1. <a href="https://developers.facebook.com/docs/graph-api" target="_blank">The FB Graph API docs</a>
 1. You also would need access token of your app, use this <a href="https://developers.facebook.com/tools/accesstoken/" target="_blank">FB tool</a> to get it.
@@ -43,9 +43,9 @@ After you have the facebook user id, you should use Graph api to get any data th
     console.log(response);
 ```
 
-### Get Facebook profile image
+### Getting a Facebook profile image
 
-1. In order to get the FB profile image you just need to point to the following URL with a correct fbId:
+1. To get the Facebook profile image you just need to point to the following URL with a correct fbId:
 
 <a href="#">http://graph.facebook.com/{fuid}/picture</a>
 
@@ -54,4 +54,4 @@ or
 <a href="http://graph.facebook.com/10209560720107355/picture?type=large" target="_blank">http://graph.facebook
 .com/10209560720107355/picture?type=large</a>
 
-1. You can also review FB <a href="https://developers.facebook.com/docs/graph-api/reference/user/picture/" target="_blank">docs</a> on how to use Graph API.
+1. You can also review Facebook's <a href="https://developers.facebook.com/docs/graph-api/reference/user/picture/" target="_blank">docs</a> on how to use the Graph API.
