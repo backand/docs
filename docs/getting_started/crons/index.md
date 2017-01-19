@@ -19,17 +19,17 @@ You can update existing job by selecting the background job from the navigation 
 You can test both new and existing jobs using the Test buttons on the right hand side of the page. These buttons execute the job on Backand's servers, displaying the request sent and the response received. In addition to simple verification, testing can be used to verify that advanced parameters function properly, and that the job responds as expected.
 
 ## Run background job using REST API
- Background Jobs are useful for long running tasks, such as integrating with external sites where the response time could be slow, or sending out batched push notifications. If you commonly encounter timeout errors running on-demand actions, you should consider using a background job.
- 
- All messages and errors are logged into the console messages available under Log --> Console menu.
+Background Jobs are useful for long running tasks such as integrating with external sites (where the response time could be slow), or sending out batched push notifications. If you commonly encounter timeout errors while running on-demand actions, then you should consider using a Background Job.
 
- Use this REST API to call the job:
+All messages and errors are logged into the console. These messages are available in the dashboard under Log --> Console.
+
+You can use this REST API endpoint to call a job by its ID:
 
  ```
  https://api.backand.com/1/jobs/run/{id}
  ```
 
- Use this code to call the job from an action:
+You can also use this JavaScript code to call a job from an action:
 
  ```javascript
     var response = $http({
@@ -39,8 +39,9 @@ You can test both new and existing jobs using the Test buttons on the right hand
  ```
 
 ## Test background job
-To test the job and get immediate results or error messages, use the following code (this code runs in sync
-mode and may take a long time to finish):
+In order to test the job and get a response immediately (either valid results or an error message), use the following REST endpoint. 
+
+*Note: (this call runs synchronously, so it may take a long time to finish)*
 
 ```
 https://api.backand.com/1/jobs/run/{id}/test
