@@ -95,8 +95,13 @@ In order to add Facebook login integration, follow these steps:
     1. In the sidebar on the left, select **Settings**
     1. In Basic tab add your **Contact Email**
     1. Click on the **Advanced** Tab
+    1. Click on + Add Product under Products
+    1. Click Get Started in the **Facebook Login** product
+    1. Skip the quick start and click on Settings
     1. In **Valid OAuth redirect URIs** enter: 'https://api.backand.com/1/user/facebook/auth'
     1. Click **Save Changes**
+    1. To start using your app, you need to make it public, open App Preview from the left menu and change **Make
+    {{appName}} public?** to **yes**
     1. In the sidebar on the left, select **Dashboard**    
     1. Record the **App ID**
     1. Click **Show** (near **App Secret**) and enter your Facebook password.
@@ -113,13 +118,58 @@ In order to add Twitter login integration, follow these steps:
 1. Open the <a href="https://apps.twitter.com/" target="_blank">Twitter Apps console</a>.
 1. Click **Create New App** button
     1. Enter the App details - Name, Description, Website
-    1. In the Callback URL enter: `https://api.backand.com/1/user/twitter/auth`
+    1. In the Callback URL enter: **https://api.backand.com/1/user/twitter/auth**
     1. Check **Yes, I agree**  in the developer agreement
     1. Click **Create your Twitter application** button
     1. In the **Detail** tab of your newly created app scroll down to the Application Setting area and click the **manage keys and access tokens** link
     1. Record the **Consumer Key (API Key)** and the **Consumer Secret (API Secret)**
 1. In the Backand dashboard, copy the Consumer Key and API Secret you recorded into the appropriate fields in the Twitter integration section.
 
+#### Local ADFS App Configuration
+
+In order to add ADFS login integration, follow these steps:
+
+1. Open windows command shell on the ADFS server with Admin permissions
+2. Run Add-AdfsRelyingPartyTrust command with the following parameters (you may change the defaults as needed):
+
+```bash
+Add-AdfsRelyingPartyTrust -Name "Backand QA" -Identifier "https://api.backand.com" -TokenLifetime 10 -IssueOAuthRefreshTokensTo AllDevices -EnableJWT $True -IssuanceTransformRules '@RuleTemplate = "PassThroughClaims" @RuleName = "Windows account name" c:[Type=="http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccountname"] => issue(claim = c); @RuleTemplate = "PassThroughClaims" @RuleName = "UPN" c:[Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn"] => issue(claim = c);' -IssuanceAuthorizationRules '=> issue(Type = "http://schemas.microsoft.com/authorization/claims/permit", Value = "true");'
+```
+
+3. Run Add-ADFSClient to add Backand as a client application to your ADFS:
+
+```bash
+Add-ADFSClient -Name "Backand" -ClientId "188c552d-bf43-409b-9355-a0fb0eb227e3" -RedirectUri "https://api.backand.com/1/user/adfs/auth"
+```
+
+  Update the ClientId with any GUID value (Get <a href="https://www.guidgenerator.com/">new GUID</a>)
+
+4. Run this command to configure persistent Single Sign-On and show the "keep me signed in" checkbox:
+
+```bash
+Set-AdfsProperties -EnableKmsi $True –KmsiLifetimeMins 43,200
+```
+
+  43,200 are numbers of minutes in 30 days - you may change it to meet your organization requirements
+
+5. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Client Id and Redirect Uri you entered in the Add-ADFSClient command.
+
+#### Azure AD App Configuration
+
+In order to add Azure AD application integration, follow these steps:
+
+1. Open the <a href="https://portal.azure.com/" target="_blank">Azure new portal</a>.
+1. Select **Azure Active Directory**
+1. Select **App Registrations**
+1. Click **+Add** and use these parameters:
+    1. Name: **Backand**
+    1. Application Type: **Native**
+    1. Redirect URI: **https://api.backand.com/1/user/azuread/auth**
+1. Click **Create**
+1. Click on the Backand App and copy the Application Id / Client Id (e.g. 7c799275-1102-4aa6-b36a-fac7aa7fee60)
+1. Click on “Endpoints” menu and copy “OAUTH 2.0 AUTHORIZATION ENDPOINT”. In backand just use up to /oauth2 in the OAUTH 2.0 Endpoint filed(e.g. "https://login.windows.net/a652911c-7a2c-4a9c-d1b2-d149256f461b/oauth2")
+
+1. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Application Id into the Client Id field and OAUTH 2.0 Endpoint you copied down in the last step.
 
 ## Security Templates
 
