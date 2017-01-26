@@ -2,9 +2,11 @@ This section covers [Backand's Angular 2.x SDK 2.3.x](https://github.com/backand
 
 ### Getting Started
 
-The Backand Angular 2 SDK compatible with AngularJS 2.0.x and provides methods for easily communicating with the Backand server and performing common tasks, such as managing users. To use the SDK, follow these steps:
+Backand's Angular 2 SDK is compatible with AngularJS 2.0.x, and provides methods for easily communicating with Backand's servers, working with objects in a Backand application, and handling users of your  Backand app. To start using the SDK, follow these steps:
 
-## install
+## Installation
+
+First, install the SDK using NPM:
 
 ```
 
@@ -14,6 +16,8 @@ The Backand Angular 2 SDK compatible with AngularJS 2.0.x and provides methods f
 
 ## Dependencies
 
+Once the SDK is installed, install the dependencies for the SDK:
+
 ```
 
     npm install @types/node --save-dev
@@ -21,17 +25,9 @@ The Backand Angular 2 SDK compatible with AngularJS 2.0.x and provides methods f
 
 ```
 
-## Import
+## Adding Backand to your App
 
-In 'src/app/app.module.ts':
-
-```
-
-    import { BackandService } from 'angular2bknd-sdk';
-
-```
-
-Add 'BackandService' to the 'providers' array. In each component where you use Backand, import it:
+Now that the SDK is installed, it needs to be included in your project. Add the following line to 'src/app/app.module.ts' to provide access to the SDK. You will also need to do this in every component that requires Backand:
 
 ```
 
@@ -39,7 +35,7 @@ Add 'BackandService' to the 'providers' array. In each component where you use B
 
 ```
 
-In the constructor use it as 'this.backandService':
+Once you've included the BackandService object, add it to the `providers` array. Then, you are ready to start working with the SDK. Add a parameter to the constructor to define the service and provide access:
 
 ```
 
@@ -47,10 +43,11 @@ In the constructor use it as 'this.backandService':
 
 ```
 
+Now you can refer to the service via the `this` keyword, as `this.backandService`.
 
-## Set Your App Details
+## Configuring Your App's Details
 
-In 'src/app/app.component.ts':
+Now, configure the SDK to connect to your Backand application. This configuration is done using three methods: `setAppName`, `setSignUpToken`, and `setAnonymousToken`. To do this, add the following to your 'src/app/app.component.ts' file:
 
 ```
 
@@ -60,9 +57,9 @@ In 'src/app/app.component.ts':
 
 ```
 
-## Mobile
+## Configuring Mobile Apps
 
-In 'src/app/app.component.ts':
+In order to use the SDK with a mobile app, you need to set a flag in the `backandService` object using the `setIsMobile` function. To do this, add the following line to your 'src/app/app.component.ts' file:
 
 ```
 
@@ -70,12 +67,19 @@ In 'src/app/app.component.ts':
 
 ```
 
-## Auth
+## Authentication
 
-### Sign-in
+Backand has methods to support all of the ways a user might choose to authenticate with your app. The SDK puts all of these behind easy-to-use functions. Below, we'll explore each of the authentication and registration methods available.
 
-Sign-in with username and password in order to get access_token to be used in all other calls. If you don't have users
- you should use anonymous token only. Use this code for signin:
+_Note: If your app operates without users, this section does not apply - you only need to configure your app's `anonymousToken` value in order to authenticate with your back-end application._
+
+### signin
+
+#### Description
+Use the `signin` function to authenticate your users when they opt to sign in to your app. This call returns an access token that is used in the SDK to authenticate within the context of the signed-in user. This token is stored in the API, and is not something you will need to work with directly.
+
+#### Usage
+Add the `signin` function to your app using the following code:
 
 ```
 
@@ -90,12 +94,24 @@ Sign-in with username and password in order to get access_token to be used in al
             () => console.log('Finish Auth'));
 ```
 
-### Sign-up
+#### Parameters
 
-In sign-up you must provide the basic details of username email, first name, last name and password:
+* username - the username to authenticate
+* password - the user's password
+
+### signup
+
+#### Description
+
+The `signup` method adds a new user to your application. This user is a standard app user, and will be available in Backand's users table. If you have a custom `Users` object, Backand will also attempt to add a new record to this object as well.
+
+_Note: if your app's `Users` object has additional fields that are marked as 'required', or custom actions whose failure prevents records from being created, the automated user insertion process may not complete successfully._
+
+#### Usage
+
+To use the `signup` method, copy the following code into your app:
 
 ```
-
     var $obs = this.backandService.signup(email, signUpPassword, confirmPassword, firstName, lastName);
         $obs.subscribe(
             data => {
@@ -107,9 +123,25 @@ In sign-up you must provide the basic details of username email, first name, las
             () => console.log('Finish Auth'));
 
 ```
-### Sign-out
+#### Parameters
 
-Sign-out will clear the local storage and will invalidated the access_token:
+* email - the new user's email
+* signUpPassword - the user's desired password
+* confirmPassword - the user's password confirmation (should match `signUpPassword` exactly)
+* firstName - the user's first name
+* lastName - the user's last name
+
+### signout
+
+#### Description
+
+The `signout` method clears the locally-stored access token obtained from the `signin` method, signing your user out of your application.
+
+_Note: After `signout` is called, you will need to re-authenticate your user, or restrict the user to only functionality available for use with the anonymous access token for your application_
+
+#### Usage
+
+To sign a user out of your app, copy the following code into the appropriate location:
 
 ```
 
@@ -117,9 +149,21 @@ Sign-out will clear the local storage and will invalidated the access_token:
 
 ```
 
-### Change Password
+#### Parameters
 
-Use this code for change password of users:
+None
+
+### changePassword
+
+#### Description
+
+The `changePassword` function changes a user's  password in your Backand application.
+
+_Note: A best practice for user password modification is to prompt them to confirm their password in a separate field on your change password form. It is highly recommended that you follow this pattern, and prevent the changePassword function from being called if the new password and its confirmation entry do not match. This code does not account for this functionality_
+
+#### Usage
+
+To use the `changePassword` function, copy the following code into the appropriate location in your app:
 
 ```
 
@@ -135,12 +179,24 @@ Use this code for change password of users:
 
 ```
 
-## Social Auth
+#### Parameters
 
-### Sign-in / Sign-up
+* oldPassword - the user's old password
+* newPassword - the user's desired new password
 
-For social, just call sign-in and by default the user will be signed up if needed. The app opens a dialog supplied by
-the social network.
+## Social Media Authentication
+
+In addition to basic user authentication, Backand also provides you with the option to allow your users to authenticate with a social media account. To add this functionality to your Backand application, use the methods below.
+
+### socialSignin (also for signing up)
+
+#### Description
+
+The `socialSignin` function redirects your user to a social media provider in order to authenticate. This call can also be used to let the user register a new account with a social media provider - if the user needs to sign up before signing in, that will be handled on the provider's website.
+
+#### Usage
+
+To use `socialSignin`, add the following code to the appropriate location in your app:
 
 ```
 
@@ -155,6 +211,11 @@ the social network.
       () => console.log('Finish Auth'));
 
 ```
+
+#### Parameters
+
+* provider - the string name of the social media provider to authenticate with
+* spec - ????
 
 ## CRUD
 
