@@ -217,7 +217,7 @@ To use `socialSignin`, add the following code to the appropriate location in you
 * provider - the string name of the social media provider to authenticate with
 * spec - ????
 
-## CRUD
+## CRUD - START HERE NEXT
 
 To fetch, create, and filter rows, from an object, say 'items', the CRUD functions in BackandService, should receive 'items' as their first argument:
 
