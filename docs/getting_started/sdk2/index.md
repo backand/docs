@@ -10,7 +10,7 @@ First, install the SDK using NPM:
 
 ```
 
-    npm install angular2bknd-sdk --save
+npm install angular2bknd-sdk --save
 
 ```
 
@@ -20,8 +20,8 @@ Once the SDK is installed, install the dependencies for the SDK:
 
 ```
 
-    npm install @types/node --save-dev
-    npm install @types/socket.io-client --save-dev
+npm install @types/node --save-dev
+npm install @types/socket.io-client --save-dev
 
 ```
 
@@ -31,7 +31,7 @@ Now that the SDK is installed, it needs to be included in your project. Add the 
 
 ```
 
-    import { BackandService } from 'angular2bknd-sdk';
+import { BackandService } from 'angular2bknd-sdk';
 
 ```
 
@@ -39,7 +39,7 @@ Once you've included the BackandService object, add it to the `providers` array.
 
 ```
 
-    constructor(private backandService:BackandService){}
+constructor(private backandService:BackandService){}
 
 ```
 
@@ -51,9 +51,9 @@ Now, configure the SDK to connect to your Backand application. This configuratio
 
 ```
 
-    this.backandService.setAppName('your app name');
-    this.backandService.setSignUpToken('your backand signup token');
-    this.backandService.setAnonymousToken('your backand anonymous token');
+this.backandService.setAppName('your app name');
+this.backandService.setSignUpToken('your backand signup token');
+this.backandService.setAnonymousToken('your backand anonymous token');
 
 ```
 
@@ -63,7 +63,7 @@ In order to use the SDK with a mobile app, you need to set a flag in the `backan
 
 ```
 
-    this.backandService.setIsMobile(true);
+this.backandService.setIsMobile(true);
 
 ```
 
@@ -83,15 +83,19 @@ Add the `signin` function to your app using the following code:
 
 ```
 
-    var $obs = this.backandService.signin(username, password);
-        $obs.subscribe(
-            data => {
-                console.log('Sign in succeeded with user:' + username);
-            },
-            err => {
-                this.backandService.logError(err)
-            },
-            () => console.log('Finish Auth'));
+// Obtain the authentication object
+var $obs = this.backandService.signin(username, password);
+
+// Subscribe to the result
+$obs.subscribe(
+    data => {
+        console.log('Sign in succeeded with user:' + username);
+    },
+    err => {
+        this.backandService.logError(err)
+    },
+    () => console.log('Finish Auth'));
+
 ```
 
 #### Parameters
@@ -112,15 +116,16 @@ _Note: if your app's `Users` object has additional fields that are marked as 're
 To use the `signup` method, copy the following code into your app:
 
 ```
-    var $obs = this.backandService.signup(email, signUpPassword, confirmPassword, firstName, lastName);
-        $obs.subscribe(
-            data => {
-                console.log('Sign up succeeded with user email:' + email);
-            },
-            err => {
-                this.backandService.logError(err)
-            },
-            () => console.log('Finish Auth'));
+
+var $obs = this.backandService.signup(email, signUpPassword, confirmPassword, firstName, lastName);
+$obs.subscribe(
+    data => {
+        console.log('Sign up succeeded with user email:' + email);
+    },
+    err => {
+        this.backandService.logError(err)
+    },
+    () => console.log('Finish Auth'));
 
 ```
 #### Parameters
@@ -145,7 +150,7 @@ To sign a user out of your app, copy the following code into the appropriate loc
 
 ```
 
-    this.backandService.signout();
+this.backandService.signout();
 
 ```
 
@@ -167,15 +172,15 @@ To use the `changePassword` function, copy the following code into the appropria
 
 ```
 
-    var $obs = this.backandService.changePassword(oldPassword, newPassword);
-        $obs.subscribe(
-            data => {
-                console.log('Password changed);
-            },
-            err => {
-                this.backandService.logError(err)
-            },
-            () => console.log('Finish change password'));
+var $obs = this.backandService.changePassword(oldPassword, newPassword);
+$obs.subscribe(
+    data => {
+        console.log('Password changed);
+    },
+    err => {
+        this.backandService.logError(err)
+    },
+    () => console.log('Finish change password'));
 
 ```
 
@@ -188,7 +193,7 @@ To use the `changePassword` function, copy the following code into the appropria
 
 In addition to basic user authentication, Backand also provides you with the option to allow your users to authenticate with a social media account. To add this functionality to your Backand application, use the methods below.
 
-### socialSignin (also for signing up)
+### socialSignin (also for sign-up)
 
 #### Description
 
@@ -200,24 +205,83 @@ To use `socialSignin`, add the following code to the appropriate location in you
 
 ```
 
-    var $obs = this.backandService.socialSignin(provider, spec);
-    $obs.subscribe(
-      data => {
-          console.log('Sign up succeeded with:' + provider);
-      },
-      err => {
-          this.backandService.logError(err)
-      },
-      () => console.log('Finish Auth'));
+var $obs = this.backandService.socialSignin(provider, spec);
+$obs.subscribe(
+  data => {
+      console.log('Sign up succeeded with:' + provider);
+  },
+  err => {
+      this.backandService.logError(err)
+  },
+  () => console.log('Finish Auth'));
 
 ```
 
 #### Parameters
 
 * provider - the string name of the social media provider to authenticate with
-* spec - ????
 
-## CRUD - START HERE NEXT
+## Create, Read, Update, Delete (CRUD)
+
+Backand offers several functions that provide all of the necessary functionality for database CRUD interactions.
+
+### getOne
+
+#### Description
+
+The getOne function returns a single record from an object table in your Back& application.
+
+#### Usage
+
+```
+backand.object.getOne(object, id, params)
+  .then(res => {
+    console.log(res.data);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+```
+
+#### Parameters
+
+* object - the string name of the object to work with
+* id - the ID of the object to fetch
+* params - the params hash. For `getOne`, the only allowed parameters are `deep`, `exclude`, and `level`
+
+### getList
+
+#### Description
+
+#### Usage
+
+#### Parameters
+
+#### Query Filters
+
+### create
+
+#### Description
+
+#### Usage
+
+#### Parameters
+
+### update
+
+#### Description
+
+#### Usage
+
+#### Parameters
+
+### remove
+
+#### Description
+
+#### Usage
+
+#### Parameters
 
 To fetch, create, and filter rows, from an object, say 'items', the CRUD functions in BackandService, should receive 'items' as their first argument:
 
@@ -225,13 +289,13 @@ To fetch, create, and filter rows, from an object, say 'items', the CRUD functio
 
 ```
 
-    this.backandService.getOne('items')
-        .subscribe(
-                data => {
-                },
-                err => this.backandService.logError(err),
-                () => console.log('OK')
-            );
+this.backandService.getOne('items')
+  .subscribe(
+          data => {
+          },
+          err => this.backandService.logError(err),
+          () => console.log('OK')
+      );
 
 ```
 
