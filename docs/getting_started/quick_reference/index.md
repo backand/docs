@@ -1,8 +1,8 @@
 Here are a few basic URL guidelines for quickly accessing your application's data:
 
-## API Endpoint
+## API Endpoints
 
-All API URLs start with the following base part: **https://api.backand.com/1**. 
+All API URLs start with the following base part: **https://api.backand.com/1**.
 For example, the /user/signup API call is reachable at **https://api.backand.com/1/user/signup**
 
 ## Security & Authentication
@@ -15,23 +15,25 @@ For example, the /user/signup API call is reachable at **https://api.backand.com
 | /user/changePassword | POST | Changes the user's password |
 
 ## Manipulating objects
-| URL | HTTP Verb | Functionality |
-| ----- | ----------- | --------------- |
-| /objects/{object name} | GET | Gets a list of all objects of type {object name} |
-| /objects/{object name} | POST | Creates an object of type {object name} |
-| /objects/{object name}/{id} | GET | Gets an object of type {object name} with ID {id} |
-| /objects/{object name}/{id} | PUT | Updates an object of type {object name} with ID {id} |
-| /objects/{object name}/{id} | DELETE | Deletes an object of type {object name} with ID {id} |
+| Function | Arguments | Usage |
+| -------- | --------- | ----- |
+| getList | object_name, params | Gets a list of all objects of type {object_name} |
+| getOne | object_name, id, params | Gets an object of type {object name} with ID {id} |
+| create | object_name, data, params |  Creates an object of type {object name} with {data} |
+| update | object_name, id, data, params | Updates an object of type {object_name} with ID {id} to match {data} |
+| remove | object_name, id, params | Deletes an object of type {object name} with ID {id} |
 
 ## Custom Object Actions
-| URL | HTTP Verb | Functionality |
-| ----- | ----------- | --------------- |
-| /objects/action/{object name}/{id}?actionName={action name} | GET | Executes custom action {action name} on object {object name} with an id of {id} |
+| Function | Arguments | Usage |
+| -------- | --------- | ----- |
+| get | object, action, params | executes custom action {action} on object {object} via HTTP GET |
+| post | object, action, data, params | executes custom action {action} on object {object} via HTTP POST with data {data} |
 
 ## Queries
-| URL | HTTP Verb | Functionality |
-| ----- | ----------- | --------------- |
-| /query/data/{query name} | GET | Executes custom query {query name} |
+| Function | Arguments | Usage |
+| -------- | --------- | ----- |
+| get | name, params | executes custom query {name} on object {object} via HTTP GET |
+| post | name, data, params | executes custom query {name} on object {object} via HTTP POST with data {data} |
 
 ## Backand SDK
 

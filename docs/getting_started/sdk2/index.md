@@ -253,11 +253,58 @@ backand.object.getOne(object, id, params)
 
 #### Description
 
+`getList` returns a list of objects from the server, based on the default filters specified on the object and the query parameter provided.
+
 #### Usage
+
+```
+backand.object.getList(object, params)
+  .then(res => {
+    console.log(res.data);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+```
 
 #### Parameters
 
-#### Query Filters
+* object - the string name of the object to work with
+* params - the params hash. There are several different parameters you can use to filter and adjust the result list. The possible parameters are `pageSize`, `pageNumber`, `filter`, `sort`, `search`, `exclude`, `deep`, and `relatedObjects`. For information on each parameter, see the related section below
+
+##### pageSize
+
+`pageSize` is the maximum number of rows to fetch. This overrides the default object setting, and returns at most `pageSize` records
+
+##### pageNumber
+`pageNumber` is the page number to fetch. The number of pages is equal to the size of the table divided by `pageSize`. `pageSize` uses 1-based indexing (as in, the first page is page "1", as opposed to page "0")
+
+##### filter
+
+`filter` d
+
+##### sort
+
+`sort` tells Back& which fields to sort the table by, and which direction to sort for each related field. It is an array of `fieldName` and `order` pairs, resembling the following:
+
+```
+[
+  {
+    'fieldName': 'field_1',
+    'order': 'asc'
+  },
+  {
+    'fieldName': 'field_2',
+    'order': 'desc'
+  },
+  // and so on
+]
+```
+
+##### search
+##### exclude
+##### deep
+##### relatedObjects
 
 ### create
 
