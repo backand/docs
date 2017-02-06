@@ -1,20 +1,31 @@
-Here are a few basic URL guidelines for quickly accessing your application's data:
+Here are a few basic usage guidelines for quickly accessing your application's data:
 
 ## API Endpoints
 
-All API URLs start with the following base part: **https://api.backand.com/1**.
-For example, the /user/signup API call is reachable at **https://api.backand.com/1/user/signup**
+All API methods are accessible through our SDK, available on our github [here](https://github.com/backand/vanilla-sdk).
 
-## Security & Authentication
-| URL | HTTP Verb | Functionality |
-| ----- | ----------- | --------------- |
-| /token | POST | Obtains an access token (24-hour by default). A Backand username and password must be provided, along with the app the user is signing in to. Note that the app parameter is optional if you have already set the app name in the setAppName configuration property |
-| /user/signup | POST | Registers a new user with the application. Must use a SignUpToken, which is configured for the application |
-| /user/requestResetPassword | POST | Sends an email to the provided username with a single-use token that can be used to reset the user's password |
-| /user/resetPassword | POST | Resets the user's password after verification using a one-time  access token |
-| /user/changePassword | POST | Changes the user's password |
+## Native calls
+- Property: none
+- Sample call: `backand.signin(username, password)`
+
+| Function | Arguments | Usage |
+| -------- | --------- | ----- |
+| `useAnonymousAuth` | boolean | Indicates whether or not to use anonymous authentication |
+| `signin` | username, password | signs a user in |
+| `signup` | firstName, lastName, email, password, confirmPassword, parameters | registers a user with your application |
+| `socialSignin` | provider | performs signin with a social media provider |
+| `socialSigninWithToken` | provider, token | performs token-based sign in with a social media provider |
+| `socialSignup` | provider, email | Registers the user with the specified provider |
+| `requestResetPassword` | username | initiates the reset password process for a user |
+| `resetPassword` | newPassword, resetToken | Resets the user's password to the new value. |
+| `changePassword` | oldPassword, newPassword | Changes the user's password |
+| `signout` | *none* | Signs the current user out |
+| `getSocialProviders`  | *none* | Returns the list of supported providers |
 
 ## Manipulating objects
+- Property: `object`
+- Sample call `backand.object.getList('users');`
+
 | Function | Arguments | Usage |
 | -------- | --------- | ----- |
 | getList | object_name, params | Gets a list of all objects of type {object_name} |
@@ -24,41 +35,48 @@ For example, the /user/signup API call is reachable at **https://api.backand.com
 | remove | object_name, id, params | Deletes an object of type {object name} with ID {id} |
 
 ## Custom Object Actions
+- Property: `object`
+- Sample call `backand.object.get('users', 'actionName', {});`
+
 | Function | Arguments | Usage |
 | -------- | --------- | ----- |
 | get | object, action, params | executes custom action {action} on object {object} via HTTP GET |
 | post | object, action, data, params | executes custom action {action} on object {object} via HTTP POST with data {data} |
 
 ## Queries
+- Property: `query`
+- Sample call `backand.object.get(name, params);`
+
 | Function | Arguments | Usage |
 | -------- | --------- | ----- |
 | get | name, params | executes custom query {name} on object {object} via HTTP GET |
 | post | name, data, params | executes custom query {name} on object {object} via HTTP POST with data {data} |
 
-## Backand SDK
+## User management methods
+- Property: `user`
+- Sample call: `backand.user.getUsername();`
 
-For further details, please see [Backand SDK Documentation](http://docs.backand.com/en/latest/getting_started/sdk/index.html)
-
-### Live-use Methods
 | Function | Arguments | Usage |
 | -------- | --------- | ----- |
-| signin | username, password | signs the user into the application |
-| signup | firstname, lastname, email, password, confirmPassword, parameters | registers the user with the application |
-| socialSignin | provider, spec | Signs the specified user into the application using a social provider |
-| socialSignup | provider, spec | Registers a user for the application using a social provider |
-| signout | none | signs the current user out of the application |
-| requestResetPassword | email | sends a one-time use password reset token to the user with the specified email |
-| resetPassword | newPassword, resetToken | resets the current user's password, consuming the one-time use token |
-| changePassword | oldPassword, newPassword | Changes the current user's  password from the old value to the new. |
 | getUserDetails | force | returns the current user details |
 | getUsername | none | returns the current user's username |
 | getUserRole | none | returns the current user's role |
 | getToken | none | returns the current authorization token |
-| getApiUrl | none | returns the current API URL |
-| isManagingHttpInterceptor | none | returns whether Backand manages all necessary authorization and authentication tokens for each request|
-| isManagingRefreshToken | none | returns whether Backand manages re-authenticating using a refresh token when the session has expired |
+| getRefreshToken | none | returns the current refresh token |
+
+## File management
+- Property: `file`
+- Sample call: `backand.file.upload(object, action, filename, fileData)`
+
+| Function | Arguments | Usage |
+| -------- | --------- | ----- |
+| upload | object, action, filename, fileData | Uploads the specified file to the specified action |
+| remove | object, action, filename | Removes the specified file from the specified action |
 
 ### Configuration methods
+- Property: none
+- Sample call: `backand.setAppName(appName);`
+
 | Function | Argument Type | Return Value | Usage |
 | ----------------- | ------------ | ----------- | ----- |
 | setAppName | string | BackandProvider | Sets the Backand app name |
@@ -70,11 +88,6 @@ For further details, please see [Backand SDK Documentation](http://docs.backand.
 | setApiUrl | string |  BackandProvider | sets the API URL |
 | getApiUrl | void | string | returns the current API URL |
 
-## Request Format
-
-All requests must be made using JSON request bodies. Make sure to set the 'Content-Type' header to 'application/json'
-. Additionally, all requests must include an authentication token in the request headers. This process is detailed in our [documentation](http://docs.backand.com/en/latest/security/index.html).
-
 ## Response Format
 
-All responses are returned as JSON objects. The status code of the response indicates the success (2xx) or failure (4xx) of the request.
+All responses are returned as promises. You can use `.then()` or `.catch()` to work with the results of the API operations. Data results are stored in the `data` property of the response object
