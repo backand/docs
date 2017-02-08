@@ -110,26 +110,26 @@ By default, the Back& SDK emits the following events that your code can respond 
 | SIGNUP  | dispatched on signup  | window.addEventListener(backand.constants.EVENTS.SIGNUP, (e)=>{}, false);  |
 
 
-### SDK Methods:
+## SDK Methods:
 **NOTE:**
 - **All Methods return a Promise -> you can work with the response using .then() and .catch()**
 - **You can see the response schema [here](https://github.com/mzabriskie/axios#response-schema)**
 
-#### Authentication:
+### Authentication:
 
 Authentication methods are called directly on the SDK, without any properties: *backand.signin(username, password)*
 
-##### Signin
+### Signin
 
 Signin with username and password in order to get access_token to be used in all other calls. If you don't have users you should use anonymous token only.
 
-###### Parameters
+##### Parameters
 | name | type | description |
 | ---- | ---- | ----------- |
 | username | string | the username to authenticate |
 | password | string | the user's password |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.signin(username, password)
   .then(res => {
@@ -140,11 +140,11 @@ backand.signin(username, password)
   });
 ```
 
-##### Signup
+### Signup
 
 Creates a new user in your app. in signup you must provide the basic details of username email, first name, last name and password:
 
-###### Parameters
+##### Parameters
 
 | name | type | description |
 | ---- | ---- | ----------- |
@@ -155,7 +155,7 @@ Creates a new user in your app. in signup you must provide the basic details of 
 | confirmPassword | string | the value entered by the user when asked to confirm the password during registration |
 | parameters | object | An object containing information for any paremeters to the signup call. This allows you to set additional info on the user object at registration time |
 
-###### Sample Code
+##### Sample Code
 
 ```javascript
 backand.signup(firstName, lastName, email, password, confirmPassword, parameters = {})
@@ -167,16 +167,16 @@ backand.signup(firstName, lastName, email, password, confirmPassword, parameters
   });
 ```
 
-##### Change Password
+### Change Password
 Changes the password of the current user
 
-###### Parameters
+##### Parameters
 | name | type | description |
 | ---- | ---- | ----------- |
 | oldPassword | string | the user's old password |
 | newPassword | string | the user's desired new password |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.changePassword(oldPassword, newPassword)
   .then(res => {
@@ -187,17 +187,17 @@ backand.changePassword(oldPassword, newPassword)
   });
 ```
 
-#### Social Media Authentication:
-##### socialSignin (also for Signup)
+## Social Media Authentication:
+### socialSignin (also for Signup)
 Signs the user into a Back& application using a social media provider as the authentication method. This opens a dialog window supplied by the social media network provider. If the user does not have an account with the selected provider, they will be prompted to create one as a part of this process.
 
-###### Parameters
+##### Parameters
 
 | name | type | description |
 | ---- | ---- | ----------- |
 | provider | string | Name of the provider to authenticate with. The full list can be obtained by calling *backand.getSocialProviders(scb)* |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.socialSignin(provider)
   .then(res => {
@@ -208,19 +208,19 @@ backand.socialSignin(provider)
   });
 ```
 
-#### CRUD:
+## CRUD:
 The following methods perform create, retrieve, update, and delete functionality on a Back& object.
 
-##### GetList
+### GetList
 Fetches a list of records from the specified object. Uses *params* to store filter data
 
-###### Parameters
+##### Parameters
 | name | type | description |
 | ---- | ---- | ----------- |
 | object | string | Name of the Back& object to work with |
 | params | object | A hash of filter parameters. Allowed parameters are: *pageSize*, *pageNumber*, *filter*, *sort*, *search*, *exclude*, *deep*, *relatedObjects* |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.object.getList(object, params)
   .then(res => {
@@ -231,7 +231,7 @@ backand.object.getList(object, params)
   });
 ```
 
-###### Sample Code with filter params
+##### Sample Code with filter params
 ```javascript
 let params = {
   sort: backand.helpers.sort.create('creationDate', backand.helpers.sort.orders.desc),
@@ -249,11 +249,11 @@ backand.object.getList(object, params)
   });
 ```
 
-##### GetOne
+### GetOne
 
 Retrieves a single record from the specified object.
 
-###### Parameters
+##### Parameters
 
 | name | type | description |
 | ---- | ---- | ----------- |
@@ -261,7 +261,7 @@ Retrieves a single record from the specified object.
 | id | integer | ID of the record to retrieve, subject to the filter specified in *params* |
 | params | object | A hash of filter parameters. Allowed parameters are: *deep*, *exclude*, *level* |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.object.getOne(object, id, params)
   .then(res => {
@@ -272,11 +272,11 @@ backand.object.getOne(object, id, params)
   });
 ```
 
-##### Create
+### Create
 
 Creates a record with the provided data in the specified object
 
-###### Parameters
+##### Parameters
 
 | name | type | description |
 | ---- | ---- | ----------- |
@@ -284,7 +284,7 @@ Creates a record with the provided data in the specified object
 | data | object | Data to use in the creation of the new record |
 | params | object | A hash of filter parameters. Allowed parameters are: *returnObject*, *deep* |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.object.create(object, data, params)
   .then(res => {
@@ -295,10 +295,10 @@ backand.object.create(object, data, params)
   });
 ```
 
-##### Update
+### Update
 Updates a record with the specified ID in the specified object with the provided data.
 
-###### Parameters
+##### Parameters
 
 | name | type | description |
 | ---- | ---- | ----------- |
@@ -307,7 +307,7 @@ Updates a record with the specified ID in the specified object with the provided
 | data | object | Data to update the record with |
 | params | object | A hash of filter parameters. Allowed parameters are: *returnObject*, *deep* |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.object.update(object, id, data, params)
   .then(res => {
@@ -318,17 +318,17 @@ backand.object.update(object, id, data, params)
   });
 ```
 
-##### Remove
+### Remove
 Deletes a record from the specified object with the specified ID
 
-###### Parameters
+##### Parameters
 
 | name | type | description |
 | ---- | ---- | ----------- |
 | object | string | Name of the Back& object to work with |
 | id | integer | ID of the object to update |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.object.remove(object, id)
   .then(res => {
@@ -339,10 +339,10 @@ backand.object.remove(object, id)
   });
 ```
 
-##### Trigger object actions (GET)
+### Trigger object actions (GET)
 Triggers custom actions that operate via HTTP GET requests
 
-###### Parameters
+##### Parameters
 
 | name | type | description |
 | ---- | ---- | ----------- |
@@ -350,7 +350,7 @@ Triggers custom actions that operate via HTTP GET requests
 | action | string | Name of the action to trigger |
 | params | object | Parameters for the action to operate upon |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.object.action.get(object, action, params)
   .then(res => {
@@ -361,10 +361,10 @@ backand.object.action.get(object, action, params)
   });
 ```
 
-##### Trigger object actions (POST)
+### Trigger object actions (POST)
 Triggers custom actions that operate via HTTP POST requests
 
-###### Parameters
+##### Parameters
 
 | name | type | description |
 | ---- | ---- | ----------- |
@@ -373,7 +373,7 @@ Triggers custom actions that operate via HTTP POST requests
 | data | object | Object data to send as the body of the POST request |
 | params | object | Parameters for the action to operate upon |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.object.action.post(object, action, data, params)
   .then(res => {
@@ -384,32 +384,32 @@ backand.object.action.post(object, action, data, params)
   });
 ```
 
-#### Socket Communications
+## Socket Communications
 You can easily integrate with our Socket functionality using the *on* method. Socket signin and signout are handled automatically by the SDK.
 
-##### On
+### On
 Event handler for broadcast Socket events.
 
-###### Parameters
+##### Parameters
 | name | type | description |
 | ---- | ---- | ----------- |
 | eventName | string | Name of the socket event to subscribe to |
 | callback | function | Callback triggered when *eventName* is received |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.on(eventName, data => {
   console.log(eventName + 'has been dispatched');
 });
 ```
 
-#### File
+## File
 This property allows you to work with server-side actions, interacting with the related files directly. You can use this after you have finished creating a server-side action in the Back& dashboard, in the Actions tab of an object (object -> actions tab -> Backand Files icon -> name: 'files')
 
-##### Upload
+### Upload
 Uploads a file for a server-side action
 
-###### Parameters
+##### Parameters
 | name | type | description |
 | ---- | ---- | ----------- |
 | object | string | Name of the object controlling the desired server-side action |
@@ -417,7 +417,7 @@ Uploads a file for a server-side action
 | filename | string | The name of the file to upload |
 | filedata | string | The file's data |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.file.upload(object, 'files', filename, filedata)
   .then(res => {
@@ -428,17 +428,17 @@ backand.file.upload(object, 'files', filename, filedata)
   });
 ```
 
-##### Remove
+### Remove
 Removes a file from a server-side action file set.
 
-###### Parameters
+##### Parameters
 | name | type | description |
 | ---- | ---- | ----------- |
 | object | string | Name of the object controlling the desired server-side action |
 | fileAction | string | The name of the file action to work with |
 | filename | string | The name of the file to remove |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.file.remove(object, 'files', filename)
   .then(res => {
@@ -449,19 +449,19 @@ backand.file.remove(object, 'files', filename)
   });
 ```
 
-#### User:
+## User:
 The *user* property returns data about the connected user (getUserDetails, getUsername, getUserRole, getToken, getRefreshToken).
 
-##### GetUserDetails
+### GetUserDetails
 Gets the connected user's details.
 
-###### Parameters
+##### Parameters
 
 | name | type | description |
 | ---- | ---- | ----------- |
 | force | boolean | Forces the SDK to refresh its data from the server. **Default: FALSE** |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.user.getUserDetails(force)
   .then(res => {
@@ -472,19 +472,19 @@ backand.user.getUserDetails(force)
   });
 ```
 
-#### Query:
+## Query:
 The *query* property lets you initiate a custom Back& query using either HTTP GET or HTTP POST.
 
-##### get
+### get
 Calls a custom query using a HTTP GET
 
-###### Parameters
+##### Parameters
 | name | type | description |
 | ---- | ---- | ----------- |
 | name | string | The name of the query to work with |
 | params | object | Parameters to be passed to the query |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.query.get(name, params)
   .then(res => {
@@ -495,17 +495,17 @@ backand.query.get(name, params)
   });
 ```
 
-##### post
+### post
 Calls a custom query using a HTTP POST
 
-###### Parameters
+##### Parameters
 | name | type | description |
 | ---- | ---- | ----------- |
 | name | string | The name of the query to work with |
 | data | object | Data to be included in the body of the HTTP POST |
 | params | object | Parameters to be passed to the query |
 
-###### Sample Code
+##### Sample Code
 ```javascript
 backand.query.post(name, data, params)
   .then(res => {
