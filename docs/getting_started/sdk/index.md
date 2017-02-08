@@ -9,14 +9,14 @@ To install the Angular 1 SDK, use the correct command for your dependency manage
 
 | Provider | Command |
 | -------- | ------- |
-| npm | `$ npm i -S @backand/angular1-sdk` |
-| yarn | `$ yarn add @backand/angular1-sdk` |
-| bower | `$ bower install backand-angular1-sdk` |
-| clone/download via Git | `$ git clone $ git clone https://github.com/backand/angular1-sdk.git` |
+| npm | $ npm i -S @backand/angular1-sdk |
+| yarn | $ yarn add @backand/angular1-sdk |
+| bower | $ bower install backand-angular1-sdk |
+| clone/download via Git | $ git clone https://github.com/backand/angular1-sdk.git |
 
 ## Import
 
-Include the following tags in your `index.html` file to start working with the SDK:
+Include the following tags in your *index.html* file to start working with the SDK:
 
 ``` html
 <script src="node_modules/@backand/angular1-sdk/backand.provider.min.js"></script>
@@ -25,7 +25,7 @@ Include the following tags in your `index.html` file to start working with the S
 
 ## Quick start
 
-Getting started with the SDK is as simple as configuring access to a Back& application, then calling `getList` on a relevant object:
+Getting started with the SDK is as simple as configuring access to a Back& application, then calling *getList* on a relevant object:
 
 ```javascript
 angular

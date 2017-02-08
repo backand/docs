@@ -6,12 +6,12 @@ To install the Angular 1 SDK, use the correct command for your dependency manage
 
 | Provider | Command |
 | -------- | ------- |
-| npm | `$ npm i -S @backand/angular1-sdk` |
-| yarn | `$ yarn add @backand/angular1-sdk` |
-| bower | `$ bower install backand-angular1-sdk` |
-| clone/download via Git | `$ git clone $ git clone https://github.com/backand/angular1-sdk.git` |
+| npm | $ npm i -S @backand/angular1-sdk |
+| yarn | $ yarn add @backand/angular1-sdk |
+| bower | $ bower install backand-angular1-sdk |
+| clone/download via Git | $ git clone $ git clone https://github.com/backand/angular1-sdk.git |
 
-As a part of this, you'll also want to remove any of the previous SDK includes from the `vendor` directory (or wherever your package manager stores JavaScript dependencies). Keeping these older versions around can pose problems when sending HTTP requests.
+As a part of this, you'll also want to remove any of the previous SDK includes from the *vendor* directory (or wherever your package manager stores JavaScript dependencies). Keeping these older versions around can pose problems when sending HTTP requests.
 
 ## Step 2: Include the SDK in your project
 
@@ -27,7 +27,7 @@ Then, replace it with the new SDK links:
 <script src="lib/backand-angular1-sdk/dist/backand.provider.js"></script>
 ```
 
-You can also use our SDK directly via our Content Distribution Network. Include the CDN links as follows, instead of the local `\lib` links specified above:
+You can also use our SDK directly via our Content Distribution Network. Include the CDN links as follows, instead of the local *\lib* links specified above:
 
 ```html
 <script src="//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"></script>
@@ -38,12 +38,12 @@ You can also use our SDK directly via our Content Distribution Network. Include 
 
 The authentication functionality in the SDK has not changed considerably with the new release. Here are a few notes on authentication elements that may be important to your application:
 
-* If you have previously disabled anonymous auth in your app, you can re-enable it using `Backand.useAnonymousAuth()`. This value defaults to true, so if you do not modify the default value you do not need to make any changes.
-* We’ve added new social media authentication functions:  `socialSignin`, and `socialSignup`. Please note that while some of the examples in our github repos - and some of our documentation - used `socialSignUp`  to refer to the specified function in the Backand SDK, this is no longer valid - the “up” will not be capitalized in the new SDK.
+* If you have previously disabled anonymous auth in your app, you can re-enable it using *Backand.useAnonymousAuth()*. This value defaults to true, so if you do not modify the default value you do not need to make any changes.
+* We’ve added new social media authentication functions:  *socialSignin*, and *socialSignup*. Please note that while some of the examples in our github repos - and some of our documentation - used *socialSignUp*  to refer to the specified function in the Backand SDK, this is no longer valid - the “up” will not be capitalized in the new SDK.
 
 ## Step 4: Update unauthorized user detection
 
-The `getToken()` method has been expanded, to use a promise. Originally this method would return undefined when a user was unauthorized, but this functionality can now be managed via the promise method. In the new SDK, the `getToken()` method is not as prominent as it was in previous versions, and you are likely to not need it as you work on your app.
+The *getToken()* method has been expanded, to use a promise. Originally this method would return undefined when a user was unauthorized, but this functionality can now be managed via the promise method. In the new SDK, the *getToken()* method is not as prominent as it was in previous versions, and you are likely to not need it as you work on your app.
 
 ## Step 5: Use the new SDK methods in place of $http calls
 
@@ -72,7 +72,7 @@ function getAll() {
 }
 ```
 
-The new sdk does not store the results in a nested data member, but rather in a root data element. The old SDK stored the response contents in a root property, meaning that the actual data was a subset of this `data` property - hence the use of `result.data.data` in the old SDK. With the new SDK, you no longer need the extra level of disambiguation, and can store the data in your application's object with the following code:
+The new sdk does not store the results in a nested data member, but rather in a root data element. The old SDK stored the response contents in a root property, meaning that the actual data was a subset of this *data* property - hence the use of *result.data.data* in the old SDK. With the new SDK, you no longer need the extra level of disambiguation, and can store the data in your application's object with the following code:
 
 ```javascript
      vm.data = result.data;
