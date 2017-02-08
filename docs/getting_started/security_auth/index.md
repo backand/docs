@@ -61,21 +61,25 @@ More details on GitHub integrations are available in <a href="https://developer.
 
 In order to add Google app sign-in, follow these steps:
 
-1. Check the 'Use your credentials for signing in with Google' toggle/
-1. Open the <a href="https://console.developers.google.com/project" target="_blank">Google Developer's Console</a>. 
-    1. In the Google Developer's Console, Click **Create Project**.
-    1. Enter a name and a project ID, or accept the defaults, and click **Create**. 
-    1. After the project has been created, expand the **APIs & auth** section on the left sidebar.
-    1. Click **APIs** to view the API Library, which lists all available APIs. The APIs are grouped by product family and popularity. Click on **Google+ API** under **Social APIs**
-    1. Click **Enable API** (You should see this under the Google+ API button).
-    1. In the sidebar on the left, select **Consent screen** and enter your product name (this can be your Backand app name).
+1. Check the 'Use your credentials for signing in with Google' toggle.
+1. Open the <a href="https://console.developers.google.com/iam-admin/projects" target="_blank">Google Developer's Console</a>.
+    1. In the Google APIs console, click the Project menu and select **Create Project**.
+    1. Enter a name and click **Create**.
+    1. After the project has been created,
+    1. Click **Library** on the left sidebar to view the API Library, which lists all available APIs. The APIs are grouped by product family and popularity. Click on Google+ API under Social APIs
+    1. Click **Enable API**.
     1. In the sidebar on the left, select **Credentials**.
-    1. Click **Create new Client ID** and enter the following details:
-        * **Application type**: Web application (default)
-        * **Authorized JavaScript origins**: Delete the default example URL and leave this field empty
-        * **Authorized redirect URIs**: Replace the default example URL with 'https://api.backand.com/1/user/google/auth'
-    1. Click **Create Client ID**
-    1. Record your Client ID and Client Secret from the dashboard. They can be found in the **Client ID for web application** section.
+    1. Click **Create credentials** and select  **OAuth client ID**
+    1. Click  **Configure consents screen** tab on the right panel and enter the Product name, Privacy policy URL (https://www.backand.com)
+    1. Click **Save**
+    1. Enter the following details:
+            * **Application type**: Web application
+            * **Name** (this can be your Backand app name)
+            * **Authorized JavaScript origins**:  leave this field empty
+            * **Authorized redirect URIs**: Replace the default example URL with 'https://api.backand.com/1/user/google/auth'
+        1. Click **Create** and **Create** again
+        1. Record the **Client ID** and **Client secret** from the popup window and click **OK**
+    1. On the left side bar click **Dasboard** make sure Google+ API is listed under the **API** list.
 1. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Client ID and Client Secret you copied down in the last step.
 
 For more details on integrating with Google, review their <a href="https://developers.google.com/console/help/new/" target="_blank">developer documentation</a>.
@@ -88,20 +92,17 @@ In order to add Facebook login integration, follow these steps:
 1. Open the <a href="https://developers.facebook.com/" target="_blank">Facebook Developers console</a>.
 1. Optional: Click MyApps and register as developer
     1. Under **My Apps**, select **Add a new app**
-    1. Select **WWW (web site)**
-    1. In the wizard that follows, provide your app's name and click **Create New Facebook App ID**
-    1. Choose a Category and a Sub-Category, then click **Create App ID**
-    1. Click on **Skip Quick Start** (In the upper right side of the window)
+    1. In the wizard that follows, provide your app's name and **Category**
+    1. Click **Create app ID**
+    1. Complete the **Security Check** step
     1. In the sidebar on the left, select **Settings**
     1. In Basic tab add your **Contact Email**
-    1. Click on the **Advanced** Tab
-    1. Click on + Add Product under Products
+    1. In the sidebar click **+ Add Product** under Products
     1. Click Get Started in the **Facebook Login** product
-    1. Skip the quick start and click on Settings
     1. In **Valid OAuth redirect URIs** enter: 'https://api.backand.com/1/user/facebook/auth'
     1. Click **Save Changes**
     1. To start using your app, you need to make it public, open App Preview from the left menu and change **Make
-    {{appName}} public?** to **yes**
+    {{appName}} public?** to **yes** and confirm the popup window
     1. In the sidebar on the left, select **Dashboard**    
     1. Record the **App ID**
     1. Click **Show** (near **App Secret**) and enter your Facebook password.
