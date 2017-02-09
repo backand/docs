@@ -10,7 +10,7 @@ The default authentication setup for [Backand](https://www.backand.com) applicat
 
 To obtain an access token using a username and password, use the following command:
 
-```curl
+```bash
 
 curl https://api.backand.com/token -d username=guest@backand.com -d password=guest1234 -d grant_type=password -d appName=bkndexample
 
@@ -18,10 +18,8 @@ curl https://api.backand.com/token -d username=guest@backand.com -d password=gue
 
 To obtain an access token using the Social Media master key, use the following command:
 
-```curl
-
+```bash
 curl -X GET https://api.backand.com/1/user/facebook/token?accessToken=EAAPutOqBPlkBANfUQXdmp7xseF16JpSknTGxZBBZAwd1TDigDUqC9i5NixlDOKFNpNQQwqJFHHPs059STwG0qzodlfzOvnE2q4EPxXM43ZBZBUOV44lCjpmFhMwJmeXUgRSBlwxJaKrvZAH7vW7NdBQa3dMLQZAv4RTXRZAcgqNVQZDZD&appName=bkndexample&signupIfNotSignedIn=true
-
 ```
 
 Parameters:
@@ -29,10 +27,8 @@ Parameters:
 
 You can then use the access token to call any Backand API for your application:
 
-```curl
-
+```bash
 curl https://api.backand.com/1/objects/items -H "Authorization: Bearer OfKDiw6fQwfhmUcoh3WuXken_Sgj18za8SDqn1Ed2S_qI88HWNwGBSpG2ktUkSbNIwcGn6dwos7ivvVARC1UIiCf8fzlNynFNZamCZPDpbOhRjheq3RnU6HJiCbqlks57PLvMnf9PxGK8D3FU8MeaPyUk7mmbAtvgc6GF-9s13YpFjVQkM5XRZ-CsuWjaRoukygLMOivj1iPYxBB4c-hu6ocZKQljiSnw6rroYbD4spmUIkwDnC0rz1jP9ln5KNI3KmO0KLcWJF6E_zWfepdFw"
-
 ```
 
 ### Basic authentication
@@ -160,6 +156,63 @@ You can directly modify those JavaScript actions if needed.
 
 If you have a users object in your model, Backand adds the following actions, which run before and during user creation
 
+* Before Create: Validate Backand Register User
+
+```javascript
+function backandCallback(userInput, dbRow, params, userProfile) {
+  var validEmail = function(email)
+    {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
+    // write your code here
+  if (!userInput.email){
+        throw new Error("Backand user must have an email.");
+    }
+
+    if (!validEmail(userInput.email)){
+        throw new Error("The email is not valid.");
+    }
+    if (!userInput.firstName){
+        throw new Error("Backand user must have a first name.");
+    }
+    if (!userInput.lastName){
+        throw new Error("Backand user must have a last name.");
+    }
+}
+```
+
+* During Create: Create Backand Register User
+
+```javascript
+function backandCallback(userInput, dbRow, params, userProfile) {
+
+  var randomPassword = function(length){
+      if (!length) length = 10;
+      return Math.random().toString(36).slice(-length);
+  }
+    if (!parameters.password){
+        params.password = randomPassword();
+    }
+
+    var backandUser = {
+        password: params.password,
+        confirmPassword: params.password,
+        email: userInput.email,
+        firstName: userInput.firstName,
+        lastName: userInput.lastName
+    };
+
+    // uncomment if you want to debug
+    //console.log(params);
+    var x = $http({method:"POST",url:CONSTS.apiUrl + "1/user" ,data:backandUser, headers: {"Authorization":userProfile.token, "AppName":userProfile.app}});
+
+    // uncomment if you want to return the password and sign in as this user
+    //return { password: params.password };
+    return { };
+}
+```
 
 This action implements the other side of the relationship - after creating an instance in your custom 'users' object, this code creates the corresponding entry in Backand's internal users object. If have named your custom user object anything other than 'users', you can add the above action into that object manually to achieve the same functionality. You will need to adjust the backandUser object creation to use the columns in your specific object, as the userInput object may have a different structure than that assumed above.
 
