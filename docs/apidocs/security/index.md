@@ -163,7 +163,7 @@ If you have a users object in your model, Backand adds the following actions, wh
 * Before Create: Validate Backand Register User
 
 ```
-function backandCallback(userInput, dbRow, parameters, userProfile) {
+function backandCallback(userInput, dbRow, params, userProfile) {
   var validEmail = function(email)
     {
         var re = /\S+@\S+\.\S+/;
@@ -190,30 +190,30 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 * During Create: Create Backand Register User
 
 ```
-function backandCallback(userInput, dbRow, parameters, userProfile) {
+function backandCallback(userInput, dbRow, params, userProfile) {
 
   var randomPassword = function(length){
       if (!length) length = 10;
       return Math.random().toString(36).slice(-length);
   }
     if (!parameters.password){
-        parameters.password = randomPassword();
+        params.password = randomPassword();
     }
 
     var backandUser = {
-        password: parameters.password,
-        confirmPassword: parameters.password,
+        password: params.password,
+        confirmPassword: params.password,
         email: userInput.email,
         firstName: userInput.firstName,
         lastName: userInput.lastName
     };
 
-    // uncomment if you want to debug debug
-    //console.log(parameters);
+    // uncomment if you want to debug
+    //console.log(params);
     var x = $http({method:"POST",url:CONSTS.apiUrl + "1/user" ,data:backandUser, headers: {"Authorization":userProfile.token, "AppName":userProfile.app}});
 
     // uncomment if you want to return the password and sign in as this user
-    //return { password: parameters.password };
+    //return { password: params.password };
     return { };
 }
 ```
