@@ -62,9 +62,9 @@ More details on GitHub integrations are available in <a href="https://developer.
 In order to add Google app sign-in, follow these steps:
 
 1. Check the 'Use your credentials for signing in with Google' toggle/
-1. Open the <a href="https://console.developers.google.com/project" target="_blank">Google Developer's Console</a>. 
+1. Open the <a href="https://console.developers.google.com/project" target="_blank">Google Developer's Console</a>.
     1. In the Google Developer's Console, Click **Create Project**.
-    1. Enter a name and a project ID, or accept the defaults, and click **Create**. 
+    1. Enter a name and a project ID, or accept the defaults, and click **Create**.
     1. After the project has been created, expand the **APIs & auth** section on the left sidebar.
     1. Click **APIs** to view the API Library, which lists all available APIs. The APIs are grouped by product family and popularity. Click on **Google+ API** under **Social APIs**
     1. Click **Enable API** (You should see this under the Google+ API button).
@@ -167,7 +167,7 @@ In order to add Azure AD application integration, follow these steps:
     1. Redirect URI: **https://api.backand.com/1/user/azuread/auth**
 1. Click **Create**
 1. Click on the Backand App and copy the Application Id / Client Id (e.g. 7c799275-1102-4aa6-b36a-fac7aa7fee60)
-1. Click on “Endpoints” menu and copy “OAUTH 2.0 AUTHORIZATION ENDPOINT”. In backand just use up to /oauth2 in the OAUTH 2.0 Endpoint filed(e.g. "https://login.windows.net/a652911c-7a2c-4a9c-d1b2-d149256f461b/oauth2")
+1. Click on "Endpoints" menu and copy "OAUTH 2.0 AUTHORIZATION ENDPOINT". In backand just use up to /oauth2 in the OAUTH 2.0 Endpoint filed(e.g. "https://login.windows.net/a652911c-7a2c-4a9c-d1b2-d149256f461b/oauth2")
 
 1. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Application Id into the Client Id field and OAUTH 2.0 Endpoint you copied down in the last step.
 
@@ -182,4 +182,3 @@ The registered users page lists all users currently registered for your app. You
 ## Team
 
 The Team section allows you to add new administrative users to your application. Admin users have full access to the application dashboard, and your application's configuration. You can perform all of the same actions available on the Users page on the Team page as well.
-

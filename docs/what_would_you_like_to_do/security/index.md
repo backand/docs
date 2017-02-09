@@ -3,7 +3,7 @@ One of the core concerns of any application that deals with sensitive user and b
 
 ## User Registration
 
-The security process starts with user registration. Backand uses two-factor authentication by default – requiring you to first invite users to your application, then directing them to a registration page that you configure. Backand takes care of the communication, handling the verification (configurable) and registration processes from your customizable sign-up page. This entire process is known as “private” mode, which is the default for all new applications – it requires that users are invited to join the app.
+The security process starts with user registration. Backand uses two-factor authentication by default – requiring you to first invite users to your application, then directing them to a registration page that you configure. Backand takes care of the communication, handling the verification (configurable) and registration processes from your customizable sign-up page. This entire process is known as "private" mode, which is the default for all new applications – it requires that users are invited to join the app.
 
 Once your app is stable and your security is fully configured (or even before if you're confident in your data), you can open your application up to the public. This allows users to sign up to your application directly, without having to be invited. Once they register, Backand sends the user a verification email to ensure that the sign-up is legitimate, if the sign-up email verification setting is enabled.. Once the new user confirms the registration, Backand redirects them to a custom verified email link, representing their successful registration with the system. The user is assigned a default role (see below), and is free to use your app within the permissions framework that you constructed.
 
@@ -11,7 +11,7 @@ Once your app is stable and your security is fully configured (or even before if
 
 Backand uses role-based security to secure access to your application data. This is accomplished by assigning each user in your application a role. Roles have varying permission levels throughout your app, from object-specific restrictions on record modification all the way up to full access to your application's configuration. Each role's permission set is configurable at a macro level as well as at an object level, allowing you true flexibility in securing your application.
 
-New users created from the admin dashboard are created in the “admin” role. One of your first steps should be adding an additional security role for new users – whether invited in private mode or registering organically in public mode – that will serve as the default for user sign-ups. Once this default role is set, all new users are assigned the new role automatically. You can then make any permission or access changes you need to from the administrative dashboard.
+New users created from the admin dashboard are created in the "admin" role. One of your first steps should be adding an additional security role for new users – whether invited in private mode or registering organically in public mode – that will serve as the default for user sign-ups. Once this default role is set, all new users are assigned the new role automatically. You can then make any permission or access changes you need to from the administrative dashboard.
 
 ## Security Templates
 

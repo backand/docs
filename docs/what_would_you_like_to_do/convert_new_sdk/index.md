@@ -39,7 +39,7 @@ You can also use our SDK directly via our Content Distribution Network. Include 
 The authentication functionality in the SDK has not changed considerably with the new release. Here are a few notes on authentication elements that may be important to your application:
 
 * If you have previously disabled anonymous auth in your app, you can re-enable it using *Backand.useAnonymousAuth()*. This value defaults to true, so if you do not modify the default value you do not need to make any changes.
-* We’ve added new social media authentication functions:  *socialSignin*, and *socialSignup*. Please note that while some of the examples in our github repos - and some of our documentation - used *socialSignUp*  to refer to the specified function in the Backand SDK, this is no longer valid - the “up” will not be capitalized in the new SDK.
+* We’ve added new social media authentication functions:  *socialSignin*, and *socialSignup*. Please note that while some of the examples in our github repos - and some of our documentation - used *socialSignUp*  to refer to the specified function in the Backand SDK, this is no longer valid - the "up" will not be capitalized in the new SDK.
 
 ## Step 4: Update unauthorized user detection
 
