@@ -339,8 +339,8 @@ backand.object.remove(object, id)
   });
 ```
 
-### Trigger object actions (GET)
-Triggers custom actions that operate via HTTP GET requests
+### On-Demand Actions (GET)
+Triggers on-demand custom actions that operate via HTTP GET requests
 
 ##### Parameters
 
@@ -361,8 +361,8 @@ backand.object.action.get(object, action, params)
   });
 ```
 
-### Trigger object actions (POST)
-Triggers custom actions that operate via HTTP POST requests
+### On-Demand Actions (POST)
+Triggers on-demand custom actions that operate via HTTP POST requests
 
 ##### Parameters
 
