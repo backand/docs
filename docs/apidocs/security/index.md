@@ -210,7 +210,6 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
     // uncomment if you want to debug debug
     //console.log(parameters);
-
     var x = $http({method:"POST",url:CONSTS.apiUrl + "1/user" ,data:backandUser, headers: {"Authorization":userProfile.token, "AppName":userProfile.app}});
 
     // uncomment if you want to return the password and sign in as this user
