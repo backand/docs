@@ -160,63 +160,6 @@ You can directly modify those JavaScript actions if needed.
 
 If you have a users object in your model, Backand adds the following actions, which run before and during user creation
 
-* Before Create: Validate Backand Register User
-
-```
-function backandCallback(userInput, dbRow, params, userProfile) {
-  var validEmail = function(email)
-    {
-        var re = /\S+@\S+\.\S+/;
-        return re.test(email);
-    }
-
-    // write your code here
-  if (!userInput.email){
-        throw new Error("Backand user must have an email.");
-    }
-
-    if (!validEmail(userInput.email)){
-        throw new Error("The email is not valid.");
-    }
-    if (!userInput.firstName){
-        throw new Error("Backand user must have a first name.");
-    }
-    if (!userInput.lastName){
-        throw new Error("Backand user must have a last name.");
-    }
-}
-```
-
-* During Create: Create Backand Register User
-
-```
-function backandCallback(userInput, dbRow, params, userProfile) {
-
-  var randomPassword = function(length){
-      if (!length) length = 10;
-      return Math.random().toString(36).slice(-length);
-  }
-    if (!parameters.password){
-        params.password = randomPassword();
-    }
-
-    var backandUser = {
-        password: params.password,
-        confirmPassword: params.password,
-        email: userInput.email,
-        firstName: userInput.firstName,
-        lastName: userInput.lastName
-    };
-
-    // uncomment if you want to debug
-    //console.log(params);
-    var x = $http({method:"POST",url:CONSTS.apiUrl + "1/user" ,data:backandUser, headers: {"Authorization":userProfile.token, "AppName":userProfile.app}});
-
-    // uncomment if you want to return the password and sign in as this user
-    //return { password: params.password };
-    return { };
-}
-```
 
 This action implements the other side of the relationship - after creating an instance in your custom 'users' object, this code creates the corresponding entry in Backand's internal users object. If have named your custom user object anything other than 'users', you can add the above action into that object manually to achieve the same functionality. You will need to adjust the backandUser object creation to use the columns in your specific object, as the userInput object may have a different structure than that assumed above.
 
