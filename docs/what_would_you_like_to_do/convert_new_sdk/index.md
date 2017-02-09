@@ -27,7 +27,7 @@ Then, replace it with the new SDK links:
 <script src="lib/backand-angular1-sdk/dist/backand.provider.js"></script>
 ```
 
-You can also use our SDK directly via our Content Distribution Network. Include the CDN links as follows, instead of the local *\lib* links specified above:
+You can also use our SDK directly via our Content Distribution Network. Include the CDN links as follows, instead of the local *\\lib* links specified above:
 
 ```html
 <script src="//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"></script>
