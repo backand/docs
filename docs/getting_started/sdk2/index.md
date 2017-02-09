@@ -9,8 +9,8 @@ To install the Angular 2 SDK, use the correct command for your dependency manage
 
 | Provider | Command |
 | -------- | ------- |
-| npm | `$ npm i -S @backand/angular2-sdk` |
-| yarn | `$ yarn add @backand/angular2-sdk` |
+| npm | $ npm i -S @backand/angular2-sdk |
+| yarn | $ yarn add @backand/angular2-sdk |
 
 ## Import
 Use the following import statement to include the Angular2 SDK in your project:
@@ -24,7 +24,7 @@ import { BackandService } from '@backand/angular2-sdk'
 Using the Back& Angular2 SDK requires two steps - configuring access to the BackandService provider, and then actually calling the provider using the [vanilla-sdk](https://github.com/backand/vanilla-sdk) methods.
 
 #### app.module.ts:
-Update `app.module.ts` to include the BackandService as a provider
+Update *app.module.ts* to include the BackandService as a provider
 
 ```javascript
 @NgModule({
@@ -37,7 +37,7 @@ export class AppModule { }
 ```
 
 #### app.component.ts:
-Now, call the SDK from `app.component.ts`. The SDK is initialized during `ngOnInit()`, and `getList` is called as a property on `AppComponent`
+Now, call the SDK from *app.component.ts*. The SDK is initialized during *ngOnInit()*, and *getList* is called as a property on *AppComponent*
 
 ```javascript
 @Component({

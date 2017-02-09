@@ -9,8 +9,8 @@ To install the Redux SDK, use the correct command for your dependency management
 
 | Provider | Command |
 | -------- | ------- |
-| npm | `$ npm i -S @backand/redux-sdk` |
-| yarn | `$ yarn add @backand/redux-sdk` |
+| npm | $ npm i -S @backand/redux-sdk |
+| yarn | $ yarn add @backand/redux-sdk |
 
 ## Import
 Use the following import statement to include the Angular2 SDK in your project:
@@ -20,15 +20,15 @@ import { BackandService } from '@backand/angular2-sdk'
 ```
 
 ## Quick start
-To get started, first use `bkdnredux` to generate the necessary `Types`, `Actions`, and `Reducers` for your Backand objects from the command line:
+To get started, first use *bkdnredux* to generate the necessary *Types*, *Actions*, and *Reducers* for your Backand objects from the command line:
 
 ```bash
 $ "./node_modules/.bin/bkndredux" --help
 $ "./node_modules/.bin/bkndredux" user obj1 obj2 obj3... -m (thunk/saga)
 ```  
-***Note:*** `user` is a unique object. It has a different `Reducer` and `Type`, and it reveals most of the authentication `Actions` (getUserDetails, signin, signout, etc.).
+***Note:*** *user* is a unique object. It has a different *Reducer* and *Type*, and it reveals most of the authentication *Actions* (getUserDetails, signin, signout, etc.).
 
-Next, Include the new `Reducers` in [combineReducers()](http://redux.js.org/docs/api/combineReducers.html):
+Next, Include the new *Reducers* in [combineReducers()](http://redux.js.org/docs/api/combineReducers.html):
 ```javascript
 import { combineReducers } from 'redux'
 import user from './user/userReducer'
