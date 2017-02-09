@@ -6,7 +6,7 @@ A quick note: In our [Stripe Example Application](https://github.com/backand/str
 
 ## Why use a vendor?
 
-The first question that you are likely asking is “Why should I use a third-party vendor for my payment system?” The short answer, albeit not a very good one, is that a solid and reliable payments platform is not only extremely challenging, but extremely expensive as well. Setting aside the data concerns (which we have covered elsewhere), you'll need significant liquid assets available to even begin working with financial systems directly. Furthermore, you'll be accepting full fraud risk for your users – if any of your users tries to use your payments system for illegal or unethical ends, then you will be liable for the damages caused. These are just a few of the many concerns that would come with building a payment system from the ground up without using a payment vendor.
+The first question that you are likely asking is "Why should I use a third-party vendor for my payment system?" The short answer, albeit not a very good one, is that a solid and reliable payments platform is not only extremely challenging, but extremely expensive as well. Setting aside the data concerns (which we have covered elsewhere), you'll need significant liquid assets available to even begin working with financial systems directly. Furthermore, you'll be accepting full fraud risk for your users – if any of your users tries to use your payments system for illegal or unethical ends, then you will be liable for the damages caused. These are just a few of the many concerns that would come with building a payment system from the ground up without using a payment vendor.
 
 With a payment vendor, on the other hand, you are able to offload all of the above issues to the vendor, allowing you to focus instead on integrating payments into your application. Stripe performs underwriting (which handles any potentially fraudulent individuals by simply preventing them from accepting payments), payment processing, communication with financial systems, and all necessary reporting as the transactions move through the various banks and financial APIs. While it would be possible to perform all of this work yourself, you'll save yourself years of labor by simply leveraging someone else's efforts.
 
@@ -16,7 +16,7 @@ We'll begin the application by adding a custom server-side action. This action w
 
 ```javascript
   // Secret key - copy from your Stripe account   
-  // - https://dashboard.stripe.com/account/apikeys - 
+  // - https://dashboard.stripe.com/account/apikeys -
   // or use Backand's test account
   var user = btoa("sk_test_hx4i19p4CJVwJzdf7AajsbBr:");
 
@@ -50,7 +50,7 @@ The API Key tells the Stripe.js file that the actions being taken are to take pl
   .config(function (stripeProvider) {
     //Enter your Stripe publish key or use Backand test account
     stripeProvider.setPublishableKey('pk_test_pRcGwomWSz2kP8GI0SxLH6ay');
-  }) 
+  })
 ```
 
 Once you've set your publishable key, you're ready to start tokenizing payment methods. The code below performs two tasks. It first creates a token from the payment data entered into your app's UI, then it sends that token to the custom action that we created in the previous section by calling a convenience method. We'll first add the tokenization and payment success code:
@@ -86,8 +86,8 @@ Once you've set your publishable key, you're ready to start tokenizing payment m
   }
 ```
 
-Once this code has been created, we need to write one additional function. This function wraps a HTTP request to the 
-custom action we created previously. It assumes that the action's name is 'makePayment', so be sure to change it to 
+Once this code has been created, we need to write one additional function. This function wraps a HTTP request to the
+custom action we created previously. It assumes that the action's name is 'makePayment', so be sure to change it to
 something that matches your actual implementation:
 
 ```javascript
@@ -105,7 +105,7 @@ factory.makePayment = function(amount, token){
   }
 ```
 
-And with that, we've added the basic code necessary to contact Stripe and record a payment. 
+And with that, we've added the basic code necessary to contact Stripe and record a payment.
 
 ## Conclusion
 
