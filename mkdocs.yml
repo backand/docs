@@ -24,7 +24,6 @@ pages:
 - ['apidocs/nosql_query_language/index.md', 'API Documentation',  'NOSQL Query Language']
 - ['apidocs/apidescription/index.md', 'API Documentation',  'API Description']
 - ['what_would_you_like_to_do/index.md', 'Common Use Cases', 'What would you like to do?']
-- ['what_would_you_like_to_do/convert_new_sdk/index.md', 'Common Use Cases', 'Convert an older app to our serverless SDK']
 - ['what_would_you_like_to_do/database/index.md', 'Common Use Cases', 'Database Setup & Configuration']
 - ['what_would_you_like_to_do/rest/index.md', 'Common Use Cases', 'REST API Playground']
 - ['what_would_you_like_to_do/security/index.md', 'Common Use Cases', 'Role-based Security Configuration']
