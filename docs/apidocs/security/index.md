@@ -1,6 +1,6 @@
 ## Introduction
 
-The following section describes how to manage your app's users within Backand's user security paradigm. An important element to note up front is that, by default, [Backand](https://www.backand.com) provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand's database, and as such cannot partake of your app's custom logic. The second user object is offered in the default data model for a Backand application, and is titled "users". This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see [Link your app's users with Backand's registered users](security.md#Link your app's users with Backand's registered users) for more info). We highly recommend running the [todos-with-users app](https://github.com/backand/todos-with-users) in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app's data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application's objects.
+The following section describes how to manage your app's users within Backand's user security paradigm. An important element to note up front is that, by default, [Backand](https://www.backand.com) provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand's database, and as such cannot partake of your app's custom logic. The second user object is offered in the default data model for a Backand application, and is titled 'users'. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see [Link your app's users with Backand's registered users](security.md#Link your app's users with Backand's registered users) for more info). We highly recommend running the [todos-with-users app](https://github.com/backand/todos-with-users) in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app's data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application's objects.
 
 ## Authentication
 
@@ -70,7 +70,7 @@ curl https://api.backand.com/1/objects/items?AnonymousToken=<anonymous token>
 
 ## Sign Up
 
-Registering with [Backand](https://www.backand.com), and creating an application, automatically sets you as a user with an "Admin" role in your new project (see [roles](security.md#roles) for more info). By default your application is marked public which mean any user can register to your application.
+Registering with [Backand](https://www.backand.com), and creating an application, automatically sets you as a user with an 'Admin' role in your new project (see [roles](security.md#roles) for more info). By default your application is marked public which mean any user can register to your application.
 These users are assigned a default role 'User', which has full CRUD access to your app. You needs to be configured when you enable public usage of your app (see [roles](security.md#roles) for more details).
 
 **Note**: For security reasons you cannot change the role from the sign-up API - this can only be accomplished either by having an admin change the appropriate settings on the Security & Auth -> Registered Users page, or by creating a custom server-side action
@@ -83,7 +83,7 @@ role to 'Public'):
 
 ### Saving Additional Parameters During Sign-up
 
-In many cases, we would like to collect additional information from the user during sign up. We can automatically populate the related fields on the Users object as a part of the sign-up request by using the **parameters** parameter for the sign-up call. The server, during the "Create My App User" action, will translate these key-value pairs into the appropriate fields on the "Users" object - as such, it is important that all fields provided already exist on the Users object. The following example demonstrates specifying a user's "company" name as a part of the sign-up:
+In many cases, we would like to collect additional information from the user during sign up. We can automatically populate the related fields on the Users object as a part of the sign-up request by using the **parameters** parameter for the sign-up call. The server, during the 'Create My App User' action, will translate these key-value pairs into the appropriate fields on the 'Users' object - as such, it is important that all fields provided already exist on the Users object. The following example demonstrates specifying a user's "company" name as a part of the sign-up:
 
 1. Update the Model and add the field **company** to the **users** object:
     1. Go to **Objects --> Model**
@@ -109,7 +109,7 @@ You can change the default public app to be private. This can be changed in the 
 * First, set your app's registration page on the Security & Auth --> Configuration page.
 * Next, if you wish to use automated email verification, enable Sign-up Email Verification on the Security & Auth --> Configuration page
 * Once you have a registration page, enter the emails to invite on the Security & Auth --> Users page.
-* Once you have entered the emails you wish to invite, click the "Invite User(s)" button. This will send an email to each new user with a link to the registration page that you created.
+* Once you have entered the emails you wish to invite, click the 'Invite User(s)' button. This will send an email to each new user with a link to the registration page that you created.
 
 ### Email verification process
 
@@ -117,21 +117,21 @@ The user enters his/her email, name and password on your registration page:
 
 * After the user submits their registration, Backand sends a verification email to authenticate the user's identity if Sign-up Email Verification is enabled
 * If Sign-up Email Verification is not enabled, at this point registration is complete.
-* If Sign-up Email Verification is enabled, after the user clicks on the link in the verification email, Backand completes the registration process and redirects to the "Custom Verified Email Page" URL for your application. Configure this on the Security & Auth --> Configuration page  
+* If Sign-up Email Verification is enabled, after the user clicks on the link in the verification email, Backand completes the registration process and redirects to the 'Custom Verified Email Page' URL for your application. Configure this on the Security & Auth --> Configuration page  
 
 For more information, see the [API Description](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#sign-up).
 
 ## SSO (Single Sign On)
 Many organizations make use of tools like Active Directory in order to provide a central source of user-based authentication. This system is often used to drive a Single Sign On (SSO) feature in the organization, allowing users to simply use one set of credentials for all of the apps that they need to work with. Backand provides a method to incorporate SSO functionality using an override server-side action. This action allows you to perform your own authentication (via web-service calls to the domain controller, for example), and lets you return one of three actions.
 
-* Returning "allow" allows the user access to the requested resource = in this case, you can return additional information in the "additionalTokenInfo" variable, which is added to the Backand authentication result. You may access this later by using the getUserDetails function of the Backand SDK.
-* Returning "deny" overrides Backand's auth, and provides an "Access Denied" mesage.
-* Returning "ignore" allows you to ignore the custom action, instead relying upon Backand's default authentication methods.
+* Returning 'allow' allows the user access to the requested resource = in this case, you can return additional information in the 'additionalTokenInfo' variable, which is added to the Backand authentication result. You may access this later by using the getUserDetails function of the Backand SDK.
+* Returning "deny" overrides Backand's auth, and provides an 'Access Denied' mesage.
+* Returning 'ignore' allows you to ignore the custom action, instead relying upon Backand's default authentication methods.
 
 You can configure this action in the Backand dashboard, under Security & Auth => Security Actions.
 
 ## Remove user from the app
-There are two ways to remove a user from the application. You can permanently remove a user from the application by deleting a user from the Registered Users grid. This requires the user to register again if they wish to continue using your app. Alternatively, you can un-check the "approved" checkbox in the user's row on the Security & Auth --> Users page. This allows you to reinstate the user simply by re-checking the "approved" column.
+There are two ways to remove a user from the application. You can permanently remove a user from the application by deleting a user from the Registered Users grid. This requires the user to register again if they wish to continue using your app. Alternatively, you can un-check the 'approved' checkbox in the user's row on the Security & Auth --> Users page. This allows you to reinstate the user simply by re-checking the 'approved' column.
 
 ## Anonymous Access
 By default the anonymous access is turned on with 'User' role access, which mean any one can register to your app and make CRUD actions on any object.
@@ -141,9 +141,9 @@ If you wish to disable anonymous access to your application, go to Security & Au
 
 ## Link your app's users with Backand's registered users
 [Backand](https://www.backand.com) maintains an internal registered users object which is used to manage your app's
-security. However, most apps will have their own "users" object, which is used when implementing the app's business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two objects. If you have an object in your system named 'users', and if that object has the fields 'email', 'firstName', and 'lastName', then every user that is registered with [Backand](https://www.backand.com) for your app will automatically have an entry created in your custom 'users' object. This takes place no matter how the user is added - both the sign-up API and the [Backand](https://www.backand.com) dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand's internal registered users object. This new user will be given a randomized password, which can then be provided to the user for access to your application.
+security. However, most apps will have their own 'users' object, which is used when implementing the app's business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two objects. If you have an object in your system named 'users', and if that object has the fields 'email', 'firstName', and 'lastName', then every user that is registered with [Backand](https://www.backand.com) for your app will automatically have an entry created in your custom 'users' object. This takes place no matter how the user is added - both the sign-up API and the [Backand](https://www.backand.com) dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand's internal registered users object. This new user will be given a randomized password, which can then be provided to the user for access to your application.
 
-Below we'll look more in-depth at how this process is managed. Additionally, we'll explore what happens when the users object has an unexpected name (i.e. something other than "users"), or if the fields of the users object are named differently.
+Below we'll look more in-depth at how this process is managed. Additionally, we'll explore what happens when the users object has an unexpected name (i.e. something other than 'users'), or if the fields of the users object are named differently.
 
 There are 3 sync actions located in Configuration -> Security & Auth that are triggered by Backand user registration:
 
@@ -152,7 +152,7 @@ There are 3 sync actions located in Configuration -> Security & Auth that are tr
 1. Delete My App User.
 
 You can directly modify those JavaScript actions if needed.
-**Note**: By default, Backand sets the Where Condition of the action to "false" if it detects that you do not have a users object in your model, meaning that the action will never run.
+**Note**: By default, Backand sets the Where Condition of the action to 'false' if it detects that you do not have a users object in your model, meaning that the action will never run.
 
 If you have a users object in your model, Backand adds the following actions, which run before and during user creation
 
@@ -218,6 +218,6 @@ This action implements the other side of the relationship - after creating an in
 
 ## Roles & Security Templates
 
-Each user has a role. When you created your app, you were automatically assigned with an "Admin" role. The "Admin" role is a special role that allows you to make configuration changes in your app with Backand's administration tools. Non-admin roles, which should be used to secure your application, are used to define the permissions for each of the [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions for your objects and queries. Each Object and Query in your application is associated with a Security Template. In the security template, you assign different permissions for the possible [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions to each user role, allowing you to control your user's access to the system's create, read, update and delete actions for your objects. Template configuration is found on the Security & Auth --> Security Template page.
+Each user has a role. When you created your app, you were automatically assigned with an 'Admin' role. The 'Admin' role is a special role that allows you to make configuration changes in your app with Backand's administration tools. Non-admin roles, which should be used to secure your application, are used to define the permissions for each of the [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions for your objects and queries. Each Object and Query in your application is associated with a Security Template. In the security template, you assign different permissions for the possible [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions to each user role, allowing you to control your user's access to the system's create, read, update and delete actions for your objects. Template configuration is found on the Security & Auth --> Security Template page.
 
 While Security Templates provide reusable permissions platforms that can be spread across a number of roles, you can also override security template settings and provide specific permissions for each individual role. This allows you to have more granular control over the [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions that can be performed by the users in your system. When a user with insufficient security access tries to perform an action for which they do not have permission, a 403 (Forbidden) error response is returned.
