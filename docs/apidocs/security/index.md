@@ -162,7 +162,7 @@ If you have a users object in your model, Backand adds the following actions, wh
 function backandCallback(userInput, dbRow, params, userProfile) {
   var validEmail = function(email)
     {
-        var re = /\S+@\S+\.\S+/;
+        var re = /\\S+@\\S+\\.\\S+/;
         return re.test(email);
     }
 
