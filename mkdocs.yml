@@ -4,7 +4,7 @@ pages:
 - ['index.md', 'Backand Documentation']
 - ['getting_started/index.md', 'Getting Started', 'Introduction']
 - ['getting_started/quick_reference/index.md', 'Getting Started', 'Quick Reference']
-- ['getting_started/vanilla_sdk/index.md', 'Getting Started', 'Core SDK']
+- ['getting_started/vanilla_sdk/index.md', 'Getting Started', 'Vanilla SDK']
 - ['getting_started/sdk/index.md', 'Getting Started', 'Angular - Ionic 1 SDK']
 - ['getting_started/sdk2/index.md', 'Getting Started', 'Angular - Ionic 2 SDK']
 - ['getting_started/redux/index.md', 'Getting Started', 'Redux - React SDK']
