@@ -35,6 +35,7 @@ pages:
 - ['what_would_you_like_to_do/bulk/index.md', 'Common Use Cases', 'Bulk operations']
 - ['what_would_you_like_to_do/continuous_deployment/index.md', 'Common Use Cases', 'Continuous Deployment (CD) & Versions']
 - ['what_would_you_like_to_do/i18n/index.md', 'Common Use Cases', 'Internationalization']
+- ['what_would_you_like_to_do/ionic_creator/index.md', 'Common Use Cases', 'Integrating with Ionic Creator']
 - ['scenarios/index.md', 'Scenarios',  'Introduction']
 - ['scenarios/simple_web/index.md', 'Scenarios',  'Simple Web App with REST API']
 - ['scenarios/ionic/index.md', 'Scenarios',  'Ionic with Backand']
