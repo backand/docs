@@ -198,7 +198,7 @@ comparison operators is quite extensive and includes: '$lte, $lt, $gte, $gt, $eq
 Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can use negation as follows:
 
 ```JSON
-  { "location": { "$not" : {"$eq" "Paris" } } }
+  { "location": { "$not" : {"$eq": "Paris" } } }
 ```
 
 Or we can also use a not-equal  operator:
