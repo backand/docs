@@ -164,23 +164,52 @@ A UNION query is a union of the results of queries: '{ $union: [ Query1, Query2,
 
 ## Conditions on Fields
 
-A condition on a field is a predicate that can perform one of the following actions:
+## Conditions on Fields
+
+
+Formally, a condition on a field is a key-value expression of the form:
+
+```     
+  { Key : ValueExpression }
+```
+
+Where the fields are defined as follows:
+
+* Key - name of the field
+* ValueExpression - An expression which has one of the following forms:
+
+    1. Constant - is the field value equal to the constant
+    2. Comparison with a comparison operator to a constant
+    3. Inclusion or exclusion in result of a sub query
+    4. Negation of another comparison
+
+You can perform a number of different tests on objects using conditions. Using conditions, you can:
 
 1. Test equality of field to a constant value, e.g.  { A: 6 } => Is A equal to 6?
 2. Compare a field using a comparison operator, e.g. { A: { $gt: 8 }} => Is A greater than 8?. The set of
 comparison operators is quite extensive and includes: '$lte, $lt, $gte, $gt, $eq, $neq, $not, $within, $between'
 3. Test if the value of the field is IN  or NOT IN the result of a sub-query.
 4. Test for the negation of a comparison. For example, to test if the location field is not Boston, we can do:
-
 ```JSON
 { "location": { "$not" : "Boston" }}
 ```    
-
 5. Test for presence of a value. For example, if we want to test if a middle name field exists, we can do:
-
 ```JSON
 { "middleName": {"$exists": true} }
 ```
+
+Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can use negation as follows:
+
+```JSON
+  { "location": { "$not" : {"$eq" "Paris" } } }
+```
+
+Or we can also use a not-equal  operator:
+
+```JSON
+    { "location": { "$neq": "Paris" } }
+```    
+
 
 ## Sub Queries
 
@@ -248,37 +277,6 @@ If we wanted to look at a more complex query, we could modify this a bit. Let's 
     }
 }
 ```
-
-## Conditions on Fields
-
-
-Formally, a condition on a field is a key-value expression of the form:
-
-```     
-  { Key : ValueExpression }
-```
-
-Where the fields are defined as follows:
-
-* Key - name of the field
-* ValueExpression - An expression which has one of the following forms:
-
-    1. Constant - is the field value equal to the constant
-    2. Comparison with a comparison operator to a constant
-    3. Inclusion or exclusion in result of a sub query
-    3. Negation of another comparison
-
-Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can use negation as follows:
-
-```JSON
-  { "location": { "$not" : {"$eq" "Paris" } } }
-```
-
-Or we can also use a not-equal  operator:
-
-```
-    { location: { $neq: "Paris" } }
-```    
 
 ## Group By Queries
 
