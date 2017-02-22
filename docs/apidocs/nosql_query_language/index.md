@@ -106,7 +106,7 @@ To retrieve all cities within 25km (25000m) from a given [latitude, longitude], 
 An expression can be either an AND expression, an OR expression, or a UNION query.
 
 ### AND expressions
-An AND expression is a conjunction of conditions on fields. An AND expression is a JSON of the form '{ A: condition,
+An AND expression is a conjunction of conditions on fields. An AND expression is JSON of the form '{ A: condition,
 B: condition, ... }'
 
 For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the following query:
@@ -173,8 +173,14 @@ comparison operators is quite extensive and includes: '$lte, $lt, $gte, $gt, $eq
 4. Test for the negation of a comparison. For example, to test if the location field is not Boston, we can do:
 
 ```JSON
-{ "$not": { "location" : "Boston" }}
+{ "location": { "$not" : "Boston" }}
 ```    
+
+5. Test for presence of a value. For example, if we want to test if a middle name field exists, we can do:
+
+```JSON
+{ "middleName": {"$exists": true} }
+```
 
 ## Sub Queries
 
@@ -265,7 +271,7 @@ Where the fields are defined as follows:
 Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can use negation as follows:
 
 ```JSON
-  { $not: { location : "Paris" } }
+  { "location": { "$not" : {"$eq" "Paris" } } }
 ```
 
 Or we can also use a not-equal  operator:
