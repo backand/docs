@@ -5,8 +5,8 @@ language_tabs:
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://www.backand.com'>Sign Up for a free app</a>
+  - <a href='https://github.com/backand'>View our samples on GitHub</a>
 
 includes:
   - errors
