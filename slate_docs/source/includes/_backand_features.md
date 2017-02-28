@@ -483,11 +483,11 @@ Using the real-time capability can enhance your app with instant updates to any 
 <script src="//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"></script>
 <script src="//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"></script>   
 ```
-
 ```javascript
   // Configure the SDK to run the socket
   BackandProvider.runSocket(true);
 ```
+
 1. Upgrade to Backand SDK 1.9.5 or above.
 2. Include the Backand SDK in your index.html file:
 3. Update Angular configuration section
@@ -521,6 +521,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
   socket.emitAll("items_updated", userInput);
 }
 ```
+
 When working with a Custom JavaScript Action in the Backand dashboard, you can add the "emit" command to notify the client of updates based upon events and sent data that are important to your use case. The actions can be based on database triggers (Create, Update or Delete), or in an on-demand action called from client-side logic.
 
 There 3 type of emit commands you can use in order to notify consuming applications of event data:
@@ -538,7 +539,536 @@ This command sends the event to all the users in a specified role. Be aware that
 This command sends event to all connected users, regardless of their role or permission settings. Be aware that this command vertices any data security filters you may have configured for your application. Use this emit type for general event broadcasting.
 
 ## Custom Actions
+In Backand's system, you can create server-side activity called Actions. These actions can be used for the purpose of security, integration, performance, notification and data integrity, among others, providing you with more flexibility in your app's design. There are two types of Actions that can be created. The first are initiated via a direct web request. These are known as "On Demand" actions. Additionally, you can create automated actions that take place based upon a data interaction event. These automated actions can occur whenever you create, update, or delete an item in your system. On Demand actions are associated with a specific object, and can be found on the `Object --> {name}` page in the Actions tab. The automated Create, Update and Delete actions are associated with a specific object that is compatible with a specific row in a table, while On Demand actions make association with a specific role optional.
+
+There are 4 kinds of actions that can be created:
+
+* Server side JavaScript code actions
+* Server side node.js code actions
+* Transactional database script actions
+* Send Email actions
+
+All 4 types of actions use the following common parameters:
+
+* A Where condition - a SQL where clause that determines if the action will be performed.
+* Input Parameters, added to the query string of the request that triggers the action, that will serve as variable values that you can supply to your action's code. These parameters will serve as tokens in the action definition and will be replaced with the actual values when the code executes.
+
+### Server-side JavaScript Code
+
+```javascript
+function backandCallback(userInput, dbRow, parameters, userProfile) {
+    // write your code here
+    return {};
+}
+```
+
+You can run standard JavaScript on the server. It runs on the [V8 engine](http://en.wikipedia.org/wiki/V8_(JavaScript_engine)). To execute the JavaScript action, put your code into the following function:
+
+
+The function parameters are:
+
+* `userInput`: This parameter is only provided for Create and Update actions, and is the object that was sent to the action. It is null for Delete actions, as well as for On Demand actions.
+* `dbRow`: This parameter is populated in After Create, Update, and Delete automated actions, and if you supply an optional ID to an On Demand action. The dbRow parameter will contain the row's entry in the database prior to any changes made.
+* `parameters`: This parameter represents the variables sent in the query string for the action.
+* `userProfile`: This parameter stores the current username, the user's role, and the access token used by the user to perform the action. It is of the format {"username": "string", "role": "string", "token": "string"}.
+
+In addition to the above parameters, you can also make use of the following global objects:
+
+```javascript
+// GET example:
+
+  var response = $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample",
+                         params:{filter:[{fieldName:"fieldexample", operator:"contains", value:"somestring"}]},
+                        headers: {"Authorization":userProfile.token}});
+
+// POST example:
+
+  var response = $http({method:"POST",url:CONSTS.apiUrl + "/1/objects/objectexample",
+                        data:{fieldexample1:"somevalue",fieldexample2:"somevalue"},
+                        headers: {"Authorization":userProfile.token}});
+
+// PUT example:
+
+  var response = $http({method:"PUT",url:CONSTS.apiUrl + "/1/objects/objectexample/5",
+                        data:{fieldexample1:"somevalue",fieldexample2:"somevalue"},
+                        headers: {"Authorization":userProfile.token}});
+
+// DELETE example:
+
+  var response = $http({method:"DELETE",url:CONSTS.apiUrl + "/1/objects/objectexample/5", fieldexample2:"somevalue"},
+                        headers: {"Authorization":userProfile.token}});
+```
+
+* `$http`: a service for HTTP calls, similar to Angular's $http without the promise (since it is a server side
+function it always runs in sync). [See the full API description for more details](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#rest-api-crud-operations)
+
+#### A Note About The Authorization Header:  
+Sending the authorization header to the $http function is optional. When you make a $http request with an authorization header and the value of the userProfile.token (as in the examples above), the request will run in the context of the current user and with his assigned role. Alternatively, if you choose not to send an authorization header, the action will run in the context of an admin role. Send the authorization header with the request if you are going to use information about the current user in the action, otherwise you do not need to do so.
+
+* CONSTS: `CONSTS.apiUrl` for Backand's API URL
+
+* Config: Global configuration. You can maintain a global JSON configuration for your app. Your JSON configuration is consumed in the Config action. To update the configuration JSON, go to section "General" in the "Settings" menu on the Backand dashboard.
+
+* Emit: Emit is a function that allows you to send real-time communication events and data to the client. Emit has 3 methods: socket.emitUsers, socket
+.emitRole, and socket.emitAll. Read more about [Realtime Database Communication here](http://docs.backand.com/en/latest/apidocs/realtime/index.html).
+
+#### Debugging
+
+Debugging should be done using either console.log or console.error. For example, to dump the contents of variable
+`object`:
+
+`console.log(object)`
+
+`console.error(object)`
+
+#### Error Handling
+
+If your code results in an error (for example, if you write the following: `throw new Error("An error occurred!")`),
+the request will return HTTP status 417, and the response body will contain the associated error message.
+
+#### Return values
+
+Triggered actions will have a response that matches the format expected by the triggering call (such as the return value
+of a CREATE call).
+
+On Demand actions, though, will return whatever value is returned by the custom server code, which can be any properly-formatted JSON string.
+
+### Server-Side Node.js Code
+
+Using Backand, you can develop distributed Node.js actions and host them with your Backand application - no additional servers needed! You can use the Server-Side Node.js action to work with any NPM package, build sophisticated action behaviors, perform complex coding tasks, and more.
+
+For Server-Side Node.js Code actions, you develop the code on your local machine. The code is then deployed to, and runs on, Backand's server. It functions just like any other Node.js project and can be fully debugged locally and, once you've finished making changes, you can use the "deploy" command to publish the changes to your Backand application.
+
+Follow these steps to create and run a Server-Side Node.js Code Action:
+
+* First name the action, and use the init command by copy-pasting "backand action init..." to a command line within the folder in which you'll be developing your action. The action init command creates two folder levels on your local file system. The top level folder will be the name of the object controlling the action, while its child folder is the name of the action you are working with. We recommend that you always run the **action init** command from the root folder of the app's project when creating additional actions. This means you will have a sub-folder for each object, and under it, a sub -folder for each action.
+* Next, build your Node.js code in the `action` folder like any Node other project using your preferred IDE. Add as many npm
+packages as you need. Note - Your code **must** start with the index.js file - Backand uses this as the starting point for your Node.JS action.
+* To debug your code locally, run the debug.js file. Debug.js is provided by the init command, and is ignored when deploying the code to Backand.
+* To run your code on the Back& server, use the deploy command by copy-pasting "backand action deploy..." into the command line used in the first step. The
+deploy command will be available on the action page **after** the action has been initialized with "backand action init...".
+
+You are now ready to develop your code locally, and test the action on the Backand Dashboard for your application!
+
+#### Backand CLI
+```bash
+    $ npm install -g backand
+    # or use sudo (with caution)
+```
+
+Backand uses the Backand CLI to control deployment and initialization. The CLI requires that Node.js and NPM are both installed. You can install them on your local machine by following the instructions at [https://nodejs.org/](https://nodejs.org/).
+
+
+Once you've set up Node and NPM, use NPM to install the Backand CLI as a global package.
+
+#### Initialize action
+```bash
+    $ backand action init --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
+```
+
+To initialize the node.js code for the action on your local machine, use the `action` command on the command line in the folder that will host your action's code
+
+The parameters for this call are:
+  **--app**:		  The current app name  
+  **--object**:		The object that the action belongs to  
+  **--action**:		The action name  
+  **--master**:		The master token of the app (obtained from the Social & Keys section of the app's Security & Auth configuration)  
+  **--user**:		  The token of the current user (available from the TEam section of the app's Security & Auth configuration - simply click on key icon next to an authorized user)  
+
+
+#### Deploy action
+```bash
+    $ backand action deploy --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
+```
+
+To deploy your local Node.js code to Back&, use the `deploy` command with the Backand CLI
+
+
+The parameters for this call are:
+  **--app**:		  The current app name  
+  **--object**:		The object that the action belongs to  
+  **--action**:		The action name  
+  **--master**:   The master token of the app (obtained from the Social & Keys section of the app's Security & Auth configuration)  
+  **--user**:     The token of the current user (available from the TEam section of the app's Security & Auth configuration - simply click on key icon next to an authorized user)  
+  **--folder**:   (Optional) The folder to deploy. By default the deployment occurs in the current folder
+
+#### Add Backand SDK to Node.js
+```bash
+    $ npm install backandsdk --save
+```
+
+To work with objects or other actions in Backand, you need to install the Backand SDK for Node.js. The Backand SDK ships with several code samples that demonstrate how to access other Backand functionality.
+
+
+### Transactional Database Scripts
+
+Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided that the event occurs during the object event "During the data save before the object is committed". This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.
+
+
+### Send Emails
+
+Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.
+
+
 
 ## Queries
+You can create and call your own custom queries in your application. You can use parameters as tokens that will be replaced with the actual parameter values, similar to how [custom actions](#custom-actions) work. You can create your own filters, sorting, and paging, as well as use aggregation to summarize information.
+
+Click [NOSQL Query Language](#nosql-query-language) for instruction on how to build queries with noSQL language or
+use common MySQL syntax.
 
 ## NoSQL Query Language
+This query language is inspired by [MongoDB](https://www.mongodb.com/).
+
+A query consists of these parts:
+
+1. fields to be extracted
+2. table to extract the records from
+3. expression for filtering the table rows
+4. groupby - fields to group the data under
+5. aggregate functions to be applied to columns in fields
+6. orderby - fields to order the return data by
+7. limit - an integer number of records to return.
+
+Only the table and expression parameters are mandatory.
+
+
+The NoSQL queries are then constructed into a SQL query of the following form:
+
+```SQL
+  SELECT fields with aggregation
+  FROM table
+  WHERE expression
+  GROUP BY groupby
+  ORDER BY orderby
+  LIMIT limit
+```
+
+NoSQL queries are constructed using JSON objects. Below is an example:
+
+```JSON
+{
+  "object": "String",
+  "q": "Expression",
+  "fields": "Array of String",
+  "groupBy": "Array of String",
+  "aggregation": "Object mapping fields to aggregate functions"
+}
+```
+
+For example, the shortest query you can write would be:
+
+```JSON
+{ "object": "String", "q": "Expression" }
+```    
+
+This NoSQL object is converted into:
+
+```SQL
+  SELECT *
+  FROM table
+  WHERE query
+```
+
+### Examples
+
+This simple query retrieves the name and salary of all employees in position of "Sales Manager":
+
+```JSON
+{
+    "object": "employees",
+    "q": {
+        "position" : "Sales Manager"  
+    },
+    "fields": ["name", "salary"]
+}
+```
+
+Queries can also be used to compare an object's  fields to constant values using common comparison operators. For example, to retrieve all fields for all employees under the age of 25, you can use the following query:
+
+```JSON
+{
+    "object": "employees",
+    "q": {
+        "age": { "$lt" : 25 }
+    }  
+}
+```
+
+To retrieve all fields for employees with an age between 25 and 40:
+
+```JSON
+{
+  "object": "employees",
+  "q": {
+    "age": {
+      "$between": [25, 40]
+    }
+  }  
+}
+```
+
+To retrieve all cities within 25km (25000m) from a given [latitude, longitude], e.g. [32.0638130, 34.7745390] use the following query:
+
+```JSON
+{
+    "object": "city",
+    "q": {
+        "location" : { "$within" : [[32.0638130, 34.7745390], 25000]
+    }
+  }
+}
+```
+
+### Expressions
+
+An expression can be either an AND expression, an OR expression, or a UNION query.
+
+#### AND expressions
+An AND expression is a conjunction of conditions on fields. An AND expression is JSON of the form '{ A: condition,
+B: condition, ... }'
+
+For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the following query:
+
+```JSON
+{ "position": "Sales Manager", "age" : { "$lt" : 25 }, "city": "Boston" }
+```
+
+#### OR expressions
+
+An OR expression is a disjunction of conditions, '{ $or: [ Expression1, Expression2, ...   ] }'
+
+For example, use the following query to find all offices that are either larger than 30 employees, or located in Palo Alto:
+
+```JSON
+{ "$or": [ { "num_employees": { "$gt": 30 } }, { "location": "Palo Alto" }  ]  }
+```
+
+#### UNION queries
+
+A UNION query is a union of the results of queries: '{ $union: [ Query1, Query2, ...   ] }'. For example:
+
+```JSON
+{
+    "$union":   [
+        {
+            "object" : "Employees",
+            "q" : {
+                "$or" : [
+                    {
+                        "Budget" : {
+                            "$gt" : 20
+                        }
+                    },
+                    {
+                        "Location" : {
+                            "$like" :  "Palo Alto"
+                        }
+                    }
+                ]
+            },
+            "fields": ["Location", "country"]
+        },
+        {
+            "object" : "Person",
+            "q" : {
+                "name": "john"
+            },
+            "fields": ["City", "country"],
+            "limit": 11
+        }
+    ]
+}
+```
+
+### Conditions on Fields
+
+Formally, a condition on a field is a key-value expression of the form:
+
+```json    
+  { Key : ValueExpression }
+```
+
+Where the fields are defined as follows:
+
+* Key - name of the field
+* ValueExpression - An expression which has one of the following forms:
+
+    1. Constant - is the field value equal to the constant
+    2. Comparison with a comparison operator to a constant
+    3. Inclusion or exclusion in result of a sub query
+    4. Negation of another comparison
+
+You can perform a number of different tests on objects using conditions. Using conditions, you can:
+
+1. Test equality of field to a constant value, e.g.  { A: 6 } => Is A equal to 6?
+2. Compare a field using a comparison operator, e.g. { A: { $gt: 8 }} => Is A greater than 8?. The set of
+comparison operators is quite extensive and includes: '$lte, $lt, $gte, $gt, $eq, $neq, $not, $within, $between'
+3. Test if the value of the field is IN  or NOT IN the result of a sub-query.
+4. Test for the negation of a comparison. For example, to test if the location field is not Boston, we can do:
+```JSON
+{ "location": { "$not" : "Boston" }}
+```    
+5. Test for presence of a value. For example, if we want to test if a middle name field exists, we can do:
+```JSON
+{ "middleName": {"$exists": true} }
+```
+
+Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can use negation as follows:
+
+```JSON
+  { "location": { "$not" : {"$eq": "Paris" } } }
+```
+
+Or we can also use a not-equal  operator:
+
+```JSON
+    { "location": { "$neq": "Paris" } }
+```    
+
+
+### Sub Queries
+
+The following sub-query retrieves the department ID of each department in New York:
+
+```JSON
+{ "object": "department", "q": { "city" : "New York" }, "fields" : ["id"]}
+```
+
+Using this sub-query, we can now test a new field - dept_id - with respect to the results of the sub-query. We simply
+use the '$in' operator, and the query, as follows:
+
+```JSON
+{
+    "dept_id": {
+        "$in": {  
+            { "object": "department",
+                "q": { "city" : "New York" },
+                "fields" : ["id"]
+            }
+        }
+    }
+}
+```
+
+This technique relies upon retrieving a single field from the sub-query. Using more than one field would prove more complex.
+
+We can now use this sub-query as a part of a larger query retrieving all employees employed in departments that are located in New York. In this example, the 'deptId' field is a reference field referring the employees table to the department table:
+
+```JSON
+{
+    "object": "employees",
+    "q" : {
+        "deptId" : {
+            "$in": {
+                "object": "department",
+                "q": {
+                    "city" : "New York"
+                },
+                "fields" : ["id"]
+            }
+        }
+
+    }
+}
+```
+
+If we wanted to look at a more complex query, we could modify this a bit. Let's say we wanted to retrieve all employees whose department is located in New York, but the employee is located in Boston. To accomplish this, we use an AND expression to combine the two conditions:
+
+```JSON
+{
+    "object": "employees",
+    "q" : {
+        "deptId":
+        {
+            "$in": {
+                "object": "department",
+                "q": {
+                    "city" : "New York"
+                },
+                "fields" : ["id"]
+            }
+        },
+        "location": "Boston"
+    }
+}
+```
+
+### Group By Queries
+
+A group by query aggregates on fields, and then applies aggregation operators to the specified fields. For instance, to group by 'Country', and then concatenate the 'Location' field, use the following example code:
+
+```JSON
+{
+    "object" : "Employees",
+    "q" : {
+        "$or" : [
+            {
+                "Budget" : {
+                    "$gt" : 20
+                }
+            },
+            {
+                "Location" : {
+                    "$like" :  "Palo Alto"
+                }
+            }
+        ]
+    },
+    "fields": ["Location", "Country"],
+    "order": [["Budget", "desc"]],
+    "groupBy": ["Country"],
+    "aggregate": {
+        "Location": "$concat"
+    }
+}
+```
+
+### Algorithm to Generate SQL from JSON Queries
+
+The algorithm transforms from JSON to SQL using a top-down transformation.
+
+#### Usage
+
+```javascript
+  transformJson(json, sqlSchema, isFilter, callback)
+```     
+
+The parameters are:
+
+1. 'json' - JSON query or filter
+2. 'sqlSchema' - JSON schema of database
+3. 'isFilter' - boolean - true if 'json' is a filter
+4. 'callback' - 'function(err, result)', called upon completion
+
+The result is a structure with the following fields:
+
+```JSON
+{
+    str: <SQL statement for query>,
+    select: <select clause>,
+    from: <from clause>,
+    where: <where clause>,
+    group: <group by clause>,
+    order: <order by clause>,
+    limit: <limit clause>     
+}
+```    
+
+#### Escaping
+
+All constants appearing in the JSON query are escaped when transformed into SQL.
+
+#### Filters
+
+You also have the ability to mark a particular NoSQL query as a filter. This allows you to use variables in your query, which are populated on the server side from either parameters sent in with the filter, or from database data in your system. Variables take the form of:
+
+{% raw %}
+```javascript
+  {{<variable name>}}
+```
+
+Variables should be enclosed in quotes (e.g. '{{variable_name}}' instead of {{variable_name}}) so that the final object sent to the server can be marked as valid JSON.
+{% endraw %}
+
+Variables are not escaped when used as part of a filter or query - only constants can be escaped by Backand. With this in mind, you want to make sure that variables tied directly to user input are properly sanitized before being sent to the back-end. The SQL statement generated for the filter object will include the variables you provide. The variables will be substituted for the equivalent values prior to the execution of the query.
