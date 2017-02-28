@@ -19,18 +19,14 @@ To install the Angular 1 SDK, use the correct command for your dependency manage
 | clone/download via Git | $ git clone https://github.com/backand/angular1-sdk.git |
 
 ### Import
-
-Include the following tags in your *index.html* file to start working with the SDK:
-
 ``` html
 <script src="node_modules/@backand/angular1-sdk/backand.provider.min.js"></script>
 <script src="backand.provider.min.js"></script>
 ```
+Include the following tags in your *index.html* file to start working with the SDK:
+
 
 ### Quick start
-
-Getting started with the SDK is as simple as configuring access to a Back& application, then calling *getList* on a relevant object:
-
 ```javascript
 angular
   .module('myApp', ['backand'])
@@ -45,7 +41,9 @@ angular
   }]);
 ```
 
-Review the full API reference at our [vanilla-sdk's github](https://github.com/backand/vanilla-sdk) to get started with your back end!
+Getting started with the SDK is as simple as configuring access to a Back& application, then calling *getList* on a relevant object.
+
+Review the full API reference for our [Vanilla SDK](#vanilla-sdk) to get started with your back end!
 
 ### Examples
 ***To view a demo of the SDK in action, just run npm start - [example page](https://github.com/backand/angular1-sdk/blob/master/example/).***
@@ -77,8 +75,6 @@ import { BackandService } from '@backand/angular2-sdk'
 Using the Back& Angular2 SDK requires two steps - configuring access to the BackandService provider, and then actually calling the provider using the [vanilla-sdk](https://github.com/backand/vanilla-sdk) methods.
 
 #### app.module.ts:
-Update *app.module.ts* to include the BackandService as a provider
-
 ```javascript
 @NgModule({
   imports: [ ... ],
@@ -89,9 +85,9 @@ Update *app.module.ts* to include the BackandService as a provider
 export class AppModule { }
 ```
 
-#### app.component.ts:
-Now, call the SDK from *app.component.ts*. The SDK is initialized during *ngOnInit()*, and *getList* is called as a property on *AppComponent*
+Update *app.module.ts* to include the BackandService as a provider
 
+#### app.component.ts:
 ```javascript
 @Component({
   selector: 'my-app',
@@ -118,7 +114,9 @@ export class AppComponent implements OnInit {
 }
 ```
 
-Review the full API reference at our [vanilla-sdk's github](https://github.com/backand/vanilla-sdk) to get started with your back end!
+Now, call the SDK from *app.component.ts*. The SDK is initialized during *ngOnInit()*, and *getList* is called as a property on *AppComponent*
+
+Review the full API reference for our [Vanilla SDK](#vanilla-sdk) to get started with your back end!
 
 ### Examples
 ***To view a demo of the SDK in action, just run npm start - [example page](https://github.com/backand/angular1-sdk/blob/master/example/).***
@@ -139,22 +137,23 @@ To install the Redux SDK, use the correct command for your dependency management
 | yarn | $ yarn add @backand/redux-sdk |
 
 ### Import
-Use the following import statement to include the Angular2 SDK in your project:
-
 ```javascript
 import { BackandService } from '@backand/angular2-sdk'
 ```
 
-### Quick start
-To get started, first use *bkdnredux* to generate the necessary *Types*, *Actions*, and *Reducers* for your Backand objects from the command line:
+Use the following import statement to include the Angular2 SDK in your project:
 
+
+### Quick start
 ```bash
 $ "./node_modules/.bin/bkndredux" --help
 $ "./node_modules/.bin/bkndredux" user obj1 obj2 obj3... -m (thunk/saga)
 ```  
+
+To get started, first use *bkdnredux* to generate the necessary *Types*, *Actions*, and *Reducers* for your Backand objects from the command line:
+
 ***Note:*** *user* is a unique object. It has a different *Reducer* and *Type*, and it reveals most of the authentication *Actions* (getUserDetails, signin, signout, etc.).
 
-Next, Include the new *Reducers* in [combineReducers()](http://redux.js.org/docs/api/combineReducers.html):
 ```javascript
 import { combineReducers } from 'redux'
 import user from './user/userReducer'
@@ -168,7 +167,10 @@ combineReducers({
 })
 ```
 
-For the next step, pick the section that applies to your chosen middleware stack - either [redux-thunk](https://github.com/gaearon/redux-thunk) or [redux-saga](https://github.com/redux-saga/redux-saga) - then follow the corresponding instructions:
+Next, Include the new *Reducers* in [combineReducers()](http://redux.js.org/docs/api/combineReducers.html) (see JavaScript tab)
+
+
+Next, we nede to configure the middleware stack to work with the SDK. Pick the section that applies to your chosen middleware stack - either [redux-thunk](https://github.com/gaearon/redux-thunk) or [redux-saga](https://github.com/redux-saga/redux-saga) - then follow the corresponding instructions:
 
 #### [redux-thunk](https://github.com/gaearon/redux-thunk)
 Download [redux-thunk](https://github.com/gaearon/redux-thunk) and include it in [createStore()](http://redux.js.org/docs/api/createStore.html):
@@ -192,8 +194,6 @@ sagaMiddleware.run(rootSaga)
 ```
 
 #### Working with the SDK
-Once the above is completed, import `Actions` and dispatch them easily!
-
 ```javascript
 import { getUserDetails, signin, useAnonymousAuth, signout } from './user/userActions'
 
@@ -201,7 +201,9 @@ store.dispatch(signin(username, password))
 store.dispatch(getUserDetails())
 ```
 
-Review the full API reference at our [vanilla-sdk's github](https://github.com/backand/vanilla-sdk) to get started with your back end!
+Once the above is completed, import `Actions` and dispatch them easily!
+
+Review the full API reference for our [Vanilla SDK](#vanilla-sdk) to get started with your back end!
 
 ### Examples
 Below are a few examples of Redux code that uses the Back& SDK:

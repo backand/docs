@@ -10,7 +10,7 @@ toc_footers:
   - <a href='https://github.com/backand'>View our samples on GitHub</a>
 
 includes:
-  - getting_started
+  - backand_dashboard
   - sdk
   - platform_specific
 
