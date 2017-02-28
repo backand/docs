@@ -181,13 +181,12 @@ html, body {
   // Subheaders are the submenus that slide open
   // in the table of contents.
   .tocify-subheader {
-
-    display: none; // tocify will override this when needed
-    background-color: $nav-second-item-bg;
-    font-weight: 250;
+    background-color: $nav-subitem-bg;
+    padding-left: $nav-padding;
     .tocify-subheader {
       display: none; // tocify will override this when needed
-      background-color: $nav-subitem-bg;
+      background-color: $nav-sub-subitem-bg;
+
       font-weight: 500;
       .tocify-item>a {
         padding-left: $nav-padding + $nav-indent;
@@ -199,6 +198,11 @@ html, body {
       &>li:last-child {
         box-shadow: none; // otherwise it'll overflow out of the subheader
       }
+    }
+    // for embossed look:
+    @include embossed-bg;
+    &>li:last-child {
+      box-shadow: none; // otherwise it'll overflow out of the subheader
     }
   }
 
@@ -400,8 +404,10 @@ html, body {
     margin-top: 2.5em;
     margin-bottom: 0.8em;
   }
-
-  h4, h5, h6 {
+  h4 {
+    font-size: 12px;
+  }
+  h5, h6 {
     font-size: 10px;
   }
 
