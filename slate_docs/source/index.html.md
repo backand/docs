@@ -15,6 +15,7 @@ includes:
   - sdk
   - platform_specific
   - common_use_cases
+  - integrations
 
 search: true
 ---
