@@ -23,19 +23,19 @@ Now, when a user signs up to your app using Facebook as a social login provider,
 Once you have the Facebook user ID, use the Graph API to access any available Facebook data.
 
 1. <a href="https://developers.facebook.com/docs/graph-api" target="_blank">The FB Graph API docs</a>
-1. You also would need access token of your app, use this <a href="https://developers.facebook.com/tools/accesstoken/" target="_blank">FB tool</a> to get it.
+1. You also would need Facebook access token of your app, use this <a href="https://developers.facebook.com/tools/accesstoken/" target="_blank">FB tool</a> to get it.
 1. More <a href="https://developers.facebook.com/tools-and-support/" target="_blank">FB tools</a>
 1. For example, to get a user's friends use the following JavaScript action code:
 
 ```javascript
 	var fuid = "176102422846507";
-	var accessToken = "EAAWouLyM4lEBADjVlK9yslq9YNjx7S5UUx9oKUo6BWxsj9qc77ZCuKZAPvBQUIulpieNJIJ0Uit3K0UFR0oxjxl68DupTb0uoJFXPQFUdTOlneLEprG6b8WxuYN3AX6m05hKpFbBPKczCab1OUetevdvkZCO6rtPUQEUtc68gZDZD";
+	var facebookAccessToken = "EAAWouLyM4lEBADjVlK9yslq9YNjx7S5UUx9oKUo6BWxsj9qc77ZCuKZAPvBQUIulpieNJIJ0Uit3K0UFR0oxjxl68DupTb0uoJFXPQFUdTOlneLEprG6b8WxuYN3AX6m05hKpFbBPKczCab1OUetevdvkZCO6rtPUQEUtc68gZDZD";
 
     var response = $http({
         method: "GET",
         url:"https://graph.facebook.com/v2.8/" + fuid + "/friends?fields=id,name,gender",
         params:{
-            "access_token": accessToken
+            "access_token": facebookAccessToken
         },
         headers:{"Content-Type":"application/json"}
     });
