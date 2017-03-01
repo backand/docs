@@ -1,0 +1,2627 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Backand Documentation</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">cURL</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='https://www.backand.com'>Sign Up for a free app</a></li>
+            <li><a href='https://github.com/backand'>View our samples on GitHub</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="documentation-overview">Documentation Overview</h1>
+
+<h2 id="what-is-backand">What is Backand?</h2>
+
+<p>Backand&rsquo;s goal is to free up the front end development of web applications by providing a rich, robust, and scalable back end with minimal impact on the development process. The key feature offered by Backand is the <a href="http://en.wikipedia.org/wiki/Object-relational_mapping">ORM</a>, but most application back ends require more than just object management. Backand provides you with most of what your application needs automatically, offering features like tracking data changes, logging, role-based security, back-office connectivity, and much more. You can even create your own server side actions with JavaScript, running custom server side queries and easily integrating with third party services.</p>
+
+<h3 id="backand-orm">Backand ORM</h3>
+
+<p>Backand <a href="http://en.wikipedia.org/wiki/Object-relational_mapping">ORM</a> automatically provides you with a REST API to perform <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operations against your database. You can connect an existing database you already have, or create a new database with the Backand dashboard. When you create a database at Backand it is automatically populated in Amazon&rsquo;s AWS Relational Database Service (AWS RDS), providing an isolated database server that you can scale automatically, or even use in other applications entirely independent of Backand. Even though Backand focuses on software services as opposed to platform services, when you register a database with Backand it is truly your database.</p>
+
+<h3 id="sql-and-nosql-the-best-of-both-worlds">SQL and NoSQL - The Best of Both Worlds</h3>
+
+<p>Through the flexibility of Backand&rsquo;s API, you have the ability to work with your data at whatever level you desire. You can perform basic <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operations in a couple ways. In one way you can mimic a SQL database by simply returning a shallow representation of the object, with foreign key references remaining as simple IDs in the response data. However, you can also perform deep queries that resolve all of the underlying data objects into a single set of response data, giving you the level of object detail that you often see with NoSQL databases. With a simple parameter change, you can switch between the two patterns at will!</p>
+
+          <h1 id="backand-features">Backand features</h1>
+
+<p>This section contains documentation on the features offered by Backand. We will cover the following functional areas:</p>
+
+<ul>
+<li>Security and Authentication - a summary of the security features offered by Backand</li>
+<li>Backand Storage - an overview of our file storage options</li>
+<li>Backand Hosting - an overview of our hosting options</li>
+<li>Custom Actions - an overview of the ability to add custom actions and event-based functionality</li>
+<li>Queries - an overview of the on-demand query functionality</li>
+<li>NoSQL Query Language - an overview of our NoSQL-style query language</li>
+</ul>
+
+<h2 id="security-concepts">Security Concepts</h2>
+
+<p>This section describes how to manage your app&rsquo;s users within Backand&rsquo;s user security paradigm. An important element to note up front is that, by default, <a href="https://www.backand.com">Backand</a> provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand&rsquo;s database, and as such cannot partake of your app&rsquo;s custom logic. The second user object is offered in the default data model for a Backand application, and is titled &lsquo;users&rsquo;. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see <a href="security.md#Link%20your%20app's%20users%20with%20Backand's%20registered%20users">Link your app&rsquo;s users with Backand&rsquo;s registered users</a> for more info). We highly recommend running the <a href="https://github.com/backand/todos-with-users">todos-with-users app</a> in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app&rsquo;s data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application&rsquo;s objects.</p>
+
+<h3 id="authentication">Authentication</h3>
+
+<p>In this section, we&rsquo;ll cover Backand&rsquo;s authentication mechanisms.</p>
+
+<h4 id="oauth-2-0">OAuth 2.0</h4>
+<pre class="highlight shell tab-shell"><code><span class="c"># To obtain an access token using a username and password, use the following</span>
+<span class="c"># command:</span>
+curl https://api.backand.com/token -d <span class="nv">username</span><span class="o">=</span>guest@backand.com -d <span class="nv">password</span><span class="o">=</span>guest1234 -d <span class="nv">grant_type</span><span class="o">=</span>password -d <span class="nv">appName</span><span class="o">=</span>bkndexample
+<span class="c"># To obtain an access token using the Social Media master key, use the</span>
+<span class="c"># following command:</span>
+curl -X GET https://api.backand.com/1/user/facebook/token?accessToken<span class="o">=</span>EAAPutOqBPlkBANfUQXdmp7xseF16JpSknTGxZBBZAwd1TDigDUqC9i5NixlDOKFNpNQQwqJFHHPs059STwG0qzodlfzOvnE2q4EPxXM43ZBZBUOV44lCjpmFhMwJmeXUgRSBlwxJaKrvZAH7vW7NdBQa3dMLQZAv4RTXRZAcgqNVQZDZD&amp;appName<span class="o">=</span>bkndexample&amp;signupIfNotSignedIn<span class="o">=</span><span class="nb">true</span>
+<span class="c"># You can then use the access token to call any Backand API for your</span>
+<span class="c"># application</span>
+curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization: Bearer OfKDiw6fQwfhmUcoh3WuXken_Sgj18za8SDqn1Ed2S_qI88HWNwGBSpG2ktUkSbNIwcGn6dwos7ivvVARC1UIiCf8fzlNynFNZamCZPDpbOhRjheq3RnU6HJiCbqlks57PLvMnf9PxGK8D3FU8MeaPyUk7mmbAtvgc6GF-9s13YpFjVQkM5XRZ-CsuWjaRoukygLMOivj1iPYxBB4c-hu6ocZKQljiSnw6rroYbD4spmUIkwDnC0rz1jP9ln5KNI3KmO0KLcWJF6E_zWfepdFw"</span>
+</code></pre>
+<p>The default authentication setup for <a href="https://www.backand.com">Backand</a> applications relies on <a href="http://oauth.net/2/">OAuth2</a> to provide tokenized authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use <a href="https://github.com/backand/angularbknd-sdk">Backand&rsquo;s SDK</a> to help you manage the access token. You can change the default expiration of 24 hours by using a refresh token, which allows you to reuse the authentication token indefinitely. The refresh token is an encrypted hash of the master and user keys. You can revoke one (or all) of your user&rsquo;s refresh tokens by changing the refresh token and requiring users to re-authenticate. For more information, see the <a href="http://docs.backand.com/en/latest/apidocs/apidescription/index.html#user-authentication">API Description</a>.</p>
+
+<p>Parameters:
+&ndash;signupIfNotSignedIn - (Optional, default false) - If the user tries to sign in without first registering for the application, the user will receive an error message (&ldquo;The user is not signed up to {appName}&rdquo;). If this value is set to true, then the user will be automatically registered with the app if they have not yet been signed up</p>
+
+<h4 id="basic-authentication">Basic authentication</h4>
+<pre class="highlight shell tab-shell"><code><span class="c"># Perform basic authentication via header</span>
+curl https://api.backand.com/1/objects/items -u &lt;master key&gt;:&lt;user key&gt;
+<span class="c"># Perform basic authentication using URL parameters</span>
+curl https://api.backand.com/1/objects/items?authorization<span class="o">=</span>basic+&lt;master key&gt;:&lt;user key&gt;
+</code></pre>
+<p>You can use <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">basic auth</a> to ease working with other servers - simply enter the master key as the username, and the user key as the password. You can use this approach to obtain a list of Items by using the following API call:</p>
+
+<p>You can also send the basic authorization token through as a query string.</p>
+
+<aside class="warning">Do not use this method from the client side as it exposes your app&rsquo;s secret token, which can be used to perform any action in your system. This method is for server-side calls only.</aside>
+
+<h4 id="anonymous-authentication">Anonymous authentication</h4>
+<pre class="highlight shell tab-shell"><code><span class="c"># Perform anonymous authentication through headers</span>
+curl https://api.backand.com/1/objects/items -H <span class="s2">"AnonymousToken: &lt;anonymous token&gt;"</span>
+<span class="c"># You can also send the anonymous token through in a query string:</span>
+curl https://api.backand.com/1/objects/items?AnonymousToken<span class="o">=</span>&lt;anonymous token&gt;
+</code></pre>
+<p>Backand also offers Anonymous Access, which allows you to access your application without the need to authenticate via username and password. By passing this value in a request header (e.g. AnonymousToken=<your token here>) you can perform api actions for your application</p>
+
+<h3 id="sign-up">Sign Up</h3>
+
+<p>Registering with <a href="https://www.backand.com">Backand</a>, and creating an application, automatically sets you as a user with an &lsquo;Admin&rsquo; role in your new project (see <a href="#roles">roles</a> for more info). By default your application is marked public which mean any user can register to your application.</p>
+
+<p>These users are assigned a default role &lsquo;User&rsquo;, which has full CRUD access to your app. You needs to be configured when you enable public usage of your app (see <a href="#roles">roles</a> for more details).</p>
+<pre class="highlight javascript tab-javascript"><code>  <span class="c1">//Create new Security Action in Before Create trigger with the following</span>
+  <span class="c1">//code (this will update the role to 'Public'):</span>
+  <span class="nx">userInput</span><span class="p">.</span><span class="nx">Role</span> <span class="o">=</span> <span class="s1">'Public'</span><span class="p">;</span>
+</code></pre>
+<aside class="notice">
+For security reasons you cannot change the role from the sign-up API - this can only be accomplished either by having an admin change the appropriate settings on the Security & Auth -&gt; Registered Users page, or by creating a custom server-side action with Admin rights (see JavaScript tab).
+</aside>
+
+<h4 id="saving-additional-parameters-during-sign-up">Saving Additional Parameters During Sign-up</h4>
+
+<p>In many cases, we would like to collect additional information from the user during sign up. We can automatically populate the related fields on the Users object as a part of the sign-up request by using the <strong>parameters</strong> parameter for the sign-up call. The server, during the &lsquo;Create My App User&rsquo; action, will translate these key-value pairs into the appropriate fields on the &lsquo;Users&rsquo; object - as such, it is important that all fields provided already exist on the Users object. The following example demonstrates specifying a user&rsquo;s &ldquo;company&rdquo; name as a part of the sign-up:</p>
+
+<ol>
+<li><p>Update the Model and add the field <strong>company</strong> to the <strong>users</strong> object:</p>
+
+<ol>
+<li>Go to <strong>Objects &ndash;&gt; Model</strong></li>
+<li>Add this line as a data field in the <strong>users</strong> object model: <strong>&ldquo;company&rdquo;: {&ldquo;type&rdquo;: &ldquo;string&rdquo;}</strong></li>
+<li>Click on <strong>Validate &amp; Update</strong></li>
+</ol></li>
+<li><p>When calling Backand.signup(), send the <strong>parameters</strong> objecct through as the last input parameter for the request. The code will resemble the following:</p></li>
+</ol>
+<pre class="highlight javascript tab-javascript"><code>    <span class="nx">Backand</span><span class="p">.</span><span class="nx">signup</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">,</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="p">{</span><span class="na">company</span><span class="p">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">company</span><span class="p">}).</span><span class="nx">then</span><span class="p">(...);</span>
+</code></pre>
+<ol>
+<li><p>There&rsquo;s no need for server-side modificcations - values for &ldquo;parameters&rdquo; are handled automatically by the action &lsquo;Create My App User&rsquo; (found in the <strong>Security Actions</strong> section).</p></li>
+<li><p>Modify the UI to collect the &lsquo;company&rsquo; name for the user.</p></li>
+</ol>
+
+<p>Now, when sign-up is completed, you can see the company name in the <strong>users</strong> object&rsquo;s Data tab.</p>
+
+<h4 id="private-app">Private app</h4>
+
+<p>You can change the default public app to be private. This can be changed in the dashboard by setting the Public flag for your application to &lsquo;false&rsquo; in the Security &amp; Auth &ndash;&gt; Configuration menu. For a private app, the registration steps are as follow:</p>
+
+<ul>
+<li>First, set your app&rsquo;s registration page on the Security &amp; Auth &ndash;&gt; Configuration page.</li>
+<li>Next, if you wish to use automated email verification, enable Sign-up Email Verification on the Security &amp; Auth &ndash;&gt; Configuration page</li>
+<li>Once you have a registration page, enter the emails to invite on the Security &amp; Auth &ndash;&gt; Users page.</li>
+<li>Once you have entered the emails you wish to invite, click the &lsquo;Invite User(s)&rsquo; button. This will send an email to each new user with a link to the registration page that you created.</li>
+</ul>
+
+<h4 id="email-verification-process">Email verification process</h4>
+
+<p>The user enters his/her email, name and password on your registration page:</p>
+
+<ul>
+<li>After the user submits their registration, Backand sends a verification email to authenticate the user&rsquo;s identity if Sign-up Email Verification is enabled</li>
+<li>If Sign-up Email Verification is not enabled, at this point registration is complete.</li>
+<li>If Sign-up Email Verification is enabled, after the user clicks on the link in the verification email, Backand completes the registration process and redirects to the &lsquo;Custom Verified Email Page&rsquo; URL for your application. Configure this on the Security &amp; Auth &ndash;&gt; Configuration page<br></li>
+</ul>
+
+<p>For more information, see the <a href="http://docs.backand.com/en/latest/apidocs/apidescription/index.html#sign-up">API Description</a>.</p>
+
+<h3 id="sso-single-sign-on">SSO (Single Sign On)</h3>
+
+<p>Many organizations make use of tools like Active Directory in order to provide a central source of user-based authentication. This system is often used to drive a Single Sign On (SSO) feature in the organization, allowing users to simply use one set of credentials for all of the apps that they need to work with. Backand provides a method to incorporate SSO functionality using an override server-side action. This action allows you to perform your own authentication (via web-service calls to the domain controller, for example), and lets you return one of three actions.</p>
+
+<ul>
+<li>Returning &lsquo;allow&rsquo; allows the user access to the requested resource = in this case, you can return additional information in the &lsquo;additionalTokenInfo&rsquo; variable, which is added to the Backand authentication result. You may access this later by using the getUserDetails function of the Backand SDK.</li>
+<li>Returning &ldquo;deny&rdquo; overrides Backand&rsquo;s auth, and provides an &lsquo;Access Denied&rsquo; mesage.</li>
+<li>Returning &lsquo;ignore&rsquo; allows you to ignore the custom action, instead relying upon Backand&rsquo;s default authentication methods.</li>
+</ul>
+
+<p>You can configure this action in the Backand dashboard, under Security &amp; Auth =&gt; Security Actions.</p>
+
+<h3 id="remove-user-from-the-app">Remove user from the app</h3>
+
+<p>There are two ways to remove a user from the application. You can permanently remove a user from the application by deleting a user from the Registered Users grid. This requires the user to register again if they wish to continue using your app. Alternatively, you can un-check the &lsquo;approved&rsquo; checkbox in the user&rsquo;s row on the Security &amp; Auth &ndash;&gt; Users page. This allows you to reinstate the user simply by re-checking the &lsquo;approved&rsquo; column.</p>
+
+<h3 id="anonymous-access">Anonymous Access</h3>
+
+<p>By default the anonymous access is turned on with &lsquo;User&rsquo; role access, which mean any one can register to your app and make CRUD actions on any object.
+If you wish to disable anonymous access to your application, go to Security &amp; Auth &ndash;&gt; Configuration and set &lsquo;Anonymous Access&rsquo; to off.</p>
+
+<aside class="notice">To better control the permission of your app we recommend to change the anonymous users role to have less access. For more information on anonymous access, see the [API Description](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#anonymous-access).</aside>
+
+<h3 id="link-your-apps-users-with-backands-registered-users">Link your app&rsquo;s users with Backand&rsquo;s registered users</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Validate Backand Registered User Action</span>
+<span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">params</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">validEmail</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">email</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">re</span> <span class="o">=</span> <span class="sr">/</span><span class="se">\\</span><span class="sr">S+@</span><span class="se">\\</span><span class="sr">S+</span><span class="se">\\</span><span class="sr">.</span><span class="se">\\</span><span class="sr">S+/</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">re</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">email</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// write your code here</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">userInput</span><span class="p">.</span><span class="nx">email</span><span class="p">){</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"Backand user must have an email."</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">validEmail</span><span class="p">(</span><span class="nx">userInput</span><span class="p">.</span><span class="nx">email</span><span class="p">)){</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"The email is not valid."</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">userInput</span><span class="p">.</span><span class="nx">firstName</span><span class="p">){</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"Backand user must have a first name."</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">userInput</span><span class="p">.</span><span class="nx">lastName</span><span class="p">){</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">"Backand user must have a last name."</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Create Backand Registered User Action</span>
+<span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">params</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">randomPassword</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">length</span><span class="p">){</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">length</span><span class="p">)</span> <span class="nx">length</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">().</span><span class="nx">toString</span><span class="p">(</span><span class="mi">36</span><span class="p">).</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="nx">length</span><span class="p">);</span>
+  <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">parameters</span><span class="p">.</span><span class="nx">password</span><span class="p">){</span>
+        <span class="nx">params</span><span class="p">.</span><span class="nx">password</span> <span class="o">=</span> <span class="nx">randomPassword</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">backandUser</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="na">password</span><span class="p">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
+        <span class="na">confirmPassword</span><span class="p">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">password</span><span class="p">,</span>
+        <span class="na">email</span><span class="p">:</span> <span class="nx">userInput</span><span class="p">.</span><span class="nx">email</span><span class="p">,</span>
+        <span class="na">firstName</span><span class="p">:</span> <span class="nx">userInput</span><span class="p">.</span><span class="nx">firstName</span><span class="p">,</span>
+        <span class="na">lastName</span><span class="p">:</span> <span class="nx">userInput</span><span class="p">.</span><span class="nx">lastName</span>
+    <span class="p">};</span>
+
+    <span class="c1">// uncomment if you want to debug</span>
+    <span class="c1">//console.log(params);</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">({</span><span class="na">method</span><span class="p">:</span><span class="s2">"POST"</span><span class="p">,</span><span class="na">url</span><span class="p">:</span><span class="nx">CONSTS</span><span class="p">.</span><span class="nx">apiUrl</span> <span class="o">+</span> <span class="s2">"1/user"</span> <span class="p">,</span><span class="na">data</span><span class="p">:</span><span class="nx">backandUser</span><span class="p">,</span> <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span><span class="nx">userProfile</span><span class="p">.</span><span class="nx">token</span><span class="p">,</span> <span class="s2">"AppName"</span><span class="p">:</span><span class="nx">userProfile</span><span class="p">.</span><span class="nx">app</span><span class="p">}});</span>
+
+    <span class="c1">// uncomment if you want to return the password and sign in as this user</span>
+    <span class="c1">//return { password: params.password };</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="p">};</span>
+<span class="p">}</span>
+</code></pre>
+<p><a href="https://www.backand.com">Backand</a> maintains an internal registered users object which is used to manage your app&rsquo;s
+security. However, most apps will have their own &lsquo;users&rsquo; object, which is used when implementing the app&rsquo;s business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two objects. If you have an object in your system named &lsquo;users&rsquo;, and if that object has the fields &lsquo;email&rsquo;, &lsquo;firstName&rsquo;, and &lsquo;lastName&rsquo;, then every user that is registered with <a href="https://www.backand.com">Backand</a> for your app will automatically have an entry created in your custom &lsquo;users&rsquo; object. This takes place no matter how the user is added - both the sign-up API and the <a href="https://www.backand.com">Backand</a> dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand&rsquo;s internal registered users object. This new user will be given a randomized password, which can then be provided to the user for access to your application.</p>
+
+<p>Below we&rsquo;ll look more in-depth at how this process is managed. Additionally, we&rsquo;ll explore what happens when the users object has an unexpected name (i.e. something other than &lsquo;users&rsquo;), or if the fields of the users object are named differently.</p>
+
+<p>There are 3 sync actions located in Configuration -&gt; Security &amp; Auth that are triggered by Backand user registration:</p>
+
+<ol>
+<li>Create My App User</li>
+<li>Update My App User</li>
+<li>Delete My App User.</li>
+</ol>
+
+<p>You can directly modify those JavaScript actions if needed.</p>
+
+<aside class="notice">By default, Backand sets the Where Condition of the action to &lsquo;false&rsquo; if it detects that you do not have a users object in your model, meaning that the action will never run.</aside>
+
+<p>If you have a users object in your model, Backand adds the following actions, which run before and during user creation</p>
+
+<ul>
+<li>Before Create: Validate Backand Register User</li>
+<li>During Create: Create Backand Register User</li>
+</ul>
+
+<p>This action implements the other side of the relationship - after creating an instance in your custom &lsquo;users&rsquo; object, this code creates the corresponding entry in Backand&rsquo;s internal users object. If have named your custom user object anything other than &lsquo;users&rsquo;, you can add the above action into that object manually to achieve the same functionality. You will need to adjust the backandUser object creation to use the columns in your specific object, as the userInput object may have a different structure than that assumed above.</p>
+
+<h3 id="roles-security-templates">Roles &amp; Security Templates</h3>
+
+<p>Each user has a role. When you created your app, you were automatically assigned with an &lsquo;Admin&rsquo; role. The &lsquo;Admin&rsquo; role is a special role that allows you to make configuration changes in your app with Backand&rsquo;s administration tools. Non-admin roles, which should be used to secure your application, are used to define the permissions for each of the <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions for your objects and queries. Each Object and Query in your application is associated with a Security Template. In the security template, you assign different permissions for the possible <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions to each user role, allowing you to control your user&rsquo;s access to the system&rsquo;s create, read, update and delete actions for your objects. Template configuration is found on the Security &amp; Auth &ndash;&gt; Security Template page.</p>
+
+<p>While Security Templates provide reusable permissions platforms that can be spread across a number of roles, you can also override security template settings and provide specific permissions for each individual role. This allows you to have more granular control over the <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions that can be performed by the users in your system. When a user with insufficient security access tries to perform an action for which they do not have permission, a 403 (Forbidden) error response is returned.</p>
+
+<h2 id="backand-storage">Backand Storage</h2>
+
+<p>Backand provides you with the ability to upload and delete files to and from Backand&rsquo;s robust storage. This is done on the server-side through Backand&rsquo;s Actions. It doesn&rsquo;t require any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage counts of the amount of files per user.</p>
+
+<p>The files.upload command returns a url that links to the file you uploaded. This is a public url. The storage is managed per Backand app.  </p>
+
+<h3 id="custom-server-side-action-code">Custom Server-Side Action Code</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">//Use the following JavaScript as the basis for your file upload action.</span>
+<span class="c1">//Refer to the template function for information on global variables offered.</span>
+<span class="s1">'use strict'</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">userProfile</span><span class="p">);</span> <span class="c1">// gets the current user role and id that enables you to perform security restrictions</span>
+    <span class="c1">// upload file</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">method</span> <span class="o">==</span> <span class="s2">"POST"</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">files</span><span class="p">.</span><span class="nx">upload</span><span class="p">(</span><span class="nx">parameters</span><span class="p">.</span><span class="nx">filename</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">.</span><span class="nx">filedata</span><span class="p">);</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">"url"</span><span class="p">:</span> <span class="nx">url</span><span class="p">};</span>
+    <span class="p">}</span>
+    <span class="c1">// delete file</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">method</span> <span class="o">==</span> <span class="s2">"DELETE"</span><span class="p">){</span>
+        <span class="nx">files</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="nx">parameters</span><span class="p">.</span><span class="nx">filename</span><span class="p">);</span>
+        <span class="k">return</span> <span class="p">{};</span>    
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre>
+<p>Both upload and delete are written in the same action and the method you use to call it determines the functionality. When the method is POST then the action performs upload and when it is DELETE the action performs delete. You can use the userProfile for restrictions or file name manipulations. You do not need to copy this code. It is ready for you when you click on the Backand <em>File Storage</em> action template.</p>
+
+<h3 id="angular-client-side-code">Angular Client-Side Code</h3>
+<pre class="highlight html tab-html"><code><span class="c">&lt;!-- Angular HTML --&gt;</span>
+<span class="nt">&lt;body</span> <span class="na">class=</span><span class="s">"container"</span> <span class="na">ng-app=</span><span class="s">"app"</span> <span class="na">ng-controller=</span><span class="s">"DemoCtrl"</span> <span class="na">ng-init=</span><span class="s">"initCtrl()"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;h2&gt;</span>Backand Simple Upload File<span class="nt">&lt;/h2&gt;</span>
+  <span class="nt">&lt;br/&gt;</span>
+  <span class="nt">&lt;form</span> <span class="na">role=</span><span class="s">"form"</span> <span class="na">name=</span><span class="s">"uploadForm"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;img</span> <span class="na">ng-src=</span><span class="s">"{{imageUrl}}"</span> <span class="na">ng-show=</span><span class="s">"imageUrl"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"fileInput"</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">accept=</span><span class="s">"*/*"</span> <span class="na">ng-model=</span><span class="s">"filename"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"button"</span> <span class="na">value=</span><span class="s">"x"</span> <span class="na">class=</span><span class="s">"delete-file"</span> <span class="na">title=</span><span class="s">"Delete file"</span> <span class="na">ng-disabled=</span><span class="s">"!imageUrl"</span> <span class="na">ng-click=</span><span class="s">"deleteFile()"</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/form&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Client-side JavaScript</span>
+<span class="kd">var</span> <span class="nx">myApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'app'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'backand'</span><span class="p">]);</span>
+
+<span class="c1">// Backand security configuration for your app</span>
+<span class="nx">myApp</span><span class="p">.</span><span class="nx">config</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">BackandProvider</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// enter your app name here</span>
+  <span class="nx">BackandProvider</span><span class="p">.</span><span class="nx">setAppName</span><span class="p">(</span><span class="s1">'YourAppName'</span><span class="p">);</span>
+  <span class="c1">// enter your app anonymous token here</span>
+  <span class="nx">BackandProvider</span><span class="p">.</span><span class="nx">setAnonymousToken</span><span class="p">(</span><span class="s1">'YourAnonymousToken'</span><span class="p">);</span>
+<span class="p">})</span>
+
+<span class="nx">myApp</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'DemoCtrl'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'$scope'</span><span class="p">,</span> <span class="s1">'$http'</span><span class="p">,</span> <span class="s1">'Backand'</span><span class="p">,</span> <span class="nx">DemoCtrl</span><span class="p">]);</span>
+
+<span class="kd">function</span> <span class="nx">DemoCtrl</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">$http</span><span class="p">,</span> <span class="nx">Backand</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1">// Create a server side action in backand</span>
+  <span class="c1">// Go to any object's actions tab</span>
+  <span class="c1">// and click on the Backand Storage icon.</span>
+  <span class="c1">// Backand consts:</span>
+  <span class="kd">var</span> <span class="nx">baseUrl</span> <span class="o">=</span> <span class="s1">'/1/objects/'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">baseActionUrl</span> <span class="o">=</span> <span class="nx">baseUrl</span> <span class="o">+</span> <span class="s1">'action/'</span>
+  <span class="kd">var</span> <span class="nx">objectName</span> <span class="o">=</span> <span class="s1">'YourObjectName'</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">filesActionName</span> <span class="o">=</span> <span class="s1">'YourServerSideActionName'</span><span class="p">;</span>
+
+  <span class="c1">// Display the image after upload</span>
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">imageUrl</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+  <span class="c1">// Store the file name after upload to be used for delete</span>
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">filename</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+  <span class="c1">// input file onchange callback</span>
+  <span class="kd">function</span> <span class="nx">imageChanged</span><span class="p">(</span><span class="nx">fileInput</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">//read file content</span>
+    <span class="kd">var</span> <span class="nx">file</span> <span class="o">=</span> <span class="nx">fileInput</span><span class="p">.</span><span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
+
+    <span class="nx">reader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">upload</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">.</span><span class="nx">result</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">$scope</span><span class="p">.</span><span class="nx">imageUrl</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">url</span><span class="p">;</span>
+        <span class="nx">$scope</span><span class="p">.</span><span class="nx">filename</span> <span class="o">=</span> <span class="nx">file</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+      <span class="p">},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="nx">err</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">};</span>
+
+    <span class="nx">reader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="c1">// register to change event on input file</span>
+  <span class="kd">function</span> <span class="nx">initUpload</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">fileInput</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'fileInput'</span><span class="p">);</span>
+
+    <span class="nx">fileInput</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">'change'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">imageChanged</span><span class="p">(</span><span class="nx">fileInput</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+   <span class="c1">// call to Backand action with the file name and file data  </span>
+  <span class="kd">function</span> <span class="nx">upload</span><span class="p">(</span><span class="nx">filename</span><span class="p">,</span> <span class="nx">filedata</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// By calling the files action with POST method in will perform</span>
+    <span class="c1">// an upload of the file into Backand Storage</span>
+    <span class="k">return</span> <span class="nx">$http</span><span class="p">({</span>
+      <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+      <span class="na">url</span> <span class="p">:</span> <span class="nx">Backand</span><span class="p">.</span><span class="nx">getApiUrl</span><span class="p">()</span> <span class="o">+</span> <span class="nx">baseActionUrl</span> <span class="o">+</span>  <span class="nx">objectName</span><span class="p">,</span>
+      <span class="na">params</span><span class="p">:{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="nx">filesActionName</span>
+      <span class="p">},</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span>
+      <span class="p">},</span>
+      <span class="c1">// you need to provide the file name and the file data</span>
+      <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"filename"</span><span class="p">:</span> <span class="nx">filename</span><span class="p">,</span>
+        <span class="s2">"filedata"</span><span class="p">:</span> <span class="nx">filedata</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">filedata</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">','</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">filedata</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="c1">//need to remove the file prefix type</span>
+      <span class="p">}</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">deleteFile</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">$scope</span><span class="p">.</span><span class="nx">filename</span><span class="p">){</span>
+      <span class="nx">alert</span><span class="p">(</span><span class="s1">'Please choose a file'</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// By calling the files action with DELETE method in will perform</span>
+    <span class="c1">// a deletion of the file from Backand Storage</span>
+    <span class="nx">$http</span><span class="p">({</span>
+      <span class="na">method</span><span class="p">:</span> <span class="s1">'DELETE'</span><span class="p">,</span>
+      <span class="na">url</span> <span class="p">:</span> <span class="nx">Backand</span><span class="p">.</span><span class="nx">getApiUrl</span><span class="p">()</span> <span class="o">+</span> <span class="nx">baseActionUrl</span> <span class="o">+</span>  <span class="nx">objectName</span><span class="p">,</span>
+      <span class="na">params</span><span class="p">:{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="nx">filesActionName</span>
+      <span class="p">},</span>
+      <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span>
+      <span class="p">},</span>
+      <span class="c1">// you need to provide the file name</span>
+      <span class="na">data</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"filename"</span><span class="p">:</span> <span class="nx">$scope</span><span class="p">.</span><span class="nx">filename</span>
+      <span class="p">}</span>
+    <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+      <span class="c1">// Reset the form</span>
+      <span class="nx">$scope</span><span class="p">.</span><span class="nx">imageUrl</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">'fileInput'</span><span class="p">).</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">""</span><span class="p">;</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">$scope</span><span class="p">.</span><span class="nx">initCtrl</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">initUpload</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>We created a simple example in Angular to experience the upload functionality.
+You can see the code in action at <a href="http://codepen.io/backand/pen/ZQaYEV">codepen</a>. The relevant parts of the code are available in the JavaScript pane to the right.</p>
+
+<h2 id="backand-hosting">Backand Hosting</h2>
+
+<p>Backand offers high-performance, reliable, and secure hosting for AngularJS applications through the hosting and deployment tool. Built off of AWS, Backand Hosting gives you an effortless way to deploy your Angular project to a hosted server.</p>
+
+<p>Your project files will be available on <strong>https://hosting.backand.io/Your-App-Name</strong>, providing you an easy way to see what gets deployed for your project.</p>
+
+<aside class="notice">
+The Backand CLI (command-line interface) requires Node.js and Node Package Manager (NPM). To install Node and NPM, follow the instructions at [https://nodejs.org](https://nodejs.org). This one process handles both NodeJS and NPM.
+</aside>
+
+<h3 id="first-time-installation">First Time Installation</h3>
+<pre class="highlight shell"><code>  <span class="nv">$ </span>npm install -g backand
+  <span class="c"># or use sudo (with caution)</span>
+</code></pre>
+<p>The hosting and deployment functionality is provided with the Backand node package. Simply install the package from the command line as follows:</p>
+
+<h3 id="updating-a-prior-version">Updating a Prior Version</h3>
+<pre class="highlight shell"><code>  <span class="nv">$ </span>npm update -g backand
+  <span class="c"># or use sudo (with caution)</span>
+</code></pre>
+<p>If you&rsquo;ve installed the Backand node package before, you will need to perform an update to get the new hosting and deployment functionality. Follow these steps to update your locally-installed version of Backand</p>
+
+<h3 id="deploying-the-angular-project">Deploying the Angular Project</h3>
+<pre class="highlight shell"><code>  backand sync --app <span class="o">{{</span>appName<span class="o">}}</span> --master <span class="o">{{</span>master-token<span class="o">}}</span> --user <span class="o">{{</span>user-token<span class="o">}}</span> --folder /path/to/project/folder
+</code></pre>
+<p>The Backand CLI, which we installed using NPM, provides the capability to deploy your project, as well as sync your local project folder. To deploy and sync, use the following command from the command line:</p>
+
+<p>The parameters for this call are:</p>
+
+<p><strong>&ndash;app</strong>: The current app name</p>
+
+<p><strong>&ndash;master</strong>: The master token of the app (get it from Social &amp; Keys)</p>
+
+<p><strong>&ndash;user</strong>: The token of the current user (get it from Team and click on key icon)</p>
+
+<p><strong>&ndash;folder</strong>: The path of the local Angular folder to sync and deploy</p>
+
+<h3 id="browsing-to-your-app">Browsing to your app</h3>
+
+<p>Your app is now on air, just browse to <strong>https://hosting.backand.com/YourAppName</strong> and see it live.</p>
+
+<h3 id="configuring-sync-in-gulp">Configuring Sync in Gulp</h3>
+<pre class="highlight shell"><code>  <span class="c"># Install the backand hosting gulp plugin with NPM</span>
+  npm install backand-hosting-s3
+</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="c1">// Include the sync module in your project</span>
+  <span class="kd">var</span> <span class="nx">backandSync</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../sync-module'</span><span class="p">);</span>
+
+  <span class="c1">// add your app's credentials to the sts task</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'sts'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span>
+      <span class="kd">var</span> <span class="nx">masterToken</span> <span class="o">=</span> <span class="s2">"your master backand token"</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">userToken</span> <span class="o">=</span> <span class="s2">"your user backand token"</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nx">backandSync</span><span class="p">.</span><span class="nx">sts</span><span class="p">(</span><span class="nx">masterToken</span><span class="p">,</span> <span class="nx">userToken</span><span class="p">);</span>
+  <span class="p">});</span>
+
+  <span class="c1">//Configure the task to sync to the 'src' folder</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'dist'</span><span class="p">,[</span><span class="s1">'sts'</span><span class="p">],</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>   
+      <span class="kd">var</span> <span class="nx">folder</span> <span class="o">=</span> <span class="s2">"./src"</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nx">backandSync</span><span class="p">.</span><span class="nx">dist</span><span class="p">(</span><span class="nx">folder</span><span class="p">,</span> <span class="nx">appName</span><span class="p">);</span> <span class="c1">//appName - if you have only one app you don't need this parameter</span>
+  <span class="p">});</span>
+
+  <span class="c1">// Add a task to clean the cache</span>
+  <span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s1">'clean'</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">backandSync</span><span class="p">.</span><span class="nx">clean</span><span class="p">();</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Backand can integrate with your existing <a href="http://gulpjs.com">gulpjs</a> configuration, allowing you to easily control deployment as you would the rest of your project. Below, we&rsquo;ll create a Gulp task to perform the deployment. This can then be used to deploy your application as a part of your standard build process.</p>
+
+<p>To create the new Gulp deployment task:</p>
+
+<ol>
+<li><p>Install the Backand hosting gulp plugin using NPM</p></li>
+<li><p>At the top of gulpfile.js add the <code class="prettyprint">require</code> call</p></li>
+<li><p>Set your Backand credentials for the task. Credentials will be stored in file <code class="prettyprint">.backand-credentials.json</code>:</p></li>
+<li><p>Configure the task to Sync folder &lsquo;./src&rsquo;:</p></li>
+<li><p>Syncing is performed via a local cache file named &lsquo;.awspublish-<bucketname>&rsquo;. This file cache can become corrupted
+after multiple uses, so we need to create one more task to perform cleanup after the deployment has completed:</p></li>
+</ol>
+
+<h2 id="realtime-database-communications">Realtime Database Communications</h2>
+
+<p>Backand&rsquo;s real-time communication functionality is based on the popular open-source Socket.io framework, which lets you add real-time functionality to your application. Backand’s Real-Time Database Communication sends events and JSON-formatted data to any authorized connected client. With Real-Time Communication from Backand, you can send real-time information to your application based on server-side logic in your application&rsquo;s custom actions. With this new feature events are picked up as they happen, rather than having to wait for a user-driven event to trigger a data reload.</p>
+
+<p>Backand’s real-time database communications are completely secure. They provide you with total control over data access, allowing you to restrict transmission of sensitive data to only authorized roles. And since all communication is SSL-encrypted, you don’t have to worry about the security of your data as it is transmitted across the web.</p>
+
+<p>Using the real-time capability can enhance your app with instant updates to any Angular page, including updating charts, counters, logs, and other data-driven elements.</p>
+
+<h3 id="setup">Setup</h3>
+<pre class="highlight html tab-html"><code><span class="c">&lt;!-- Backand SDK --&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"</span><span class="nt">&gt;&lt;/script&gt;</span>   
+</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="c1">// Configure the SDK to run the socket</span>
+  <span class="nx">BackandProvider</span><span class="p">.</span><span class="nx">runSocket</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</code></pre>
+<ol>
+<li>Upgrade to Backand SDK 1.9.5 or above.</li>
+<li>Include the Backand SDK in your index.html file:</li>
+<li>Update Angular configuration section</li>
+</ol>
+
+<h3 id="angular-client-code-sockets">Angular client code - Sockets</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">Backand</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'items_updated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">//Get the 'items' object that have changed</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<p>Backand&rsquo;s SDK already includes all the code needed for the client-side Socket.IO JavaScript integration. All you need to do is add a listener in your Angular controller or service. In the event that you need to implement your client on a platform other than JavaScript, review the relevant <a href="http://socket.io/blog/socket-io-on-ios/">iOS</a> or <a href="http://socket.io/blog/native-socket-io-and-android/">Android</a> documentation.</p>
+
+<p>Using Backand&rsquo;s SDK, you can add event listening to your application with a simple function. You don&rsquo;t even need to provide an emit event to track changes - Backand will automatically update you whenever you change data using Backand&rsquo;s REST API out of the box.</p>
+
+<h3 id="server-side-code-sockets">Server side code - Sockets</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// Emit to users</span>
+<span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">emitUsers</span><span class="p">(</span><span class="s2">"items_updated"</span><span class="p">,</span><span class="nx">userInput</span><span class="p">,</span> <span class="p">[</span><span class="s2">"user2@gmail.com"</span><span class="p">,</span><span class="s2">"user1@gmail.com"</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="c1">// Emit to a role</span>
+<span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">emitRole</span><span class="p">(</span><span class="s2">"items_updated"</span><span class="p">,</span><span class="nx">userInput</span><span class="p">,</span> <span class="s2">"Role"</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Emit to all</span>
+<span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">socket</span><span class="p">.</span><span class="nx">emitAll</span><span class="p">(</span><span class="s2">"items_updated"</span><span class="p">,</span> <span class="nx">userInput</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+<p>When working with a Custom JavaScript Action in the Backand dashboard, you can add the &ldquo;emit&rdquo; command to notify the client of updates based upon events and sent data that are important to your use case. The actions can be based on database triggers (Create, Update or Delete), or in an on-demand action called from client-side logic.</p>
+
+<p>There 3 type of emit commands you can use in order to notify consuming applications of event data:</p>
+
+<ul>
+<li>socket.emitUsers: <code class="prettyprint">socket.emitUsers(&#39;event_Name&#39;,object, []);</code></li>
+</ul>
+
+<p>This command sends event only to users specified in the second argument, which should be formatted as an array. To make this array dynamic, you&rsquo;ll need to use a Backand Query action. First call the Query to obtain the users, then convert the JSON into an array of user IDs (email addresses).</p>
+
+<ul>
+<li>socket.emitRole: <code class="prettyprint">socket.emitUsers(&#39;event_Name&#39;,object, &#39;role&#39;);</code></li>
+</ul>
+
+<p>This command sends the event to all the users in a specified role. Be aware that this command will override any data security filter you may have configured for your application.</p>
+
+<ul>
+<li>socket.emitAll: <code class="prettyprint">socket.emitAll(&#39;event_Name&#39;,object);</code></li>
+</ul>
+
+<p>This command sends event to all connected users, regardless of their role or permission settings. Be aware that this command vertices any data security filters you may have configured for your application. Use this emit type for general event broadcasting.</p>
+
+<h2 id="custom-actions">Custom Actions</h2>
+
+<p>In Backand&rsquo;s system, you can create server-side activity called Actions. These actions can be used for the purpose of security, integration, performance, notification and data integrity, among others, providing you with more flexibility in your app&rsquo;s design. There are two types of Actions that can be created. The first are initiated via a direct web request. These are known as &ldquo;On Demand&rdquo; actions. Additionally, you can create automated actions that take place based upon a data interaction event. These automated actions can occur whenever you create, update, or delete an item in your system. On Demand actions are associated with a specific object, and can be found on the <code class="prettyprint">Object --&gt; {name}</code> page in the Actions tab. The automated Create, Update and Delete actions are associated with a specific object that is compatible with a specific row in a table, while On Demand actions make association with a specific role optional.</p>
+
+<p>There are 4 kinds of actions that can be created:</p>
+
+<ul>
+<li>Server side JavaScript code actions</li>
+<li>Server side node.js code actions</li>
+<li>Transactional database script actions</li>
+<li>Send Email actions</li>
+</ul>
+
+<p>All 4 types of actions use the following common parameters:</p>
+
+<ul>
+<li>A Where condition - a SQL where clause that determines if the action will be performed.</li>
+<li>Input Parameters, added to the query string of the request that triggers the action, that will serve as variable values that you can supply to your action&rsquo;s code. These parameters will serve as tokens in the action definition and will be replaced with the actual values when the code executes.</li>
+</ul>
+
+<h3 id="server-side-javascript-code">Server-side JavaScript Code</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// write your code here</span>
+    <span class="k">return</span> <span class="p">{};</span>
+<span class="p">}</span>
+</code></pre>
+<p>You can run standard JavaScript on the server. It runs on the <a href="http://en.wikipedia.org/wiki/V8_(JavaScript_engine)">V8 engine</a>. To execute the JavaScript action, put your code into the following function:</p>
+
+<p>The function parameters are:</p>
+
+<ul>
+<li><code class="prettyprint">userInput</code>: This parameter is only provided for Create and Update actions, and is the object that was sent to the action. It is null for Delete actions, as well as for On Demand actions.</li>
+<li><code class="prettyprint">dbRow</code>: This parameter is populated in After Create, Update, and Delete automated actions, and if you supply an optional ID to an On Demand action. The dbRow parameter will contain the row&rsquo;s entry in the database prior to any changes made.</li>
+<li><code class="prettyprint">parameters</code>: This parameter represents the variables sent in the query string for the action.</li>
+<li><code class="prettyprint">userProfile</code>: This parameter stores the current username, the user&rsquo;s role, and the access token used by the user to perform the action. It is of the format {&ldquo;username&rdquo;: &ldquo;string&rdquo;, &ldquo;role&rdquo;: &ldquo;string&rdquo;, &ldquo;token&rdquo;: &ldquo;string&rdquo;}.</li>
+</ul>
+
+<p>In addition to the above parameters, you can also make use of the following global objects:</p>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// GET example:</span>
+
+  <span class="kd">var</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">({</span><span class="na">method</span><span class="p">:</span><span class="s2">"GET"</span><span class="p">,</span><span class="na">url</span><span class="p">:</span><span class="nx">CONSTS</span><span class="p">.</span><span class="nx">apiUrl</span> <span class="o">+</span> <span class="s2">"/1/objects/objectexample"</span><span class="p">,</span>
+                         <span class="na">params</span><span class="p">:{</span><span class="na">filter</span><span class="p">:[{</span><span class="na">fieldName</span><span class="p">:</span><span class="s2">"fieldexample"</span><span class="p">,</span> <span class="na">operator</span><span class="p">:</span><span class="s2">"contains"</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span><span class="s2">"somestring"</span><span class="p">}]},</span>
+                        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span><span class="nx">userProfile</span><span class="p">.</span><span class="nx">token</span><span class="p">}});</span>
+
+<span class="c1">// POST example:</span>
+
+  <span class="kd">var</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">({</span><span class="na">method</span><span class="p">:</span><span class="s2">"POST"</span><span class="p">,</span><span class="na">url</span><span class="p">:</span><span class="nx">CONSTS</span><span class="p">.</span><span class="nx">apiUrl</span> <span class="o">+</span> <span class="s2">"/1/objects/objectexample"</span><span class="p">,</span>
+                        <span class="na">data</span><span class="p">:{</span><span class="na">fieldexample1</span><span class="p">:</span><span class="s2">"somevalue"</span><span class="p">,</span><span class="na">fieldexample2</span><span class="p">:</span><span class="s2">"somevalue"</span><span class="p">},</span>
+                        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span><span class="nx">userProfile</span><span class="p">.</span><span class="nx">token</span><span class="p">}});</span>
+
+<span class="c1">// PUT example:</span>
+
+  <span class="kd">var</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">({</span><span class="na">method</span><span class="p">:</span><span class="s2">"PUT"</span><span class="p">,</span><span class="na">url</span><span class="p">:</span><span class="nx">CONSTS</span><span class="p">.</span><span class="nx">apiUrl</span> <span class="o">+</span> <span class="s2">"/1/objects/objectexample/5"</span><span class="p">,</span>
+                        <span class="na">data</span><span class="p">:{</span><span class="na">fieldexample1</span><span class="p">:</span><span class="s2">"somevalue"</span><span class="p">,</span><span class="na">fieldexample2</span><span class="p">:</span><span class="s2">"somevalue"</span><span class="p">},</span>
+                        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span><span class="nx">userProfile</span><span class="p">.</span><span class="nx">token</span><span class="p">}});</span>
+
+<span class="c1">// DELETE example:</span>
+
+  <span class="kd">var</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">({</span><span class="na">method</span><span class="p">:</span><span class="s2">"DELETE"</span><span class="p">,</span><span class="na">url</span><span class="p">:</span><span class="nx">CONSTS</span><span class="p">.</span><span class="nx">apiUrl</span> <span class="o">+</span> <span class="s2">"/1/objects/objectexample/5"</span><span class="p">,</span> <span class="na">fieldexample2</span><span class="p">:</span><span class="s2">"somevalue"</span><span class="p">},</span>
+                        <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span><span class="nx">userProfile</span><span class="p">.</span><span class="nx">token</span><span class="p">}});</span>
+</code></pre>
+<ul>
+<li><code class="prettyprint">$http</code>: a service for HTTP calls, similar to Angular&rsquo;s $http without the promise (since it is a server side
+function it always runs in sync). <a href="http://docs.backand.com/en/latest/apidocs/apidescription/index.html#rest-api-crud-operations">See the full API description for more details</a></li>
+</ul>
+
+<h4 id="a-note-about-the-authorization-header">A Note About The Authorization Header:</h4>
+
+<p>Sending the authorization header to the $http function is optional. When you make a $http request with an authorization header and the value of the userProfile.token (as in the examples above), the request will run in the context of the current user and with his assigned role. Alternatively, if you choose not to send an authorization header, the action will run in the context of an admin role. Send the authorization header with the request if you are going to use information about the current user in the action, otherwise you do not need to do so.</p>
+
+<ul>
+<li><p>CONSTS: <code class="prettyprint">CONSTS.apiUrl</code> for Backand&rsquo;s API URL</p></li>
+<li><p>Config: Global configuration. You can maintain a global JSON configuration for your app. Your JSON configuration is consumed in the Config action. To update the configuration JSON, go to section &ldquo;General&rdquo; in the &ldquo;Settings&rdquo; menu on the Backand dashboard.</p></li>
+<li><p>Emit: Emit is a function that allows you to send real-time communication events and data to the client. Emit has 3 methods: socket.emitUsers, socket
+.emitRole, and socket.emitAll. Read more about <a href="http://docs.backand.com/en/latest/apidocs/realtime/index.html">Realtime Database Communication here</a>.</p></li>
+</ul>
+
+<h4 id="debugging">Debugging</h4>
+
+<p>Debugging should be done using either console.log or console.error. For example, to dump the contents of variable
+<code class="prettyprint">object</code>:</p>
+
+<p><code class="prettyprint">console.log(object)</code></p>
+
+<p><code class="prettyprint">console.error(object)</code></p>
+
+<h4 id="error-handling">Error Handling</h4>
+
+<p>If your code results in an error (for example, if you write the following: <code class="prettyprint">throw new Error(&quot;An error occurred!&quot;)</code>),
+the request will return HTTP status 417, and the response body will contain the associated error message.</p>
+
+<h4 id="return-values">Return values</h4>
+
+<p>Triggered actions will have a response that matches the format expected by the triggering call (such as the return value
+of a CREATE call).</p>
+
+<p>On Demand actions, though, will return whatever value is returned by the custom server code, which can be any properly-formatted JSON string.</p>
+
+<h3 id="server-side-node-js-code">Server-Side Node.js Code</h3>
+
+<p>Using Backand, you can develop distributed Node.js actions and host them with your Backand application - no additional servers needed! You can use the Server-Side Node.js action to work with any NPM package, build sophisticated action behaviors, perform complex coding tasks, and more.</p>
+
+<p>For Server-Side Node.js Code actions, you develop the code on your local machine. The code is then deployed to, and runs on, Backand&rsquo;s server. It functions just like any other Node.js project and can be fully debugged locally and, once you&rsquo;ve finished making changes, you can use the &ldquo;deploy&rdquo; command to publish the changes to your Backand application.</p>
+
+<p>Follow these steps to create and run a Server-Side Node.js Code Action:</p>
+
+<ul>
+<li>First name the action, and use the init command by copy-pasting &ldquo;backand action init&hellip;&rdquo; to a command line within the folder in which you&rsquo;ll be developing your action. The action init command creates two folder levels on your local file system. The top level folder will be the name of the object controlling the action, while its child folder is the name of the action you are working with. We recommend that you always run the <strong>action init</strong> command from the root folder of the app&rsquo;s project when creating additional actions. This means you will have a sub-folder for each object, and under it, a sub -folder for each action.</li>
+<li>Next, build your Node.js code in the <code class="prettyprint">action</code> folder like any Node other project using your preferred IDE. Add as many npm
+packages as you need. Note - Your code <strong>must</strong> start with the index.js file - Backand uses this as the starting point for your Node.JS action.</li>
+<li>To debug your code locally, run the debug.js file. Debug.js is provided by the init command, and is ignored when deploying the code to Backand.</li>
+<li>To run your code on the Back&amp; server, use the deploy command by copy-pasting &ldquo;backand action deploy&hellip;&rdquo; into the command line used in the first step. The
+deploy command will be available on the action page <strong>after</strong> the action has been initialized with &ldquo;backand action init&hellip;&rdquo;.</li>
+</ul>
+
+<p>You are now ready to develop your code locally, and test the action on the Backand Dashboard for your application!</p>
+
+<h4 id="backand-cli">Backand CLI</h4>
+<pre class="highlight shell"><code>    <span class="nv">$ </span>npm install -g backand
+    <span class="c"># or use sudo (with caution)</span>
+</code></pre>
+<p>Backand uses the Backand CLI to control deployment and initialization. The CLI requires that Node.js and NPM are both installed. You can install them on your local machine by following the instructions at <a href="https://nodejs.org/">https://nodejs.org/</a>.</p>
+
+<p>Once you&rsquo;ve set up Node and NPM, use NPM to install the Backand CLI as a global package.</p>
+
+<h4 id="initialize-action">Initialize action</h4>
+<pre class="highlight shell"><code>    <span class="nv">$ </span>backand action init --app &lt;app name&gt; --object &lt;object name&gt; --action &lt;action name&gt;  --master &lt;master token&gt; --user &lt;user token&gt;
+</code></pre>
+<p>To initialize the node.js code for the action on your local machine, use the <code class="prettyprint">action</code> command on the command line in the folder that will host your action&rsquo;s code</p>
+
+<p>The parameters for this call are:
+  <strong>&ndash;app</strong>:          The current app name<br>
+  <strong>&ndash;object</strong>:     The object that the action belongs to<br>
+  <strong>&ndash;action</strong>:     The action name<br>
+  <strong>&ndash;master</strong>:     The master token of the app (obtained from the Social &amp; Keys section of the app&rsquo;s Security &amp; Auth configuration)<br>
+  <strong>&ndash;user</strong>:         The token of the current user (available from the TEam section of the app&rsquo;s Security &amp; Auth configuration - simply click on key icon next to an authorized user)  </p>
+
+<h4 id="deploy-action">Deploy action</h4>
+<pre class="highlight shell"><code>    <span class="nv">$ </span>backand action deploy --app &lt;app name&gt; --object &lt;object name&gt; --action &lt;action name&gt;  --master &lt;master token&gt; --user &lt;user token&gt;
+</code></pre>
+<p>To deploy your local Node.js code to Back&amp;, use the <code class="prettyprint">deploy</code> command with the Backand CLI</p>
+
+<p>The parameters for this call are:
+  <strong>&ndash;app</strong>:          The current app name<br>
+  <strong>&ndash;object</strong>:     The object that the action belongs to<br>
+  <strong>&ndash;action</strong>:     The action name<br>
+  <strong>&ndash;master</strong>:   The master token of the app (obtained from the Social &amp; Keys section of the app&rsquo;s Security &amp; Auth configuration)<br>
+  <strong>&ndash;user</strong>:     The token of the current user (available from the TEam section of the app&rsquo;s Security &amp; Auth configuration - simply click on key icon next to an authorized user)<br>
+  <strong>&ndash;folder</strong>:   (Optional) The folder to deploy. By default the deployment occurs in the current folder</p>
+
+<h4 id="add-backand-sdk-to-node-js">Add Backand SDK to Node.js</h4>
+<pre class="highlight shell"><code>    <span class="nv">$ </span>npm install backandsdk --save
+</code></pre>
+<p>To work with objects or other actions in Backand, you need to install the Backand SDK for Node.js. The Backand SDK ships with several code samples that demonstrate how to access other Backand functionality.</p>
+
+<h3 id="transactional-database-scripts">Transactional Database Scripts</h3>
+
+<p>Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided that the event occurs during the object event &ldquo;During the data save before the object is committed&rdquo;. This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.</p>
+
+<h3 id="send-emails">Send Emails</h3>
+
+<p>Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.</p>
+
+<h2 id="queries">Queries</h2>
+
+<p>You can create and call your own custom queries in your application. You can use parameters as tokens that will be replaced with the actual parameter values, similar to how <a href="#custom-actions">custom actions</a> work. You can create your own filters, sorting, and paging, as well as use aggregation to summarize information.</p>
+
+<p>Click <a href="#nosql-query-language">NOSQL Query Language</a> for instruction on how to build queries with noSQL language or
+use common MySQL syntax.</p>
+
+<h2 id="nosql-query-language">NoSQL Query Language</h2>
+
+<p>This query language is inspired by <a href="https://www.mongodb.com/">MongoDB</a>.</p>
+
+<p>A query consists of these parts:</p>
+
+<ol>
+<li>fields to be extracted</li>
+<li>table to extract the records from</li>
+<li>expression for filtering the table rows</li>
+<li>groupby - fields to group the data under</li>
+<li>aggregate functions to be applied to columns in fields</li>
+<li>orderby - fields to order the return data by</li>
+<li>limit - an integer number of records to return.</li>
+</ol>
+
+<p>Only the table and expression parameters are mandatory.</p>
+
+<p>The NoSQL queries are then constructed into a SQL query of the following form:</p>
+<pre class="highlight plaintext"><code>  SELECT fields with aggregation
+  FROM table
+  WHERE expression
+  GROUP BY groupby
+  ORDER BY orderby
+  LIMIT limit
+</code></pre>
+<p>NoSQL queries are constructed using JSON objects. Below is an example:</p>
+<pre class="highlight plaintext"><code>{
+  "object": "String",
+  "q": "Expression",
+  "fields": "Array of String",
+  "groupBy": "Array of String",
+  "aggregation": "Object mapping fields to aggregate functions"
+}
+</code></pre>
+<p>For example, the shortest query you can write would be:</p>
+<pre class="highlight plaintext"><code>{ "object": "String", "q": "Expression" }
+</code></pre>
+<p>This NoSQL object is converted into:</p>
+<pre class="highlight plaintext"><code>  SELECT *
+  FROM table
+  WHERE query
+</code></pre>
+<h3 id="examples">Examples</h3>
+
+<p>This simple query retrieves the name and salary of all employees in position of &ldquo;Sales Manager&rdquo;:</p>
+<pre class="highlight plaintext"><code>{
+    "object": "employees",
+    "q": {
+        "position" : "Sales Manager"  
+    },
+    "fields": ["name", "salary"]
+}
+</code></pre>
+<p>Queries can also be used to compare an object&rsquo;s  fields to constant values using common comparison operators. For example, to retrieve all fields for all employees under the age of 25, you can use the following query:</p>
+<pre class="highlight plaintext"><code>{
+    "object": "employees",
+    "q": {
+        "age": { "$lt" : 25 }
+    }  
+}
+</code></pre>
+<p>To retrieve all fields for employees with an age between 25 and 40:</p>
+<pre class="highlight plaintext"><code>{
+  "object": "employees",
+  "q": {
+    "age": {
+      "$between": [25, 40]
+    }
+  }  
+}
+</code></pre>
+<p>To retrieve all cities within 25km (25000m) from a given [latitude, longitude], e.g. [32.0638130, 34.7745390] use the following query:</p>
+<pre class="highlight plaintext"><code>{
+    "object": "city",
+    "q": {
+        "location" : { "$within" : [[32.0638130, 34.7745390], 25000]
+    }
+  }
+}
+</code></pre>
+<h3 id="expressions">Expressions</h3>
+
+<p>An expression can be either an AND expression, an OR expression, or a UNION query.</p>
+
+<h4 id="and-expressions">AND expressions</h4>
+
+<p>An AND expression is a conjunction of conditions on fields. An AND expression is JSON of the form &lsquo;{ A: condition,
+B: condition, &hellip; }&rsquo;</p>
+
+<p>For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the following query:</p>
+<pre class="highlight plaintext"><code>{ "position": "Sales Manager", "age" : { "$lt" : 25 }, "city": "Boston" }
+</code></pre>
+<h4 id="or-expressions">OR expressions</h4>
+
+<p>An OR expression is a disjunction of conditions, &lsquo;{ $or: [ Expression1, Expression2, &hellip;   ] }&rsquo;</p>
+
+<p>For example, use the following query to find all offices that are either larger than 30 employees, or located in Palo Alto:</p>
+<pre class="highlight plaintext"><code>{ "$or": [ { "num_employees": { "$gt": 30 } }, { "location": "Palo Alto" }  ]  }
+</code></pre>
+<h4 id="union-queries">UNION queries</h4>
+
+<p>A UNION query is a union of the results of queries: &lsquo;{ $union: [ Query1, Query2, &hellip;   ] }&rsquo;. For example:</p>
+<pre class="highlight plaintext"><code>{
+    "$union":   [
+        {
+            "object" : "Employees",
+            "q" : {
+                "$or" : [
+                    {
+                        "Budget" : {
+                            "$gt" : 20
+                        }
+                    },
+                    {
+                        "Location" : {
+                            "$like" :  "Palo Alto"
+                        }
+                    }
+                ]
+            },
+            "fields": ["Location", "country"]
+        },
+        {
+            "object" : "Person",
+            "q" : {
+                "name": "john"
+            },
+            "fields": ["City", "country"],
+            "limit": 11
+        }
+    ]
+}
+</code></pre>
+<h3 id="conditions-on-fields">Conditions on Fields</h3>
+
+<p>Formally, a condition on a field is a key-value expression of the form:</p>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="err">Key</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">ValueExpression</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Where the fields are defined as follows:</p>
+
+<ul>
+<li>Key - name of the field</li>
+<li>ValueExpression - An expression which has one of the following forms:</li>
+</ul>
+
+<p>1. Constant - is the field value equal to the constant
+    2. Comparison with a comparison operator to a constant
+    3. Inclusion or exclusion in result of a sub query
+    4. Negation of another comparison</p>
+
+<p>You can perform a number of different tests on objects using conditions. Using conditions, you can:</p>
+
+<ol>
+<li>Test equality of field to a constant value, e.g.  { A: 6 } =&gt; Is A equal to 6?</li>
+<li>Compare a field using a comparison operator, e.g. { A: { $gt: 8 }} =&gt; Is A greater than 8?. The set of
+comparison operators is quite extensive and includes: &lsquo;$lte, $lt, $gte, $gt, $eq, $neq, $not, $within, $between&rsquo;</li>
+<li>Test if the value of the field is IN  or NOT IN the result of a sub-query.</li>
+<li>Test for the negation of a comparison. For example, to test if the location field is not Boston, we can do:
+<code class="prettyprint">JSON
+{ &quot;location&quot;: { &quot;$not&quot; : &quot;Boston&quot; }}
+</code><br></li>
+<li>Test for presence of a value. For example, if we want to test if a middle name field exists, we can do:
+<code class="prettyprint">JSON
+{ &quot;middleName&quot;: {&quot;$exists&quot;: true} }
+</code></li>
+</ol>
+
+<p>Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can use negation as follows:</p>
+<pre class="highlight plaintext"><code>  { "location": { "$not" : {"$eq": "Paris" } } }
+</code></pre>
+<p>Or we can also use a not-equal  operator:</p>
+<pre class="highlight plaintext"><code>    { "location": { "$neq": "Paris" } }
+</code></pre>
+<h3 id="sub-queries">Sub Queries</h3>
+
+<p>The following sub-query retrieves the department ID of each department in New York:</p>
+<pre class="highlight plaintext"><code>{ "object": "department", "q": { "city" : "New York" }, "fields" : ["id"]}
+</code></pre>
+<p>Using this sub-query, we can now test a new field - dept_id - with respect to the results of the sub-query. We simply
+use the &lsquo;$in&rsquo; operator, and the query, as follows:</p>
+<pre class="highlight plaintext"><code>{
+    "dept_id": {
+        "$in": {  
+            { "object": "department",
+                "q": { "city" : "New York" },
+                "fields" : ["id"]
+            }
+        }
+    }
+}
+</code></pre>
+<p>This technique relies upon retrieving a single field from the sub-query. Using more than one field would prove more complex.</p>
+
+<p>We can now use this sub-query as a part of a larger query retrieving all employees employed in departments that are located in New York. In this example, the &lsquo;deptId&rsquo; field is a reference field referring the employees table to the department table:</p>
+<pre class="highlight plaintext"><code>{
+    "object": "employees",
+    "q" : {
+        "deptId" : {
+            "$in": {
+                "object": "department",
+                "q": {
+                    "city" : "New York"
+                },
+                "fields" : ["id"]
+            }
+        }
+
+    }
+}
+</code></pre>
+<p>If we wanted to look at a more complex query, we could modify this a bit. Let&rsquo;s say we wanted to retrieve all employees whose department is located in New York, but the employee is located in Boston. To accomplish this, we use an AND expression to combine the two conditions:</p>
+<pre class="highlight plaintext"><code>{
+    "object": "employees",
+    "q" : {
+        "deptId":
+        {
+            "$in": {
+                "object": "department",
+                "q": {
+                    "city" : "New York"
+                },
+                "fields" : ["id"]
+            }
+        },
+        "location": "Boston"
+    }
+}
+</code></pre>
+<h3 id="group-by-queries">Group By Queries</h3>
+
+<p>A group by query aggregates on fields, and then applies aggregation operators to the specified fields. For instance, to group by &lsquo;Country&rsquo;, and then concatenate the &lsquo;Location&rsquo; field, use the following example code:</p>
+<pre class="highlight plaintext"><code>{
+    "object" : "Employees",
+    "q" : {
+        "$or" : [
+            {
+                "Budget" : {
+                    "$gt" : 20
+                }
+            },
+            {
+                "Location" : {
+                    "$like" :  "Palo Alto"
+                }
+            }
+        ]
+    },
+    "fields": ["Location", "Country"],
+    "order": [["Budget", "desc"]],
+    "groupBy": ["Country"],
+    "aggregate": {
+        "Location": "$concat"
+    }
+}
+</code></pre>
+<h3 id="algorithm-to-generate-sql-from-json-queries">Algorithm to Generate SQL from JSON Queries</h3>
+
+<p>The algorithm transforms from JSON to SQL using a top-down transformation.</p>
+
+<h4 id="usage">Usage</h4>
+<pre class="highlight javascript tab-javascript"><code>  <span class="nx">transformJson</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span> <span class="nx">sqlSchema</span><span class="p">,</span> <span class="nx">isFilter</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+</code></pre>
+<p>The parameters are:</p>
+
+<ol>
+<li>&lsquo;json&rsquo; - JSON query or filter</li>
+<li>&lsquo;sqlSchema&rsquo; - JSON schema of database</li>
+<li>&lsquo;isFilter&rsquo; - boolean - true if &lsquo;json&rsquo; is a filter</li>
+<li>&lsquo;callback&rsquo; - &lsquo;function(err, result)&rsquo;, called upon completion</li>
+</ol>
+
+<p>The result is a structure with the following fields:</p>
+<pre class="highlight plaintext"><code>{
+    str: &lt;SQL statement for query&gt;,
+    select: &lt;select clause&gt;,
+    from: &lt;from clause&gt;,
+    where: &lt;where clause&gt;,
+    group: &lt;group by clause&gt;,
+    order: &lt;order by clause&gt;,
+    limit: &lt;limit clause&gt;     
+}
+</code></pre>
+<h4 id="escaping">Escaping</h4>
+
+<p>All constants appearing in the JSON query are escaped when transformed into SQL.</p>
+
+<h4 id="filters">Filters</h4>
+
+<p>You also have the ability to mark a particular NoSQL query as a filter. This allows you to use variables in your query, which are populated on the server side from either parameters sent in with the filter, or from database data in your system. Variables take the form of:</p>
+
+<p>{% raw %}
+<code class="prettyprint">javascript
+  {{&lt;variable name&gt;}}
+</code></p>
+
+<p>Variables should be enclosed in quotes (e.g. &lsquo;{{variable_name}}&rsquo; instead of {{variable_name}}) so that the final object sent to the server can be marked as valid JSON.
+{% endraw %}</p>
+
+<p>Variables are not escaped when used as part of a filter or query - only constants can be escaped by Backand. With this in mind, you want to make sure that variables tied directly to user input are properly sanitized before being sent to the back-end. The SQL statement generated for the filter object will include the variables you provide. The variables will be substituted for the equivalent values prior to the execution of the query.</p>
+
+          <h1 id="backand-dashboard">Backand Dashboard</h1>
+
+<p>Backand&rsquo;s REST API allows you to fully access and manipulate the backend data for your system, giving you full access to the underlying database and related functionality from any program that can send an HTTP request. While we start by wrapping your database in a true RESTful API Interface, we also give you a lot of extras that you can use to replace the server in your app:</p>
+
+<ul>
+<li>You can define and execute custom queries that are triggered by a call to a URL</li>
+<li>You can define and execute custom actions that execute whenever you hit a specific endpoint. These can be as simple as sending an email, or as complex as a custom server-side javascript function.</li>
+<li>You can manage user security and access to your application automatically through Backand&rsquo;s security and authorization system</li>
+<li>You can test every single endpoint in your system using Backand&rsquo;s API Playground</li>
+<li>You can get immediate and up-to-date looks at your database&rsquo;s underlying tables and stored data, and even perform real-time manipulations of that data</li>
+<li>You can create, retrieve, update, and delete every object in your system through a simple web call, and return as much - or as little - detail as you need</li>
+</ul>
+
+<p>Let&rsquo;s take a quick look at each available action in the Backand dashboard, and get started with focusing on the front-end of your application!</p>
+
+<h2 id="docs-api">Docs &amp; API</h2>
+
+<p>The Docs &amp; API tab contains links to kickstart tutorials, tutorials on converting existing applications to use Backand, and other useful documentation. let&rsquo;s take a look at each menu category below.</p>
+
+<h3 id="examples">Examples</h3>
+
+<p>This links to our <a href="https://www.backand.com/apps/">examples page</a>, which has useful sample applications for many different platforms. These sample applications work to show how best to integrate Backand with an application for each mentioned platform, and can be a good starting point for integrating Backand with an existing (or brand new) application.</p>
+
+<h3 id="kickstart-tutorials">Kickstart Tutorials</h3>
+
+<p>Our kickstart tutorials provide a list of kickstart apps that you can use to build an app for the platform specified. These kickstart apps ship with Backand already built-in and integrated, and provide you with tools to explore the SDK&rsquo;s functionality. They all work with the default data model, so getting the kickstart app wired up to a new Backand application is a simple matter of changing the appropriate keys in each example.</p>
+
+<aside class='notice'>
+We provide a platform selector, which allows you to only view the kickstarts, existing apps, and code samples throughout the dashboard that are relevant to your needs. Simply choose a different platform, and the dashboard will present all examples in the relevant version of JavaScript that matches your selection.
+</aside>
+
+<h3 id="existing-app-tutorials">Existing App Tutorials</h3>
+
+<p>Our existing app tutorials provide a list of tutorials on connecting Backand into your existing application, with a number of different frameworks supported. These focus on including the Backand SDK, connecting to your app, and working with the data model. If you&rsquo;d like to see another platform included, please <a href="https://www.backand.com/contact/">contact us</a>!</p>
+
+<aside class='notice'>
+We provide a platform selector, which allows you to only view the kickstarts, existing apps, and code samples throughout the dashboard that are relevant to your needs. Simply choose a different platform, and the dashboard will present all examples in the relevant version of JavaScript that matches your selection.
+</aside>
+
+<h3 id="realtime-database">Realtime Database</h3>
+
+<h3 id="documentation">Documentation</h3>
+
+<h3 id="rest-api-playground">REST API Playground</h3>
+
+<h2 id="objects">Objects</h2>
+
+<p>The &ldquo;Objects&rdquo; section of the dashboard allows you to modify the specific objects in your application&rsquo;s database. A menu entry is created for each table in your database, and allows you to configure your application at the object level. For each object in your system, you are given access to the following areas to modify and work with.</p>
+
+<h3 id="model">Model</h3>
+
+<blockquote>
+<p>This sample model JSON creates two objects - Items and Users</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>The Model parent tab allows you to modify your database&rsquo;s model structure, adding new objects and establishing the relationship between them. This can be done using either our GUI model editor, or the JSON schema editor. We also provide a tab demonstrating how to make - and sync - changes to your database using an external database tool (like MySQL Workbench). Below is a brief overview of how to use this interface.</p>
+
+<aside class="notice">
+In addition to the fields supplied by the user, Backand defines an &lsquo;id&rsquo; field, of type integer, which will be used as a primary key for the table.
+</aside>
+
+<aside class="notice">Backand offers support for automated population of created and updated timestamps. Simply add the `createdAt` or `updatedAt` fields to your model, and if they are present Backand will automatically populate them with the timestamp of the most recent POST or PUT request to that object.</aside>
+
+<h4 id="model-diagram">Model Diagram</h4>
+
+<p>The Model Diagram tab provides a GUI editor for working with your app&rsquo;s database schema. It works with the model JSON in the background to orchestrate changes to your database. Using the GUI you can easily add new objects, update existing objects, create relations between objects, and all other related database modification tasks.</p>
+
+<h4 id="model-json">Model JSON</h4>
+
+<p>The Model JSON tab provides a straightforward method of editing your database schema using well-formed JSON. You&rsquo;re given a pane to perform your edits, and a comparison pane so that you can easily see what has changed from the current schema. Once your changes are finalized, click &ldquo;Validate &amp; Update&rdquo; to finalize your changes.</p>
+
+<h4 id="database-pending">Database (pending)</h4>
+
+<p>This tab describes how to make the changes you desire in your model directly in the database. Once you&rsquo;ve made your changes via whichever RDBMS tool you prefer, you can click the &ldquo;Sync your database&rdquo; button to pull the changes into Backand, updating your schema and object list.</p>
+
+<h3 id="object-list">Object List</h3>
+
+<p>For each object in your schema, you are provided a dedicated management area for that object. These are accessed via a list beneath the &ldquo;New object&rdquo; entry.</p>
+
+<p>Each object has a set of tabs provided that allow you to modify either the object&rsquo;s data, or the object itself. These tabs are Data, Actions, Security, Settings, and REST API</p>
+
+<aside class="notice">You can also use the &ldquo;New object&rdquo; to quickly create a new object to add to your system.</aside>
+
+<h4 id="data-tab">Data tab</h4>
+
+<p>The data tab provides you with a quick method by which you can add new records, update existing records, or remove records from your database. For every action you take in this pane, we provide the code needed to reproduce the action using the SDK - simply select the appropriate language/JavaScript framework for your project, and copy the code into your application.</p>
+
+<p>We also give you access to the Filter Data functionality, which can be used to quickly construct request filters that can be applied to GET requests. Simply click on the &ldquo;Filter Data&rdquo; link to expose a UI for constructing your filter, and the resulting parameter code will appear in the &ldquo;Request Code&rdquo; textbox on the right side of the screen.</p>
+
+<h4 id="actions-tab">Actions tab</h4>
+
+<p>The Actions tab allows you to work with custom actions in your object. Custom actions allow you to perform automated tasks in your Backand application.</p>
+
+<h4 id="security-tab">Security tab</h4>
+
+<h4 id="settings-tab">Settings tab</h4>
+
+<h4 id="rest-api-tab">REST API tab</h4>
+
+<h2 id="queries">Queries</h2>
+
+<h3 id="query-list">Query List</h3>
+
+<h4 id="nosql">NoSQL</h4>
+
+<h4 id="sql">SQL</h4>
+
+<h4 id="testbed">Testbed</h4>
+
+<h2 id="background-jobs">Background Jobs</h2>
+
+<h3 id="accepted-job-types">Accepted job types</h3>
+
+<h3 id="crontab-format">Crontab format</h3>
+
+<h3 id="job-list">Job List</h3>
+
+<h2 id="analytics">Analytics</h2>
+
+<h3 id="reports">Reports</h3>
+
+<h2 id="security-auth">Security &amp; Auth</h2>
+
+<h3 id="configuration">Configuration</h3>
+
+<h3 id="social-keys">Social &amp; Keys</h3>
+
+<h3 id="registered-users">Registered Users</h3>
+
+<h3 id="team">Team</h3>
+
+<h3 id="security-actions">Security Actions</h3>
+
+<h3 id="security-templates">Security Templates</h3>
+
+<h2 id="hosting">Hosting</h2>
+
+<h3 id="configuration">Configuration</h3>
+
+<h3 id="hosting-files">Hosting files</h3>
+
+<h3 id="storage-files">Storage files</h3>
+
+<h2 id="log">Log</h2>
+
+<h3 id="api-requests">API Requests</h3>
+
+<h3 id="console">Console</h3>
+
+<h3 id="server-side-exceptions">Server Side Exceptions</h3>
+
+<h3 id="configuration">Configuration</h3>
+
+<h3 id="data-history">Data History</h3>
+
+<h2 id="settings">Settings</h2>
+
+<h3 id="general">General</h3>
+
+<h3 id="database">Database</h3>
+
+<h3 id="configuration">Configuration</h3>
+
+<h3 id="billing-portal">Billing Portal</h3>
+
+<h3 id="upgrade-plan">Upgrade Plan</h3>
+
+<h3 id="payment-method">Payment Method</h3>
+
+          <h1 id="vanilla-sdk">Vanilla SDK</h1>
+
+<p>The primary functionality in the Backand SDK is contained in the Vanilla SDK, located <a href="https://github.com/backand/vanilla-sdk">on our GitHub page</a>. This provides a global object - <code class="prettyprint">backand</code> - that can be used to work with the Backand SDK. Review the ReadMe on the GitHub repo to get started, or navigate to our <a href="#sdk-documentation">SDK Documentation</a>.</p>
+
+<h2 id="overview">Overview</h2>
+
+<p>This is the documentation for Back&amp;&lsquo;s Vanilla SDK. This encapsulates all common API functionality. All of our other SDKs wrap this core set of function calls, which in turn provides programmatic access to your app&rsquo;s back end.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p><em>Note: In most cases, the Vanilla SDK will be installed as a part of another, platform-specific SDK. However, if you wish to include it directly in your project, follow these instructions</em></p>
+
+<p>To install the Vanilla SDK, use the correct command for your dependency management platform:</p>
+
+<table><thead>
+<tr>
+<th>Provider</th>
+<th>Command</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>npm</td>
+<td>$ npm i -S @backand/vanilla-sdk</td>
+</tr>
+<tr>
+<td>yarn</td>
+<td>$ yarn add @backand/vanilla-sdk</td>
+</tr>
+<tr>
+<td>bower</td>
+<td>$ bower install backand-vanilla-sdk</td>
+</tr>
+<tr>
+<td>clone/download via Git</td>
+<td>$ git clone https://github.com/backand/vanilla-sdk.git</td>
+</tr>
+</tbody></table>
+
+<h2 id="import">Import</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">backand</span> <span class="nx">from</span> <span class="s1">'@backand/vanilla-sdk'</span>
+<span class="kr">const</span> <span class="nx">backand</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'@backand/vanilla-sdk'</span><span class="p">)</span>
+
+<span class="c">&lt;!--</span> <span class="nx">Includes</span> <span class="k">for</span> <span class="nx">index</span><span class="p">.</span><span class="nx">html</span><span class="p">,</span> <span class="nx">or</span> <span class="nx">appropriate</span> <span class="nx">location</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"node_modules/@backand/vanilla-sdk/dist/backand.min.js"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"backand.min.js"</span><span class="o">&gt;&lt;</span><span class="sr">/script</span><span class="err">&gt;
+</span></code></pre>
+<p>Next, import the SDK into your project. To import in a bundler-based system, use the following JavaScript:</p>
+
+<p>Otherwise, include the following tags in your <em>index.html</em> file:</p>
+
+<p><code class="prettyprint">javascript: html
+</code></p>
+
+<h2 id="quick-start">Quick Start</h2>
+<pre class="highlight plaintext"><code>curl https://api.backand.com/1/objects/items -H "Authorization: Bearer OfKDiw6fQwfhmUcoh3WuXken_Sgj18za8SDqn1Ed2S_qI88HWNwGBSpG2ktUkSbNIwcGn6dwos7ivvVARC1UIiCf8fzlNynFNZamCZPDpbOhRjheq3RnU6HJiCbqlks57PLvMnf9PxGK8D3FU8MeaPyUk7mmbAtvgc6GF-9s13YpFjVQkM5XRZ-CsuWjaRoukygLMOivj1iPYxBB4c-hu6ocZKQljiSnw6rroYbD4spmUIkwDnC0rz1jP9ln5KNI3KmO0KLcWJF6E_zWfepdFw"
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+  <span class="na">appName</span><span class="p">:</span> <span class="s1">'APP_NAME'</span><span class="p">,</span>
+  <span class="na">anonymousToken</span><span class="p">:</span> <span class="s1">'ANONYMOUS_TOKEN'</span>
+<span class="p">});</span>
+
+<span class="nx">backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">getList</span><span class="p">(</span><span class="s1">'users'</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Getting started with the SDK is as simple as configuring access to a Back&amp; application, then calling <em>getList</em> on a relevant object:</p>
+
+<p>This connects your Back&amp; application (with the app name of <em>APP_NAME</em> and an anonymous access token of <em>ANONYMOUS TOKEN</em>) to your current project. Once the connection is configured, the SDK uses this connection information to construct HTTP requests to your API. Result data is returned in the <em>response</em> object as the member variable <em>data</em>. In the case of <em>getList</em>, this will be a JSON array of objects pulled from the <em>users</em> table in your Back&amp; application. You can easily change the table being manipulated by replacing <em>users</em> with the name of any object in your system.</p>
+
+<h2 id="api-reference">API Reference</h2>
+
+<h3 id="backand-init">backand.init()</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="na">appName</span><span class="p">:</span> <span class="s1">'APP_NAME'</span><span class="p">,</span>
+   <span class="na">anonymousToken</span><span class="p">:</span> <span class="s1">'ANONYMOUS_TOKEN'</span>
+             <span class="p">};</span>
+<span class="nx">backand</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span>
+</code></pre>
+<p>The <em>init()</em> method creates a new Back&amp; SDK instance with the supplied configuration.</p>
+
+<p>The available parameters for the <em>config</em> parameter are:</p>
+
+<table><thead>
+<tr>
+<th>Param Name</th>
+<th>Data Type</th>
+<th>Usage</th>
+<th>Required?</th>
+<th>Default Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>appName</strong></td>
+<td>string</td>
+<td>Sets the name of your backand app</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>anonymousToken</strong></td>
+<td>string</td>
+<td>Sets the anonymous token of your backand app</td>
+<td><strong>required</strong></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>useAnonymousTokenByDefault</strong></td>
+<td>boolean</td>
+<td>Determines whether the sdk should use the anonymousToken when there is no other token</td>
+<td><em>optional</em></td>
+<td><em>true</em></td>
+</tr>
+<tr>
+<td><strong>signUpToken</strong></td>
+<td>string</td>
+<td>Sets the signup token of your backand app</td>
+<td><em>optional</em></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>apiUrl</strong></td>
+<td>string</td>
+<td>Sets the API url of backand servers</td>
+<td><em>optional</em></td>
+<td><em>https://api.backand.com</em></td>
+</tr>
+<tr>
+<td><strong>storage</strong></td>
+<td>object</td>
+<td>Sets the storage type to use (local/session/implementation of StorageAbstract)</td>
+<td><em>optional</em></td>
+<td><em>localStorage</em></td>
+</tr>
+<tr>
+<td><strong>storagePrefix</strong></td>
+<td>string</td>
+<td>Sets prefix to use in the storage structure</td>
+<td><em>optional</em></td>
+<td><em>BACKAND_</em></td>
+</tr>
+<tr>
+<td><strong>manageRefreshToken</strong></td>
+<td>boolean</td>
+<td>Determines whether the sdk should manage refresh tokens internally</td>
+<td><em>optional</em></td>
+<td><em>true</em></td>
+</tr>
+<tr>
+<td><strong>runSigninAfterSignup</strong></td>
+<td>boolean</td>
+<td>Determines whether the sdk should run signin after signup automatically</td>
+<td><em>optional</em></td>
+<td><em>true</em></td>
+</tr>
+<tr>
+<td><strong>runSocket</strong></td>
+<td>boolean</td>
+<td>Determines whether the sdk should run socket automatically</td>
+<td><em>optional</em></td>
+<td><em>false</em></td>
+</tr>
+<tr>
+<td><strong>socketUrl</strong></td>
+<td>string</td>
+<td>Sets the socket url of backand servers</td>
+<td><em>optional</em></td>
+<td><em>https://socket.backand.com</em></td>
+</tr>
+<tr>
+<td><strong>isMobile</strong></td>
+<td>boolean</td>
+<td>Determines whether the sdk is part of a mobile application</td>
+<td><em>optional</em></td>
+<td><em>false</em></td>
+</tr>
+<tr>
+<td><strong>mobilePlatform</strong></td>
+<td>string</td>
+<td>sets the platform used to build the mobile application (&#39;ionic&rsquo;/&lsquo;react-native&rsquo;)</td>
+<td><em>optional</em></td>
+<td>&lsquo;ionic&rsquo;</td>
+</tr>
+</tbody></table>
+
+<h3 id="sdk-properties">SDK Properties</h3>
+
+<p>Below is a list of the properties offered by the SDK, a description of the functionality handled by that property, and the list of methods provided by that property:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Methods</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>constants</td>
+<td>EVENTS, URLS, SOCIALS</td>
+<td>Provides access to constants in the SDK</td>
+</tr>
+<tr>
+<td>helpers</td>
+<td><em>filter</em>, <em>sort</em>, <em>exclude</em>, <em>StorageAbstract</em></td>
+<td>Provides helper methods for working with the SDK</td>
+</tr>
+<tr>
+<td>direct properties</td>
+<td><em>useAnonymousAuth</em>, <em>signin</em>, <em>signup</em>, <em>socialSignin</em>, <em>socialSigninWithToken</em>, <em>socialSignup</em>, <em>requestResetPassword</em>, <em>resetPassword</em>, <em>changePassword</em>, <em>signout</em>, <em>getSocialProviders</em></td>
+<td>These are properties available directly on the Backand SDK object, mostly focused on Authentication</td>
+</tr>
+<tr>
+<td>defaults</td>
+<td><em>none</em></td>
+<td>This stores the current app&rsquo;s configuration in the SDK</td>
+</tr>
+<tr>
+<td>object</td>
+<td><em>getList</em>, <em>create</em>, <em>getOne</em>, <em>update</em>, <em>remove</em>, <em>get</em> (action), <em>post</em> (action)</td>
+<td>This encapsulates all methods used to manipulate objects</td>
+</tr>
+<tr>
+<td>file</td>
+<td><em>upload</em>, <em>remove</em></td>
+<td>Provides helper methods for working with files</td>
+</tr>
+<tr>
+<td>query</td>
+<td><em>get</em>, <em>post</em></td>
+<td>Allows you to work with custom query objects</td>
+</tr>
+<tr>
+<td>user</td>
+<td><em>getUserDetails</em>, <em>getUsername</em>, <em>getUserRole</em>, <em>getToken</em>, <em>getRefreshToken</em></td>
+<td>Provides information on the current authenticated user</td>
+</tr>
+<tr>
+<td>on</td>
+<td><em>none</em></td>
+<td>This is the event handler for socket.io functions, replacing socket.on</td>
+</tr>
+</tbody></table>
+
+<h3 id="default-events">Default Events</h3>
+
+<p>By default, the Back&amp; SDK emits the following events that your code can respond to:</p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Syntax</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>SIGNIN</td>
+<td>dispatched on signin</td>
+<td>window.addEventListener(backand.constants.EVENTS.SIGNIN, (e)=&gt;{}, false);</td>
+</tr>
+<tr>
+<td>SIGNOUT</td>
+<td>dispatched on signout</td>
+<td>window.addEventListener(backand.constants.EVENTS.SIGNOUT, (e)=&gt;{}, false);</td>
+</tr>
+<tr>
+<td>SIGNUP</td>
+<td>dispatched on signup</td>
+<td>window.addEventListener(backand.constants.EVENTS.SIGNUP, (e)=&gt;{}, false);</td>
+</tr>
+</tbody></table>
+
+<h2 id="sdk-methods">SDK Methods</h2>
+
+<p><strong>NOTE:</strong>
+- <strong>All Methods return a Promise -&gt; you can work with the response using .then() and .catch()</strong>
+- <strong>You can see the response schema <a href="https://github.com/mzabriskie/axios#response-schema">here</a></strong></p>
+
+<h3 id="authentication">Authentication</h3>
+
+<p>Authentication methods are called directly on the SDK, without any properties: <em>backand.signin(username, password)</em></p>
+
+<h3 id="signin">Signin</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">signin</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'signin succeeded with user:'</span> <span class="o">+</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">username</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Signin with username and password in order to get access_token to be used in all other calls. If you don&rsquo;t have users you should use anonymous token only.</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username</td>
+<td>string</td>
+<td>the username to authenticate</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>the user&rsquo;s password</td>
+</tr>
+</tbody></table>
+
+<h3 id="signup">Signup</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">signup</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">,</span> <span class="nx">email</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">confirmPassword</span><span class="p">,</span> <span class="nx">parameters</span> <span class="o">=</span> <span class="p">{})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Creates a new user in your app. in signup you must provide the basic details of username email, first name, last name and password:</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>firstName</td>
+<td>string</td>
+<td>the user&rsquo;s first name</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>string</td>
+<td>the user&rsquo;s last name</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>the user&rsquo;s email</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>the user&rsquo;s password</td>
+</tr>
+<tr>
+<td>confirmPassword</td>
+<td>string</td>
+<td>the value entered by the user when asked to confirm the password during registration</td>
+</tr>
+<tr>
+<td>parameters</td>
+<td>object</td>
+<td>An object containing information for any paremeters to the signup call. This allows you to set additional info on the user object at registration time</td>
+</tr>
+</tbody></table>
+
+<h3 id="change-password">Change Password</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">changePassword</span><span class="p">(</span><span class="nx">oldPassword</span><span class="p">,</span> <span class="nx">newPassword</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Password changed'</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Changes the password of the current user</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>oldPassword</td>
+<td>string</td>
+<td>the user&rsquo;s old password</td>
+</tr>
+<tr>
+<td>newPassword</td>
+<td>string</td>
+<td>the user&rsquo;s desired new password</td>
+</tr>
+</tbody></table>
+
+<h2 id="social-media-authentication">Social Media Authentication</h2>
+
+<h3 id="socialsignin-also-for-signup">socialSignin (also for Signup)</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">socialSignin</span><span class="p">(</span><span class="nx">provider</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'signin succeeded with user:'</span> <span class="o">+</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">username</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Signs the user into a Back&amp; application using a social media provider as the authentication method. This opens a dialog window supplied by the social media network provider. If the user does not have an account with the selected provider, they will be prompted to create one as a part of this process.</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>provider</td>
+<td>string</td>
+<td>Name of the provider to authenticate with. The full list can be obtained by calling <em>backand.getSocialProviders(scb)</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="crud">CRUD</h2>
+
+<p>The following methods perform create, retrieve, update, and delete functionality on a Back&amp; object.</p>
+
+<h3 id="getlist">GetList</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// No filters</span>
+<span class="nx">backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">getList</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+
+<span class="c1">// With filter parameters</span>
+<span class="kd">let</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">sort</span><span class="p">:</span> <span class="nx">backand</span><span class="p">.</span><span class="nx">helpers</span><span class="p">.</span><span class="nx">sort</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'creationDate'</span><span class="p">,</span> <span class="nx">backand</span><span class="p">.</span><span class="nx">helpers</span><span class="p">.</span><span class="nx">sort</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">desc</span><span class="p">),</span>
+  <span class="na">exclude</span><span class="p">:</span> <span class="nx">backand</span><span class="p">.</span><span class="nx">helpers</span><span class="p">.</span><span class="nx">exclude</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">all</span><span class="p">,</span>
+  <span class="na">filter</span><span class="p">:</span> <span class="nx">backand</span><span class="p">.</span><span class="nx">helpers</span><span class="p">.</span><span class="nx">filter</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s1">'user'</span><span class="p">,</span> <span class="nx">backand</span><span class="p">.</span><span class="nx">helpers</span><span class="p">.</span><span class="nx">filter</span><span class="p">.</span><span class="nx">operators</span><span class="p">.</span><span class="nx">relation</span><span class="p">.</span><span class="k">in</span><span class="p">,</span> <span class="nx">userId</span><span class="p">),</span>
+  <span class="na">pageSize</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="na">pageNumber</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">};</span>
+<span class="nx">backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">getList</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+
+</code></pre>
+<p>Fetches a list of records from the specified object. Uses <em>params</em> to store filter data</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>object</td>
+<td>string</td>
+<td>Name of the Back&amp; object to work with</td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>A hash of filter parameters. Allowed parameters are: <em>pageSize</em>, <em>pageNumber</em>, <em>filter</em>, <em>sort</em>, <em>search</em>, <em>exclude</em>, <em>deep</em>, <em>relatedObjects</em></td>
+</tr>
+</tbody></table>
+
+<h3 id="getone">GetOne</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">getOne</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Retrieves a single record from the specified object.</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>object</td>
+<td>string</td>
+<td>Name of the Back&amp; object to work with</td>
+</tr>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>ID of the record to retrieve, subject to the filter specified in <em>params</em></td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>A hash of filter parameters. Allowed parameters are: <em>deep</em>, <em>exclude</em>, <em>level</em></td>
+</tr>
+</tbody></table>
+
+<h3 id="create">Create</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'object created'</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Creates a record with the provided data in the specified object</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>object</td>
+<td>string</td>
+<td>Name of the Back&amp; object to work with</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>Data to use in the creation of the new record</td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>A hash of filter parameters. Allowed parameters are: <em>returnObject</em>, <em>deep</em></td>
+</tr>
+</tbody></table>
+
+<h3 id="update">Update</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'object updated'</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Updates a record with the specified ID in the specified object with the provided data.</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>object</td>
+<td>string</td>
+<td>Name of the Back&amp; object to work with</td>
+</tr>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>ID of the object to update</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>Data to update the record with</td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>A hash of filter parameters. Allowed parameters are: <em>returnObject</em>, <em>deep</em></td>
+</tr>
+</tbody></table>
+
+<h3 id="remove">Remove</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'object removed'</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Deletes a record from the specified object with the specified ID</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>object</td>
+<td>string</td>
+<td>Name of the Back&amp; object to work with</td>
+</tr>
+<tr>
+<td>id</td>
+<td>integer</td>
+<td>ID of the object to update</td>
+</tr>
+</tbody></table>
+
+<h3 id="on-demand-actions-get">On-Demand Actions (GET)</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">action</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">action</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Triggers on-demand custom actions that operate via HTTP GET requests</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>object</td>
+<td>string</td>
+<td>Name of the Back&amp; object to work with</td>
+</tr>
+<tr>
+<td>action</td>
+<td>string</td>
+<td>Name of the action to trigger</td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>Parameters for the action to operate upon</td>
+</tr>
+</tbody></table>
+
+<h3 id="on-demand-actions-post">On-Demand Actions (POST)</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">action</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">action</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Triggers on-demand custom actions that operate via HTTP POST requests</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>object</td>
+<td>string</td>
+<td>Name of the Back&amp; object to work with</td>
+</tr>
+<tr>
+<td>action</td>
+<td>string</td>
+<td>Name of the action to trigger</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>Object data to send as the body of the POST request</td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>Parameters for the action to operate upon</td>
+</tr>
+</tbody></table>
+
+<h2 id="socket-communications">Socket Communications</h2>
+
+<p>You can easily integrate with our Socket functionality using the <em>on</em> method. Socket signin and signout are handled automatically by the SDK.</p>
+
+<h3 id="on">On</h3>
+<pre class="highlight javascript tab-javascript"><code>  <span class="c1">//Wait for server updates on 'items' object</span>
+  <span class="nx">Backand</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'items_updated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Get the 'items' object that have changed</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Event handler for broadcast Socket events.</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventName</td>
+<td>string</td>
+<td>Name of the socket event to subscribe to</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>function</td>
+<td>Callback triggered when <em>eventName</em> is received</td>
+</tr>
+</tbody></table>
+
+<h2 id="file">File</h2>
+
+<p>This property allows you to work with server-side actions, interacting with the related files directly. You can use this after you have finished creating a server-side action in the Back&amp; dashboard, in the Actions tab of an object (object -&gt; actions tab -&gt; Backand Files icon -&gt; name: &lsquo;files&rsquo;)</p>
+
+<h3 id="upload">Upload</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">upload</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="s1">'files'</span><span class="p">,</span> <span class="nx">filename</span><span class="p">,</span> <span class="nx">filedata</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'file uploaded. url: '</span> <span class="o">+</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Uploads a file for a server-side action</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>object</td>
+<td>string</td>
+<td>Name of the object controlling the desired server-side action</td>
+</tr>
+<tr>
+<td>fileAction</td>
+<td>string</td>
+<td>The name of the file action to work with</td>
+</tr>
+<tr>
+<td>filename</td>
+<td>string</td>
+<td>The name of the file to upload</td>
+</tr>
+<tr>
+<td>filedata</td>
+<td>string</td>
+<td>The file&rsquo;s data</td>
+</tr>
+</tbody></table>
+
+<h3 id="remove">Remove</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">file</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="s1">'files'</span><span class="p">,</span> <span class="nx">filename</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'file deleted'</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Removes a file from a server-side action file set.</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>object</td>
+<td>string</td>
+<td>Name of the object controlling the desired server-side action</td>
+</tr>
+<tr>
+<td>fileAction</td>
+<td>string</td>
+<td>The name of the file action to work with</td>
+</tr>
+<tr>
+<td>filename</td>
+<td>string</td>
+<td>The name of the file to remove</td>
+</tr>
+</tbody></table>
+
+<h2 id="user">User</h2>
+
+<p>The <em>user</em> property returns data about the connected user (getUserDetails, getUsername, getUserRole, getToken, getRefreshToken).</p>
+
+<h3 id="getuserdetails">GetUserDetails</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">getUserDetails</span><span class="p">(</span><span class="nx">force</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Gets the connected user&rsquo;s details.</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>force</td>
+<td>boolean</td>
+<td>Forces the SDK to refresh its data from the server. <strong>Default: FALSE</strong></td>
+</tr>
+</tbody></table>
+
+<h2 id="query">Query</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>The <em>query</em> property lets you initiate a custom Back&amp; query using either HTTP GET or HTTP POST.</p>
+
+<h3 id="get">get</h3>
+
+<p>Calls a custom query using a HTTP GET</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The name of the query to work with</td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>Parameters to be passed to the query</td>
+</tr>
+</tbody></table>
+
+<h3 id="post">post</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Calls a custom query using a HTTP POST</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>The name of the query to work with</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>Data to be included in the body of the HTTP POST</td>
+</tr>
+<tr>
+<td>params</td>
+<td>object</td>
+<td>Parameters to be passed to the query</td>
+</tr>
+</tbody></table>
+
+<h2 id="examples-and-further-reading">Examples and further reading</h2>
+
+<p><strong><em>To view the demo web page, pull down a sample from our <a href="https://github.com/backand/vanilla-sdk/blob/master/example/">example page</a> and run <code class="prettyprint">npm start.</code></em></strong></p>
+
+          <h1 id="platform-specific-sdks">Platform-specific SDKs</h1>
+
+<p>This section covers our platform-specific SDKs. These SDKs are optimized for the named platform, and wrap the <a href="#sdk-documentation">Vanilla SDK</a> to provide access to Backand.</p>
+
+<h2 id="angular-ionic-1-sdk">Angular - Ionic 1 SDK</h2>
+
+<h3 id="overview">Overview</h3>
+
+<p>This is the documentation for Back&amp;&lsquo;s Angular 1 SDK. This SDK enables you to communicate comfortably and quickly with your Backand app.
+It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to allow you to work with Back&amp; more easily when working on projects based on Angular.js 1.</p>
+
+<h3 id="installation">Installation</h3>
+
+<p>To install the Angular 1 SDK, use the correct command for your dependency management platform:</p>
+
+<table><thead>
+<tr>
+<th>Provider</th>
+<th>Command</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>npm</td>
+<td>$ npm i -S @backand/angular1-sdk</td>
+</tr>
+<tr>
+<td>yarn</td>
+<td>$ yarn add @backand/angular1-sdk</td>
+</tr>
+<tr>
+<td>bower</td>
+<td>$ bower install backand-angular1-sdk</td>
+</tr>
+<tr>
+<td>clone/download via Git</td>
+<td>$ git clone https://github.com/backand/angular1-sdk.git</td>
+</tr>
+</tbody></table>
+
+<h3 id="import">Import</h3>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"node_modules/@backand/angular1-sdk/backand.provider.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"backand.provider.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre>
+<p>Include the following tags in your <em>index.html</em> file to start working with the SDK:</p>
+
+<h3 id="quick-start">Quick start</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">angular</span>
+  <span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'myApp'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'backand'</span><span class="p">])</span>
+  <span class="p">.</span><span class="nx">config</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">BackandProvider</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">BackandProvider</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+      <span class="na">appName</span><span class="p">:</span> <span class="s1">'APP_NAME'</span><span class="p">,</span>
+      <span class="na">anonymousToken</span><span class="p">:</span> <span class="s1">'ANONYMOUS_TOKEN'</span>
+    <span class="p">});</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'myAppCtrl'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'$scope'</span><span class="p">,</span> <span class="s1">'$http'</span><span class="p">,</span> <span class="s1">'Backand'</span><span class="p">,</span> <span class="kd">function</span> <span class="nx">myAppCtrl</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}]);</span>
+</code></pre>
+<p>Getting started with the SDK is as simple as configuring access to a Back&amp; application, then calling <em>getList</em> on a relevant object.</p>
+
+<p>Review the full API reference for our <a href="#vanilla-sdk">Vanilla SDK</a> to get started with your back end!</p>
+
+<h3 id="examples">Examples</h3>
+
+<p><strong><em>To view a demo of the SDK in action, just run npm start - <a href="https://github.com/backand/angular1-sdk/blob/master/example/">example page</a>.</em></strong></p>
+
+<h2 id="angular-ionic-2-sdk">Angular - Ionic 2 SDK</h2>
+
+<h3 id="overview">Overview</h3>
+
+<p>This is the documentation for Back&amp;&rsquo;s Angular 1 SDK. This SDK enables you to communicate comfortably and quickly with your Backand app.
+It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to allow you to work with Back&amp; more easily when working on projects based on Angular.js 1.</p>
+
+<h3 id="installation">Installation</h3>
+
+<p>To install the Angular 2 SDK, use the correct command for your dependency management platform:</p>
+
+<table><thead>
+<tr>
+<th>Provider</th>
+<th>Command</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>npm</td>
+<td>$ npm i -S @backand/angular2-sdk</td>
+</tr>
+<tr>
+<td>yarn</td>
+<td>$ yarn add @backand/angular2-sdk</td>
+</tr>
+</tbody></table>
+
+<h3 id="import">Import</h3>
+
+<p>Use the following import statement to include the Angular2 SDK in your project:</p>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">BackandService</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'@backand/angular2-sdk'</span>
+</code></pre>
+<h3 id="quick-start">Quick start</h3>
+
+<p>Using the Back&amp; Angular2 SDK requires two steps - configuring access to the BackandService provider, and then actually calling the provider using the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> methods.</p>
+
+<h4 id="app-module-ts">app.module.ts:</h4>
+<pre class="highlight javascript tab-javascript"><code><span class="p">@</span><span class="nd">NgModule</span><span class="p">({</span>
+  <span class="na">imports</span><span class="p">:</span> <span class="p">[</span> <span class="p">...</span> <span class="p">],</span>
+  <span class="na">declarations</span><span class="p">:</span> <span class="p">[</span> <span class="p">...</span> <span class="p">],</span>
+  <span class="na">providers</span><span class="p">:</span> <span class="p">[</span> <span class="nx">BackandService</span> <span class="p">],</span>
+  <span class="na">bootstrap</span><span class="p">:</span> <span class="p">[</span> <span class="nx">AppComponent</span> <span class="p">]</span>
+<span class="p">})</span>
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">AppModule</span> <span class="p">{</span> <span class="p">}</span>
+</code></pre>
+<p>Update <em>app.module.ts</em> to include the BackandService as a provider</p>
+
+<h4 id="app-component-ts">app.component.ts:</h4>
+<pre class="highlight javascript tab-javascript"><code><span class="p">@</span><span class="nd">Component</span><span class="p">({</span>
+  <span class="na">selector</span><span class="p">:</span> <span class="s1">'my-app'</span><span class="p">,</span>
+  <span class="na">template</span><span class="p">:</span> <span class="s2">`&lt;h1&gt;Hello angular2-sdk&lt;/h1&gt;
+    &lt;h3&gt;{{res}}&lt;/h3&gt;`</span>
+<span class="p">})</span>
+<span class="kr">export</span> <span class="kr">class</span> <span class="nx">AppComponent</span> <span class="kr">implements</span> <span class="nx">OnInit</span> <span class="p">{</span>
+  <span class="nl">res</span><span class="p">:</span> <span class="nx">string</span><span class="p">;</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="kr">private</span> <span class="nx">backand</span><span class="p">:</span> <span class="nx">BackandService</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+  <span class="nx">getList</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">res</span> <span class="o">=</span> <span class="s1">'fetching objects...'</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">getList</span><span class="p">(</span><span class="s1">'users'</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="na">res</span><span class="p">:</span> <span class="nx">any</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">res</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2"> objects fetched`</span><span class="p">;</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+    <span class="p">})</span>
+  <span class="p">}</span>
+  <span class="nx">ngOnInit</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">backand</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+      <span class="na">appName</span><span class="p">:</span> <span class="s1">'APP_NAME'</span><span class="p">,</span>
+      <span class="na">anonymousToken</span><span class="p">:</span> <span class="s1">'ANONYMOUS_TOKEN'</span>
+    <span class="p">});</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getList</span><span class="p">();</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Now, call the SDK from <em>app.component.ts</em>. The SDK is initialized during <em>ngOnInit()</em>, and <em>getList</em> is called as a property on <em>AppComponent</em></p>
+
+<p>Review the full API reference for our <a href="#vanilla-sdk">Vanilla SDK</a> to get started with your back end!</p>
+
+<h3 id="examples">Examples</h3>
+
+<p><strong><em>To view a demo of the SDK in action, just run npm start - <a href="https://github.com/backand/angular1-sdk/blob/master/example/">example page</a>.</em></strong></p>
+
+<h2 id="redux-react-sdk">Redux - React SDK</h2>
+
+<h3 id="overview">Overview</h3>
+
+<p>This is the documentation for Back&amp;&rsquo;s Redux SDK. This SDK enables you to communicate comfortably and quickly with your Backand app.
+It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to allow you to work with Back&amp; more easily when working on projects based on Redux.</p>
+
+<h3 id="installation">Installation</h3>
+
+<p>To install the Redux SDK, use the correct command for your dependency management platform:</p>
+
+<table><thead>
+<tr>
+<th>Provider</th>
+<th>Command</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>npm</td>
+<td>$ npm i -S @backand/redux-sdk</td>
+</tr>
+<tr>
+<td>yarn</td>
+<td>$ yarn add @backand/redux-sdk</td>
+</tr>
+</tbody></table>
+
+<h3 id="import">Import</h3>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">BackandService</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'@backand/angular2-sdk'</span>
+</code></pre>
+<p>Use the following import statement to include the Angular2 SDK in your project:</p>
+
+<h3 id="quick-start">Quick start</h3>
+<pre class="highlight shell"><code><span class="gp">$ </span><span class="s2">"./node_modules/.bin/bkndredux"</span> --help
+<span class="gp">$ </span><span class="s2">"./node_modules/.bin/bkndredux"</span> user obj1 obj2 obj3... -m <span class="o">(</span>thunk/saga<span class="o">)</span>
+</code></pre>
+<p>To get started, first use <em>bkdnredux</em> to generate the necessary <em>Types</em>, <em>Actions</em>, and <em>Reducers</em> for your Backand objects from the command line:</p>
+
+<p><strong><em>Note:</em></strong> <em>user</em> is a unique object. It has a different <em>Reducer</em> and <em>Type</em>, and it reveals most of the authentication <em>Actions</em> (getUserDetails, signin, signout, etc.).</p>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">combineReducers</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'redux'</span>
+<span class="kr">import</span> <span class="nx">user</span> <span class="nx">from</span> <span class="s1">'./user/userReducer'</span>
+<span class="kr">import</span> <span class="nx">obj1</span> <span class="nx">from</span> <span class="s1">'./obj1/obj1Reducer'</span>
+<span class="kr">import</span> <span class="nx">obj2</span> <span class="nx">from</span> <span class="s1">'./obj2/obj2Reducer'</span>
+
+<span class="nx">combineReducers</span><span class="p">({</span>
+  <span class="nx">user</span><span class="p">,</span>
+  <span class="nx">obj1</span><span class="p">,</span>
+  <span class="nx">obj2</span>
+<span class="p">})</span>
+</code></pre>
+<p>Next, Include the new <em>Reducers</em> in <a href="http://redux.js.org/docs/api/combineReducers.html">combineReducers()</a> (see JavaScript tab)</p>
+
+<p>Next, we nede to configure the middleware stack to work with the SDK. Pick the section that applies to your chosen middleware stack - either <a href="https://github.com/gaearon/redux-thunk">redux-thunk</a> or <a href="https://github.com/redux-saga/redux-saga">redux-saga</a> - then follow the corresponding instructions:</p>
+
+<h4 id="redux-thunk"><a href="https://github.com/gaearon/redux-thunk">redux-thunk</a></h4>
+
+<p>Download <a href="https://github.com/gaearon/redux-thunk">redux-thunk</a> and include it in <a href="http://redux.js.org/docs/api/createStore.html">createStore()</a>:
+&ldquo;`javascript
+import { createStore, applyMiddleware } from &#39;redux&rsquo;
+import thunk from &lsquo;redux-thunk&rsquo;</p>
+
+<p>createStore(rootReducer, initialState, applyMiddleware(thunk))
+&rdquo;`</p>
+
+<h4 id="redux-saga"><a href="https://github.com/redux-saga/redux-saga">redux-saga</a></h4>
+
+<p>Download <a href="https://github.com/redux-saga/redux-saga">redux-saga</a> and include it in <a href="http://redux.js.org/docs/api/createStore.html">createStore()</a>:
+&ldquo;`javascript
+import { createStore, applyMiddleware } from &lsquo;redux&rsquo;
+import createSagaMiddleware from &lsquo;redux-saga&rsquo;
+import rootSaga from &lsquo;./sagas.js&rsquo;</p>
+
+<p>const sagaMiddleware = createSagaMiddleware()
+createStore(rootReducer, initialState, applyMiddleware(sagaMiddleware))
+sagaMiddleware.run(rootSaga)
+&rdquo;`</p>
+
+<h4 id="working-with-the-sdk">Working with the SDK</h4>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">getUserDetails</span><span class="p">,</span> <span class="nx">signin</span><span class="p">,</span> <span class="nx">useAnonymousAuth</span><span class="p">,</span> <span class="nx">signout</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'./user/userActions'</span>
+
+<span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">signin</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">))</span>
+<span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">getUserDetails</span><span class="p">())</span>
+</code></pre>
+<p>Once the above is completed, import <code class="prettyprint">Actions</code> and dispatch them easily!</p>
+
+<p>Review the full API reference for our <a href="#vanilla-sdk">Vanilla SDK</a> to get started with your back end!</p>
+
+<h3 id="examples">Examples</h3>
+
+<p>Below are a few examples of Redux code that uses the Back&amp; SDK:
+- <a href="http://codepen.io/backand/pen/VmRajE">codepen example (thunk)</a>
+- <a href="http://codepen.io/backand/pen/pRgqyx">codepen example (saga)</a>
+- <a href="https://github.com/backand/react-native-example/tree/sdk">react-native-example</a></p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">cURL</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
