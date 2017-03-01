@@ -14,6 +14,7 @@ includes:
   - backand_dashboard
   - sdk
   - platform_specific
+  - common_use_cases
 
 search: true
 ---
@@ -28,3 +29,15 @@ Backand [ORM](http://en.wikipedia.org/wiki/Object-relational_mapping) automatica
 
 ###SQL and NoSQL - The Best of Both Worlds
 Through the flexibility of Backand's API, you have the ability to work with your data at whatever level you desire. You can perform basic [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations in a couple ways. In one way you can mimic a SQL database by simply returning a shallow representation of the object, with foreign key references remaining as simple IDs in the response data. However, you can also perform deep queries that resolve all of the underlying data objects into a single set of response data, giving you the level of object detail that you often see with NoSQL databases. With a simple parameter change, you can switch between the two patterns at will!
+
+### Using cURL
+```shell
+# Retrieve all Lists in your Organization
+# This call stores the MASTER_KEY and USER_KEY into environment variables
+# Following this pattern will enhance the security and reliability of any console
+# calls made to the API
+curl https://api.backand.com/1/objects/items -u $MASTER_KEY:$USER_KEY
+
+# You can perform the same task using URL parameters:
+curl https://api.backand.com/1/objects/items?authorization=basic+$MASTER_KEY:$USER_KEY
+```
