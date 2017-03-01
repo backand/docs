@@ -110,7 +110,7 @@ Now, we'll need to update the page's design to display the new information. To  
 
     * Value: object in data
 
-* Finally, click on the 'list-item' element and change the content to {{object.name}}
+* Finally, click on the 'list-item' element and change the content to object.name (including the curly-brace specializers to get the object's name value, instead of the flat text object.name)
 
 And with that, your Ionic Creator app is now connected to Backand!
 
