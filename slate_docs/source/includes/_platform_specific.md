@@ -45,7 +45,7 @@ Getting started with the SDK is as simple as configuring access to a Back& appli
 
 Review the full API reference for our [Vanilla SDK](#vanilla-sdk) to get started with your back end!
 
-### Examples
+### Examples for Angular/Ionic 1
 ***To view a demo of the SDK in action, just run npm start - [example page](https://github.com/backand/angular1-sdk/blob/master/example/).***
 
 ## Angular - Ionic 2 SDK
@@ -118,7 +118,7 @@ Now, call the SDK from *app.component.ts*. The SDK is initialized during *ngOnIn
 
 Review the full API reference for our [Vanilla SDK](#vanilla-sdk) to get started with your back end!
 
-### Examples
+### Examples for Angular/Ionic 2
 ***To view a demo of the SDK in action, just run npm start - [example page](https://github.com/backand/angular1-sdk/blob/master/example/).***
 
 ## Redux - React SDK
@@ -205,7 +205,7 @@ Once the above is completed, import `Actions` and dispatch them easily!
 
 Review the full API reference for our [Vanilla SDK](#vanilla-sdk) to get started with your back end!
 
-### Examples
+### Examples for React/Redux
 Below are a few examples of Redux code that uses the Back& SDK:
 - [codepen example (thunk)](http://codepen.io/backand/pen/VmRajE)
 - [codepen example (saga)](http://codepen.io/backand/pen/pRgqyx)
