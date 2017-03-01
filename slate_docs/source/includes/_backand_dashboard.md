@@ -106,40 +106,78 @@ We also give you access to the Filter Data functionality, which can be used to q
 #### Actions tab
 The Actions tab allows you to work with custom actions in your object. Custom actions allow you to perform automated tasks in your Backand application.
 #### Security tab
+
 #### Settings tab
+
 #### REST API tab
+
 ## Queries
+
 ### Query List
+
 #### NoSQL
+
 #### SQL
+
 #### Testbed
+
 ## Background Jobs
+
 ### Accepted job types
+
 ### Crontab format
+
 ### Job List
+
 ## Analytics
+
 ### Reports
+
 ## Security & Auth
+
 ### Configuration
+
 ### Social & Keys
+
 ### Registered Users
+
 ### Team
+
 ### Security Actions
+
 ### Security Templates
+
 ## Hosting
+
 ### Configuration
+
 ### Hosting files
+
 ### Storage files
+
 ## Log
+
 ### API Requests
+
 ### Console
+
 ### Server Side Exceptions
+
 ### Configuration
+
 ### Data History
+
 ## Settings
+
 ### General
+
 ### Database
+
 ### Configuration
+
 ### Billing Portal
+
 ### Upgrade Plan
+
 ### Payment Method
+Documentation pending
