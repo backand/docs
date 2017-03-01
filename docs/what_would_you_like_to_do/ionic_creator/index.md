@@ -107,7 +107,6 @@ Now, we'll need to update the page's design to display the new information. To  
 * On the right side of the pane, click on 'Angular Directives' and add a new directive with the following details:
 
     * Directive: ng-repeat
-
     * Value: object in data
 
 * Finally, click on the 'list-item' element and change the content to object.name (including the curly-brace specializers to get the object's name value, instead of the flat text object.name)
