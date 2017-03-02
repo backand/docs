@@ -8,7 +8,7 @@ This is the documentation for Back&'s Vanilla SDK. This encapsulates all common 
 
 ## Installation
 
-*Note: In most cases, the Vanilla SDK will be installed as a part of another, platform-specific SDK. However, if you wish to include it directly in your project, follow these instructions*
+<aside class="notice">In most cases, the Vanilla SDK will be installed as a part of another, platform-specific SDK. However, if you wish to include it directly in your project, follow these instructions</aside>
 
 To install the Vanilla SDK, use the correct command for your dependency management platform:
 
@@ -21,31 +21,31 @@ To install the Vanilla SDK, use the correct command for your dependency manageme
 
 ## Import
 ```javascript
-import backand from '@backand/vanilla-sdk'
-const backand = require('@backand/vanilla-sdk')
 
 <!-- Includes for index.html, or appropriate location -->
 <script src="node_modules/@backand/vanilla-sdk/dist/backand.min.js"></script>
 <script src="backand.min.js"></script>
+
+// Import the Backand SDK object
+import backand from '@backand/vanilla-sdk'
+const backand = require('@backand/vanilla-sdk')
+
 ```
-
-Next, import the SDK into your project. To import in a bundler-based system, use the following JavaScript:
-
-Otherwise, include the following tags in your *index.html* file:
-
-```javascript: html
-```
+To work with the SDK, you need to first import it into your project. This requires including the JavaScript source in your project in `index.html` (or another appropriate location), and then importing the `backand` object into your application. The `backand` object is the root of the SDK, and will be used as the core of all calls to your Backand application.
 
 ## Quick Start
 ```shell
+# Use a bearer token to retrieve items. Obtain the token from calling the /token endpoint
 curl https://api.backand.com/1/objects/items -H "Authorization: Bearer OfKDiw6fQwfhmUcoh3WuXken_Sgj18za8SDqn1Ed2S_qI88HWNwGBSpG2ktUkSbNIwcGn6dwos7ivvVARC1UIiCf8fzlNynFNZamCZPDpbOhRjheq3RnU6HJiCbqlks57PLvMnf9PxGK8D3FU8MeaPyUk7mmbAtvgc6GF-9s13YpFjVQkM5XRZ-CsuWjaRoukygLMOivj1iPYxBB4c-hu6ocZKQljiSnw6rroYbD4spmUIkwDnC0rz1jP9ln5KNI3KmO0KLcWJF6E_zWfepdFw"
 ```
 ```javascript
+// Initialize the SDK
 backand.init({
   appName: 'APP_NAME',
   anonymousToken: 'ANONYMOUS_TOKEN'
 });
 
+// Retrieve a list of records from the server
 backand.object.getList('users')
   .then((response) => {
       console.log(response);
@@ -55,12 +55,90 @@ backand.object.getList('users')
   });
 ```
 
-Getting started with the SDK is as simple as configuring access to a Back& application, then calling *getList* on a relevant object:
+Getting started with the SDK is as simple as configuring your application access details, initializing the SDK, and calling a `getList()` function for one of the objects in your system. You configure the SDK with your application's `APP_NAME` and `ANONYMOUS_TOKEN`. Once you've called `init()` with these values, the SDK will use this data to automaticaly manage authentication headers for API requests to your app's REST API.
 
+```JSON
+// Sample response
+{
+  "totalRows": 2,
+  "data": [
+    {
+      "__metadata": {
+        "id": "1",
+        "fields": {
+          "id": {
+            "type": "int",
+            "unique": true
+          },
+          "items": {
+            "collection": "items",
+            "via": "user"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        },
+        "descriptives": {
+
+        },
+        "dates": {
+
+        }
+      },
+      "id": 1,
+      "items": null,
+      "email": "matt@backand.com",
+      "firstName": "Matt",
+      "lastName": "Billock"
+    },
+    {
+      "__metadata": {
+        "id": "2",
+        "fields": {
+          "id": {
+            "type": "int",
+            "unique": true
+          },
+          "items": {
+            "collection": "items",
+            "via": "user"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          }
+        },
+        "descriptives": {
+
+        },
+        "dates": {
+
+        }
+      },
+      "id": 2,
+      "items": null,
+      "email": "start@backand.io",
+      "firstName": "Start",
+      "lastName": "Backand"
+    }
+  ]
+}
+```
 This connects your Back& application (with the app name of *APP_NAME* and an anonymous access token of *ANONYMOUS TOKEN*) to your current project. Once the connection is configured, the SDK uses this connection information to construct HTTP requests to your API. Result data is returned in the *response* object as the member variable *data*. In the case of *getList*, this will be a JSON array of objects pulled from the *users* table in your Back& application. You can easily change the table being manipulated by replacing *users* with the name of any object in your system.
 
-## API Reference
-
+## Working with the API
+### Initialization
 ### backand.init()
 
 ```javascript
@@ -123,7 +201,7 @@ By default, the Back& SDK emits the following events that your code can respond 
 - **All Methods return a Promise -> you can work with the response using .then() and .catch()**
 - **You can see the response schema [here](https://github.com/mzabriskie/axios#response-schema)**
 
-### Authentication
+### Root SDK properties (authentication)
 
 Authentication methods are called directly on the SDK, without any properties: *backand.signin(username, password)*
 

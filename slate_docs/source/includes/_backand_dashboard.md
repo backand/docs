@@ -30,6 +30,10 @@ Our existing app tutorials provide a list of tutorials on connecting Backand int
 We provide a platform selector, which allows you to only view the kickstarts, existing apps, and code samples throughout the dashboard that are relevant to your needs. Simply choose a different platform, and the dashboard will present all examples in the relevant version of JavaScript that matches your selection.
 </aside>
 ### Realtime Database
+The Realtime Database tab provides documentation on configuring your Backand application to work with our Socket-based real-time communications capabilities. It outlines all of the steps necessary on both the client and server sides to get everything working in your app.
+
+<aside class="notice">Backand's realtime functionality relies upon Socket.io. We choose not to include this library by default as the JavaScript library itself is quite large, and can greatly increase the size of your application's assets. Make sure that when you enable socket functionality, that you have also included the Socket.io javascript in your project. </aside>
+
 ### Documentation
 ### REST API Playground
 ## Objects

@@ -1,4 +1,4 @@
-# Backand features
+# Backand Features
 This section contains documentation on the features offered by Backand. We will cover the following functional areas:
 
 * Security and Authentication - a summary of the security features offered by Backand
@@ -8,35 +8,58 @@ This section contains documentation on the features offered by Backand. We will 
 * Queries - an overview of the on-demand query functionality
 * NoSQL Query Language - an overview of our NoSQL-style query language
 
-## Security Concepts
+## The User Object and Security
 
 This section describes how to manage your app's users within Backand's user security paradigm. An important element to note up front is that, by default, [Backand](https://www.backand.com) provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand's database, and as such cannot partake of your app's custom logic. The second user object is offered in the default data model for a Backand application, and is titled 'users'. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see [Link your app's users with Backand's registered users](security.md#Link your app's users with Backand's registered users) for more info). We highly recommend running the [todos-with-users app](https://github.com/backand/todos-with-users) in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app's data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application's objects.
 
-### Authentication
-
-In this section, we'll cover Backand's authentication mechanisms.
-
-#### OAuth 2.0
+### Authentication with OAuth 2.0
 ```shell
 # To obtain an access token using a username and password, use the following
-# command:
-curl https://api.backand.com/token -d username=guest@backand.com -d password=guest1234 -d grant_type=password -d appName=bkndexample
-# To obtain an access token using the Social Media master key, use the
-# following command:
-curl -X GET https://api.backand.com/1/user/facebook/token?accessToken=EAAPutOqBPlkBANfUQXdmp7xseF16JpSknTGxZBBZAwd1TDigDUqC9i5NixlDOKFNpNQQwqJFHHPs059STwG0qzodlfzOvnE2q4EPxXM43ZBZBUOV44lCjpmFhMwJmeXUgRSBlwxJaKrvZAH7vW7NdBQa3dMLQZAv4RTXRZAcgqNVQZDZD&appName=bkndexample&signupIfNotSignedIn=true
-# You can then use the access token to call any Backand API for your
-# application
-curl https://api.backand.com/1/objects/items -H "Authorization: Bearer OfKDiw6fQwfhmUcoh3WuXken_Sgj18za8SDqn1Ed2S_qI88HWNwGBSpG2ktUkSbNIwcGn6dwos7ivvVARC1UIiCf8fzlNynFNZamCZPDpbOhRjheq3RnU6HJiCbqlks57PLvMnf9PxGK8D3FU8MeaPyUk7mmbAtvgc6GF-9s13YpFjVQkM5XRZ-CsuWjaRoukygLMOivj1iPYxBB4c-hu6ocZKQljiSnw6rroYbD4spmUIkwDnC0rz1jP9ln5KNI3KmO0KLcWJF6E_zWfepdFw"
+# command. This uses environment variables to ease presentation of the
+# information, and supplies the fields as data arguments to the cURL command.
+# $USERNAME - user name (email address) to authenticate
+# $PASSWORD - password for the user
+# $APP_NAME - the name of the backand application you are connecting to
+curl https://api.backand.com/token -d username=$USERNAME -d password=$PASSWORD -d grant_type=password -d appName=$APP_NAME
+
+# To obtain an access token using a Social Media master key (for connecting via
+# social media providers, like Facebook in the example below), use the following
+# command with parameter values as follows:
+# $SOCIAL_MEDIA_KEY - your app's social media access token
+# $APP_NAME - your Backand app's name
+curl -X GET https://api.backand.com/1/user/facebook/token?accessToken=$SOCIAL_MEDIA_KEY&appName=$APP_NAME&signupIfNotSignedIn=true
+
+# You can then use the access token returned by this call to call any Backand API
+# for your application:
+# $ACCESS_TOKEN - the token obtained via a call to the token endpoint
+curl https://api.backand.com/1/objects/items -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-The default authentication setup for [Backand](https://www.backand.com) applications relies on [OAuth2](http://oauth.net/2/) to provide tokenized authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use [Backand's SDK](https://github.com/backand/angularbknd-sdk) to help you manage the access token. You can change the default expiration of 24 hours by using a refresh token, which allows you to reuse the authentication token indefinitely. The refresh token is an encrypted hash of the master and user keys. You can revoke one (or all) of your user's refresh tokens by changing the refresh token and requiring users to re-authenticate. For more information, see the [API Description](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#user-authentication).
-
+The default authentication setup for [Backand](https://www.backand.com) applications relies on [OAuth2](http://oauth.net/2/) to provide tokenized authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use [Backand's SDK](https://github.com/backand/angularbknd-sdk) to help you manage the access token. You can change the default expiration of 24 hours by using a refresh token, which allows you to reuse the authentication token indefinitely. The refresh token is an encrypted hash of the master and user keys. You can revoke one (or all) of your user's refresh tokens by changing the refresh token and requiring users to re-authenticate. For more information, see the [API Description](#user-authentication).
 
 Parameters:
 --signupIfNotSignedIn - (Optional, default false) - If the user tries to sign in without first registering for the application, the user will receive an error message ("The user is not signed up to {appName}"). If this value is set to true, then the user will be automatically registered with the app if they have not yet been signed up
 
+#### Sample response
+```json
+// Sample response
+{
+  "access_token": "ThuuBiuTS9grkzbPW-yL5z3dd_Q48-Ml4oHCffgbWRUDr1rFIY_nYIqaL-he09sCicEVNE_wJCxZ4QS0E3SlG-fZOSOOHDlzORrVagcGvBtZoqTByvhiXgcwXPOkmeD8U1bZaAi8vLEr_wUY6f_rse9o8GKs5cjRpBZENurSytsXhXsv6XpSFcZUr5n7Za_nu5HDth2bOuM_2e-Kn3yOc2GDz9qXjZm_UQ9oMfvJnzjY16Qsw7_ynZAbRa4m6lRtXwsHunqv_R_8uhMGNwTxyg",
+  "token_type": "bearer",
+  "expires_in": 86399,
+  "appName": "bkndkickstart",
+  "username": "start@backand.io",
+  "role": "User",
+  "firstName": "Backand",
+  "lastName": "Start",
+  "fullName": "Backand Start",
+  "regId": 950007,
+  "userId": "2"
+}
+```
 
-#### Basic authentication
+The call to the token endpoint returns all of the information you need to use a token to connect to your backand application. The access_token provided is authenticated with a signle user in your app, and is provided an expiration time in seconds. You are also given details of the authenticated user, including their username, first and last name, user ID, and their security role.
+### Basic authentication
 ```shell
 # Perform basic authentication via header
 curl https://api.backand.com/1/objects/items -u <master key>:<user key>
@@ -50,7 +73,7 @@ You can also send the basic authorization token through as a query string.
 
 <aside class="warning">Do not use this method from the client side as it exposes your app's secret token, which can be used to perform any action in your system. This method is for server-side calls only.</aside>
 
-#### Anonymous authentication
+### Anonymous authentication
 ```shell
 # Perform anonymous authentication through headers
 curl https://api.backand.com/1/objects/items -H "AnonymousToken: <anonymous token>"
@@ -60,53 +83,49 @@ curl https://api.backand.com/1/objects/items?AnonymousToken=<anonymous token>
 
 Backand also offers Anonymous Access, which allows you to access your application without the need to authenticate via username and password. By passing this value in a request header (e.g. AnonymousToken=<your token here>) you can perform api actions for your application
 
-### Sign Up
+### User Registration
 
 Registering with [Backand](https://www.backand.com), and creating an application, automatically sets you as a user with an 'Admin' role in your new project (see [roles](#roles) for more info). By default your application is marked public which mean any user can register to your application.
 
-These users are assigned a default role 'User', which has full CRUD access to your app. You needs to be configured when you enable public usage of your app (see [roles](#roles) for more details).
+These users are assigned a default role 'User', which has full CRUD access to your app. Your roles will need to be configured when you enable public usage of your app (see [roles](#roles) for more details).
 
-```javascript
+
+```javascript--general
   //Create new Security Action in Before Create trigger with the following
   //code (this will update the role to 'Public'):
   userInput.Role = 'Public';
 ```
-
 <aside class="notice">
 For security reasons you cannot change the role from the sign-up API - this can only be accomplished either by having an admin change the appropriate settings on the Security & Auth -&gt; Registered Users page, or by creating a custom server-side action with Admin rights (see JavaScript tab).
 </aside>
 
-#### Saving Additional Parameters During Sign-up
+### Saving Additional Parameters During Sign-up
 
-In many cases, we would like to collect additional information from the user during sign up. We can automatically populate the related fields on the Users object as a part of the sign-up request by using the **parameters** parameter for the sign-up call. The server, during the 'Create My App User' action, will translate these key-value pairs into the appropriate fields on the 'Users' object - as such, it is important that all fields provided already exist on the Users object. The following example demonstrates specifying a user's "company" name as a part of the sign-up:
-
-1. Update the Model and add the field **company** to the **users** object:
-    1. Go to **Objects --> Model**
-    2. Add this line as a data field in the **users** object model: **"company": {"type": "string"}**
-    3. Click on **Validate & Update**
-
-2. When calling Backand.signup(), send the **parameters** objecct through as the last input parameter for the request. The code will resemble the following:
+In many cases, we would like to collect additional information from the user during sign up. We can automatically populate the related fields on the Users object as a part of the sign-up request by using the `parameters` parameter for the sign-up call. The server, during the 'Create My App User' action, will translate these key-value pairs into the appropriate fields on the 'Users' object - as such, it is important that all fields provided already exist on the Users object. The following example demonstrates specifying a user's "company" name as a part of the sign-up:
 
 ```javascript
-    Backand.signup(firstName, lastName, username, password, password, {company: self.company}).then(...);
+    Backand.signup(firstName, lastName, username, password, password, {"company": self.company}).then(...);
 ```
+1. Update the Model and add the field `company` to the `users` object:
+    1. Go to `Objects` --> `Model`
+    2. Add this line as a data field in the `users` object model: `"company": {"type": "string"}`
+    3. Click on `Validate & Update`
+2. When calling `Backand.signup()`, send the `parameters` object through as the last input parameter for the request. The code will resemble the following:
+3. There's no need for server-side modifications - values for "parameters" are handled automatically by the action 'Create My App User' (found in the `Security Actions` section).
+4. Modify the UI to collect the `company` name for the user.
 
-3. There's no need for server-side modificcations - values for "parameters" are handled automatically by the action 'Create My App User' (found in the **Security Actions** section).
+Now, when sign-up is completed, you can see the company name in the `users` object's Data tab.
 
-4. Modify the UI to collect the 'company' name for the user.
+### Private app
 
-Now, when sign-up is completed, you can see the company name in the **users** object's Data tab.
-
-#### Private app
-
-You can change the default public app to be private. This can be changed in the dashboard by setting the Public flag for your application to 'false' in the Security & Auth --> Configuration menu. For a private app, the registration steps are as follow:
+You can change your app, which is public by default, to be private. This can be changed in the dashboard by setting the Public flag for your application to 'false' in the Security & Auth --> Configuration menu. For a private app, the registration steps are as follow:
 
 * First, set your app's registration page on the Security & Auth --> Configuration page.
 * Next, if you wish to use automated email verification, enable Sign-up Email Verification on the Security & Auth --> Configuration page
 * Once you have a registration page, enter the emails to invite on the Security & Auth --> Users page.
 * Once you have entered the emails you wish to invite, click the 'Invite User(s)' button. This will send an email to each new user with a link to the registration page that you created.
 
-#### Email verification process
+### Email verification process
 
 The user enters his/her email, name and password on your registration page:
 
@@ -114,7 +133,7 @@ The user enters his/her email, name and password on your registration page:
 * If Sign-up Email Verification is not enabled, at this point registration is complete.
 * If Sign-up Email Verification is enabled, after the user clicks on the link in the verification email, Backand completes the registration process and redirects to the 'Custom Verified Email Page' URL for your application. Configure this on the Security & Auth --> Configuration page  
 
-For more information, see the [API Description](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#sign-up).
+For more information, see our [Vanilla SDK documentation](#vanilla-sdk)
 
 ### SSO (Single Sign On)
 Many organizations make use of tools like Active Directory in order to provide a central source of user-based authentication. This system is often used to drive a Single Sign On (SSO) feature in the organization, allowing users to simply use one set of credentials for all of the apps that they need to work with. Backand provides a method to incorporate SSO functionality using an override server-side action. This action allows you to perform your own authentication (via web-service calls to the domain controller, for example), and lets you return one of three actions.
@@ -188,8 +207,7 @@ function backandCallback(userInput, dbRow, params, userProfile) {
     return { };
 }
 ```
-[Backand](https://www.backand.com) maintains an internal registered users object which is used to manage your app's
-security. However, most apps will have their own 'users' object, which is used when implementing the app's business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two objects. If you have an object in your system named 'users', and if that object has the fields 'email', 'firstName', and 'lastName', then every user that is registered with [Backand](https://www.backand.com) for your app will automatically have an entry created in your custom 'users' object. This takes place no matter how the user is added - both the sign-up API and the [Backand](https://www.backand.com) dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand's internal registered users object. This new user will be given a randomized password, which can then be provided to the user for access to your application.
+[Backand](https://www.backand.com) maintains an internal registered users object which is used to manage your app's security. However, most apps will have their own 'users' object, which is used when implementing the app's business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two objects. If you have an object in your system named 'users', and if that object has the fields 'email', 'firstName', and 'lastName', then every user that is registered with [Backand](https://www.backand.com) for your app will automatically have an entry created in your custom 'users' object. This takes place no matter how the user is added - both the sign-up API and the [Backand](https://www.backand.com) dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand's internal registered users object. This new user will be given a randomized password, which can then be provided to the user for access to your application.
 
 Below we'll look more in-depth at how this process is managed. Additionally, we'll explore what happens when the users object has an unexpected name (i.e. something other than 'users'), or if the fields of the users object are named differently.
 
@@ -197,7 +215,7 @@ There are 3 sync actions located in Configuration -> Security & Auth that are tr
 
 1. Create My App User
 1. Update My App User
-1. Delete My App User.
+1. Delete My App User
 
 You can directly modify those JavaScript actions if needed.
 
@@ -478,7 +496,9 @@ Using the real-time capability can enhance your app with instant updates to any 
 
 ###Setup
 
-```html
+```html    
+<!-- Backand Socket Client -->
+<script src="lib/socket.io-client/dist/socket.io.js"></script>
 <!-- Backand SDK -->
 <script src="//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"></script>
 <script src="//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"></script>   
@@ -489,7 +509,7 @@ Using the real-time capability can enhance your app with instant updates to any 
 ```
 
 1. Upgrade to Backand SDK 1.9.5 or above.
-2. Include the Backand SDK in your index.html file:
+2. Include the Backand SDK and Socket.io in your index.html file
 3. Update Angular configuration section
 
 ### Angular client code - Sockets
@@ -571,49 +591,48 @@ The function parameters are:
 * `dbRow`: This parameter is populated in After Create, Update, and Delete automated actions, and if you supply an optional ID to an On Demand action. The dbRow parameter will contain the row's entry in the database prior to any changes made.
 * `parameters`: This parameter represents the variables sent in the query string for the action.
 * `userProfile`: This parameter stores the current username, the user's role, and the access token used by the user to perform the action. It is of the format {"username": "string", "role": "string", "token": "string"}.
+* `CONSTS`: Primarily used to obtain the API URL from `CONSTS.apiUrl`
+* `config`: Global configuration. You can maintain a global JSON configuration for your app. Your JSON configuration is consumed in the Config action. To update the configuration JSON, go to section `General` in the `Settings` menu on the Backand dashboard.
+* `socket`: `socket` is an object that allows you to send real-time communication events and data to the client. `socket` has 3 methods: `emitUsers`, `emitRole`, and `emitAll`. Refer back to our documentation on[Realtime Database Communication here](#realtime-database-communications) for more information.
 
-In addition to the above parameters, you can also make use of the following global objects:
-
+#### Making HTTP Requests from a custom action
 ```javascript
 // GET example:
-
-  var response = $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample",
-                         params:{filter:[{fieldName:"fieldexample", operator:"contains", value:"somestring"}]},
-                        headers: {"Authorization":userProfile.token}});
+var response = $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample",
+                       params:{filter:[{fieldName:"fieldexample", operator:"contains", value:"somestring"}]},
+                      headers: {"Authorization":userProfile.token}});
 
 // POST example:
-
-  var response = $http({method:"POST",url:CONSTS.apiUrl + "/1/objects/objectexample",
-                        data:{fieldexample1:"somevalue",fieldexample2:"somevalue"},
-                        headers: {"Authorization":userProfile.token}});
+var response = $http({method:"POST",url:CONSTS.apiUrl + "/1/objects/objectexample",
+                      data:{fieldexample1:"somevalue",fieldexample2:"somevalue"},
+                      headers: {"Authorization":userProfile.token}});
 
 // PUT example:
-
-  var response = $http({method:"PUT",url:CONSTS.apiUrl + "/1/objects/objectexample/5",
-                        data:{fieldexample1:"somevalue",fieldexample2:"somevalue"},
-                        headers: {"Authorization":userProfile.token}});
+var response = $http({method:"PUT",url:CONSTS.apiUrl + "/1/objects/objectexample/5",
+                      data:{fieldexample1:"somevalue",fieldexample2:"somevalue"},
+                      headers: {"Authorization":userProfile.token}});
 
 // DELETE example:
-
-  var response = $http({method:"DELETE",url:CONSTS.apiUrl + "/1/objects/objectexample/5", fieldexample2:"somevalue"},
-                        headers: {"Authorization":userProfile.token}});
+var response = $http({method:"DELETE",
+                      url:CONSTS.apiUrl + "/1/objects/objectexample/5",
+                      fieldexample2:"somevalue"},
+                      headers: {"Authorization":userProfile.token}});
 ```
 
-* `$http`: a service for HTTP calls, similar to Angular's $http without the promise (since it is a server side
-function it always runs in sync). [See the full API description for more details](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#rest-api-crud-operations)
+In addition to the above parameters, you're also given access to `$http`. `$http` is a service for HTTP calls, similar to Angular's $http without the promise (since it is a server side function it always runs in sync). [See the full API description for more details](#vanilla-sdk).
+
+To make a request, simply feed a parameter hash into the $http object. The available parameters are:
+
+* method - `GET`, `POST`, `PUT`, or `DELETE`
+* url - Build this using `CONSTS.apiUrl` as a base
+* params - parameters for the call, such as filter data (**GET only**)
+* data - data for the call, such as field data for a `POST` call
+* headers - the headers to use with the request, typically just the authorization header
 
 #### A Note About The Authorization Header:  
 Sending the authorization header to the $http function is optional. When you make a $http request with an authorization header and the value of the userProfile.token (as in the examples above), the request will run in the context of the current user and with his assigned role. Alternatively, if you choose not to send an authorization header, the action will run in the context of an admin role. Send the authorization header with the request if you are going to use information about the current user in the action, otherwise you do not need to do so.
 
-* CONSTS: `CONSTS.apiUrl` for Backand's API URL
-
-* Config: Global configuration. You can maintain a global JSON configuration for your app. Your JSON configuration is consumed in the Config action. To update the configuration JSON, go to section "General" in the "Settings" menu on the Backand dashboard.
-
-* Emit: Emit is a function that allows you to send real-time communication events and data to the client. Emit has 3 methods: socket.emitUsers, socket
-.emitRole, and socket.emitAll. Read more about [Realtime Database Communication here](http://docs.backand.com/en/latest/apidocs/realtime/index.html).
-
 #### Debugging
-
 Debugging should be done using either console.log or console.error. For example, to dump the contents of variable
 `object`:
 
@@ -621,20 +640,19 @@ Debugging should be done using either console.log or console.error. For example,
 
 `console.error(object)`
 
-#### Error Handling
+These are sent to the Logging section of the Backand dashboard, under `Log` -> `Console`.
 
-If your code results in an error (for example, if you write the following: `throw new Error("An error occurred!")`),
-the request will return HTTP status 417, and the response body will contain the associated error message.
+#### Error Handling
+If your code results in an error (for example, if you write the following: `throw new Error("An error occurred!")`), the request will return HTTP status 417, and the response body will contain the associated error message.
+
+These are also sent to the Logging section of the Backand dashboard, under `Log` -> `Server Side Exceptions`.
 
 #### Return values
-
-Triggered actions will have a response that matches the format expected by the triggering call (such as the return value
-of a CREATE call).
+Triggered actions will have a response that matches the format expected by the triggering call (such as the return value of a `CREATE` call).
 
 On Demand actions, though, will return whatever value is returned by the custom server code, which can be any properly-formatted JSON string.
 
 ### Server-Side Node.js Code
-
 Using Backand, you can develop distributed Node.js actions and host them with your Backand application - no additional servers needed! You can use the Server-Side Node.js action to work with any NPM package, build sophisticated action behaviors, perform complex coding tasks, and more.
 
 For Server-Side Node.js Code actions, you develop the code on your local machine. The code is then deployed to, and runs on, Backand's server. It functions just like any other Node.js project and can be fully debugged locally and, once you've finished making changes, you can use the "deploy" command to publish the changes to your Backand application.
@@ -669,11 +687,12 @@ Once you've set up Node and NPM, use NPM to install the Backand CLI as a global 
 To initialize the node.js code for the action on your local machine, use the `action` command on the command line in the folder that will host your action's code
 
 The parameters for this call are:
-  **--app**:		  The current app name  
-  **--object**:		The object that the action belongs to  
-  **--action**:		The action name  
-  **--master**:		The master token of the app (obtained from the Social & Keys section of the app's Security & Auth configuration)  
-  **--user**:		  The token of the current user (available from the TEam section of the app's Security & Auth configuration - simply click on key icon next to an authorized user)  
+
+*  `--app`:		  The current app name  
+*  `--object`:		The object that the action belongs to  
+*  `--action`:		The action name  
+*  `--master`:		The master token of the app (obtained from the Social & Keys section of the app's Security & Auth configuration)  
+*  `--user`:		  The token of the current user (available from the TEam section of the app's Security & Auth configuration - simply click on key icon next to an authorized user)  
 
 
 #### Deploy action
@@ -683,14 +702,14 @@ The parameters for this call are:
 
 To deploy your local Node.js code to Back&, use the `deploy` command with the Backand CLI
 
-
 The parameters for this call are:
-  **--app**:		  The current app name  
-  **--object**:		The object that the action belongs to  
-  **--action**:		The action name  
-  **--master**:   The master token of the app (obtained from the Social & Keys section of the app's Security & Auth configuration)  
-  **--user**:     The token of the current user (available from the TEam section of the app's Security & Auth configuration - simply click on key icon next to an authorized user)  
-  **--folder**:   (Optional) The folder to deploy. By default the deployment occurs in the current folder
+
+*  `--app`:		  The current app name  
+*  `--object`:		The object that the action belongs to  
+*  `--action`:		The action name  
+*  `--master`:   The master token of the app (obtained from the Social & Keys section of the app's Security & Auth configuration)  
+*  `--user`:     The token of the current user (available from the TEam section of the app's Security & Auth configuration - simply click on key icon next to an authorized user)  
+*  `--folder`:   (Optional) The folder to deploy. By default the deployment occurs in the current folder
 
 #### Add Backand SDK to Node.js
 ```bash
@@ -732,9 +751,7 @@ A query consists of these parts:
 
 Only the table and expression parameters are mandatory.
 
-
-The NoSQL queries are then constructed into a SQL query of the following form:
-
+### Construction and Translation
 ```SQL
   SELECT fields with aggregation
   FROM table
@@ -744,8 +761,9 @@ The NoSQL queries are then constructed into a SQL query of the following form:
   LIMIT limit
 ```
 
-NoSQL queries are constructed using JSON objects. Below is an example:
+The NoSQL queries are then constructed into a SQL query. Each component of a NoSQL query hash corresponds to a different portion of the SQL query that ends up being run against your database. See the example query to the right to get a feeling of how the query translates into SQL statements.
 
+### Format
 ```JSON
 {
   "object": "String",
@@ -755,25 +773,15 @@ NoSQL queries are constructed using JSON objects. Below is an example:
   "aggregation": "Object mapping fields to aggregate functions"
 }
 ```
+NoSQL queries are constructed using JSON objects. The keys are mapped into their respective SQL keywords in the back-end before interacting with your database.
 
-For example, the shortest query you can write would be:
+For example, the shortest query you can write would be `{ "object": "table", "q": "query expression" }`    
 
-```JSON
-{ "object": "String", "q": "Expression" }
-```    
+This NoSQL object is converted into the following SQL
 
-This NoSQL object is converted into:
+`SELECT * FROM table WHERE query`
 
-```SQL
-  SELECT *
-  FROM table
-  WHERE query
-```
-
-### Examples
-
-This simple query retrieves the name and salary of all employees in position of "Sales Manager":
-
+### Example - String Comparison
 ```JSON
 {
     "object": "employees",
@@ -784,8 +792,9 @@ This simple query retrieves the name and salary of all employees in position of 
 }
 ```
 
-Queries can also be used to compare an object's  fields to constant values using common comparison operators. For example, to retrieve all fields for all employees under the age of 25, you can use the following query:
+A simple query can pluck the `name` and `salary` fields from an object named `employees`. The query sample to the right executes this query for all employees with a position of "Sales Manager"
 
+### Example - Constant Value Comparison
 ```JSON
 {
     "object": "employees",
@@ -794,9 +803,9 @@ Queries can also be used to compare an object's  fields to constant values using
     }  
 }
 ```
+Queries can also be used to compare an object's  fields to constant values using common comparison operators. For example, to retrieve all fields for all employees under the age of 25, you can use the query to the right.
 
-To retrieve all fields for employees with an age between 25 and 40:
-
+### Example - Range-based comparison
 ```JSON
 {
   "object": "employees",
@@ -807,9 +816,9 @@ To retrieve all fields for employees with an age between 25 and 40:
   }  
 }
 ```
+You can use the `$between` operator to retrieve all records with values that lie between two specified endpoints. For example, the query to the right retrieves all employees with an age between 25 and 40.
 
-To retrieve all cities within 25km (25000m) from a given [latitude, longitude], e.g. [32.0638130, 34.7745390] use the following query:
-
+### Example - Geographic Data Comparison
 ```JSON
 {
     "object": "city",
@@ -820,34 +829,33 @@ To retrieve all cities within 25km (25000m) from a given [latitude, longitude], 
 }
 ```
 
+You can use the `$within` operator to locate all records within a geographic range. The parameters for this comparison are provided as an array of two elements. The first element is a tuple containing latitude and longitude, e.g. `[32.0638130, 34.7745390]`, while the second is a distance in meters. To retrieve all cities within 25 km (25000m) of a given latitude and longitude, you can use a query like the one to the right.
+
 ### Expressions
 
 An expression can be either an AND expression, an OR expression, or a UNION query.
 
 #### AND expressions
-An AND expression is a conjunction of conditions on fields. An AND expression is JSON of the form '{ A: condition,
-B: condition, ... }'
-
-For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the following query:
-
 ```JSON
 { "position": "Sales Manager", "age" : { "$lt" : 25 }, "city": "Boston" }
 ```
 
+An AND expression is a conjunction of conditions on fields. An AND expression is JSON of the form `{ A: condition, B: condition, ... }`
+
+For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the query on the right.
+
+
 #### OR expressions
-
-An OR expression is a disjunction of conditions, '{ $or: [ Expression1, Expression2, ...   ] }'
-
-For example, use the following query to find all offices that are either larger than 30 employees, or located in Palo Alto:
-
 ```JSON
 { "$or": [ { "num_employees": { "$gt": 30 } }, { "location": "Palo Alto" }  ]  }
 ```
 
+An OR expression is a disjunction of conditions, `{ $or: [ Expression1, Expression2, ...   ] }`
+
+For example, use the query to the right to find all offices that are either larger than 30 employees, or located in Palo Alto.
+
+
 #### UNION queries
-
-A UNION query is a union of the results of queries: '{ $union: [ Query1, Query2, ...   ] }'. For example:
-
 ```JSON
 {
     "$union":   [
@@ -880,100 +888,73 @@ A UNION query is a union of the results of queries: '{ $union: [ Query1, Query2,
     ]
 }
 ```
+A UNION query is a union of the results of queries, and will have the general format of `{ $union: [ Query1, Query2, ...   ] }`. The query to the right, for example, combines a query looking for employees with a budget of 20 OR a location like Palo Alto with a query that retrieves the city and country fields for all entries in the `Person` table with the name "john", limiting the results to 11 records. The end result will combine both queries into a single response object.
+
+
 
 ### Conditions on Fields
 
-Formally, a condition on a field is a key-value expression of the form:
+Formally, a condition on a field is a key-value expression of the form `{ Key : ValueExpression }`, where the fields are defined as follows:
 
-```json    
-  { Key : ValueExpression }
-```
-
-Where the fields are defined as follows:
-
-* Key - name of the field
-* ValueExpression - An expression which has one of the following forms:
-
-    1. Constant - is the field value equal to the constant
-    2. Comparison with a comparison operator to a constant
-    3. Inclusion or exclusion in result of a sub query
-    4. Negation of another comparison
+* `Key` - name of the field
+* `ValueExpression` - An expression which has one of the following forms:
+  1. Constant - is the field value equal to the constant
+  2. Comparison with a comparison operator to a constant
+  3. Inclusion or exclusion in result of a sub query
+  4. Negation of another comparison
 
 You can perform a number of different tests on objects using conditions. Using conditions, you can:
 
-1. Test equality of field to a constant value, e.g.  { A: 6 } => Is A equal to 6?
-2. Compare a field using a comparison operator, e.g. { A: { $gt: 8 }} => Is A greater than 8?. The set of
-comparison operators is quite extensive and includes: '$lte, $lt, $gte, $gt, $eq, $neq, $not, $within, $between'
-3. Test if the value of the field is IN  or NOT IN the result of a sub-query.
-4. Test for the negation of a comparison. For example, to test if the location field is not Boston, we can do:
-```JSON
-{ "location": { "$not" : "Boston" }}
-```    
-5. Test for presence of a value. For example, if we want to test if a middle name field exists, we can do:
-```JSON
-{ "middleName": {"$exists": true} }
-```
+1. Test equality of field to a constant value, e.g.  `{ A: 6 }` => Is A equal to 6?
+2. Compare a field using a comparison operator, e.g. `{ A: { $gt: 8 }}` => Is A greater than 8? The set of comparison operators is quite extensive and includes: `$lte`, `$lt`, `$gte`, `$gt`, `$eq`, `$neq`, `$not`, `$within`, `$between`
+3. Test if the value of the field is `IN`  or `NOT IN` the result of a sub-query.
+4. Test for the negation of a comparison. For example, to test if the location field is not Boston, we can use`{ "location": { "$not" : "Boston" }}`
+5. Test for presence of a value. For example, if we want to test if a middle name field exists, we can do use `{ "middleName": {"$exists": true} }`
 
-Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can use negation as follows:
 
-```JSON
-  { "location": { "$not" : {"$eq": "Paris" } } }
-```
+Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can use negation: `{ "location": { "$not" : {"$eq": "Paris" } } }`
 
-Or we can also use a not-equal  operator:
-
-```JSON
-    { "location": { "$neq": "Paris" } }
-```    
-
+Another option is to use a not-equal operator: `{ "location": { "$neq": "Paris" } }`
 
 ### Sub Queries
-
-The following sub-query retrieves the department ID of each department in New York:
+> This JSON can be used as a sub-query to retrieve the ID of all departments in the city of New York.
 
 ```JSON
 { "object": "department", "q": { "city" : "New York" }, "fields" : ["id"]}
 ```
 
-Using this sub-query, we can now test a new field - dept_id - with respect to the results of the sub-query. We simply
-use the '$in' operator, and the query, as follows:
+>Using the above sub-query, we can now test a new field - dept_id - with respect to the results of the sub-query. We simply use the `$in` operator, and the query, as seen below.
 
 ```JSON
 {
-    "dept_id": {
-        "$in": {  
-            { "object": "department",
-                "q": { "city" : "New York" },
-                "fields" : ["id"]
-            }
-        }
+  "dept_id": {
+    "$in": {  
+      "object": "department",
+      "q": { "city" : "New York" },
+      "fields" : ["id"]
     }
+  }
 }
 ```
-
-This technique relies upon retrieving a single field from the sub-query. Using more than one field would prove more complex.
-
-We can now use this sub-query as a part of a larger query retrieving all employees employed in departments that are located in New York. In this example, the 'deptId' field is a reference field referring the employees table to the department table:
+> In this example, the '`deptId` field is a reference field referring the employees table to the department table. We can now use this sub-query as a part of a larger query retrieving all employees employed in departments that are located in New York.
 
 ```JSON
 {
-    "object": "employees",
-    "q" : {
-        "deptId" : {
-            "$in": {
-                "object": "department",
-                "q": {
-                    "city" : "New York"
-                },
-                "fields" : ["id"]
-            }
-        }
-
+  "object": "employees",
+  "q" : {
+    "deptId" : {
+      "$in": {
+        "object": "department",
+        "q": {
+          "city" : "New York"
+        },
+        "fields" : ["id"]
+      }
     }
+  }
 }
 ```
-
-If we wanted to look at a more complex query, we could modify this a bit. Let's say we wanted to retrieve all employees whose department is located in New York, but the employee is located in Boston. To accomplish this, we use an AND expression to combine the two conditions:
+>If we wanted to look at a more complex query, we could modify this a bit. Let's say we wanted to retrieve all employees whose department is located in New York, but the employee is located in Boston. To accomplish this, we use an AND expression to combine the two conditions:
 
 ```JSON
 {
@@ -993,10 +974,12 @@ If we wanted to look at a more complex query, we could modify this a bit. Let's 
     }
 }
 ```
+You can use sub-queries to established a reduced scope of your objects to work with. They can then be composed into larger queries, providing you with extra flexibility in retrieving objects from your app.
+
+<aside class="notice">This technique relies upon retrieving a single field from the sub-query. Using more than one field would prove more complex and is neither recommended nor supported.</aside>
 
 ### Group By Queries
-
-A group by query aggregates on fields, and then applies aggregation operators to the specified fields. For instance, to group by 'Country', and then concatenate the 'Location' field, use the following example code:
+> To group by 'Country', and then concatenate the 'Location' field, use the following example code:
 
 ```JSON
 {
@@ -1023,52 +1006,53 @@ A group by query aggregates on fields, and then applies aggregation operators to
     }
 }
 ```
+A group by query aggregates on fields, and then applies aggregation operators to the specified fields.
+
+
 
 ### Algorithm to Generate SQL from JSON Queries
+```javascript
+  transformJson(json, sqlSchema, isFilter, callback)
+```    
+>The result is a structure with the following fields:
+
+```JSON
+{
+    "str": "<SQL statement for query>",
+    "select": "<select clause>",
+    "from": "<from clause>",
+    "where": "<where clause>",
+    "group": "<group by clause>",
+    "order": "<order by clause>",
+    "limit": "<limit clause>"
+}
+```
 
 The algorithm transforms from JSON to SQL using a top-down transformation.
 
 #### Usage
 
-```javascript
-  transformJson(json, sqlSchema, isFilter, callback)
-```     
+You can call the function by using the Javascript call `transformJson`. The parameters to this are as follows:
 
-The parameters are:
-
-1. 'json' - JSON query or filter
-2. 'sqlSchema' - JSON schema of database
-3. 'isFilter' - boolean - true if 'json' is a filter
-4. 'callback' - 'function(err, result)', called upon completion
-
-The result is a structure with the following fields:
-
-```JSON
-{
-    str: <SQL statement for query>,
-    select: <select clause>,
-    from: <from clause>,
-    where: <where clause>,
-    group: <group by clause>,
-    order: <order by clause>,
-    limit: <limit clause>     
-}
-```    
+1. `json` - JSON query or filter
+2. `sqlSchema` - JSON schema of database
+3. `isFilter` - boolean - true if 'json' is a filter
+4. `callback` - 'function(err, result)', called upon completion
 
 #### Escaping
 
 All constants appearing in the JSON query are escaped when transformed into SQL.
 
 #### Filters
+>  Variables take the form of:
 
-You also have the ability to mark a particular NoSQL query as a filter. This allows you to use variables in your query, which are populated on the server side from either parameters sent in with the filter, or from database data in your system. Variables take the form of:
-
-{% raw %}
-```javascript
+```javascript--general
   {{<variable name>}}
 ```
 
-Variables should be enclosed in quotes (e.g. '{{variable_name}}' instead of {{variable_name}}) so that the final object sent to the server can be marked as valid JSON.
-{% endraw %}
+You also have the ability to mark a particular NoSQL query as a filter. This allows you to use variables in your query, which are populated on the server side from either parameters sent in with the filter, or from database data in your system.
+
+
+<aside class="notice">Variables should be enclosed in quotes (i.e. '{{variable_name}}' instead of {{variable_name}}) so that the final object sent to the server can be marked as valid JSON.</aside>
 
 Variables are not escaped when used as part of a filter or query - only constants can be escaped by Backand. With this in mind, you want to make sure that variables tied directly to user input are properly sanitized before being sent to the back-end. The SQL statement generated for the filter object will include the variables you provide. The variables will be substituted for the equivalent values prior to the execution of the query.
