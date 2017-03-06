@@ -137,40 +137,14 @@ Getting started with the SDK is as simple as configuring your application access
 ```
 This connects your Back& application (with the app name of *APP_NAME* and an anonymous access token of *ANONYMOUS TOKEN*) to your current project. Once the connection is configured, the SDK uses this connection information to construct HTTP requests to your API. Result data is returned in the *response* object as the member variable *data*. In the case of *getList*, this will be a JSON array of objects pulled from the *users* table in your Back& application. You can easily change the table being manipulated by replacing *users* with the name of any object in your system.
 
-## Working with the API
-### Initialization
-### backand.init()
+## Working with the SDK
+The SDK is implemented as a wrapper around HTTP calls made to the Backand service. As a result, you can access all of Backand's functionality via cURL calls, provided you configure the header correctly. Review the section on [User Authentication and Security](#the-user-object-and-security) for more information on configuring the headers for each call. For JavaScript applications, the SDK takes care of the complexity of managing the authentication headers required to communicate with Backand. Simply utilize the built-in authentication methods to authenticate, and all future requests will include the correct headers.
 
-```javascript
-var config = {
-   appName: 'APP_NAME',
-   anonymousToken: 'ANONYMOUS_TOKEN'
-             };
-backand.init(config);
-```
-
-The *init()* method creates a new Back& SDK instance with the supplied configuration.
+The SDK is built around a global service object exported from the JavaScript called `backand`. You can use properties of this object to interact with the various endpoints. In the next several sections, we'll walk through all of the functionality offered by our SDK. View the pane on the right for sample code that can be used to call each method, as well as sample responses.
 
 
-The available parameters for the *config* parameter are:
 
-| Param Name | Data Type | Usage | Required? | Default Value |
-| ---------- | --------- | ----- | --------- | ------------- |
-| **appName** | string | Sets the name of your backand app | **required** | |
-| **anonymousToken** | string | Sets the anonymous token of your backand app | **required** | |
-| **useAnonymousTokenByDefault** | boolean | Determines whether the sdk should use the anonymousToken when there is no other token | *optional* | *true* |
-| **signUpToken** | string | Sets the signup token of your backand app | *optional* | |
-| **apiUrl** | string | Sets the API url of backand servers | *optional* | *https://api.backand.com* |
-| **storage** | object | Sets the storage type to use (local/session/implementation of StorageAbstract) | *optional* | *localStorage* |
-| **storagePrefix** | string | Sets prefix to use in the storage structure | *optional* | *BACKAND_* |
-| **manageRefreshToken** | boolean | Determines whether the sdk should manage refresh tokens internally | *optional* | *true* |
-| **runSigninAfterSignup** | boolean | Determines whether the sdk should run signin after signup automatically | *optional* | *true* |
-| **runSocket** | boolean | Determines whether the sdk should run socket automatically | *optional* | *false* |
-| **socketUrl** | string | Sets the socket url of backand servers | *optional* | *https://socket.backand.com* |
-| **isMobile** | boolean | Determines whether the sdk is part of a mobile application | *optional* | *false* |
-| **mobilePlatform** | string | sets the platform used to build the mobile application ('ionic'/'react-native') | *optional* | 'ionic' |
-
-### SDK Properties
+### SDK Properties - overview
 
 Below is a list of the properties offered by the SDK, a description of the functionality handled by that property, and the list of methods provided by that property:
 
@@ -195,17 +169,65 @@ By default, the Back& SDK emits the following events that your code can respond 
 | SIGNOUT | dispatched on signout | window.addEventListener(backand.constants.EVENTS.SIGNOUT, (e)=>{}, false); |
 | SIGNUP  | dispatched on signup  | window.addEventListener(backand.constants.EVENTS.SIGNUP, (e)=>{}, false);  |
 
-
 ## SDK Methods
 **NOTE:**
 - **All Methods return a Promise -> you can work with the response using .then() and .catch()**
 - **You can see the response schema [here](https://github.com/mzabriskie/axios#response-schema)**
 
-### Root SDK properties (authentication)
+## Root properties
+The root properties on the SDK are primarily focused on authentication and session management functionality. These all hinge upon the use of the `.init()` function. This function accepts your application name, an anonymous access token, and an optional signup token by default - these three pieces of information are all you need to connect the SDK to any Backand application.
 
-Authentication methods are called directly on the SDK, without any properties: *backand.signin(username, password)*
+Other methods on the root of the object are focused on configuring individual platform settings, such as setting an API URL, adjusting the local storage method used, or working with our socket-based communications. Review the details for each function call below to see sample calls and responses, as well as explanations of each element's functionality.
 
-### Signin
+### backand.init()
+
+```javascript
+var config = {
+   appName: 'APP_NAME',
+   anonymousToken: 'ANONYMOUS_TOKEN'
+             };
+backand.init(config);
+```
+
+The *init()* method creates a new Back& SDK instance with the supplied configuration.
+
+#### Parameters
+The available parameters for the *config* parameter are:
+
+| Param Name | Data Type | Usage | Required? | Default Value |
+| ---------- | --------- | ----- | --------- | ------------- |
+| **appName** | string | Sets the name of your backand app | **required** | |
+| **anonymousToken** | string | Sets the anonymous token of your backand app | **required** | |
+| **useAnonymousTokenByDefault** | boolean | Determines whether the sdk should use the anonymousToken when there is no other token | *optional* | *true* |
+| **signUpToken** | string | Sets the signup token of your backand app | *optional* | |
+| **apiUrl** | string | Sets the API url of backand servers | *optional* | *https://api.backand.com* |
+| **storage** | object | Sets the storage type to use (local/session/implementation of StorageAbstract) | *optional* | *localStorage* |
+| **storagePrefix** | string | Sets prefix to use in the storage structure | *optional* | *BACKAND_* |
+| **manageRefreshToken** | boolean | Determines whether the sdk should manage refresh tokens internally | *optional* | *true* |
+| **runSigninAfterSignup** | boolean | Determines whether the sdk should run signin after signup automatically | *optional* | *true* |
+| **runSocket** | boolean | Determines whether the sdk should run socket automatically | *optional* | *false* |
+| **socketUrl** | string | Sets the socket url of backand servers | *optional* | *https://socket.backand.com* |
+| **isMobile** | boolean | Determines whether the sdk is part of a mobile application | *optional* | *false* |
+| **mobilePlatform** | string | sets the platform used to build the mobile application ('ionic'/'react-native') | *optional* | 'ionic' |
+
+### .on()
+```javascript
+  //Wait for server updates on 'items' object
+  Backand.on('items_updated', function (data) {
+    //Get the 'items' object that have changed
+    console.log(data);
+  });
+```
+
+You can easily integrate with our Socket functionality using the *on* method. Socket signin and signout are handled automatically by the SDK.
+
+#### Parameters
+| name | type | description |
+| ---- | ---- | ----------- |
+| eventName | string | Name of the socket event to subscribe to |
+| callback | function | Callback triggered when *eventName* is received |
+
+### .signin()
 ```javascript
 backand.signin(username, password)
   .then(res => {
@@ -224,7 +246,7 @@ Signin with username and password in order to get access_token to be used in all
 | username | string | the username to authenticate |
 | password | string | the user's password |
 
-### Signup
+### .signup()
 ```javascript
 backand.signup(firstName, lastName, email, password, confirmPassword, parameters = {})
   .then(res => {
@@ -249,7 +271,7 @@ Creates a new user in your app. in signup you must provide the basic details of 
 | parameters | object | An object containing information for any paremeters to the signup call. This allows you to set additional info on the user object at registration time |
 
 
-### Change Password
+### .changePassword()
 ```javascript
 backand.changePassword(oldPassword, newPassword)
   .then(res => {
@@ -269,8 +291,7 @@ Changes the password of the current user
 | newPassword | string | the user's desired new password |
 
 
-## Social Media Authentication
-### socialSignin (also for Signup)
+### .socialSignin()
 ```javascript
 backand.socialSignin(provider)
   .then(res => {
@@ -289,10 +310,10 @@ Signs the user into a Back& application using a social media provider as the aut
 | ---- | ---- | ----------- |
 | provider | string | Name of the provider to authenticate with. The full list can be obtained by calling *backand.getSocialProviders(scb)* |
 
-## CRUD
-The following methods perform create, retrieve, update, and delete functionality on a Back& object.
+## .object property
+The `.object` property contains functions related to basic database operations that can be performed on an object. You can also use this property to call the on-demand actions governed by an object in your system.
 
-### GetList
+### .getList()
 ```javascript
 // No filters
 backand.object.getList(object, params)
@@ -330,7 +351,7 @@ Fetches a list of records from the specified object. Uses *params* to store filt
 | params | object | A hash of filter parameters. Allowed parameters are: *pageSize*, *pageNumber*, *filter*, *sort*, *search*, *exclude*, *deep*, *relatedObjects* |
 
 
-### GetOne
+### .getOne()
 
 ```javascript
 backand.object.getOne(object, id, params)
@@ -351,7 +372,7 @@ Retrieves a single record from the specified object.
 | id | integer | ID of the record to retrieve, subject to the filter specified in *params* |
 | params | object | A hash of filter parameters. Allowed parameters are: *deep*, *exclude*, *level* |
 
-### Create
+### .create()
 ```javascript
 backand.object.create(object, data, params)
   .then(res => {
@@ -372,7 +393,7 @@ Creates a record with the provided data in the specified object
 | data | object | Data to use in the creation of the new record |
 | params | object | A hash of filter parameters. Allowed parameters are: *returnObject*, *deep* |
 
-### Update
+### .update()
 ```javascript
 backand.object.update(object, id, data, params)
   .then(res => {
@@ -395,7 +416,7 @@ Updates a record with the specified ID in the specified object with the provided
 | params | object | A hash of filter parameters. Allowed parameters are: *returnObject*, *deep* |
 
 
-### Remove
+### .remove()
 ```javascript
 backand.object.remove(object, id)
   .then(res => {
@@ -416,7 +437,7 @@ Deletes a record from the specified object with the specified ID
 | id | integer | ID of the object to update |
 
 
-### On-Demand Actions (GET)
+### .get()
 ```javascript
 backand.object.action.get(object, action, params)
   .then(res => {
@@ -438,7 +459,7 @@ Triggers on-demand custom actions that operate via HTTP GET requests
 | params | object | Parameters for the action to operate upon |
 
 
-### On-Demand Actions (POST)
+### .post()
 ```javascript
 backand.object.action.post(object, action, data, params)
   .then(res => {
@@ -460,31 +481,12 @@ Triggers on-demand custom actions that operate via HTTP POST requests
 | data | object | Object data to send as the body of the POST request |
 | params | object | Parameters for the action to operate upon |
 
-## Socket Communications
-You can easily integrate with our Socket functionality using the *on* method. Socket signin and signout are handled automatically by the SDK.
-
-### On
-```javascript
-  //Wait for server updates on 'items' object
-  Backand.on('items_updated', function (data) {
-    //Get the 'items' object that have changed
-    console.log(data);
-  });
-```
-
-Event handler for broadcast Socket events.
-
-#### Parameters
-| name | type | description |
-| ---- | ---- | ----------- |
-| eventName | string | Name of the socket event to subscribe to |
-| callback | function | Callback triggered when *eventName* is received |
 
 
-## File
-This property allows you to work with server-side actions, interacting with the related files directly. You can use this after you have finished creating a server-side action in the Back& dashboard, in the Actions tab of an object (object -> actions tab -> Backand Files icon -> name: 'files')
+## .file
+This property allows you to work with file actions, interacting with the related files directly. You can use this after you have finished creating a server-side action in the Back& dashboard, in the Actions tab of an object (object -> actions tab -> Backand Files icon -> name: 'files')
 
-### Upload
+### .upload()
 ```javascript
 backand.file.upload(object, 'files', filename, filedata)
   .then(res => {
@@ -506,7 +508,7 @@ Uploads a file for a server-side action
 | filedata | string | The file's data |
 
 
-### Remove
+### .remove()
 ```javascript
 backand.file.remove(object, 'files', filename)
   .then(res => {
@@ -527,10 +529,10 @@ Removes a file from a server-side action file set.
 | filename | string | The name of the file to remove |
 
 
-## User
+## .user
 The *user* property returns data about the connected user (getUserDetails, getUsername, getUserRole, getToken, getRefreshToken).
 
-### GetUserDetails
+### .getUserDetails()
 ```javascript
 backand.user.getUserDetails(force)
   .then(res => {
@@ -549,7 +551,7 @@ Gets the connected user's details.
 | ---- | ---- | ----------- |
 | force | boolean | Forces the SDK to refresh its data from the server. **Default: FALSE** |
 
-## Query
+## .query
 ```javascript
 backand.query.get(name, params)
   .then(res => {
@@ -562,7 +564,7 @@ backand.query.get(name, params)
 
 The *query* property lets you initiate a custom Back& query using either HTTP GET or HTTP POST.
 
-### get
+### .get()
 Calls a custom query using a HTTP GET
 
 #### Parameters
@@ -572,7 +574,7 @@ Calls a custom query using a HTTP GET
 | params | object | Parameters to be passed to the query |
 
 
-### post
+### .post()
 ```javascript
 backand.query.post(name, data, params)
   .then(res => {
