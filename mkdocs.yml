@@ -53,3 +53,5 @@ pages:
 - ['scenarios/netmera/index.md', 'Scenarios', 'Netmera']
 - ['scenarios/pushwoosh/index.md', 'Scenarios', 'PushWoosh']
 - ['scenarios/fbmessengerbot/index.md', 'Scenarios', 'Facebook Messenger Bot']
+- ['scenarios/salesforceiq/index.md', 'Scenarios', 'SalesforceIQ Integration']
+- ['scenarios/salesforceCRM/index.md', 'Scenarios', 'Salesforce CRM Integration']
