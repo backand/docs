@@ -1,17 +1,15 @@
-## What is salesforceIQ?
-[salesforceIQ](https://www.twilio.com) SalesforceIQ gives you the simplicity of a spreadsheet with the horsepower of a full-featured CRM. With Automatic Data Capture and enterprise-level intelligence under the hood, SalesforceIQ acts like your own personal assistant so you can focus on what matters most: selling.
+Building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this article, we'll look at integrating a Backand application with Salesforce IQ, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.
 
-## Build mobile app with Back& and salesforceIQ
-Build custom mobile application that uses your customer info can be done by leveraging Back& and salesforceIQ API. To
- eliminate the needs for additional server, security integrations and more, you can use salesforceIQ template Action
- with all other Back& functionality.
+## What is SalesforceIQ?
+[SalesforceIQ](https://www.salesforceiq.com/) is an out-of-the-box CRM solution that quickly gives you access to dynamic information tied into a full CRM solution. With Automatic Data Capture and enterprise-level intelligence under the hood, SalesforceIQ acts like your own personal assistant so you can focus on what matters most: selling. SalesforceIQ, in addition to providing easy integrations with tools like Google and Microsoft Exchange, also gives you the capability to dynamically access and manage your data through a series of robust APIs.
 
+## Connecting a Backand application with SalesforceIQ
+Integrating Backand and SalesforceIQ is as simple as leveraging the full-featured [API](https://api.salesforceiq.com/) provided by Salesforce from within your Backand application. While traditionally you'd need to make these calls to the API from a server, you can achieve the same functionaltiy in Backand by using our custom template action. This action provides an easy-to-use code template for making calls to the SalesforceIQ API, letting you update your user tracking data based upon user activity in your Backand app, or even update your Backand app's UI based upon what you know about your user in SalesforceIQ.
 
-## Build  API
-salesforceIQ has an [API](https://api.salesforceiq.com/) that you can use to send manage (CRUD) and data in the salesforceIQ. By translating their provided cURL commands to Angular $http calls, you can easily integrate salesforceIQ with Backand.
+Working with the [SalesforceIQ API](https://api.salesforceiq.com/) provides you with full capabilities to create, retrieve, and update data on your users, as well as manage their infromation in SalesforceIQ. Communicating with their API is as simple as translating the cURL commands provided by Salesforce in their documentation into the appropriate $http calls that you can make from JavaScript. Simply provide the required authentication and identification headers, construct the URL, make the call, and handle the response when it arrives, dispatching it either directly to your application via a synchronous function call return, or emitting the data as an event using our Socket-based real-time communications functionality.
 
-We have created an action template that will give you jump start with salesforceIQ. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following is the content of the ready action template call
-"salesforceiq CRM" under the "CRM & ERP" section:
+## The Salesforce Action Template
+We have created an action template that will give you jump start with salesforceIQ. You can either trigger this action from an object's database transaction event actions, or create a new on-demand action that you can call from your app's client code. The following JavaScript is provided by the template action, which is available as "SalesforceIQ" in the "CRM & ERP" section of action templates.:
 
 ```javascript
 /* globals
@@ -25,10 +23,10 @@ We have created an action template that will give you jump start with salesforce
 'use strict';
 function backandCallback(userInput, dbRow, parameters, userProfile) {
 
-	var API_KEY = '-- YOUR API --';
+    var API_KEY = '-- YOUR API --';
     var API_SECRET = '-- YOUR SECRET --';
 
-	//get accounts
+    //get accounts
     var response = $http({
         method: "GET",
         url: "https://api.salesforceiq.com/v2/accounts",
@@ -38,26 +36,29 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
         }
     });
 
-	return response;
+    return response;
 }
 ```
 
-## Setup a Trial account and get the API keys
 
-After you sign-up to salesforceIQ (if you don't have an account yet), do the following steps:
+This code provides you with all of the basic tools you need to get connected to the SalesforceIQ API. It takes in your SalesforceIQ API Key and API Secret, and performs a call to the "/accounts" endpoint to fetch accounts.
+
+## Connecting this action to your SalesforceIQ account
+To connect to SalesforceIQ, you'll first need to register for an account if you haven't done so. Once you've signed up, folllow these steps to obtain your API Key and API Secret:
+
 1. Open Settings under the gear icon
-2. Open 'Integration' tab under 'My Account Settings'
-3. Under 'Create New Custom Integration' click 'Custom'
-4. Provide Name as 'Backand API' and Description
-5. Copy the 'API Key' and 'API Secret' into the JavaScript Action code
+2. Open the 'Integration' tab under 'My Account Settings'
+3. Under 'Create New Custom Integration,' click 'Custom'
+4. Set the name to 'Backand API,' and provide a description
+5. Copy the 'API Key' and 'API Secret' from the integration page into the JavaScript Action code
 6. Click 'Save'
 
-** Now you should be able to get all your accounts.
+When this is completed, you should now be able to access all of your SalesforceIQ accounts from the custom JavaScript action.
 
 
 ##Setup client-side code:
 
-Next, add the following JavaScript code to your app's client-side code base:
+Once you've configured the action to connect to SalesforceIQ, you'll need to call the action from your client-side code. To do so, use the following JavaScript to construct a GET request and trigger your SalesforceIQ action:
 
 ```javascript
 return $http ({
@@ -68,7 +69,6 @@ return $http ({
 });
 
 ```
+Simply replace 'your object name' with the object that contains your SalesforceIQ custom action, and replace 'your action name' with the name of the action that you provided while creating the integration.
 
-Replace 'your object name' with the object associated with the action you created and 'your action name'.
-
-Once this is done, you'll be able to get accounts to any front-end code and add much more calls of salesforceIQ.
+With these changes, you're now able to pull in any and all SalesforceIQ accounts available via their API! You can use a similar pattern to construct additional calls to the SalesforceIQ API - simply replace the URL and parameters in the custom SalesforceIQ action with the URL and parameters for the object you want to retrieve.
