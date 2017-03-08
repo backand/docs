@@ -8,7 +8,7 @@ Integrating Backand and SalesforceIQ is as simple as leveraging the full-feature
 
 Working with the [SalesforceIQ API](https://api.salesforceiq.com/) provides you with full capabilities to create, retrieve, and update data on your users, as well as manage their infromation in SalesforceIQ. Communicating with their API is as simple as translating the cURL commands provided by Salesforce in their documentation into the appropriate $http calls that you can make from JavaScript. Simply provide the required authentication and identification headers, construct the URL, make the call, and handle the response when it arrives, dispatching it either directly to your application via a synchronous function call return, or emitting the data as an event using our Socket-based real-time communications functionality.
 
-## The Salesforce Action Template
+## The SalesforceIQ Action Template
 We have created an action template that will give you jump start with salesforceIQ. You can either trigger this action from an object's database transaction event actions, or create a new on-demand action that you can call from your app's client code. The following JavaScript is provided by the template action, which is available as "SalesforceIQ" in the "CRM & ERP" section of action templates.:
 
 ```javascript
@@ -44,7 +44,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 This code provides you with all of the basic tools you need to get connected to the SalesforceIQ API. It takes in your SalesforceIQ API Key and API Secret, and performs a call to the "/accounts" endpoint to fetch accounts.
 
 ## Connecting this action to your SalesforceIQ account
-To connect to SalesforceIQ, you'll first need to register for an account if you haven't done so. Once you've signed up, folllow these steps to obtain your API Key and API Secret:
+To connect to SalesforceIQ, you'll first need to register for an account if you haven't done so. Once you've signed up, follow these steps to obtain your API Key and API Secret:
 
 1. Open Settings under the gear icon
 2. Open the 'Integration' tab under 'My Account Settings'

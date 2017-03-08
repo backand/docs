@@ -1,17 +1,17 @@
-## What is salesforce CRM?
-[salesforce CRM](https://www.salesforce.com/crm) salesforce CRM The world’s #1 CRM solution gives your sales teams the
-power to close deals like never before with an array of cloud-based tools that increase productivity, keep pipeline filled with solid leads, and score more wins. No software. No hardware. No speed limits.
+As mentioned in our article on integrating with SalesforceIQ, building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this article, we'll look at integrating a Backand application with Salesforce CRM, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.
 
-## Build mobile app with Back& and salesforce CRM
-Build custom mobile application ...
+## What is Salesforce CRM?
+[Salesforce CRM](https://www.salesforce.com/crm) is the world's foremost CRM solution, and gives your sales teams the tools they need to close deals. Salesforce CRM is also built in the cloud, meaning that your sales team can increase their productivity and keep the sales pipeline filled with solid leads, all without the need to deploy additional hardware or work around speed limitations. Through Salesforce's [REST API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm ) you can get easy programmatic access to all of your customer data.
+
+## Connecting a Backand application with Salesforce CRM
+Integrating Backand and SalesforceIQ is as simple as leveraging the full-featured [REST API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm ) provided by Salesforce from within your Backand application. While traditionally you'd need to make these calls to the API from a server, you can achieve the same functionality in Backand by using our custom template action. This action provides an easy-to-use code template for making calls to the Salesforce REST API, letting you update your user tracking data based upon user activity in your Backand app, or even update your Backand app's UI based upon what you know about your user in Salesforce.
 
 
-## Build  API
-salesforceCRM has an [API](https://api.salesforceiq.com/) that you can use to send manage (CRUD) and data in the salesforceCRM. By translating their provided cURL commands to Angular $http calls, you can easily integrate salesforceCRM with Backand.
-
+## The Salesforce CRM Action Template
 We have created an action template that will give you jump start with salesforceCRM. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following is the content of the ready action template call
 "salesforce CRM" under the "CRM & ERP" section:
 
+```javascript
 /* globals
   $http - Service for AJAX calls
   CONSTS - CONSTS.apiUrl for Backands API URL
@@ -25,6 +25,8 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 	// write your code here
 	var baseUrl = "https://eu11.salesforce.com/services/data/v37.0/";
 
+  // This function manages authenticating with Salesforce, providing the access
+  // token as a return value
 	var loginSalesForce = function() {
     	var client = "-- Your Client Id --"; //Consumer Key
     	var secret = "-- Your Secret Id --"; //Consumer Secret
@@ -52,20 +54,14 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
         return response.access_token;
 	}
 
-    //curl https://eu11.salesforce.com/services/oauth2/token -d username=itay@domain.com -d password=pass123456 -d
-    grant_type=password -d client_id=3MVGxxxxxxxxx2fryplFKWxad9i8kqvIke4.2RMNS.2tE4aHabV4RkcxxxxxxEhGosZLleSv8W -d
-    client_secret=471458111111182016
-
     //get access token first. Check if access token exists in cookie session
-
-    //get list of Opportunity
-
     var accessToken = cookie.get('sf_access_token');
     if(accessToken == null){
         accessToken = loginSalesForce();
         cookie.put('sf_access_token', accessToken);
     }
 
+    //get list of Opportunities
     var opps = $http({
         method: "GET",
         url: baseUrl + "sobjects/Opportunity",
@@ -74,38 +70,36 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 	return opps;
 }
-
-** In the above code you need to get the access token for every call. For better performance you can save it in
-Backand server side cookie and only get it after it expires.
+```
+**Note:** The above code fetches the access token every time you call the action. You can improve the performance of this call by caching the token into a Backand Server-Side Cookie, and only performing the retrieval when the token has expired.
 
 ## Setup access and get client and secret keys
+Follow these steps to obtain your Salesforce CRM authentication information:
 
-Sign-in to Salesforce CRM with Admin rights and do the following steps:
-1. Open Setup under the gear icon
-2. Open App Manager
-3. Click on 'New Connected App'
-4. Provide 'Connected App Name', 'API Name' and 'Contact Email'
-5. Check 'Enable OAuth Settings'
-  a. Check 'Enable for Device Flow'
-  b. Under 'Selected OAuth Scopes' select 'Full Access' or any other permissions you need
-6. Click 'Save'
-7. Copy 'Consumer Key' into client variable in the code
-8. Copy 'Consumer Secret' into secret variable in the code
+1. Sign in to Salesforce CRM as a user with Admin rights
+2. Open Setup, found under the gear icon
+3. Open App Manager
+4. Click on 'New Connected App'
+5. Provide 'Connected App Name', 'API Name' and 'Contact Email'
+6. Check 'Enable OAuth Settings'
+  1. Check 'Enable for Device Flow'
+  2. Under 'Selected OAuth Scopes' select 'Full Access,' or any other permissions you need
+7. Click 'Save'
+8. Copy 'Consumer Key' into the client variable in the code
+9. Copy 'Consumer Secret' into the secret variable in the code
 
-You need now to enable the server side security in SalesForce with the following steps:
-1. From App Manager, select the new App and Click 'Manage'
-2. Click 'edit Polices'
-3. Change 'IP Relaxation' to 'Relax IP Restriction' or add Backand IP to your organization IP restriction
+Once you've obtained the consumer key and the consumer secret, you'll need to enable server-side security in Salesforce. To do so, follow these steps:
+1. From App Manager, select your new App and Click 'Manage'
+2. Click 'Edit Polices'
+3. Change 'IP Relaxation' to 'Relax IP Restriction,' or add Backand's IP to your organization's IP restrictions
 4. Change 'Timeout Value' to 24 hours
-5. click 'Save'
+5. Click 'Save'
 
-
-** Now you should be able to get all your accounts.
-
+With that completed, you should now have full access to your CRM objects using the Salesforce REST API.
 
 ##Setup client-side code:
 
-Next, add the following JavaScript code to your app's client-side code base:
+Once you've configured the action to connect to Salesforce, you'll need to call the action from your client-side code. To do so, use the following JavaScript to construct a GET request and trigger your Salesforce action:
 
 ```javascript
 return $http ({
@@ -116,7 +110,6 @@ return $http ({
 });
 
 ```
+Simply replace 'your object name' with the object that contains your Salesforce custom action, and replace 'your action name' with the name of the action that you provided while creating the integration.
 
-Replace 'your object name' with the object associated with the action you created and 'your action name'.
-
-Once this is done, you'll be able to get accounts to any front-end code and add much more calls of salesforce CRM.
+With these changes, you're now able to pull in any and all Salesforce accounts available via their API! You can use a similar pattern to construct additional calls to the Salesforce API - simply replace the URL and parameters in the custom SalesforceIQ action with the URL and parameters for the object you want to retrieve.
