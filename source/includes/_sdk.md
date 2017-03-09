@@ -234,13 +234,7 @@ You can easily integrate with our Socket functionality using the *on* method. So
 
 ### .signin()
 ```shell
-# To obtain an access token using a username and password, use the following
-# command. This uses environment variables to ease presentation of the
-# information, and supplies the fields as data arguments to the cURL command.
-# $USERNAME - user name (email address) to authenticate
-# $PASSWORD - password for the user
-# $APP_NAME - the name of the backand application you are connecting to
-curl https://api.backand.com/token -d username=$USERNAME -d password=$PASSWORD -d grant_type=password -d appName=$APP_NAME
+curl -X POST -d "username=<username>" -d "password=<password>" -d "appName=<app name>" -d "grant_type=password" https://api.backand.com/token
 ```
 ```javascript
 backand.signin(username, password)
@@ -251,7 +245,23 @@ backand.signin(username, password)
     console.log(err);
   });
 ```
+> Sample Response
 
+```json
+{
+  "access_token": "TGvnEBfhreaVwJspg0s_uDKppvjaA9jICQGsHSocmHnt8s98_rkMQIkf4fvd25j3i5QOJKPpZTpoCpdu7duxcjsUyLRYihLBhcyiSAv6PxeY4zG6SpL5CtfDl6PSpqJx571k_fSphmIha40bb0wvks3O-21E85hV7GdD3D0TJtSR0U4twJhaJl-HJmeGCEEmfr27FFtRu2Hb9pwkCNnlUNQast4s5fTlTOEiapspgUgfWT9s4V47t5TUuD6onMtDNQmXfekr-Yj2i_Q68L8a_Q",
+  "token_type": "bearer",
+  "expires_in": 86399,
+  "appName": "bkndionicstarter",
+  "username": "john@backand.com",
+  "role": "User",
+  "firstName": "John",
+  "lastName": "Doe",
+  "fullName": "John Doe",
+  "regId": 1009820,
+  "userId": "29"
+}
+```
 Signin with username and password in order to get access_token to be used in all other calls. If you don't have users you should use anonymous token only.
 
 #### Parameters
@@ -261,6 +271,16 @@ Signin with username and password in order to get access_token to be used in all
 | password | string | the user's password |
 
 ### .signup()
+```shell
+# Replace placeholder text with values for your user. Obtain signup token from
+# the Security & Auth section in your app dashboard.
+# This uses environment variables to ease presentation of the
+# information, and supplies the fields as data arguments to the cURL command.
+# $SIGNUP_TOKEN - the name of the backand application you are connecting to
+curl https://api.backand.com/token -d username=$USERNAME -d password=$PASSWORD -d grant_type=password -d appName=$APP_NAME
+
+curl -X POST -d "{'email':'user email','password':'user password','confirmPassword':'password confirmation','firstName':'first name','lastName':'last name'}" -H "SignUpToken: $SIGNUP_TOKEN" https://api.backand.com/1/user/signup
+```
 ```javascript
 backand.signup(firstName, lastName, email, password, confirmPassword, parameters = {})
   .then(res => {
@@ -269,6 +289,30 @@ backand.signup(firstName, lastName, email, password, confirmPassword, parameters
   .catch(err => {
     console.log(err);
   });
+```
+> Sample Response
+
+```json
+{
+  "username": "matt+test5@backand.com",
+  "currentStatus": 1,
+  "message": "The user is ready to sign in",
+  "listOfPossibleStatus": [
+    {
+      "status": 1,
+      "message": "The user is ready to sign in"
+    },
+    {
+      "status": 2,
+      "message": "The system is now waiting for the user to responed a verification email."
+    },
+    {
+      "status": 3,
+      "message": "The user signed up and is now waiting for an administrator approval."
+    }
+  ],
+  "token": "yHbb7a9S3yteUIo604KwwhchcrpE-wESafVtnnhQgAkj57ZxjWveNR63t64hqy8N2Gd_NPQhw6SAjNLv2mfYYP_rG-vELKe6gqEhqpWBFV43lD5IESH8k1SZldCmZiKLBvhCB_iHg4TfJQ8rUxh8ODYzaLALsSsn-I30ck7h21zn_LWDzxqxZa1Jq12tS0wrII7wOIyQiFCbsEmZiNMnlOR7Oz8CD7zhNHdOCFVh8Y801QIt3Jnn1hYz_4u1niWKJ5acTQqIEfXLZ7k65WnXuD46-UwZ0sORyKDj99o_xxEZpovchVm55cb5kRggqsmUjZBnP5N79fZiYA4tA8p_jPMBePIWE0q2WQ2m6CNJeJc"
+}
 ```
 
 Creates a new user in your app. in signup you must provide the basic details of username email, first name, last name and password:
@@ -286,6 +330,9 @@ Creates a new user in your app. in signup you must provide the basic details of 
 
 
 ### .changePassword()
+```shell
+ curl -X POST  -d "{'oldPassword':'<old password>','newPassword':'<new password>'}" -H "Authorization: Bearer FrJQqDuGeo-U2b5QHhPeF2GS86U9EDTz79CEUbtbTPl032g2VCJPpiuAuGjAS0dR-u4XfxB2p0AgeOdkMulo3FEZWqOXIdzVdjJe4u2m9CyPzzK49YzY4SeD5Ea5p-6LbJLcpDJbE2nkzGv4TQw-S3pq-Tmo-RuuKnEKbEDOMfdSjlTed7Tks2ioeVjSKUwazwX4yglg0DPVavLPFrRp9KBNTnTNnoTOFd4zbC7gGxLjIPwU1-_T_N2UK7XIBlSGXbUBL_Zybxt1fWRlSrvxlw" https://api.backand.com/1/user/changePassword
+```
 ```javascript
 backand.changePassword(oldPassword, newPassword)
   .then(res => {
@@ -295,6 +342,7 @@ backand.changePassword(oldPassword, newPassword)
     console.log(err);
   });
 ```
+> This call returns no data, only an HTTP Status Code
 
 Changes the password of the current user
 
@@ -306,6 +354,9 @@ Changes the password of the current user
 
 
 ### .socialSignin()
+```shell
+# There is no cURL equivalent for this call
+```
 ```javascript
 backand.socialSignin(provider)
   .then(res => {
@@ -328,6 +379,10 @@ Signs the user into a Back& application using a social media provider as the aut
 The `.object` property contains functions related to basic database operations that can be performed on an object. You can also use this property to call the on-demand actions governed by an object in your system.
 
 ### .getList()
+```shell
+# Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
+curl -H "AnonymousToken: $ANONYMOUS_TOKEN" https://api.backand.com/1/objects/items
+```
 ```javascript
 // No filters
 backand.object.getList(object, params)
@@ -355,6 +410,89 @@ backand.object.getList(object, params)
   });
 
 ```
+> Sample response
+
+```json
+{
+  "totalRows": 2,
+  "data": [
+    {
+      "__metadata": {
+        "id": "73",
+        "fields": {
+          "id": {
+            "type": "int",
+            "unique": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "text"
+          },
+          "user": {
+            "object": "users"
+          },
+          "createdAt": {
+            "type": "datetime"
+          }
+        },
+        "descriptives": {
+          "user": {
+            "label": null,
+            "value": ""
+          }
+        },
+        "dates": {
+          "createdAt": "2017-03-08 23:13:10Z"
+        }
+      },
+      "id": 73,
+      "name": "Test 1",
+      "description": "A first test item",
+      "user": "",
+      "createdAt": "2017-03-08T23:13:10"
+    },
+    {
+      "__metadata": {
+        "id": "74",
+        "fields": {
+          "id": {
+            "type": "int",
+            "unique": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "text"
+          },
+          "user": {
+            "object": "users"
+          },
+          "createdAt": {
+            "type": "datetime"
+          }
+        },
+        "descriptives": {
+          "user": {
+            "label": null,
+            "value": ""
+          }
+        },
+        "dates": {
+          "createdAt": "2017-03-08 23:13:21Z"
+        }
+      },
+      "id": 74,
+      "name": "Test 2",
+      "description": "A second test item",
+      "user": "",
+      "createdAt": "2017-03-08T23:13:21"
+    }
+  ]
+}
+```
 
 Fetches a list of records from the specified object. Uses *params* to store filter data
 
@@ -366,7 +504,10 @@ Fetches a list of records from the specified object. Uses *params* to store filt
 
 
 ### .getOne()
-
+```shell
+# Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
+curl -H "AnonymousToken: $ANONYMOUS_TOKEN" https://api.backand.com/1/objects/items/<id>
+```
 ```javascript
 backand.object.getOne(object, id, params)
   .then(res => {
@@ -375,6 +516,47 @@ backand.object.getOne(object, id, params)
   .catch(err => {
     console.log(err);
   });
+```
+> Sample response
+
+```json
+{
+  "__metadata": {
+    "id": "73",
+    "fields": {
+      "id": {
+        "type": "int",
+        "unique": true
+      },
+      "name": {
+        "type": "string"
+      },
+      "description": {
+        "type": "text"
+      },
+      "user": {
+        "object": "users"
+      },
+      "createdAt": {
+        "type": "datetime"
+      }
+    },
+    "descriptives": {
+      "user": {
+        "label": null,
+        "value": ""
+      }
+    },
+    "dates": {
+      "createdAt": "2017-03-08 23:13:10Z"
+    }
+  },
+  "id": 73,
+  "name": "Test 1",
+  "description": "A first test item",
+  "user": "",
+  "createdAt": "2017-03-08T23:13:10"
+}
 ```
 Retrieves a single record from the specified object.
 
@@ -387,6 +569,10 @@ Retrieves a single record from the specified object.
 | params | object | A hash of filter parameters. Allowed parameters are: *deep*, *exclude*, *level* |
 
 ### .create()
+```shell
+# Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
+curl -X POST -H "AnonymousToken: $ANONYMOUS_TOKEN" -d "{'name':'Test 3','description':'A third test item'}" https://api.backand.com/1/objects/items
+```
 ```javascript
 backand.object.create(object, data, params)
   .then(res => {
@@ -395,6 +581,11 @@ backand.object.create(object, data, params)
   .catch(err => {
     console.log(err);
   });
+```
+> Sample response
+
+```json
+{"__metadata":{"id":"75"}}
 ```
 
 Creates a record with the provided data in the specified object
@@ -408,6 +599,10 @@ Creates a record with the provided data in the specified object
 | params | object | A hash of filter parameters. Allowed parameters are: *returnObject*, *deep* |
 
 ### .update()
+```shell
+# Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
+curl -X PUT -H "AnonymousToken: $ANONYMOUS_TOKEN" -d "{'description':'A first items updated description'}" https://api.backand.com/1/objects/items/73
+```
 ```javascript
 backand.object.update(object, id, data, params)
   .then(res => {
@@ -417,6 +612,7 @@ backand.object.update(object, id, data, params)
     console.log(err);
   });
 ```
+> This call has no response other than the status code by default.
 
 Updates a record with the specified ID in the specified object with the provided data.
 
@@ -431,6 +627,10 @@ Updates a record with the specified ID in the specified object with the provided
 
 
 ### .remove()
+```shell
+# Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
+curl -X DELETE -H "AnonymousToken: $ANONYMOUS_TOKEN" https://api.backand.com/1/objects/items/77
+```
 ```javascript
 backand.object.remove(object, id)
   .then(res => {
@@ -439,6 +639,11 @@ backand.object.remove(object, id)
   .catch(err => {
     console.log(err);
   });
+```
+> Sample response
+
+```json
+{"__metadata":{"id":"77"}}⏎
 ```
 
 Deletes a record from the specified object with the specified ID
@@ -451,7 +656,11 @@ Deletes a record from the specified object with the specified ID
 | id | integer | ID of the object to update |
 
 
-### .get()
+### .action.get()
+```shell
+# Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
+curl -H "AnonymousToken: $ANONYMOUS_TOKEN" "https://api.backand.com/1/objects/action/items?name=simpleOnDemand"
+```
 ```javascript
 backand.object.action.get(object, action, params)
   .then(res => {
@@ -460,6 +669,11 @@ backand.object.action.get(object, action, params)
   .catch(err => {
     console.log(err);
   });
+```
+> Sample response (depends on action)
+
+```json
+{"response":"Hello world!"}
 ```
 
 Triggers on-demand custom actions that operate via HTTP GET requests
@@ -473,7 +687,12 @@ Triggers on-demand custom actions that operate via HTTP GET requests
 | params | object | Parameters for the action to operate upon |
 
 
-### .post()
+### .action.post()
+```shell
+# Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
+curl -X POST -H "AnonymousToken: $ANONYMOUS_TOKEN" "https://api.backand.com/1/objects/action/items?name=simpleOnDemand"
+```
+
 ```javascript
 backand.object.action.post(object, action, data, params)
   .then(res => {
@@ -482,6 +701,11 @@ backand.object.action.post(object, action, data, params)
   .catch(err => {
     console.log(err);
   });
+```
+> Sample response (depends on action)
+
+```json
+{"response":"Hello world!"}
 ```
 
 Triggers on-demand custom actions that operate via HTTP POST requests
@@ -501,6 +725,9 @@ Triggers on-demand custom actions that operate via HTTP POST requests
 This property allows you to work with file actions, interacting with the related files directly. You can use this after you have finished creating a server-side action in the Back& dashboard, in the Actions tab of an object (object -> actions tab -> Backand Files icon -> name: 'files')
 
 ### .upload()
+```shell
+curl -X POST  -d "{'filename':'test.txt','filedata':'sample data'}" -H "AnonymousToken: $ANONYMOUS_TOKEN" "https://api.backand.com/1/objects/action/items?name=files"
+```
 ```javascript
 backand.file.upload(object, 'files', filename, filedata)
   .then(res => {
@@ -509,6 +736,11 @@ backand.file.upload(object, 'files', filename, filedata)
   .catch(err => {
     console.log(err);
   });
+```
+>Sample Response
+
+```json
+{"url":"https://files.backand.io/bkndionicstarter/test.txt"}
 ```
 
 Uploads a file for a server-side action
@@ -523,6 +755,9 @@ Uploads a file for a server-side action
 
 
 ### .remove()
+```shell
+curl -X DELETE  -d "{'filename':'test.txt'}" -H "AnonymousToken: $ANONYMOUS_TOKEN" "https://api.backand.com/1/objects/action/items?name=files"
+```
 ```javascript
 backand.file.remove(object, 'files', filename)
   .then(res => {
@@ -531,6 +766,11 @@ backand.file.remove(object, 'files', filename)
   .catch(err => {
     console.log(err);
   });
+```
+> Sample Response
+
+```json
+{}
 ```
 
 Removes a file from a server-side action file set.
@@ -547,6 +787,9 @@ Removes a file from a server-side action file set.
 The *user* property returns data about the connected user (getUserDetails, getUsername, getUserRole, getToken, getRefreshToken).
 
 ### .getUserDetails()
+```shell
+curl -H "Authorization:Bearer <access token>" https://api.backand.com/api/account/profile
+```
 ```javascript
 backand.user.getUserDetails(force)
   .then(res => {
@@ -555,6 +798,41 @@ backand.user.getUserDetails(force)
   .catch(err => {
     console.log(err);
   });
+```
+> Sample response
+
+```json
+// From SDK
+{
+  "status": 200,
+  "statusText": "OK",
+  "headers": {
+
+  },
+  "data": {
+    "access_token": "7g9LM8ZHcvFLEIcSrdg8aYmpIK4gV9DYabab5spVsRmM6B_U3ovCWf8q6HeNFW4RMMQhsD6oiVpiTclHnO-J5qyFB2R8OyLl-ubrbIULvU0a7L8aS-cxPw7c4ij98zSPPa8kLkZBJULJRrcHn-fwmB4GygeTShNw7H1tqsHnIlcnk9X9ioj1CbjNjW4060gjTsGEOTGXACTrpQV4Qn3JD4XkSDNWySOG_15LorZdpiu7bcJ9T1EH9jnAIUyXA_0fIhFlDUsGV5Pr4EczaBufJQ",
+    "token_type": "bearer",
+    "expires_in": 86399,
+    "appName": "bkndionicstarter",
+    "username": "john.doe@backand.com",
+    "role": "User",
+    "firstName": "John",
+    "lastName": "Doe",
+    "fullName": "John Doe",
+    "regId": 1009820,
+    "userId": "29"
+  },
+  "config": {
+  }
+}
+
+// From cURL
+{
+  "username":"matt+test@backand.com",
+  "fullName":"Matt Billock",
+  "role":"User",
+  "appName":"bkndionicstarter"
+}
 ```
 
 Gets the connected user's details.
@@ -566,6 +844,14 @@ Gets the connected user's details.
 | force | boolean | Forces the SDK to refresh its data from the server. **Default: FALSE** |
 
 ## .query
+
+The *query* property lets you initiate a custom Back& query using either HTTP GET or HTTP POST.
+
+### .get()
+```shell
+# Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
+curl -H "AnonymousToken: $ANONYMOUS_TOKEN" https://api.backand.com/1/query/data/test1
+```
 ```javascript
 backand.query.get(name, params)
   .then(res => {
@@ -575,10 +861,19 @@ backand.query.get(name, params)
     console.log(err);
   });
 ```
+> Sample response varies based on query return values
 
-The *query* property lets you initiate a custom Back& query using either HTTP GET or HTTP POST.
-
-### .get()
+```json
+[
+  {
+    "id": 1,
+    "email": "support@backand.com",
+    "firstName": "support",
+    "lastName": "support"
+  },
+  ...
+]
+```
 Calls a custom query using a HTTP GET
 
 #### Parameters
@@ -589,6 +884,10 @@ Calls a custom query using a HTTP GET
 
 
 ### .post()
+```shell
+# Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
+curl -X POST -H "AnonymousToken: $ANONYMOUS_TOKEN" -d "{'params':{...}}" https://api.backand.com/1/query/data/test1
+```
 ```javascript
 backand.query.post(name, data, params)
   .then(res => {
@@ -597,6 +896,19 @@ backand.query.post(name, data, params)
   .catch(err => {
     console.log(err);
   });
+```
+> Sample response varies based on query return values
+
+```json
+[
+  {
+    "id": 1,
+    "email": "support@backand.com",
+    "firstName": "support",
+    "lastName": "support"
+  },
+  ...
+]
 ```
 
 Calls a custom query using a HTTP POST
@@ -608,6 +920,156 @@ Calls a custom query using a HTTP POST
 | data | object | Data to be included in the body of the HTTP POST |
 | params | object | Parameters to be passed to the query |
 
+## .constants
+This contains constants used by the SDK, and is provided for reference.
+
+| constant | description |
+| -------- | ----------- |
+| EVENTS | Contains the names of events fired by the SDK upon completion of one of several authentication actions |
+| URLS | Contains the URL tokens for the Backand API |
+| SOCIALS | Contains the list of social media authentication providers |
+
+## .helpers
+The `.helpers` property provides helper methods for constructing some of the more complex objects in the SDK. This includes filters and sort clauses for queries, as well as exclude clauses. It also provides a helper for obtaining a storageAbstract object.
+
+### .helpers.filter()
+```shell
+# There is no cURL equivalent
+```
+```javascript
+backand.helpers.filter.create("name", "notEquals", "John")
+```
+>Sample response
+
+```json
+{
+  "fieldName": "name",
+  "operator": "notEquals",
+  "value": "John"
+}
+```
+
+Constructs a filter parameter for a GET query.
+
+#### Parameters
+
+| name | usage |
+| ---- | ----- |
+| fieldName | the name of the field to apply a filter to |
+| operator | the operator to apply |
+| value | the value to use the operator to test against |
+
+Here's a list of the available operators and the data types on which they operate:
+
+| Operator | Applicable Data Types |
+| -------- | --------------------- |
+| equals | all |
+| notEquals | numeric, date, text |
+| greaterThan | numeric, date |
+| greaterThanOrEqualsTo | numeric, date |
+| lessThan | numeric, date  |
+| lessThanOrEqualsTo | numeric, date  |
+| empty | numeric, date, text |
+| notEmpty | numeric, date, text |
+| in | relation |
+| startsWith | text |
+| endsWith | text |
+| contains | text |
+
+### .helpers.sort()
+```shell
+# There is no cURL equivalent
+```
+```javascript
+backand.helpers.sort.create("name", "asc")
+```
+>Sample response
+
+```json
+{
+  "fieldName": "name",
+  "order": "asc"
+}
+```
+
+Constructs a "sort" clause for a GET request
+
+#### Parameters
+
+| name | usage |
+| ---- | ----- |
+| fieldName | the name of the field to apply a filter to |
+| order | the order to sort ('asc' for ascending, 'desc' for descending) |
+
+### .helpers.exclude()
+
+```shell
+# There is no cURL equivalent
+```
+```javascript
+backand.helpers.exclude.options
+```
+>Sample response
+
+```json
+{
+  "metadata": "metadata",
+  "totalRows": "totalRows",
+  "all": "metadata,totalRows"}
+```
+
+The exclude option gives you a number of constants you can use to exclude system objects from results.
+
+### .helpers.storageAbstract()
+```javascript
+export class MyStorage extends StorageAbstract{
+  constructor () {
+    super();
+    this.data = {};
+  }
+  setItem (id, val) {
+    return this.data[id] = String(val);
+  }
+  getItem (id) {
+    return this.data.hasOwnProperty(id) ? this.data[id] : null;
+  }
+  removeItem (id) {
+    delete this.data[id];
+    return null;
+  }
+  clear () {
+    return this.data = {};
+  }
+}
+```
+The storageAbstract function allows you to define a new storage proxy for storing browsing data in the local session/information store. Simply provide an object that implements the following methods:
+
+| function | arguments | description |
+| -------- | --------- | ----------- |
+| setItem | id, val | sets a value in the storage container |
+| getItem | id | gets a value from the storage container |
+| remove | id | removes a key from the storage container |
+| clear | none | clears the storage container |
+
+## .defaults
+Contains a list of defaults for the SDK initialization parameters. The defaults are:
+
+| parameter | default value |
+| --------- | ------------- |
+| appName | null |
+| anonymousToken | null |
+| useAnonymousTokenByDefault | true |
+| signUpToken | null |
+| apiUrl | 'https://api.backand.com' |
+| storage | {} |
+| storagePrefix | 'BACKAND_' |
+| manageRefreshToken | true |
+| runSigninAfterSignup | true |
+| runSocket | false |
+| socketUrl | 'https://socket.backand.com' |
+| exportUtils | false |
+| isMobile | false |
+| mobilePlatform | 'ionic' |
 
 ## Examples and further reading
 ***To view the demo web page, pull down a sample from our [example page](https://github.com/backand/vanilla-sdk/blob/master/example/) and run `npm start.`***
