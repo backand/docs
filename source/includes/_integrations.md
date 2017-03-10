@@ -1723,6 +1723,7 @@ Follow these steps to obtain your Salesforce CRM authentication information:
 9. Copy 'Consumer Secret' into the secret variable in the code
 
 Once you've obtained the consumer key and the consumer secret, you'll need to enable server-side security in Salesforce. To do so, follow these steps:
+
 1. From App Manager, select your new App and Click 'Manage'
 2. Click 'Edit Polices'
 3. Change 'IP Relaxation' to 'Relax IP Restriction,' or add Backand's IP to your organization's IP restrictions
