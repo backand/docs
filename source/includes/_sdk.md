@@ -385,7 +385,7 @@ curl -H "AnonymousToken: $ANONYMOUS_TOKEN" https://api.backand.com/1/objects/ite
 ```
 ```javascript
 // No filters
-backand.object.getList(object, params)
+backand.object.getList(object)
   .then(res => {
     console.log(res.data);
   })
@@ -393,22 +393,19 @@ backand.object.getList(object, params)
     console.log(err);
   });
 
-// With filter parameters
-let params = {
-  sort: backand.helpers.sort.create('creationDate', backand.helpers.sort.orders.desc),
-  exclude: backand.helpers.exclude.options.all,
-  filter: backand.helpers.filter.create('user', backand.helpers.filter.operators.relation.in, userId),
-  pageSize: 20,
-  pageNumber: 1
+// With options
+let options = {
+  returnObject: true,
+  pageSize: 5,
+  pageNumber: 2
 };
-backand.object.getList(object, params)
+backand.object.getList(object, options)
   .then(res => {
-    console.log(res.data);
+    console.log('object created');
   })
   .catch(err => {
     console.log(err);
   });
-
 ```
 > Sample response
 
@@ -494,13 +491,13 @@ backand.object.getList(object, params)
 }
 ```
 
-Fetches a list of records from the specified object. Uses *params* to store filter data
+Fetches a list of records from the specified object. Uses *options* to store filter data, and *parameters* to store additional fields you wish to send through.
 
 #### Parameters
 | name | type | description |
 | ---- | ---- | ----------- |
 | object | string | Name of the Back& object to work with |
-| params | object | A hash of filter parameters. Allowed parameters are: *pageSize*, *pageNumber*, *filter*, *sort*, *search*, *exclude*, *deep*, *relatedObjects* |
+| options | object | A hash of filter parameters. Allowed parameters are: *pageSize*, *pageNumber*, *filter*, *sort*, *search*, *exclude*, *deep*, *relatedObjects* |
 
 
 ### .getOne()
@@ -509,7 +506,19 @@ Fetches a list of records from the specified object. Uses *params* to store filt
 curl -H "AnonymousToken: $ANONYMOUS_TOKEN" https://api.backand.com/1/objects/items/<id>
 ```
 ```javascript
-backand.object.getOne(object, id, params)
+backand.object.getOne(object, id, options)
+  .then(res => {
+    console.log(res.data);
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+// With options and parameters
+let options = {
+  returnObject: true
+};
+backand.object.getOne(object, options)
   .then(res => {
     console.log(res.data);
   })
@@ -566,7 +575,8 @@ Retrieves a single record from the specified object.
 | ---- | ---- | ----------- |
 | object | string | Name of the Back& object to work with |
 | id | integer | ID of the record to retrieve, subject to the filter specified in *params* |
-| params | object | A hash of filter parameters. Allowed parameters are: *deep*, *exclude*, *level* |
+| options | object | A hash of filter parameters. Allowed parameters are: *deep*, *exclude*, *level* |
+
 
 ### .create()
 ```shell
@@ -575,6 +585,22 @@ curl -X POST -H "AnonymousToken: $ANONYMOUS_TOKEN" -d "{'name':'Test 3','descrip
 ```
 ```javascript
 backand.object.create(object, data, params)
+  .then(res => {
+    console.log('object created');
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+// Sample code with options and additional parameters
+let options = {
+  returnObject: true
+};
+let parameters = {
+  inputParameter1: 'value1',
+  inputParameter2: 'value2'
+};
+backand.object.create(object, data, options, parameters)
   .then(res => {
     console.log('object created');
   })
@@ -596,7 +622,8 @@ Creates a record with the provided data in the specified object
 | ---- | ---- | ----------- |
 | object | string | Name of the Back& object to work with |
 | data | object | Data to use in the creation of the new record |
-| params | object | A hash of filter parameters. Allowed parameters are: *returnObject*, *deep* |
+| options | object | A hash of filter parameters. Allowed parameters are: *returnObject*, *deep* |
+| parameters | object | A hash of extra data to send along with the "GET" request. This is provided to actions that trigger off of a Read call |
 
 ### .update()
 ```shell
@@ -604,9 +631,25 @@ Creates a record with the provided data in the specified object
 curl -X PUT -H "AnonymousToken: $ANONYMOUS_TOKEN" -d "{'description':'A first items updated description'}" https://api.backand.com/1/objects/items/73
 ```
 ```javascript
-backand.object.update(object, id, data, params)
+backand.object.update(object, id, data, options, parameters)
   .then(res => {
     console.log('object updated');
+  })
+  .catch(err => {
+    console.log(err);
+  });
+
+// Sample code with options and additional parameters
+let options = {
+  returnObject: true
+};
+let parameters = {
+  inputParameter1: 'value1',
+  inputParameter2: 'value2'
+};
+backand.object.create(object, id, data, options, parameters)
+  .then(res => {
+    console.log('object created');
   })
   .catch(err => {
     console.log(err);
@@ -623,7 +666,8 @@ Updates a record with the specified ID in the specified object with the provided
 | object | string | Name of the Back& object to work with |
 | id | integer | ID of the object to update |
 | data | object | Data to update the record with |
-| params | object | A hash of filter parameters. Allowed parameters are: *returnObject*, *deep* |
+| options | object | A hash of filter parameters. Allowed parameters are: *returnObject*, *deep* |
+| parameters | object | A hash of extra data to send along with the "GET" request. This is provided to actions that trigger off of a Read call |
 
 
 ### .remove()
@@ -632,7 +676,7 @@ Updates a record with the specified ID in the specified object with the provided
 curl -X DELETE -H "AnonymousToken: $ANONYMOUS_TOKEN" https://api.backand.com/1/objects/items/77
 ```
 ```javascript
-backand.object.remove(object, id)
+backand.object.remove(object, id, parameters)
   .then(res => {
     console.log('object removed');
   })
@@ -654,6 +698,7 @@ Deletes a record from the specified object with the specified ID
 | ---- | ---- | ----------- |
 | object | string | Name of the Back& object to work with |
 | id | integer | ID of the object to update |
+| parameters | object | A hash of extra data to send along with the "GET" request. This is provided to actions that trigger off of a Read call |
 
 
 ### .action.get()
