@@ -606,6 +606,10 @@ If you wish to disable anonymous access to your application, go to Security &amp
 
 <p>While Security Templates provide reusable permissions platforms that can be spread across a number of roles, you can also override security template settings and provide specific permissions for each individual role. This allows you to have more granular control over the <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions that can be performed by the users in your system. When a user with insufficient security access tries to perform an action for which they do not have permission, a 403 (Forbidden) error response is returned.</p>
 
+<h3 id="security-actions">Security Actions</h3>
+
+<p>Backand offers a number of pre-defined security actions that can be used to manage your application&rsquo;s security processes. These are available in the app dashboard under <strong>Security &amp; Auth -&gt; Security Actions</strong>. See <a href="http://docs.backand.com/#security-actions">the Security Actions Documentation</a> for more details.</p>
+
 <h2 id="backand-storage">Backand Storage</h2>
 
 <p>Backand provides you with the ability to upload and delete files to and from Backand&rsquo;s robust storage. This is done on the server-side through Backand&rsquo;s Actions. It doesn&rsquo;t require any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage counts of the amount of files per user.</p>
@@ -1854,7 +1858,81 @@ Set-AdfsProperties -EnableKmsi <span class="nv">$True</span> –KmsiLifetimeMins
 
 <p>The actions on this page, much like those on the other pages of the application, allow you to define custom actions to occur at each point in the transactional CRUD conversation against an object, or when called by accessing a specific URL. These actions, though, are tied specifically to the internal Backand Users object, which manages your application&rsquo;&lsquo;s security. All of the standard custom action options are available for use in this section, and you can easily create new actions, edit existing actions, and test the actions you have created.</p>
 
-<p>There are several actions provided by default by Backand. The User Invitation Email and Admin Invitation Email actions allow you to modify the emails sent to a user when they are invited to the application. The User Approval action allows you to modify the approval email received by the user after email verification. The New User Verification action allows you to modify the generic verification email sent when sign-up verification is enabled. Finally, the Request Reset Password action allows you to modify the email sent when a user requests a password reset token.</p>
+<p>The following actions are provided by default for a Backand application. You can edit these actions as you desire, or add new actions that occur during the database transaction that modifies your app&rsquo;s <code class="prettyprint">registered_users</code> table:</p>
+
+<table><thead>
+<tr>
+<th>Action Name</th>
+<th>When it Runs</th>
+<th>What it Does</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accessFilter</td>
+<td>Automatic, after successful authentication</td>
+<td>See <a href="http://docs.backand.com#integrating-third-party-security">our post on third-party security</a></td>
+</tr>
+<tr>
+<td>backandAuthOverride</td>
+<td>Automatic, prior to user authentication</td>
+<td>See below</td>
+</tr>
+<tr>
+<td>beforeSocialSignup</td>
+<td>Automatic, prior to social media registration</td>
+<td>This allows you to run additional code prior to signing up a user through social media-based authentication</td>
+</tr>
+<tr>
+<td>ChangePasswordOverride</td>
+<td>Automatic, during password change</td>
+<td><strong>not currently used</strong></td>
+</tr>
+<tr>
+<td>newUserVerification</td>
+<td>Automatic, during user registration</td>
+<td>This verification message is sent to new users if email address verification is enabled</td>
+</tr>
+<tr>
+<td>requestResetPassword</td>
+<td>Automatic, after a call to <code class="prettyprint">requestResetPassword</code></td>
+<td>This email is sent in response to initiating a password reset</td>
+</tr>
+<tr>
+<td>socialAuthOverride</td>
+<td>Automatic, after social media authentication</td>
+<td>See below</td>
+</tr>
+<tr>
+<td>userApproval</td>
+<td>Automatic, after user registration</td>
+<td>This email is sent to users to inform them that they have been successfully added to an app</td>
+</tr>
+<tr>
+<td>Admin Invitation Email</td>
+<td>Automatic, during user creation</td>
+<td>This email is used to invite administrators to your application</td>
+</tr>
+<tr>
+<td>Create My App User</td>
+<td>Automatic, during user creation</td>
+<td>This function takes the user input from the sdk <code class="prettyprint">signup</code> call, and uses it to populate a custom <code class="prettyprint">users</code> object in your application.</td>
+</tr>
+<tr>
+<td>User Invitation Email</td>
+<td>Automatic, during user creation</td>
+<td>This email is used to invite standard users to your application</td>
+</tr>
+<tr>
+<td>Update My App User</td>
+<td>Automatic, during user update</td>
+<td>This action occurs whenever a registered user is modified. It attempts to make the appropriate modifications in your app&rsquo;s custom <code class="prettyprint">users</code> object</td>
+</tr>
+<tr>
+<td>Delete My App User</td>
+<td>Automatic, during user deletion</td>
+<td>This action occurs whenever a registered user is deleted. It attempts to remove the associated <code class="prettyprint">users</code> record for the user being deleted.</td>
+</tr>
+</tbody></table>
 
 <h3 id="security-templates">Security Templates</h3>
 
@@ -4915,6 +4993,48 @@ On Demand triggers, on the other hand, happen whenever you like. These are assoc
 <p>We&rsquo;ll override the defaut integer-based behavior in a Custom Server-Side JavaScript action that we will create expressly for this purpose. The code to the right uses <code class="prettyprint">Math.random()</code> to generate a UUID Version 4-compliant value. This value is then stored in userInput.id, which in turn populates the column in the database.</p>
 
 <aside class="warning">It is important to note that this value is not truly random, and should not be used in situations where security is paramount - in those cases, we recommend you either implement your own algorithm or integrate with a third party library that can do so on your behalf.</aside>
+
+<h2 id="integrating-third-party-security">Integrating Third-Party Security</h2>
+
+<p>While Backand provides a set of robust and dependable authentication and user management tools, sometimes you need a deeper integration with a provider that is not directly supported via integration with the Backand platform. In this post, we&rsquo;ll look at three mechanisms you can use to implement robust user security integrations with arbitrary third-party platforms. By using the <code class="prettyprint">backandAuthOverride</code>, <code class="prettyprint">sociaAuthOverride</code>, and <code class="prettyprint">accessFilter</code> security actions, you&rsquo;ll be able to achieve all of your user security goals.</p>
+
+<h3 id="a-quick-review-of-user-security">A Quick Review of User Security</h3>
+
+<p>There are two questions that need to be resolved in any conversation - user authentication, in which we determine whether or not the user is who they claim to be, and user authorization, in which we determine whether or not the authenticated user has access to the resources they are requesting. Backand uses OAuth2 to manage user authentication for plain username/password logins, and social media providers to manage user authentication when configured. To manage authorization, Backand provides a flexible and powerful set of security templates and security roles, which can be used to control the access a user has to any given field in a Backand application.</p>
+
+<h3 id="overriding-backand-authentication">Overriding Backand Authentication</h3>
+
+<p>While we offer a number of ways to integrate with third-party security providers, some applications need to work within systems that we either do not offer integrations with, or whose integrations are not feature-rich enough to support all of the needed functionality. To work around this, we provide the <code class="prettyprint">backandAuthOverride</code> security action. By modifying this action, you can use it to authenticate the user with any third party authentication platform you desire. You&rsquo;re given the user&rsquo;s email address and password, and can respond with one of three statuses:</p>
+
+<ul>
+<li><strong>allow</strong> - Allow the user access to your application</li>
+<li><strong>deny</strong> - Deny the user access to your application</li>
+<li><strong>ignore</strong> - Ignore this override, and use Backand User Authentication (default)</li>
+</ul>
+
+<p>If this method returns &ldquo;ignore&rdquo;, the standard Backand user authentication is used. Otherwise, the results of this function are adopted by Backand. If you wish, you can use the provided <code class="prettyprint">additionalTokenInfo</code> object to pass back supplementary information for the authentication result, such as system user ID, system role, authentication lifetime, and so on - these will be available with the return value from the <code class="prettyprint">signin</code> method, or via the SDK method <code class="prettyprint">getUserDetails</code>.</p>
+
+<h3 id="overriding-social-media-authentication">Overriding Social Media Authentication</h3>
+
+<p>While you can use <code class="prettyprint">backandAuthOverride</code> to integrate with most third-party authentication providers, if you&rsquo;re working with our social media authentication you&rsquo;ll need to use a different function - <code class="prettyprint">socialAuthOverride</code>. This function, similar to <code class="prettyprint">backandAuthOverride</code>, overrides the social media authentication experience, returning one of the following three values:</p>
+
+<ul>
+<li><strong>allow</strong> - Allow the user access to your application</li>
+<li><strong>deny</strong> - Deny the user access to your application</li>
+<li><strong>ignore</strong> - Ignore this override, and use Backand Social Media Authentication (default)</li>
+</ul>
+
+<p>Once again, if this method returns <code class="prettyprint">ignore</code>, the default built-in social media authentication provided by Backand is used. Otherwise, the return value of this function - either <code class="prettyprint">allow</code> or <code class="prettyprint">deny</code> - coupled with the contents of <code class="prettyprint">additionalTokenInfo</code> are returned to the caller, and the user is either authenticated or prevented access appropriately. You can use this pattern to, for example, obtain a user&rsquo;s Facebook profile picture upon completion of authentication, and pass the results back to the application for display or manipulation.</p>
+
+<h3 id="overriding-authorization">Overriding Authorization</h3>
+
+<p>Once you&rsquo;ve authenticated the user, you&rsquo;ll need to determine whether they are authorized to access the specified resource. While our security roles and templates can cover a lot of functionality, they are by nature restricted to a single app. If you organization&rsquo;s security policy restricts app access to users with a specific flag in your authentication mechanism, you&rsquo;ll want to override basic Backand authorization to instead leverage your external solution. To do this, you can use the <code class="prettyprint">accessFilter</code> method to dynamically approve or deny any users that authenticate with your system using an Oauth2 token.</p>
+
+<p>This method works like any other custom JavaScript action, allowing you to easily contact third party services for additional user information. Once you&rsquo;ve used this feature to determine whether or not a user is authorized, you simply return <code class="prettyprint">allow</code> or <code class="prettyprint">deny</code> to permit or restrict access appropriately. You can also provide an additional message explaining the denial, or providing additional information on the approval.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>The security landscape for internet apps is wide and varied. While we&rsquo;d love to be able to support every possible method of authentication available to developers, after a while it is far more beneficial and flexible to provide the developer with tools to manage their own authentication integrations. Using our provided override functions - <code class="prettyprint">backandAuthOverride</code>, <code class="prettyprint">socialAuthOverride</code>, and <code class="prettyprint">accessFilter</code> - you can integrate with any authentication or authorization provider that can communicate over the web.</p>
 
           <h1 id="integrations">Integrations</h1>
 
