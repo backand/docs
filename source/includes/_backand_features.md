@@ -396,7 +396,7 @@ We created a simple example in Angular to experience the upload functionality.
 You can see the code in action at [codepen](http://codepen.io/backand/pen/ZQaYEV). The relevant parts of the code are available in the JavaScript pane to the right.
 
 ## Backand Hosting
-Backand offers high-performance, reliable, and secure hosting for AngularJS applications through the hosting and deployment tool. Built off of AWS, Backand Hosting gives you an effortless way to deploy your Angular project to a hosted server.
+Backand offers high-performance, reliable, and secure hosting for AngularJS applications through the hosting and deployment tool. Built as a cloud-based service, Backand Hosting gives you an effortless way to deploy your Angular project to a hosted server.
 
 Your project files will be available on **https://hosting.backand.io/Your-App-Name**, providing you an easy way to see what gets deployed for your project.
 
