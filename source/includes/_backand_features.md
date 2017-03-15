@@ -488,13 +488,6 @@ To create the new Gulp deployment task:
  after multiple uses, so we need to create one more task to perform cleanup after the deployment has completed:
 
 ## Realtime Database Communications
-Backand's real-time communication functionality is based on the popular open-source Socket.io framework, which lets you add real-time functionality to your application. Backand’s Real-Time Database Communication sends events and JSON-formatted data to any authorized connected client. With Real-Time Communication from Backand, you can send real-time information to your application based on server-side logic in your application's custom actions. With this new feature events are picked up as they happen, rather than having to wait for a user-driven event to trigger a data reload.
-
-Backand’s real-time database communications are completely secure. They provide you with total control over data access, allowing you to restrict transmission of sensitive data to only authorized roles. And since all communication is SSL-encrypted, you don’t have to worry about the security of your data as it is transmitted across the web.
-
-Using the real-time capability can enhance your app with instant updates to any Angular page, including updating charts, counters, logs, and other data-driven elements.
-
-###Setup
 
 ```html    
 <!-- Backand Socket Client -->
@@ -504,10 +497,19 @@ Using the real-time capability can enhance your app with instant updates to any 
 <script src="//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"></script>   
 ```
 
-```javascript
+```javascript--persistent
   // Configure the SDK to run the socket
   BackandProvider.runSocket(true);
 ```
+
+Backand's real-time communication functionality is based on the popular open-source Socket.io framework, which lets you add real-time functionality to your application. Backand’s Real-Time Database Communication sends events and JSON-formatted data to any authorized connected client. With Real-Time Communication from Backand, you can send real-time information to your application based on server-side logic in your application's custom actions. With this new feature events are picked up as they happen, rather than having to wait for a user-driven event to trigger a data reload.
+
+Backand’s real-time database communications are completely secure. They provide you with total control over data access, allowing you to restrict transmission of sensitive data to only authorized roles. And since all communication is SSL-encrypted, you don’t have to worry about the security of your data as it is transmitted across the web.
+
+Using the real-time capability can enhance your app with instant updates to any Angular page, including updating charts, counters, logs, and other data-driven elements.
+
+###Setup
+
 
 1. Upgrade to Backand SDK 1.9.5 or above.
 2. Include the Backand SDK and Socket.io in your index.html file
