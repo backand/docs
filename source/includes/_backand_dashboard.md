@@ -374,7 +374,27 @@ The Team section allows you to add new administrative users to your application.
 ### Security Actions
 The actions on this page, much like those on the other pages of the application, allow you to define custom actions to occur at each point in the transactional CRUD conversation against an object, or when called by accessing a specific URL. These actions, though, are tied specifically to the internal Backand Users object, which manages your application''s security. All of the standard custom action options are available for use in this section, and you can easily create new actions, edit existing actions, and test the actions you have created.
 
-There are several actions provided by default by Backand. The User Invitation Email and Admin Invitation Email actions allow you to modify the emails sent to a user when they are invited to the application. The User Approval action allows you to modify the approval email received by the user after email verification. The New User Verification action allows you to modify the generic verification email sent when sign-up verification is enabled. Finally, the Request Reset Password action allows you to modify the email sent when a user requests a password reset token.
+The following actions are provided by default for a Backand application. You can edit these actions as you desire, or add new actions that occur during the database transaction that modifies your app's `registered_users` table:
+
+| Action Name | When it Runs | What it Does |
+| ----------- | ------------ | ------------ |
+| accessFilter | Automatic, after successful authentication | See [our post on third-party security](http://docs.backand.com#integrating-third-party-security) |
+| backandAuthOverride | Automatic, prior to user authentication | See below |
+| beforeSocialSignup | Automatic, prior to social media registration | This allows you to run additional code prior to signing up a user through social media-based authentication |
+| ChangePasswordOverride | Automatic, during password change | **not currently used** |
+| newUserVerification | Automatic, during user registration | This verification message is sent to new users if email address verification is enabled |
+| requestResetPassword | Automatic, after a call to `requestResetPassword` | This email is sent in response to initiating a password reset |
+| socialAuthOverride | Automatic, after social media authentication | See below |
+| userApproval | Automatic, after user registration | This email is sent to users to inform them that they have been successfully added to an app |
+| Admin Invitation Email | Automatic, during user creation | This email is used to invite administrators to your application |
+| Create My App User | Automatic, during user creation | This function takes the user input from the sdk `signup` call, and uses it to populate a custom `users` object in your application. |
+| User Invitation Email | Automatic, during user creation | This email is used to invite standard users to your application |
+| Update My App User | Automatic, during user update | This action occurs whenever a registered user is modified. It attempts to make the appropriate modifications in your app's custom `users` object |
+| Delete My App User | Automatic, during user deletion | This action occurs whenever a registered user is deleted. It attempts to remove the associated `users` record for the user being deleted. |
+
+####
+
+
 
 ### Security Templates
 Security templates allow you to create a template that is used to set permissions on objects. You can create new templates, update existing templates, and rename security templates as you see fit. Each of the checkboxes corresponds to the REST API action indicated by the column header. When you check "Create" for a user role, for example, and then assign that security template to an object, all users with the specified role will be granted "Create" access to the object.

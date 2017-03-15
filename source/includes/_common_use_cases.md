@@ -792,3 +792,35 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 We'll override the defaut integer-based behavior in a Custom Server-Side JavaScript action that we will create expressly for this purpose. The code to the right uses `Math.random()` to generate a UUID Version 4-compliant value. This value is then stored in userInput.id, which in turn populates the column in the database.
 
 <aside class="warning">It is important to note that this value is not truly random, and should not be used in situations where security is paramount - in those cases, we recommend you either implement your own algorithm or integrate with a third party library that can do so on your behalf.</aside>
+
+## Integrating Third-Party Security
+While Backand provides a set of robust and dependable authentication and user management tools, sometimes you need a deeper integration with a provider that is not directly supported via integration with the Backand platform. In this post, we'll look at three mechanisms you can use to implement robust user security integrations with arbitrary third-party platforms. By using the `backandAuthOverride`, `sociaAuthOverride`, and `accessFilter` security actions, you'll be able to achieve all of your user security goals.
+
+###A Quick Review of User Security
+There are two questions that need to be resolved in any conversation - user authentication, in which we determine whether or not the user is who they claim to be, and user authorization, in which we determine whether or not the authenticated user has access to the resources they are requesting. Backand uses OAuth2 to manage user authentication for plain username/password logins, and social media providers to manage user authentication when configured. To manage authorization, Backand provides a flexible and powerful set of security templates and security roles, which can be used to control the access a user has to any given field in a Backand application.
+
+###Overriding Backand Authentication
+While we offer a number of ways to integrate with third-party security providers, some applications need to work within systems that we either do not offer integrations with, or whose integrations are not feature-rich enough to support all of the needed functionality. To work around this, we provide the `backandAuthOverride` security action. By modifying this action, you can use it to authenticate the user with any third party authentication platform you desire. You're given the user's email address and password, and can respond with one of three statuses:
+
+* **allow** - Allow the user access to your application
+* **deny** - Deny the user access to your application
+* **ignore** - Ignore this override, and use Backand User Authentication (default)
+
+If this method returns "ignore", the standard Backand user authentication is used. Otherwise, the results of this function are adopted by Backand. If you wish, you can use the provided `additionalTokenInfo` object to pass back supplementary information for the authentication result, such as system user ID, system role, authentication lifetime, and so on - these will be available with the return value from the `signin` method, or via the SDK method `getUserDetails`.
+
+###Overriding Social Media Authentication
+While you can use `backandAuthOverride` to integrate with most third-party authentication providers, if you're working with our social media authentication you'll need to use a different function - `socialAuthOverride`. This function, similar to `backandAuthOverride`, overrides the social media authentication experience, returning one of the following three values:
+
+* **allow** - Allow the user access to your application
+* **deny** - Deny the user access to your application
+* **ignore** - Ignore this override, and use Backand Social Media Authentication (default)
+
+Once again, if this method returns `ignore`, the default built-in social media authentication provided by Backand is used. Otherwise, the return value of this function - either `allow` or `deny` - coupled with the contents of `additionalTokenInfo` are returned to the caller, and the user is either authenticated or prevented access appropriately. You can use this pattern to, for example, obtain a user's Facebook profile picture upon completion of authentication, and pass the results back to the application for display or manipulation.
+
+###Overriding Authorization
+Once you've authenticated the user, you'll need to determine whether they are authorized to access the specified resource. While our security roles and templates can cover a lot of functionality, they are by nature restricted to a single app. If you organization's security policy restricts app access to users with a specific flag in your authentication mechanism, you'll want to override basic Backand authorization to instead leverage your external solution. To do this, you can use the `accessFilter` method to dynamically approve or deny any users that authenticate with your system using an Oauth2 token.
+
+This method works like any other custom JavaScript action, allowing you to easily contact third party services for additional user information. Once you've used this feature to determine whether or not a user is authorized, you simply return `allow` or `deny` to permit or restrict access appropriately. You can also provide an additional message explaining the denial, or providing additional information on the approval.
+
+###Conclusion
+The security landscape for internet apps is wide and varied. While we'd love to be able to support every possible method of authentication available to developers, after a while it is far more beneficial and flexible to provide the developer with tools to manage their own authentication integrations. Using our provided override functions - `backandAuthOverride`, `socialAuthOverride`, and `accessFilter` - you can integrate with any authentication or authorization provider that can communicate over the web.
