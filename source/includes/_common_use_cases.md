@@ -720,6 +720,24 @@ Once you've selected an appropriate trigger, you need to select a type of action
 
 One of the common concerns with outsourcing the back end of an application is "What happens when I need something more from the server?" With Backand's actions, you have the opportunity to perform a number of different types of actions at several highly-configurable trigger points, and all in the context of your application's server! This can allow you to implement sensitive web calls to third parties, maintain complex analytics back-ends, and protect your sensitive data from attackers – all with a few clicks in Backand's application dashboard. While actions are not ideal for all situations, they should suffice for the vast majority of server-side activity that web apps most commonly need.
 
+## Connecting to Your App's Database
+While the schema editor offered by Backand's app dashboard can be a powerful tool for managing your application's data schema, sometimes there are ideas that the schema editor can't express. For these situations, it's often best to revert to a SQL interface, either using command-line SQL or a dedicated database administration tool like MySQL Workbench. In this post, we'll look at how you can access your Backand application's database using any third-party MySQL compatible database tool you desire, and how you can sync the changes with your Backand application once you've made your changes.
+
+###Connecting to Your Database
+Backand hosts all application databases as schemas in Amazon RDS. The benefit of this approach is that it easily allows us to make your database available to any third-party tool you like. In the Backand App Dashboard, you can find your application's database server information in the Settings -> Database panel. This contains the host URL, username, password, and schema name for your application. Simply input these connection values into your database administration tool of choice, and you are free to make changes to your database schema.
+
+###Synchronizing Changes
+Once you've made the necessary changes in your schema, you'll need to synchronize the changes with your Backand application. This is accomplished in the Backand Application Dashboard as follows:
+
+* Navigate to the "Model" panel, under "Objects"
+* Select the "Model Database" tab
+* After reviewing the text, click on the "Sync with Database" button
+
+Once you've pressed the Sync button, Backand will use reflection to determine your database's structure, and rebuild your app's REST API according to the changes it sees.
+
+###Moving Forward
+With this approach, you can greatly increase your data model's flexibility.  By working with standard SQL queries, you can bypass the need for making complex changes to your application's data structure using only the provided editors. Anything that can be expressed in SQL is permitted, and Backand will automatically adapt to your database structure modifications.
+
 ## Working with Encrypted passwords
 One common case encountered when storing passwords is in how to manage password encryption - particularly for working with third parties. In this section, we'll explore encrypting a user's password, and comparing encrypted passwords with their plaintext equivalents to check for authorization.
 
@@ -737,3 +755,40 @@ With that, your encrypted password is now stored along with your `users` object.
 Once you've encrypted your password, you'll want to use it for password validation. To do so, you can use the `security.compare` function: `return security,compare(password, hashedPassword);`.
 
 This method returns `true` if the provided password is valid. It utilizes one-way encryption, so that it is not possible to decrypt the password hash
+
+## Using UUID Primary Keys
+
+While integer IDs can provide a quick and easy way to get up and running with a primary key, they face a number of different challenges when it comes to both scaling and security:
+
+* They're limited in scope, meaning you're only given the maximum range of the integer object as unique IDs
+* They're easy to understand, meaning they're also easy to hack (in other words, "What happens if I change this ID of 77 to 78?")
+* In general, they're hard to make thread-safe. This is an issue when a data source is operating at internet scale, or when working with multiple concurrent databases.
+
+Universally-Unique IDentifiers, or UUIDs, solve many of these problems. They obfuscate the ID so that it is not brute-force guessable, they have an extremely wide range of potential values, and the [risk of collisions in UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier#Collisions) is miniscule. In this section, we'll look at configuring a Backand object to use a UUID as its primary key.
+
+### Setting up the Database
+To create a UUID primary key column, you'll need to operate within your database directly. Download a tool to connect to your database (like [MySQL Workbench](https://www.mysql.com/products/workbench/)), and configure it with the connection settings from [your application's dashboard](http://docs.backand.com/#connecting-to-your-apps-database). Once you've connected your database, you'll next want to create a new field in the object you are changing, using the datatype `char(36)`. Once this is done, sync the changes back to your application using the Object -> Model -> Model Database tab in the app dashboard.
+
+### Setting up the Before Create action
+```javascript--persistent
+/* globals
+  $http - Service for AJAX calls
+  CONSTS - CONSTS.apiUrl for Backands API URL
+  Config - Global Configuration
+  socket - Send realtime database communication
+  files - file handler, performs upload and delete of files
+  request - the current http request
+*/
+'use strict';
+function backandCallback(userInput, dbRow, parameters, userProfile) {
+  // write your code here
+  userInput.id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+      return v.toString(16);
+  });
+  return {};
+}
+```
+We'll override the defaut integer-based behavior in a Custom Server-Side JavaScript action that we will create expressly for this purpose. The code to the right uses `Math.random()` to generate a UUID Version 4-compliant value. This value is then stored in userInput.id, which in turn populates the column in the database.
+
+<aside class="warning">It is important to note that this value is not truly random, and should not be used in situations where security is paramount - in those cases, we recommend you either implement your own algorithm or integrate with a third party library that can do so on your behalf.</aside>
