@@ -852,6 +852,9 @@ after multiple uses, so we need to create one more task to perform cleanup after
 <li>Include the Backand SDK and Socket.io in your index.html file</li>
 <li>Update Angular configuration section</li>
 </ol>
+<pre class="highlight shell tab-shell--persistent"><code>bower install socket.io-client
+</code></pre>
+<aside class="notice">You can also install socket using a package manager like bower</aside>
 
 <h3 id="angular-client-code-sockets">Angular client code - Sockets</h3>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">Backand</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'items_updated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
