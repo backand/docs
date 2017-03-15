@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+# Because TeamCity is terrible
+gem 'io-console'
 
 # Middleman
 gem 'middleman', '~>4.2.1'
