@@ -503,6 +503,7 @@ Using the real-time capability can enhance your app with instant updates to any 
 <script src="//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"></script>
 <script src="//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"></script>   
 ```
+
 ```javascript
   // Configure the SDK to run the socket
   BackandProvider.runSocket(true);
@@ -511,6 +512,11 @@ Using the real-time capability can enhance your app with instant updates to any 
 1. Upgrade to Backand SDK 1.9.5 or above.
 2. Include the Backand SDK and Socket.io in your index.html file
 3. Update Angular configuration section
+
+```shell--persistent
+bower install socket.io-client
+```
+<aside class="notice">You can also install socket using a package manager like bower</aside>
 
 ### Angular client code - Sockets
 ```javascript
