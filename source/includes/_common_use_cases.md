@@ -719,3 +719,21 @@ Once you've selected an appropriate trigger, you need to select a type of action
 ### Summary
 
 One of the common concerns with outsourcing the back end of an application is "What happens when I need something more from the server?" With Backand's actions, you have the opportunity to perform a number of different types of actions at several highly-configurable trigger points, and all in the context of your application's server! This can allow you to implement sensitive web calls to third parties, maintain complex analytics back-ends, and protect your sensitive data from attackers – all with a few clicks in Backand's application dashboard. While actions are not ideal for all situations, they should suffice for the vast majority of server-side activity that web apps most commonly need.
+
+## Working with Encrypted passwords
+One common case encountered when storing passwords is in how to manage password encryption - particularly for working with third parties. In this section, we'll explore encrypting a user's password, and comparing encrypted passwords with their plaintext equivalents to check for authorization.
+
+### Encrypting Passwords
+To work with encrypted passwords in Backand, follow these steps:
+
+1. Create a `password` field in your `users` object, of type `string`
+1. Modify or create a "before create" action for the `users` object, and set the type to Custom Server-Side JavaScript.
+1. Add `userInput.password = security.hash(userInput.password);` to encrypt the password
+
+With that, your encrypted password is now stored along with your `users` object.
+
+### Comparing Encrypted passwords
+
+Once you've encrypted your password, you'll want to use it for password validation. To do so, you can use the `security.compare` function: `return security,compare(password, hashedPassword);`.
+
+This method returns `true` if the provided password is valid. It utilizes one-way encryption, so that it is not possible to decrypt the password hash
