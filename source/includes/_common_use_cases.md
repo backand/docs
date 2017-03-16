@@ -583,7 +583,7 @@ The Last step is to edit the connection details
 
 ### Configuring the connection to Backand
 
-To Enable Back with, you’ll need to update your Ionic Creator app’s 'Other JS' section to include a new file name - bkndconfig.js. In this file, replace the entire contents with the following code:
+To Enable Back with, you’ll need to update your Ionic Creator app’s **Other JS** section to include a new file name - bkndconfig.js. In this file, replace the entire contents with the following code:
 
 ```javascript
 angular.module('app.config', [])
@@ -600,17 +600,17 @@ angular.module('app.config', [])
 
 Once the code has been modified, replace the values above with the appropriate values from your Backand application:
 
-* BACKAND_APP_NAME - This is your app's name in Backand
+* `BACKAND_APP_NAME` - This is your app's name in Backand
 
-* BACKAND_API_SIGNUP_TOKEN - This is your app's signup token. It is available in the 'Security & Auth -> Social & Keys' section.
+* `BACKAND_API_SIGNUP_TOKEN` - This is your app's signup token. It is available in the **Security & Auth -> Social & Keys** section.
 
-* BACKAND_ANONYMOUS_ACCESS_TOKEN - This is your app's anonymous access token. It is available in 'Security & Auth -> Configuration'.
+* `BACKAND_ANONYMOUS_ACCESS_TOKEN` - This is your app's anonymous access token. It is available in **Security & Auth -> Configuration**.
 
 Once these changes have been made, you'll need to update your application's code settings
 
 ### Code Settings
 
-Next, we'll update the app's Code Settings to import the Backand SDK. In 'Code Settings', under the 'External JS' tab, add these two script URLs:
+Next, we'll update the app's Code Settings to import the Backand SDK. In **Code Settings**, under the **External JS** tab, add these two script URLs:
 
 ```html
 https://cdn.backand.net/vanilla-sdk/1.1.0/backand.js
@@ -628,7 +628,7 @@ Once you've finished, the  External JS tab will have the following content:
 <script src='js/bkndconfig.js'></script>
 ```
 
-Next, under 'Angular Modules', add 'backand' and 'app.config'. The end result will have the following content:
+Next, under **Angular Modules**, add `backand` and `app.config`. The end result will have the following content:
 
 
 ```javascript
@@ -645,7 +645,7 @@ angular.module('app', [
 
 ### Working with the Backand provider
 
-Now that the external code has been configured, you can start working with the Backand provider in your service class. For example, you can use the following code to pull rows from an 'items' object in a Backand application:
+Now that the external code has been configured, you can start working with the Backand provider in your service class. For example, you can use the following code to pull rows from an `items` object in a Backand application:
 
 
 ```javascript
@@ -665,7 +665,7 @@ Next, we'll add this function call into a page for display.
 
 ### Updating the Page Controller
 
-To access this data, we'll update the page controller to call our ItemsModel and return the relevant rows. To do so, use the following JavaScript to define a getAll() function and store the results in $scope:
+To access this data, we'll update the page controller to call our `ItemsModel` and return the relevant rows. To do so, use the following JavaScript to define a `getAll()` function and store the results in `$scope`:
 
 ```javascript
 $scope.getAll = function() {
@@ -679,18 +679,18 @@ $scope.getAll = function() {
 $scope.getAll();
 ```
 
-Now, we'll need to update the page's design to display the new information. To  show a list of all the items you've obtained:
+Now, we'll need to update the page's design to display the new information. To show a list of all the items you've obtained:
 
-* Drag a 'List Item' element onto your UI
+* Drag a **List Item** element onto your UI
 
-* In the page list pane (upper left hand corner), click on 'List'
+* In the page list pane (upper left hand corner), click on **List**
 
-* On the right side of the pane, click on 'Angular Directives' and add a new directive with the following details:
+* On the right side of the pane, click on **Angular Directives** and add a new directive with the following details:
 
     * Directive: ng-repeat
     * Value: object in data
 
-* Finally, click on the 'list-item' element and change the content to `{{object.name}}`
+* Finally, click on the **list-item** element and change the content to `{{object.name}}`
 
 And with that, your Ionic Creator app is now connected to Backand!
 
