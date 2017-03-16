@@ -4794,7 +4794,7 @@ You can use this feature to rollback, if needed.</p>
 
 <h3 id="configuring-the-connection-to-backand">Configuring the connection to Backand</h3>
 
-<p>To Enable Back with, you’ll need to update your Ionic Creator app’s &lsquo;Other JS&rsquo; section to include a new file name - bkndconfig.js. In this file, replace the entire contents with the following code:</p>
+<p>To Enable Back with, you’ll need to update your Ionic Creator app’s <strong>Other JS</strong> section to include a new file name - bkndconfig.js. In this file, replace the entire contents with the following code:</p>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'app.config'</span><span class="p">,</span> <span class="p">[])</span>
 <span class="c1">// remember to add 'app.config' to your angular modules in Code Settings</span>
 
@@ -4809,16 +4809,16 @@ You can use this feature to rollback, if needed.</p>
 <p>Once the code has been modified, replace the values above with the appropriate values from your Backand application:</p>
 
 <ul>
-<li><p>BACKAND_APP_NAME - This is your app&rsquo;s name in Backand</p></li>
-<li><p>BACKAND_API_SIGNUP_TOKEN - This is your app&rsquo;s signup token. It is available in the &lsquo;Security &amp; Auth -&gt; Social &amp; Keys&rsquo; section.</p></li>
-<li><p>BACKAND_ANONYMOUS_ACCESS_TOKEN - This is your app&rsquo;s anonymous access token. It is available in &lsquo;Security &amp; Auth -&gt; Configuration&rsquo;.</p></li>
+<li><p><code class="prettyprint">BACKAND_APP_NAME</code> - This is your app&rsquo;s name in Backand</p></li>
+<li><p><code class="prettyprint">BACKAND_API_SIGNUP_TOKEN</code> - This is your app&rsquo;s signup token. It is available in the <strong>Security &amp; Auth -&gt; Social &amp; Keys</strong> section.</p></li>
+<li><p><code class="prettyprint">BACKAND_ANONYMOUS_ACCESS_TOKEN</code> - This is your app&rsquo;s anonymous access token. It is available in <strong>Security &amp; Auth -&gt; Configuration</strong>.</p></li>
 </ul>
 
 <p>Once these changes have been made, you&rsquo;ll need to update your application&rsquo;s code settings</p>
 
 <h3 id="code-settings">Code Settings</h3>
 
-<p>Next, we&rsquo;ll update the app&rsquo;s Code Settings to import the Backand SDK. In &lsquo;Code Settings&rsquo;, under the &lsquo;External JS&rsquo; tab, add these two script URLs:</p>
+<p>Next, we&rsquo;ll update the app&rsquo;s Code Settings to import the Backand SDK. In <strong>Code Settings</strong>, under the <strong>External JS</strong> tab, add these two script URLs:</p>
 <pre class="highlight html tab-html"><code>https://cdn.backand.net/vanilla-sdk/1.1.0/backand.js
 https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js
 </code></pre>
@@ -4829,7 +4829,7 @@ https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'js/services.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'js/bkndconfig.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
-<p>Next, under &lsquo;Angular Modules&rsquo;, add &lsquo;backand&rsquo; and &lsquo;app.config&rsquo;. The end result will have the following content:</p>
+<p>Next, under <strong>Angular Modules</strong>, add <code class="prettyprint">backand</code> and <code class="prettyprint">app.config</code>. The end result will have the following content:</p>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'app'</span><span class="p">,</span> <span class="p">[</span>
 <span class="s1">'ionic'</span><span class="p">,</span>
 <span class="s1">'app.controllers'</span><span class="p">,</span>
@@ -4842,7 +4842,7 @@ https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js
 </code></pre>
 <h3 id="working-with-the-backand-provider">Working with the Backand provider</h3>
 
-<p>Now that the external code has been configured, you can start working with the Backand provider in your service class. For example, you can use the following code to pull rows from an &lsquo;items&rsquo; object in a Backand application:</p>
+<p>Now that the external code has been configured, you can start working with the Backand provider in your service class. For example, you can use the following code to pull rows from an <code class="prettyprint">items</code> object in a Backand application:</p>
 <pre class="highlight javascript tab-javascript"><code><span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'ItemsModel'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Backand</span><span class="p">){</span>
 
     <span class="kd">var</span> <span class="nx">service</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
@@ -4858,7 +4858,7 @@ https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js
 
 <h3 id="updating-the-page-controller">Updating the Page Controller</h3>
 
-<p>To access this data, we&rsquo;ll update the page controller to call our ItemsModel and return the relevant rows. To do so, use the following JavaScript to define a getAll() function and store the results in $scope:</p>
+<p>To access this data, we&rsquo;ll update the page controller to call our <code class="prettyprint">ItemsModel</code> and return the relevant rows. To do so, use the following JavaScript to define a <code class="prettyprint">getAll()</code> function and store the results in <code class="prettyprint">$scope</code>:</p>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">$scope</span><span class="p">.</span><span class="nx">getAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">ItemsModel</span><span class="p">.</span><span class="nx">all</span><span class="p">()</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
@@ -4869,18 +4869,18 @@ https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js
 
 <span class="nx">$scope</span><span class="p">.</span><span class="nx">getAll</span><span class="p">();</span>
 </code></pre>
-<p>Now, we&rsquo;ll need to update the page&rsquo;s design to display the new information. To  show a list of all the items you&rsquo;ve obtained:</p>
+<p>Now, we&rsquo;ll need to update the page&rsquo;s design to display the new information. To show a list of all the items you&rsquo;ve obtained:</p>
 
 <ul>
-<li><p>Drag a &lsquo;List Item&rsquo; element onto your UI</p></li>
-<li><p>In the page list pane (upper left hand corner), click on &lsquo;List&rsquo;</p></li>
-<li><p>On the right side of the pane, click on &lsquo;Angular Directives&rsquo; and add a new directive with the following details:</p>
+<li><p>Drag a <strong>List Item</strong> element onto your UI</p></li>
+<li><p>In the page list pane (upper left hand corner), click on <strong>List</strong></p></li>
+<li><p>On the right side of the pane, click on <strong>Angular Directives</strong> and add a new directive with the following details:</p>
 
 <ul>
 <li>Directive: ng-repeat</li>
 <li>Value: object in data</li>
 </ul></li>
-<li><p>Finally, click on the &lsquo;list-item&rsquo; element and change the content to <code class="prettyprint">{{object.name}}</code></p></li>
+<li><p>Finally, click on the <strong>list-item</strong> element and change the content to <code class="prettyprint">{{object.name}}</code></p></li>
 </ul>
 
 <p>And with that, your Ionic Creator app is now connected to Backand!</p>
