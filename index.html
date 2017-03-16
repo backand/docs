@@ -6350,6 +6350,10 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 <h3 id="customizing-the-bots-code-in-a-backand-action">Customizing the Bot&rsquo;s Code in a Backand Action</h3>
 
 <h4 id="receive-messages"><em>Receive Messages</em></h4>
+
+<blockquote>
+<p>Code to receive messages from Facebook</p>
+</blockquote>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="k">if</span> <span class="p">(</span><span class="nx">request</span><span class="p">.</span><span class="nx">method</span> <span class="o">==</span> <span class="s2">"POST"</span><span class="p">){</span>
 
     <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">request</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
@@ -6387,56 +6391,54 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 <blockquote>
 <p>Sending a message to the user</p>
 </blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="kd">function</span> <span class="nx">receivedMessage</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
 
-<p>&ldquo;`javascript&ndash; persistent
-function receivedMessage(event) {</p>
+    <span class="kd">var</span> <span class="nx">senderID</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">sender</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">recipientID</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">recipient</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">timeOfMessage</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">timestamp</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
 
-<p>var senderID = event.sender.id;
-    var recipientID = event.recipient.id;
-    var timeOfMessage = event.timestamp;
-    var message = event.message;</p>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Received message for user"</span> <span class="o">+</span> <span class="nx">senderID</span> <span class="o">+</span> <span class="s2">" and page "</span> <span class="o">+</span> <span class="nx">recipientID</span> <span class="o">+</span> <span class="s2">" at "</span> <span class="o">+</span> <span class="nx">timeOfMessage</span> <span class="o">+</span> <span class="s2">" with message"</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">message</span><span class="p">));</span>
 
-<p>console.log(&quot;Received message for user&rdquo; + senderID + &ldquo; and page &rdquo; + recipientID + &ldquo; at &rdquo; + timeOfMessage + &ldquo; with message&rdquo;);
-    console.log(JSON.stringify(message));</p>
+    <span class="kd">var</span> <span class="nx">messageId</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">mid</span><span class="p">;</span>
 
-<p>var messageId = message.mid;</p>
+    <span class="c1">// You may get a text or attachment but not both</span>
+    <span class="kd">var</span> <span class="nx">messageText</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">text</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">messageAttachments</span> <span class="o">=</span> <span class="nx">message</span><span class="p">.</span><span class="nx">attachments</span><span class="p">;</span>
 
-<p>// You may get a text or attachment but not both
-    var messageText = message.text;
-    var messageAttachments = message.attachments;</p>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">messageText</span><span class="p">)</span> <span class="p">{</span>
 
-<p>if (messageText) {</p>
+    <span class="c1">// If we receive a text message, check to see if it matches any special</span>
+    <span class="c1">// keywords and send back the corresponding example. Otherwise, just echo</span>
+    <span class="c1">// the text we received.</span>
+    <span class="k">switch</span> <span class="p">(</span><span class="nx">messageText</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">case</span> <span class="s1">'image'</span><span class="p">:</span>
+            <span class="c1">//sendImageMessage(senderID);</span>
+            <span class="k">break</span><span class="p">;</span>
 
-<p>// If we receive a text message, check to see if it matches any special
-    // keywords and send back the corresponding example. Otherwise, just echo
-    // the text we received.
-    switch (messageText) {
-          case &lsquo;image&rsquo;:
-            //sendImageMessage(senderID);
-            break;</p>
+          <span class="k">case</span> <span class="s1">'button'</span><span class="p">:</span>
+            <span class="c1">//sendButtonMessage(senderID);</span>
+            <span class="k">break</span><span class="p">;</span>
 
-<p>case &lsquo;button&rsquo;:
-            //sendButtonMessage(senderID);
-            break;</p>
+          <span class="k">case</span> <span class="s1">'backand'</span><span class="p">:</span>
+          <span class="k">case</span> <span class="s1">'Backand'</span><span class="p">:</span>
+            <span class="nx">sendGenericMessage</span><span class="p">(</span><span class="nx">senderID</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
 
-<p>case &lsquo;backand&rsquo;:
-          case &lsquo;Backand&rsquo;:
-            sendGenericMessage(senderID);
-            break;</p>
+          <span class="k">case</span> <span class="s1">'receipt'</span><span class="p">:</span>
+            <span class="c1">//sendReceiptMessage(senderID);</span>
+            <span class="k">break</span><span class="p">;</span>
 
-<p>case &lsquo;receipt&rsquo;:
-            //sendReceiptMessage(senderID);
-            break;</p>
-
-<p>default:
-            sendTextMessage(senderID, messageText);
-        }
-    } else if (messageAttachments) {
-        sendTextMessage(senderID, &ldquo;Message with attachment received&rdquo;);
-    }
-};
-&ldquo;`
-In receivedMessage, we&rsquo;ve added logic that can send a message back to the user. The default behavior is to echo back the text that was received, with some static modifications (&lsquo;Back&amp; bot says&rsquo;&hellip;)</p>
+          <span class="nl">default</span><span class="p">:</span>
+            <span class="nx">sendTextMessage</span><span class="p">(</span><span class="nx">senderID</span><span class="p">,</span> <span class="nx">messageText</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">messageAttachments</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">sendTextMessage</span><span class="p">(</span><span class="nx">senderID</span><span class="p">,</span> <span class="s2">"Message with attachment received"</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
+<p>In receivedMessage, we&rsquo;ve added logic that can send a message back to the user. The default behavior is to echo back the text that was received, with some static modifications (&lsquo;Back&amp; bot says&rsquo;&hellip;)</p>
 
 <blockquote>
 <p><code class="prettyprint">sendTextMessage</code> formats the message to be sent to Facebook, then calls the appropriate API endpoint:</p>
@@ -6457,7 +6459,7 @@ In receivedMessage, we&rsquo;ve added logic that can send a message back to the 
 <blockquote>
 <p><code class="prettyprint">callSendAPI</code> calls the Send API to send the message back to the user:</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">callSendAPI</span><span class="p">(</span><span class="nx">messageData</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="kd">function</span> <span class="nx">callSendAPI</span><span class="p">(</span><span class="nx">messageData</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">try</span><span class="p">{</span>
 
         <span class="kd">var</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">({</span>
@@ -6614,7 +6616,7 @@ In receivedMessage, we&rsquo;ve added logic that can send a message back to the 
     <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
-<p>We have created an action template that will give you jump start with salesforceIQ. You can either trigger this action from an object&rsquo;s database transaction event actions, or create a new on-demand action that you can call from your app&rsquo;s client code. The sample JavaScript is provided by the template action, which is available as &quot;SalesforceIQ&rdquo; in the &ldquo;CRM &amp; ERP&rdquo; section of action templates.:</p>
+<p>We have created an action template that will give you jump start with salesforceIQ. You can either trigger this action from an object&rsquo;s database transaction event actions, or create a new on-demand action that you can call from your app&rsquo;s client code. The sample JavaScript is provided by the template action, which is available as &ldquo;SalesforceIQ&rdquo; in the &ldquo;CRM &amp; ERP&rdquo; section of action templates.:</p>
 
 <p>This code provides you with all of the basic tools you need to get connected to the SalesforceIQ API. It takes in your SalesforceIQ API Key and API Secret, and performs a call to the &ldquo;/accounts&rdquo; endpoint to fetch accounts.</p>
 
