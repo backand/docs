@@ -5709,10 +5709,10 @@ You can use the following JSON mode:</p>
 
 <h3 id="send-email-with-sendgrid-api">Send Email with SendGrid API</h3>
 
-<p>SendGrid has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate SendGrid with Backand.</p>
-
-<p>To send an email with SendGrid, you need to create a server side action. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions <a href="http://docs.backand.com/en/latest/apidocs/customactions/index.html">here</a>. Name the action SendGrid, add &lsquo;to&rsquo;&lsquo; and &#39;message&rsquo; to the Input Parameters (like that: to, message ), and paste the following code in the code editor. When finished, the code editor window will contain the following:</p>
-<pre class="highlight javascript tab-javascript"><code><span class="cm">/* globals
+<blockquote>
+<p>Server-Side Code</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="cm">/* globals
   $http - Service for AJAX calls
   CONSTS - CONSTS.apiUrl for Backands API URL
   Config - Global Configuration
@@ -5739,10 +5739,16 @@ You can use the following JSON mode:</p>
      <span class="k">return</span> <span class="nx">res</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
+<p>SendGrid has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate SendGrid with Backand.</p>
+
+<p>To send an email with SendGrid, you need to create a server side action. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions <a href="#custom-actions">here</a>. Name the action <code class="prettyprint">SendGrid</code>, add <code class="prettyprint">to</code> and <code class="prettyprint">message</code> to the Input Parameters (like that: to, message ), and paste the server-side code into the code editor.</p>
+
 <p>In the example app we&rsquo;re building, the app&rsquo;s users can send messages to an email sent by the client side in the &lsquo;to&rsquo; parameter.  Make sure to replace the &lsquo;Authorization&rsquo; header above with your SendGrid API key (after you register with SendGrid you should waite for your account to be provisioned and than you&rsquo;ll see the API KEY under Settings/ API Keys).</p>
 
-<p>Next, add the following JavaScript code to your app&rsquo;s client-side code base:</p>
-<pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">$http</span> <span class="p">({</span>
+<blockquote>
+<p>Client-Side code</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="k">return</span> <span class="nx">$http</span> <span class="p">({</span>
   <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
   <span class="na">url</span><span class="p">:</span> <span class="nx">Backand</span><span class="p">.</span><span class="nx">getApiUrl</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'/1/objects/action/&lt;your object name&gt;'</span><span class="p">,</span>
   <span class="na">params</span><span class="p">:</span> <span class="p">{</span>
@@ -5755,7 +5761,7 @@ You can use the following JSON mode:</p>
 <span class="p">});</span>
 
 </code></pre>
-<p>Replace <your object name> with the object associated with the action you created and <your destination email> .</p>
+<p>Next, add the client-side JavaScript code to your app&rsquo;s code base. Replace <code class="prettyprint">&lt;your object name&gt;</code> with the object associated with the action you created and <code class="prettyprint">&lt;your destination email&gt;</code> with the target recipient.</p>
 
 <p>Once this is done, you&rsquo;ll be able to easily trigger emails via SendGrid using Backand&rsquo;s custom action API.</p>
 
@@ -5775,10 +5781,10 @@ You can use the following JSON mode:</p>
 
 <h3 id="server-side-action">Server-side Action</h3>
 
-<p>We&rsquo;ll begin the application by adding a custom server-side action. This action will execute JavaScript that implements a 2 stage process. It performs the payment API call, and then the Approval API call. Each step uses an access token obtained from PayPal&rsquo;s oauth2/token call. To save a call to the oauth endpoint for an extra token, we&rsquo;ll cache the oauth token in a server side cookie (although if the cookie expires, you&rsquo;ll need to refresh the token from the oauth2/token endpoint. See the try-catch block below). The first stage prepares the payment and returns a url for redirecting the user to PayPal site. The second stage occurs after the user has acknowledged the payment and been brought back to your application, at which point you call the Approval API to complete the payment. THe code example below is a server-side action that implements all of the functionality necessary to register an Express Checkout payment with PayPal.</p>
-
-<p>Please note: Don&rsquo;t forget to change the PayPal credentials in the code below. These credentials represent your association with PayPal, and must be correct in order for your customer&rsquo;s funds to be correctly routed. To obtain these credentials, you can <a href="https://developer.paypal.com/developer/accounts/">create a PayPal sandbox account</a>. Note that you will first need to register for PayPal if you have not already done so.</p>
-<pre class="highlight javascript tab-javascript"><code>
+<blockquote>
+<p>Server-side Action Code</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code>
    <span class="kd">var</span> <span class="nx">paypalUrl</span> <span class="o">=</span> <span class="s1">'https://api.sandbox.paypal.com/'</span><span class="p">;</span>
 
    <span class="c1">// PayPal has a 2 stage process where: // the first stage prepares the payment and a returns a url for the user to pay</span>
@@ -5891,11 +5897,17 @@ You can use the following JSON mode:</p>
    <span class="p">}</span>
 
 </code></pre>
-<p>The above code takes the payment stage information in parameters.process, and executes the approprite PayPal API call. In the first stage, when directing the user to PayPal to confirm the payment, parameters.process will contain &ldquo;Payment&rdquo;. This results in the function postPayment being called, which sends a POST command to PayPal with the payment information, along with a URL to redirect to when the user either accepts or cancels the payment. In the second payment stage, when contacting the Approval API to complete the payment, parameters.process will contain &ldquo;Approval&rdquo;. This will result in the code calling postApproval, which issues a POST call to PayPal using the PayerID and PaymentID stored in the query string of the return URL. This function will return a PayPal payment object including all of the relevant payment details and the payment status.</p>
+<p>We&rsquo;ll begin the application by adding a custom server-side action. This action will execute JavaScript that implements a 2 stage process. It performs the payment API call, and then the Approval API call. Each step uses an access token obtained from PayPal&rsquo;s OAuth2/token call. To save a call to the OAuth endpoint for an extra token, we&rsquo;ll cache the OAuth token in a server side cookie (although if the cookie expires, you&rsquo;ll need to refresh the token from the OAuth2/token endpoint. See the try-catch block). The first stage prepares the payment and returns a url for redirecting the user to PayPal site. The second stage occurs after the user has acknowledged the payment and been brought back to your application, at which point you call the Approval API to complete the payment. The code example  is a server-side action that implements all of the functionality necessary to register an Express Checkout payment with PayPal.</p>
+
+<aside class="notice">Please note: Don&rsquo;t forget to change the PayPal credentials in the code below. These credentials represent your association with PayPal, and must be correct in order for your customer&rsquo;s funds to be correctly routed. To obtain these credentials, you can <a href="https://developer.paypal.com/developer/accounts/">create a PayPal sandbox account</a>. Note that you will first need to register for PayPal if you have not already done so.</aside>
+
+<p>The code takes the payment stage information in <code class="prettyprint">parameters.process</code>, and executes the appropriate PayPal API call. In the first stage, when directing the user to PayPal to confirm the payment, <code class="prettyprint">parameters.process</code> will contain &ldquo;Payment&rdquo;. This results in the function <code class="prettyprint">postPayment</code> being called, which sends a <code class="prettyprint">POST</code> command to PayPal with the payment information, along with a URL to redirect to when the user either accepts or cancels the payment. In the second payment stage, when contacting the Approval API to complete the payment, <code class="prettyprint">parameters.process</code> will contain &ldquo;Approval&rdquo;. This will result in the code calling <code class="prettyprint">postApproval</code>, which issues a <code class="prettyprint">POST</code> call to PayPal using the <code class="prettyprint">PayerID</code> and <code class="prettyprint">PaymentID</code> stored in the query string of the return URL. This function will return a PayPal payment object including all of the relevant payment details and the payment status.</p>
 
 <h3 id="client-side-integration">Client-side Integration</h3>
 
-<p>Once you&rsquo;ve got the server-side action, you are just about ready to start accepting payments. The code below performs two tasks. It first calls a service to prepare the payment (the Payment API in PayPal), which returns a URL to which the user is redirected.</p>
+<blockquote>
+<p>Client-side prepare payment code.</p>
+</blockquote>
 <pre class="highlight javascript tab-javascript"><code>      <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
         <span class="nx">self</span><span class="p">.</span><span class="nx">charge</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -5921,25 +5933,33 @@ You can use the following JSON mode:</p>
             <span class="p">});</span>
         <span class="p">}</span>
 </code></pre>
-<p>Once the user has accepted or cenceled the payment, PayPal redirects them back to the URL that was provided to the server-side action. In this example, we use the same page by checking the query string parameter paymentid. This allows the code to detect which stage of the payment process we are at.</p>
-<pre class="highlight javascript tab-javascript"><code>        <span class="c1">//check if this is a redirect from PayPal , after the user approves the payment</span>
-        <span class="c1">// PayPal adds PayerID and  paymentId to the return url we give them</span>
+<p>Once you&rsquo;ve got the server-side action, you are just about ready to start accepting payments. The code to the right performs two tasks. It first calls a service to prepare the payment (the Payment API in PayPal), which returns a URL to which the user is redirected.</p>
 
-        <span class="k">if</span> <span class="p">(</span><span class="nx">$location</span><span class="p">.</span><span class="nx">search</span><span class="p">().</span><span class="nx">PayerID</span> <span class="o">&amp;&amp;</span> <span class="nx">$location</span><span class="p">.</span><span class="nx">search</span><span class="p">().</span><span class="nx">paymentId</span><span class="p">)</span> <span class="p">{</span>
+<blockquote>
+<p>Client-side finalize payment code</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code>      <span class="c1">//check if this is a redirect from PayPal , after the user approves the payment</span>
+      <span class="c1">// PayPal adds PayerID and  paymentId to the return url we give them</span>
 
-          <span class="c1">//Call Backand action to approve the payment by the facilitator</span>
-          <span class="nx">BackandService</span><span class="p">.</span><span class="nx">makePayPalApproval</span><span class="p">(</span><span class="nx">$location</span><span class="p">.</span><span class="nx">search</span><span class="p">().</span><span class="nx">PayerID</span><span class="p">,</span> <span class="nx">$location</span><span class="p">.</span><span class="nx">search</span><span class="p">().</span><span class="nx">paymentId</span><span class="p">)</span>
-            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">payment</span><span class="p">)</span> <span class="p">{</span>
-              <span class="c1">// remove PayPal query string from url</span>
-              <span class="nx">$location</span><span class="p">.</span><span class="nx">url</span><span class="p">(</span><span class="nx">$location</span><span class="p">.</span><span class="nx">path</span><span class="p">());</span>
-              <span class="nx">self</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="s1">'successfully submitted payment for $'</span> <span class="o">+</span> <span class="nx">payment</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">transactions</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">amount</span><span class="p">.</span><span class="nx">total</span><span class="p">;</span>
-            <span class="p">}</span>
-          <span class="p">)</span>
-      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">$location</span><span class="p">.</span><span class="nx">search</span><span class="p">().</span><span class="nx">PayerID</span> <span class="o">&amp;&amp;</span> <span class="nx">$location</span><span class="p">.</span><span class="nx">search</span><span class="p">().</span><span class="nx">paymentId</span><span class="p">)</span> <span class="p">{</span>
+
+        <span class="c1">//Call Backand action to approve the payment by the facilitator</span>
+        <span class="nx">BackandService</span><span class="p">.</span><span class="nx">makePayPalApproval</span><span class="p">(</span><span class="nx">$location</span><span class="p">.</span><span class="nx">search</span><span class="p">().</span><span class="nx">PayerID</span><span class="p">,</span> <span class="nx">$location</span><span class="p">.</span><span class="nx">search</span><span class="p">().</span><span class="nx">paymentId</span><span class="p">)</span>
+          <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">payment</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// remove PayPal query string from url</span>
+            <span class="nx">$location</span><span class="p">.</span><span class="nx">url</span><span class="p">(</span><span class="nx">$location</span><span class="p">.</span><span class="nx">path</span><span class="p">());</span>
+            <span class="nx">self</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="s1">'successfully submitted payment for $'</span> <span class="o">+</span> <span class="nx">payment</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">transactions</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">amount</span><span class="p">.</span><span class="nx">total</span><span class="p">;</span>
+          <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
 </code></pre>
-<p>Once this code has been added to your project, we need to implement the service that calls Backand&rsquo;s server side payment action. This service wraps a HTTP request to the on-demand custom action that we created earlier in the tutorial. It assumes the action name is &lsquo;PayPalPayment&rsquo;, so be sure to change it as appropriate to match your actual implementation:</p>
-<pre class="highlight javascript tab-javascript"><code><span class="o">/</span><span class="nx">Call</span> <span class="nx">PayPalPayment</span> <span class="nx">on</span> <span class="nx">demand</span> <span class="nx">action</span>
-    <span class="nx">factory</span><span class="p">.</span><span class="nx">makePayPalPayment</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
+<p>Once the user has accepted or canceled the payment, PayPal redirects them back to the URL that was provided to the server-side action. In this example, we use the same page by checking the query string parameter <code class="prettyprint">paymentid</code>. This allows the code to detect which stage of the payment process we are at.</p>
+
+<blockquote>
+<p>Client-side code to contact custom actions for paypal</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code>  <span class="c1">//Call PayPalPayment on demand action</span>
+  <span class="nx">factory</span><span class="p">.</span><span class="nx">makePayPalPayment</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
 
       <span class="k">return</span> <span class="nx">$http</span><span class="p">({</span>
         <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
@@ -5970,7 +5990,7 @@ You can use the following JSON mode:</p>
       <span class="p">});</span>
     <span class="p">};</span>
 </code></pre>
-<p>And with that, we&rsquo;ve added the basic code necessary to contact PayPal and record a payment.</p>
+<p>Once this code has been added to your project, we need to implement the service that calls Backand&rsquo;s server side payment action. This service wraps a HTTP request to the on-demand custom action that we created earlier in the tutorial. It assumes the action name is <code class="prettyprint">PayPalPayment</code>, so be sure to change it as appropriate to match your actual implementation. With that, we&rsquo;ve added the basic code necessary to contact PayPal and record a payment.</p>
 
 <h3 id="conclusion">Conclusion</h3>
 
