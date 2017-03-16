@@ -642,11 +642,9 @@ Simply replace `OBJECT_NAME` with the name of the object controlling your action
 Mailgun is an email automation service provided by Rackspace. It offers a complete cloud-based email service for sending, receiving, and tracking email messages sent by your registered websites and applications.
 
 ### Send Email with Mailgun API
-Mailgun provides an API that can be used to easily send email, among many other features. By translating Mailgun's provided cURL examples to JavaScript $http calls, you can easily integrate Mailgun with Backand.
+> Server-side Action
 
-To send an email with Mailgun, you need to create a server side action.You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](#custom-actions). Name the action ,ao;gim, add message and name to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
-
-```javascript
+```javascript--persistent
 /* globals
   $http - service for AJAX calls - $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/yourObject" , headers: {"Authorization":userProfile.token}});
   CONSTS - CONSTS.apiUrl for Backand's API URL
@@ -684,11 +682,12 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 	return {};
 }
 ```
-in this example the app user can send any message that he wants to himself. Please replace the "apiKey" property, as well as the sandbox URL, with your associated mailgun values.
+Mailgun provides an API that can be used to easily send email, among many other features. By translating Mailgun's provided cURL examples to JavaScript $http calls, you can easily integrate Mailgun with Backand.
 
-Next, add the following JavaScript code to your app's client-side code base:
+To send an email with Mailgun, you need to create a server side action.You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](#custom-actions). Name the action `mailgun`, add `message` and `name` to the Input Parameters, and paste the code on the right in the code editor. In this example the app user can send any message that he wants to himself. Please replace the "apiKey" property, as well as the sandbox URL, with your associated mailgun values.
+> Client-side code
 
-```javascript
+```javascript--persistent
 return $http ({
   method: 'GET',
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>/1',
@@ -702,7 +701,8 @@ return $http ({
 });
 
 ```
-Replace <your object name> with the object associated with the action you created, and you are ready to send messages via Mailgun!
+
+Next, add the client-side JavaScript code to your app's code base. Replace `<your object name>` with the object associated with the action you created, and you are ready to send messages via Mailgun!
 
 ## SendGrid
 SendGrid is a cloud-based SMTP provider that allows you to send email without having to maintain email servers. SendGrid manages all of the technical details, from scaling the infrastructure to ISP outreach and reputation monitoring to whitelist services and real time analytics.
