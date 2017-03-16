@@ -495,6 +495,7 @@ Mandrill is an email infrastructure service that focuses on transactional emails
 
 ### Send Email with Mandrill API (No Attachment)
 Mandrill has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate Mandrill with Backand.
+
 ```javascript--persistent
 /* globals
   $http - Service for AJAX calls
