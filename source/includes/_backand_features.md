@@ -605,7 +605,7 @@ The function parameters are:
 * `userProfile`: This parameter stores the current username, the user's role, and the access token used by the user to perform the action. It is of the format {"username": "string", "role": "string", "token": "string"}.
 * `CONSTS`: Primarily used to obtain the API URL from `CONSTS.apiUrl`
 * `config`: Global configuration. You can maintain a global JSON configuration for your app. Your JSON configuration is consumed in the Config action. To update the configuration JSON, go to section `General` in the `Settings` menu on the Backand dashboard.
-* `socket`: `socket` is an object that allows you to send real-time communication events and data to the client. `socket` has 3 methods: `emitUsers`, `emitRole`, and `emitAll`. Refer back to our documentation on[Realtime Database Communication here](#realtime-database-communications) for more information.
+* `socket`: `socket` is an object that allows you to send real-time communication events and data to the client. `socket` has 3 methods: `emitUsers`, `emitRole`, and `emitAll`. Refer back to our documentation on [Realtime Database Communication here](#realtime-database-communications) for more information.
 
 #### Making HTTP Requests from a custom action
 ```javascript
