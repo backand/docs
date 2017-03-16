@@ -1587,22 +1587,21 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 }
 ```
 
-We have created an action template that will give you jump start with salesforceIQ. You can either trigger this action from an object's database transaction event actions, or create a new on-demand action that you can call from your app's client code. The sample JavaScript is provided by the template action, which is available as "SalesforceIQ" in the "CRM & ERP" section of action templates.:
+We have created an action template that will give you jump start with salesforceIQ. You can either trigger this action from an object's database transaction event actions, or create a new on-demand action that you can call from your app's client code. The sample JavaScript is provided by the template action, which is available as **SalesforceIQ** in the **CRM & ERP** section of action templates.
 
-This code provides you with all of the basic tools you need to get connected to the SalesforceIQ API. It takes in your SalesforceIQ API Key and API Secret, and performs a call to the "/accounts" endpoint to fetch accounts.
+This code provides you with all of the basic tools you need to get connected to the SalesforceIQ API. It takes in your SalesforceIQ API Key and API Secret, and performs a call to the `/accounts` endpoint to fetch accounts.
 
 ### Connecting this action to your SalesforceIQ account
 To connect to SalesforceIQ, you'll first need to register for an account if you haven't done so. Once you've signed up, follow these steps to obtain your API Key and API Secret:
 
 1. Open Settings under the gear icon
-2. Open the 'Integration' tab under 'My Account Settings'
-3. Under 'Create New Custom Integration,' click 'Custom'
-4. Set the name to 'Backand API,' and provide a description
-5. Copy the 'API Key' and 'API Secret' from the integration page into the JavaScript Action code
-6. Click 'Save'
+2. Open the **Integration** tab under **My Account Settings**
+3. Under **Create New Custom Integration**, click **Custom**
+4. Set the name to **Backand API**, and provide a description
+5. Copy the **API Key** and **API Secret** from the integration page into the JavaScript Action code
+6. Click **Save**
 
 When this is completed, you should now be able to access all of your SalesforceIQ accounts from the custom JavaScript action.
-
 
 ### Setup client-side code:
 ```javascript--persistent
@@ -1615,9 +1614,7 @@ return $http ({
 
 ```
 
-Once you've configured the action to connect to SalesforceIQ, you'll need to call the action from your client-side code. To do so, use the following JavaScript to construct a GET request and trigger your SalesforceIQ action:
-
-Simply replace 'your object name' with the object that contains your SalesforceIQ custom action, and replace 'your action name' with the name of the action that you provided while creating the integration.
+Once you've configured the action to connect to SalesforceIQ, you'll need to call the action from your client-side code. To do so, use the JavaScript to the right to construct a GET request and trigger your SalesforceIQ action. Simply replace `<your object name>` with the object that contains your SalesforceIQ custom action, and replace `<your action name>` with the name of the action that you provided while creating the integration.
 
 With these changes, you're now able to pull in any and all SalesforceIQ accounts available via their API! You can use a similar pattern to construct additional calls to the SalesforceIQ API - simply replace the URL and parameters in the custom SalesforceIQ action with the URL and parameters for the object you want to retrieve.
 
@@ -1694,7 +1691,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 ```
 
 We have created an action template that will give you jump start with salesforceCRM. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following is the content of the ready action template call
-"salesforce CRM" under the "CRM & ERP" section:
+**Salesforce CRM** under the **CRM & ERP** section:
 
 <aside class="notice">The above code fetches the access token every time you call the action. You can improve the performance of this call by caching the token into a Backand Server-Side Cookie, and only performing the retrieval when the token has expired.</aside>
 
@@ -1702,29 +1699,28 @@ We have created an action template that will give you jump start with salesforce
 Follow these steps to obtain your Salesforce CRM authentication information:
 
 1. Sign in to Salesforce CRM as a user with Admin rights
-2. Open Setup, found under the gear icon
-3. Open App Manager
-4. Click on 'New Connected App'
-5. Provide 'Connected App Name', 'API Name' and 'Contact Email'
-6. Check 'Enable OAuth Settings'
-  1. Check 'Enable for Device Flow'
-  2. Under 'Selected OAuth Scopes' select 'Full Access,' or any other permissions you need
-7. Click 'Save'
-8. Copy 'Consumer Key' into the client variable in the code
-9. Copy 'Consumer Secret' into the secret variable in the code
+2. Open **Setup**, found under the gear icon
+3. Open **App Manager**
+4. Click on **New Connected App**
+5. Provide **Connected App Name**, **API Name**, and **Contact Email**
+6. Check **Enable OAuth Settings**
+  1. Check **Enable for Device Flow**
+  2. Under **Selected OAuth Scopes**, select **Full Access** (or any other permissions you need)
+7. Click **Save**
+8. Copy **Consumer Key** into the client variable in the code
+9. Copy **Consumer Secret** into the secret variable in the code
 
 Once you've obtained the consumer key and the consumer secret, you'll need to enable server-side security in Salesforce. To do so, follow these steps:
 
-1. From App Manager, select your new App and Click 'Manage'
-2. Click 'Edit Polices'
-3. Change 'IP Relaxation' to 'Relax IP Restriction,' or add Backand's IP to your organization's IP restrictions
-4. Change 'Timeout Value' to 24 hours
-5. Click 'Save'
+1. From App Manager, select your new App and Click **Manage**
+2. Click **Edit Polices**
+3. Change **IP Relaxation** to **Relax IP Restriction**, or add Backand's IP to your organization's IP restrictions
+4. Change **Timeout Value** to 24 hours
+5. Click **Save**
 
 With that completed, you should now have full access to your CRM objects using the Salesforce REST API.
 
 ### Setup client-side code:
-
 ```javascript--persistent
 return $http ({
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>',
