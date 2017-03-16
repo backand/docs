@@ -1,5 +1,5 @@
 # Platform-specific SDKs
-This section covers our platform-specific SDKs. These SDKs are optimized for the named platform, and wrap the [Vanilla SDK](#sdk-documentation) to provide access to Backand.
+This section covers our platform-specific SDKs. These SDKs are optimized for the named platform, and wrap the [Vanilla SDK](http://docs.backand.com/#vanilla-sdk) to provide access to Backand.
 
 ## Angular - Ionic 1 SDK
 ### Overview
@@ -214,7 +214,7 @@ Below are a few examples of Redux code that uses the Back& SDK:
 ## Vue.js
 Vue.js is a progressive framework designed to provide an intuitive means by which a front-end developer can build their application. It is designed to be incrementally adaptable, allowing you to use it as often as you like, and provides a lightweight set of tools for adding dynamic functionality to a web app. By providing dynamic backing to the view model, you can easily make a Vue.js-based application into a large and feature-rich web app. In this post, we'll look at how we can use Backand's Vanilla SDK in a Vue.js-based application to provide the backing for that data service.
 
-Note: This example is also available on Codepen at http://codepen.io/backand/pen/ZLwwZg/?editors=1010
+Note: This example is also available on [Codepen](http://codepen.io/backand/pen/ZLwwZg/?editors=1010)
 
 ###Including and Initializing the SDK
 ```html
@@ -407,7 +407,7 @@ With the above code, you now have a simple data service that you can use to upda
 ## jQuery
 JQuery is the most widely-deployed JavaScript library. It provides a comprehensive set of responsive tools for dynamically working with an HTML page's DOM, and is responsible for establishing and guiding a lot of the patterns that are the standard in web development. In this article, we'll look at how you can integrate the Back& Vanilla SDK with an app built with JQuery.
 
-Note: The code for this article is available on CodePen at http://codepen.io/backand/pen/VPRpBN?editors=1010
+Note: The code for this article is available on [CodePen](http://codepen.io/backand/pen/VPRpBN?editors=1010)
 ### Including and Initializing the SDK
 ```html
 <!-- Include the Back& SDK -->

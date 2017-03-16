@@ -474,7 +474,7 @@ curl https://api.backand.com/1/objects/items
 This request is similar to fetching the entire list of items, which would be done as follows:
 
 
-You can also supply other query string parameters (such as paging, filtering, and sorting). See [List Collection Objects from a Collection Field for a Specific Object ID](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-collection-objects-from-a-collection-field-for-a-specific-object-id) for more details.
+You can also supply other query string parameters (such as paging, filtering, and sorting). See [the getList function](http://docs.backand.com/#getlist) for more details.
 
 Regarding which approach to use - lazy or deep loading - there is no clear answer. It will be dependent upon the individual programming situation. If you need to present all of the relevant data at once, then deep loading is the right approach. However, if the object has a large number of relations to pull down, it might make more sense to do a lazy load, then selectively load related objects as needed.
 
@@ -484,7 +484,7 @@ Regarding which approach to use - lazy or deep loading - there is no clear answe
 ```
 
 You can supply a query string parameter named 'filter' to filter your objects during fetch. This could be useful in
-developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see [NoSQL Query Language](../apidocs/nosql_query_language/NoSQL_Query_Language) for syntax), or with JSON containing a field name, an operator, and a value:
+developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see [NoSQL Query Language](http://docs.backand.com/?javascript#nosql-query-language) for syntax), or with JSON containing a field name, an operator, and a value:
 
 See [getting a list of objects](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for full details on filters.
 

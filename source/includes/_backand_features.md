@@ -745,7 +745,7 @@ Send Email actions, in addition to common parameters, allow you to also supply t
 ## Queries
 You can create and call your own custom queries in your application. You can use parameters as tokens that will be replaced with the actual parameter values, similar to how [custom actions](#custom-actions) work. You can create your own filters, sorting, and paging, as well as use aggregation to summarize information.
 
-Click [NOSQL Query Language](#nosql-query-language) for instruction on how to build queries with noSQL language or
+Click [NoSQL Query Language](#nosql-query-language) for instruction on how to build queries with noSQL language or
 use common MySQL syntax.
 
 ## NoSQL Query Language
