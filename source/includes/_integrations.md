@@ -1316,9 +1316,7 @@ Eventually, you'll want to get your bot approved for use by the public. You can 
 
 Finally, you can enhance your app's intelligence with an AI integration. Find out how to get started at [Wit.ai](https://wit.ai)!
 
-### Customizing the Bot's Code in a Backand Action
-
-#### *Receive Messages*
+### Customizing the Bot's Code to *Receive Messages*
 > Code to receive messages from Facebook
 
 ```javascript--persistent
@@ -1356,7 +1354,7 @@ if (request.method == "POST"){
 All callbacks and webhooks from Facebook will end up in your object's Facebook Action code. The JavaScript for this action is solely responsible for listening to the incoming `POST` calls, and responding appropriately. The template code handles all webhooks from Facebook by default. For example, receiving messages is handled by looking for the `messagingEvent.message` field in the webhook, and then calling the `receivedMessage()` function as seen to the right:
 
 
-#### *Send a Text Message*
+### Customizing the Bot's Code to *Send a Text Message*
 > Sending a message to the user
 
 ```javascript--persistent
@@ -1456,8 +1454,8 @@ function callSendAPI(messageData) {
 }
 ```
 
-#### *Send a Structured Message*
-> Sending a response
+### Customizing the Bot's Code to *Send a Structured Message*
+> Sending a structured response
 
 ```javascript--persistent
 function sendGenericMessage(recipientId) {
@@ -1510,9 +1508,8 @@ function sendGenericMessage(recipientId) {
 `receivedMessage` can also send back other kinds of messages if it sees certain keywords. For example, if you send the message 'backand', it will call `sendGenericMessage()` - a function that sends back a Structured Message with a generic template.
 
 
-#### *Handle Postbacks*
-
-> In our webhook handler, we handle the postback by calling the function 'receivedPostback()':
+### Customizing the Bot's Code to *Handle Postbacks*
+> In our webhook handler, we handle the postback by calling the function `receivedPostback():`
 
 ```javascript--persistent
 ....
