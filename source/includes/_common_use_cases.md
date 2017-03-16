@@ -486,15 +486,15 @@ Regarding which approach to use - lazy or deep loading - there is no clear answe
 You can supply a query string parameter named 'filter' to filter your objects during fetch. This could be useful in
 developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see [NoSQL Query Language](http://docs.backand.com/?javascript#nosql-query-language) for syntax), or with JSON containing a field name, an operator, and a value:
 
-See [getting a list of objects](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects) for full details on filters.
+See [the getList function](http://docs.backand.com/#getlist) for full details on filters.
 
 #### Predefined Filter
 
-Sometimes, for security reasons you may want to enforce partial reading of object data, usually based upon the current user or their role. This can be accomplished on the server-side using a Predefined Filter. Predefined Filters can be found in the Security tab of each object. They act as a SQL 'where' condition. Filters are combined using the 'AND' operator. You can write the filter using either a SQL statement or the NoSQL Query Language reading of partial data, usually depending on the current user or current user role. The option to force it from the server side is called Predefined Filter and you can find it at the Security tab of each object. The predefined filter acts as a SQL where statement condition. If you add additional filter that were described above then they will be added with an "AND" logic. You can write the predefined filter either as a SQL statement or as a [NoSQL Query Language](../apidocs/nosql_query_language/NoSQL_Query_Language) statement.
+Sometimes, for security reasons you may want to enforce partial reading of object data, usually based upon the current user or their role. This can be accomplished on the server-side using a Predefined Filter. Predefined Filters can be found in the Security tab of each object. They act as a SQL 'where' condition. Filters are combined using the 'AND' operator. You can write the filter using either a SQL statement or the NoSQL Query Language reading of partial data, usually depending on the current user or current user role. The option to force it from the server side is called Predefined Filter and you can find it at the Security tab of each object. The predefined filter acts as a SQL where statement condition. If you add additional filter that were described above then they will be added with an "AND" logic. You can write the predefined filter either as a SQL statement or as a [NoSQL Query Language](http://docs.backand.com/?javascript#nosql-query-language) statement.
 
 ### Queries and On Demand Actions
 
-So far we have discussed how to read objects that were defined in the database model. To create custom data structures, we can use Queries and On Demand Actions. Queries are identical to SQL database queries but you can write them using NoSQL syntax (see [NoSQL Query Language](../apidocs/nosql_query_language/NoSQL_Query_Language) for more details). With On Demand Actions, you can orchestrate any structure that you want using javascript on the server side. You can request model objects, queries, or other on demand actions. See [On Demand Actions Javascript Code](http://docs.backand.com/en/latest/apidocs/customactions/index.html#server-side-javascript-code) for more information.
+So far we have discussed how to read objects that were defined in the database model. To create custom data structures, we can use Queries and On Demand Actions. Queries are identical to SQL database queries but you can write them using NoSQL syntax (see [NoSQL Query Language](http://docs.backand.com/?javascript#nosql-query-language) for more details). With On Demand Actions, you can orchestrate any structure that you want using javascript on the server side. You can request model objects, queries, or other on demand actions. See [On Demand Actions  - Server-Side Javascript Code](http://docs.backand.com/?javascript#custom-actions) for more information.
 
 #### Pagination
 ```SQL
@@ -508,7 +508,7 @@ So far we have discussed how to read objects that were defined in the database m
             EXECUTE stmt USING @offset,@records;
 ```
 
-The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on [JavaScript action](../../apidocs/customactions/index.html#server-side-javascript-code) or by using a prepared statement:
+The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on [JavaScript action](http://docs.backand.com/?javascript#custom-actions) or by using a prepared statement:
 
 ## Continuous Deployment and Versioning
 A common use case is separate development and production environments, often with several stages in between (testing, qa, staging), which allows phased deployment (rollout) and rollback in case of problems.The goal of Continuous Deployment is to enable a constant flow of changes from development to production.
@@ -696,7 +696,7 @@ And with that, your Ionic Creator app is now connected to Backand!
 
 ### Learning more
 
-At this point, you have the full power of the [Backand SDK](http://docs.backand.com/en/latest/getting_started/vanilla_sdk/index.html) available in your Ionic Creator app. You can use the SDK to add more services to your app, providing CRUD functionality, real-time communications, server-side code execution, and more! Simply head over to [our documentation](http://docs.backand.com) to get started.
+At this point, you have the full power of the [Backand SDK](http://docs.backand.com/?javascript#vanilla-sdk) available in your Ionic Creator app. You can use the SDK to add more services to your app, providing CRUD functionality, real-time communications, server-side code execution, and more! Simply head over to [our documentation](http://docs.backand.com) to get started.
 
 ## Working with Custom Actions
 Actions are a powerful tool that allow you to perform customized tasks when a number of different types of events occur within your application. They provide a great alternative to server-side custom code, and can add a lot of flexibility to how your application interacts with outside services. Below we're going to look at the types of actions that Backand offers application developers, and how they can easily be used.
@@ -744,7 +744,7 @@ One common case encountered when storing passwords is in how to manage password 
 ### Encrypting Passwords
 To work with encrypted passwords in Backand, follow these steps:
 
-1. Create a `password` field in your `users` object, of type `string`
+1. Create a `password` field in your `users` object, of type `text`
 1. Modify or create a "before create" action for the `users` object, and set the type to Custom Server-Side JavaScript.
 1. Add `userInput.password = security.hash(userInput.password);` to encrypt the password
 
