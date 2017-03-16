@@ -1,12 +1,6 @@
 # Integrations
 The following set of documentation looks at integrating Backand with a number of different types of providers. Also included are some simple Backand-powered applications that can be used either as a starting point for your development, or as a guide for integrating Backand into a larger application.
 
-## Simple Web App with REST API
-We are currently developing this scenario - watch this space for future updates!
-
-## Simple ToDo App
-We are currently developing this scenario - watch this space for future updates!
-
 ## ToDo App with users
 Recently, we released a tutorial on the [Backand GitHub page](https://github.com/backand/angular-yeoman-todos/tree/todo-with-users) that shows off a lot of the features available by default in a Backand-powered application. After completing the tutorial, you'll have a simple ToDo list application with full support for user and role-based security. Below we'll discuss each of the features demonstrated in the tutorial, and cover any items remaining that are necessary for a full deployment.
 
