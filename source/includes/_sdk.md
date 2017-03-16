@@ -1117,4 +1117,4 @@ Contains a list of defaults for the SDK initialization parameters. The defaults 
 | mobilePlatform | 'ionic' |
 
 ## Examples and further reading
-***To view the demo web page, pull down a sample from our [example page](https://github.com/backand/vanilla-sdk/blob/master/example/) and run `npm start.`***
+***To view the demo web page, pull down a sample from our [example folder in our vanilla SDK](https://github.com/backand/vanilla-sdk/blob/master/example/) and run `npm start.`***

@@ -484,7 +484,7 @@ Regarding which approach to use - lazy or deep loading - there is no clear answe
 ```
 
 You can supply a query string parameter named 'filter' to filter your objects during fetch. This could be useful in
-developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see [NoSQL Query Language](http://docs.backand.com/?javascript#nosql-query-language) for syntax), or with JSON containing a field name, an operator, and a value:
+developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see [NoSQL Query Language](#nosql-query-language) for syntax), or with JSON containing a field name, an operator, and a value:
 
 See [the getList function](http://docs.backand.com/#getlist) for full details on filters.
 
