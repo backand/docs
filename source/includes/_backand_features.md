@@ -10,7 +10,7 @@ This section contains documentation on the features offered by Backand. We will 
 
 ## The User Object and Security
 
-This section describes how to manage your app's users within Backand's user security paradigm. An important element to note up front is that, by default, [Backand](https://www.backand.com) provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand's database, and as such cannot partake of your app's custom logic. The second user object is offered in the default data model for a Backand application, and is titled 'users'. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see [Link your app's users with Backand's registered users](security.md#Link your app's users with Backand's registered users) for more info). We highly recommend running the [todos-with-users app](https://github.com/backand/todos-with-users) in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app's data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application's objects.
+This section describes how to manage your app's users within Backand's user security paradigm. An important element to note up front is that, by default, [Backand](https://www.backand.com) provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand's database, and as such cannot partake of your app's custom logic. The second user object is offered in the default data model for a Backand application, and is titled 'users'. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see [Link your app's users with Backand's registered users](http://docs.backand.com/#link-your-apps-users-with-backands-registered-users) for more info). We highly recommend running the [todos-with-users app](https://github.com/backand/todos-with-users) in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app's data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application's objects.
 
 ### Authentication with OAuth 2.0
 ```shell
@@ -35,10 +35,10 @@ curl -X GET https://api.backand.com/1/user/facebook/token?accessToken=$SOCIAL_ME
 curl https://api.backand.com/1/objects/items -H "Authorization: Bearer $ACCESS_TOKEN"
 ```
 
-The default authentication setup for [Backand](https://www.backand.com) applications relies on [OAuth2](http://oauth.net/2/) to provide tokenized authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use [Backand's SDK](https://github.com/backand/angularbknd-sdk) to help you manage the access token. You can change the default expiration of 24 hours by using a refresh token, which allows you to reuse the authentication token indefinitely. The refresh token is an encrypted hash of the master and user keys. You can revoke one (or all) of your user's refresh tokens by changing the refresh token and requiring users to re-authenticate. For more information, see the [API Description](#user-authentication).
+The default authentication setup for [Backand](https://www.backand.com) applications relies on [OAuth2](http://oauth.net/2/) to provide tokenized authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use [Backand's SDK](https://github.com/backand/vanilla-sdk) to help you manage the access token. You can change the default expiration of 24 hours by using a refresh token, which allows you to reuse the authentication token indefinitely. The refresh token is an encrypted hash of the master and user keys. You can revoke one (or all) of your user's refresh tokens by changing the refresh token and requiring users to re-authenticate. For more information, see the [API Description](http://docs.backand.com/#vanilla-sdk).
 
 Parameters:
---signupIfNotSignedIn - (Optional, default false) - If the user tries to sign in without first registering for the application, the user will receive an error message ("The user is not signed up to {appName}"). If this value is set to true, then the user will be automatically registered with the app if they have not yet been signed up
+* **signupIfNotSignedIn** - (Optional, default false) - If the user tries to sign in without first registering for the application, the user will receive an error message ("The user is not signed up to {appName}"). If this value is set to true, then the user will be automatically registered with the app if they have not yet been signed up
 
 #### Sample response
 ```json
@@ -58,7 +58,7 @@ Parameters:
 }
 ```
 
-The call to the token endpoint returns all of the information you need to use a token to connect to your backand application. The access_token provided is authenticated with a signle user in your app, and is provided an expiration time in seconds. You are also given details of the authenticated user, including their username, first and last name, user ID, and their security role.
+The call to the token endpoint returns all of the information you need to use a token to connect to your Backand application. The access_token provided is authenticated with a single user in your app, and is provided an expiration time in seconds. You are also given details of the authenticated user, including their username, first and last name, user ID, and their security role.
 ### Basic authentication
 ```shell
 # Perform basic authentication via header
@@ -85,9 +85,9 @@ Backand also offers Anonymous Access, which allows you to access your applicatio
 
 ### User Registration
 
-Registering with [Backand](https://www.backand.com), and creating an application, automatically sets you as a user with an 'Admin' role in your new project (see [roles](#roles) for more info). By default your application is marked public which mean any user can register to your application.
+Registering with [Backand](https://www.backand.com), and creating an application, automatically sets you as a user with an 'Admin' role in your new project (see [Roles and Security Templates](http://docs.backand.com/#roles-security-templates) for more info). By default your application is marked public which mean any user can register to your application.
 
-These users are assigned a default role 'User', which has full CRUD access to your app. Your roles will need to be configured when you enable public usage of your app (see [roles](#roles) for more details).
+These users are assigned a default role 'User', which has full CRUD access to your app. Your roles will need to be configured when you enable public usage of your app (see [Roles and Security Templates](http://docs.backand.com/#roles-security-templates) for more details).
 
 
 ```javascript--general
@@ -151,7 +151,7 @@ There are two ways to remove a user from the application. You can permanently re
 By default the anonymous access is turned on with 'User' role access, which mean any one can register to your app and make CRUD actions on any object.
 If you wish to disable anonymous access to your application, go to Security & Auth --> Configuration and set 'Anonymous Access' to off.
 
-<aside class="notice">To better control the permission of your app we recommend to change the anonymous users role to have less access. For more information on anonymous access, see the [API Description](http://docs.backand.com/en/latest/apidocs/apidescription/index.html#anonymous-access).</aside>
+<aside class="notice">To better control the permission of your app we recommend to change the anonymous users role to have less access. For more information on anonymous access, see the <a href="http://docs.backand.com/#backand-init">API Description</a>.</aside>
 
 ### Link your app's users with Backand's registered users
 ```javascript
@@ -406,7 +406,7 @@ Your project files will be available on **https://hosting.backand.io/Your-App-Na
 
 
 <aside class="notice">
-The Backand CLI (command-line interface) requires Node.js and Node Package Manager (NPM). To install Node and NPM, follow the instructions at [https://nodejs.org](https://nodejs.org). This one process handles both NodeJS and NPM.
+The Backand CLI (command-line interface) requires Node.js and Node Package Manager (NPM). To install Node and NPM, follow the instructions at <a href="https://nodejs.org">https://nodejs.org</a>. This one process handles both NodeJS and NPM.
 </aside>
 
 ### First Time Installation

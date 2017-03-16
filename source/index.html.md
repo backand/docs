@@ -51,7 +51,7 @@ curl https://api.backand.com/1/objects/items -u $MASTER_KEY:$USER_KEY
 curl https://api.backand.com/1/objects/items?authorization=basic+$MASTER_KEY:$USER_KEY
 ```
 
-All calls made by our API can also be made on the command line using cURL. You simply need to either obtain a token to authenticate as a user with your application, provide a token allowing anonymous access to your app, or use your app's master key to override the authentication mechanism. Review our information on [authentication](#authentication) for more info on the specific endpoints to use for each approach.
+All calls made by our API can also be made on the command line using cURL. You simply need to either obtain a token to authenticate as a user with your application, provide a token allowing anonymous access to your app, or use your app's master key to override the authentication mechanism. Review our information on [authentication](http://docs.backand.com/#authentication-with-oauth-2-0) for more info on the specific endpoints to use for each approach.
 
 <aside class="warning">Using the "master key" approach is very risky, as it completely bypasses the configured security in your application. We recommend only doing this while troubleshooting and exploring on the server - you should <strong>never</strong> use this technique on the client side unless you are fully aware of the consequences.</aside>
 
