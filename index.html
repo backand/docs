@@ -377,7 +377,7 @@ curl https://api.backand.com/1/objects/items?authorization<span class="o">=</spa
 
 <h2 id="the-user-object-and-security">The User Object and Security</h2>
 
-<p>This section describes how to manage your app&rsquo;s users within Backand&rsquo;s user security paradigm. An important element to note up front is that, by default, <a href="https://www.backand.com">Backand</a> provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand&rsquo;s database, and as such cannot partake of your app&rsquo;s custom logic. The second user object is offered in the default data model for a Backand application, and is titled &lsquo;users&rsquo;. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see <a href="http://docs.backand.com/#link-your-apps-users-with-backands-registered-users">Link your app&rsquo;s users with Backand&rsquo;s registered users</a> for more info). We highly recommend running the <a href="https://github.com/backand/todos-with-users">todos-with-users app</a> in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app&rsquo;s data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application&rsquo;s objects.</p>
+<p>This section describes how to manage your app&rsquo;s users within Backand&rsquo;s user security paradigm. An important element to note up front is that, by default, <a href="https://www.backand.com">Backand</a> provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand&rsquo;s database, and as such cannot partake of your app&rsquo;s custom logic. The second user object is offered in the default data model for a Backand application, and is titled &lsquo;users&rsquo;. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see <a href="#link-your-apps-users-with-backands-registered-users">Link your app&rsquo;s users with Backand&rsquo;s registered users</a> for more info). We highly recommend running the <a href="https://github.com/backand/todos-with-users">todos-with-users app</a> in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app&rsquo;s data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application&rsquo;s objects.</p>
 
 <h3 id="authentication-with-oauth-2-0">Authentication with OAuth 2.0</h3>
 <pre class="highlight shell tab-shell"><code><span class="c"># To obtain an access token using a username and password, use the following</span>
@@ -400,7 +400,7 @@ curl -X GET https://api.backand.com/1/user/facebook/token?accessToken<span class
 <span class="c"># $ACCESS_TOKEN - the token obtained via a call to the token endpoint</span>
 curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization: Bearer </span><span class="nv">$ACCESS_TOKEN</span><span class="s2">"</span>
 </code></pre>
-<p>The default authentication setup for <a href="https://www.backand.com">Backand</a> applications relies on <a href="http://oauth.net/2/">OAuth2</a> to provide tokenized authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use <a href="https://github.com/backand/vanilla-sdk">Backand&rsquo;s SDK</a> to help you manage the access token. You can change the default expiration of 24 hours by using a refresh token, which allows you to reuse the authentication token indefinitely. The refresh token is an encrypted hash of the master and user keys. You can revoke one (or all) of your user&rsquo;s refresh tokens by changing the refresh token and requiring users to re-authenticate. For more information, see the <a href="http://docs.backand.com/#vanilla-sdk">API Description</a>.</p>
+<p>The default authentication setup for <a href="https://www.backand.com">Backand</a> applications relies on <a href="http://oauth.net/2/">OAuth2</a> to provide tokenized authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use <a href="https://github.com/backand/vanilla-sdk">Backand&rsquo;s SDK</a> to help you manage the access token. You can change the default expiration of 24 hours by using a refresh token, which allows you to reuse the authentication token indefinitely. The refresh token is an encrypted hash of the master and user keys. You can revoke one (or all) of your user&rsquo;s refresh tokens by changing the refresh token and requiring users to re-authenticate. For more information, see the <a href="#vanilla-sdk">API Description</a>.</p>
 
 <h4 id="parameters">Parameters</h4>
 
@@ -448,9 +448,9 @@ curl https://api.backand.com/1/objects/items?AnonymousToken<span class="o">=</sp
 
 <h3 id="user-registration">User Registration</h3>
 
-<p>Registering with <a href="https://www.backand.com">Backand</a>, and creating an application, automatically sets you as a user with an &lsquo;Admin&rsquo; role in your new project (see <a href="http://docs.backand.com/#roles-security-templates">Roles and Security Templates</a> for more info). By default your application is marked public which mean any user can register to your application.</p>
+<p>Registering with <a href="https://www.backand.com">Backand</a>, and creating an application, automatically sets you as a user with an &lsquo;Admin&rsquo; role in your new project (see <a href="#roles-security-templates">Roles and Security Templates</a> for more info). By default your application is marked public which mean any user can register to your application.</p>
 
-<p>These users are assigned a default role &lsquo;User&rsquo;, which has full CRUD access to your app. Your roles will need to be configured when you enable public usage of your app (see <a href="http://docs.backand.com/#roles-security-templates">Roles and Security Templates</a> for more details).</p>
+<p>These users are assigned a default role &lsquo;User&rsquo;, which has full CRUD access to your app. Your roles will need to be configured when you enable public usage of your app (see <a href="#roles-security-templates">Roles and Security Templates</a> for more details).</p>
 <pre class="highlight javascript tab-javascript--general"><code>  <span class="c1">//Create new Security Action in Before Create trigger with the following</span>
   <span class="c1">//code (this will update the role to 'Public'):</span>
   <span class="nx">userInput</span><span class="p">.</span><span class="nx">Role</span> <span class="o">=</span> <span class="s1">'Public'</span><span class="p">;</span>
@@ -523,7 +523,7 @@ For security reasons you cannot change the role from the sign-up API - this can 
 <p>By default the anonymous access is turned on with &lsquo;User&rsquo; role access, which mean any one can register to your app and make CRUD actions on any object.
 If you wish to disable anonymous access to your application, go to Security &amp; Auth &ndash;&gt; Configuration and set &lsquo;Anonymous Access&rsquo; to off.</p>
 
-<aside class="notice">To better control the permission of your app we recommend to change the anonymous users role to have less access. For more information on anonymous access, see the <a href="http://docs.backand.com/#backand-init">API Description</a>.</aside>
+<aside class="notice">To better control the permission of your app we recommend to change the anonymous users role to have less access. For more information on anonymous access, see the <a href="#backand-init">API Description</a>.</aside>
 
 <h3 id="link-your-apps-users-with-backands-registered-users">Link your app&rsquo;s users with Backand&rsquo;s registered users</h3>
 <pre class="highlight javascript tab-javascript"><code><span class="c1">// Validate Backand Registered User Action</span>
@@ -611,7 +611,7 @@ If you wish to disable anonymous access to your application, go to Security &amp
 
 <h3 id="security-actions">Security Actions</h3>
 
-<p>Backand offers a number of pre-defined security actions that can be used to manage your application&rsquo;s security processes. These are available in the app dashboard under <strong>Security &amp; Auth -&gt; Security Actions</strong>. See <a href="http://docs.backand.com/#security-actions84">the Security Actions Documentation</a> for more details.</p>
+<p>Backand offers a number of pre-defined security actions that can be used to manage your application&rsquo;s security processes. These are available in the app dashboard under <strong>Security &amp; Auth -&gt; Security Actions</strong>. See <a href="#security-actions84">the Security Actions Documentation</a> for more details.</p>
 
 <h2 id="backand-storage">Backand Storage</h2>
 
@@ -1873,12 +1873,12 @@ Set-AdfsProperties -EnableKmsi <span class="nv">$True</span> –KmsiLifetimeMins
 <tr>
 <td>accessFilter</td>
 <td>Automatic, after successful authentication</td>
-<td>See <a href="http://docs.backand.com#integrating-third-party-security">our post on third-party security</a></td>
+<td>See <a href="#integrating-third-party-security">our post on third-party security</a></td>
 </tr>
 <tr>
 <td>backandAuthOverride</td>
 <td>Automatic, prior to user authentication</td>
-<td>See <a href="http://docs.backand.com#integrating-third-party-security">our post on third-party security</a></td>
+<td>See <a href="#integrating-third-party-security">our post on third-party security</a></td>
 </tr>
 <tr>
 <td>beforeSocialSignup</td>
@@ -1903,7 +1903,7 @@ Set-AdfsProperties -EnableKmsi <span class="nv">$True</span> –KmsiLifetimeMins
 <tr>
 <td>socialAuthOverride</td>
 <td>Automatic, after social media authentication</td>
-<td>See <a href="http://docs.backand.com#integrating-third-party-security">our post on third-party security</a></td>
+<td>See <a href="#integrating-third-party-security">our post on third-party security</a></td>
 </tr>
 <tr>
 <td>userApproval</td>
@@ -3669,7 +3669,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
 
           <h1 id="platform-specific-sdks">Platform-specific SDKs</h1>
 
-<p>This section covers our platform-specific SDKs. These SDKs are optimized for the named platform, and wrap the <a href="http://docs.backand.com/#vanilla-sdk">Vanilla SDK</a> to provide access to Backand.</p>
+<p>This section covers our platform-specific SDKs. These SDKs are optimized for the named platform, and wrap the <a href="#vanilla-sdk">Vanilla SDK</a> to provide access to Backand.</p>
 
 <h2 id="angular-ionic-1-sdk">Angular - Ionic 1 SDK</h2>
 
@@ -4681,7 +4681,7 @@ curl https://api.backand.com/1/objects/users/5
 </code></pre>
 <p>This request is similar to fetching the entire list of items, which would be done as follows:</p>
 
-<p>You can also supply other query string parameters (such as paging, filtering, and sorting). See <a href="http://docs.backand.com/#getlist">the getList function</a> for more details.</p>
+<p>You can also supply other query string parameters (such as paging, filtering, and sorting). See <a href="#getlist">the getList function</a> for more details.</p>
 
 <p>Regarding which approach to use - lazy or deep loading - there is no clear answer. It will be dependent upon the individual programming situation. If you need to present all of the relevant data at once, then deep loading is the right approach. However, if the object has a large number of relations to pull down, it might make more sense to do a lazy load, then selectively load related objects as needed.</p>
 
@@ -4711,7 +4711,7 @@ developm situations, or as a part of a UI with search functionality, allowing yo
             SET @offset := @records * ({{ "{{pageNum" }}}} -1 );
             EXECUTE stmt USING @offset,@records;
 </code></pre>
-<p>The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on <a href="http://docs.backand.com/?javascript#custom-actions">JavaScript action</a> or by using a prepared statement:</p>
+<p>The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on <a href="#custom-actions">JavaScript action</a> or by using a prepared statement:</p>
 
 <h2 id="continuous-deployment-and-versioning">Continuous Deployment and Versioning</h2>
 
@@ -4887,7 +4887,7 @@ https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js
 
 <h3 id="learning-more">Learning more</h3>
 
-<p>At this point, you have the full power of the <a href="http://docs.backand.com/?javascript#vanilla-sdk">Backand SDK</a> available in your Ionic Creator app. You can use the SDK to add more services to your app, providing CRUD functionality, real-time communications, server-side code execution, and more! Simply head over to <a href="http://docs.backand.com">our documentation</a> to get started.</p>
+<p>At this point, you have the full power of the <a href="#vanilla-sdk">Backand SDK</a> available in your Ionic Creator app. You can use the SDK to add more services to your app, providing CRUD functionality, real-time communications, server-side code execution, and more! Simply head over to <a href="http://docs.backand.com">our documentation</a> to get started.</p>
 
 <h2 id="working-with-custom-actions">Working with Custom Actions</h2>
 
@@ -4972,7 +4972,7 @@ On Demand triggers, on the other hand, happen whenever you like. These are assoc
 
 <h3 id="setting-up-the-database">Setting up the Database</h3>
 
-<p>To create a UUID primary key column, you&rsquo;ll need to operate within your database directly. Download a tool to connect to your database (like <a href="https://www.mysql.com/products/workbench/">MySQL Workbench</a>), and configure it with the connection settings from <a href="http://docs.backand.com/#connecting-to-your-apps-database">your application&rsquo;s dashboard</a>. Once you&rsquo;ve connected your database, you&rsquo;ll next want to create a new field in the object you are changing, using the datatype <code class="prettyprint">char(36)</code>. Once this is done, sync the changes back to your application using the Object -&gt; Model -&gt; Model Database tab in the app dashboard.</p>
+<p>To create a UUID primary key column, you&rsquo;ll need to operate within your database directly. Download a tool to connect to your database (like <a href="https://www.mysql.com/products/workbench/">MySQL Workbench</a>), and configure it with the connection settings from <a href="#connecting-to-your-apps-database">your application&rsquo;s dashboard</a>. Once you&rsquo;ve connected your database, you&rsquo;ll next want to create a new field in the object you are changing, using the datatype <code class="prettyprint">char(36)</code>. Once this is done, sync the changes back to your application using the Object -&gt; Model -&gt; Model Database tab in the app dashboard.</p>
 
 <h3 id="setting-up-the-before-create-action">Setting up the Before Create action</h3>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="cm">/* globals
