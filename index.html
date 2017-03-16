@@ -5153,28 +5153,28 @@ You can use the following JSON mode:</p>
 
 <h4 id="js-libraries">JS Libraries</h4>
 
-<p>Your Ionic app has a ‘www’ folder which is a single page application (SPA) built with AngularJS.  You will need to include the Backand libraries in your application. Either download them or use bower to obtain them. Then, copy them into your &lsquo;index.html&rsquo;.</p>
+<p>Your Ionic app has a <code class="prettyprint">www</code> folder which is a single page application (SPA) built with AngularJS.  You will need to include the Backand libraries in your application. Either download them or use bower to obtain them. Then, copy them into your <code class="prettyprint">index.html</code>.</p>
 
 <ul>
-<li><a href="https://github.com/backand/angularbknd-sdk">angularbknd-sdk</a>, install with bower using:</li>
+<li><a href="https://github.com/backand/angular1-sdk">angular1-sdk</a>, install with bower using:</li>
 </ul>
-<pre class="highlight shell"><code>    bower install angularbknd-sdk
+<pre class="highlight shell"><code>    bower install angular1-sdk
 </code></pre>
 <ul>
-<li>Include in your &lsquo;index.html&rsquo;:</li>
+<li>Include in your <code class="prettyprint">index.html</code>:</li>
 </ul>
 <pre class="highlight html tab-html"><code>     <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"lib/angularbknd-sdk/dist/backand.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
      <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"lib/angular-cookies/angular-cookies.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
 <h4 id="authorization">Authorization</h4>
 
-<p>Backand uses authorization headers in HTTP requests. The token for authorization is obtained upon sign in to Backand and is then stored using cookies via &lsquo;ngCookies&rsquo;. The Backand sdk adds authorization headers to each HTTP request using an ‘$http’ interceptor.</p>
+<p>Backand uses authorization headers in HTTP requests. The token for authorization is obtained upon sign in to Backand and is then stored using cookies via <code class="prettyprint">ngCookies</code>. The Backand SDK adds authorization headers to each HTTP request using an <code class="prettyprint">$http</code> interceptor.</p>
 
-<p>In your main &lsquo;js&rsquo; file, &lsquo;app.js&rsquo; requires ‘backand&rsquo;:</p>
+<p>In your main JavaScript file, <code class="prettyprint">app.js</code> requires <code class="prettyprint">backand</code>:</p>
 <pre class="highlight javascript tab-javascript"><code>     <span class="kd">var</span> <span class="nx">myApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'starter'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'ionic'</span><span class="p">,</span>
        <span class="s1">'starter.controllers'</span><span class="p">,</span> <span class="s1">'backand'</span><span class="p">,</span> <span class="s1">'starter.services'</span><span class="p">]);</span>
 </code></pre>
-<p>And in your app ‘config’ add:</p>
+<p>And in your app&rsquo;s <code class="prettyprint">config</code> add:</p>
 <pre class="highlight javascript tab-javascript"><code>     <span class="nx">myApp</span><span class="p">.</span><span class="nx">config</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$stateProvider</span><span class="p">,</span> <span class="nx">$urlRouterProvider</span><span class="p">,</span>
        <span class="nx">$httpProvider</span><span class="p">)</span>    <span class="p">{</span>
         <span class="nx">$httpProvider</span><span class="p">.</span><span class="nx">interceptors</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">httpInterceptor</span><span class="p">);</span>
@@ -5193,25 +5193,25 @@ You can use the following JSON mode:</p>
      }
 </code></p>
 
-<p>Sign In</p>
+<h4 id="sign-in">Sign In</h4>
 
-<h4 id="in-your-controllers-module-require-backand-and-ngcookies">In your controllers module require ‘Backand’ and ‘ngCookies&rsquo;:</h4>
+<p>In your controllers module require <code class="prettyprint">Backand</code> and <code class="prettyprint">ngCookies</code>:</p>
 <pre class="highlight javascript tab-javascript"><code>    <span class="kd">var</span> <span class="nx">myModule</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'starter.controllers'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'backand'</span><span class="p">,</span> <span class="s1">'ngCookies'</span><span class="p">]);</span>
 </code></pre>
-<p>In your login controller require ‘Backand&rsquo;:</p>
+<p>In your login controller require <code class="prettyprint">Backand</code>:</p>
 <pre class="highlight javascript tab-javascript"><code>    <span class="nx">myModule</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'loginCtrl'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">Backand</span><span class="p">)</span> <span class="p">{});</span>
 </code></pre>
-<p>To perform the login call, remember that ‘playlists’ is our Backand database name:</p>
+<p>To perform the login call, remember that <code class="prettyprint">playlists</code> is our Backand database name:</p>
 <pre class="highlight javascript tab-javascript"><code>    <span class="kd">var</span> <span class="nx">appName</span> <span class="o">=</span> <span class="s1">'playlists'</span><span class="p">;</span>
     <span class="nx">Backand</span><span class="p">.</span><span class="nx">signin</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">appName</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span>
       <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){},</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){});</span>
 </code></pre>
 <h4 id="crud">CRUD</h4>
 
-<p>Now you will need to define a service to make the database operations.  In your services module require ‘backand&rsquo;:</p>
+<p>Now you will need to define a service to make the database operations.  In your services module require <code class="prettyprint">backand</code>:</p>
 <pre class="highlight javascript tab-javascript"><code>    <span class="kd">var</span> <span class="nx">myServices</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'starter.services'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'backand'</span><span class="p">])</span>
 </code></pre>
-<p>Define a ‘DatabaseService’, require ‘Backand&rsquo;:</p>
+<p>Define a <code class="prettyprint">DatabaseService</code>, require <code class="prettyprint">Backand</code>:</p>
 <pre class="highlight javascript tab-javascript"><code>    <span class="p">.</span><span class="nx">service</span><span class="p">(</span><span class="s1">'DatabaseService'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$http</span><span class="p">,</span> <span class="nx">Backand</span><span class="p">){</span>    
 
       <span class="kd">var</span> <span class="nx">baseUrl</span> <span class="o">=</span> <span class="s1">'/1/object/data/'</span><span class="p">;</span>
@@ -5245,7 +5245,7 @@ You can use the following JSON mode:</p>
 </code></pre>
 <h4 id="using-backand-data">Using Backand Data</h4>
 
-<p>In your controller, require ‘DatabaseService’, and make calls like:</p>
+<p>In your controller, require <code class="prettyprint">DatabaseService</code>, and make calls like:</p>
 <pre class="highlight javascript tab-javascript"><code>    <span class="nx">myModule</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'playlistsCtrl'</span><span class="p">,</span>    
       <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">DatabaseService</span><span class="p">)</span> <span class="p">{</span>
 
@@ -5271,7 +5271,7 @@ You can use the following JSON mode:</p>
 
 <h2 id="retrieving-data-from-facebook-using-the-graph-api">Retrieving data from Facebook using the Graph API</h2>
 
-<p>Once you&rsquo;ve integrated with facebook, you can use Facebook&rsquo;s <a href="https://developers.facebook.com/docs/graph-api">Graph API</a> to augment your user data with information directly from the user&rsquo;s Facebook account. To do so, you&rsquo;ll just need to grab the user&rsquo;s Facebook User ID, and use the Graph API to retrieve data, update or publish new content, or any of the other functionality Facebook has to offer.</p>
+<p>Once you&rsquo;ve integrated with Facebook, you can use Facebook&rsquo;s <a href="https://developers.facebook.com/docs/graph-api">Graph API</a> to augment your user data with information directly from the user&rsquo;s Facebook account. To do so, you&rsquo;ll just need to grab the user&rsquo;s Facebook User ID, and use the Graph API to retrieve data, update or publish new content, or any of the other functionality Facebook has to offer.</p>
 
 <h3 id="obtaining-the-facebook-user-id">Obtaining the Facebook User ID</h3>
 
@@ -5322,13 +5322,11 @@ You can use the following JSON mode:</p>
 <h3 id="getting-a-facebook-profile-image">Getting a Facebook profile image</h3>
 <pre class="highlight html tab-html"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span><span class="nt">&gt;</span>http://graph.facebook.com/{fuid}/picture<span class="nt">&lt;/a&gt;</span>
 </code></pre>
-<p>You can easily obtain a user&rsquo;s Facebook profile using a single URL reference. Here is the template:</p>
-
-<p>Simply replace <strong>{fuid}</strong> with the user&rsquo;s Facebook User ID.</p>
+<p>You can easily obtain a user&rsquo;s Facebook profile using a single URL reference. The template is available on the right - simply replace <strong>{fuid}</strong> with the user&rsquo;s Facebook User ID.</p>
 <pre class="highlight html tab-html"><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"http://graph.facebook.com/{fuid}/picture?type=large"</span> <span class="na">target=</span><span class="s">"_blank"</span><span class="nt">&gt;</span>http://graph.facebook
 .com/{fuid}/picture?type=large<span class="nt">&lt;/a&gt;</span>
 </code></pre>
-<p>You can pull in a larger version of the profile picutre using the following HTML:</p>
+<p>You can pull in a larger version of the profile picture using the HTML to the right:</p>
 
 <p>Finally, you can refer to <a href="https://developers.facebook.com/docs/graph-api/reference/user/picture/">Facebook&rsquo;s Docs</a> on their Graph API, and use the information to create whatever type of integration with Facebook that you desire.</p>
 
@@ -5364,7 +5362,7 @@ You can use the following JSON mode:</p>
 
 <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
 </code></pre>
-<p>The above code is inserted into a new Custom Server-Side JavaScript Action created using the Backand dashboard. It pulls the file information from the parameters passed to the action, then sends a request to S3&rsquo;s file upload endpoint, putting the file into the bucket &lsquo;backand-free-upload&rsquo;. By customizing the above code, you can achieve any underlying file structure you desire.</p>
+<p>The above code is inserted into a new Custom Server-Side JavaScript Action created using the Backand dashboard. It pulls the file information from the parameters passed to the action, then sends a request to S3&rsquo;s file upload endpoint, putting the file into the bucket <code class="prettyprint">backand-free-upload</code>. By customizing the above code, you can achieve any underlying file structure you desire.</p>
 
 <h3 id="client-side-integration">Client-side Integration</h3>
 
@@ -5386,7 +5384,7 @@ You can use the following JSON mode:</p>
   <span class="p">});</span>
 <span class="p">};</span>
 </code></pre>
-<p>The above code is pretty straightforward. It defines a function – s3FileUpload – that takes input from your application in the form of file data, and then communicates with your new custom JavaScript action via an HTTP POST request using JavaScript&rsquo;s built-in AJAX capabilities. Simply call this function from your Angular code, and you will be uploading files in no time!</p>
+<p>The above code is pretty straightforward. It defines a function – <code class="prettyprint">s3FileUpload</code> – that takes input from your application in the form of file data, and then communicates with your new custom JavaScript action via an HTTP POST request using JavaScript&rsquo;s built-in AJAX capabilities. Simply call this function from your Angular code, and you will be uploading files in no time!</p>
 
 <h2 id="stripe-integration">Stripe Integration</h2>
 
@@ -5467,9 +5465,7 @@ You can use the following JSON mode:</p>
       <span class="p">});</span>
   <span class="p">}</span>
 </code></pre>
-<p>Once this code has been created, we need to write one additional function. This function wraps a HTTP request to the
-custom action we created previously. It assumes that the action&rsquo;s name is &lsquo;makePayment&rsquo;, so be sure to change it to
-something that matches your actual implementation:</p>
+<p>Once this code has been created, we need to write one additional function. This function wraps a HTTP request to the custom action we created previously. It assumes that the action&rsquo;s name is <code class="prettyprint">makePayment</code>, so be sure to change it to something that matches your actual implementation:</p>
 <pre class="highlight javascript tab-javascript"><code><span class="nx">factory</span><span class="p">.</span><span class="nx">makePayment</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">token</span><span class="p">){</span>
     <span class="k">return</span> <span class="nx">$http</span><span class="p">({</span>
       <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
@@ -5495,30 +5491,32 @@ something that matches your actual implementation:</p>
 
 <h3 id="send-email-with-mandrill-api-no-attachment">Send Email with Mandrill API (No Attachment)</h3>
 
-<p>Mandrill has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate Mandrill with Backand.</p>
-
-<p>To send an email with Mandrill, you need to create a server side action. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions <a href="http://docs.backand.com/en/latest/apidocs/customactions/index.html">here</a>. Name the action mandrillapp, add message and name to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:</p>
-<pre class="highlight javascript tab-javascript"><code><span class="cm">/* globals
+<p>Mandrill has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate Mandrill with Backand.
+<code class="prettyprint">javascript--persistent
+/* globals
   $http - Service for AJAX calls
   CONSTS - CONSTS.apiUrl for Backands API URL
-*/</span>
-<span class="s1">'use strict'</span><span class="p">;</span>
-<span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// write your code here</span>
-    <span class="kd">var</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">({</span>
-      <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
-      <span class="na">url</span><span class="p">:</span> <span class="s1">'https://mandrillapp.com/api/1.0/messages/send.json'</span><span class="p">,</span>
-      <span class="na">data</span><span class="p">:</span> <span class="p">{</span><span class="s1">'key'</span><span class="p">:</span><span class="o">&lt;</span><span class="nx">enter</span> <span class="nx">your</span> <span class="nx">mandrill</span> <span class="nx">key</span><span class="o">&gt;</span><span class="p">,</span>
-            <span class="s1">'message'</span><span class="p">:{</span><span class="s1">'html'</span><span class="p">:</span><span class="nx">parameters</span><span class="p">.</span><span class="nx">message</span><span class="p">,</span>
-            <span class="s1">'subject'</span><span class="p">:</span><span class="s1">'Example for Mandrill Integration'</span><span class="p">,</span>
-            <span class="s1">'from_email'</span><span class="p">:</span><span class="nx">userProfile</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span><span class="s1">'from_name'</span><span class="p">:</span><span class="nx">parameters</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
-            <span class="s1">'to'</span><span class="p">:[{</span><span class="s1">'email'</span><span class="p">:</span><span class="nx">userProfile</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span><span class="s1">'name'</span><span class="p">:</span><span class="nx">parameters</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span><span class="s1">'type'</span><span class="p">:</span><span class="s1">'to'</span><span class="p">}],</span>
-            <span class="s1">'headers'</span><span class="p">:{</span><span class="s1">'Reply-To'</span><span class="p">:</span><span class="s1">'message.reply@backand.com'</span><span class="p">}}}</span>
-    <span class="p">});</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
-    <span class="k">return</span> <span class="p">{};</span>
-<span class="p">}</span>
-</code></pre>
+*/
+&#39;use strict&#39;;
+function backandCallback(userInput, dbRow, parameters, userProfile) {
+    // write your code here
+    var response = $http({
+      method: &#39;POST&#39;,
+      url: &#39;https://mandrillapp.com/api/1.0/messages/send.json&#39;,
+      data: {&#39;key&#39;:&lt;enter your mandrill key&gt;,
+            &#39;message&#39;:{&#39;html&#39;:parameters.message,
+            &#39;subject&#39;:&#39;Example for Mandrill Integration&#39;,
+            &#39;from_email&#39;:userProfile.username,&#39;from_name&#39;:parameters.name,
+            &#39;to&#39;:[{&#39;email&#39;:userProfile.username,&#39;name&#39;:parameters.name,&#39;type&#39;:&#39;to&#39;}],
+            &#39;headers&#39;:{&#39;Reply-To&#39;:&#39;message.reply@backand.com&#39;}}}
+    });
+    console.log(response);
+    return {};
+}
+</code></p>
+
+<p>To send an email with Mandrill, you need to create a server side action. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action. Learn more about how to create actions <a href="#custom-actions">here</a>. Name the action <code class="prettyprint">mandrillapp</code>, add <code class="prettyprint">message</code> and <code class="prettyprint">name</code> to the Input Parameters, and paste the code on the right into the code editor. When finished, the code editor window will contain the following:</p>
+
 <p>In the example app we&rsquo;re building, the app&rsquo;s users can send messages to themselves. This is done through the use of userProfile.username, which is the email address used to register with the application. Make sure to replace the &lsquo;key&rsquo; property above with your Mandrill API key.</p>
 
 <p>Next, add the following JavaScript code to your app&rsquo;s client-side code base:</p>
