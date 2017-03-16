@@ -494,7 +494,7 @@ Sometimes, for security reasons you may want to enforce partial reading of objec
 
 ### Queries and On Demand Actions
 
-So far we have discussed how to read objects that were defined in the database model. To create custom data structures, we can use Queries and On Demand Actions. Queries are identical to SQL database queries but you can write them using NoSQL syntax (see [NoSQL Query Language](http://docs.backand.com/?javascript#nosql-query-language) for more details). With On Demand Actions, you can orchestrate any structure that you want using javascript on the server side. You can request model objects, queries, or other on demand actions. See [On Demand Actions  - Server-Side Javascript Code](http://docs.backand.com/?javascript#custom-actions) for more information.
+So far we have discussed how to read objects that were defined in the database model. To create custom data structures, we can use Queries and On Demand Actions. Queries are identical to SQL database queries but you can write them using NoSQL syntax (see [NoSQL Query Language](#nosql-query-language) for more details). With On Demand Actions, you can orchestrate any structure that you want using javascript on the server side. You can request model objects, queries, or other on demand actions. See [On Demand Actions - Server-Side Javascript Code](#custom-actions) for more information.
 
 #### Pagination
 ```SQL
