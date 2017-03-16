@@ -1093,7 +1093,7 @@ deploy command will be available on the action page <strong>after</strong> the a
 
 <p>You can create and call your own custom queries in your application. You can use parameters as tokens that will be replaced with the actual parameter values, similar to how <a href="#custom-actions">custom actions</a> work. You can create your own filters, sorting, and paging, as well as use aggregation to summarize information.</p>
 
-<p>Click <a href="#nosql-query-language">NOSQL Query Language</a> for instruction on how to build queries with noSQL language or
+<p>Click <a href="#nosql-query-language">NoSQL Query Language</a> for instruction on how to build queries with noSQL language or
 use common MySQL syntax.</p>
 
 <h2 id="nosql-query-language">NoSQL Query Language</h2>
@@ -3666,7 +3666,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
 
           <h1 id="platform-specific-sdks">Platform-specific SDKs</h1>
 
-<p>This section covers our platform-specific SDKs. These SDKs are optimized for the named platform, and wrap the <a href="#sdk-documentation">Vanilla SDK</a> to provide access to Backand.</p>
+<p>This section covers our platform-specific SDKs. These SDKs are optimized for the named platform, and wrap the <a href="http://docs.backand.com/#vanilla-sdk">Vanilla SDK</a> to provide access to Backand.</p>
 
 <h2 id="angular-ionic-1-sdk">Angular - Ionic 1 SDK</h2>
 
@@ -3908,7 +3908,7 @@ sagaMiddleware.run(rootSaga)
 
 <p>Vue.js is a progressive framework designed to provide an intuitive means by which a front-end developer can build their application. It is designed to be incrementally adaptable, allowing you to use it as often as you like, and provides a lightweight set of tools for adding dynamic functionality to a web app. By providing dynamic backing to the view model, you can easily make a Vue.js-based application into a large and feature-rich web app. In this post, we&rsquo;ll look at how we can use Backand&rsquo;s Vanilla SDK in a Vue.js-based application to provide the backing for that data service.</p>
 
-<p>Note: This example is also available on Codepen at http://codepen.io/backand/pen/ZLwwZg/?editors=1010</p>
+<p>Note: This example is also available on <a href="http://codepen.io/backand/pen/ZLwwZg/?editors=1010">Codepen</a></p>
 
 <h3 id="including-and-initializing-the-sdk">Including and Initializing the SDK</h3>
 <pre class="highlight html tab-html"><code><span class="c">&lt;!-- Include the Back&amp; SDK --&gt;</span>
@@ -4098,7 +4098,7 @@ sagaMiddleware.run(rootSaga)
 
 <p>JQuery is the most widely-deployed JavaScript library. It provides a comprehensive set of responsive tools for dynamically working with an HTML page&rsquo;s DOM, and is responsible for establishing and guiding a lot of the patterns that are the standard in web development. In this article, we&rsquo;ll look at how you can integrate the Back&amp; Vanilla SDK with an app built with JQuery.</p>
 
-<p>Note: The code for this article is available on CodePen at http://codepen.io/backand/pen/VPRpBN?editors=1010</p>
+<p>Note: The code for this article is available on <a href="http://codepen.io/backand/pen/VPRpBN?editors=1010">CodePen</a></p>
 
 <h3 id="including-and-initializing-the-sdk">Including and Initializing the SDK</h3>
 <pre class="highlight html tab-html"><code><span class="c">&lt;!-- Include the Back&amp; SDK --&gt;</span>
@@ -4678,7 +4678,7 @@ curl https://api.backand.com/1/objects/users/5
 </code></pre>
 <p>This request is similar to fetching the entire list of items, which would be done as follows:</p>
 
-<p>You can also supply other query string parameters (such as paging, filtering, and sorting). See <a href="http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-collection-objects-from-a-collection-field-for-a-specific-object-id">List Collection Objects from a Collection Field for a Specific Object ID</a> for more details.</p>
+<p>You can also supply other query string parameters (such as paging, filtering, and sorting). See <a href="http://docs.backand.com/#getlist">the getList function</a> for more details.</p>
 
 <p>Regarding which approach to use - lazy or deep loading - there is no clear answer. It will be dependent upon the individual programming situation. If you need to present all of the relevant data at once, then deep loading is the right approach. However, if the object has a large number of relations to pull down, it might make more sense to do a lazy load, then selectively load related objects as needed.</p>
 
@@ -4686,7 +4686,7 @@ curl https://api.backand.com/1/objects/users/5
 <pre class="highlight json tab-json"><code><span class="p">[{</span><span class="s2">"fieldName"</span><span class="p">:</span><span class="s2">"firstName"</span><span class="p">,</span><span class="s2">"operator"</span><span class="p">:</span><span class="s2">"contains"</span><span class="p">,</span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"oh"</span><span class="p">}]</span><span class="w">
 </span></code></pre>
 <p>You can supply a query string parameter named &lsquo;filter&rsquo; to filter your objects during fetch. This could be useful in
-developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see <a href="../apidocs/nosql_query_language/NoSQL_Query_Language">NoSQL Query Language</a> for syntax), or with JSON containing a field name, an operator, and a value:</p>
+developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see <a href="http://docs.backand.com/?javascript#nosql-query-language">NoSQL Query Language</a> for syntax), or with JSON containing a field name, an operator, and a value:</p>
 
 <p>See <a href="http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects">getting a list of objects</a> for full details on filters.</p>
 
