@@ -6002,12 +6002,14 @@ You can use the following JSON mode:</p>
 
 <h3 id="server-side-action">Server-side Action</h3>
 
-<p>We&rsquo;ll start by adding a new custom server-side action.  This action will execute JavaScript code that sends user identification data to segment.io (and, from there, to Woopra, or Intercom, or any other interested service):</p>
-<pre class="highlight javascript tab-javascript"><code><span class="o">*</span> <span class="nx">globals</span>
- <span class="nx">$http</span> <span class="o">-</span> <span class="nx">Service</span> <span class="k">for</span> <span class="nx">AJAX</span> <span class="nx">calls</span>
- <span class="nx">CONSTS</span> <span class="o">-</span> <span class="nx">CONSTS</span><span class="p">.</span><span class="nx">apiUrl</span> <span class="k">for</span> <span class="nx">Backands</span> <span class="nx">API</span> <span class="nx">URL</span>
- <span class="o">*</span><span class="sr">/</span><span class="err">
-</span><span class="s1">'use strict'</span><span class="p">;</span>
+<blockquote>
+<p>Server-Side Action Code</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="cm">/* globals
+ $http - Service for AJAX calls
+ CONSTS - CONSTS.apiUrl for Backands API URL
+ */</span>
+<span class="s1">'use strict'</span><span class="p">;</span>
 <span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// write your code here</span>
 
@@ -6040,7 +6042,7 @@ You can use the following JSON mode:</p>
   <span class="k">return</span> <span class="nx">segmontPostResponse</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
-<p>The above code takes two parameters - userId and activeApp, with the userId being the user&rsquo;s email address. You can also send Segment.io data collected from Backand using a query to obtain the data you have stored on a given user.</p>
+<p>We&rsquo;ll start by adding a new custom server-side action.  This action will execute JavaScript code that sends user identification data to segment.io (and, from there, to Woopra, or Intercom, or any other interested service). The code takes two parameters - <code class="prettyprint">userId</code> and <code class="prettyprint">activeApp</code>, with the <code class="prettyprint">userId</code> being the user&rsquo;s email address. You can also send Segment.io data collected from Backand using a query to obtain the data you have stored on a given user.</p>
 
 <h3 id="client-side-integration">Client-side Integration</h3>
 
@@ -6056,10 +6058,10 @@ You can use the following JSON mode:</p>
 
 <h3 id="send-sms-with-twilio-api">Send SMS with Twilio API</h3>
 
-<p>Twilio has an API that you can use to send SMS. By translating their provided cURL commands to Angular $http calls, you can easily integrate Twilio with Backand.</p>
-
-<p>To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions <a href="http://docs.backand.com/en/latest/apidocs/customactions/index.html">here</a>. Name the action TwilioSendSMS, add to and message to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:</p>
-<pre class="highlight javascript tab-javascript"><code><span class="cm">/* globals
+<blockquote>
+<p>Server-Side Action code</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persisitent"><code><span class="cm">/* globals
   $http - Service for AJAX calls
   CONSTS - CONSTS.apiUrl for Backands API URL
   Config - Global Configuration
@@ -6094,19 +6096,28 @@ You can use the following JSON mode:</p>
 
 <span class="p">}</span>
 </code></pre>
-<p>In the example app we&rsquo;re building, the app&rsquo;s users can send a SMS message to a phone number. The phone number is sent, from the client side, in the &lsquo;to&rsquo; parameter, while the message content is sent in the &lsquo;message&rsquo; parameter.</p>
+<p>Twilio has an API that you can use to send SMS. By translating their provided cURL commands to Angular $http calls, you can easily integrate Twilio with Backand.</p>
+
+<p>To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The example code demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions <a href="#custom-actions">here</a>. Name the action <code class="prettyprint">TwilioSendSMS</code>, add <code class="prettyprint">to</code> and <code class="prettyprint">message</code> to the Input Parameters, and paste the server-side code in the code editor.</p>
+
+<p>In the example app we&rsquo;re building, the app&rsquo;s users can send a SMS message to a phone number. The phone number is sent, from the client side, in the <code class="prettyprint">to</code> parameter, while the message content is sent in the <code class="prettyprint">message</code> parameter.</p>
 
 <h3 id="setup-a-free-account-in-twilio">Setup a FREE account in Twilio</h3>
 
-<p>After you register with Twilio, you can get your Twilio phone number <a href="https://www.twilio.com/user/account/phone-numbers/getting-started">here</a>:
-1. To choose a different phone number from the one provided, click on <em>&lsquo;Don&rsquo;t like this one? Search for a different number.&rsquo;</em> and select SMS in capabilities.
-2. Replace the FROM_PHONE_NUM in the code with the Twilio phone number obtained in the prior step (dont forget the (+) sign before the number)
-3. Make sure you replace the &lsquo;ACCOUNT_SID&rsquo; and &lsquo;AUTH_TOKEN&rsquo; in the code with your Twilio API keys (from the getting started page). Simply click on &lsquo;Show API Credentials&rsquo; on the right side of  &lsquo;Get Started with Phone Numbers,&rsquo; and than you&rsquo;ll see the ACCOUNT SID and AUTH TOKEN values.</p>
+<p>After you register with Twilio, you can get your Twilio phone number <a href="https://www.twilio.com/user/account/phone-numbers/getting-started">here</a>:</p>
+
+<ol>
+<li>To choose a different phone number from the one provided, click on <em>&lsquo;Don&rsquo;t like this one? Search for a different number.&rsquo;</em> and select SMS in capabilities.</li>
+<li>Replace the <code class="prettyprint">FROM_PHONE_NUM</code> in the code with the Twilio phone number obtained in the prior step (dont forget the (+) sign before the number)</li>
+<li>Make sure you replace the &lsquo;<code class="prettyprint">ACCOUNT_SID</code>&rsquo; and &lsquo;<code class="prettyprint">AUTH_TOKEN</code>&rsquo; in the code with your Twilio API keys (from the getting started page). Simply click on &lsquo;Show API Credentials&rsquo; on the right side of  &lsquo;Get Started with Phone Numbers,&rsquo; and than you&rsquo;ll see the <code class="prettyprint">ACCOUNT SID</code> and <code class="prettyprint">AUTH TOKEN</code> values.</li>
+</ol>
 
 <h3 id="setup-client-side-code">Setup client-side code:</h3>
 
-<p>Next, add the following JavaScript code to your app&rsquo;s client-side code base:</p>
-<pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">$http</span> <span class="p">({</span>
+<blockquote>
+<p>Client-Side Code</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persisitent"><code><span class="k">return</span> <span class="nx">$http</span> <span class="p">({</span>
   <span class="na">url</span><span class="p">:</span> <span class="nx">Backand</span><span class="p">.</span><span class="nx">getApiUrl</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'/1/objects/action/&lt;your object name&gt;'</span><span class="p">,</span>
     <span class="na">params</span><span class="p">:</span> <span class="p">{</span>
       <span class="na">name</span><span class="p">:</span> <span class="s1">'TwilioSendSMS'</span><span class="p">,</span>
@@ -6118,9 +6129,7 @@ You can use the following JSON mode:</p>
 <span class="p">});</span>
 
 </code></pre>
-<p>Replace &lsquo;your object name&rsquo; with the object associated with the action you created and &lsquo;your destination phone number&rsquo; with a vaild phone number (when using Twilio trial account you first need to validate this phone number)</p>
-
-<p>Once this is done, you&rsquo;ll be able to easily trigger SMS via Twilio using Backand&rsquo;s custom action API.</p>
+<p>Next, add the client-side JavaScript code to your app&rsquo;s code base. Replace <code class="prettyprint">&lt;your object name&gt;</code> with the object associated with the action you created and <code class="prettyprint">&lt;your destination phone number&gt;</code> with a vaild phone number (when using Twilio trial account you first need to validate this phone number), Once this is done, you&rsquo;ll be able to easily trigger SMS via Twilio using Backand&rsquo;s custom action API.</p>
 
 <h2 id="netmera">Netmera</h2>
 
@@ -6140,12 +6149,14 @@ You can use the following JSON mode:</p>
 
 <p>Netmera has a rest API that can be used to remotely send push notifications. You can integrate Netmera with Backand by using Backand server-side actions. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code.</p>
 
-<p>In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action by clicking on &lsquo;Netmera&rsquo; under &lsquo;Push Notifications&rsquo;.</p>
+<p>In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action by clicking on <code class="prettyprint">Netmera</code> under &lsquo;Push Notifications&rsquo;.</p>
 
 <p><strong>You have just created your first push notification action!</strong></p>
 
-<p>In order to call the function from your angular app, use the following code:</p>
-<pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">$http</span> <span class="p">({</span>
+<blockquote>
+<p>Client-Side code</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="k">return</span> <span class="nx">$http</span> <span class="p">({</span>
   <span class="na">url</span><span class="p">:</span> <span class="nx">Backand</span><span class="p">.</span><span class="nx">getApiUrl</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'/1/objects/action/&lt;your object name&gt;'</span><span class="p">,</span>
     <span class="na">params</span><span class="p">:</span> <span class="p">{</span>
       <span class="na">name</span><span class="p">:</span> <span class="s1">'SendPushNotification'</span><span class="p">,</span>
@@ -6156,6 +6167,8 @@ You can use the following JSON mode:</p>
     <span class="p">}</span>
 <span class="p">});</span>
 </code></pre>
+<p>In order to call the function from your angular app, use the following code:</p>
+
 <p>Replace ‘your object name’ with the object associated with the action you created, set a title for the &lsquo;notificationTitle&rsquo; field, write any message you want in ‘notificationContent’ field and you’re good to go. Now you can start sending push notifications dynamically using Backand and Netmera.</p>
 
 <h2 id="pushwoosh">PushWoosh</h2>
@@ -6166,16 +6179,23 @@ You can use the following JSON mode:</p>
 
 <ol>
 <li>Register an account in PushWoosh and proceed to create an application. Using the PushWoosh control panel, configure your application to support Android including <a href="http://docs.pushwoosh.com/docs/gcm-configuration">configuring GCM (Google Cloud Messaging</a>)</li>
-<li><p>You can either get the starter app or to integrate in an existing app.
-To get a starter app: clone the PushWoosh Android SDK:
-<code class="prettyprint">
-git clone https://github.com/Pushwoosh/pushwoosh-android-sdk.git
-</code>
-open /Samples/Android-Simple directory in Android Studio and build the app.</p></li>
-<li><p>To integrate in an existing app use the following <a href="http://docs.pushwoosh.com/docs/native-android-sdk">Android guide</a> – include the SDK.jar and add the relevant code to your application.
-<a href="http://docs.pushwoosh.com/docs/androidmanifestxml-modifications">Make the relevant changes to your AndroidManifest.xml file</a> – if you&rsquo;re using the starter app just change the App ID and Project ID.</p></li>
-<li><p>To integrate in an existing app use the following <a href="http://docs.pushwoosh.com/docs/apns-configuration">iOS guide</a></p></li>
-<li><p>For Ionic you would need to implement the SDK for <a href="http://docs.pushwoosh.com/docs/cordova-phonegap">Cordova / PhoneGap</a> and check this example for <a href="http://docs.pushwoosh.com/docs/phonegap-build">PhoneGap Build</a></p></li>
+<li>You can either get the starter app or to integrate in an existing app.
+&gt; To get a starter app: clone the PushWoosh Android SDK:</li>
+</ol>
+<pre class="highlight shell"><code>git clone https://github.com/Pushwoosh/pushwoosh-android-sdk.git
+</code></pre>
+<blockquote>
+<p>Then, open /Samples/Android-Simple directory in Android Studio and build the app.</p>
+</blockquote>
+
+<ol>
+<li>To integrate in an existing app use the following <a href="http://docs.pushwoosh.com/docs/native-android-sdk">Android guide</a> – include the SDK.jar and add the relevant code to your application.
+
+<ul>
+<li><a href="http://docs.pushwoosh.com/docs/androidmanifestxml-modifications">Make the relevant changes to your AndroidManifest.xml file</a> – if you&rsquo;re using the starter app just change the App ID and Project ID.</li>
+</ul></li>
+<li>To integrate in an existing app use the following <a href="http://docs.pushwoosh.com/docs/apns-configuration">iOS guide</a></li>
+<li>For Ionic you would need to implement the SDK for <a href="http://docs.pushwoosh.com/docs/cordova-phonegap">Cordova / PhoneGap</a> and check this example for <a href="http://docs.pushwoosh.com/docs/phonegap-build">PhoneGap Build</a></li>
 </ol>
 
 <h3 id="integrating-pushwoosh-with-backand">Integrating PushWoosh with Backand</h3>
@@ -6186,8 +6206,10 @@ open /Samples/Android-Simple directory in Android Studio and build the app.</p><
 
 <p><strong>You have just created your first push notification action!</strong></p>
 
-<p>In order to call the function from your angular app, use the following code:</p>
-<pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">$http</span> <span class="p">({</span>
+<blockquote>
+<p>Client-side code</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="k">return</span> <span class="nx">$http</span> <span class="p">({</span>
   <span class="na">url</span><span class="p">:</span> <span class="nx">Backand</span><span class="p">.</span><span class="nx">getApiUrl</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'/1/objects/action/&lt;your object name&gt;'</span><span class="p">,</span>
     <span class="na">params</span><span class="p">:</span> <span class="p">{</span>
       <span class="na">name</span><span class="p">:</span> <span class="s1">'SendPushNotification'</span><span class="p">,</span>
@@ -6197,7 +6219,7 @@ open /Samples/Android-Simple directory in Android Studio and build the app.</p><
     <span class="p">}</span>
 <span class="p">});</span>
 </code></pre>
-<p>Replace ‘your object name’ with the object associated with the action you created and write any message you want in ‘notificationContent’ field and you’re good to go. Now you can start sending push notifications dynamically using Backand.</p>
+<p>In order to call the function from your angular app, use the provided code. Replace <code class="prettyprint">&lt;your object name&gt;</code> with the object associated with the action you created, write any message you want in <code class="prettyprint">‘notificationContent’</code> field, and you’re good to go. Now you can start sending push notifications dynamically using Backand.</p>
 
 <h2 id="facebook-messenger-bot">Facebook Messenger Bot</h2>
 
