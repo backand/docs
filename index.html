@@ -402,8 +402,11 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 </code></pre>
 <p>The default authentication setup for <a href="https://www.backand.com">Backand</a> applications relies on <a href="http://oauth.net/2/">OAuth2</a> to provide tokenized authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use <a href="https://github.com/backand/vanilla-sdk">Backand&rsquo;s SDK</a> to help you manage the access token. You can change the default expiration of 24 hours by using a refresh token, which allows you to reuse the authentication token indefinitely. The refresh token is an encrypted hash of the master and user keys. You can revoke one (or all) of your user&rsquo;s refresh tokens by changing the refresh token and requiring users to re-authenticate. For more information, see the <a href="http://docs.backand.com/#vanilla-sdk">API Description</a>.</p>
 
-<p>Parameters:
-* <strong>signupIfNotSignedIn</strong> - (Optional, default false) - If the user tries to sign in without first registering for the application, the user will receive an error message (&ldquo;The user is not signed up to {appName}&rdquo;). If this value is set to true, then the user will be automatically registered with the app if they have not yet been signed up</p>
+<p>Parameters:</p>
+
+<ul>
+<li><strong>signupIfNotSignedIn</strong> - (Optional, default false) - If the user tries to sign in without first registering for the application, the user will receive an error message (&ldquo;The user is not signed up to {appName}&rdquo;). If this value is set to true, then the user will be automatically registered with the app if they have not yet been signed up</li>
+</ul>
 
 <h4 id="sample-response">Sample response</h4>
 <pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">response</span><span class="w">
