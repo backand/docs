@@ -113,15 +113,15 @@ Now create your mobile app, naming it ‘PlaylistsApp’, with the Ionic command
 
 #### JS Libraries
 
-Your Ionic app has a ‘www’ folder which is a single page application (SPA) built with AngularJS.  You will need to include the Backand libraries in your application. Either download them or use bower to obtain them. Then, copy them into your 'index.html'.
+Your Ionic app has a `www` folder which is a single page application (SPA) built with AngularJS.  You will need to include the Backand libraries in your application. Either download them or use bower to obtain them. Then, copy them into your `index.html`.
 
-* [angularbknd-sdk](https://github.com/backand/angularbknd-sdk), install with bower using:
+* [angular1-sdk](https://github.com/backand/angular1-sdk), install with bower using:
 
   ```bash
-    bower install angularbknd-sdk
+    bower install angular1-sdk
   ```
 
-* Include in your 'index.html':
+* Include in your `index.html`:
 
   ```html
      <script src="lib/angularbknd-sdk/dist/backand.min.js"></script>
@@ -130,16 +130,16 @@ Your Ionic app has a ‘www’ folder which is a single page application (SPA) b
 
 #### Authorization
 
-Backand uses authorization headers in HTTP requests. The token for authorization is obtained upon sign in to Backand and is then stored using cookies via 'ngCookies'. The Backand sdk adds authorization headers to each HTTP request using an ‘$http’ interceptor.
+Backand uses authorization headers in HTTP requests. The token for authorization is obtained upon sign in to Backand and is then stored using cookies via `ngCookies`. The Backand SDK adds authorization headers to each HTTP request using an `$http` interceptor.
 
-In your main 'js' file, 'app.js' requires ‘backand':
+In your main JavaScript file, `app.js` requires `backand`:
 
 ```javascript
      var myApp = angular.module('starter', ['ionic',
        'starter.controllers', 'backand', 'starter.services']);
 ```
 
-And in your app ‘config’ add:
+And in your app's `config` add:
 
 ```javascript
      myApp.config(function($stateProvider, $urlRouterProvider,
@@ -147,6 +147,7 @@ And in your app ‘config’ add:
         $httpProvider.interceptors.push(httpInterceptor);
      });
 ```
+
 Defining the interceptor as:
 ```javascript
      function httpInterceptor($q, $log, $cookieStore) {
@@ -160,21 +161,21 @@ Defining the interceptor as:
      }
 ```
 
-Sign In
+#### Sign In
 
-#### In your controllers module require ‘Backand’ and ‘ngCookies':
+In your controllers module require `Backand` and `ngCookies`:
 
 
 ```javascript
     var myModule = angular.module('starter.controllers', ['backand', 'ngCookies']);
 ```
 
-In your login controller require ‘Backand':
+In your login controller require `Backand`:
 
 ```javascript
     myModule.controller('loginCtrl', function($scope, Backand) {});
 ```
-To perform the login call, remember that ‘playlists’ is our Backand database name:
+To perform the login call, remember that `playlists` is our Backand database name:
 
 
 ```javascript
@@ -185,14 +186,14 @@ To perform the login call, remember that ‘playlists’ is our Backand database
 
 #### CRUD
 
-Now you will need to define a service to make the database operations.  In your services module require ‘backand':
+Now you will need to define a service to make the database operations.  In your services module require `backand`:
 
 
 ```javascript
     var myServices = angular.module('starter.services', ['backand'])
 ```
 
-Define a ‘DatabaseService’, require ‘Backand':
+Define a `DatabaseService`, require `Backand`:
 
 ```javascript
     .service('DatabaseService', function($http, Backand){    
@@ -229,7 +230,7 @@ Define a ‘DatabaseService’, require ‘Backand':
 
 #### Using Backand Data
 
-In your controller, require ‘DatabaseService’, and make calls like:
+In your controller, require `DatabaseService`, and make calls like:
 
 ```javascript
     myModule.controller('playlistsCtrl',    
@@ -258,7 +259,7 @@ To review in Github: [ionic demo](https://github.com/backand/simple-rest-ionic).
 
 ## Retrieving data from Facebook using the Graph API
 
-Once you've integrated with facebook, you can use Facebook's [Graph API](https://developers.facebook.com/docs/graph-api) to augment your user data with information directly from the user's Facebook account. To do so, you'll just need to grab the user's Facebook User ID, and use the Graph API to retrieve data, update or publish new content, or any of the other functionality Facebook has to offer.
+Once you've integrated with Facebook, you can use Facebook's [Graph API](https://developers.facebook.com/docs/graph-api) to augment your user data with information directly from the user's Facebook account. To do so, you'll just need to grab the user's Facebook User ID, and use the Graph API to retrieve data, update or publish new content, or any of the other functionality Facebook has to offer.
 
 ### Obtaining the Facebook User ID
 To store the user's Facebook user ID (FUID) in Backand, follow these steps:
@@ -306,17 +307,14 @@ At this point, you're ready to work with the API. For example, you can use this 
 ```html
 <a href="#">http://graph.facebook.com/{fuid}/picture</a>
 ```
-You can easily obtain a user's Facebook profile using a single URL reference. Here is the template:
-
-Simply replace **{fuid}** with the user's Facebook User ID.
+You can easily obtain a user's Facebook profile using a single URL reference. The template is available on the right - simply replace **{fuid}** with the user's Facebook User ID.
 
 
 ```html
 <a href="http://graph.facebook.com/{fuid}/picture?type=large" target="_blank">http://graph.facebook
 .com/{fuid}/picture?type=large</a>
 ```
-You can pull in a larger version of the profile picutre using the following HTML:
-
+You can pull in a larger version of the profile picture using the HTML to the right:
 
 Finally, you can refer to [Facebook's Docs](https://developers.facebook.com/docs/graph-api/reference/user/picture/) on their Graph API, and use the information to create whatever type of integration with Facebook that you desire.
 
@@ -355,7 +353,7 @@ var response = $http({method:"PUT",url:CONSTS.apiUrl + "/1/file/s3" ,
 return response;
 ```
 
-The above code is inserted into a new Custom Server-Side JavaScript Action created using the Backand dashboard. It pulls the file information from the parameters passed to the action, then sends a request to S3's file upload endpoint, putting the file into the bucket 'backand-free-upload'. By customizing the above code, you can achieve any underlying file structure you desire.
+The above code is inserted into a new Custom Server-Side JavaScript Action created using the Backand dashboard. It pulls the file information from the parameters passed to the action, then sends a request to S3's file upload endpoint, putting the file into the bucket `backand-free-upload`. By customizing the above code, you can achieve any underlying file structure you desire.
 
 ### Client-side Integration
 
@@ -380,7 +378,7 @@ self.s3FileUpload = function(filename, filedata, success, error)
 };
 ```
 
-The above code is pretty straightforward. It defines a function – s3FileUpload – that takes input from your application in the form of file data, and then communicates with your new custom JavaScript action via an HTTP POST request using JavaScript's built-in AJAX capabilities. Simply call this function from your Angular code, and you will be uploading files in no time!
+The above code is pretty straightforward. It defines a function – `s3FileUpload` – that takes input from your application in the form of file data, and then communicates with your new custom JavaScript action via an HTTP POST request using JavaScript's built-in AJAX capabilities. Simply call this function from your Angular code, and you will be uploading files in no time!
 
 ## Stripe Integration
 Once you've decided how you want to monetize your web app, you'll likely begin looking at ways to integrate your code with a vendor that will accept and process payments on your behalf. While this would be a daunting effort to perform in a custom-built environment, Backand's built-in security and stability help to ease many of the requirements that are imposed upon payment applications. Below we'll look at using a third-party vendor – [Stripe](http://www.stripe.com/) – to process payments, and examine how to integrate Stripe with a Backand application.
@@ -469,9 +467,7 @@ Once you've set your publishable key, you're ready to start tokenizing payment m
   }
 ```
 
-Once this code has been created, we need to write one additional function. This function wraps a HTTP request to the
-custom action we created previously. It assumes that the action's name is 'makePayment', so be sure to change it to
-something that matches your actual implementation:
+Once this code has been created, we need to write one additional function. This function wraps a HTTP request to the custom action we created previously. It assumes that the action's name is `makePayment`, so be sure to change it to something that matches your actual implementation:
 
 ```javascript
 factory.makePayment = function(amount, token){
@@ -499,10 +495,7 @@ Mandrill is an email infrastructure service that focuses on transactional emails
 
 ### Send Email with Mandrill API (No Attachment)
 Mandrill has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate Mandrill with Backand.
-
-To send an email with Mandrill, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action mandrillapp, add message and name to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
-
-```javascript
+```javascript--persistent
 /* globals
   $http - Service for AJAX calls
   CONSTS - CONSTS.apiUrl for Backands API URL
@@ -524,6 +517,10 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 	return {};
 }
 ```
+
+
+To send an email with Mandrill, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more about how to create actions [here](#custom-actions). Name the action `mandrillapp`, add `message` and `name` to the Input Parameters, and paste the code on the right into the code editor. When finished, the code editor window will contain the following:
+
 In the example app we're building, the app's users can send messages to themselves. This is done through the use of userProfile.username, which is the email address used to register with the application. Make sure to replace the 'key' property above with your Mandrill API key.
 
 Next, add the following JavaScript code to your app's client-side code base:
