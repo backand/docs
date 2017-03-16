@@ -6347,9 +6347,7 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 
 <p>Finally, you can enhance your app&rsquo;s intelligence with an AI integration. Find out how to get started at <a href="https://wit.ai">Wit.ai</a>!</p>
 
-<h3 id="customizing-the-bots-code-in-a-backand-action">Customizing the Bot&rsquo;s Code in a Backand Action</h3>
-
-<h4 id="receive-messages"><em>Receive Messages</em></h4>
+<h3 id="customizing-the-bots-code-to-receive-messages">Customizing the Bot&rsquo;s Code to <em>Receive Messages</em></h3>
 
 <blockquote>
 <p>Code to receive messages from Facebook</p>
@@ -6386,7 +6384,7 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 </code></pre>
 <p>All callbacks and webhooks from Facebook will end up in your object&rsquo;s Facebook Action code. The JavaScript for this action is solely responsible for listening to the incoming <code class="prettyprint">POST</code> calls, and responding appropriately. The template code handles all webhooks from Facebook by default. For example, receiving messages is handled by looking for the <code class="prettyprint">messagingEvent.message</code> field in the webhook, and then calling the <code class="prettyprint">receivedMessage()</code> function as seen to the right:</p>
 
-<h4 id="send-a-text-message"><em>Send a Text Message</em></h4>
+<h3 id="customizing-the-bots-code-to-send-a-text-message">Customizing the Bot&rsquo;s Code to <em>Send a Text Message</em></h3>
 
 <blockquote>
 <p>Sending a message to the user</p>
@@ -6484,10 +6482,10 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 
 <span class="p">}</span>
 </code></pre>
-<h4 id="send-a-structured-message"><em>Send a Structured Message</em></h4>
+<h3 id="customizing-the-bots-code-to-send-a-structured-message">Customizing the Bot&rsquo;s Code to <em>Send a Structured Message</em></h3>
 
 <blockquote>
-<p>Sending a response</p>
+<p>Sending a structured response</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="kd">function</span> <span class="nx">sendGenericMessage</span><span class="p">(</span><span class="nx">recipientId</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">messageData</span> <span class="o">=</span> <span class="p">{</span>
@@ -6537,10 +6535,10 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 </code></pre>
 <p><code class="prettyprint">receivedMessage</code> can also send back other kinds of messages if it sees certain keywords. For example, if you send the message &lsquo;backand&rsquo;, it will call <code class="prettyprint">sendGenericMessage()</code> - a function that sends back a Structured Message with a generic template.</p>
 
-<h4 id="handle-postbacks"><em>Handle Postbacks</em></h4>
+<h3 id="customizing-the-bots-code-to-handle-postbacks">Customizing the Bot&rsquo;s Code to <em>Handle Postbacks</em></h3>
 
 <blockquote>
-<p>In our webhook handler, we handle the postback by calling the function &lsquo;receivedPostback()&rsquo;:</p>
+<p>In our webhook handler, we handle the postback by calling the function <code class="prettyprint">receivedPostback():</code></p>
 </blockquote>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="p">....</span>
 <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">messagingEvent</span><span class="p">.</span><span class="nx">postback</span><span class="p">)</span> <span class="p">{</span>
