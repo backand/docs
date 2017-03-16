@@ -495,6 +495,7 @@ Mandrill is an email infrastructure service that focuses on transactional emails
 
 ### Send Email with Mandrill API (No Attachment)
 Mandrill has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate Mandrill with Backand.
+> Server side action code
 
 ```javascript--persistent
 /* globals
@@ -522,6 +523,8 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 To send an email with Mandrill, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more about how to create actions [here](#custom-actions). Name the action `mandrillapp`, add `message` and `name` to the Input Parameters, and paste the code on the right into the code editor.
 
 In the example app we're building, the app's users can send messages to themselves. This is done through the use of `userProfile.username`, which is the email address used to register with the application. Make sure to replace the `key` property above with your Mandrill API key.
+
+> Client-side code
 
 ```javascript--persistent
 return $http ({
