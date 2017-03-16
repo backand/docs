@@ -519,14 +519,11 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 }
 ```
 
+To send an email with Mandrill, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more about how to create actions [here](#custom-actions). Name the action `mandrillapp`, add `message` and `name` to the Input Parameters, and paste the code on the right into the code editor.
 
-To send an email with Mandrill, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more about how to create actions [here](#custom-actions). Name the action `mandrillapp`, add `message` and `name` to the Input Parameters, and paste the code on the right into the code editor. When finished, the code editor window will contain the following:
+In the example app we're building, the app's users can send messages to themselves. This is done through the use of `userProfile.username`, which is the email address used to register with the application. Make sure to replace the `key` property above with your Mandrill API key.
 
-In the example app we're building, the app's users can send messages to themselves. This is done through the use of userProfile.username, which is the email address used to register with the application. Make sure to replace the 'key' property above with your Mandrill API key.
-
-Next, add the following JavaScript code to your app's client-side code base:
-
-```javascript
+```javascript--persistent
 return $http ({
   method: 'GET',
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>/1',
@@ -538,13 +535,8 @@ return $http ({
     }
   }
 });
-
 ```
-
-Replace <your object name> with the object associated with the action you created.
-
-Once this is done, you'll be able to easily trigger emails via Mandrill using Backand's custom action API.
-
+Next, add the JavaScript code to the right to your app's client-side code base. Replace `<your object name>` with the object associated with the action you created. Once this is done, you'll be able to easily trigger emails via Mandrill using Backand's custom action API.
 
 ### Send Email with Mandrill API (with Attachments)
 
@@ -559,19 +551,17 @@ To get started with a Mandrill action, you’ll need to first create a new Serve
 Once you have the Server-Side Node.js action ready to go, the next step is to create an action in Mandrill. Navigate to [http://www.mandrill.com/](http://www.mandrill.com/) and create a new action in the MailChimp dashboard provided when you log in. Once the action is ready, copy down the Mandrill API Key value and save it somewhere safe. This API key will be used by the Node.js action to connect and communicate with Mandrill.
 
 ### Updating the Code
-
-Next, we’ll need to update the action’s code to communicate with Mandrill. We’ll start by  configuring the mandrill SDK requirements in index.js. Add these lines into index.js in your Node.js action folder structure, before the function exports.backandCallback:
-
-```javascript
+```javascript--persistent
 var mandrill = require('node-mandrill')(MANDRILL_API_KEY);
 var request = require('request').defaults({ encoding: null });
 ```
 
-**Note:** Be sure to replace MANDRILL_API_KEY with the value copied down from the Mandrill dashboard.
+Next, we’ll need to update the action’s code to communicate with Mandrill. We’ll start by  configuring the mandrill SDK requirements in `index.js`. Add these lines into `index.js` in your Node.js action folder structure, before the function `exports.backandCallback`:
 
-Next, we’ll modify the backandCallback function to send a message with Mandrill. Replace the contents of this function with the following code:
 
-```javascript
+<aside class="notice">Be sure to replace MANDRILL_API_KEY with the value copied down from the Mandrill dashboard.</aside>
+
+```javascript--persistent
     var filePath = 'PATH_TO_ATTACHMENT_INCLUDING_FILENAME';
     var fileName = 'FILENAME_OF_ATTACHMENT';
 
@@ -611,35 +601,27 @@ Next, we’ll modify the backandCallback function to send a message with Mandril
     }
 ```
 
-This code does two things:
+Next, we’ll modify the `backandCallback` function to send a message with Mandrill. Replace the contents of this function with the code on the right. This code does two things:
 
-1. The initial code fetches the attachment data from the server on which it is stored. If this code succeeds, it calls sendEmail with the file data provided as a Base 64 string.
-
-2. sendEmail then takes this data and contacts Mandrill to send the message.
+1. The initial code fetches the attachment data from the server on which it is stored. If this code succeeds, it calls `sendEmail` with the file data provided as a Base 64 string.
+2. `sendEmail` then takes this data and contacts Mandrill to send the message.
 
 ### Configuring the Code
 
 To tie the project together and finalize the above code, simply replace each of the placeholders with the appropriate value:
 
-* PATH_TO_ATTACHMENT_INCLUDING_FILENAME - this is the URL to the attachment you wish to send. If fetching this fails, sending the message will not succeed.
-
-* FILENAME_OF_ATTACHMENT - this is the file name that will be given to the attachment.
-
-* RECIPIENT_EMAIL - This is the email for the message’s intended recipient.
-
-* RECIPIENT_DISPLAY_NAME - This is the recipient’s display name.
-
-* SENDER - This is the email from which the message was sent.
-
-* EMAIL_SUBJECT - This is the subject of the email.
-
-* MESSAGE_BODY - This is the content of the email.
+* `PATH_TO_ATTACHMENT_INCLUDING_FILENAME` - this is the URL to the attachment you wish to send. If fetching this fails, sending the message will not succeed.
+* `FILENAME_OF_ATTACHMENT` - this is the file name that will be given to the attachment.
+* `RECIPIENT_EMAIL` - This is the email for the message’s intended recipient.
+* `RECIPIENT_DISPLAY_NAME` - This is the recipient’s display name.
+* `SENDER` - This is the email from which the message was sent.
+* `EMAIL_SUBJECT` - This is the subject of the email.
+* `MESSAGE_BODY` - This is the content of the email.
 
 You can also use the parameters argument to the action to send additional message data, whether that data originates in your app’s database or via the API call. Once these changes are made, your server-side action is ready to deploy!
 
 ### Testing and Deployment
-
-You can debug and run the action locally using the provided debug.js file. Simply enter node debug.js on the command line to debug. Once you’ve finished your local testing, you can then deploy the action via the documentation provided in the Server-Side Action’s UI in your app’s dashboard at Backand.com - head to the Actions tab for the relevant object, and follow the instructions on using backand action deploy to deploy your code.
+You can debug and run the action locally using the provided `debug.js` file. Simply enter node `debug.js` on the command line to debug. Once you’ve finished your local testing, you can then deploy the action via the documentation provided in the Server-Side Action’s UI in your app’s dashboard at Backand.com - head to the Actions tab for the relevant object, and follow the instructions on using `backand action deploy` to deploy your code.
 
 ### Calling the Action
 
@@ -651,7 +633,7 @@ To call the action in your client-side code, simply use the Backand SDK’s acti
   })
 ```
 
-Simply replace OBJECT_NAME with the name of the object controlling your action, and ACTION_NAME with the Server-Side Node.js Action’s name in Backand. You can provide any extra information or detail using the provided parameters object - this will be passed into the parameters argument of your action.
+Simply replace `OBJECT_NAME` with the name of the object controlling your action, and `ACTION_NAME` with the Server-Side Node.js Action’s name in Backand. You can provide any extra information or detail using the provided `parameters` object - this will be passed into the parameters argument of your action.
 
 ## Mailgun
 Mailgun is an email automation service provided by Rackspace. It offers a complete cloud-based email service for sending, receiving, and tracking email messages sent by your registered websites and applications.
@@ -659,7 +641,7 @@ Mailgun is an email automation service provided by Rackspace. It offers a comple
 ### Send Email with Mailgun API
 Mailgun provides an API that can be used to easily send email, among many other features. By translating Mailgun's provided cURL examples to JavaScript $http calls, you can easily integrate Mailgun with Backand.
 
-To send an email with Mailgun, you need to create a server side action.You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action ,ao;gim, add message and name to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
+To send an email with Mailgun, you need to create a server side action.You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](#custom-actions). Name the action ,ao;gim, add message and name to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
 
 ```javascript
 /* globals
