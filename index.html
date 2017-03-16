@@ -2010,7 +2010,7 @@ Set-AdfsProperties -EnableKmsi <span class="nv">$True</span> –KmsiLifetimeMins
 
           <h1 id="vanilla-sdk">Vanilla SDK</h1>
 
-<p>The primary functionality in the Backand SDK is contained in the Vanilla SDK, located <a href="https://github.com/backand/vanilla-sdk">on our GitHub page</a>. This provides a global object - <code class="prettyprint">backand</code> - that can be used to work with the Backand SDK. Review the ReadMe on the GitHub repo to get started, or navigate to our <a href="#sdk-documentation">SDK Documentation</a>.</p>
+<p>The primary functionality in the Backand SDK is contained in the Vanilla SDK, located <a href="https://github.com/backand/vanilla-sdk">on our GitHub page</a>. This provides a global object - <code class="prettyprint">backand</code> - that can be used to work with the Backand SDK. Review the ReadMe on the GitHub repo to get started, or review the content below.</p>
 
 <h2 id="overview">Overview</h2>
 
@@ -4688,15 +4688,15 @@ curl https://api.backand.com/1/objects/users/5
 <p>You can supply a query string parameter named &lsquo;filter&rsquo; to filter your objects during fetch. This could be useful in
 developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see <a href="http://docs.backand.com/?javascript#nosql-query-language">NoSQL Query Language</a> for syntax), or with JSON containing a field name, an operator, and a value:</p>
 
-<p>See <a href="http://docs.backand.com/en/latest/apidocs/apidescription/index.html#list-of-objects">getting a list of objects</a> for full details on filters.</p>
+<p>See <a href="http://docs.backand.com/#getlist">the getList function</a> for full details on filters.</p>
 
 <h4 id="predefined-filter">Predefined Filter</h4>
 
-<p>Sometimes, for security reasons you may want to enforce partial reading of object data, usually based upon the current user or their role. This can be accomplished on the server-side using a Predefined Filter. Predefined Filters can be found in the Security tab of each object. They act as a SQL &lsquo;where&rsquo; condition. Filters are combined using the &lsquo;AND&rsquo; operator. You can write the filter using either a SQL statement or the NoSQL Query Language reading of partial data, usually depending on the current user or current user role. The option to force it from the server side is called Predefined Filter and you can find it at the Security tab of each object. The predefined filter acts as a SQL where statement condition. If you add additional filter that were described above then they will be added with an &ldquo;AND&rdquo; logic. You can write the predefined filter either as a SQL statement or as a <a href="../apidocs/nosql_query_language/NoSQL_Query_Language">NoSQL Query Language</a> statement.</p>
+<p>Sometimes, for security reasons you may want to enforce partial reading of object data, usually based upon the current user or their role. This can be accomplished on the server-side using a Predefined Filter. Predefined Filters can be found in the Security tab of each object. They act as a SQL &lsquo;where&rsquo; condition. Filters are combined using the &lsquo;AND&rsquo; operator. You can write the filter using either a SQL statement or the NoSQL Query Language reading of partial data, usually depending on the current user or current user role. The option to force it from the server side is called Predefined Filter and you can find it at the Security tab of each object. The predefined filter acts as a SQL where statement condition. If you add additional filter that were described above then they will be added with an &ldquo;AND&rdquo; logic. You can write the predefined filter either as a SQL statement or as a <a href="http://docs.backand.com/?javascript#nosql-query-language">NoSQL Query Language</a> statement.</p>
 
 <h3 id="queries-and-on-demand-actions">Queries and On Demand Actions</h3>
 
-<p>So far we have discussed how to read objects that were defined in the database model. To create custom data structures, we can use Queries and On Demand Actions. Queries are identical to SQL database queries but you can write them using NoSQL syntax (see <a href="../apidocs/nosql_query_language/NoSQL_Query_Language">NoSQL Query Language</a> for more details). With On Demand Actions, you can orchestrate any structure that you want using javascript on the server side. You can request model objects, queries, or other on demand actions. See <a href="http://docs.backand.com/en/latest/apidocs/customactions/index.html#server-side-javascript-code">On Demand Actions Javascript Code</a> for more information.</p>
+<p>So far we have discussed how to read objects that were defined in the database model. To create custom data structures, we can use Queries and On Demand Actions. Queries are identical to SQL database queries but you can write them using NoSQL syntax (see <a href="http://docs.backand.com/?javascript#nosql-query-language">NoSQL Query Language</a> for more details). With On Demand Actions, you can orchestrate any structure that you want using javascript on the server side. You can request model objects, queries, or other on demand actions. See <a href="http://docs.backand.com/?javascript#custom-actions">On Demand Actions  - Server-Side Javascript Code</a> for more information.</p>
 
 <h4 id="pagination">Pagination</h4>
 <pre class="highlight plaintext"><code>            SET @records := 20;
@@ -4708,7 +4708,7 @@ developm situations, or as a part of a UI with search functionality, allowing yo
             SET @offset := @records * ({{ "{{pageNum" }}}} -1 );
             EXECUTE stmt USING @offset,@records;
 </code></pre>
-<p>The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on <a href="../../apidocs/customactions/index.html#server-side-javascript-code">JavaScript action</a> or by using a prepared statement:</p>
+<p>The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on <a href="http://docs.backand.com/?javascript#custom-actions">JavaScript action</a> or by using a prepared statement:</p>
 
 <h2 id="continuous-deployment-and-versioning">Continuous Deployment and Versioning</h2>
 
@@ -4884,7 +4884,7 @@ https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js
 
 <h3 id="learning-more">Learning more</h3>
 
-<p>At this point, you have the full power of the <a href="http://docs.backand.com/en/latest/getting_started/vanilla_sdk/index.html">Backand SDK</a> available in your Ionic Creator app. You can use the SDK to add more services to your app, providing CRUD functionality, real-time communications, server-side code execution, and more! Simply head over to <a href="http://docs.backand.com">our documentation</a> to get started.</p>
+<p>At this point, you have the full power of the <a href="http://docs.backand.com/?javascript#vanilla-sdk">Backand SDK</a> available in your Ionic Creator app. You can use the SDK to add more services to your app, providing CRUD functionality, real-time communications, server-side code execution, and more! Simply head over to <a href="http://docs.backand.com">our documentation</a> to get started.</p>
 
 <h2 id="working-with-custom-actions">Working with Custom Actions</h2>
 
@@ -4942,7 +4942,7 @@ On Demand triggers, on the other hand, happen whenever you like. These are assoc
 <p>To work with encrypted passwords in Backand, follow these steps:</p>
 
 <ol>
-<li>Create a <code class="prettyprint">password</code> field in your <code class="prettyprint">users</code> object, of type <code class="prettyprint">string</code></li>
+<li>Create a <code class="prettyprint">password</code> field in your <code class="prettyprint">users</code> object, of type <code class="prettyprint">text</code></li>
 <li>Modify or create a &ldquo;before create&rdquo; action for the <code class="prettyprint">users</code> object, and set the type to Custom Server-Side JavaScript.</li>
 <li>Add <code class="prettyprint">userInput.password = security.hash(userInput.password);</code> to encrypt the password</li>
 </ol>
