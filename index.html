@@ -402,7 +402,7 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 </code></pre>
 <p>The default authentication setup for <a href="https://www.backand.com">Backand</a> applications relies on <a href="http://oauth.net/2/">OAuth2</a> to provide tokenized authentication. By logging in with your username (your email address), your password, and your app name, you receive an authentication token that is valid for 24 hours. This token is required for all communication with Backand, and as such we highly recommend that you use <a href="https://github.com/backand/vanilla-sdk">Backand&rsquo;s SDK</a> to help you manage the access token. You can change the default expiration of 24 hours by using a refresh token, which allows you to reuse the authentication token indefinitely. The refresh token is an encrypted hash of the master and user keys. You can revoke one (or all) of your user&rsquo;s refresh tokens by changing the refresh token and requiring users to re-authenticate. For more information, see the <a href="http://docs.backand.com/#vanilla-sdk">API Description</a>.</p>
 
-<p>Parameters:</p>
+<h4 id="parameters">Parameters</h4>
 
 <ul>
 <li><strong>signupIfNotSignedIn</strong> - (Optional, default false) - If the user tries to sign in without first registering for the application, the user will receive an error message (&ldquo;The user is not signed up to {appName}&rdquo;). If this value is set to true, then the user will be automatically registered with the app if they have not yet been signed up</li>
@@ -611,7 +611,7 @@ If you wish to disable anonymous access to your application, go to Security &amp
 
 <h3 id="security-actions">Security Actions</h3>
 
-<p>Backand offers a number of pre-defined security actions that can be used to manage your application&rsquo;s security processes. These are available in the app dashboard under <strong>Security &amp; Auth -&gt; Security Actions</strong>. See <a href="http://docs.backand.com/#security-actions">the Security Actions Documentation</a> for more details.</p>
+<p>Backand offers a number of pre-defined security actions that can be used to manage your application&rsquo;s security processes. These are available in the app dashboard under <strong>Security &amp; Auth -&gt; Security Actions</strong>. See <a href="http://docs.backand.com/#security-actions84">the Security Actions Documentation</a> for more details.</p>
 
 <h2 id="backand-storage">Backand Storage</h2>
 
@@ -3665,7 +3665,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
 
 <h2 id="examples-and-further-reading">Examples and further reading</h2>
 
-<p><strong><em>To view the demo web page, pull down a sample from our <a href="https://github.com/backand/vanilla-sdk/blob/master/example/">example page</a> and run <code class="prettyprint">npm start.</code></em></strong></p>
+<p><strong><em>To view the demo web page, pull down a sample from our <a href="https://github.com/backand/vanilla-sdk/blob/master/example/">example folder in our vanilla SDK</a> and run <code class="prettyprint">npm start.</code></em></strong></p>
 
           <h1 id="platform-specific-sdks">Platform-specific SDKs</h1>
 
@@ -4689,7 +4689,7 @@ curl https://api.backand.com/1/objects/users/5
 <pre class="highlight json tab-json"><code><span class="p">[{</span><span class="s2">"fieldName"</span><span class="p">:</span><span class="s2">"firstName"</span><span class="p">,</span><span class="s2">"operator"</span><span class="p">:</span><span class="s2">"contains"</span><span class="p">,</span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"oh"</span><span class="p">}]</span><span class="w">
 </span></code></pre>
 <p>You can supply a query string parameter named &lsquo;filter&rsquo; to filter your objects during fetch. This could be useful in
-developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see <a href="http://docs.backand.com/?javascript#nosql-query-language">NoSQL Query Language</a> for syntax), or with JSON containing a field name, an operator, and a value:</p>
+developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see <a href="#nosql-query-language">NoSQL Query Language</a> for syntax), or with JSON containing a field name, an operator, and a value:</p>
 
 <p>See <a href="http://docs.backand.com/#getlist">the getList function</a> for full details on filters.</p>
 
