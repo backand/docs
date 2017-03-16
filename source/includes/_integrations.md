@@ -1319,6 +1319,8 @@ Finally, you can enhance your app's intelligence with an AI integration. Find ou
 ### Customizing the Bot's Code in a Backand Action
 
 #### *Receive Messages*
+> Code to receive messages from Facebook
+
 ```javascript--persistent
 if (request.method == "POST"){
 
@@ -1357,7 +1359,7 @@ All callbacks and webhooks from Facebook will end up in your object's Facebook A
 #### *Send a Text Message*
 > Sending a message to the user
 
-```javascript-- persistent
+```javascript--persistent
 function receivedMessage(event) {
 
     var senderID = event.sender.id;
@@ -1405,6 +1407,7 @@ function receivedMessage(event) {
     }
 };
 ```
+
 In receivedMessage, we've added logic that can send a message back to the user. The default behavior is to echo back the text that was received, with some static modifications ('Back& bot says'...)
 
 > `sendTextMessage` formats the message to be sent to Facebook, then calls the appropriate API endpoint:
@@ -1426,7 +1429,7 @@ function sendTextMessage(recipientId, messageText) {
 
 > `callSendAPI` calls the Send API to send the message back to the user:
 
-```javascript
+```javascript--persistent
 function callSendAPI(messageData) {
     try{
 
