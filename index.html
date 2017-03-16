@@ -5637,10 +5637,10 @@ You can use the following JSON mode:</p>
 
 <h3 id="send-email-with-mailgun-api">Send Email with Mailgun API</h3>
 
-<p>Mailgun provides an API that can be used to easily send email, among many other features. By translating Mailgun&rsquo;s provided cURL examples to JavaScript $http calls, you can easily integrate Mailgun with Backand.</p>
-
-<p>To send an email with Mailgun, you need to create a server side action.You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions <a href="#custom-actions">here</a>. Name the action ,ao;gim, add message and name to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:</p>
-<pre class="highlight javascript tab-javascript"><code><span class="cm">/* globals
+<blockquote>
+<p>Server-side Action</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="cm">/* globals
   $http - service for AJAX calls - $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/yourObject" , headers: {"Authorization":userProfile.token}});
   CONSTS - CONSTS.apiUrl for Backand's API URL
 */</span>
@@ -5677,10 +5677,14 @@ You can use the following JSON mode:</p>
     <span class="k">return</span> <span class="p">{};</span>
 <span class="p">}</span>
 </code></pre>
-<p>in this example the app user can send any message that he wants to himself. Please replace the &ldquo;apiKey&rdquo; property, as well as the sandbox URL, with your associated mailgun values.</p>
+<p>Mailgun provides an API that can be used to easily send email, among many other features. By translating Mailgun&rsquo;s provided cURL examples to JavaScript $http calls, you can easily integrate Mailgun with Backand.</p>
 
-<p>Next, add the following JavaScript code to your app&rsquo;s client-side code base:</p>
-<pre class="highlight javascript tab-javascript"><code><span class="k">return</span> <span class="nx">$http</span> <span class="p">({</span>
+<p>To send an email with Mailgun, you need to create a server side action.You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions <a href="#custom-actions">here</a>. Name the action <code class="prettyprint">mailgun</code>, add <code class="prettyprint">message</code> and <code class="prettyprint">name</code> to the Input Parameters, and paste the code on the right in the code editor. In this example the app user can send any message that he wants to himself. Please replace the &ldquo;apiKey&rdquo; property, as well as the sandbox URL, with your associated mailgun values.</p>
+
+<blockquote>
+<p>Client-side code</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="k">return</span> <span class="nx">$http</span> <span class="p">({</span>
   <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
   <span class="na">url</span><span class="p">:</span> <span class="nx">Backand</span><span class="p">.</span><span class="nx">getApiUrl</span><span class="p">()</span> <span class="o">+</span> <span class="s1">'/1/objects/action/&lt;your object name&gt;/1'</span><span class="p">,</span>
   <span class="na">params</span><span class="p">:</span> <span class="p">{</span>
@@ -5693,7 +5697,7 @@ You can use the following JSON mode:</p>
 <span class="p">});</span>
 
 </code></pre>
-<p>Replace <your object name> with the object associated with the action you created, and you are ready to send messages via Mailgun!</p>
+<p>Next, add the client-side JavaScript code to your app&rsquo;s code base. Replace <code class="prettyprint">&lt;your object name&gt;</code> with the object associated with the action you created, and you are ready to send messages via Mailgun!</p>
 
 <h2 id="sendgrid">SendGrid</h2>
 
