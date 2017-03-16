@@ -1,5 +1,5 @@
 # Platform-specific SDKs
-This section covers our platform-specific SDKs. These SDKs are optimized for the named platform, and wrap the [Vanilla SDK](http://docs.backand.com/#vanilla-sdk) to provide access to Backand.
+This section covers our platform-specific SDKs. These SDKs are optimized for the named platform, and wrap the [Vanilla SDK](#vanilla-sdk) to provide access to Backand.
 
 ## Angular - Ionic 1 SDK
 ### Overview

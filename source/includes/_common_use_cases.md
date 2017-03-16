@@ -474,7 +474,7 @@ curl https://api.backand.com/1/objects/items
 This request is similar to fetching the entire list of items, which would be done as follows:
 
 
-You can also supply other query string parameters (such as paging, filtering, and sorting). See [the getList function](http://docs.backand.com/#getlist) for more details.
+You can also supply other query string parameters (such as paging, filtering, and sorting). See [the getList function](#getlist) for more details.
 
 Regarding which approach to use - lazy or deep loading - there is no clear answer. It will be dependent upon the individual programming situation. If you need to present all of the relevant data at once, then deep loading is the right approach. However, if the object has a large number of relations to pull down, it might make more sense to do a lazy load, then selectively load related objects as needed.
 
@@ -508,7 +508,7 @@ So far we have discussed how to read objects that were defined in the database m
             EXECUTE stmt USING @offset,@records;
 ```
 
-The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on [JavaScript action](http://docs.backand.com/?javascript#custom-actions) or by using a prepared statement:
+The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on [JavaScript action](#custom-actions) or by using a prepared statement:
 
 ## Continuous Deployment and Versioning
 A common use case is separate development and production environments, often with several stages in between (testing, qa, staging), which allows phased deployment (rollout) and rollback in case of problems.The goal of Continuous Deployment is to enable a constant flow of changes from development to production.
@@ -696,7 +696,7 @@ And with that, your Ionic Creator app is now connected to Backand!
 
 ### Learning more
 
-At this point, you have the full power of the [Backand SDK](http://docs.backand.com/?javascript#vanilla-sdk) available in your Ionic Creator app. You can use the SDK to add more services to your app, providing CRUD functionality, real-time communications, server-side code execution, and more! Simply head over to [our documentation](http://docs.backand.com) to get started.
+At this point, you have the full power of the [Backand SDK](#vanilla-sdk) available in your Ionic Creator app. You can use the SDK to add more services to your app, providing CRUD functionality, real-time communications, server-side code execution, and more! Simply head over to [our documentation](http://docs.backand.com) to get started.
 
 ## Working with Custom Actions
 Actions are a powerful tool that allow you to perform customized tasks when a number of different types of events occur within your application. They provide a great alternative to server-side custom code, and can add a lot of flexibility to how your application interacts with outside services. Below we're going to look at the types of actions that Backand offers application developers, and how they can easily be used.
@@ -767,7 +767,7 @@ While integer IDs can provide a quick and easy way to get up and running with a 
 Universally-Unique IDentifiers, or UUIDs, solve many of these problems. They obfuscate the ID so that it is not brute-force guessable, they have an extremely wide range of potential values, and the [risk of collisions in UUIDs](https://en.wikipedia.org/wiki/Universally_unique_identifier#Collisions) is miniscule. In this section, we'll look at configuring a Backand object to use a UUID as its primary key.
 
 ### Setting up the Database
-To create a UUID primary key column, you'll need to operate within your database directly. Download a tool to connect to your database (like [MySQL Workbench](https://www.mysql.com/products/workbench/)), and configure it with the connection settings from [your application's dashboard](http://docs.backand.com/#connecting-to-your-apps-database). Once you've connected your database, you'll next want to create a new field in the object you are changing, using the datatype `char(36)`. Once this is done, sync the changes back to your application using the Object -> Model -> Model Database tab in the app dashboard.
+To create a UUID primary key column, you'll need to operate within your database directly. Download a tool to connect to your database (like [MySQL Workbench](https://www.mysql.com/products/workbench/)), and configure it with the connection settings from [your application's dashboard](#connecting-to-your-apps-database). Once you've connected your database, you'll next want to create a new field in the object you are changing, using the datatype `char(36)`. Once this is done, sync the changes back to your application using the Object -> Model -> Model Database tab in the app dashboard.
 
 ### Setting up the Before Create action
 ```javascript--persistent
