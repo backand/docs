@@ -1000,11 +1000,10 @@ The above code gives us the basis of a payments system. It can accept payments f
 There are a large number of web analytics tools available that can help your marketing team understand both how many users are using your product, and what they are doing while they use it. Implementing these services in your Backand application is as simple as any other third-party API integration. Segment.io allows you to implement an analytics API and send it to almost any notification tool available, depending on your infrastructure needs. Normally this type of integration would be done on the client side, but there are some instances where a server-side integration is useful. In this example, we will look at implementing a Segment.io integration with your Backand application using a custom server-side action.
 
 ### Server-side Action
+> Server-Side Action Code
 
-We'll start by adding a new custom server-side action.  This action will execute JavaScript code that sends user identification data to segment.io (and, from there, to Woopra, or Intercom, or any other interested service):
-
-```javascript
-* globals
+```javascript--persistent
+/* globals
  $http - Service for AJAX calls
  CONSTS - CONSTS.apiUrl for Backands API URL
  */
@@ -1042,7 +1041,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 }
 ```
 
-The above code takes two parameters - userId and activeApp, with the userId being the user's email address. You can also send Segment.io data collected from Backand using a query to obtain the data you have stored on a given user.
+We'll start by adding a new custom server-side action.  This action will execute JavaScript code that sends user identification data to segment.io (and, from there, to Woopra, or Intercom, or any other interested service). The code takes two parameters - `userId` and `activeApp`, with the `userId` being the user's email address. You can also send Segment.io data collected from Backand using a query to obtain the data you have stored on a given user.
 
 ### Client-side Integration
 
@@ -1056,11 +1055,9 @@ This code has no client-side component.
 Twilio is for anyone that needs to send SMS, MMS, or VoIP, along with a lot of other communication channels embedded into web, desktop, and mobile software.
 
 ### Send SMS with Twilio API
-Twilio has an API that you can use to send SMS. By translating their provided cURL commands to Angular $http calls, you can easily integrate Twilio with Backand.
+> Server-Side Action code
 
-To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action TwilioSendSMS, add to and message to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
-
-```javascript
+```javascript--persisitent
 /* globals
   $http - Service for AJAX calls
   CONSTS - CONSTS.apiUrl for Backands API URL
@@ -1096,20 +1093,25 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 }
 ```
-In the example app we're building, the app's users can send a SMS message to a phone number. The phone number is sent, from the client side, in the 'to' parameter, while the message content is sent in the 'message' parameter.
+
+Twilio has an API that you can use to send SMS. By translating their provided cURL commands to Angular $http calls, you can easily integrate Twilio with Backand.
+
+To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The example code demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](#custom-actions). Name the action `TwilioSendSMS`, add `to` and `message` to the Input Parameters, and paste the server-side code in the code editor.
+
+In the example app we're building, the app's users can send a SMS message to a phone number. The phone number is sent, from the client side, in the `to` parameter, while the message content is sent in the `message` parameter.
 
 ### Setup a FREE account in Twilio
 
 After you register with Twilio, you can get your Twilio phone number [here]( https://www.twilio.com/user/account/phone-numbers/getting-started):
+
 1. To choose a different phone number from the one provided, click on *'Don't like this one? Search for a different number.'* and select SMS in capabilities.
-2. Replace the FROM_PHONE_NUM in the code with the Twilio phone number obtained in the prior step (dont forget the (+) sign before the number)
-3. Make sure you replace the 'ACCOUNT_SID' and 'AUTH_TOKEN' in the code with your Twilio API keys (from the getting started page). Simply click on 'Show API Credentials' on the right side of  'Get Started with Phone Numbers,' and than you'll see the ACCOUNT SID and AUTH TOKEN values.
+2. Replace the `FROM_PHONE_NUM` in the code with the Twilio phone number obtained in the prior step (dont forget the (+) sign before the number)
+3. Make sure you replace the '`ACCOUNT_SID`' and '`AUTH_TOKEN`' in the code with your Twilio API keys (from the getting started page). Simply click on 'Show API Credentials' on the right side of  'Get Started with Phone Numbers,' and than you'll see the `ACCOUNT SID` and `AUTH TOKEN` values.
 
 ### Setup client-side code:
+> Client-Side Code
 
-Next, add the following JavaScript code to your app's client-side code base:
-
-```javascript
+```javascript--persisitent
 return $http ({
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>',
     params: {
@@ -1122,10 +1124,7 @@ return $http ({
 });
 
 ```
-
-Replace 'your object name' with the object associated with the action you created and 'your destination phone number' with a vaild phone number (when using Twilio trial account you first need to validate this phone number)
-
-Once this is done, you'll be able to easily trigger SMS via Twilio using Backand's custom action API.
+Next, add the client-side JavaScript code to your app's code base. Replace `<your object name>` with the object associated with the action you created and `<your destination phone number>` with a vaild phone number (when using Twilio trial account you first need to validate this phone number), Once this is done, you'll be able to easily trigger SMS via Twilio using Backand's custom action API.
 
 ## Netmera
 Netmera is a cloud based service that can be used to send Push Notifications to various platforms, among other services such as Exception reporting. It offers a friendly site where campaigns ()push notifications) can be managed and customized and a REST API to send push notifications automatically. In this guide you can find out how to get started on Netmera and send push notifications with Backand.
@@ -1139,13 +1138,12 @@ Netmera is a cloud based service that can be used to send Push Notifications to 
 ### Integrating Netmera with Backand
 Netmera has a rest API that can be used to remotely send push notifications. You can integrate Netmera with Backand by using Backand server-side actions. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code.
 
-In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action by clicking on 'Netmera' under 'Push Notifications'.
+In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action by clicking on `Netmera` under 'Push Notifications'.
 
 **You have just created your first push notification action!**
+> Client-Side code
 
-In order to call the function from your angular app, use the following code:
-
-```javascript
+```javascript--persistent
 return $http ({
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>',
     params: {
@@ -1157,6 +1155,8 @@ return $http ({
     }
 });
 ```
+In order to call the function from your angular app, use the following code:
+
 Replace ‘your object name’ with the object associated with the action you created, set a title for the 'notificationTitle' field, write any message you want in ‘notificationContent’ field and you’re good to go. Now you can start sending push notifications dynamically using Backand and Netmera.
 
 ## PushWoosh
@@ -1165,14 +1165,15 @@ Pushwoosh is a cloud based service that can be used to send Push Notifications t
 
 1. Register an account in PushWoosh and proceed to create an application. Using the PushWoosh control panel, configure your application to support Android including [configuring GCM (Google Cloud Messaging](http://docs.pushwoosh.com/docs/gcm-configuration))
 2. You can either get the starter app or to integrate in an existing app.
-To get a starter app: clone the PushWoosh Android SDK:
- ```
-  git clone https://github.com/Pushwoosh/pushwoosh-android-sdk.git
- ```
- open /Samples/Android-Simple directory in Android Studio and build the app.
+> To get a starter app: clone the PushWoosh Android SDK:
+
+```bash
+git clone https://github.com/Pushwoosh/pushwoosh-android-sdk.git
+```
+> Then, open /Samples/Android-Simple directory in Android Studio and build the app.
 
 3. To integrate in an existing app use the following [Android guide](http://docs.pushwoosh.com/docs/native-android-sdk) – include the SDK.jar and add the relevant code to your application.
-  [Make the relevant changes to your AndroidManifest.xml file](http://docs.pushwoosh.com/docs/androidmanifestxml-modifications) – if you're using the starter app just change the App ID and Project ID.
+  * [Make the relevant changes to your AndroidManifest.xml file](http://docs.pushwoosh.com/docs/androidmanifestxml-modifications) – if you're using the starter app just change the App ID and Project ID.
 4. To integrate in an existing app use the following [iOS guide](http://docs.pushwoosh.com/docs/apns-configuration)
 5. For Ionic you would need to implement the SDK for [Cordova / PhoneGap](http://docs.pushwoosh.com/docs/cordova-phonegap) and check this example for [PhoneGap Build](http://docs.pushwoosh.com/docs/phonegap-build)
 
@@ -1182,10 +1183,9 @@ PushWoosh has an API that can be used to send Push Notifications. You can integr
 In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action by clicking on 'PushWoosh' under 'Push Notifications'.
 
 **You have just created your first push notification action!**
+> Client-side code
 
-In order to call the function from your angular app, use the following code:
-
-```javascript
+```javascript--persistent
 return $http ({
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>',
     params: {
@@ -1196,7 +1196,7 @@ return $http ({
     }
 });
 ```
-Replace ‘your object name’ with the object associated with the action you created and write any message you want in ‘notificationContent’ field and you’re good to go. Now you can start sending push notifications dynamically using Backand.
+In order to call the function from your angular app, use the provided code. Replace `<your object name>` with the object associated with the action you created, write any message you want in `‘notificationContent’` field, and you’re good to go. Now you can start sending push notifications dynamically using Backand.
 
 ## Facebook Messenger Bot
 <img align="right" src="https://www.backand.com/wp-content/uploads/2016/09/bot-iphone.png">
