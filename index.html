@@ -6614,9 +6614,9 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
     <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
-<p>We have created an action template that will give you jump start with salesforceIQ. You can either trigger this action from an object&rsquo;s database transaction event actions, or create a new on-demand action that you can call from your app&rsquo;s client code. The sample JavaScript is provided by the template action, which is available as &ldquo;SalesforceIQ&rdquo; in the &ldquo;CRM &amp; ERP&rdquo; section of action templates.:</p>
+<p>We have created an action template that will give you jump start with salesforceIQ. You can either trigger this action from an object&rsquo;s database transaction event actions, or create a new on-demand action that you can call from your app&rsquo;s client code. The sample JavaScript is provided by the template action, which is available as <strong>SalesforceIQ</strong> in the <strong>CRM &amp; ERP</strong> section of action templates.</p>
 
-<p>This code provides you with all of the basic tools you need to get connected to the SalesforceIQ API. It takes in your SalesforceIQ API Key and API Secret, and performs a call to the &ldquo;/accounts&rdquo; endpoint to fetch accounts.</p>
+<p>This code provides you with all of the basic tools you need to get connected to the SalesforceIQ API. It takes in your SalesforceIQ API Key and API Secret, and performs a call to the <code class="prettyprint">/accounts</code> endpoint to fetch accounts.</p>
 
 <h3 id="connecting-this-action-to-your-salesforceiq-account">Connecting this action to your SalesforceIQ account</h3>
 
@@ -6624,11 +6624,11 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 
 <ol>
 <li>Open Settings under the gear icon</li>
-<li>Open the &lsquo;Integration&rsquo; tab under &lsquo;My Account Settings&rsquo;</li>
-<li>Under &lsquo;Create New Custom Integration,&rsquo; click &lsquo;Custom&rsquo;</li>
-<li>Set the name to &lsquo;Backand API,&rsquo; and provide a description</li>
-<li>Copy the &lsquo;API Key&rsquo; and &lsquo;API Secret&rsquo; from the integration page into the JavaScript Action code</li>
-<li>Click &lsquo;Save&rsquo;</li>
+<li>Open the <strong>Integration</strong> tab under <strong>My Account Settings</strong></li>
+<li>Under <strong>Create New Custom Integration</strong>, click <strong>Custom</strong></li>
+<li>Set the name to <strong>Backand API</strong>, and provide a description</li>
+<li>Copy the <strong>API Key</strong> and <strong>API Secret</strong> from the integration page into the JavaScript Action code</li>
+<li>Click <strong>Save</strong></li>
 </ol>
 
 <p>When this is completed, you should now be able to access all of your SalesforceIQ accounts from the custom JavaScript action.</p>
@@ -6642,9 +6642,7 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 <span class="p">});</span>
 
 </code></pre>
-<p>Once you&rsquo;ve configured the action to connect to SalesforceIQ, you&rsquo;ll need to call the action from your client-side code. To do so, use the following JavaScript to construct a GET request and trigger your SalesforceIQ action:</p>
-
-<p>Simply replace &lsquo;your object name&rsquo; with the object that contains your SalesforceIQ custom action, and replace &lsquo;your action name&rsquo; with the name of the action that you provided while creating the integration.</p>
+<p>Once you&rsquo;ve configured the action to connect to SalesforceIQ, you&rsquo;ll need to call the action from your client-side code. To do so, use the JavaScript to the right to construct a GET request and trigger your SalesforceIQ action. Simply replace <code class="prettyprint">&lt;your object name&gt;</code> with the object that contains your SalesforceIQ custom action, and replace <code class="prettyprint">&lt;your action name&gt;</code> with the name of the action that you provided while creating the integration.</p>
 
 <p>With these changes, you&rsquo;re now able to pull in any and all SalesforceIQ accounts available via their API! You can use a similar pattern to construct additional calls to the SalesforceIQ API - simply replace the URL and parameters in the custom SalesforceIQ action with the URL and parameters for the object you want to retrieve.</p>
 
@@ -6721,7 +6719,7 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 <span class="p">}</span>
 </code></pre>
 <p>We have created an action template that will give you jump start with salesforceCRM. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The following is the content of the ready action template call
-&ldquo;salesforce CRM&rdquo; under the &ldquo;CRM &amp; ERP&rdquo; section:</p>
+<strong>Salesforce CRM</strong> under the <strong>CRM &amp; ERP</strong> section:</p>
 
 <aside class="notice">The above code fetches the access token every time you call the action. You can improve the performance of this call by caching the token into a Backand Server-Side Cookie, and only performing the retrieval when the token has expired.</aside>
 
@@ -6731,29 +6729,29 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 
 <ol>
 <li>Sign in to Salesforce CRM as a user with Admin rights</li>
-<li>Open Setup, found under the gear icon</li>
-<li>Open App Manager</li>
-<li>Click on &lsquo;New Connected App&rsquo;</li>
-<li>Provide &lsquo;Connected App Name&rsquo;, &lsquo;API Name&rsquo; and &lsquo;Contact Email&rsquo;</li>
-<li>Check &lsquo;Enable OAuth Settings&rsquo;
+<li>Open <strong>Setup</strong>, found under the gear icon</li>
+<li>Open <strong>App Manager</strong></li>
+<li>Click on <strong>New Connected App</strong></li>
+<li>Provide <strong>Connected App Name</strong>, <strong>API Name</strong>, and <strong>Contact Email</strong></li>
+<li>Check <strong>Enable OAuth Settings</strong>
 
 <ol>
-<li>Check &lsquo;Enable for Device Flow&rsquo;</li>
-<li>Under &lsquo;Selected OAuth Scopes&rsquo; select &lsquo;Full Access,&rsquo; or any other permissions you need</li>
+<li>Check <strong>Enable for Device Flow</strong></li>
+<li>Under <strong>Selected OAuth Scopes</strong>, select <strong>Full Access</strong> (or any other permissions you need)</li>
 </ol></li>
-<li>Click &lsquo;Save&rsquo;</li>
-<li>Copy &lsquo;Consumer Key&rsquo; into the client variable in the code</li>
-<li>Copy &lsquo;Consumer Secret&rsquo; into the secret variable in the code</li>
+<li>Click <strong>Save</strong></li>
+<li>Copy <strong>Consumer Key</strong> into the client variable in the code</li>
+<li>Copy <strong>Consumer Secret</strong> into the secret variable in the code</li>
 </ol>
 
 <p>Once you&rsquo;ve obtained the consumer key and the consumer secret, you&rsquo;ll need to enable server-side security in Salesforce. To do so, follow these steps:</p>
 
 <ol>
-<li>From App Manager, select your new App and Click &lsquo;Manage&rsquo;</li>
-<li>Click &lsquo;Edit Polices&rsquo;</li>
-<li>Change &lsquo;IP Relaxation&rsquo; to &lsquo;Relax IP Restriction,&rsquo; or add Backand&rsquo;s IP to your organization&rsquo;s IP restrictions</li>
-<li>Change &lsquo;Timeout Value&rsquo; to 24 hours</li>
-<li>Click &lsquo;Save&rsquo;</li>
+<li>From App Manager, select your new App and Click <strong>Manage</strong></li>
+<li>Click <strong>Edit Polices</strong></li>
+<li>Change <strong>IP Relaxation</strong> to <strong>Relax IP Restriction</strong>, or add Backand&rsquo;s IP to your organization&rsquo;s IP restrictions</li>
+<li>Change <strong>Timeout Value</strong> to 24 hours</li>
+<li>Click <strong>Save</strong></li>
 </ol>
 
 <p>With that completed, you should now have full access to your CRM objects using the Salesforce REST API.</p>
