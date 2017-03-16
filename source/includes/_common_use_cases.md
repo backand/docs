@@ -724,14 +724,14 @@ One of the common concerns with outsourcing the back end of an application is "W
 While the schema editor offered by Backand's app dashboard can be a powerful tool for managing your application's data schema, sometimes there are ideas that the schema editor can't express. For these situations, it's often best to revert to a SQL interface, either using command-line SQL or a dedicated database administration tool like MySQL Workbench. In this post, we'll look at how you can access your Backand application's database using any third-party MySQL compatible database tool you desire, and how you can sync the changes with your Backand application once you've made your changes.
 
 ###Connecting to Your Database
-Backand hosts all application databases as schemas in Amazon RDS. The benefit of this approach is that it easily allows us to make your database available to any third-party tool you like. In the Backand App Dashboard, you can find your application's database server information in the Settings -> Database panel. This contains the host URL, username, password, and schema name for your application. Simply input these connection values into your database administration tool of choice, and you are free to make changes to your database schema.
+Backand hosts all application databases as schemas in Amazon RDS. The benefit of this approach is that it easily allows us to make your database available to any third-party tool you like. In the Backand App Dashboard, you can find your application's database server information in the **Settings -> Database** panel. This contains the host URL, username, password, and schema name for your application. Simply input these connection values into your database administration tool of choice, and you are free to make changes to your database schema.
 
 ###Synchronizing Changes
 Once you've made the necessary changes in your schema, you'll need to synchronize the changes with your Backand application. This is accomplished in the Backand Application Dashboard as follows:
 
-* Navigate to the "Model" panel, under "Objects"
-* Select the "Model Database" tab
-* After reviewing the text, click on the "Sync with Database" button
+* Navigate to the **Model** panel, under **Objects**
+* Select the **Model Database** tab
+* After reviewing the text, click on the **Sync with Database** button
 
 Once you've pressed the Sync button, Backand will use reflection to determine your database's structure, and rebuild your app's REST API according to the changes it sees.
 
@@ -789,7 +789,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
   return {};
 }
 ```
-We'll override the defaut integer-based behavior in a Custom Server-Side JavaScript action that we will create expressly for this purpose. The code to the right uses `Math.random()` to generate a UUID Version 4-compliant value. This value is then stored in userInput.id, which in turn populates the column in the database.
+We'll override the default integer-based behavior in a Custom Server-Side JavaScript action that we will create expressly for this purpose. The code to the right uses `Math.random()` to generate a UUID Version 4-compliant value. This value is then stored in userInput.id, which in turn populates the column in the database.
 
 <aside class="warning">It is important to note that this value is not truly random, and should not be used in situations where security is paramount - in those cases, we recommend you either implement your own algorithm or integrate with a third party library that can do so on your behalf.</aside>
 
