@@ -5491,30 +5491,28 @@ You can use the following JSON mode:</p>
 
 <h3 id="send-email-with-mandrill-api-no-attachment">Send Email with Mandrill API (No Attachment)</h3>
 
-<p>Mandrill has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate Mandrill with Backand.
-<code class="prettyprint">javascript--persistent
-/* globals
+<p>Mandrill has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate Mandrill with Backand.</p>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="cm">/* globals
   $http - Service for AJAX calls
   CONSTS - CONSTS.apiUrl for Backands API URL
-*/
-&#39;use strict&#39;;
-function backandCallback(userInput, dbRow, parameters, userProfile) {
-    // write your code here
-    var response = $http({
-      method: &#39;POST&#39;,
-      url: &#39;https://mandrillapp.com/api/1.0/messages/send.json&#39;,
-      data: {&#39;key&#39;:&lt;enter your mandrill key&gt;,
-            &#39;message&#39;:{&#39;html&#39;:parameters.message,
-            &#39;subject&#39;:&#39;Example for Mandrill Integration&#39;,
-            &#39;from_email&#39;:userProfile.username,&#39;from_name&#39;:parameters.name,
-            &#39;to&#39;:[{&#39;email&#39;:userProfile.username,&#39;name&#39;:parameters.name,&#39;type&#39;:&#39;to&#39;}],
-            &#39;headers&#39;:{&#39;Reply-To&#39;:&#39;message.reply@backand.com&#39;}}}
-    });
-    console.log(response);
-    return {};
-}
-</code></p>
-
+*/</span>
+<span class="s1">'use strict'</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// write your code here</span>
+    <span class="kd">var</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">({</span>
+      <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+      <span class="na">url</span><span class="p">:</span> <span class="s1">'https://mandrillapp.com/api/1.0/messages/send.json'</span><span class="p">,</span>
+      <span class="na">data</span><span class="p">:</span> <span class="p">{</span><span class="s1">'key'</span><span class="p">:</span><span class="o">&lt;</span><span class="nx">enter</span> <span class="nx">your</span> <span class="nx">mandrill</span> <span class="nx">key</span><span class="o">&gt;</span><span class="p">,</span>
+            <span class="s1">'message'</span><span class="p">:{</span><span class="s1">'html'</span><span class="p">:</span><span class="nx">parameters</span><span class="p">.</span><span class="nx">message</span><span class="p">,</span>
+            <span class="s1">'subject'</span><span class="p">:</span><span class="s1">'Example for Mandrill Integration'</span><span class="p">,</span>
+            <span class="s1">'from_email'</span><span class="p">:</span><span class="nx">userProfile</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span><span class="s1">'from_name'</span><span class="p">:</span><span class="nx">parameters</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+            <span class="s1">'to'</span><span class="p">:[{</span><span class="s1">'email'</span><span class="p">:</span><span class="nx">userProfile</span><span class="p">.</span><span class="nx">username</span><span class="p">,</span><span class="s1">'name'</span><span class="p">:</span><span class="nx">parameters</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span><span class="s1">'type'</span><span class="p">:</span><span class="s1">'to'</span><span class="p">}],</span>
+            <span class="s1">'headers'</span><span class="p">:{</span><span class="s1">'Reply-To'</span><span class="p">:</span><span class="s1">'message.reply@backand.com'</span><span class="p">}}}</span>
+    <span class="p">});</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">{};</span>
+<span class="p">}</span>
+</code></pre>
 <p>To send an email with Mandrill, you need to create a server side action. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action. Learn more about how to create actions <a href="#custom-actions">here</a>. Name the action <code class="prettyprint">mandrillapp</code>, add <code class="prettyprint">message</code> and <code class="prettyprint">name</code> to the Input Parameters, and paste the code on the right into the code editor. When finished, the code editor window will contain the following:</p>
 
 <p>In the example app we&rsquo;re building, the app&rsquo;s users can send messages to themselves. This is done through the use of userProfile.username, which is the email address used to register with the application. Make sure to replace the &lsquo;key&rsquo; property above with your Mandrill API key.</p>
