@@ -753,6 +753,8 @@ Backand's NoSQL Query Language provides an alternative mechanism for querying yo
 <aside class="notice">This query language is inspired by <a href="https://www.mongodb.com/">MongoDB</a>, but it is not a complete implementation - some features may not be available, or may work slightly differently than you expect..</aside>
 
 ### Format
+> The general format of a query is:
+
 ```JSON
 {
   "object": "String",
@@ -802,16 +804,8 @@ A query consists of these parts:
 Only the table and expression parameters are mandatory. These objects are created using JSON to establish each of the elements in the query. The NoSQL JSON is then converted into a SQL query. Each component of a NoSQL query hash corresponds to a different portion of the SQL query that ends up being run against your database. See the query template to the right to get a feeling of how the query translates into SQL statements.
 
 ### Expressions
+> an AND expression
 
-There are three types of expressions in a NoSQL query:
-
-* an `AND` expression, combining two conditions using a logical `AND`
-* an `OR` expression, combining two conditions using a logical `OR`
-* a `UNION` query, which combines the results of two distinct queries into a single result set.
-
-Below, we'll look at each type in turn.
-
-#### AND expressions
 ```JSON
 {
   "position": "Sales Manager",
@@ -820,11 +814,8 @@ Below, we'll look at each type in turn.
 }
 ```
 
-An AND expression is a simple combination of conditions, not requiring a specific keyword to invoke. It is the default behavior for condition lists, and requires only that you separate each condition by a comma character. Each condition is then combined using a logical `AND`. An AND expression is JSON of the form `{'A: condition, B: condition, ... }`
+> an OR expression
 
-For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the query on the right.
-
-#### OR expressions
 ```JSON
 {
   "$or": [
@@ -840,9 +831,8 @@ For example, to retrieve all employees that are 25-years-old, a Sales manager, A
 }
 ```
 
-An OR expression is defined as a `$or` field, followed by an array of comparison conditions, which are then combined using logical `OR` operators. It has the general form `{ $or: [ Expression1, Expression2, ...   ] }`. Any number of conditions can be provided for the $or expression. For example, use the query to the right to find all offices that are either larger than 30 employees, or located in Palo Alto.
+> a UNION expression
 
-#### UNION queries
 ```JSON
 {
   "$union":   [
@@ -875,7 +865,27 @@ An OR expression is defined as a `$or` field, followed by an array of comparison
   ]
 }
 ```
-A UNION query combines the results of multiple queries into a single result set. It is defined as a `#union` field, followed by an array of subqueries to combine. It has the general form of `{ $union: [ Query1, Query2, ...   ] }`. The query to the right, for example, combines a query looking for employees with a budget of 20 OR a location like Palo Alto with a query that retrieves the city and country fields for all entries in the `Person` table with the name "john", limiting the results to 11 records. The end result will combine both queries into a single response object.
+
+There are three types of expressions in a NoSQL query:
+
+* an `AND` expression, combining two conditions using a logical `AND`
+* an `OR` expression, combining two conditions using a logical `OR`
+* a `UNION` query, which combines the results of two distinct queries into a single result set.
+
+Below, we'll look at each type in turn.
+
+#### AND expressions
+
+An AND expression is a simple combination of conditions, not requiring a specific keyword to invoke. It is the default behavior for condition lists, and requires only that you separate each condition by a comma character. Each condition is then combined using a logical `AND`. An AND expression is JSON of the form `{'A: condition, B: condition, ... }`
+
+For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the sample `AND` query on the right.
+
+#### OR expressions
+
+An OR expression is defined as a `$or` field, followed by an array of comparison conditions, which are then combined using logical `OR` operators. It has the general form `{ $or: [ Expression1, Expression2, ...   ] }`. Any number of conditions can be provided for the $or expression. For example, use the sample `OR` query to the right to find all offices that are either larger than 30 employees, or located in Palo Alto.
+
+#### UNION queries
+A UNION query combines the results of multiple queries into a single result set. It is defined as a `#union` field, followed by an array of subqueries to combine. It has the general form of `{ $union: [ Query1, Query2, ...   ] }`. The sample `UNION` query to the right, for example, combines a query looking for employees with a budget of 20 OR a location like Palo Alto with a query that retrieves the city and country fields for all entries in the `Person` table with the name "john", limiting the results to 11 records. The end result will combine both queries into a single response object.
 
 ### Conditions on Fields
 
