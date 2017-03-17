@@ -663,7 +663,16 @@ Triggered actions will have a response that matches the format expected by the t
 
 On Demand actions, though, will return whatever value is returned by the custom server code, which can be any properly-formatted JSON string.
 
-### Server-Side Node.js Code
+### Transactional Database Scripts
+
+Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided that the event occurs during the object event "During the data save before the object is committed". This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.
+
+
+### Send Emails
+
+Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.
+
+## Server-Side Node.js Lambda Actions
 Using Backand, you can develop distributed Node.js actions and host them with your Backand application - no additional servers needed! You can use the Server-Side Node.js action to work with any NPM package, build sophisticated action behaviors, perform complex coding tasks, and more.
 
 For Server-Side Node.js Code actions, you develop the code on your local machine. The code is then deployed to, and runs on, Backand's server. It functions just like any other Node.js project and can be fully debugged locally and, once you've finished making changes, you can use the "deploy" command to publish the changes to your Backand application.
@@ -679,7 +688,7 @@ deploy command will be available on the action page **after** the action has bee
 
 You are now ready to develop your code locally, and test the action on the Backand Dashboard for your application!
 
-#### Backand CLI
+### Backand CLI
 ```bash
     $ npm install -g backand
     # or use sudo (with caution)
@@ -690,7 +699,7 @@ Backand uses the Backand CLI to control deployment and initialization. The CLI r
 
 Once you've set up Node and NPM, use NPM to install the Backand CLI as a global package.
 
-#### Initialize action
+### Initialize action
 ```bash
     $ backand action init --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
 ```
@@ -706,7 +715,7 @@ The parameters for this call are:
 *  `--user`:		  The token of the current user (available from the TEam section of the app's Security & Auth configuration - simply click on key icon next to an authorized user)  
 
 
-#### Deploy action
+### Deploy action
 ```bash
     $ backand action deploy --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
 ```
@@ -722,22 +731,12 @@ The parameters for this call are:
 *  `--user`:     The token of the current user (available from the TEam section of the app's Security & Auth configuration - simply click on key icon next to an authorized user)  
 *  `--folder`:   (Optional) The folder to deploy. By default the deployment occurs in the current folder
 
-#### Add Backand SDK to Node.js
+### Add Backand SDK to Node.js
 ```bash
     $ npm install backandsdk --save
 ```
 
 To work with objects or other actions in Backand, you need to install the Backand SDK for Node.js. The Backand SDK ships with several code samples that demonstrate how to access other Backand functionality.
-
-
-### Transactional Database Scripts
-
-Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided that the event occurs during the object event "During the data save before the object is committed". This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.
-
-
-### Send Emails
-
-Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.
 
 
 
