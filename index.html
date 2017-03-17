@@ -1101,8 +1101,42 @@ use common MySQL syntax.</p>
 
 <h2 id="nosql-query-language">NoSQL Query Language</h2>
 
-<p>This query language is inspired by <a href="https://www.mongodb.com/">MongoDB</a>.</p>
+<p>Backand&rsquo;s NoSQL Query Language provides an alternative mechanism for querying your SQL database by using a NoSQL-style query language, similar to queries in Non-SQL systems like MongoDB and ElasticSearch. By writing some easy-to-understand JSON, you can write your queries in a more familiar or comfortable manner - and we&rsquo;ll handle converting them to SQL for you.</p>
 
+<aside class="notice">This query language is inspired by <a href="https://www.mongodb.com/">MongoDB</a>, but it is not a complete implementation - some features may not be available, or may work slightly differently than you expect..</aside>
+
+<h3 id="format">Format</h3>
+<pre class="highlight plaintext"><code>{
+  "object": "String",
+  "q": "Expression",
+  "fields": "Array of String",
+  "groupBy": "Array of String",
+  "aggregation": "Object mapping fields to aggregate functions"
+}
+</code></pre>
+<blockquote>
+<p>For example, the shortest query you can write would be</p>
+</blockquote>
+<pre class="highlight plaintext"><code>  {
+    "object": "table",
+    "q": "query expression"
+  }    
+</code></pre>
+<blockquote>
+<p>This NoSQL object is converted into the following SQL:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>SELECT * FROM table WHERE query
+</code></pre>
+<p>NoSQL queries are constructed using JSON objects. The keys are mapped into their respective SQL keywords in the back-end before interacting with your database.</p>
+
+<h3 id="construction-and-translation">Construction and Translation</h3>
+<pre class="highlight plaintext"><code>  SELECT fields with aggregation
+  FROM table
+  WHERE expression
+  GROUP BY groupby
+  ORDER BY orderby
+  LIMIT limit
+</code></pre>
 <p>A query consists of these parts:</p>
 
 <ol>
@@ -1115,134 +1149,84 @@ use common MySQL syntax.</p>
 <li>limit - an integer number of records to return.</li>
 </ol>
 
-<p>Only the table and expression parameters are mandatory.</p>
-
-<h3 id="construction-and-translation">Construction and Translation</h3>
-<pre class="highlight plaintext"><code>  SELECT fields with aggregation
-  FROM table
-  WHERE expression
-  GROUP BY groupby
-  ORDER BY orderby
-  LIMIT limit
-</code></pre>
-<p>The NoSQL queries are then constructed into a SQL query. Each component of a NoSQL query hash corresponds to a different portion of the SQL query that ends up being run against your database. See the example query to the right to get a feeling of how the query translates into SQL statements.</p>
-
-<h3 id="format">Format</h3>
-<pre class="highlight plaintext"><code>{
-  "object": "String",
-  "q": "Expression",
-  "fields": "Array of String",
-  "groupBy": "Array of String",
-  "aggregation": "Object mapping fields to aggregate functions"
-}
-</code></pre>
-<p>NoSQL queries are constructed using JSON objects. The keys are mapped into their respective SQL keywords in the back-end before interacting with your database.</p>
-
-<p>For example, the shortest query you can write would be <code class="prettyprint">{ &quot;object&quot;: &quot;table&quot;, &quot;q&quot;: &quot;query expression&quot; }</code>    </p>
-
-<p>This NoSQL object is converted into the following SQL</p>
-
-<p><code class="prettyprint">SELECT * FROM table WHERE query</code></p>
-
-<h3 id="example-string-comparison">Example - String Comparison</h3>
-<pre class="highlight plaintext"><code>{
-    "object": "employees",
-    "q": {
-        "position" : "Sales Manager"  
-    },
-    "fields": ["name", "salary"]
-}
-</code></pre>
-<p>A simple query can pluck the <code class="prettyprint">name</code> and <code class="prettyprint">salary</code> fields from an object named <code class="prettyprint">employees</code>. The query sample to the right executes this query for all employees with a position of &ldquo;Sales Manager&rdquo;</p>
-
-<h3 id="example-constant-value-comparison">Example - Constant Value Comparison</h3>
-<pre class="highlight plaintext"><code>{
-    "object": "employees",
-    "q": {
-        "age": { "$lt" : 25 }
-    }  
-}
-</code></pre>
-<p>Queries can also be used to compare an object&rsquo;s  fields to constant values using common comparison operators. For example, to retrieve all fields for all employees under the age of 25, you can use the query to the right.</p>
-
-<h3 id="example-range-based-comparison">Example - Range-based comparison</h3>
-<pre class="highlight plaintext"><code>{
-  "object": "employees",
-  "q": {
-    "age": {
-      "$between": [25, 40]
-    }
-  }  
-}
-</code></pre>
-<p>You can use the <code class="prettyprint">$between</code> operator to retrieve all records with values that lie between two specified endpoints. For example, the query to the right retrieves all employees with an age between 25 and 40.</p>
-
-<h3 id="example-geographic-data-comparison">Example - Geographic Data Comparison</h3>
-<pre class="highlight plaintext"><code>{
-    "object": "city",
-    "q": {
-        "location" : { "$within" : [[32.0638130, 34.7745390], 25000]
-    }
-  }
-}
-</code></pre>
-<p>You can use the <code class="prettyprint">$within</code> operator to locate all records within a geographic range. The parameters for this comparison are provided as an array of two elements. The first element is a tuple containing latitude and longitude, e.g. <code class="prettyprint">[32.0638130, 34.7745390]</code>, while the second is a distance in meters. To retrieve all cities within 25 km (25000m) of a given latitude and longitude, you can use a query like the one to the right.</p>
+<p>Only the table and expression parameters are mandatory. These objects are created using JSON to establish each of the elements in the query. The NoSQL JSON is then converted into a SQL query. Each component of a NoSQL query hash corresponds to a different portion of the SQL query that ends up being run against your database. See the query template to the right to get a feeling of how the query translates into SQL statements.</p>
 
 <h3 id="expressions">Expressions</h3>
 
-<p>An expression can be either an AND expression, an OR expression, or a UNION query.</p>
+<p>There are three types of expressions in a NoSQL query:</p>
+
+<ul>
+<li>an <code class="prettyprint">AND</code> expression, combining two conditions using a logical <code class="prettyprint">AND</code></li>
+<li>an <code class="prettyprint">OR</code> expression, combining two conditions using a logical <code class="prettyprint">OR</code></li>
+<li>a <code class="prettyprint">UNION</code> query, which combines the results of two distinct queries into a single result set.</li>
+</ul>
+
+<p>Below, we&rsquo;ll look at each type in turn.</p>
 
 <h4 id="and-expressions">AND expressions</h4>
-<pre class="highlight plaintext"><code>{ "position": "Sales Manager", "age" : { "$lt" : 25 }, "city": "Boston" }
+<pre class="highlight plaintext"><code>{
+  "position": "Sales Manager",
+  "age" : { "$lt" : 25 },
+  "city": "Boston"
+}
 </code></pre>
-<p>An AND expression is a conjunction of conditions on fields. An AND expression is JSON of the form <code class="prettyprint">{ A: condition, B: condition, ... }</code></p>
+<p>An AND expression is a simple combination of conditions, not requiring a specific keyword to invoke. It is the default behavior for condition lists, and requires only that you separate each condition by a comma character. Each condition is then combined using a logical <code class="prettyprint">AND</code>. An AND expression is JSON of the form <code class="prettyprint">{&#39;A: condition, B: condition, ... }</code></p>
 
 <p>For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the query on the right.</p>
 
 <h4 id="or-expressions">OR expressions</h4>
-<pre class="highlight plaintext"><code>{ "$or": [ { "num_employees": { "$gt": 30 } }, { "location": "Palo Alto" }  ]  }
+<pre class="highlight plaintext"><code>{
+  "$or": [
+    {
+      "num_employees": {
+        "$gt": 30
+      }
+    },
+    {
+      "location": "Palo Alto"
+    }  
+  ]  
+}
 </code></pre>
-<p>An OR expression is a disjunction of conditions, <code class="prettyprint">{ $or: [ Expression1, Expression2, ...   ] }</code></p>
-
-<p>For example, use the query to the right to find all offices that are either larger than 30 employees, or located in Palo Alto.</p>
+<p>An OR expression is defined as a <code class="prettyprint">$or</code> field, followed by an array of comparison conditions, which are then combined using logical <code class="prettyprint">OR</code> operators. It has the general form <code class="prettyprint">{ $or: [ Expression1, Expression2, ...   ] }</code>. Any number of conditions can be provided for the $or expression. For example, use the query to the right to find all offices that are either larger than 30 employees, or located in Palo Alto.</p>
 
 <h4 id="union-queries">UNION queries</h4>
 <pre class="highlight plaintext"><code>{
-    "$union":   [
-        {
-            "object" : "Employees",
-            "q" : {
-                "$or" : [
-                    {
-                        "Budget" : {
-                            "$gt" : 20
-                        }
-                    },
-                    {
-                        "Location" : {
-                            "$like" :  "Palo Alto"
-                        }
-                    }
-                ]
-            },
-            "fields": ["Location", "country"]
-        },
-        {
-            "object" : "Person",
-            "q" : {
-                "name": "john"
-            },
-            "fields": ["City", "country"],
-            "limit": 11
-        }
-    ]
+  "$union":   [
+    {
+      "object" : "Employees",
+      "q" : {
+        "$or" : [
+          {
+            "Budget" : {
+              "$gt" : 20
+            }
+          },
+          {
+            "Location" : {
+              "$like" :  "Palo Alto"
+            }
+          }
+        ]
+      },
+      "fields": ["Location", "country"]
+    },
+    {
+      "object" : "Person",
+      "q" : {
+        "name": "john"
+      },
+      "fields": ["City", "country"],
+      "limit": 11
+    }
+  ]
 }
 </code></pre>
-<p>A UNION query is a union of the results of queries, and will have the general format of <code class="prettyprint">{ $union: [ Query1, Query2, ...   ] }</code>. The query to the right, for example, combines a query looking for employees with a budget of 20 OR a location like Palo Alto with a query that retrieves the city and country fields for all entries in the <code class="prettyprint">Person</code> table with the name &ldquo;john&rdquo;, limiting the results to 11 records. The end result will combine both queries into a single response object.</p>
+<p>A UNION query combines the results of multiple queries into a single result set. It is defined as a <code class="prettyprint">#union</code> field, followed by an array of subqueries to combine. It has the general form of <code class="prettyprint">{ $union: [ Query1, Query2, ...   ] }</code>. The query to the right, for example, combines a query looking for employees with a budget of 20 OR a location like Palo Alto with a query that retrieves the city and country fields for all entries in the <code class="prettyprint">Person</code> table with the name &ldquo;john&rdquo;, limiting the results to 11 records. The end result will combine both queries into a single response object.</p>
 
 <h3 id="conditions-on-fields">Conditions on Fields</h3>
 
-<p>Formally, a condition on a field is a key-value expression of the form <code class="prettyprint">{ Key : ValueExpression }</code>, where the fields are defined as follows:</p>
+<p>Conditions on fields are used to reduce result set size, and provide the capability to filter data by a set of parameters and expressions. Formally, a condition on a field is a key-value expression of the form <code class="prettyprint">{ Key : ValueExpression }</code>, where the fields are defined as follows:</p>
 
 <ul>
 <li><code class="prettyprint">Key</code> - name of the field</li>
@@ -1261,14 +1245,14 @@ use common MySQL syntax.</p>
 <ol>
 <li>Test equality of field to a constant value, e.g.  <code class="prettyprint">{ A: 6 }</code> =&gt; Is A equal to 6?</li>
 <li>Compare a field using a comparison operator, e.g. <code class="prettyprint">{ A: { $gt: 8 }}</code> =&gt; Is A greater than 8? The set of comparison operators is quite extensive and includes: <code class="prettyprint">$lte</code>, <code class="prettyprint">$lt</code>, <code class="prettyprint">$gte</code>, <code class="prettyprint">$gt</code>, <code class="prettyprint">$eq</code>, <code class="prettyprint">$neq</code>, <code class="prettyprint">$not</code>, <code class="prettyprint">$within</code>, <code class="prettyprint">$between</code></li>
-<li>Test if the value of the field is <code class="prettyprint">IN</code>  or <code class="prettyprint">NOT IN</code> the result of a sub-query.</li>
+<li>Test if the value of the field is IN (<code class="prettyprint">$in</code>)  or NOT IN (<code class="prettyprint">$nin</code>) the result of a sub-query.</li>
 <li>Test for the negation of a comparison. For example, to test if the location field is not Boston, we can use<code class="prettyprint">{ &quot;location&quot;: { &quot;$not&quot; : &quot;Boston&quot; }}</code></li>
 <li>Test for presence of a value. For example, if we want to test if a middle name field exists, we can do use <code class="prettyprint">{ &quot;middleName&quot;: {&quot;$exists&quot;: true} }</code></li>
 </ol>
 
 <p>Negation may sometimes be swapped for comparison. For example, to test if the location field is not equal to Paris, we can use negation: <code class="prettyprint">{ &quot;location&quot;: { &quot;$not&quot; : {&quot;$eq&quot;: &quot;Paris&quot; } } }</code></p>
 
-<p>Another option is to use a not-equal operator: <code class="prettyprint">{ &quot;location&quot;: { &quot;$neq&quot;: &quot;Paris&quot; } }</code></p>
+<p>Another option for negation is to use a not-equal operator: <code class="prettyprint">{ &quot;location&quot;: { &quot;$neq&quot;: &quot;Paris&quot; } }</code></p>
 
 <h3 id="sub-queries">Sub Queries</h3>
 
@@ -1361,10 +1345,58 @@ use common MySQL syntax.</p>
     }
 }
 </code></pre>
-<p>A group by query aggregates on fields, and then applies aggregation operators to the specified fields.</p>
+<p>A group by query aggregates on fields, and then applies aggregation operators to the specified fields. This can then be used to perform tasks like summing all of the product totals in a given shopping cart, or concatenating all the relevant office locations into a list organized by Country, as seen to the right.</p>
+
+<h3 id="example-string-comparison">Example - String Comparison</h3>
+<pre class="highlight plaintext"><code>{
+    "object": "employees",
+    "q": {
+        "position" : "Sales Manager"  
+    },
+    "fields": ["name", "salary"]
+}
+</code></pre>
+<p>A simple query can pluck the <code class="prettyprint">name</code> and <code class="prettyprint">salary</code> fields from an object named <code class="prettyprint">employees</code>. The query sample to the right executes this query for all employees with a position of &ldquo;Sales Manager&rdquo;</p>
+
+<h3 id="example-constant-value-comparison">Example - Constant Value Comparison</h3>
+<pre class="highlight plaintext"><code>{
+    "object": "employees",
+    "q": {
+        "age": { "$lt" : 25 }
+    }  
+}
+</code></pre>
+<p>Queries can also be used to compare an object&rsquo;s fields to constant values using common comparison operators. For example, to retrieve all fields for all employees under the age of 25, you can use the query to the right.</p>
+
+<h3 id="example-range-based-comparison">Example - Range-based comparison</h3>
+<pre class="highlight plaintext"><code>{
+  "object": "employees",
+  "q": {
+    "age": {
+      "$between": [25, 40]
+    }
+  }  
+}
+</code></pre>
+<p>You can use the <code class="prettyprint">$between</code> operator to retrieve all records with values that lie between two specified endpoints. For example, the query to the right retrieves all employees with an age between 25 and 40.</p>
+
+<h3 id="example-geographic-data-comparison">Example - Geographic Data Comparison</h3>
+<pre class="highlight plaintext"><code>{
+    "object": "city",
+    "q": {
+        "location" : { "$within" : [[32.0638130, 34.7745390], 25000]
+    }
+  }
+}
+</code></pre>
+<p>You can use the <code class="prettyprint">$within</code> operator to locate all records within a geographic range. The parameters for this comparison are provided as an array of two elements. The first element is a tuple containing latitude and longitude, e.g. <code class="prettyprint">[32.0638130, 34.7745390]</code>, while the second is a distance in meters. To retrieve all cities within 25 km (25000m) of a given latitude and longitude, you can use a query like the one to the right.</p>
 
 <h3 id="algorithm-to-generate-sql-from-json-queries">Algorithm to Generate SQL from JSON Queries</h3>
-<pre class="highlight javascript tab-javascript"><code>  <span class="nx">transformJson</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span> <span class="nx">sqlSchema</span><span class="p">,</span> <span class="nx">isFilter</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
+
+<blockquote>
+<p>The JavaScript function has the following form</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code>  <span class="nx">transformJson</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span> <span class="nx">sqlSchema</span><span class="p">,</span> <span class="nx">isFilter</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>The result is a structure with the following fields:</p>
@@ -1401,7 +1433,7 @@ use common MySQL syntax.</p>
 <blockquote>
 <p>Variables take the form of:</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript--general"><code>  <span class="p">{{</span><span class="o">&lt;</span><span class="nx">variable</span> <span class="nx">name</span><span class="o">&gt;</span><span class="p">}}</span>
+<pre class="highlight javascript tab-javascript--persistent"><code>  <span class="p">{{</span><span class="o">&lt;</span><span class="nx">variable</span> <span class="nx">name</span><span class="o">&gt;</span><span class="p">}}</span>
 </code></pre>
 <p>You also have the ability to mark a particular NoSQL query as a filter. This allows you to use variables in your query, which are populated on the server side from either parameters sent in with the filter, or from database data in your system.</p>
 
