@@ -1021,7 +1021,15 @@ after multiple uses, so we need to create one more task to perform cleanup after
 
 <p>On Demand actions, though, will return whatever value is returned by the custom server code, which can be any properly-formatted JSON string.</p>
 
-<h3 id="server-side-node-js-code">Server-Side Node.js Code</h3>
+<h3 id="transactional-database-scripts">Transactional Database Scripts</h3>
+
+<p>Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided that the event occurs during the object event &ldquo;During the data save before the object is committed&rdquo;. This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.</p>
+
+<h3 id="send-emails">Send Emails</h3>
+
+<p>Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.</p>
+
+<h2 id="server-side-node-js-lambda-actions">Server-Side Node.js Lambda Actions</h2>
 
 <p>Using Backand, you can develop distributed Node.js actions and host them with your Backand application - no additional servers needed! You can use the Server-Side Node.js action to work with any NPM package, build sophisticated action behaviors, perform complex coding tasks, and more.</p>
 
@@ -1040,7 +1048,7 @@ deploy command will be available on the action page <strong>after</strong> the a
 
 <p>You are now ready to develop your code locally, and test the action on the Backand Dashboard for your application!</p>
 
-<h4 id="backand-cli">Backand CLI</h4>
+<h3 id="backand-cli">Backand CLI</h3>
 <pre class="highlight shell"><code>    <span class="nv">$ </span>npm install -g backand
     <span class="c"># or use sudo (with caution)</span>
 </code></pre>
@@ -1048,7 +1056,7 @@ deploy command will be available on the action page <strong>after</strong> the a
 
 <p>Once you&rsquo;ve set up Node and NPM, use NPM to install the Backand CLI as a global package.</p>
 
-<h4 id="initialize-action">Initialize action</h4>
+<h3 id="initialize-action">Initialize action</h3>
 <pre class="highlight shell"><code>    <span class="nv">$ </span>backand action init --app &lt;app name&gt; --object &lt;object name&gt; --action &lt;action name&gt;  --master &lt;master token&gt; --user &lt;user token&gt;
 </code></pre>
 <p>To initialize the node.js code for the action on your local machine, use the <code class="prettyprint">action</code> command on the command line in the folder that will host your action&rsquo;s code</p>
@@ -1063,7 +1071,7 @@ deploy command will be available on the action page <strong>after</strong> the a
 <li> <code class="prettyprint">--user</code>:          The token of the current user (available from the TEam section of the app&rsquo;s Security &amp; Auth configuration - simply click on key icon next to an authorized user)<br></li>
 </ul>
 
-<h4 id="deploy-action">Deploy action</h4>
+<h3 id="deploy-action">Deploy action</h3>
 <pre class="highlight shell"><code>    <span class="nv">$ </span>backand action deploy --app &lt;app name&gt; --object &lt;object name&gt; --action &lt;action name&gt;  --master &lt;master token&gt; --user &lt;user token&gt;
 </code></pre>
 <p>To deploy your local Node.js code to Back&amp;, use the <code class="prettyprint">deploy</code> command with the Backand CLI</p>
@@ -1079,18 +1087,10 @@ deploy command will be available on the action page <strong>after</strong> the a
 <li> <code class="prettyprint">--folder</code>:   (Optional) The folder to deploy. By default the deployment occurs in the current folder</li>
 </ul>
 
-<h4 id="add-backand-sdk-to-node-js">Add Backand SDK to Node.js</h4>
+<h3 id="add-backand-sdk-to-node-js">Add Backand SDK to Node.js</h3>
 <pre class="highlight shell"><code>    <span class="nv">$ </span>npm install backandsdk --save
 </code></pre>
 <p>To work with objects or other actions in Backand, you need to install the Backand SDK for Node.js. The Backand SDK ships with several code samples that demonstrate how to access other Backand functionality.</p>
-
-<h3 id="transactional-database-scripts">Transactional Database Scripts</h3>
-
-<p>Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided that the event occurs during the object event &ldquo;During the data save before the object is committed&rdquo;. This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.</p>
-
-<h3 id="send-emails">Send Emails</h3>
-
-<p>Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.</p>
 
 <h2 id="queries">Queries</h2>
 
