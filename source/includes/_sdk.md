@@ -209,7 +209,7 @@ The available parameters for the *config* parameter are:
 | **runSigninAfterSignup** | boolean | Determines whether the sdk should run signin after signup automatically | *optional* | *true* |
 | **runSocket** | boolean | Determines whether the sdk should run socket automatically | *optional* | *false* |
 | **socketUrl** | string | Sets the socket url of backand servers | *optional* | *https://socket.backand.com* |
-| **isMobile** | boolean | Determines whether the sdk is part of a mobile application | *optional* | *false* |
+| **isMobile** | boolean | Determines whether the SDK is part of a mobile application. *Note - If Backand detects that you are running on Android or iOS, this flag will be updated automatically in the SDK* | *optional* | *false* |
 | **mobilePlatform** | string | sets the platform used to build the mobile application ('ionic'/'react-native') | *optional* | 'ionic' |
 
 ### .on()
