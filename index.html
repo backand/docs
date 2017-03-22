@@ -1976,7 +1976,7 @@ Set-AdfsProperties -EnableKmsi <span class="nv">$True</span> –KmsiLifetimeMins
 </tr>
 <tr>
 <td>socialAuthOverride</td>
-<td>Automatic, after social media authentication</td>
+<td>Automatic, after social media authentication <em>and</em> registration</td>
 <td>See <a href="#integrating-third-party-security">our post on third-party security</a></td>
 </tr>
 <tr>
@@ -5102,6 +5102,14 @@ On Demand triggers, on the other hand, happen whenever you like. These are assoc
 </ul>
 
 <p>Once again, if this method returns <code class="prettyprint">ignore</code>, the default built-in social media authentication provided by Backand is used. Otherwise, the return value of this function - either <code class="prettyprint">allow</code> or <code class="prettyprint">deny</code> - coupled with the contents of <code class="prettyprint">additionalTokenInfo</code> are returned to the caller, and the user is either authenticated or prevented access appropriately. You can use this pattern to, for example, obtain a user&rsquo;s Facebook profile picture upon completion of authentication, and pass the results back to the application for display or manipulation.</p>
+
+<aside class="notice">
+While this function works similarly to backandAuthOverride, there are a couple minor differences that are important to note.
+  <ol>
+    <li> With <pre>socialAuthOverride</pre>, the only things you can do are deny access, or provide additional information. The <pre>backandAuthOverride</pre> function gives you more power over the result. </li>
+    <li> The <pre>socialAuthOverride</pre> function is called for both user authentication <strong>and</strong> for social media registration. The <pre>backandAuthOverride</pre> function is only called during authentication.</li>
+  </ol>
+</aside>
 
 <h3 id="overriding-authorization">Overriding Authorization</h3>
 
