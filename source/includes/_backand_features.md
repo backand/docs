@@ -236,7 +236,7 @@ Each user has a role. When you created your app, you were automatically assigned
 While Security Templates provide reusable permissions platforms that can be spread across a number of roles, you can also override security template settings and provide specific permissions for each individual role. This allows you to have more granular control over the [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions that can be performed by the users in your system. When a user with insufficient security access tries to perform an action for which they do not have permission, a 403 (Forbidden) error response is returned.
 
 ### Security Actions
-Backand offers a number of pre-defined security actions that can be used to manage your application's security processes. These are available in the app dashboard under **Security & Auth -> Security Actions**. See [the Security Actions Documentation](#security-actions84) for more details.
+Backand offers a number of pre-defined security actions that can be used to manage your application's security processes. These are available in the app dashboard under **Security & Auth -> Security Actions**. See [the Security Actions Documentation](#security-actions-backand-dashboard) for more details.
 
 ## Backand Storage
 Backand provides you with the ability to upload and delete files to and from Backand's robust storage. This is done on the server-side through Backand's Actions. It doesn't require any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage counts of the amount of files per user.
