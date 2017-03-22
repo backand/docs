@@ -5368,6 +5368,28 @@ You can use the following JSON mode:</p>
 
 <p>From this point onward, any user that signs up to your app using Facebook as their social media provider will have their FUID automatically populated in the <strong>users</strong> object.</p>
 
+<h3 id="obtaining-the-facebook-access-token">Obtaining the Facebook Access token</h3>
+
+<blockquote>
+<p>Modify the security action &ldquo;socialAuthOverride&rdquo; to return &ldquo;Allow&rdquo;</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code>  <span class="k">return</span> <span class="p">{</span> <span class="s2">"result"</span><span class="p">:</span> <span class="s2">"allow"</span><span class="p">,</span> <span class="s2">"message"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span> <span class="s2">"additionalTokenInfo"</span><span class="p">:</span> <span class="nx">additionalTokenInfo</span> <span class="p">};</span>
+</code></pre>
+<blockquote>
+<p>Now, Backand returns the Facebook access token from getUserDetails, under data.providerAccessToken</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="s2">"providerAccessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EAAWqshXVWMMBANSpEtxBuvGTucyOoiCYIbrNNuQnULqZAJqvNpBKJTZBV660NGQ6Ge6ZA0X0kr3mGEMpvqUX4vldM7n2iatOTZB8JjoinqaIfZCT9Lz8uAlt6LBZBqxAmmxTYLRFLgktVFzYhSxuCtzYc4COyG6DMZD"</span><span class="p">,</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Once you&rsquo;ve authenticated with Facebook, you can easily record your user&rsquo;s Facebook access token. This can be used to re-authenticate the user with Facebook when performing API calls, such as fetching additional user data using the Facebook Graph API.</p>
+
 <h3 id="getting-facebook-data-into-backand-code">Getting Facebook data into Backand code</h3>
 <pre class="highlight javascript tab-javascript--persistent"><code>    <span class="kd">var</span> <span class="nx">fuid</span> <span class="o">=</span> <span class="s2">"176102422846507"</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">facebookAccessToken</span> <span class="o">=</span> <span class="s2">"EAAWouLyM4lEBADjVlK9yslq9YNjx7S5UUx9oKUo6BWxsj9qc77ZCuKZAPvBQUIulpieNJIJ0Uit3K0UFR0oxjxl68DupTb0uoJFXPQFUdTOlneLEprG6b8WxuYN3AX6m05hKpFbBPKczCab1OUetevdvkZCO6rtPUQEUtc68gZDZD"</span><span class="p">;</span>
@@ -5383,11 +5405,11 @@ You can use the following JSON mode:</p>
 
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>
 </code></pre>
-<p>Once you have the Facebook user ID, you can use the Graph API to access any available Facebook data.</p>
+<p>Once you have the Facebook user ID and access token, you can use the Graph API to access any available Facebook data.</p>
 
 <ul>
 <li>See the Facebook Graph API docs at <a href="https://developers.facebook.com/docs/graph-api">https://developers.facebook.com/docs/graph-api</a></li>
-<li>You&rsquo;ll also need a valid Facebook Access Token for your application. Use <a href="https://developers.facebook.com/tools/accesstoken/">Facebook&rsquo;s access token tool</a> to obtain one.</li>
+<li>You&rsquo;ll also need a valid Facebook Access Token for your application. See the <a href="#obtaining-the-facebook-access-token">section above</a>, or use <a href="https://developers.facebook.com/tools/accesstoken/">Facebook&rsquo;s access token tool</a> to obtain one.</li>
 <li>Facebook offers <a href="https://developers.facebook.com/tools-and-support/">additional tools</a></li>
 </ul>
 
