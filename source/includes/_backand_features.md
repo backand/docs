@@ -491,6 +491,7 @@ To create the new Gulp deployment task:
  after multiple uses, so we need to create one more task to perform cleanup after the deployment has completed:
 
 ## Realtime Database Communications
+> Script includes need to also contain the socket.io library. This can be obtained from their CDN, or using a package manager like NPM or bower
 
 ```html    
 <!-- Backand Socket Client -->
@@ -499,10 +500,29 @@ To create the new Gulp deployment task:
 <script src="//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"></script>
 <script src="//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"></script>   
 ```
+> Next, enable the SDK for Socket communication
 
 ```javascript--persistent
   // Configure the SDK to run the socket
   BackandProvider.runSocket(true);
+```
+> Then, configure your app's client side to receive and handle an event
+Missing client code example:
+
+```javascript--persistent
+  //Wait for server updates on 'items' object
+  Backand.on('items_updated', function (data) {
+    //Get the 'items' object that have changed
+    console.log(data);
+  });
+```
+>Finally, send the event from a Custom JavaScript Action in Backand:
+
+```javascript--persistent
+  // Emit to all
+  function backandCallback(userInput, dbRow, parameters, userProfile) {
+    socket.emitAll("items_updated", userInput);
+  }
 ```
 
 Backand's real-time communication functionality is based on the popular open-source Socket.io framework, which lets you add real-time functionality to your application. Backand’s Real-Time Database Communication sends events and JSON-formatted data to any authorized connected client. With Real-Time Communication from Backand, you can send real-time information to your application based on server-side logic in your application's custom actions. With this new feature events are picked up as they happen, rather than having to wait for a user-driven event to trigger a data reload.
