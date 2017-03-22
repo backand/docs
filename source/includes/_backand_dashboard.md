@@ -392,10 +392,9 @@ The following actions are provided by default for a Backand application. You can
 | Update My App User | Automatic, during user update | This action occurs whenever a registered user is modified. It attempts to make the appropriate modifications in your app's custom `users` object |
 | Delete My App User | Automatic, during user deletion | This action occurs whenever a registered user is deleted. It attempts to remove the associated `users` record for the user being deleted. |
 
-####
+Here's a general informational graphic demonstrating how authentication-related actions integrate with the system:
 
-
-
+![image](images/security_diagram.png)
 ### Security Templates
 Security templates allow you to create a template that is used to set permissions on objects. You can create new templates, update existing templates, and rename security templates as you see fit. Each of the checkboxes corresponds to the REST API action indicated by the column header. When you check "Create" for a user role, for example, and then assign that security template to an object, all users with the specified role will be granted "Create" access to the object.
 
