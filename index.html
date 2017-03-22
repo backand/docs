@@ -847,13 +847,39 @@ after multiple uses, so we need to create one more task to perform cleanup after
 </ol>
 
 <h2 id="realtime-database-communications">Realtime Database Communications</h2>
+
+<blockquote>
+<p>Script includes need to also contain the socket.io library. This can be obtained from their CDN, or using a package manager like NPM or bower</p>
+</blockquote>
 <pre class="highlight html tab-html"><code><span class="c">&lt;!-- Backand Socket Client --&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"lib/socket.io-client/dist/socket.io.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="c">&lt;!-- Backand SDK --&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"</span><span class="nt">&gt;&lt;/script&gt;</span>   
-</code></pre><pre class="highlight javascript tab-javascript--persistent"><code>  <span class="c1">// Configure the SDK to run the socket</span>
+</code></pre>
+<blockquote>
+<p>Next, enable the SDK for Socket communication</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code>  <span class="c1">// Configure the SDK to run the socket</span>
   <span class="nx">BackandProvider</span><span class="p">.</span><span class="nx">runSocket</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>Then, configure your app&rsquo;s client side to receive and handle an event
+Missing client code example:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code>  <span class="c1">//Wait for server updates on 'items' object</span>
+  <span class="nx">Backand</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'items_updated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Get the 'items' object that have changed</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Finally, send the event from a Custom JavaScript Action in Backand:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code>  <span class="c1">// Emit to all</span>
+  <span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">emitAll</span><span class="p">(</span><span class="s2">"items_updated"</span><span class="p">,</span> <span class="nx">userInput</span><span class="p">);</span>
+  <span class="p">}</span>
 </code></pre>
 <p>Backand&rsquo;s real-time communication functionality is based on the popular open-source Socket.io framework, which lets you add real-time functionality to your application. Backand’s Real-Time Database Communication sends events and JSON-formatted data to any authorized connected client. With Real-Time Communication from Backand, you can send real-time information to your application based on server-side logic in your application&rsquo;s custom actions. With this new feature events are picked up as they happen, rather than having to wait for a user-driven event to trigger a data reload.</p>
 
