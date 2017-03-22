@@ -817,6 +817,14 @@ While you can use `backandAuthOverride` to integrate with most third-party authe
 
 Once again, if this method returns `ignore`, the default built-in social media authentication provided by Backand is used. Otherwise, the return value of this function - either `allow` or `deny` - coupled with the contents of `additionalTokenInfo` are returned to the caller, and the user is either authenticated or prevented access appropriately. You can use this pattern to, for example, obtain a user's Facebook profile picture upon completion of authentication, and pass the results back to the application for display or manipulation.
 
+<aside class="notice">
+While this function works similarly to backandAuthOverride, there are a couple minor differences that are important to note.
+  <ol>
+    <li> With <pre>socialAuthOverride</pre>, the only things you can do are deny access, or provide additional information. The <pre>backandAuthOverride</pre> function gives you more power over the result. </li>
+    <li> The <pre>socialAuthOverride</pre> function is called for both user authentication <strong>and</strong> for social media registration. The <pre>backandAuthOverride</pre> function is only called during authentication.</li>
+  </ol>
+</aside>
+
 ###Overriding Authorization
 Once you've authenticated the user, you'll need to determine whether they are authorized to access the specified resource. While our security roles and templates can cover a lot of functionality, they are by nature restricted to a single app. If you organization's security policy restricts app access to users with a specific flag in your authentication mechanism, you'll want to override basic Backand authorization to instead leverage your external solution. To do this, you can use the `accessFilter` method to dynamically approve or deny any users that authenticate with your system using an Oauth2 token.
 

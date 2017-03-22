@@ -384,7 +384,7 @@ The following actions are provided by default for a Backand application. You can
 | ChangePasswordOverride | Automatic, during password change | **not currently used** |
 | newUserVerification | Automatic, during user registration | This verification message is sent to new users if email address verification is enabled |
 | requestResetPassword | Automatic, after a call to `requestResetPassword` | This email is sent in response to initiating a password reset |
-| socialAuthOverride | Automatic, after social media authentication | See [our post on third-party security](#integrating-third-party-security) |
+| socialAuthOverride | Automatic, after social media authentication *and* registration | See [our post on third-party security](#integrating-third-party-security) |
 | userApproval | Automatic, after user registration | This email is sent to users to inform them that they have been successfully added to an app |
 | Admin Invitation Email | Automatic, during user creation | This email is used to invite administrators to your application |
 | Create My App User | Automatic, during user creation | This function takes the user input from the sdk `signup` call, and uses it to populate a custom `users` object in your application. |
