@@ -820,8 +820,8 @@ Once again, if this method returns `ignore`, the default built-in social media a
 <aside class="notice">
 While this function works similarly to backandAuthOverride, there are a couple minor differences that are important to note.
   <ol>
-    <li> With <pre>socialAuthOverride</pre>, the only things you can do are deny access, or provide additional information. The <pre>backandAuthOverride</pre> function gives you more power over the result. </li>
-    <li> The <pre>socialAuthOverride</pre> function is called for both user authentication <strong>and</strong> for social media registration. The <pre>backandAuthOverride</pre> function is only called during authentication.</li>
+    <li> With socialAuthOverride, the only things you can do are deny access, or provide additional information. The backandAuthOverride function gives you more power over the result. </li>
+    <li> The socialAuthOverride function is called for both user authentication <strong>and</strong> for social media registration. The backandAuthOverride function is only called during authentication.</li>
   </ol>
 </aside>
 
