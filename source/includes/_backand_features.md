@@ -491,7 +491,7 @@ To create the new Gulp deployment task:
  after multiple uses, so we need to create one more task to perform cleanup after the deployment has completed:
 
 ## Realtime Database Communications
-> Script includes need to also contain the socket.io library. This can be obtained from their CDN, or using a package manager like NPM or bower
+> To begin, you'll need to include the socket.io library. This can be obtained from their CDN, or using a package manager like NPM or bower
 
 ```html    
 <!-- Backand Socket Client -->
