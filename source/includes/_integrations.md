@@ -277,6 +277,27 @@ Next, you need to add the FUID field to the "users" object:
 
 From this point onward, any user that signs up to your app using Facebook as their social media provider will have their FUID automatically populated in the **users** object.
 
+### Obtaining the Facebook Access token
+> Modify the security action "socialAuthOverride" to return "Allow"
+
+```javascript--persistent
+  return { "result": "allow", "message": "", "additionalTokenInfo": additionalTokenInfo };
+```
+> Now, Backand returns the Facebook access token from getUserDetails, under data.providerAccessToken
+
+```json
+{
+  ...
+  "data": {
+    ...
+    "providerAccessToken": "EAAWqshXVWMMBANSpEtxBuvGTucyOoiCYIbrNNuQnULqZAJqvNpBKJTZBV660NGQ6Ge6ZA0X0kr3mGEMpvqUX4vldM7n2iatOTZB8JjoinqaIfZCT9Lz8uAlt6LBZBqxAmmxTYLRFLgktVFzYhSxuCtzYc4COyG6DMZD",
+    ...
+  },
+  ...
+}
+```
+Once you've authenticated with Facebook, you can easily record your user's Facebook access token. This can be used to re-authenticate the user with Facebook when performing API calls, such as fetching additional user data using the Facebook Graph API.
+
 ### Getting Facebook data into Backand code
 ```javascript--persistent
 	var fuid = "176102422846507";
@@ -293,10 +314,10 @@ From this point onward, any user that signs up to your app using Facebook as the
 
     console.log(response);
 ```
-Once you have the Facebook user ID, you can use the Graph API to access any available Facebook data.
+Once you have the Facebook user ID and access token, you can use the Graph API to access any available Facebook data.
 
 * See the Facebook Graph API docs at [https://developers.facebook.com/docs/graph-api](https://developers.facebook.com/docs/graph-api)
-* You'll also need a valid Facebook Access Token for your application. Use [Facebook's access token tool](https://developers.facebook.com/tools/accesstoken/) to obtain one.
+* You'll also need a valid Facebook Access Token for your application. See the [section above](#obtaining-the-facebook-access-token), or use [Facebook's access token tool](https://developers.facebook.com/tools/accesstoken/) to obtain one.
 * Facebook offers [additional tools](https://developers.facebook.com/tools-and-support/)
 
 At this point, you're ready to work with the API. For example, you can use this sample code to get a list of a user's friends in Facebook:
