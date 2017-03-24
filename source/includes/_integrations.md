@@ -1756,3 +1756,162 @@ Once you've configured the action to connect to Salesforce, you'll need to call 
 Simply replace 'your object name' with the object that contains your Salesforce custom action, and replace 'your action name' with the name of the action that you provided while creating the integration.
 
 With these changes, you're now able to pull in any and all Salesforce accounts available via their API! You can use a similar pattern to construct additional calls to the Salesforce API - simply replace the URL and parameters in the custom SalesforceCRM action with the URL and parameters for the object you want to retrieve.
+
+## Calling Backand from Native Android Code
+> This is a simple class you can use to easily construct API requests to any Backand API URL
+
+```java
+com.backand.backandandroidsample;
+
+import android.util.Base64;
+import android.util.Log;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+
+public class BackandConnector {
+    private String masterToken;
+    private String userToken;
+    private String appName;
+
+    private final String TAG = "Backand";
+    public BackandConnector(String appName, String userToken, String masterToken) {
+        this.masterToken = masterToken;
+        this.userToken = userToken;
+        this.appName = appName;
+    }
+
+    public String sendGetRequest(URL url) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String userNamePasswordCombination = this.masterToken + ":" + this.userToken;
+        final String basicAuth = "Basic " +  Base64.encodeToString(userNamePasswordCombination.getBytes(), Base64.NO_WRAP);
+
+        try {
+
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Authorization", basicAuth);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("AppName", this.appName);
+
+            int responseCode = conn.getResponseCode();
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                String line;
+                InputStream in = conn.getInputStream();
+
+                InputStreamReader isw = new InputStreamReader(in);
+
+                int data = isw.read();
+                while (data != -1) {
+                    char current = (char) data;
+                    data = isw.read();
+                    stringBuilder.append(current);
+                }
+            } else {
+                Log.d(TAG, "readRemoteJson: " + conn.getResponseMessage());
+                return "";
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "readRemoteJson error: " + e.getMessage());
+        }
+        return  stringBuilder.toString();
+    }
+}
+```
+
+As Backand is a web API, it can be used by any application that is built on top of a programming language that can make HTTP requests. As an example of this, in this article we'll look at how to connect a native Android application to a Backand back-end using HTTP calls. We'll cover configuring the connection headers, authenticating with Backand, sending requests, and receiving responses. We'll also take a brief look at how to integrate with other Backand SDK functionality.
+### Configuring the Connection
+>This code takes three arguments - appName, userToken, and masterToken - and populates class member variables with this data. These values are then used in constructing the authentication header for each request.
+
+```java
+public class BackandConnector {
+    private String masterToken;
+    private String userToken;
+    private String appName;
+
+    private final String TAG = "Backand";
+    public BackandConnector(String appName, String userToken, String masterToken) {
+        this.masterToken = masterToken;
+        this.userToken = userToken;
+        this.appName = appName;
+    }
+}
+```
+To integrate with Backand, you'll need three pieces of information. The first is the app name, which can be found in the Backand dashboard. The second is the app's Master key. This is found in the application dashboard, under Security & Auth -> Social & Keys. Once you've obtained this, you'll also need the User Key. This is a key that is unique to each registered user in your application. It is used to associate the actions being taken in your app with a user, so that you can apply security templates appropriately. Obtain the User Key from Security & Auth -> Registered Users - simply click on the "key" icon next to a user record to obtain the key:
+
+![image](images/user_key_icon.png)
+
+You can store this information in a wrapper class, which you will use to govern all calls to the Backand service. Start by defining the class, along with a constructor that accepts the three authentication values.
+
+###Authenticating
+> To authenticate your requests with Backand, you'll need to construct an authentication header. This consists of a Base 64-encoded string consisting of your application's master key and user key, coupled with the word "Basic". The code to construct this header is as follows:
+
+```java
+StringBuilder stringBuilder = new StringBuilder();
+        String userNamePasswordCombination = this.masterToken + ":" + this.userToken;
+        final String basicAuth = "Basic " +  Base64.encodeToString(userNamePasswordCombination.getBytes(), Base64.NO_WRAP);
+```
+
+You can use Backand's [Basic Authentication](http://docs.backand.com/#basic-authentication) to authenticate with your app. This uses your app's master key and a user key to authenticate API requests. This works well for server-side (and other non-visible) code, but you should be careful to ensure that your app's Master key is not exposed in source control or via your app - this key bypasses all user authentication, and can be used to perform administrative actions in your app without your knowledge.
+
+
+
+###Sending the Request
+>This code uses the HttpsUrlConnection object from javax.net.ssl to construct a basic HTTP request to the URL specified. Set the Authorization header to the authorization value you calculated in the previous section, then use the app's name to populate the AppName header. Finally, set the content type to "application/json", and open the connection.
+
+```java
+public String sendGetRequest(URL url) {
+        //Auth header generation code here
+        try {
+
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Authorization", basicAuth);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("AppName", this.appName);
+
+            // handle response here.
+        } catch (Exception e) {
+            Log.e(TAG, "readRemoteJson error: " + e.getMessage());
+        }
+       //return your desired result here
+    }
+```
+
+Once you've built out the authentication header, you're ready to fire requests at the API. The Backand API is built as a web API, meaning that you simply need to send HTTP requests to the API URLs in order to obtain and modify your application's data. To the right is some sample code that implements a basic request to a Backand API URL
+
+<aside class="notice"> Refer to our documentation for information on obtaining the URL for your request (in the cURL language tab). We also offer URLs for all actions taken in the app dashboard's data grid for objects, as well as URLs for calling custom actions and queries - find them in the right-hand pane when testing or performing actions in the app dashboard.</aside>
+
+###Handling the Response
+> Below is sample code for handling a response from our API:
+
+```java
+            int responseCode = conn.getResponseCode();
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                String line;
+                InputStream in = conn.getInputStream();
+
+                InputStreamReader isw = new InputStreamReader(in);
+
+                int data = isw.read();
+                while (data != -1) {
+                    char current = (char) data;
+                    data = isw.read();
+                    stringBuilder.append(current);
+                }
+            } else {
+                Log.d(TAG, "readRemoteJson: " + conn.getResponseMessage());
+                return "";
+            }
+```
+
+Backand responds to your request with JSON that can be adapted however you wish. The sample code starts by obtaining the response code from the HTTP Request. If the response code indicates success, it uses InputStreamReader to read in the JSON response, to be used elsewhere in your application. Otherwise, it logs the failed request details for later debugging.
+
+###Adding New Functionality
+At this point you have a fully-functional wrapper for calls to any Backand API. Simply create a new instance of this class, supply it with the connection information, and then make your API calls by sending URLs to the method sendGetRequest. You can easily modify this pattern to send POST, PUT, and DELETE requests as you need. Additionally, if you wish to save computation time and effort, you can abstract away the authorization header construction, saving the constructed header instead of rebuilding it every time.
+
+###Conclusion
+As Backand is a web API, it can be easily integrated with nearly every programming language available. While this example focuses on Android, you can use similar code in any popular development language to communicate with Backand's API. Simply construct an authorization header using basic authentication, specify the request URL, and fire the request. Consult [our documentation](http://docs.backand.com) to get started!

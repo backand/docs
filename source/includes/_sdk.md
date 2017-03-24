@@ -1,4 +1,5 @@
-# Vanilla SDK
+<a name="vanilla-sdk"></a>
+# Backand SDK
 
 The primary functionality in the Backand SDK is contained in the Vanilla SDK, located [on our GitHub page](https://github.com/backand/vanilla-sdk). This provides a global object - `backand` - that can be used to work with the Backand SDK. Review the ReadMe on the GitHub repo to get started, or review the content below.
 
