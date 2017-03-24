@@ -74,6 +74,15 @@ You can also send the basic authorization token through as a query string.
 
 <aside class="warning">Do not use this method from the client side as it exposes your app's secret token, which can be used to perform any action in your system. This method is for server-side calls only.</aside>
 
+### Obtaining the user key
+Our Basic authentication relies upon a User key, which is then used as a password while authenticating with the app's Master token. To obtain the user key:
+
+* Navigate to **Security & Auth -> Registered Users**
+* Select the user who will own the action about to take place
+* Click on the "key" icon to obtain the user key
+
+![image](images/user_key_icon.png)]
+
 ### Anonymous authentication
 ```shell
 # Perform anonymous authentication through headers
