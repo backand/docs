@@ -438,6 +438,18 @@ curl https://api.backand.com/1/objects/items?authorization<span class="o">=</spa
 
 <aside class="warning">Do not use this method from the client side as it exposes your app&rsquo;s secret token, which can be used to perform any action in your system. This method is for server-side calls only.</aside>
 
+<h3 id="obtaining-the-user-key">Obtaining the user key</h3>
+
+<p>Our Basic authentication relies upon a User key, which is then used as a password while authenticating with the app&rsquo;s Master token. To obtain the user key:</p>
+
+<ul>
+<li>Navigate to <strong>Security &amp; Auth -&gt; Registered Users</strong></li>
+<li>Select the user who will own the action about to take place</li>
+<li>Click on the &ldquo;key&rdquo; icon to obtain the user key</li>
+</ul>
+
+<p><img src="images/user_key_icon.png" alt="image" />]</p>
+
 <h3 id="anonymous-authentication">Anonymous authentication</h3>
 <pre class="highlight shell tab-shell"><code><span class="c"># Perform anonymous authentication through headers</span>
 curl https://api.backand.com/1/objects/items -H <span class="s2">"AnonymousToken: &lt;anonymous token&gt;"</span>
