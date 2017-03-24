@@ -81,7 +81,7 @@ Our Basic authentication relies upon a User key, which is then used as a passwor
 * Select the user who will own the action about to take place
 * Click on the "key" icon to obtain the user key
 
-![image](images/user_key_icon.png)]
+![image](images/user_key_icon.png)
 
 ### Anonymous authentication
 ```shell
