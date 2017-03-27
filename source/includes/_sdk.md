@@ -213,6 +213,34 @@ The available parameters for the *config* parameter are:
 | **isMobile** | boolean | Determines whether the SDK is part of a mobile application. *Note - If Backand detects that you are running on Android or iOS, this flag will be updated automatically in the SDK* | *optional* | *false* |
 | **mobilePlatform** | string | sets the platform used to build the mobile application ('ionic'/'react-native') | *optional* | 'ionic' |
 
+### .requestResetPassword()
+
+#### Parameters
+| name | type | description |
+| ---- | ---- | ----------- |
+
+
+### .resetPassword()
+
+#### Parameters
+| name | type | description |
+| ---- | ---- | ----------- |
+
+### .getSocialProviders()
+
+#### Parameters
+| name | type | description |
+| ---- | ---- | ----------- |
+
+### .useAnonymousAuth()
+
+This manipulates a flag within the SDK responsible for setting up request authentication headers. If this is set to true, and no user is logged in, then the SDK will use anonymous authentication until a user signs into your application. If this is false, the SDK will not use anonymous authentication when a user is not logged in, prohibiting access.
+
+#### Parameters
+| name | type | description |
+| ---- | ---- | ----------- |
+| flag | boolean | When true, the SDK will use anonymous authentication. |
+
 ### .on()
 ```shell
 # This call has no cURL equivalent
