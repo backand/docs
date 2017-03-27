@@ -244,6 +244,11 @@ The API Signup Token is used whenever you contact the Backand API to register a 
 #### Social Configuration
 In this section you can configure the social app for each company (GitHub, Google and Facebook). By default you can use Backand as the social app, unless you add your own client and secret ids.
 
+##### Social Redirect URIs
+Following sign-in with social media, your user will be redirected to a Redirect URI that is then tasked with obtaining the full details of the authentication that occurred. This URI is called automatically by Backand, and is specified as the redirectUrl parameter to the socialMediaSignup call in the API. In order to support this more secure pattern of working with social media authentication, all URLs that can be redirected to must be present in this Social Redirect URI list. If a URL is not present in this list, then the redirect request will not be honored.
+
+<aside class="notice">This field accepts a comma-separated list of URIs, to allow for multiple endpoints in your application. Simply add each new URI by adding a comma to the previous value, then pasting the new URI into the text box.</aside>
+
 ##### GitHub App Configuration
 In order to enable signing in with GitHub credentials, follow these steps:
 
