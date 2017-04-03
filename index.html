@@ -1786,6 +1786,12 @@ In addition to the fields supplied by the user, Backand defines an &lsquo;id&rsq
 
 <p>In this section you can configure the social app for each company (GitHub, Google and Facebook). By default you can use Backand as the social app, unless you add your own client and secret ids.</p>
 
+<h5 id="social-redirect-uris">Social Redirect URIs</h5>
+
+<p>Following sign-in with social media, your user will be redirected to a Redirect URI that is then tasked with obtaining the full details of the authentication that occurred. This URI is called automatically by Backand, and is specified as the redirectUrl parameter to the socialMediaSignup call in the API. In order to support this more secure pattern of working with social media authentication, all URLs that can be redirected to must be present in this Social Redirect URI list. If a URL is not present in this list, then the redirect request will not be honored.</p>
+
+<aside class="notice">This field accepts a comma-separated list of URIs, to allow for multiple endpoints in your application. Simply add each new URI by adding a comma to the previous value, then pasting the new URI into the text box.</aside>
+
 <h5 id="github-app-configuration">GitHub App Configuration</h5>
 
 <p>In order to enable signing in with GitHub credentials, follow these steps:</p>
@@ -2469,6 +2475,151 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 <td>sets the platform used to build the mobile application (&#39;ionic&rsquo;/&lsquo;react-native&rsquo;)</td>
 <td><em>optional</em></td>
 <td>&lsquo;ionic&rsquo;</td>
+</tr>
+</tbody></table>
+
+<h3 id="requestresetpassword">.requestResetPassword()</h3>
+<pre class="highlight shell tab-shell"><code><span class="c"># Replace AUTH_TOKEN with an authentication token valid for your app</span>
+curl -X POST -H <span class="s2">"Authorization: AUTH_TOKEN"</span> -d <span class="s2">"{'appName':'APP_NAME','username':'EMAIL'}"</span> https://api.backand.com/1/user/requestResetPassword
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">requestResetPassword</span><span class="p">(</span><span class="nx">email</span><span class="p">);</span>
+</code></pre>
+<p>Initiates the password reset request. Sends an email to the specified user providing a link to your reset password form. Also provides a reset token, to be used to finalize the password reset.</p>
+
+<aside class="warning">You must configure a custom reset password URL to use the password reset functionality. This is done in the app dashboard, under <strong>Security & Auth -> Configuration</strong></aside>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>the email of the user whose password will be reset</td>
+</tr>
+</tbody></table>
+
+<h3 id="resetpassword">.resetPassword()</h3>
+<pre class="highlight shell tab-shell"><code><span class="c"># pending</span>
+curl -X POST -H <span class="s2">"Authorization: AUTH_TOKEN"</span> -d <span class="s2">"{'newPassword':'NEW_PASSWORD','resetToken':'RESET_TOKEN'}"</span> https://api.backand.com/1/user/resetPassword
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">resetPassword</span><span class="p">(</span><span class="nx">newPassword</span><span class="p">,</span> <span class="nx">resetToken</span><span class="p">);</span>
+</code></pre>
+<p>This finalizes the password request, setting the password of the user associated with the provided <code class="prettyprint">resetToken</code> to the value provided in <code class="prettyprint">newPassword</code></p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>newPassword</td>
+<td>string</td>
+<td>the user&rsquo;s new password</td>
+</tr>
+<tr>
+<td>resetToken</td>
+<td>string</td>
+<td>the password reset token (obtained from <code class="prettyprint">requestResetPassword</code>)</td>
+</tr>
+</tbody></table>
+
+<h3 id="getsocialproviders">.getSocialProviders()</h3>
+<pre class="highlight shell tab-shell"><code><span class="c"># Change APP_NAME to match the name of your application</span>
+curl -X GET <span class="s2">"https://api.backand.com/1/user/socialProviders?appName=APP_NAME"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Fetch the list of social media providers from the cache</span>
+<span class="nx">backand</span><span class="p">.</span><span class="nx">getSocialProviders</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+
+<span class="c1">// Fetch the list of social media providers from the server</span>
+<span class="nx">backand</span><span class="p">.</span><span class="nx">getSocialProviders</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>Sample response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">API</span><span class="w"> </span><span class="err">request</span><span class="w"> </span><span class="err">details</span><span class="w"> </span><span class="err">omitted</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"google"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignin?provider=google&amp;appname=webinar030116"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signup"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignup?provider=google&amp;appname=webinar030116"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"github"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignin?provider=github&amp;appname=webinar030116"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signup"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignup?provider=github&amp;appname=webinar030116"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"facebook"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignin?provider=facebook&amp;appname=webinar030116"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signup"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignup?provider=facebook&amp;appname=webinar030116"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"twitter"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignin?provider=twitter&amp;appname=webinar030116"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signup"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignup?provider=twitter&amp;appname=webinar030116"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"adfs"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignin?provider=adfs&amp;appname=webinar030116"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signup"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignup?provider=adfs&amp;appname=webinar030116"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"azuread"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignin?provider=azuread&amp;appname=webinar030116"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"signup"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1</span><span class="se">\/</span><span class="s2">user</span><span class="se">\/</span><span class="s2">socialSignup?provider=azuread&amp;appname=webinar030116"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>force</td>
+<td>boolean</td>
+<td>When true, the list of social providers will be obtained from the server. Otherwise, local cached data is used.</td>
+</tr>
+</tbody></table>
+
+<h3 id="useanonymousauth">.useAnonymousAuth()</h3>
+<pre class="highlight shell tab-shell"><code><span class="c"># This call has no cURL equivalent.</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">//enable anonymous auth</span>
+<span class="nx">backand</span><span class="p">.</span><span class="nx">useAnonymousAuth</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+<span class="c1">//disable anonymous auth</span>
+<span class="nx">backand</span><span class="p">.</span><span class="nx">useAnonymousAuth</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</code></pre>
+<aside class="success">To use anonymous auth with cURL, follow the instructions in our <a href="#the-user-object-and-security">security documentation</a></aside>
+
+<p>This manipulates a flag within the SDK responsible for setting up request authentication headers. If this is set to true, and no user is logged in, then the SDK will use anonymous authentication until a user signs into your application. If this is false, the SDK will not use anonymous authentication when a user is not logged in, prohibiting access.</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>flag</td>
+<td>boolean</td>
+<td>When true, the SDK will use anonymous authentication.</td>
 </tr>
 </tbody></table>
 
