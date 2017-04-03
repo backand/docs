@@ -213,6 +213,118 @@ The available parameters for the *config* parameter are:
 | **isMobile** | boolean | Determines whether the SDK is part of a mobile application. *Note - If Backand detects that you are running on Android or iOS, this flag will be updated automatically in the SDK* | *optional* | *false* |
 | **mobilePlatform** | string | sets the platform used to build the mobile application ('ionic'/'react-native') | *optional* | 'ionic' |
 
+### .requestResetPassword()
+```shell
+# Replace AUTH_TOKEN with an authentication token valid for your app
+curl -X POST -H "Authorization: AUTH_TOKEN" -d "{'appName':'APP_NAME','username':'EMAIL'}" https://api.backand.com/1/user/requestResetPassword
+```
+```javascript
+backand.requestResetPassword(email);
+```
+
+Initiates the password reset request. Sends an email to the specified user providing a link to your reset password form. Also provides a reset token, to be used to finalize the password reset.
+
+<aside class="warning">You must configure a custom reset password URL to use the password reset functionality. This is done in the app dashboard, under <strong>Security & Auth -> Configuration</strong></aside>
+#### Parameters
+| name | type | description |
+| ---- | ---- | ----------- |
+| email | string | the email of the user whose password will be reset |
+
+### .resetPassword()
+```shell
+# pending
+curl -X POST -H "Authorization: AUTH_TOKEN" -d "{'newPassword':'NEW_PASSWORD','resetToken':'RESET_TOKEN'}" https://api.backand.com/1/user/resetPassword
+```
+```javascript
+backand.resetPassword(newPassword, resetToken);
+```
+
+This finalizes the password request, setting the password of the user associated with the provided `resetToken` to the value provided in `newPassword`
+
+#### Parameters
+| name | type | description |
+| ---- | ---- | ----------- |
+| newPassword | string | the user's new password |
+| resetToken | string | the password reset token (obtained from `requestResetPassword`)
+
+### .getSocialProviders()
+```shell
+# Change APP_NAME to match the name of your application
+curl -X GET "https://api.backand.com/1/user/socialProviders?appName=APP_NAME"
+```
+```javascript
+// Fetch the list of social media providers from the cache
+backand.getSocialProviders(false)
+
+// Fetch the list of social media providers from the server
+backand.getSocialProviders(true)
+```
+> Sample response
+
+```json
+{
+  // API request details omitted
+  "data": [
+    {
+      "name": "google",
+      "signin": "1\/user\/socialSignin?provider=google&appname=webinar030116",
+      "signup": "1\/user\/socialSignup?provider=google&appname=webinar030116"
+    },
+    {
+      "name": "github",
+      "signin": "1\/user\/socialSignin?provider=github&appname=webinar030116",
+      "signup": "1\/user\/socialSignup?provider=github&appname=webinar030116"
+    },
+    {
+      "name": "facebook",
+      "signin": "1\/user\/socialSignin?provider=facebook&appname=webinar030116",
+      "signup": "1\/user\/socialSignup?provider=facebook&appname=webinar030116"
+    },
+    {
+      "name": "twitter",
+      "signin": "1\/user\/socialSignin?provider=twitter&appname=webinar030116",
+      "signup": "1\/user\/socialSignup?provider=twitter&appname=webinar030116"
+    },
+    {
+      "name": "adfs",
+      "signin": "1\/user\/socialSignin?provider=adfs&appname=webinar030116",
+      "signup": "1\/user\/socialSignup?provider=adfs&appname=webinar030116"
+    },
+    {
+      "name": "azuread",
+      "signin": "1\/user\/socialSignin?provider=azuread&appname=webinar030116",
+      "signup": "1\/user\/socialSignup?provider=azuread&appname=webinar030116"
+    }
+  ]
+}
+```
+
+#### Parameters
+| name | type | description |
+| ---- | ---- | ----------- |
+| force | boolean | When true, the list of social providers will be obtained from the server. Otherwise, local cached data is used. |
+
+### .useAnonymousAuth()
+```shell
+# This call has no cURL equivalent.
+```
+```javascript
+//enable anonymous auth
+backand.useAnonymousAuth(true);
+
+//disable anonymous auth
+backand.useAnonymousAuth(false);
+```
+
+<aside class="success">To use anonymous auth with cURL, follow the instructions in our <a href="#the-user-object-and-security">security documentation</a></aside>
+
+This manipulates a flag within the SDK responsible for setting up request authentication headers. If this is set to true, and no user is logged in, then the SDK will use anonymous authentication until a user signs into your application. If this is false, the SDK will not use anonymous authentication when a user is not logged in, prohibiting access.
+
+#### Parameters
+| name | type | description |
+| ---- | ---- | ----------- |
+| flag | boolean | When true, the SDK will use anonymous authentication. |
+
 ### .on()
 ```shell
 # This call has no cURL equivalent
