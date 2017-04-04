@@ -553,7 +553,7 @@ bower install socket.io-client
 <aside class="notice">You can also install socket using a package manager like bower</aside>
 
 ### Angular client code - Sockets
-```javascript
+```javascript--persistent
 Backand.on('items_updated', function (data) {
   //Get the 'items' object that have changed
   console.log(data);
@@ -565,7 +565,7 @@ Backand's SDK already includes all the code needed for the client-side Socket.IO
 Using Backand's SDK, you can add event listening to your application with a simple function. You don't even need to provide an emit event to track changes - Backand will automatically update you whenever you change data using Backand's REST API out of the box.
 
 ### Server side code - Sockets
-```javascript
+```javascript--persistent
 // Emit to users
 function backandCallback(userInput, dbRow, parameters, userProfile) {
   socket.emitUsers("items_updated",userInput, ["user2@gmail.com","user1@gmail.com"]);

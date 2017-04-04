@@ -953,20 +953,3 @@ This method works like any other custom JavaScript action, allowing you to easil
 
 ###Conclusion
 The security landscape for internet apps is wide and varied. While we'd love to be able to support every possible method of authentication available to developers, after a while it is far more beneficial and flexible to provide the developer with tools to manage their own authentication integrations. Using our provided override functions - `backandAuthOverride`, `socialAuthOverride`, and `accessFilter` - you can integrate with any authentication or authorization provider that can communicate over the web.
-
-## Resetting passwords
-
-Resetting passwords in Backand involves two steps:
-
-1 - Initiating the request to reset password
-2 - Performing the password reset
-
-This process revolves around the password reset token. All password resets in the Backand platform require you to first obtain a reset token. This reset token is then provided during the call to physically change the password, along with the user's new password.
-
-### Obtaining the reset token
-```shell
-
-```
-```javascript
-
-```

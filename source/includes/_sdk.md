@@ -338,7 +338,7 @@ This manipulates a flag within the SDK responsible for setting up request authen
   });
 ```
 
-Backand provides realtime database communication functionality using the .on() method on the SDK root object. This allows you to easily register event listeners for your app's notifications. Review [our docs on Realtime Database Communications](#realtime-database-communications) for more details on the technique. Socket signin and signout are handled automatically by the SDK.
+Backand provides [realtime database communication](#realtime-database-communications) functionality using the .on() method on the SDK root object. This allows you to easily register event listeners for your app's notifications. Review [our docs on Realtime Database Communications](#realtime-database-communications) for more details on the technique. Socket signin and signout are handled automatically by the SDK.
 
 #### Parameters
 | name | type | description |
