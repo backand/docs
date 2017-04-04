@@ -283,83 +283,83 @@ curl https://api.backand.com/1/objects/items?authorization<span class="o">=</spa
 <p>We also offer a full-featured SDK that you can use to communicate with your Backand application. Getting started with the SDK is as simple as configuring your application access details, initializing the SDK, and calling a <code class="prettyprint">getList()</code> function for one of the objects in your system. You configure the SDK with your application&rsquo;s <code class="prettyprint">APP_NAME</code> and <code class="prettyprint">ANONYMOUS_TOKEN</code>. Once you&rsquo;ve called <code class="prettyprint">init()</code> with these values, the SDK will use this data to automaticaly manage authentication headers for API requests to your app&rsquo;s REST API. See our <a href="#vanilla-sdk">Vanilla SDK documentation</a> for more details.</p>
 
 <h2 id="response-format">Response format</h2>
-<pre class="highlight plaintext"><code>// Sample response
-{
-  "totalRows": 2,
-  "data": [
-    {
-      "__metadata": {
-        "id": "1",
-        "fields": {
-          "id": {
-            "type": "int",
-            "unique": true
-          },
-          "items": {
-            "collection": "items",
-            "via": "user"
-          },
-          "email": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          }
-        },
-        "descriptives": {
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"totalRows"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"__metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"unique"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"descriptives"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        },
-        "dates": {
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        }
-      },
-      "id": 1,
-      "items": null,
-      "email": "matt@backand.com",
-      "firstName": "Matt",
-      "lastName": "Billock"
-    },
-    {
-      "__metadata": {
-        "id": "2",
-        "fields": {
-          "id": {
-            "type": "int",
-            "unique": true
-          },
-          "items": {
-            "collection": "items",
-            "via": "user"
-          },
-          "email": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          }
-        },
-        "descriptives": {
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matt@backand.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Billock"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"__metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"unique"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"descriptives"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        },
-        "dates": {
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        }
-      },
-      "id": 2,
-      "items": null,
-      "email": "start@backand.io",
-      "firstName": "Start",
-      "lastName": "Backand"
-    }
-  ]
-}
-</code></pre>
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start@backand.io"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Start"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Backand"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>Our SDK will always respond to your requests with well-formed JSON representing the results of an action taken. We include metadata that can be used to parse the response where applicable, and this metadata is provided with each object in your system. Responses from the SDK wrap the HTTP response in a promise, allowing you to handle the results in an asynchronous manner.</p>
 
           <h1 id="backand-features">Backand Features</h1>
@@ -911,7 +911,7 @@ Missing client code example:</p>
 <aside class="notice">You can also install socket using a package manager like bower</aside>
 
 <h3 id="angular-client-code-sockets">Angular client code - Sockets</h3>
-<pre class="highlight javascript tab-javascript"><code><span class="nx">Backand</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'items_updated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="nx">Backand</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'items_updated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">//Get the 'items' object that have changed</span>
   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 <span class="p">});</span>
@@ -921,7 +921,7 @@ Missing client code example:</p>
 <p>Using Backand&rsquo;s SDK, you can add event listening to your application with a simple function. You don&rsquo;t even need to provide an emit event to track changes - Backand will automatically update you whenever you change data using Backand&rsquo;s REST API out of the box.</p>
 
 <h3 id="server-side-code-sockets">Server side code - Sockets</h3>
-<pre class="highlight javascript tab-javascript"><code><span class="c1">// Emit to users</span>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="c1">// Emit to users</span>
 <span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">socket</span><span class="p">.</span><span class="nx">emitUsers</span><span class="p">(</span><span class="s2">"items_updated"</span><span class="p">,</span><span class="nx">userInput</span><span class="p">,</span> <span class="p">[</span><span class="s2">"user2@gmail.com"</span><span class="p">,</span><span class="s2">"user1@gmail.com"</span><span class="p">]);</span>
 <span class="p">}</span>
@@ -1148,22 +1148,22 @@ use common MySQL syntax.</p>
 <blockquote>
 <p>The general format of a query is:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "object": "String",
-  "q": "Expression",
-  "fields": "Array of String",
-  "groupBy": "Array of String",
-  "aggregation": "Object mapping fields to aggregate functions"
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"String"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Expression"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Array of String"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"groupBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Array of String"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Object mapping fields to aggregate functions"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>For example, the shortest query you can write would be</p>
 </blockquote>
-<pre class="highlight plaintext"><code>  {
-    "object": "table",
-    "q": "query expression"
-  }    
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"table"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="s2">"query expression"</span><span class="w">
+  </span><span class="p">}</span><span class="w">    
+</span></code></pre>
 <blockquote>
 <p>This NoSQL object is converted into the following SQL:</p>
 </blockquote>
@@ -1198,62 +1198,62 @@ use common MySQL syntax.</p>
 <blockquote>
 <p>an AND expression</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "position": "Sales Manager",
-  "age" : { "$lt" : 25 },
-  "city": "Boston"
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sales Manager"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"age"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"$lt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boston"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>an OR expression</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "$or": [
-    {
-      "num_employees": {
-        "$gt": 30
-      }
-    },
-    {
-      "location": "Palo Alto"
-    }  
-  ]  
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"$or"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"num_employees"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$gt"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Palo Alto"</span><span class="w">
+    </span><span class="p">}</span><span class="w">  
+  </span><span class="p">]</span><span class="w">  
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>a UNION expression</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "$union":   [
-    {
-      "object" : "Employees",
-      "q" : {
-        "$or" : [
-          {
-            "Budget" : {
-              "$gt" : 20
-            }
-          },
-          {
-            "Location" : {
-              "$like" :  "Palo Alto"
-            }
-          }
-        ]
-      },
-      "fields": ["Location", "country"]
-    },
-    {
-      "object" : "Person",
-      "q" : {
-        "name": "john"
-      },
-      "fields": ["City", "country"],
-      "limit": 11
-    }
-  ]
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"$union"</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Employees"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"q"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$or"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Budget"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"$gt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Location"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"$like"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Palo Alto"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Location"</span><span class="p">,</span><span class="w"> </span><span class="s2">"country"</span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Person"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"q"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"City"</span><span class="p">,</span><span class="w"> </span><span class="s2">"country"</span><span class="p">],</span><span class="w">
+      </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>There are three types of expressions in a NoSQL query:</p>
 
 <ul>
@@ -1313,59 +1313,59 @@ use common MySQL syntax.</p>
 <blockquote>
 <p>This JSON can be used as a sub-query to retrieve the ID of all departments in the city of New York.</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{ "object": "department", "q": { "city" : "New York" }, "fields" : ["id"]}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"department"</span><span class="p">,</span><span class="w"> </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="s2">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id"</span><span class="p">]}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>Using the above sub-query, we can now test a new field - dept_id - with respect to the results of the sub-query. We simply use the <code class="prettyprint">$in</code> operator, and the query, as seen below.</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "dept_id": {
-    "$in": {  
-      "object": "department",
-      "q": { "city" : "New York" },
-      "fields" : ["id"]
-    }
-  }
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"dept_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"$in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  
+      </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"department"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>In this example, the &lsquo;<code class="prettyprint">deptId</code> field is a reference field referring the employees table to the department table. We can now use this sub-query as a part of a larger query retrieving all employees employed in departments that are located in New York.</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "object": "employees",
-  "q" : {
-    "deptId" : {
-      "$in": {
-        "object": "department",
-        "q": {
-          "city" : "New York"
-        },
-        "fields" : ["id"]
-      }
-    }
-  }
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"q"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"deptId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"$in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"department"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>If we wanted to look at a more complex query, we could modify this a bit. Let&rsquo;s say we wanted to retrieve all employees whose department is located in New York, but the employee is located in Boston. To accomplish this, we use an AND expression to combine the two conditions:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-    "object": "employees",
-    "q" : {
-        "deptId":
-        {
-            "$in": {
-                "object": "department",
-                "q": {
-                    "city" : "New York"
-                },
-                "fields" : ["id"]
-            }
-        },
-        "location": "Boston"
-    }
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"deptId"</span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"$in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"department"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boston"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>You can use sub-queries to established a reduced scope of your objects to work with. They can then be composed into larger queries, providing you with extra flexibility in retrieving objects from your app.</p>
 
 <aside class="notice">This technique relies upon retrieving a single field from the sub-query. Using more than one field would prove more complex and is neither recommended nor supported.</aside>
@@ -1375,74 +1375,74 @@ use common MySQL syntax.</p>
 <blockquote>
 <p>To group by &#39;Country&rsquo;, and then concatenate the &lsquo;Location&rsquo; field, use the following example code:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-    "object" : "Employees",
-    "q" : {
-        "$or" : [
-            {
-                "Budget" : {
-                    "$gt" : 20
-                }
-            },
-            {
-                "Location" : {
-                    "$like" :  "Palo Alto"
-                }
-            }
-        ]
-    },
-    "fields": ["Location", "Country"],
-    "order": [["Budget", "desc"]],
-    "groupBy": ["Country"],
-    "aggregate": {
-        "Location": "$concat"
-    }
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Employees"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$or"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"Budget"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"$gt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"Location"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"$like"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Palo Alto"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Location"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Country"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="s2">"Budget"</span><span class="p">,</span><span class="w"> </span><span class="s2">"desc"</span><span class="p">]],</span><span class="w">
+    </span><span class="s2">"groupBy"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Country"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"aggregate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$concat"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>A group by query aggregates on fields, and then applies aggregation operators to the specified fields. This can then be used to perform tasks like summing all of the product totals in a given shopping cart, or concatenating all the relevant office locations into a list organized by Country, as seen to the right.</p>
 
 <h3 id="example-string-comparison">Example - String Comparison</h3>
-<pre class="highlight plaintext"><code>{
-    "object": "employees",
-    "q": {
-        "position" : "Sales Manager"  
-    },
-    "fields": ["name", "salary"]
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"position"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Sales Manager"</span><span class="w">  
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"salary"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>A simple query can pluck the <code class="prettyprint">name</code> and <code class="prettyprint">salary</code> fields from an object named <code class="prettyprint">employees</code>. The query sample to the right executes this query for all employees with a position of &ldquo;Sales Manager&rdquo;</p>
 
 <h3 id="example-constant-value-comparison">Example - Constant Value Comparison</h3>
-<pre class="highlight plaintext"><code>{
-    "object": "employees",
-    "q": {
-        "age": { "$lt" : 25 }
-    }  
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"$lt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">  
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>Queries can also be used to compare an object&rsquo;s fields to constant values using common comparison operators. For example, to retrieve all fields for all employees under the age of 25, you can use the query to the right.</p>
 
 <h3 id="example-range-based-comparison">Example - Range-based comparison</h3>
-<pre class="highlight plaintext"><code>{
-  "object": "employees",
-  "q": {
-    "age": {
-      "$between": [25, 40]
-    }
-  }  
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"$between"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">  
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>You can use the <code class="prettyprint">$between</code> operator to retrieve all records with values that lie between two specified endpoints. For example, the query to the right retrieves all employees with an age between 25 and 40.</p>
 
 <h3 id="example-geographic-data-comparison">Example - Geographic Data Comparison</h3>
-<pre class="highlight plaintext"><code>{
-    "object": "city",
-    "q": {
-        "location" : { "$within" : [[32.0638130, 34.7745390], 25000]
-    }
-  }
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"location"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"$within"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mf">32.0638130</span><span class="p">,</span><span class="w"> </span><span class="mf">34.7745390</span><span class="p">],</span><span class="w"> </span><span class="mi">25000</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>You can use the <code class="prettyprint">$within</code> operator to locate all records within a geographic range. The parameters for this comparison are provided as an array of two elements. The first element is a tuple containing latitude and longitude, e.g. <code class="prettyprint">[32.0638130, 34.7745390]</code>, while the second is a distance in meters. To retrieve all cities within 25 km (25000m) of a given latitude and longitude, you can use a query like the one to the right.</p>
 
 <h3 id="algorithm-to-generate-sql-from-json-queries">Algorithm to Generate SQL from JSON Queries</h3>
@@ -1455,16 +1455,16 @@ use common MySQL syntax.</p>
 <blockquote>
 <p>The result is a structure with the following fields:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-    "str": "&lt;SQL statement for query&gt;",
-    "select": "&lt;select clause&gt;",
-    "from": "&lt;from clause&gt;",
-    "where": "&lt;where clause&gt;",
-    "group": "&lt;group by clause&gt;",
-    "order": "&lt;order by clause&gt;",
-    "limit": "&lt;limit clause&gt;"
-}
-</code></pre>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;SQL statement for query&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"select"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;select clause&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;from clause&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"where"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;where clause&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;group by clause&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;order by clause&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;limit clause&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>The algorithm transforms from JSON to SQL using a top-down transformation.</p>
 
 <h4 id="usage">Usage</h4>
@@ -2179,83 +2179,83 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
   <span class="p">});</span>
 </code></pre>
 <p>Getting started with the SDK is as simple as configuring your application access details, initializing the SDK, and calling a <code class="prettyprint">getList()</code> function for one of the objects in your system. You configure the SDK with your application&rsquo;s <code class="prettyprint">APP_NAME</code> and <code class="prettyprint">ANONYMOUS_TOKEN</code>. Once you&rsquo;ve called <code class="prettyprint">init()</code> with these values, the SDK will use this data to automaticaly manage authentication headers for API requests to your app&rsquo;s REST API.</p>
-<pre class="highlight plaintext"><code>// Sample response
-{
-  "totalRows": 2,
-  "data": [
-    {
-      "__metadata": {
-        "id": "1",
-        "fields": {
-          "id": {
-            "type": "int",
-            "unique": true
-          },
-          "items": {
-            "collection": "items",
-            "via": "user"
-          },
-          "email": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          }
-        },
-        "descriptives": {
+<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"totalRows"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"__metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"unique"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"descriptives"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        },
-        "dates": {
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        }
-      },
-      "id": 1,
-      "items": null,
-      "email": "matt@backand.com",
-      "firstName": "Matt",
-      "lastName": "Billock"
-    },
-    {
-      "__metadata": {
-        "id": "2",
-        "fields": {
-          "id": {
-            "type": "int",
-            "unique": true
-          },
-          "items": {
-            "collection": "items",
-            "via": "user"
-          },
-          "email": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          }
-        },
-        "descriptives": {
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matt@backand.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Billock"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"__metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"unique"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"descriptives"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        },
-        "dates": {
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        }
-      },
-      "id": 2,
-      "items": null,
-      "email": "start@backand.io",
-      "firstName": "Start",
-      "lastName": "Backand"
-    }
-  ]
-}
-</code></pre>
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start@backand.io"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Start"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Backand"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>This connects your Back&amp; application (with the app name of <em>APP_NAME</em> and an anonymous access token of <em>ANONYMOUS TOKEN</em>) to your current project. Once the connection is configured, the SDK uses this connection information to construct HTTP requests to your API. Result data is returned in the <em>response</em> object as the member variable <em>data</em>. In the case of <em>getList</em>, this will be a JSON array of objects pulled from the <em>users</em> table in your Back&amp; application. You can easily change the table being manipulated by replacing <em>users</em> with the name of any object in your system.</p>
 
 <h2 id="working-with-the-sdk">Working with the SDK</h2>
@@ -2287,7 +2287,7 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 </tr>
 <tr>
 <td>direct properties</td>
-<td><em>useAnonymousAuth</em>, <em>signin</em>, <em>signup</em>, <em>socialSignin</em>, <em>socialSigninWithToken</em>, <em>socialSignup</em>, <em>requestResetPassword</em>, <em>resetPassword</em>, <em>changePassword</em>, <em>signout</em>, <em>getSocialProviders</em></td>
+<td><a href="#backand-init">init</a>, <a href="#useAnonymousAuth">useAnonymousAuth</a>, <a href="#signin">signin</a>, <a href="#signup">signup</a>, <a href="#socialsignin">socialSignin</a>, <em>socialSigninWithToken</em>, <em>socialSignup</em>, <em>requestResetPassword</em>, <em>resetPassword</em>, <em>changePassword</em>, <em>signout</em>, <em>getSocialProviders</em></td>
 <td>These are properties available directly on the Backand SDK object, mostly focused on Authentication</td>
 </tr>
 <tr>
@@ -2314,6 +2314,11 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 <td>user</td>
 <td><em>getUserDetails</em>, <em>getUsername</em>, <em>getUserRole</em>, <em>getToken</em>, <em>getRefreshToken</em></td>
 <td>Provides information on the current authenticated user</td>
+</tr>
+<tr>
+<td>bulk</td>
+<td><em>general</em></td>
+<td>Provides access to bulk operations</td>
 </tr>
 <tr>
 <td>on</td>
@@ -2623,7 +2628,7 @@ curl -X GET <span class="s2">"https://api.backand.com/1/user/socialProviders?app
 </tr>
 </tbody></table>
 
-<h3 id="on">.on()</h3>
+<h3 id="realtime-database-communications-on">Realtime Database Communications - .on()</h3>
 <pre class="highlight shell tab-shell"><code><span class="c"># This call has no cURL equivalent</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="c1">//Wait for server updates on 'items' object</span>
   <span class="nx">Backand</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'items_updated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
@@ -2631,7 +2636,7 @@ curl -X GET <span class="s2">"https://api.backand.com/1/user/socialProviders?app
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
   <span class="p">});</span>
 </code></pre>
-<p>You can easily integrate with our Socket functionality using the <em>on</em> method. Socket signin and signout are handled automatically by the SDK.</p>
+<p>Backand provides <a href="#realtime-database-communications">realtime database communication</a> functionality using the .on() method on the SDK root object. This allows you to easily register event listeners for your app&rsquo;s notifications. Review <a href="#realtime-database-communications">our docs on Realtime Database Communications</a> for more details on the technique. Socket signin and signout are handled automatically by the SDK.</p>
 
 <h4 id="parameters">Parameters</h4>
 
@@ -3614,6 +3619,98 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
 <td>params</td>
 <td>object</td>
 <td>Parameters to be passed to the query</td>
+</tr>
+</tbody></table>
+
+<h2 id="bulk">.bulk</h2>
+
+<p>The <code class="prettyprint">.bulk</code> property handles bulk operations in Backand.</p>
+
+<h3 id="defining-bulk-operations">Defining Bulk Operations</h3>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="err">object_path</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"fieldname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"param1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value 1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auth header..."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A bulk operation is conducted as an array of individual actions. These actions consist of the following elements. Note - <strong>bold</strong> fields are required:</p>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>usage</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>method</strong></td>
+<td>string</td>
+<td>The HTTP verb to be used. POST creates an object, PUT updates an object, and DELETE removes an object</td>
+</tr>
+<tr>
+<td><strong>url</strong></td>
+<td>string</td>
+<td>This is the URL used to access the object being modified. It is constructed in the SDK using the Defaults and Constants properties, along with the</td>
+</tr>
+<tr>
+<td>data</td>
+<td>object</td>
+<td>A JSON hash of the properties of the object to create or update. Not used for DELETE requests</td>
+</tr>
+<tr>
+<td>parameters</td>
+<td>JSON</td>
+<td>Additional parameters, and values for those parameters, to send with the request</td>
+</tr>
+<tr>
+<td>headers</td>
+<td>JSON</td>
+<td>This is used to set custom HTTP headers. You can use it to dynamically set the Authorization header for each REST call. If you do not need to set a separate header for each request, you can use a general-purpose token such as your Anonymous Access Token, or simply use the same header for each portion of the request</td>
+</tr>
+</tbody></table>
+
+<p>The object path can be obtained from the object&rsquo;s data tab in the application dashboard, as seen below:</p>
+
+<p><img src="images/object_url.png" alt="image" /></p>
+
+<h3 id="bulk-general">.bulk.general()</h3>
+<pre class="highlight shell tab-shell"><code>curl -X POST -d <span class="s2">"JSON String of bulk operations"</span> https://api.backand.com/1/bulk
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">bulk</span><span class="p">.</span><span class="nx">general</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Use JavaScript similar to the following to construct the object URL using the SDK:</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="c1">// Backand is the Backand service from the SDK</span>
+<span class="kd">var</span> <span class="nx">object_path</span> <span class="o">=</span> <span class="nx">Backand</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">apiUrl</span> <span class="o">+</span> <span class="nx">Backand</span><span class="p">.</span><span class="nx">constants</span><span class="p">.</span><span class="nx">URLS</span><span class="p">.</span><span class="nx">objects</span> <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="s2">"YOUR_OBJECT_NAME"</span><span class="p">;</span>
+</code></pre>
+<p>The <code class="prettyprint">.general()</code> function sends an array of bulk commands to Backand. These operations are then performed, and your app is updated appropriately.</p>
+
+<aside class="notice">Backand&rsquo;s Bulk Endpoint accommodates up to 1,000 operations in a single request. Operations in excess of 1,000 will need to be sent in a separate request </aside>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>data</td>
+<td>array</td>
+<td>An array of bulk operation objects</td>
 </tr>
 </tbody></table>
 
@@ -4717,18 +4814,41 @@ sagaMiddleware.run(rootSaga)
 
 </code></pre>
 <h2 id="bulk-operations">Bulk Operations</h2>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"method"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"data"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"parameters"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"string"</span><span class="p">:</span><span class="s2">"string"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+<pre class="highlight shell tab-shell"><code>curl -X POST -d <span class="s2">"JSON String of bulk operations"</span> https://api.backand.com/1/bulk
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">bulk</span><span class="p">.</span><span class="nx">general</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Data is an array of operation objects, which are constructed with the general format below:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="err">object_path</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"fieldname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"param1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value 1"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"headers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auth header..."</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>The key element of this operation is the &ldquo;headers&rdquo; parameter. This represents the HTTP headers used to perform the request, and are used to uniquely identify your application as each request as made.</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="err">headers</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer **YOUR_ACCESS_TOKEN**"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"AppName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"**YOUR_APP_NAME**"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>The value for <code class="prettyprint">YOUR_ACCESS_TOKEN</code> is obtained via a call to <code class="prettyprint">https://api.backand.com/token</code> - simply replace <code class="prettyprint">YOUR_ACCESS_TOKEN</code> with the bearer token returned by this endpoint, and <code class="prettyprint">YOUR_APP_NAME</code> with your application&rsquo;s name that was specified during app creation. Each action hash can accept a different header parameter, allowing multiple operations to be undertaken by multiple users as a part of the same bulk request. If the &lsquo;headers&rsquo; parameter is not included, the headers used for the call to the bulk operations endpoint are used for the relevant action instead.</p>
+</blockquote>
+
 <p>Backand&rsquo;s bulk operations endpoint can be used to operate on multiple items in a single request. The request has the following general form:</p>
 
 <p>The above represents an array of parameter hashes. Each parameter hash represents a different action to be performed as a part of the bulk operaation. The parameter hashes are broken down as follows:</p>
@@ -4755,36 +4875,132 @@ sagaMiddleware.run(rootSaga)
 </tr>
 <tr>
 <td>data</td>
-<td>JSON hash</td>
-<td>yes</td>
+<td>JSON</td>
+<td>yes (POST and PUT only)</td>
 <td>This only applies to POST and PUT actions. It represents the data to be created (for POST requests), or the updates to existing data (for PUT requests). Provided as a series of key-value pairs</td>
 </tr>
 <tr>
 <td>parameters</td>
-<td>JSON string</td>
+<td>JSON</td>
 <td>no</td>
 <td>additional parameters, and values for those parameters, to send with the request</td>
 </tr>
 <tr>
 <td>headers</td>
-<td>JSON hash</td>
+<td>JSON</td>
 <td>no</td>
 <td>This is used to set custom HTTP headers. You can use it to dynamically set the Authorization header for each REST call. If no value is provided, the generic bulk call authorization headers are used.</td>
 </tr>
 </tbody></table>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="err">Headers</span><span class="p">:{</span><span class="s2">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer **YOUR_ACCESS_TOKEN**"</span><span class="p">,</span><span class="w"> </span><span class="s2">"AppName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"**YOUR_APP_NAME**"</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>The key element of this operation is the &ldquo;headers&rdquo; parameter. This represents the HTTP headers used to perform the request, and are used to uniquely identify your application as each request as made. The headers parameter should have the following form:</p>
 
-<p>The value for &ldquo;YOUR_ACCESS_TOKEN&rdquo; is obtained via a call to &lsquo;https://api.backand.com/token&rsquo; - simply replace &ldquo;YOUR_ACCESS_TOKEN&rdquo; with the bearer token returned by this endpoint, and &ldquo;YOUR_APP_NAME&rdquo; with your application&rsquo;s name that was specified during app creation. Each action hash can accept a different header parameter, allowing multiple operations to be undertaken by multiple users as a part of the same bulk request. If the &lsquo;headers&rsquo; parameter is not included, the headers used for the call to the bulk operations endpoint are used for the relevant action instead.</p>
+<p>Requests to perform bulk actions are sent as HTTP POST requests to the bulk operations URL: <code class="prettyprint">Bulk operations URL: https://api.backand.com/1/bulk</code>. You can also use <a href="#bulk">the SDK</a> to send your operations list to your app.</p>
+
+<aside class="notice">Backand&rsquo;s Bulk Endpoint accommodates up to 1,000 operations in a single request. Operations in excess of 1,000 will need to be sent in a separate request </aside>
+
+<h3 id="constructing-bulk-requests">Constructing Bulk Requests</h3>
 
 <blockquote>
-<p>Bulk operations URL: https://api.backand.com/1/bulk</p>
+<p>Performing each of the standard non-retrieval CRUD operations in bulk is as simple as specifying the appropriate actions to take with each request. We start by constructing the URL we need in order to manipulate each object. This is done with the Backand SDK using the following code:</p>
 </blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="c1">// Backand is the Backand service from the SDK</span>
+<span class="kd">var</span> <span class="nx">object_path</span> <span class="o">=</span> <span class="nx">Backand</span><span class="p">.</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">apiUrl</span>
+                  <span class="o">+</span> <span class="nx">Backand</span><span class="p">.</span><span class="nx">constants</span><span class="p">.</span><span class="nx">URLS</span><span class="p">.</span><span class="nx">objects</span>
+                  <span class="o">+</span> <span class="s2">"/"</span> <span class="o">+</span> <span class="s2">"YOUR_OBJECT_NAME"</span><span class="p">;</span>
+</code></pre>
+<blockquote>
+<p>Simply replace &ldquo;YOUR_OBJECT_NAME&rdquo; with the name of the object you wish to manipulate. Once you have the object URL, you simply need to provide the appropriate command. To create a new record, for example, use the following hash as a starting point:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="err">object_path</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"fieldname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>For example, if you wanted to update two records in the same request (using the PUT method), you would send the following:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="err">object_url</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"heading"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Breaking news"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="err">object_url</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>The following request will create two new records (one news article, one author), update an author record, then delete a news record:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.backand.com/1/objects/news"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"heading"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Breaking news"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"complete"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.backand.com/1/objects/authors"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ann@backand.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ann"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.backand.com/1/objects/authors/1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Brian"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.backand.com/1/objects/news/3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Bulk requests are implemented as arrays of request object hashes.In this hash, we specify the HTTP verb to be used - POST, in this case, which will create a new record. We set the &ldquo;url&rdquo; parameter to the calculated URL from above, and then provide the new record&rsquo;s data as a JSON hash in the &ldquo;data&rdquo; parameter. Simply provide the list of key and value pairs that represent your object&rsquo;s data, and you&rsquo;re set.</p>
 
-<p>Requests to perform bulk actions are sent as HTTP POST requests to the bulk operations URL:</p>
+<p>Once you have a single request hash, you can add others by simply appending them to the request.</p>
 
-<p>Below are several examples of the types of bulk actions that can be performed using this new functionality.</p>
+<p>You can also mix and match operations, varying the objects updated, the authorization headers used, even the type of request for each record to be updated. There are no restrictions on types of operations that can be performed in a single bulk request, so feel free to mix and match to suit your application&rsquo;s needs.</p>
+
+<h3 id="authenticating-the-request">Authenticating the Request</h3>
+
+<blockquote>
+<p>You can authenticate each request as a different user. Simply supply the following elements in the Authorization header:
+YOUR_ACCESS_TOKEN - an access token, obtained via a call to https://api.backand.com/token
+YOUR_APP_NAME - the app name to operate on</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.backand.com/1/objects/news/3"</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer &lt;YOUR_ACCESS_TOKEN&gt;"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"AppName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;YOUR_APP_NAME&gt;"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Each request hash can authenticate as a different user within your application. Any valid token to connect to your application can be provided along with each bulk item being manipulated. You can also dynamically specify the app name for each bulk item. To do so, simply use the <code class="prettyprint">headers</code> element of the bulk operations structure as seen on the right.</p>
+
+<p>Refer to our documentation on user security (http://docs.backand.com/#the-user-object-and-security) for more information on how to construct the authentication headers.</p>
+
+<h3 id="bulk-request-examples">Bulk Request Examples</h3>
+
+<p>Below are several examples of the types of bulk actions that can be performed using this functionality.</p>
 
 <h3 id="example-1-adding-multiple-rows">Example 1: Adding multiple rows</h3>
 <pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
