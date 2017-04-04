@@ -1851,8 +1851,8 @@ You can store this information in a wrapper class, which you will use to govern 
 
 ```java
 StringBuilder stringBuilder = new StringBuilder();
-        String userNamePasswordCombination = this.masterToken + ":" + this.userToken;
-        final String basicAuth = "Basic " +  Base64.encodeToString(userNamePasswordCombination.getBytes(), Base64.NO_WRAP);
+String userNamePasswordCombination = this.masterToken + ":" + this.userToken;
+final String basicAuth = "Basic " +  Base64.encodeToString(userNamePasswordCombination.getBytes(), Base64.NO_WRAP);
 ```
 
 You can use Backand's [Basic Authentication](http://docs.backand.com/#basic-authentication) to authenticate with your app. This uses your app's master key and a user key to authenticate API requests. This works well for server-side (and other non-visible) code, but you should be careful to ensure that your app's Master key is not exposed in source control or via your app - this key bypasses all user authentication, and can be used to perform administrative actions in your app without your knowledge.
@@ -1864,21 +1864,21 @@ You can use Backand's [Basic Authentication](http://docs.backand.com/#basic-auth
 
 ```java
 public String sendGetRequest(URL url) {
-        //Auth header generation code here
-        try {
+    //Auth header generation code here
+    try {
 
-            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-            conn.setRequestProperty("Authorization", basicAuth);
-            conn.setRequestProperty("Content-Type", "application/json");
-            conn.setRequestProperty("AppName", this.appName);
+        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Authorization", basicAuth);
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.setRequestProperty("AppName", this.appName);
 
-            // handle response here.
-        } catch (Exception e) {
-            Log.e(TAG, "readRemoteJson error: " + e.getMessage());
-        }
-       //return your desired result here
+        // handle response here.
+    } catch (Exception e) {
+        Log.e(TAG, "readRemoteJson error: " + e.getMessage());
     }
+   //return your desired result here
+}
 ```
 
 Once you've built out the authentication header, you're ready to fire requests at the API. The Backand API is built as a web API, meaning that you simply need to send HTTP requests to the API URLs in order to obtain and modify your application's data. To the right is some sample code that implements a basic request to a Backand API URL
@@ -1889,23 +1889,23 @@ Once you've built out the authentication header, you're ready to fire requests a
 > Below is sample code for handling a response from our API:
 
 ```java
-            int responseCode = conn.getResponseCode();
-            if (responseCode == HttpsURLConnection.HTTP_OK) {
-                String line;
-                InputStream in = conn.getInputStream();
+  int responseCode = conn.getResponseCode();
+  if (responseCode == HttpsURLConnection.HTTP_OK) {
+      String line;
+      InputStream in = conn.getInputStream();
 
-                InputStreamReader isw = new InputStreamReader(in);
+      InputStreamReader isw = new InputStreamReader(in);
 
-                int data = isw.read();
-                while (data != -1) {
-                    char current = (char) data;
-                    data = isw.read();
-                    stringBuilder.append(current);
-                }
-            } else {
-                Log.d(TAG, "readRemoteJson: " + conn.getResponseMessage());
-                return "";
-            }
+      int data = isw.read();
+      while (data != -1) {
+          char current = (char) data;
+          data = isw.read();
+          stringBuilder.append(current);
+      }
+  } else {
+      Log.d(TAG, "readRemoteJson: " + conn.getResponseMessage());
+      return "";
+  }
 ```
 
 Backand responds to your request with JSON that can be adapted however you wish. The sample code starts by obtaining the response code from the HTTP Request. If the response code indicates success, it uses InputStreamReader to read in the JSON response, to be used elsewhere in your application. Otherwise, it logs the failed request details for later debugging.
