@@ -2628,37 +2628,6 @@ curl -X GET <span class="s2">"https://api.backand.com/1/user/socialProviders?app
 </tr>
 </tbody></table>
 
-<h3 id="realtime-database-communications-on">Realtime Database Communications - .on()</h3>
-<pre class="highlight shell tab-shell"><code><span class="c"># This call has no cURL equivalent</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="c1">//Wait for server updates on 'items' object</span>
-  <span class="nx">Backand</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'items_updated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">//Get the 'items' object that have changed</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-  <span class="p">});</span>
-</code></pre>
-<p>Backand provides <a href="#realtime-database-communications">realtime database communication</a> functionality using the .on() method on the SDK root object. This allows you to easily register event listeners for your app&rsquo;s notifications. Review <a href="#realtime-database-communications">our docs on Realtime Database Communications</a> for more details on the technique. Socket signin and signout are handled automatically by the SDK.</p>
-
-<h4 id="parameters">Parameters</h4>
-
-<table><thead>
-<tr>
-<th>name</th>
-<th>type</th>
-<th>description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>eventName</td>
-<td>string</td>
-<td>Name of the socket event to subscribe to</td>
-</tr>
-<tr>
-<td>callback</td>
-<td>function</td>
-<td>Callback triggered when <em>eventName</em> is received</td>
-</tr>
-</tbody></table>
-
 <h3 id="signin">.signin()</h3>
 <pre class="highlight shell tab-shell"><code>curl -X POST -d <span class="s2">"username=&lt;username&gt;"</span> -d <span class="s2">"password=&lt;password&gt;"</span> -d <span class="s2">"appName=&lt;app name&gt;"</span> -d <span class="s2">"grant_type=password"</span> https://api.backand.com/token
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">signin</span><span class="p">(</span><span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">)</span>
@@ -2855,6 +2824,37 @@ curl -X POST -d <span class="s2">"{'email':'user email','password':'user passwor
 <td>provider</td>
 <td>string</td>
 <td>Name of the provider to authenticate with. The full list can be obtained by calling <em>backand.getSocialProviders(scb)</em></td>
+</tr>
+</tbody></table>
+
+<h2 id="realtime-database-communications-on">Realtime Database Communications - .on()</h2>
+<pre class="highlight shell tab-shell"><code><span class="c"># This call has no cURL equivalent</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="c1">//Wait for server updates on 'items' object</span>
+  <span class="nx">Backand</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'items_updated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//Get the 'items' object that have changed</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Backand provides <a href="#realtime-database-communications">realtime database communication</a> functionality using the .on() method on the SDK root object. This allows you to easily register event listeners for your app&rsquo;s notifications. Review <a href="#realtime-database-communications">our docs on Realtime Database Communications</a> for more details on the technique. Socket signin and signout are handled automatically by the SDK.</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventName</td>
+<td>string</td>
+<td>Name of the socket event to subscribe to</td>
+</tr>
+<tr>
+<td>callback</td>
+<td>function</td>
+<td>Callback triggered when <em>eventName</em> is received</td>
 </tr>
 </tbody></table>
 
