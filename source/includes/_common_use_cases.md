@@ -273,19 +273,45 @@ Filter all the restaurants within 25 Miles of San Francisco Marina District [37.
 ```
 
 ## Bulk Operations
-```json
-  [
-    {
-      "method":"string",
-      "url":"string",
-      "data":"string",
-      "parameters":"string",
-      "headers": {
-        "string":"string"
-      }
-    }
-  ]
+```shell
+curl -X POST -d "JSON String of bulk operations" https://api.backand.com/1/bulk
 ```
+
+```javascript
+backand.bulk.general(data)
+  .then(function(data) {
+    console.log(data);
+  });
+```
+> Data is an array of operation objects, which are constructed with the general format below:
+
+```json
+{
+  "method": "POST",
+  "url": object_path,
+  "data": {
+    "fieldname": "value"
+  },
+  "parameters": {
+    "param1": "value 1"
+  },
+  "headers": {
+    "Authorization": "Auth header..."
+  }
+}
+```
+
+
+> The key element of this operation is the "headers" parameter. This represents the HTTP headers used to perform the request, and are used to uniquely identify your application as each request as made.
+
+```json
+  headers:{
+    "Authorization": "Bearer **YOUR_ACCESS_TOKEN**",
+    "AppName": "**YOUR_APP_NAME**"
+  }
+```
+>The value for `YOUR_ACCESS_TOKEN` is obtained via a call to `https://api.backand.com/token` - simply replace `YOUR_ACCESS_TOKEN` with the bearer token returned by this endpoint, and `YOUR_APP_NAME` with your application's name that was specified during app creation. Each action hash can accept a different header parameter, allowing multiple operations to be undertaken by multiple users as a part of the same bulk request. If the 'headers' parameter is not included, the headers used for the call to the bulk operations endpoint are used for the relevant action instead.
+
 Backand's bulk operations endpoint can be used to operate on multiple items in a single request. The request has the following general form:
 
 The above represents an array of parameter hashes. Each parameter hash represents a different action to be performed as a part of the bulk operaation. The parameter hashes are broken down as follows:
@@ -294,24 +320,119 @@ The above represents an array of parameter hashes. Each parameter hash represent
 | ----- | ----------- |------|-----|
 | method | POST/ PUT/ DELETE | yes | The HTTP verb to be used |
 | url | url for the object | yes | This is the URL used to access the object being modified in bulk |
-| data| JSON hash | yes | This only applies to POST and PUT actions. It represents the data to be created (for POST requests), or the updates to existing data (for PUT requests). Provided as a series of key-value pairs |
-| parameters | JSON string | no | additional parameters, and values for those parameters, to send with the request |
-| headers | JSON hash |no| This is used to set custom HTTP headers. You can use it to dynamically set the Authorization header for each REST call. If no value is provided, the generic bulk call authorization headers are used. |
+| data| JSON | yes (POST and PUT only) | This only applies to POST and PUT actions. It represents the data to be created (for POST requests), or the updates to existing data (for PUT requests). Provided as a series of key-value pairs |
+| parameters | JSON | no | additional parameters, and values for those parameters, to send with the request |
+| headers | JSON |no| This is used to set custom HTTP headers. You can use it to dynamically set the Authorization header for each REST call. If no value is provided, the generic bulk call authorization headers are used. |
+
+Requests to perform bulk actions are sent as HTTP POST requests to the bulk operations URL: `Bulk operations URL: https://api.backand.com/1/bulk`. You can also use [the SDK](#bulk) to send your operations list to your app.
+
+<aside class="notice">Backand's Bulk Endpoint accommodates up to 1,000 operations in a single request. Operations in excess of 1,000 will need to be sent in a separate request </aside>
+
+### Constructing Bulk Requests
+> Performing each of the standard non-retrieval CRUD operations in bulk is as simple as specifying the appropriate actions to take with each request. We start by constructing the URL we need in order to manipulate each object. This is done with the Backand SDK using the following code:
+
+```javascript--persistent
+// Backand is the Backand service from the SDK
+var object_path = Backand.defaults.apiUrl
+                  + Backand.constants.URLS.objects
+                  + "/" + "YOUR_OBJECT_NAME";
+```
+> Simply replace "YOUR_OBJECT_NAME" with the name of the object you wish to manipulate. Once you have the object URL, you simply need to provide the appropriate command. To create a new record, for example, use the following hash as a starting point:
 
 ```json
-  Headers:{"Authorization": "Bearer **YOUR_ACCESS_TOKEN**", "AppName": "**YOUR_APP_NAME**"}
+{
+    "method": "POST",
+    "url": object_path,
+    "data": {
+      "fieldname": "value"
+    }
+  }
 ```
-The key element of this operation is the "headers" parameter. This represents the HTTP headers used to perform the request, and are used to uniquely identify your application as each request as made. The headers parameter should have the following form:
+
+> For example, if you wanted to update two records in the same request (using the PUT method), you would send the following:
+
+```json
+[
+  {
+    "method": "PUT",
+    "url": object_url,
+    "data": {
+      "heading": "Breaking news"
+    }
+  },
+  {
+    "method": "PUT",
+    "url": object_url,
+    "data": {
+      "complete": true
+    }
+  }
+]
+```
+> The following request will create two new records (one news article, one author), update an author record, then delete a news record:
+
+```json
+[
+  {
+    "method": "POST",
+    "url": "https://api.backand.com/1/objects/news",
+    "data": {
+      "heading": "Breaking news",
+      "author": 1,
+      "complete": false
+    }
+  },
+  {
+    "method": "POST",
+    "url": "https://api.backand.com/1/objects/authors",
+    "data": {
+      "email": "ann@backand.com",
+      "firstname": "ann"
+    }
+  },
+  {
+    "method": "PUT",
+    "url": "https://api.backand.com/1/objects/authors/1",
+    "data": {
+      "firstname": "Brian"
+    }
+  },
+  {
+    "method": "DELETE",
+    "url": "https://api.backand.com/1/objects/news/3"
+  }
+]
+```
+
+Bulk requests are implemented as arrays of request object hashes.In this hash, we specify the HTTP verb to be used - POST, in this case, which will create a new record. We set the "url" parameter to the calculated URL from above, and then provide the new record's data as a JSON hash in the "data" parameter. Simply provide the list of key and value pairs that represent your object's data, and you're set.
+
+Once you have a single request hash, you can add others by simply appending them to the request.
+
+You can also mix and match operations, varying the objects updated, the authorization headers used, even the type of request for each record to be updated. There are no restrictions on types of operations that can be performed in a single bulk request, so feel free to mix and match to suit your application's needs.
+
+### Authenticating the Request
+> You can authenticate each request as a different user. Simply supply the following elements in the Authorization header:
+> YOUR_ACCESS_TOKEN - an access token, obtained via a call to https://api.backand.com/token
+> YOUR_APP_NAME - the app name to operate on
+
+```json
+  {
+    "method": "DELETE",
+    "url": "https://api.backand.com/1/objects/news/3"
+    {
+      "Authorization": "Bearer <YOUR_ACCESS_TOKEN>",
+      "AppName": "<YOUR_APP_NAME>"
+    }
+  }
+```
+
+Each request hash can authenticate as a different user within your application. Any valid token to connect to your application can be provided along with each bulk item being manipulated. You can also dynamically specify the app name for each bulk item. To do so, simply use the `headers` element of the bulk operations structure as seen on the right.
+
+Refer to our documentation on user security (http://docs.backand.com/#the-user-object-and-security) for more information on how to construct the authentication headers.
 
 
-The value for "YOUR_ACCESS_TOKEN" is obtained via a call to 'https://api.backand.com/token' - simply replace "YOUR_ACCESS_TOKEN" with the bearer token returned by this endpoint, and "YOUR_APP_NAME" with your application's name that was specified during app creation. Each action hash can accept a different header parameter, allowing multiple operations to be undertaken by multiple users as a part of the same bulk request. If the 'headers' parameter is not included, the headers used for the call to the bulk operations endpoint are used for the relevant action instead.
-
-> Bulk operations URL: https://api.backand.com/1/bulk
-
-Requests to perform bulk actions are sent as HTTP POST requests to the bulk operations URL:
-
-
-Below are several examples of the types of bulk actions that can be performed using this new functionality.
+### Bulk Request Examples
+Below are several examples of the types of bulk actions that can be performed using this functionality.
 
 ### Example 1: Adding multiple rows
 ```json
@@ -832,3 +953,20 @@ This method works like any other custom JavaScript action, allowing you to easil
 
 ###Conclusion
 The security landscape for internet apps is wide and varied. While we'd love to be able to support every possible method of authentication available to developers, after a while it is far more beneficial and flexible to provide the developer with tools to manage their own authentication integrations. Using our provided override functions - `backandAuthOverride`, `socialAuthOverride`, and `accessFilter` - you can integrate with any authentication or authorization provider that can communicate over the web.
+
+## Resetting passwords
+
+Resetting passwords in Backand involves two steps:
+
+1 - Initiating the request to reset password
+2 - Performing the password reset
+
+This process revolves around the password reset token. All password resets in the Backand platform require you to first obtain a reset token. This reset token is then provided during the call to physically change the password, along with the user's new password.
+
+### Obtaining the reset token
+```shell
+
+```
+```javascript
+
+```

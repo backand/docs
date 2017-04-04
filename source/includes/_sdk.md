@@ -58,7 +58,7 @@ backand.object.getList('users')
 
 Getting started with the SDK is as simple as configuring your application access details, initializing the SDK, and calling a `getList()` function for one of the objects in your system. You configure the SDK with your application's `APP_NAME` and `ANONYMOUS_TOKEN`. Once you've called `init()` with these values, the SDK will use this data to automaticaly manage authentication headers for API requests to your app's REST API.
 
-```JSON
+```json
 // Sample response
 {
   "totalRows": 2,
@@ -153,12 +153,13 @@ Below is a list of the properties offered by the SDK, a description of the funct
 | ---- | ----------- | ------- |
 | constants | EVENTS, URLS, SOCIALS | Provides access to constants in the SDK |
 | helpers | *filter*, *sort*, *exclude*, *StorageAbstract* | Provides helper methods for working with the SDK |
-| direct properties | *useAnonymousAuth*, *signin*, *signup*, *socialSignin*, *socialSigninWithToken*, *socialSignup*, *requestResetPassword*, *resetPassword*, *changePassword*, *signout*, *getSocialProviders* | These are properties available directly on the Backand SDK object, mostly focused on Authentication |
+| direct properties | [init](#backand-init), [useAnonymousAuth](#useAnonymousAuth), [signin](#signin), [signup](#signup), [socialSignin](#socialsignin), *socialSigninWithToken*, *socialSignup*, *requestResetPassword*, *resetPassword*, *changePassword*, *signout*, *getSocialProviders* | These are properties available directly on the Backand SDK object, mostly focused on Authentication |
 | defaults | *none* | This stores the current app's configuration in the SDK |
 | object | *getList*, *create*, *getOne*, *update*, *remove*, *get* (action), *post* (action) | This encapsulates all methods used to manipulate objects |
 | file | *upload*, *remove* | Provides helper methods for working with files |
 | query | *get*, *post* | Allows you to work with custom query objects |
 | user | *getUserDetails*, *getUsername*, *getUserRole*, *getToken*, *getRefreshToken* | Provides information on the current authenticated user |
+| bulk | *general* | Provides access to bulk operations |
 | on | *none* | This is the event handler for socket.io functions, replacing socket.on |
 
 ### Default Events
@@ -325,7 +326,7 @@ This manipulates a flag within the SDK responsible for setting up request authen
 | ---- | ---- | ----------- |
 | flag | boolean | When true, the SDK will use anonymous authentication. |
 
-### .on()
+### Realtime Database Communications - .on()
 ```shell
 # This call has no cURL equivalent
 ```
@@ -337,7 +338,7 @@ This manipulates a flag within the SDK responsible for setting up request authen
   });
 ```
 
-You can easily integrate with our Socket functionality using the *on* method. Socket signin and signout are handled automatically by the SDK.
+Backand provides realtime database communication functionality using the .on() method on the SDK root object. This allows you to easily register event listeners for your app's notifications. Review [our docs on Realtime Database Communications](#realtime-database-communications) for more details on the technique. Socket signin and signout are handled automatically by the SDK.
 
 #### Parameters
 | name | type | description |
@@ -1077,6 +1078,68 @@ Calls a custom query using a HTTP POST
 | name | string | The name of the query to work with |
 | data | object | Data to be included in the body of the HTTP POST |
 | params | object | Parameters to be passed to the query |
+
+## .bulk
+
+The `.bulk` property handles bulk operations in Backand.
+
+### Defining Bulk Operations
+```json
+{
+  "method": "POST",
+  "url": object_path,
+  "data": {
+    "fieldname": "value"
+  },
+  "parameters": {
+    "param1": "value 1"
+  },
+  "headers": {
+    "Authorization": "Auth header..."
+  }
+}
+```
+
+A bulk operation is conducted as an array of individual actions. These actions consist of the following elements. Note - **bold** fields are required:
+
+| name | type | usage |
+| ---- | ---- | ----- |
+| **method** | string | The HTTP verb to be used. POST creates an object, PUT updates an object, and DELETE removes an object |
+| **url** | string | This is the URL used to access the object being modified. It is constructed in the SDK using the Defaults and Constants properties, along with the  |
+| data | object | A JSON hash of the properties of the object to create or update. Not used for DELETE requests |
+| parameters | JSON | Additional parameters, and values for those parameters, to send with the request |
+| headers | JSON | This is used to set custom HTTP headers. You can use it to dynamically set the Authorization header for each REST call. If you do not need to set a separate header for each request, you can use a general-purpose token such as your Anonymous Access Token, or simply use the same header for each portion of the request |
+
+The object path can be obtained from the object's data tab in the application dashboard, as seen below:
+
+![image](images/object_url.png)
+
+### .bulk.general()
+```shell
+curl -X POST -d "JSON String of bulk operations" https://api.backand.com/1/bulk
+```
+
+```javascript
+backand.bulk.general(data)
+  .then(function(data) {
+    console.log(data);
+  });
+```
+> Use JavaScript similar to the following to construct the object URL using the SDK:
+
+```javascript--persistent
+// Backand is the Backand service from the SDK
+var object_path = Backand.defaults.apiUrl + Backand.constants.URLS.objects + "/" + "YOUR_OBJECT_NAME";
+```
+
+The `.general()` function sends an array of bulk commands to Backand. These operations are then performed, and your app is updated appropriately.
+
+<aside class="notice">Backand's Bulk Endpoint accommodates up to 1,000 operations in a single request. Operations in excess of 1,000 will need to be sent in a separate request </aside>
+#### Parameters
+| name | type | description |
+| ---- | ---- | ----------- |
+| data | array | An array of bulk operation objects |
+
 
 ## .constants
 This contains constants used by the SDK, and is provided for reference.

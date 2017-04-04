@@ -783,7 +783,7 @@ Backand's NoSQL Query Language provides an alternative mechanism for querying yo
 ### Format
 > The general format of a query is:
 
-```JSON
+```json
 {
   "object": "String",
   "q": "Expression",
@@ -794,7 +794,7 @@ Backand's NoSQL Query Language provides an alternative mechanism for querying yo
 ```
 > For example, the shortest query you can write would be
 
-```JSON
+```json
   {
     "object": "table",
     "q": "query expression"
@@ -834,7 +834,7 @@ Only the table and expression parameters are mandatory. These objects are create
 ### Expressions
 > an AND expression
 
-```JSON
+```json
 {
   "position": "Sales Manager",
   "age" : { "$lt" : 25 },
@@ -844,7 +844,7 @@ Only the table and expression parameters are mandatory. These objects are create
 
 > an OR expression
 
-```JSON
+```json
 {
   "$or": [
     {
@@ -861,7 +861,7 @@ Only the table and expression parameters are mandatory. These objects are create
 
 > a UNION expression
 
-```JSON
+```json
 {
   "$union":   [
     {
@@ -941,13 +941,13 @@ Another option for negation is to use a not-equal operator: `{ "location": { "$n
 ### Sub Queries
 > This JSON can be used as a sub-query to retrieve the ID of all departments in the city of New York.
 
-```JSON
+```json
 { "object": "department", "q": { "city" : "New York" }, "fields" : ["id"]}
 ```
 
 >Using the above sub-query, we can now test a new field - dept_id - with respect to the results of the sub-query. We simply use the `$in` operator, and the query, as seen below.
 
-```JSON
+```json
 {
   "dept_id": {
     "$in": {  
@@ -960,7 +960,7 @@ Another option for negation is to use a not-equal operator: `{ "location": { "$n
 ```
 > In this example, the '`deptId` field is a reference field referring the employees table to the department table. We can now use this sub-query as a part of a larger query retrieving all employees employed in departments that are located in New York.
 
-```JSON
+```json
 {
   "object": "employees",
   "q" : {
@@ -978,7 +978,7 @@ Another option for negation is to use a not-equal operator: `{ "location": { "$n
 ```
 >If we wanted to look at a more complex query, we could modify this a bit. Let's say we wanted to retrieve all employees whose department is located in New York, but the employee is located in Boston. To accomplish this, we use an AND expression to combine the two conditions:
 
-```JSON
+```json
 {
     "object": "employees",
     "q" : {
@@ -1003,7 +1003,7 @@ You can use sub-queries to established a reduced scope of your objects to work w
 ### Group By Queries
 > To group by 'Country', and then concatenate the 'Location' field, use the following example code:
 
-```JSON
+```json
 {
     "object" : "Employees",
     "q" : {
@@ -1032,7 +1032,7 @@ A group by query aggregates on fields, and then applies aggregation operators to
 
 
 ### Example - String Comparison
-```JSON
+```json
 {
     "object": "employees",
     "q": {
@@ -1045,7 +1045,7 @@ A group by query aggregates on fields, and then applies aggregation operators to
 A simple query can pluck the `name` and `salary` fields from an object named `employees`. The query sample to the right executes this query for all employees with a position of "Sales Manager"
 
 ### Example - Constant Value Comparison
-```JSON
+```json
 {
     "object": "employees",
     "q": {
@@ -1056,7 +1056,7 @@ A simple query can pluck the `name` and `salary` fields from an object named `em
 Queries can also be used to compare an object's fields to constant values using common comparison operators. For example, to retrieve all fields for all employees under the age of 25, you can use the query to the right.
 
 ### Example - Range-based comparison
-```JSON
+```json
 {
   "object": "employees",
   "q": {
@@ -1069,7 +1069,7 @@ Queries can also be used to compare an object's fields to constant values using 
 You can use the `$between` operator to retrieve all records with values that lie between two specified endpoints. For example, the query to the right retrieves all employees with an age between 25 and 40.
 
 ### Example - Geographic Data Comparison
-```JSON
+```json
 {
     "object": "city",
     "q": {
@@ -1089,7 +1089,7 @@ You can use the `$within` operator to locate all records within a geographic ran
 ```    
 >The result is a structure with the following fields:
 
-```JSON
+```json
 {
     "str": "<SQL statement for query>",
     "select": "<select clause>",

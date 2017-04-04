@@ -76,7 +76,7 @@ backand.object.getList('users')
 We also offer a full-featured SDK that you can use to communicate with your Backand application. Getting started with the SDK is as simple as configuring your application access details, initializing the SDK, and calling a `getList()` function for one of the objects in your system. You configure the SDK with your application's `APP_NAME` and `ANONYMOUS_TOKEN`. Once you've called `init()` with these values, the SDK will use this data to automaticaly manage authentication headers for API requests to your app's REST API. See our [Vanilla SDK documentation](#vanilla-sdk) for more details.
 
 ## Response format
-```JSON
+```json
 // Sample response
 {
   "totalRows": 2,
