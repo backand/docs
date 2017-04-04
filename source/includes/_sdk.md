@@ -326,26 +326,6 @@ This manipulates a flag within the SDK responsible for setting up request authen
 | ---- | ---- | ----------- |
 | flag | boolean | When true, the SDK will use anonymous authentication. |
 
-### Realtime Database Communications - .on()
-```shell
-# This call has no cURL equivalent
-```
-```javascript
-  //Wait for server updates on 'items' object
-  Backand.on('items_updated', function (data) {
-    //Get the 'items' object that have changed
-    console.log(data);
-  });
-```
-
-Backand provides [realtime database communication](#realtime-database-communications) functionality using the .on() method on the SDK root object. This allows you to easily register event listeners for your app's notifications. Review [our docs on Realtime Database Communications](#realtime-database-communications) for more details on the technique. Socket signin and signout are handled automatically by the SDK.
-
-#### Parameters
-| name | type | description |
-| ---- | ---- | ----------- |
-| eventName | string | Name of the socket event to subscribe to |
-| callback | function | Callback triggered when *eventName* is received |
-
 ### .signin()
 ```shell
 curl -X POST -d "username=<username>" -d "password=<password>" -d "appName=<app name>" -d "grant_type=password" https://api.backand.com/token
@@ -488,6 +468,27 @@ Signs the user into a Back& application using a social media provider as the aut
 | name | type | description |
 | ---- | ---- | ----------- |
 | provider | string | Name of the provider to authenticate with. The full list can be obtained by calling *backand.getSocialProviders(scb)* |
+
+## Realtime Database Communications - .on()
+```shell
+# This call has no cURL equivalent
+```
+```javascript
+  //Wait for server updates on 'items' object
+  Backand.on('items_updated', function (data) {
+    //Get the 'items' object that have changed
+    console.log(data);
+  });
+```
+
+Backand provides [realtime database communication](#realtime-database-communications) functionality using the .on() method on the SDK root object. This allows you to easily register event listeners for your app's notifications. Review [our docs on Realtime Database Communications](#realtime-database-communications) for more details on the technique. Socket signin and signout are handled automatically by the SDK.
+
+#### Parameters
+| name | type | description |
+| ---- | ---- | ----------- |
+| eventName | string | Name of the socket event to subscribe to |
+| callback | function | Callback triggered when *eventName* is received |
+
 
 ## .object property
 The `.object` property contains functions related to basic database operations that can be performed on an object. You can also use this property to call the on-demand actions governed by an object in your system.
