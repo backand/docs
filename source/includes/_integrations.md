@@ -1915,3 +1915,7 @@ At this point you have a fully-functional wrapper for calls to any Backand API. 
 
 ###Conclusion
 As Backand is a web API, it can be easily integrated with nearly every programming language available. While this example focuses on Android, you can use similar code in any popular development language to communicate with Backand's API. Simply construct an authorization header using basic authentication, specify the request URL, and fire the request. Consult [our documentation](http://docs.backand.com) to get started!
+
+## Calling Backand from Native iOS Code
+
+While you can use a pattern similar to the method used when [integrating Backand with a native Android application](#calling-backand-from-native-android-code), Haijian Huo - a developer using Backand in an iOS app - has helpfully developed an SDK wrapper that reduces the complexity of calling the Backand SDK on iOS. See the project on Github at [https://github.com/haijianhuo/HHBackand-iOS-SDK](https://github.com/haijianhuo/HHBackand-iOS-SDK)!
