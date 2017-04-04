@@ -7357,8 +7357,8 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 <p>To authenticate your requests with Backand, you&rsquo;ll need to construct an authentication header. This consists of a Base 64-encoded string consisting of your application&rsquo;s master key and user key, coupled with the word &ldquo;Basic&rdquo;. The code to construct this header is as follows:</p>
 </blockquote>
 <pre class="highlight java tab-java"><code><span class="n">StringBuilder</span> <span class="n">stringBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
-        <span class="n">String</span> <span class="n">userNamePasswordCombination</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">masterToken</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">userToken</span><span class="o">;</span>
-        <span class="kd">final</span> <span class="n">String</span> <span class="n">basicAuth</span> <span class="o">=</span> <span class="s">"Basic "</span> <span class="o">+</span>  <span class="n">Base64</span><span class="o">.</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">userNamePasswordCombination</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="n">Base64</span><span class="o">.</span><span class="na">NO_WRAP</span><span class="o">);</span>
+<span class="n">String</span> <span class="n">userNamePasswordCombination</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">masterToken</span> <span class="o">+</span> <span class="s">":"</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">userToken</span><span class="o">;</span>
+<span class="kd">final</span> <span class="n">String</span> <span class="n">basicAuth</span> <span class="o">=</span> <span class="s">"Basic "</span> <span class="o">+</span>  <span class="n">Base64</span><span class="o">.</span><span class="na">encodeToString</span><span class="o">(</span><span class="n">userNamePasswordCombination</span><span class="o">.</span><span class="na">getBytes</span><span class="o">(),</span> <span class="n">Base64</span><span class="o">.</span><span class="na">NO_WRAP</span><span class="o">);</span>
 </code></pre>
 <p>You can use Backand&rsquo;s <a href="http://docs.backand.com/#basic-authentication">Basic Authentication</a> to authenticate with your app. This uses your app&rsquo;s master key and a user key to authenticate API requests. This works well for server-side (and other non-visible) code, but you should be careful to ensure that your app&rsquo;s Master key is not exposed in source control or via your app - this key bypasses all user authentication, and can be used to perform administrative actions in your app without your knowledge.</p>
 
@@ -7368,21 +7368,21 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 <p>This code uses the HttpsUrlConnection object from javax.net.ssl to construct a basic HTTP request to the URL specified. Set the Authorization header to the authorization value you calculated in the previous section, then use the app&rsquo;s name to populate the AppName header. Finally, set the content type to &ldquo;application/json&rdquo;, and open the connection.</p>
 </blockquote>
 <pre class="highlight java tab-java"><code><span class="kd">public</span> <span class="n">String</span> <span class="nf">sendGetRequest</span><span class="o">(</span><span class="n">URL</span> <span class="n">url</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">//Auth header generation code here</span>
-        <span class="k">try</span> <span class="o">{</span>
+    <span class="c1">//Auth header generation code here</span>
+    <span class="k">try</span> <span class="o">{</span>
 
-            <span class="n">HttpsURLConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpsURLConnection</span><span class="o">)</span> <span class="n">url</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
-            <span class="n">conn</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
-            <span class="n">conn</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"Authorization"</span><span class="o">,</span> <span class="n">basicAuth</span><span class="o">);</span>
-            <span class="n">conn</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">);</span>
-            <span class="n">conn</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"AppName"</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">appName</span><span class="o">);</span>
+        <span class="n">HttpsURLConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpsURLConnection</span><span class="o">)</span> <span class="n">url</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
+        <span class="n">conn</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
+        <span class="n">conn</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"Authorization"</span><span class="o">,</span> <span class="n">basicAuth</span><span class="o">);</span>
+        <span class="n">conn</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"Content-Type"</span><span class="o">,</span> <span class="s">"application/json"</span><span class="o">);</span>
+        <span class="n">conn</span><span class="o">.</span><span class="na">setRequestProperty</span><span class="o">(</span><span class="s">"AppName"</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">appName</span><span class="o">);</span>
 
-            <span class="c1">// handle response here.</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"readRemoteJson error: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-        <span class="o">}</span>
-       <span class="c1">//return your desired result here</span>
+        <span class="c1">// handle response here.</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"readRemoteJson error: "</span> <span class="o">+</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
     <span class="o">}</span>
+   <span class="c1">//return your desired result here</span>
+<span class="o">}</span>
 </code></pre>
 <p>Once you&rsquo;ve built out the authentication header, you&rsquo;re ready to fire requests at the API. The Backand API is built as a web API, meaning that you simply need to send HTTP requests to the API URLs in order to obtain and modify your application&rsquo;s data. To the right is some sample code that implements a basic request to a Backand API URL</p>
 
@@ -7393,23 +7393,23 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 <blockquote>
 <p>Below is sample code for handling a response from our API:</p>
 </blockquote>
-<pre class="highlight java tab-java"><code>            <span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">responseCode</span> <span class="o">==</span> <span class="n">HttpsURLConnection</span><span class="o">.</span><span class="na">HTTP_OK</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">String</span> <span class="n">line</span><span class="o">;</span>
-                <span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span>
+<pre class="highlight java tab-java"><code>  <span class="kt">int</span> <span class="n">responseCode</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">getResponseCode</span><span class="o">();</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">responseCode</span> <span class="o">==</span> <span class="n">HttpsURLConnection</span><span class="o">.</span><span class="na">HTTP_OK</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">String</span> <span class="n">line</span><span class="o">;</span>
+      <span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span>
 
-                <span class="n">InputStreamReader</span> <span class="n">isw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">in</span><span class="o">);</span>
+      <span class="n">InputStreamReader</span> <span class="n">isw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">in</span><span class="o">);</span>
 
-                <span class="kt">int</span> <span class="n">data</span> <span class="o">=</span> <span class="n">isw</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
-                <span class="k">while</span> <span class="o">(</span><span class="n">data</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="kt">char</span> <span class="n">current</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="n">data</span><span class="o">;</span>
-                    <span class="n">data</span> <span class="o">=</span> <span class="n">isw</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
-                    <span class="n">stringBuilder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
-                <span class="o">}</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"readRemoteJson: "</span> <span class="o">+</span> <span class="n">conn</span><span class="o">.</span><span class="na">getResponseMessage</span><span class="o">());</span>
-                <span class="k">return</span> <span class="s">""</span><span class="o">;</span>
-            <span class="o">}</span>
+      <span class="kt">int</span> <span class="n">data</span> <span class="o">=</span> <span class="n">isw</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+      <span class="k">while</span> <span class="o">(</span><span class="n">data</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">char</span> <span class="n">current</span> <span class="o">=</span> <span class="o">(</span><span class="kt">char</span><span class="o">)</span> <span class="n">data</span><span class="o">;</span>
+          <span class="n">data</span> <span class="o">=</span> <span class="n">isw</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+          <span class="n">stringBuilder</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">current</span><span class="o">);</span>
+      <span class="o">}</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"readRemoteJson: "</span> <span class="o">+</span> <span class="n">conn</span><span class="o">.</span><span class="na">getResponseMessage</span><span class="o">());</span>
+      <span class="k">return</span> <span class="s">""</span><span class="o">;</span>
+  <span class="o">}</span>
 </code></pre>
 <p>Backand responds to your request with JSON that can be adapted however you wish. The sample code starts by obtaining the response code from the HTTP Request. If the response code indicates success, it uses InputStreamReader to read in the JSON response, to be used elsewhere in your application. Otherwise, it logs the failed request details for later debugging.</p>
 
