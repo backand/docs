@@ -119,7 +119,9 @@ Now, call the SDK from *app.component.ts*. The SDK is initialized during *ngOnIn
 Review the full API reference for our [Vanilla SDK](#vanilla-sdk) to get started with your back end!
 
 ### Examples for Angular/Ionic 2
-***To view a demo of the SDK in action, just run npm start - [example page](https://github.com/backand/angular1-sdk/blob/master/example/).***
+***To view a demo of the SDK in action, just run npm start - [example page](https://github.com/backand/angular2-sdk/blob/master/example/).***
+
+***We also offer an example app for Angular 2 - just follow the instructions in our [sample project](https://github.com/backand/angular2-example)***
 
 ## Redux - React SDK
 ### Overview
