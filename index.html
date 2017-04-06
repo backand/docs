@@ -473,9 +473,17 @@ For security reasons you cannot change the role from the sign-up API - this can 
 
 <h3 id="saving-additional-parameters-during-sign-up">Saving Additional Parameters During Sign-up</h3>
 
-<p>In many cases, we would like to collect additional information from the user during sign up. We can automatically populate the related fields on the Users object as a part of the sign-up request by using the <code class="prettyprint">parameters</code> parameter for the sign-up call. The server, during the &lsquo;Create My App User&rsquo; action, will translate these key-value pairs into the appropriate fields on the &lsquo;Users&rsquo; object - as such, it is important that all fields provided already exist on the Users object. The following example demonstrates specifying a user&rsquo;s &ldquo;company&rdquo; name as a part of the sign-up:</p>
-<pre class="highlight javascript tab-javascript"><code>    <span class="nx">Backand</span><span class="p">.</span><span class="nx">signup</span><span class="p">(</span><span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">,</span> <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span> <span class="p">{</span><span class="s2">"company"</span><span class="p">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">company</span><span class="p">}).</span><span class="nx">then</span><span class="p">(...);</span>
+<blockquote>
+<p>The parameters hash, which is the final argument to signup, will be used to populate fields named with the provided keys in your app&rsquo;s custom <code class="prettyprint">users</code> object</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code>    <span class="nx">Backand</span><span class="p">.</span><span class="nx">signup</span><span class="p">(</span>
+      <span class="nx">firstName</span><span class="p">,</span> <span class="nx">lastName</span><span class="p">,</span>
+      <span class="nx">username</span><span class="p">,</span> <span class="nx">password</span><span class="p">,</span>
+      <span class="nx">password</span><span class="p">,</span> <span class="p">{</span><span class="s2">"company"</span><span class="p">:</span> <span class="nx">self</span><span class="p">.</span><span class="nx">company</span><span class="p">}</span>
+    <span class="p">).</span><span class="nx">then</span><span class="p">(...);</span>
 </code></pre>
+<p>In many cases, we would like to collect additional information from the user during sign up. We can automatically populate the related fields on the Users object as a part of the sign-up request by using the <code class="prettyprint">parameters</code> parameter for the sign-up call. The server, during the &lsquo;Create My App User&rsquo; action, will translate these key-value pairs into the appropriate fields on the &lsquo;Users&rsquo; object - as such, it is important that all fields provided already exist on the Users object. The following example demonstrates specifying a user&rsquo;s &ldquo;company&rdquo; name as a part of the sign-up:</p>
+
 <ol>
 <li>Update the Model and add the field <code class="prettyprint">company</code> to the <code class="prettyprint">users</code> object:
 
@@ -484,8 +492,8 @@ For security reasons you cannot change the role from the sign-up API - this can 
 <li>Add this line as a data field in the <code class="prettyprint">users</code> object model: <code class="prettyprint">&quot;company&quot;: {&quot;type&quot;: &quot;string&quot;}</code></li>
 <li>Click on <code class="prettyprint">Validate &amp; Update</code></li>
 </ol></li>
-<li>When calling <code class="prettyprint">Backand.signup()</code>, send the <code class="prettyprint">parameters</code> object through as the last input parameter for the request. The code will resemble the following:</li>
-<li>There&rsquo;s no need for server-side modifications - values for &ldquo;parameters&rdquo; are handled automatically by the action &lsquo;Create My App User&rsquo; (found in the <code class="prettyprint">Security Actions</code> section).</li>
+<li>When calling <code class="prettyprint">Backand.signup()</code>, send the <code class="prettyprint">parameters</code> object through as the last input parameter for the request. The code will resemble the call on the right:</li>
+<li>There&rsquo;s no need for server-side modifications - values for &ldquo;parameters&rdquo; are handled automatically by the action &lsquo;Create My App User&rsquo; (found in the <code class="prettyprint">Security Actions</code> section, under <code class="prettyprint">Security &amp; Auth</code>).</li>
 <li>Modify the UI to collect the <code class="prettyprint">company</code> name for the user.</li>
 </ol>
 
