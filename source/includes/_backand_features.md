@@ -110,18 +110,24 @@ For security reasons you cannot change the role from the sign-up API - this can 
 </aside>
 
 ### Saving Additional Parameters During Sign-up
+> The parameters hash, which is the final argument to signup, will be used to populate fields named with the provided keys in your app's custom `users` object
+
+```javascript--persistent
+    Backand.signup(
+      firstName, lastName,
+      username, password,
+      password, {"company": self.company}
+    ).then(...);
+```
 
 In many cases, we would like to collect additional information from the user during sign up. We can automatically populate the related fields on the Users object as a part of the sign-up request by using the `parameters` parameter for the sign-up call. The server, during the 'Create My App User' action, will translate these key-value pairs into the appropriate fields on the 'Users' object - as such, it is important that all fields provided already exist on the Users object. The following example demonstrates specifying a user's "company" name as a part of the sign-up:
 
-```javascript
-    Backand.signup(firstName, lastName, username, password, password, {"company": self.company}).then(...);
-```
 1. Update the Model and add the field `company` to the `users` object:
     1. Go to `Objects` --> `Model`
     2. Add this line as a data field in the `users` object model: `"company": {"type": "string"}`
     3. Click on `Validate & Update`
-2. When calling `Backand.signup()`, send the `parameters` object through as the last input parameter for the request. The code will resemble the following:
-3. There's no need for server-side modifications - values for "parameters" are handled automatically by the action 'Create My App User' (found in the `Security Actions` section).
+2. When calling `Backand.signup()`, send the `parameters` object through as the last input parameter for the request. The code will resemble the call on the right:
+3. There's no need for server-side modifications - values for "parameters" are handled automatically by the action 'Create My App User' (found in the `Security Actions` section, under `Security & Auth`).
 4. Modify the UI to collect the `company` name for the user.
 
 Now, when sign-up is completed, you can see the company name in the `users` object's Data tab.
