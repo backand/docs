@@ -836,6 +836,23 @@ backand.object.action.get(object, action, params)
 {"response":"Hello world!"}
 ```
 
+> If you wish to make the call with parameters included, you can use the following code:
+
+```shell
+curl -H "AnonymousToken: $ANONYMOUS_TOKEN" "https://api.backand.com/1/objects/action/items?name=simpleOnDemand&param1=test"
+```
+```javascript
+  let parameters = {param1: 'test'};
+  backand.action.get('params', parameters)
+  .then(res => {
+    done();
+  })
+  .catch(err => {
+    done(err);
+  })
+```
+
+
 Triggers on-demand custom actions that operate via HTTP GET requests
 
 #### Parameters
@@ -866,6 +883,23 @@ backand.object.action.post(object, action, data, params)
 
 ```json
 {"response":"Hello world!"}
+```
+
+> If you wish to make the call with parameters included, you can use the following code:
+
+
+```shell
+curl -X POST -d "{'sample1':'sample 1'}" -H "AnonymousToken: $ANONYMOUS_TOKEN" "https://api.backand.com/1/objects/action/items?name=simpleOnDemand"
+```
+```javascript
+  let parameters = {param1: 'test'};
+  backand.action.get('params', parameters)
+  .then(res => {
+    done();
+  })
+  .catch(err => {
+    done(err);
+  })
 ```
 
 Triggers on-demand custom actions that operate via HTTP POST requests
@@ -1034,6 +1068,23 @@ backand.query.get(name, params)
   ...
 ]
 ```
+> To send parameters with the query, use the following:
+
+```shell
+curl -H "AnonymousToken: $ANONYMOUS_TOKEN" https://api.backand.com/1/query/data/test1?param1=test1
+```
+```javascript
+let parameters = {param1: 'test'};
+backand.query.get('params', parameters)
+.then(res => {
+  expect(res.data).to.eql([{"param1": "test"}]);
+  done();
+})
+.catch(err => {
+  done(err);
+})
+```
+
 Calls a custom query using a HTTP GET
 
 #### Parameters
@@ -1069,6 +1120,22 @@ backand.query.post(name, data, params)
   },
   ...
 ]
+```
+> To send parameters with the query, use the following:
+
+```shell
+curl -X POST -H "AnonymousToken: $ANONYMOUS_TOKEN" https://api.backand.com/1/query/data/test1?param1=test1
+```
+```javascript
+let parameters = {param1: 'test'};
+backand.query.post('params', parameters)
+.then(res => {
+  expect(res.data).to.eql([{"param1": "test"}]);
+  done();
+})
+.catch(err => {
+  done(err);
+})
 ```
 
 Calls a custom query using a HTTP POST
