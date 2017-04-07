@@ -3288,6 +3288,19 @@ curl -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOK
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"response"</span><span class="p">:</span><span class="s2">"Hello world!"</span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>If you wish to make the call with parameters included, you can use the following code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOKEN</span><span class="s2">"</span> <span class="s2">"https://api.backand.com/1/objects/action/items?name=simpleOnDemand&amp;param1=test"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="kd">let</span> <span class="nx">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="na">param1</span><span class="p">:</span> <span class="s1">'test'</span><span class="p">};</span>
+  <span class="nx">backand</span><span class="p">.</span><span class="nx">action</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'params'</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">done</span><span class="p">();</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">})</span>
+</code></pre>
 <p>Triggers on-demand custom actions that operate via HTTP GET requests</p>
 
 <h4 id="parameters">Parameters</h4>
@@ -3332,6 +3345,19 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"response"</span><span class="p">:</span><span class="s2">"Hello world!"</span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>If you wish to make the call with parameters included, you can use the following code:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST -d <span class="s2">"{'sample1':'sample 1'}"</span> -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOKEN</span><span class="s2">"</span> <span class="s2">"https://api.backand.com/1/objects/action/items?name=simpleOnDemand"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="kd">let</span> <span class="nx">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="na">param1</span><span class="p">:</span> <span class="s1">'test'</span><span class="p">};</span>
+  <span class="nx">backand</span><span class="p">.</span><span class="nx">action</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'params'</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">done</span><span class="p">();</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">})</span>
+</code></pre>
 <p>Triggers on-demand custom actions that operate via HTTP POST requests</p>
 
 <h4 id="parameters">Parameters</h4>
@@ -3555,6 +3581,20 @@ curl -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOK
   </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>To send parameters with the query, use the following:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOKEN</span><span class="s2">"</span> https://api.backand.com/1/query/data/test1?param1<span class="o">=</span>test1
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="na">param1</span><span class="p">:</span> <span class="s1">'test'</span><span class="p">};</span>
+<span class="nx">backand</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'params'</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">([{</span><span class="s2">"param1"</span><span class="p">:</span> <span class="s2">"test"</span><span class="p">}]);</span>
+  <span class="nx">done</span><span class="p">();</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <p>Calls a custom query using a HTTP GET</p>
 
 <h4 id="parameters">Parameters</h4>
@@ -3602,6 +3642,20 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
   </span><span class="err">...</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>To send parameters with the query, use the following:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOKEN</span><span class="s2">"</span> https://api.backand.com/1/query/data/test1?param1<span class="o">=</span>test1
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="na">param1</span><span class="p">:</span> <span class="s1">'test'</span><span class="p">};</span>
+<span class="nx">backand</span><span class="p">.</span><span class="nx">query</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s1">'params'</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">expect</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eql</span><span class="p">([{</span><span class="s2">"param1"</span><span class="p">:</span> <span class="s2">"test"</span><span class="p">}]);</span>
+  <span class="nx">done</span><span class="p">();</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">done</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre>
 <p>Calls a custom query using a HTTP POST</p>
 
 <h4 id="parameters">Parameters</h4>
