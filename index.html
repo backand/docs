@@ -5570,6 +5570,273 @@ While this function works similarly to backandAuthOverride, there are a couple m
 
 <p>The security landscape for internet apps is wide and varied. While we&rsquo;d love to be able to support every possible method of authentication available to developers, after a while it is far more beneficial and flexible to provide the developer with tools to manage their own authentication integrations. Using our provided override functions - <code class="prettyprint">backandAuthOverride</code>, <code class="prettyprint">socialAuthOverride</code>, and <code class="prettyprint">accessFilter</code> - you can integrate with any authentication or authorization provider that can communicate over the web.</p>
 
+<p>The &ldquo;Objects&rdquo; section of the dashboard allows you to modify the specific objects in your application&rsquo;s database. A menu entry is created for each table in your database, and allows you to configure your application at the object level. For each object in your system, you are given access to the following areas to modify and work with.</p>
+
+<h2 id="managing-the-application-model-with-json">Managing the Application Model with JSON</h2>
+
+<blockquote>
+<p>Below is an example model</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>The Model JSON tab in the Object menu allows you to modify the JSON schema of your database&rsquo;s model structure, adding new objects and establishing the relationship between them. Below is a brief overview of how to use this interface:</p>
+
+<aside class="notice"> In addition to the fields supplied by the user, Backand defines an &lsquo;id&rsquo; field, of type integer, which will be used as a primary key for the table.</aside>
+
+<aside class="warning"> Renaming fields can only be done from the Fields tab in the application dashboard. Renaming a field or an object in a model will delete the data associated with that field or object.</aside>
+
+<h3 id="definitions">Definitions</h3>
+
+<blockquote>
+<p>The model represents a database schema that is defined as a JSON array of one or more object (Table) definitions.</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">&lt;model&gt;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="err">&lt;object&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">&lt;object&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>An object definition is a JSON object with a name entry and a fields entry:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">&lt;object&gt;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w">  </span><span class="err">&lt;string&gt;</span><span class="p">,</span><span class="w"> </span><span class="s2">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&lt;fields&gt;</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>The fields definition is a JSON list of field attributes:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">&lt;fields&gt;</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">"field1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&lt;field&gt;</span><span class="p">,</span><span class="w"> </span><span class="s2">"field2"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;field&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>A field is defined by its type and a set of optional properties. The field definition is a JSON object:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">&lt;field&gt;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;type&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">&lt;optional</span><span class="w"> </span><span class="err">properties&gt;</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>A JSON schema consist of three types of objects:</p>
+
+<ul>
+<li>model - This is the overall definition for your database schema. It consists of a list of <code class="prettyprint">objects</code></li>
+<li>object - This represents a single object type in your application. It is converted into a database table.</li>
+<li>fields - This represents an array of field entries, representing the possible attributes of your object. These become columns in the database table.</li>
+</ul>
+
+<p>A field may have one of the following types:</p>
+
+<ul>
+<li><strong>string</strong> - string column with length up to 255 characters</li>
+<li><strong>text</strong> - text column with length up to 21,844 characters</li>
+<li><strong>float</strong></li>
+<li><strong>datetime</strong></li>
+<li><strong>boolean</strong></li>
+</ul>
+
+<h3 id="one-to-many-relationship">One-to-Many Relationship</h3>
+
+<blockquote>
+<p>As an example, consider a model describing pet ownership. It has two objects, &lsquo;users&rsquo; and &lsquo;pets&rsquo;. Each user can own
+several pets, but a pet has a single owner (user). Thus, the users-pets relationship is a one to many relationship between users and pets, The &lsquo;users&rsquo; object will have a &lsquo;pets&rsquo; relationship field, which establishes the &lsquo;many&rsquo; side of the relationship by
+creating a collection of pets objects for each user in the model.
+In &lsquo;users&rsquo;, add this field:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="p">,</span><span class="w"> </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>The &lsquo;pets&rsquo; object will have an &lsquo;owner&rsquo; relationship field, which establishes the &lsquo;one&rsquo; side of the relationship by
+linking each pet back to an individual owner.
+In &lsquo;pets&rsquo;, add the following new field to complete the linkage:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Here is the full sample model for this relationship:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Many databases rely on one-to-many relationships between objects. These happen when an object can exert &ldquo;ownership&rdquo; over another, and is typically represented as a foreign key constraint in the &ldquo;owned&rdquo; object. The sidebar demonstrates how to create a one-to-many relationship in the database using the JSON Schema.</p>
+
+<p>Say, for example, that we have a one to many relationship between objects R and S. This means that for each row in R, there are many potentially corresponding rows in S. In the &lsquo;many&rsquo; side of the relationship (object S), we specify that each row relates to one row in the other object R by providing an object field link:</p>
+
+<p><code class="prettyprint">&quot;myR&quot; : { &quot;object&quot; : &quot;R&quot; }</code></p>
+
+<p>In the &lsquo;one&rsquo; side of the relationship (object R), we specify that each row relates to several rows in S by providing a collection field link, using a &lsquo;via&rsquo; attribute to denote which field on the &lsquo;many&rsquo; side (object S) fulfills the relationship:</p>
+
+<p><code class="prettyprint">&quot;Rs&quot; : { &quot;collection&quot;: &quot;S&quot;, &quot;via&quot; : &quot;myR&quot; }</code></p>
+
+<p>In the database, a foreign-key constraint will be added between tables S and R (pointing in the direction of R), represented by a foreign key field &lsquo;myR&rsquo; being created in the object S&rsquo;s data table. This field will hold the primary key of the corresponding row in R for each row in S. One-to-many relationship between objects are specified using relationship fields. A relationship field will generate the appropriate foreign-key relationship fields in the corresponding relation objects.</p>
+
+<h3 id="many-to-many-relationship">Many-to-Many Relationship</h3>
+
+<blockquote>
+<p>As an example, consider a different model describing pet ownership. It has two objects, &lsquo;users&rsquo; and &lsquo;pets&rsquo;. Each user
+ can own several pets, and each pet can have several owners. Thus, the users-pets relationship is many to many relationship between users and pets:
+First we need to add a new object - &lsquo;users-pets&rsquo; - with one-to-many relationships to both &lsquo;pets&rsquo; and &lsquo;users&rsquo; objects.
+In &lsquo;users-pets&rsquo;:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In the corresponding objects &lsquo;users&rsquo; and &lsquo;pets&rsquo;, we need to add a reference to &lsquo;users-pets&rsquo; to complete the
+one-to-many relationship:
+In &lsquo;pets&rsquo;:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="s2">"owners"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users-pets"</span><span class="p">,</span><span class="w"> </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>In &lsquo;users&rsquo;:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users-pets"</span><span class="p">,</span><span class="w"> </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Stated another way: To build a many-to-many model of many-to-many Model:
+* Start with a Model that contains 2 objects that have no relations between them:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Add the new object and the relationship fields:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"owners"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users-pets"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users-pets"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users-pets"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>Many-to-Many relationships between objects are added by adding a new object that has a one-to-many relationship with each object participating in the many-to-many relation. Please review <a href="one-to-many-relationship">One-to-many relationships</a> before continuing with this section.</p>
+
+<p>Say, for example, that we have a many to many relationship between objects R and S. This means that for many rows in R, there are many potentially corresponding rows in S. Where we could handle a one-to-many relationship between R and S using a single column in the underlying database, we can&rsquo;t do so to represent a many-to-many relationship. If we simply add another foreign key to the other side of the relation, we are stuck having to duplicate items that are shared among multiple owners. Instead, we use a mapping table to link the two objects together.</p>
+
+<p><code class="prettyprint">{&quot;name&quot;: &quot;R_TO_S_MAPPING&quot;, &quot;fields&quot;: { &quot;r&quot;: {&quot;object&quot;:&quot;R&quot;}}, &quot;s&quot;: {&quot;object&quot;:&quot;S&quot;} }</code></p>
+
+<p>The mapping table will have two columns - r_id, and s_id - that are then linked to by the source tables via separate one-to-many relationships between the objects themselves and the mapping table. More specifically: S will have a one-to-many relationship with R_TO_S_MAPPING:</p>
+
+<p><code class="prettyprint">{&quot;name&quot;: &quot;R&quot;, &quot;fields&quot;: {...., &quot;S&quot;: { &quot;collection&quot;: &quot;R_TO_S_MAPPING&quot;, &quot;via&quot;:&quot;r&quot;}}}</code></p>
+
+<p>&hellip; and R will also have a one-to-many relationship with R_TO_S_MAPPING</p>
+
+<p><code class="prettyprint">{&quot;name&quot;: &quot;S&quot;, &quot;fields&quot;: {...., &quot;R&quot;: { &quot;collection&quot;: &quot;R_TO_S_MAPPING&quot;, &quot;via&quot;:&quot;s&quot;}}}</code></p>
+
+<p>&hellip;  resulting in a many-to-many relationship between R and S with the relationship managed via table R_TO_S_MAPPING.</p>
+
           <h1 id="integrations">Integrations</h1>
 
 <p>The following set of documentation looks at integrating Backand with a number of different types of providers. Also included are some simple Backand-powered applications that can be used either as a starting point for your development, or as a guide for integrating Backand into a larger application.</p>
