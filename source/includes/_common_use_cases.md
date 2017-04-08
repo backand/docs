@@ -953,3 +953,273 @@ This method works like any other custom JavaScript action, allowing you to easil
 
 ###Conclusion
 The security landscape for internet apps is wide and varied. While we'd love to be able to support every possible method of authentication available to developers, after a while it is far more beneficial and flexible to provide the developer with tools to manage their own authentication integrations. Using our provided override functions - `backandAuthOverride`, `socialAuthOverride`, and `accessFilter` - you can integrate with any authentication or authorization provider that can communicate over the web.
+
+
+The "Objects" section of the dashboard allows you to modify the specific objects in your application's database. A menu entry is created for each table in your database, and allows you to configure your application at the object level. For each object in your system, you are given access to the following areas to modify and work with.
+
+## Managing the Application Model with JSON
+> Below is an example model
+
+```json
+[
+  {
+    "name": "items",
+    "fields": {
+      "name": {
+        "type": "string"
+      },
+      "description": {
+        "type": "text"
+      },
+      "user": {
+        "object": "users"
+      }
+    }
+  },
+  {
+    "name": "users",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "items": {
+        "collection": "items",
+        "via": "user"
+      }
+    }
+  }
+]
+```
+
+The Model JSON tab in the Object menu allows you to modify the JSON schema of your database's model structure, adding new objects and establishing the relationship between them. Below is a brief overview of how to use this interface:
+
+<aside class="notice"> In addition to the fields supplied by the user, Backand defines an 'id' field, of type integer, which will be used as a primary key for the table.</aside>
+<aside class="warning"> Renaming fields can only be done from the Fields tab in the application dashboard. Renaming a field or an object in a model will delete the data associated with that field or object.</aside>
+
+###Definitions
+> The model represents a database schema that is defined as a JSON array of one or more object (Table) definitions.
+
+```json
+<model> = [  <object>, <object>, ... ]
+```
+> An object definition is a JSON object with a name entry and a fields entry:
+
+```json
+<object> = { "name":  <string>, "fields" : <fields> }
+```
+> The fields definition is a JSON list of field attributes:
+
+```json
+<fields> =  { "field1" : <field>, "field2": <field>, ... }
+```
+>A field is defined by its type and a set of optional properties. The field definition is a JSON object:
+
+```json
+<field> = { "type": <type>, <optional properties>}
+```
+
+
+A JSON schema consist of three types of objects:
+
+* model - This is the overall definition for your database schema. It consists of a list of `objects`
+* object - This represents a single object type in your application. It is converted into a database table.
+* fields - This represents an array of field entries, representing the possible attributes of your object. These become columns in the database table.
+
+A field may have one of the following types:
+
+* **string** - string column with length up to 255 characters
+* **text** - text column with length up to 21,844 characters
+* **float**
+* **datetime**
+* **boolean**
+
+
+###One-to-Many Relationship
+> As an example, consider a model describing pet ownership. It has two objects, 'users' and 'pets'. Each user can own
+several pets, but a pet has a single owner (user). Thus, the users-pets relationship is a one to many relationship between users and pets, The 'users' object will have a 'pets' relationship field, which establishes the 'many' side of the relationship by
+creating a collection of pets objects for each user in the model.
+> In 'users', add this field:
+
+```json
+"pets": { "collection": "pets", "via": "owner" }
+```
+> The 'pets' object will have an 'owner' relationship field, which establishes the 'one' side of the relationship by
+linking each pet back to an individual owner.
+> In 'pets', add the following new field to complete the linkage:
+
+```json
+"owner": { "object": "users" }
+```
+
+> Here is the full sample model for this relationship:
+
+```json
+[
+  {
+    "name": "pets",
+    "fields": {
+      "name": {
+        "type": "string"
+      },
+      "owner": {
+        "object": "users"
+      }
+    }
+  },
+  {
+    "name": "users",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "pets": {
+        "collection": "pets",
+        "via": "owner"
+      }
+    }
+  }
+]
+```
+
+
+Many databases rely on one-to-many relationships between objects. These happen when an object can exert "ownership" over another, and is typically represented as a foreign key constraint in the "owned" object. The sidebar demonstrates how to create a one-to-many relationship in the database using the JSON Schema.
+
+Say, for example, that we have a one to many relationship between objects R and S. This means that for each row in R, there are many potentially corresponding rows in S. In the 'many' side of the relationship (object S), we specify that each row relates to one row in the other object R by providing an object field link:
+
+`"myR" : { "object" : "R" }`
+
+In the 'one' side of the relationship (object R), we specify that each row relates to several rows in S by providing a collection field link, using a 'via' attribute to denote which field on the 'many' side (object S) fulfills the relationship:
+
+`"Rs" : { "collection": "S", "via" : "myR" }`
+
+In the database, a foreign-key constraint will be added between tables S and R (pointing in the direction of R), represented by a foreign key field 'myR' being created in the object S's data table. This field will hold the primary key of the corresponding row in R for each row in S. One-to-many relationship between objects are specified using relationship fields. A relationship field will generate the appropriate foreign-key relationship fields in the corresponding relation objects.
+
+
+
+###Many-to-Many Relationship
+> As an example, consider a different model describing pet ownership. It has two objects, 'users' and 'pets'. Each user
+ can own several pets, and each pet can have several owners. Thus, the users-pets relationship is many to many relationship between users and pets:
+> First we need to add a new object - 'users-pets' - with one-to-many relationships to both 'pets' and 'users' objects.
+> In 'users-pets':
+
+```json
+"pet": { "object": "pets" }
+"owner": { "object": "users" }
+```
+> In the corresponding objects 'users' and 'pets', we need to add a reference to 'users-pets' to complete the
+one-to-many relationship:
+>In 'pets':
+
+```json
+"owners": {"collection": "users-pets", "via": "pet"}
+```
+>In 'users':
+
+```json
+"pets": {"collection": "users-pets", "via": "owner"}
+```
+> Stated another way: To build a many-to-many model of many-to-many Model:
+> * Start with a Model that contains 2 objects that have no relations between them:
+
+```json
+[
+  {
+    "name": "pets",
+    "fields": {
+      "name": {
+        "type": "string"
+      }
+    }
+  },
+  {
+    "name": "users",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      }
+    }
+  }
+]
+```
+> Add the new object and the relationship fields:
+
+```json
+[
+  {
+    "name": "pets",
+    "fields": {
+      "name": {
+        "type": "string"
+      },
+      "owners": {
+        "collection": "users-pets",
+        "via": "pet"
+      }
+    }
+  },
+  {
+    "name": "users-pets",
+    "fields": {
+      "pet": {
+        "object": "pets"
+      },
+      "owner": {
+        "object": "users"
+      }
+    }
+  },
+  {
+    "name": "users",
+    "fields": {
+      "email": {
+        "type": "string"
+      },
+      "firstName": {
+        "type": "string"
+      },
+      "lastName": {
+        "type": "string"
+      },
+      "pets": {
+        "collection": "users-pets",
+        "via": "owner"
+      }
+    }
+  }
+]
+```
+
+Many-to-Many relationships between objects are added by adding a new object that has a one-to-many relationship with each object participating in the many-to-many relation. Please review [One-to-many relationships](one-to-many-relationship) before continuing with this section.
+
+Say, for example, that we have a many to many relationship between objects R and S. This means that for many rows in R, there are many potentially corresponding rows in S. Where we could handle a one-to-many relationship between R and S using a single column in the underlying database, we can't do so to represent a many-to-many relationship. If we simply add another foreign key to the other side of the relation, we are stuck having to duplicate items that are shared among multiple owners. Instead, we use a mapping table to link the two objects together.
+
+`{"name": "R_TO_S_MAPPING", "fields": { "r": {"object":"R"}}, "s": {"object":"S"} }`
+
+ The mapping table will have two columns - r_id, and s_id - that are then linked to by the source tables via separate one-to-many relationships between the objects themselves and the mapping table. More specifically: S will have a one-to-many relationship with R_TO_S_MAPPING:
+
+`{"name": "R", "fields": {...., "S": { "collection": "R_TO_S_MAPPING", "via":"r"}}}`
+
+ ... and R will also have a one-to-many relationship with R_TO_S_MAPPING
+
+
+`{"name": "S", "fields": {...., "R": { "collection": "R_TO_S_MAPPING", "via":"s"}}}`
+
+...  resulting in a many-to-many relationship between R and S with the relationship managed via table R_TO_S_MAPPING.
