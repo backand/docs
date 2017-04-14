@@ -1602,11 +1602,9 @@ We provide a platform selector, which allows you to only view the kickstarts, ex
 </span></code></pre>
 <p>The Model parent tab allows you to modify your database&rsquo;s model structure, adding new objects and establishing the relationship between them. This can be done using either our GUI model editor, or the JSON schema editor. We also provide a tab demonstrating how to make - and sync - changes to your database using an external database tool (like MySQL Workbench). Below is a brief overview of how to use this interface.</p>
 
-<aside class="notice">
-In addition to the fields supplied by the user, Backand defines an &lsquo;id&rsquo; field, of type integer, which will be used as a primary key for the table.
-</aside>
-
 <aside class="notice">Backand offers support for automated population of created and updated timestamps. Simply add the `createdAt` or `updatedAt` fields to your model, and if they are present Backand will automatically populate them with the timestamp of the most recent POST or PUT request to that object.</aside>
+
+<aside class="warning">In addition to the fields supplied by the user, Backand defines an &lsquo;id&rsquo; field, of type integer, which will be used as a primary key for the table. Backand uses auto-incrementing integers as the default for IDs in your objects, meaning in the default case values provided in the ID field by either the SDK or will be overwritten with the next sequential ID. You&rsquo;ll need to remove this constraint in order to successfully populate the ID field with other data. You can also use an alternative field in the object as the primary key - simply make the designation in SQL, and Backand will update once you sync the database changes.</aside>
 
 <h4 id="model-diagram">Model Diagram</h4>
 
@@ -5496,6 +5494,8 @@ On Demand triggers, on the other hand, happen whenever you like. These are assoc
 <h3 id="setting-up-the-database">Setting up the Database</h3>
 
 <p>To create a UUID primary key column, you&rsquo;ll need to operate within your database directly. Download a tool to connect to your database (like <a href="https://www.mysql.com/products/workbench/">MySQL Workbench</a>), and configure it with the connection settings from <a href="#connecting-to-your-apps-database">your application&rsquo;s dashboard</a>. Once you&rsquo;ve connected your database, you&rsquo;ll next want to create a new field in the object you are changing, using the datatype <code class="prettyprint">char(36)</code>. Once this is done, sync the changes back to your application using the Object -&gt; Model -&gt; Model Database tab in the app dashboard.</p>
+
+<aside class="notice">Backand uses auto-incrementing integers as the default for IDs in your objects, meaning in the default case values provided in the ID field will be overwritten with the next sequential ID. You&rsquo;ll need to remove this constraint in order to successfully populate the ID field with other data. You can also use an alternative field in the object as the primary key - simply make the designation in SQL, and Backand will update once you sync the database changes.</aside>
 
 <h3 id="setting-up-the-before-create-action">Setting up the Before Create action</h3>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="cm">/* globals
