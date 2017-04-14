@@ -890,6 +890,8 @@ Universally-Unique IDentifiers, or UUIDs, solve many of these problems. They obf
 ### Setting up the Database
 To create a UUID primary key column, you'll need to operate within your database directly. Download a tool to connect to your database (like [MySQL Workbench](https://www.mysql.com/products/workbench/)), and configure it with the connection settings from [your application's dashboard](#connecting-to-your-apps-database). Once you've connected your database, you'll next want to create a new field in the object you are changing, using the datatype `char(36)`. Once this is done, sync the changes back to your application using the Object -> Model -> Model Database tab in the app dashboard.
 
+<aside class="notice">Backand uses auto-incrementing integers as the default for IDs in your objects, meaning in the default case values provided in the ID field will be overwritten with the next sequential ID. You'll need to remove this constraint in order to successfully populate the ID field with other data. You can also use an alternative field in the object as the primary key - simply make the designation in SQL, and Backand will update once you sync the database changes.</aside>
+
 ### Setting up the Before Create action
 ```javascript--persistent
 /* globals
