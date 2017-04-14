@@ -395,6 +395,8 @@ The following actions are provided by default for a Backand application. You can
 | Update My App User | Automatic, during user update | This action occurs whenever a registered user is modified. It attempts to make the appropriate modifications in your app's custom `users` object |
 | Delete My App User | Automatic, during user deletion | This action occurs whenever a registered user is deleted. It attempts to remove the associated `users` record for the user being deleted. |
 
+<aside class="warning">It is important to note that security actions, like <code>requestResetPassword</code>, require that emails provided be in a valid email format, such as recipient@example.com. If the addresses are not in the correct format, then calls to the security action will fail, resulting in the emails not being sent in a timely fashion.</aside>
+
 Here's a general informational graphic demonstrating how authentication-related actions integrate with the system:
 
 ![image](images/security_diagram.png)
