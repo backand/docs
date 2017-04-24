@@ -5839,6 +5839,235 @@ In &lsquo;pets&rsquo;:</p>
 
 <p>&hellip;  resulting in a many-to-many relationship between R and S with the relationship managed via table R_TO_S_MAPPING.</p>
 
+<h2 id="enabling-sms-based-authentication">Enabling SMS-based Authentication</h2>
+
+<p>Using Backand&rsquo;s security actions and a service like Twilio, you can implement a token-based authentication system that uses SMS as the delivery method, giving your users the capability to authenticate with a code received via a SMS message on a mobile device.</p>
+
+<h3 id="process-overview">Process overview</h3>
+
+<p>The process we&rsquo;ll follow to authenticate the user in our SMS-based system is as follows:</p>
+
+<ol>
+<li>Call an on-demand action that creates a Token object. The Token object contains a token number, and a session ID. The token number is sent to the provided phone number via SMS, while the session ID is sent back to the caller.</li>
+<li>Call backand&rsquo;s <code class="prettyprint">/token</code> API with a username (any username is acceptable), the SMS code, and the session ID sent back as a result of step 1. WE&rsquo;ll use a security action to verify the provided token data, and flag the token as &ldquo;used&rdquo; to remove it from active status.</li>
+<li>Restrict the token object to only be accessible by Admin users, to prevent malicious third-party intrusions.</li>
+</ol>
+
+<p>For multiple device authentication, you can use the same process - even keeping the same username. See an example of the code at work in CodePen: <a href="http://codepen.io/backand/pen/GZdYgy">http://codepen.io/backand/pen/GZdYgy</a></p>
+
+<h3 id="creating-the-token-object">Creating the Token object</h3>
+<pre class="highlight plaintext"><code>{
+  "name": "tokens",
+  "fields": {
+    "token": {
+      "type": "string",
+      "required": true
+    },
+    "sessionId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "used": {
+      "type": "boolean",
+      "defaultValue": false
+    }
+  }
+}
+</code></pre>
+<p>The JSON to create a token object is provided to the right. This consists of three columns:</p>
+
+<ul>
+<li><code class="prettyprint">token</code> - the token value sent to the user via SMS</li>
+<li><code class="prettyprint">sessionId</code> - the session ID to be used by the client in authenticating the token</li>
+<li><code class="prettyprint">used</code> - a boolean flag indicating whether or not the token has been used</li>
+</ul>
+
+<h3 id="adding-the-sendtoken-action">Adding the sendToken action</h3>
+<pre class="highlight plaintext"><code>//sendToken action
+// Required parameters (to be stored in the 'parameters' object): phone
+'use strict';
+function backandCallback(userInput, dbRow, parameters, userProfile) {
+    // When in debug mode, don't send SMS messages
+    var debug = false;
+
+    // Creates a random number to serve as the Token value
+    var randomNums = function(length) {
+        return Math.random().toString().slice(2,length+2);
+    }
+    // Creates a random string to serve as the session ID.
+    // Replace with a GUID function if you wish to avoid collisions.
+    var randomText = function (length) {
+        if (!length) length = 10;
+        return Math.random().toString(36).slice(2,length);
+      }
+
+    // These are used to construct basic authentication. The first value is
+    // the master token for your app. The second value is a user's user token.
+    // See the docs at http://docs.backand.com/#basic-authentication for more
+    // information on this method of authentication
+    var master_key = 'f8929838-2a2e-4818-a47e-2080ad62fc00';
+    var user_key = 'f9d89228-0336-11e6-b112-0ed7053426cb';
+
+    // Get a session ID and a token
+    var sessionId = randomText(32);
+    var token = randomNums(6);
+
+    // Store the new token in the database using an API call
+    var response = $http({
+        method: "POST",
+        url:CONSTS.apiUrl + "/1/objects/tokens",
+        data: {
+            token: token,
+            sessionId: sesstionId
+        },
+        headers:{'Authorization':'basic ' + btoa (master_key + ':'+ user_key) }
+    });
+
+    // From this point onward, we construct and send an SMS message to the user
+    var ACCOUNT_SID = 'YOUR TWILIO ACCOUNT SID';
+    var AUTH_TOKEN = 'YOUR TWILIO AUTH TOKEN';
+
+    var FROM_PHONE_NUM = 'YOUR TWILIO NUMBER';
+
+    // Construct the endpoint in Twilio's API
+    var basicUrl = 'https://api.twilio.com/2010-04-01/Accounts/' + ACCOUNT_SID + '/';
+    var action = 'Messages.json' // twilio have many services
+
+    // Only send SMS messages when we are not debugging
+    if(!debug){
+        // Send the request to Twilio for processing.
+        var t1 = $http({
+            method: "POST",
+            url: basicUrl + action,
+            data:
+                'Body=' + 'Your verification code is: ' + token +
+                '&amp;To='  + '%2B' + parameters.phone +
+                '&amp;From='+ FROM_PHONE_NUM,
+            headers: {
+                "Accept":"Accept:application/json",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Authorization": 'basic ' + btoa(ACCOUNT_SID + ':' + AUTH_TOKEN)
+            }
+        });
+    }
+
+    //Return the Guid
+      return {"sessionId": sessionId};
+}
+</code></pre>
+<p>To generate the token data for each authentication attempt, we&rsquo;ll use an on-demand server side JavaScript action. As all actions require an owning object, we&rsquo;ll attach this action to the <code class="prettyprint">items</code> object in the database. While it would make more sense to link this action to the <code class="prettyprint">token</code> object, the <code class="prettyprint">token</code> object will have other security restrictions that will interfere with calling this action prior to authentication. So while we have chosen the <code class="prettyprint">items</code> object, it can apply to any object in your system accessible to anonymous users.</p>
+
+<p>Use the JavaScript to the right as the body of the action code.</p>
+
+<aside class="warning">Ensure that you update the values stored in master_key and user_key for your application. More information is in the documentation at <a href="#basic-authentication">/#basic-authentication</a>. You&rsquo;ll also need to create a Twilio account by following the instructions provided <a href="#setup-a-free-account-in-twilio">here</a> - update the ACCOUNT_SID, AUTH_TOKEN, and FROM_PHONE_NUM with the correct values for your account.</aside>
+
+<h3 id="updating-the-security-action-to-allow-for-authentcation">Updating the security action to allow for authentcation</h3>
+<pre class="highlight plaintext"><code>// backandAuthOverride action
+// Required parameters (in the parameters object): token, sessionId
+'use strict';
+function backandCallback(userInput, dbRow, parameters, userProfile) {
+
+    //Example for SSO in OAuth 2.0 standard
+    // Get the token and session ID from the parameters
+    var token = parameters.token;
+    var sessionId = parameters.sessionId;
+
+    // If you're debugging this on the command line, you'll want to throw a new
+    // Error with the session ID
+    //throw new Error(sessionId);
+
+    //Check if token exists and not in use
+    var master_key = 'f8929838-2a2e-4818-a47e-2080ad62fc00';
+    var user_key = 'f9d89228-0336-11e6-b112-0ed7053426cb';
+
+    var res = $http({
+        method: "GET",
+        url: CONSTS.apiUrl + "/1/objects/tokens",
+        params: {
+            filter: [
+            {
+                fieldName: "sessionId",
+                operator: "equals",
+                value: sessionId
+            },
+            {
+                fieldName: "token",
+                operator: "equals",
+                value: token
+            },
+            {
+                fieldName: "used",
+                operator: "equals",
+                value: false
+            },
+            ]
+        },
+        headers:{'Authorization':'basic ' + btoa (master_key + ':'+ user_key) }
+    });
+
+    //Generate a temporary password and username to serve as user input.
+    var result = "deny";
+    if(res.data.length == 1){
+
+      result = "allow";
+
+      //set the username and password
+      var randomText = function (length) {
+        if (!length) length = 10;
+        return Math.random().toString(36).slice(2,length);
+        }
+        userInput.username = randomText(10) + '@domain.com';
+        userInput.passsword = randomText(18);
+
+        //Update the token to mark it used.
+      var response = $http({
+        method: "PUT",
+        url: CONSTS.apiUrl + "/1/objects/tokens/" + res.data[0].id,
+        data: {
+            used: true
+        },
+        headers:{'Authorization':'basic ' + btoa (master_key + ':'+ user_key) }
+      });
+    }
+   //Return results of "allow" or "deny" to override the Backand auth and provide a denied message
+   //Return ignore to ignore this function and use Backand default authentication
+   //Return values in additionalTokenInfo that will be added to Backand auth result.
+   //You may access this later by using the getUserDetails function of the Backand SDK.
+   return {"result": result, "message":"Incorrect information", "additionalTokenInfo":{}};
+}
+</code></pre>
+<p>Next, we need to use the <code class="prettyprint">backandAuthOverride</code> security action to override the standard Backand authentication process. See more info on how this works in the documentation on <a href="#integrating-third-party-security">using third-party security</a>.</p>
+
+<p>Replace the code of the action <code class="prettyprint">backandAuthOverride</code> with the JavaScript on the right.</p>
+
+<aside class="warning">Once again, ensure that you update the values stored in master_key and user_key for your application. More information is in the documentation at <a href="#basic-authentication">/#basic-authentication</a>.</aside>
+
+<h3 id="restricting-access-to-the-token-object">Restricting access to the token object</h3>
+
+<p>As the token object gives users a lot of power within your application, it is important that you restrict access to the <code class="prettyprint">token</code> object in your app&rsquo;s API. Follow these steps to update the <code class="prettyprint">token</code> object&rsquo;s security, restricting accessto administrators only:</p>
+
+<ol>
+<li><p>Open the Security tab of <code class="prettyprint">token</code> object</p></li>
+<li><p>Click on &lsquo;Override the Security Template&rsquo; and set it to <code class="prettyprint">true</code></p></li>
+<li><p>Uncheck all boxes until only the checkboxes for the Admin role remain checked.</p></li>
+</ol>
+
+<h3 id="disable-token-expiration">Disable token expiration</h3>
+
+<p>Finally, you&rsquo;ll want to update your authentication tokens to never expire. This allows your SMS-based authentication to be persistent, meaning the user won&rsquo;t need to periodically respond to a new text message requesting re-authorization unless you explicitly choose so. To modify the token expiration length:</p>
+
+<p>a. Open the <code class="prettyprint">Security &amp; Auth --&gt; Social &amp; Keys</code> menu
+    b. Change Session Length to <code class="prettyprint">Never - use refresh token</code></p>
+
+<h3 id="building-from-here">Building from here</h3>
+
+<p>This approach opens a number of options for authentication, supporting use cases more complex than &ldquo;user is sitting at a computer with a web browser open&rdquo;. You can easily use this approach to implement a two-factor authentication model, for example - by requiring the session token in addition to the user&rsquo;s username and password, you can get more granular control over the user&rsquo;s access to your data. You can also use this to implement persistent authentication in a more private application environment, such as when running an app on a user&rsquo;s mobile device.</p>
+
+<h2 id="contact-us">Contact us</h2>
+
+<p>We&rsquo;d love to hear how you use Backand, and if you have any development or usage patterns that you have found useful! Send us a message with feedback, bug reports, or anything else at <a href="mailto:support@backand.com">support@backand.com</a> for more info.</p>
+
           <h1 id="integrations">Integrations</h1>
 
 <p>The following set of documentation looks at integrating Backand with a number of different types of providers. Also included are some simple Backand-powered applications that can be used either as a starting point for your development, or as a guide for integrating Backand into a larger application.</p>
