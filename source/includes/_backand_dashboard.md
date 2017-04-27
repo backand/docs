@@ -267,11 +267,9 @@ In order to add Google app sign-in, follow these steps:
 1. Check the 'Use your credentials for signing in with Google' toggle/
 1. Open the <a href="https://console.developers.google.com/project" target="\_blank">Google Developer's Console</a>.
     1. In the Google Developer's Console, Click **Create Project**.
-    1. Enter a name and a project ID, or accept the defaults, and click **Create**.
-    1. After the project has been created, expand the **APIs & auth** section on the left sidebar.
-    1. Click **APIs** to view the API Library, which lists all available APIs. The APIs are grouped by product family and popularity. Click on **Google+ API** under **Social APIs**
-    1. Click **Enable API** (You should see this under the Google+ API button).
-    1. In the sidebar on the left, select **Consent screen** and enter your product name (this can be your Backand app name).
+    1. Enter a name, or accept the defaults, and click **Create**.
+    1. Click **Library** to view the API Library, which lists all available APIs. The APIs are grouped by product family and popularity. Click on **Google+ API** under **Social APIs**
+    1. Click **Enable** (You should see this to the right of the Google+ API button).
     1. In the sidebar on the left, select **Credentials**.
     1. Click **Create credentials** and select  **OAuth client ID**
     1. Click  **Configure consents screen** tab on the right panel and enter the Product name, Privacy policy URL (https://www.backand.com)
@@ -283,7 +281,7 @@ In order to add Google app sign-in, follow these steps:
             * **Authorized redirect URIs**: Replace the default example URL with 'https://api.backand.com/1/user/google/auth'
         1. Click **Create** and **Create** again
         1. Record the **Client ID** and **Client secret** from the popup window and click **OK**
-    1. On the left side bar click **Dasboard** make sure Google+ API is listed under the **API** list.
+    1. On the left side bar click **Dasboard** make sure Google+ API is listed under the **API** list. On the right side of the list, make sure that the displayed action text is **disable**, indicating that the API is currently enabled.
 1. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Client ID and Client Secret you copied down in the last step.
 
 For more details on integrating with Google, review their <a href="https://developers.google.com/console/help/new/" target="\_blank">developer documentation</a>.
