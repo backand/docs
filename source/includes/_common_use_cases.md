@@ -1351,7 +1351,7 @@ Use the JavaScript to the right as the body of the action code.
 
 <aside class="warning">Ensure that you update the values stored in master_key and user_key for your application. More information is in the documentation at <a href="#basic-authentication">/#basic-authentication</a>. You'll also need to create a Twilio account by following the instructions provided <a href="#setup-a-free-account-in-twilio">here</a> - update the ACCOUNT_SID, AUTH_TOKEN, and FROM_PHONE_NUM with the correct values for your account.</aside>
 
-### Updating the security action to allow for authentcation
+### Updating the security action to allow for authentication
 ```Javascript-persistent
 // backandAuthOverride action
 // Required parameters (in the parameters object): token, sessionId
