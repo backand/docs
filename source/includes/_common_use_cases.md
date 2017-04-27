@@ -1435,7 +1435,7 @@ Replace the code of the action `backandAuthOverride` with the JavaScript on the 
 <aside class="warning">Once again, ensure that you update the values stored in master_key and user_key for your application. More information is in the documentation at <a href="#basic-authentication">/#basic-authentication</a>.</aside>
 
 ### Restricting access to the token object
-As the token object gives users a lot of power within your application, it is important that you restrict access to the `token` object in your app's API. Follow these steps to update the `token` object's security, restricting accessto administrators only:
+As the token object gives users a lot of power within your application, it is important that you restrict access to the `token` object in your app's API. Follow these steps to update the `token` object's security, restricting access to administrators only:
 
 1. Open the Security tab of `token` object
 
