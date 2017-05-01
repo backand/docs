@@ -2329,16 +2329,19 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 </code></pre>
 <p>A special case of the options hash is the <code class="prettyprint">filter</code> and <code class="prettyprint">sort</code> parameters. These tackle different components of the underlying query call (namely <code class="prettyprint">filter</code> restricts the output based on a set of criteria, while <code class="prettyprint">sort</code> determines the order in which return values are presented) and, due to their complexity, have a non-trivial structure. You can see examples of each on the right.</p>
 
-<p>Filter fields use operators to compare a column in the object with a constant. Available operator values, and valid comparison types, are:
- * <code class="prettyprint">equals</code> - accepts a single value of the appropriate type, test for equality
- * <code class="prettyprint">notEquals</code> - accepts a single value of the appropriate type, tests for inequality
- * <code class="prettyprint">greaterThan</code>, <code class="prettyprint">greaterThanOrEqualsTo</code> - applies to numeric values, accepts a single value, performs the named comparison
- * <code class="prettyprint">lessThan</code>, <code class="prettyprint">lessThanOrEqualsTo</code> - applies to numeric values, accepts a single value, performs the named comparison
- * <code class="prettyprint">startsWith</code> - applies to string data, accepts a single value, and determines if the string starts with the provided operand
- * <code class="prettyprint">contains</code> - applies to string data, accepts a single value, and determines if the operand string is contained in the specified comparison column
- * <code class="prettyprint">notContains</code> - applies to string data, accepts a single value, and determines if the operand string is NOT contained in the specified comparison column
- * <code class="prettyprint">empty</code> - returns true when the field has no value
- * <code class="prettyprint">notEmpty</code> - returns true when the field has data</p>
+<p>Filter fields use operators to compare a column in the object with a constant. Available operator values, and valid comparison types, are:</p>
+
+<ul>
+<li><code class="prettyprint">equals</code> - accepts a single value of the appropriate type, test for equality</li>
+<li><code class="prettyprint">notEquals</code> - accepts a single value of the appropriate type, tests for inequality</li>
+<li><code class="prettyprint">greaterThan</code>, <code class="prettyprint">greaterThanOrEqualsTo</code> - applies to numeric values, accepts a single value, performs the named comparison</li>
+<li><code class="prettyprint">lessThan</code>, <code class="prettyprint">lessThanOrEqualsTo</code> - applies to numeric values, accepts a single value, performs the named comparison</li>
+<li><code class="prettyprint">startsWith</code> - applies to string data, accepts a single value, and determines if the string starts with the provided operand</li>
+<li><code class="prettyprint">contains</code> - applies to string data, accepts a single value, and determines if the operand string is contained in the specified comparison column</li>
+<li><code class="prettyprint">notContains</code> - applies to string data, accepts a single value, and determines if the operand string is NOT contained in the specified comparison column</li>
+<li><code class="prettyprint">empty</code> - returns true when the field has no value</li>
+<li><code class="prettyprint">notEmpty</code> - returns true when the field has data</li>
+</ul>
 
 <p>Sort operations can use only <code class="prettyprint">asc</code> and <code class="prettyprint">desc</code></p>
 
