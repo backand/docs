@@ -2184,7 +2184,7 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
   <span class="p">});</span>
 </code></pre>
-<p>Getting started with the SDK is as simple as configuring your application access details, initializing the SDK, and calling a <code class="prettyprint">getList()</code> function for one of the objects in your system. You configure the SDK with your application&rsquo;s <code class="prettyprint">APP_NAME</code> and <code class="prettyprint">ANONYMOUS_TOKEN</code>. Once you&rsquo;ve called <code class="prettyprint">init()</code> with these values, the SDK will use this data to automaticaly manage authentication headers for API requests to your app&rsquo;s REST API.</p>
+<p>Getting started with the SDK is as simple as configuring your application access details, initializing the SDK, and calling a <code class="prettyprint">getList()</code> function for one of the objects in your system. You configure the SDK with your application&rsquo;s <code class="prettyprint">APP_NAME</code> and <code class="prettyprint">ANONYMOUS_TOKEN</code>. Once you&rsquo;ve called <code class="prettyprint">init()</code> with these values, the SDK will use this data to automatically manage authentication headers for API requests to your app&rsquo;s REST API.</p>
 <pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"totalRows"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -2269,6 +2269,78 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 <p>The SDK is implemented as a wrapper around HTTP calls made to the Backand service. As a result, you can access all of Backand&rsquo;s functionality via cURL calls, provided you configure the header correctly. Review the section on <a href="#the-user-object-and-security">User Authentication and Security</a> for more information on configuring the headers for each call. For JavaScript applications, the SDK takes care of the complexity of managing the authentication headers required to communicate with Backand. Simply utilize the built-in authentication methods to authenticate, and all future requests will include the correct headers.</p>
 
 <p>The SDK is built around a global service object exported from the JavaScript called <code class="prettyprint">backand</code>. You can use properties of this object to interact with the various endpoints. In the next several sections, we&rsquo;ll walk through all of the functionality offered by our SDK. View the pane on the right for sample code that can be used to call each method, as well as sample responses.</p>
+
+<h3 id="options-and-parameters-hashes">Options and Parameters Hashes</h3>
+
+<p>Many calls feature two additional arguments - <code class="prettyprint">options</code> and <code class="prettyprint">parameters</code>. These are used to control different components of the Backand experience.</p>
+
+<h4 id="parameters">Parameters</h4>
+
+<blockquote>
+<p>Parameters are defined as JavaScript objects. Each key:value pair maps to a parameter name, and the value assigned to it</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"field_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"val 1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"field_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"val_2"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Parameters hashes represent field data that is sent to Backand in addition to the data provided for the call. These are then available to any custom actions on that object, in the &ldquo;parameters&rdquo; argument to the entry point function. You can also use the <code class="prettyprint">parameters</code> hash to send additional data along with user registration calls via <code class="prettyprint">backand.signup()</code> - any fields with data here will be sent to the custom User object in your application, and any data columns with the same name will have the parameter value in the <code class="prettyprint">signup()</code> call recorded as their initial value.</p>
+
+<h4 id="options">Options</h4>
+
+<p>Options hashes are lists of options that configure how the Backand platform operates when performing certain actions. For example, when calling <code class="prettyprint">backand.object.getList()</code>, you can supply a page size parameter, which limits the number of records returned. Review individual method calls to see which options are allowed by the SDK.</p>
+
+<h4 id="filter-and-sort-options">Filter and Sort Options</h4>
+
+<blockquote>
+<p>A sort option specifies a set of fields and sort directions as JSON. The conditions will be applied in the order presented. The following call sorts the results on the &ldquo;user&rdquo; field of the &ldquo;items&rdquo; object, in an &ldquo;Ascending&rdquo; order</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="nx">Backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">getList</span><span class="p">(</span><span class="s2">"items"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="s2">"pageSize"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="s2">"pageNumber"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"filter"</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s2">"sort"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"fieldName"</span><span class="p">:</span> <span class="s2">"user"</span><span class="p">,</span>
+      <span class="s2">"order"</span><span class="p">:</span> <span class="s2">"asc"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+</code></pre>
+<blockquote>
+<p>A filter option defines filters for the query as a set of fields and conditions. The query below filters the &ldquo;items&rdquo; object by checking if the &ldquo;name&rdquo; equals &ldquo;Joe&rdquo; and if the ID is less than 5. You combine filters by appending them in the filter list - they are combined with an AND condition in the resulting SQL.</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="nx">Backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">getList</span><span class="p">(</span><span class="s2">"items"</span><span class="p">,</span> <span class="p">{</span>
+  <span class="s2">"pageSize"</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
+  <span class="s2">"pageNumber"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"filter"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"fieldName"</span><span class="p">:</span> <span class="s2">"name"</span><span class="p">,</span>
+      <span class="s2">"operator"</span><span class="p">:</span> <span class="s2">"equals"</span><span class="p">,</span>
+      <span class="s2">"value"</span><span class="p">:</span> <span class="s2">"Joe"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">"fieldName"</span><span class="p">:</span> <span class="s2">"id"</span><span class="p">,</span>
+      <span class="s2">"operator"</span><span class="p">:</span> <span class="s2">"lessThan"</span><span class="p">,</span>
+      <span class="s2">"value"</span><span class="p">:</span> <span class="s2">"5"</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="s2">"sort"</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">})</span>
+</code></pre>
+<p>A special case of the options hash is the <code class="prettyprint">filter</code> and <code class="prettyprint">sort</code> parameters. These tackle different components of the underlying query call (namely <code class="prettyprint">filter</code> restricts the output based on a set of criteria, while <code class="prettyprint">sort</code> determines the order in which return values are presented) and, due to their complexity, have a non-trivial structure. You can see examples of each on the right.</p>
+
+<p>Filter fields use operators to compare a column in the object with a constant. Available operator values, and valid comparison types, are:
+ * <code class="prettyprint">equals</code> - accepts a single value of the appropriate type, test for equality
+ * <code class="prettyprint">notEquals</code> - accepts a single value of the appropriate type, tests for inequality
+ * <code class="prettyprint">greaterThan</code>, <code class="prettyprint">greaterThanOrEqualsTo</code> - applies to numeric values, accepts a single value, performs the named comparison
+ * <code class="prettyprint">lessThan</code>, <code class="prettyprint">lessThanOrEqualsTo</code> - applies to numeric values, accepts a single value, performs the named comparison
+ * <code class="prettyprint">startsWith</code> - applies to string data, accepts a single value, and determines if the string starts with the provided operand
+ * <code class="prettyprint">contains</code> - applies to string data, accepts a single value, and determines if the operand string is contained in the specified comparison column
+ * <code class="prettyprint">notContains</code> - applies to string data, accepts a single value, and determines if the operand string is NOT contained in the specified comparison column
+ * <code class="prettyprint">empty</code> - returns true when the field has no value
+ * <code class="prettyprint">notEmpty</code> - returns true when the field has data</p>
+
+<p>Sort operations can use only <code class="prettyprint">asc</code> and <code class="prettyprint">desc</code></p>
 
 <h3 id="sdk-properties-overview">SDK Properties - overview</h3>
 
@@ -2871,7 +2943,11 @@ curl -X POST -d <span class="s2">"{'email':'user email','password':'user passwor
 <h3 id="getlist">.getList()</h3>
 <pre class="highlight shell tab-shell"><code><span class="c"># Env var $ANONYMOUS_TOKEN should contain your app's anonymous token</span>
 curl -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOKEN</span><span class="s2">"</span> https://api.backand.com/1/objects/items
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// No filters</span>
+</code></pre>
+<blockquote>
+<p>With no filters</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="c1">// No filters</span>
 <span class="nx">backand</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">getList</span><span class="p">(</span><span class="nx">object</span><span class="p">)</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
@@ -2879,9 +2955,11 @@ curl -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOK
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-
-<span class="c1">// With options</span>
-<span class="kd">let</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+</code></pre>
+<blockquote>
+<p>With an options hash</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">returnObject</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
   <span class="na">pageSize</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
   <span class="na">pageNumber</span><span class="p">:</span> <span class="mi">2</span>
@@ -2999,6 +3077,20 @@ curl -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOK
 <td>A hash of filter parameters. Allowed parameters are: <em>pageSize</em>, <em>pageNumber</em>, <em>filter</em>, <em>sort</em>, <em>search</em>, <em>exclude</em>, <em>deep</em>, <em>relatedObjects</em></td>
 </tr>
 </tbody></table>
+
+<h4 id="options-allowed">Options Allowed</h4>
+
+<p>The following options are permitted:</p>
+
+<ul>
+<li>pageSize - an integer representing the number of records to return with each call</li>
+<li>pageNumber - an integer representing the page of results to retrieve</li>
+<li>filter - a filter object</li>
+<li>sort - a sort specification</li>
+<li>search - a search query</li>
+<li>exclude - excludes metadata from the results returned</li>
+<li>deep - Returns related objects to the user</li>
+</ul>
 
 <h3 id="getone">.getOne()</h3>
 <pre class="highlight shell tab-shell"><code><span class="c"># Env var $ANONYMOUS_TOKEN should contain your app's anonymous token</span>
