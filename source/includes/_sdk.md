@@ -201,15 +201,16 @@ Backand.object.getList("items", {
 A special case of the options hash is the `filter` and `sort` parameters. These tackle different components of the underlying query call (namely `filter` restricts the output based on a set of criteria, while `sort` determines the order in which return values are presented) and, due to their complexity, have a non-trivial structure. You can see examples of each on the right.
 
 Filter fields use operators to compare a column in the object with a constant. Available operator values, and valid comparison types, are:
- * `equals` - accepts a single value of the appropriate type, test for equality
- * `notEquals` - accepts a single value of the appropriate type, tests for inequality
- * `greaterThan`, `greaterThanOrEqualsTo` - applies to numeric values, accepts a single value, performs the named comparison
- * `lessThan`, `lessThanOrEqualsTo` - applies to numeric values, accepts a single value, performs the named comparison
- * `startsWith` - applies to string data, accepts a single value, and determines if the string starts with the provided operand
- * `contains` - applies to string data, accepts a single value, and determines if the operand string is contained in the specified comparison column
- * `notContains` - applies to string data, accepts a single value, and determines if the operand string is NOT contained in the specified comparison column
- * `empty` - returns true when the field has no value
- * `notEmpty` - returns true when the field has data
+
+* `equals` - accepts a single value of the appropriate type, test for equality
+* `notEquals` - accepts a single value of the appropriate type, tests for inequality
+* `greaterThan`, `greaterThanOrEqualsTo` - applies to numeric values, accepts a single value, performs the named comparison
+* `lessThan`, `lessThanOrEqualsTo` - applies to numeric values, accepts a single value, performs the named comparison
+* `startsWith` - applies to string data, accepts a single value, and determines if the string starts with the provided operand
+* `contains` - applies to string data, accepts a single value, and determines if the operand string is contained in the specified comparison column
+* `notContains` - applies to string data, accepts a single value, and determines if the operand string is NOT contained in the specified comparison column
+* `empty` - returns true when the field has no value
+* `notEmpty` - returns true when the field has data
 
  Sort operations can use only `asc` and `desc`
 
