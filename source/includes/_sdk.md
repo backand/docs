@@ -56,7 +56,7 @@ backand.object.getList('users')
   });
 ```
 
-Getting started with the SDK is as simple as configuring your application access details, initializing the SDK, and calling a `getList()` function for one of the objects in your system. You configure the SDK with your application's `APP_NAME` and `ANONYMOUS_TOKEN`. Once you've called `init()` with these values, the SDK will use this data to automaticaly manage authentication headers for API requests to your app's REST API.
+Getting started with the SDK is as simple as configuring your application access details, initializing the SDK, and calling a `getList()` function for one of the objects in your system. You configure the SDK with your application's `APP_NAME` and `ANONYMOUS_TOKEN`. Once you've called `init()` with these values, the SDK will use this data to automatically manage authentication headers for API requests to your app's REST API.
 
 ```json
 // Sample response
@@ -143,7 +143,75 @@ The SDK is implemented as a wrapper around HTTP calls made to the Backand servic
 
 The SDK is built around a global service object exported from the JavaScript called `backand`. You can use properties of this object to interact with the various endpoints. In the next several sections, we'll walk through all of the functionality offered by our SDK. View the pane on the right for sample code that can be used to call each method, as well as sample responses.
 
+### Options and Parameters Hashes
+Many calls feature two additional arguments - `options` and `parameters`. These are used to control different components of the Backand experience.
 
+#### Parameters
+> Parameters are defined as JavaScript objects. Each key:value pair maps to a parameter name, and the value assigned to it
+
+```json
+{
+  "field_1": "val 1",
+  "field_2": "val_2"
+}
+```
+
+Parameters hashes represent field data that is sent to Backand in addition to the data provided for the call. These are then available to any custom actions on that object, in the "parameters" argument to the entry point function. You can also use the `parameters` hash to send additional data along with user registration calls via `backand.signup()` - any fields with data here will be sent to the custom User object in your application, and any data columns with the same name will have the parameter value in the `signup()` call recorded as their initial value.
+
+#### Options
+
+Options hashes are lists of options that configure how the Backand platform operates when performing certain actions. For example, when calling `backand.object.getList()`, you can supply a page size parameter, which limits the number of records returned. Review individual method calls to see which options are allowed by the SDK.
+
+#### Filter and Sort Options
+> A sort option specifies a set of fields and sort directions as JSON. The conditions will be applied in the order presented. The following call sorts the results on the "user" field of the "items" object, in an "Ascending" order
+
+```javascript--persistent
+Backand.object.getList("items", {
+  "pageSize": 20,
+  "pageNumber": 1,
+  "filter": [],
+  "sort": [
+    {
+      "fieldName": "user",
+      "order": "asc"
+    }
+  ]
+```
+> A filter option defines filters for the query as a set of fields and conditions. The query below filters the "items" object by checking if the "name" equals "Joe" and if the ID is less than 5. You combine filters by appending them in the filter list - they are combined with an AND condition in the resulting SQL.
+
+```javascript--persistent
+Backand.object.getList("items", {
+  "pageSize": 20,
+  "pageNumber": 1,
+  "filter": [
+    {
+      "fieldName": "name",
+      "operator": "equals",
+      "value": "Joe"
+    },
+    {
+      "fieldName": "id",
+      "operator": "lessThan",
+      "value": "5"
+    }
+  ],
+  "sort": []
+})
+```
+A special case of the options hash is the `filter` and `sort` parameters. These tackle different components of the underlying query call (namely `filter` restricts the output based on a set of criteria, while `sort` determines the order in which return values are presented) and, due to their complexity, have a non-trivial structure. You can see examples of each on the right.
+
+Filter fields use operators to compare a column in the object with a constant. Available operator values, and valid comparison types, are:
+ * `equals` - accepts a single value of the appropriate type, test for equality
+ * `notEquals` - accepts a single value of the appropriate type, tests for inequality
+ * `greaterThan`, `greaterThanOrEqualsTo` - applies to numeric values, accepts a single value, performs the named comparison
+ * `lessThan`, `lessThanOrEqualsTo` - applies to numeric values, accepts a single value, performs the named comparison
+ * `startsWith` - applies to string data, accepts a single value, and determines if the string starts with the provided operand
+ * `contains` - applies to string data, accepts a single value, and determines if the operand string is contained in the specified comparison column
+ * `notContains` - applies to string data, accepts a single value, and determines if the operand string is NOT contained in the specified comparison column
+ * `empty` - returns true when the field has no value
+ * `notEmpty` - returns true when the field has data
+
+ Sort operations can use only `asc` and `desc`
 
 ### SDK Properties - overview
 
@@ -498,6 +566,8 @@ The `.object` property contains functions related to basic database operations t
 # Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
 curl -H "AnonymousToken: $ANONYMOUS_TOKEN" https://api.backand.com/1/objects/items
 ```
+> With no filters
+
 ```javascript
 // No filters
 backand.object.getList(object)
@@ -507,8 +577,10 @@ backand.object.getList(object)
   .catch(err => {
     console.log(err);
   });
+```
+> With an options hash
 
-// With options
+```javascript
 let options = {
   returnObject: true,
   pageSize: 5,
@@ -613,6 +685,19 @@ Fetches a list of records from the specified object. Uses *options* to store fil
 | ---- | ---- | ----------- |
 | object | string | Name of the Back& object to work with |
 | options | object | A hash of filter parameters. Allowed parameters are: *pageSize*, *pageNumber*, *filter*, *sort*, *search*, *exclude*, *deep*, *relatedObjects* |
+
+#### Options Allowed
+The following options are permitted:
+
+* pageSize - an integer representing the number of records to return with each call
+* pageNumber - an integer representing the page of results to retrieve
+* filter - a filter object
+* sort - a sort specification
+* search - a search query
+* exclude - excludes metadata from the results returned
+* deep - Returns related objects to the user
+
+
 
 
 ### .getOne()
