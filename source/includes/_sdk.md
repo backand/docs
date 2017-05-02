@@ -692,14 +692,11 @@ The following options are permitted:
 
 * pageSize - an integer representing the number of records to return with each call
 * pageNumber - an integer representing the page of results to retrieve
-* filter - a filter object
-* sort - a sort specification
-* search - a search query
-* exclude - excludes metadata from the results returned
-* deep - Returns related objects to the user
-
-
-
+* filter - see our primer on [options and parameter hashes](http://docs.backand.com/#options-and-parameters-hashes)
+* sort - see our primer on [options and parameter hashes](http://docs.backand.com/#options-and-parameters-hashes)
+* search - a search query string
+* exclude - boolean, excludes metadata from the results returned
+* deep - boolean, Returns related collection objects to the user along with other response data
 
 ### .getOne()
 ```shell
@@ -779,6 +776,14 @@ Retrieves a single record from the specified object.
 | options | object | A hash of filter parameters. Allowed parameters are: *deep*, *exclude*, *level* |
 
 
+#### Options Allowed
+The following options are permitted:
+
+* exclude - boolean, excludes metadata from the results returned
+* deep - boolean, Returns related collection objects to the user along with other response data
+* level - integer, the number of levels deep to pursue related objects
+
+
 ### .create()
 ```shell
 # Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
@@ -826,6 +831,12 @@ Creates a record with the provided data in the specified object
 | options | object | A hash of filter parameters. Allowed parameters are: *returnObject*, *deep* |
 | parameters | object | A hash of extra data to send along with the "GET" request. This is provided to actions that trigger off of a Read call |
 
+#### Options Allowed
+The following options are permitted:
+
+* deep - boolean, Returns related collection objects to the user along with other response data
+* returnObject - boolean, when true the full object is returned after the create call. When false, only the ID is returned.
+
 ### .update()
 ```shell
 # Env var $ANONYMOUS_TOKEN should contain your app's anonymous token
@@ -870,6 +881,11 @@ Updates a record with the specified ID in the specified object with the provided
 | options | object | A hash of filter parameters. Allowed parameters are: *returnObject*, *deep* |
 | parameters | object | A hash of extra data to send along with the "GET" request. This is provided to actions that trigger off of a Read call |
 
+#### Options Allowed
+The following options are permitted:
+
+* deep - boolean, Returns related collection objects to the user along with other response data
+* returnObject - boolean, when true the full object is returned after the update call. When false, only the ID is returned.
 
 ### .remove()
 ```shell
