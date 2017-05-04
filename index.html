@@ -6185,6 +6185,30 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 <p>This approach opens a number of options for authentication, supporting use cases more complex than &ldquo;user is sitting at a computer with a web browser open&rdquo;. You can easily use this approach to implement a two-factor authentication model, for example - by requiring the session token in addition to the user&rsquo;s username and password, you can get more granular control over the user&rsquo;s access to your data. You can also use this to implement persistent authentication in a more private application environment, such as when running an app on a user&rsquo;s mobile device.</p>
 
+<h2 id="reducing-backand-compute-usage">Reducing Backand Compute usage</h2>
+
+<p>One common cost center for developers using the Backand platform is the Backand Compute Unit. These Units accrue as a result of API calls and other requests to the Backand platform, and reflect the computing effort expended by Backand to perform the requested operations. Below, we&rsquo;ll look at some strategies you can use to mitigate the accrual of Backand Compute Units, letting you more easily mitigate costs and resource usage within your Backand application.</p>
+
+<h3 id="strategy-1-reduce-the-number-of-calls">Strategy 1 - Reduce the number of calls</h3>
+
+<p>Backand Compute Units are directly proportional to the number of API calls you make. As such, the most obvious strategy is to reduce the number of calls you make to the API. Some of this can be managed via standard caching and code optimization techniques, simply storing data that changes less frequently instead of fetching it from the server every time it is called. But you can also make use of Backand to reduce the amount of API calls necessary to perform common tasks. The Bulk endpoint, for example, allows you to combine up to 1,000 API requests into a single API call, reducing the cost of executing these API requests by that same 1,000 factor. See more information on making bulk requests <a href="#bulk-operations">here</a>.</p>
+
+<h3 id="strategy-2-combine-multiple-calls-into-an-action">Strategy 2 - Combine multiple calls into an Action</h3>
+
+<p>A unique quirk of the Backand platform is that performing complex code in a custom on-demand action only counts as a single Backand compute unit. So if you are able, consolidate related Backand API requests into calls that take place within a custom action. There&rsquo;s no limit on the number of calls you can make, and through the use of parameters you can achieve most of the tasks you&rsquo;d need separate API requests to accomplish.</p>
+
+<h3 id="strategy-3-make-use-of-a-plan-included-test-app">Strategy 3 - Make use of a plan-included test app</h3>
+
+<p>If your plan allows for it, you may receive a test app allowance with your Backand subscription. These test apps are not billed, and are ideal for a development platform. Once you&rsquo;ve finished developing your application, you can port the changes to your production instance, to ensure you are ready to serve your content to your users. Review our <a href="http://backand.com/pricing">pricing page</a> to see what types of options are included with your current package, and whether it makes sense to upgrade your subscription plan.</p>
+
+<h3 id="strategy-4-move-database-updates-into-queries">Strategy 4 - Move database updates into queries</h3>
+
+<p>Similar to moving multiple API requests into a single action, you can also consolidate multiple table updates into a single Query. Simply modify the query to perform multiple reads or updates, and return the results you want back to your calling code. Like custom actions, you&rsquo;ll only incur a usage charge for a single call, even if the query is making dozens of updates each time it is called.</p>
+
+<h3 id="keeping-an-eye-to-resource-utilization">Keeping an eye to resource utilization</h3>
+
+<p>Backand Compute Units can be troublesome to manage, but if you treat them like any other computing resource they are capable of being optimized along a number of vectors. If none of the strategies above help your specific use case, <a href="#contact-us">contact us</a> to discuss other alternative solutions - we are always willing to help, and want to help you get the most out of your usage of the Backand platform.</p>
+
 <h2 id="contact-us">Contact us</h2>
 
 <p>We&rsquo;d love to hear how you use Backand, and if you have any development or usage patterns that you have found useful! Send us a message with feedback, bug reports, or anything else at <a href="mailto:support@backand.com">support@backand.com</a> for more info.</p>
