@@ -1452,6 +1452,24 @@ Finally, you'll want to update your authentication tokens to never expire. This 
 ### Building from here
 This approach opens a number of options for authentication, supporting use cases more complex than "user is sitting at a computer with a web browser open". You can easily use this approach to implement a two-factor authentication model, for example - by requiring the session token in addition to the user's username and password, you can get more granular control over the user's access to your data. You can also use this to implement persistent authentication in a more private application environment, such as when running an app on a user's mobile device.
 
+## Reducing Backand Compute usage
+
+One common cost center for developers using the Backand platform is the Backand Compute Unit. These Units accrue as a result of API calls and other requests to the Backand platform, and reflect the computing effort expended by Backand to perform the requested operations. Below, we'll look at some strategies you can use to mitigate the accrual of Backand Compute Units, letting you more easily mitigate costs and resource usage within your Backand application.
+
+### Strategy 1 - Reduce the number of calls
+Backand Compute Units are directly proportional to the number of API calls you make. As such, the most obvious strategy is to reduce the number of calls you make to the API. Some of this can be managed via standard caching and code optimization techniques, simply storing data that changes less frequently instead of fetching it from the server every time it is called. But you can also make use of Backand to reduce the amount of API calls necessary to perform common tasks. The Bulk endpoint, for example, allows you to combine up to 1,000 API requests into a single API call, reducing the cost of executing these API requests by that same 1,000 factor. See more information on making bulk requests [here](#bulk-operations).
+
+### Strategy 2 - Combine multiple calls into an Action
+A unique quirk of the Backand platform is that performing complex code in a custom on-demand action only counts as a single Backand compute unit. So if you are able, consolidate related Backand API requests into calls that take place within a custom action. There's no limit on the number of calls you can make, and through the use of parameters you can achieve most of the tasks you'd need separate API requests to accomplish.
+
+### Strategy 3 - Make use of a plan-included test app
+If your plan allows for it, you may receive a test app allowance with your Backand subscription. These test apps are not billed, and are ideal for a development platform. Once you've finished developing your application, you can port the changes to your production instance, to ensure you are ready to serve your content to your users. Review our [pricing page](http://backand.com/pricing) to see what types of options are included with your current package, and whether it makes sense to upgrade your subscription plan.
+
+### Strategy 4 - Move database updates into queries
+Similar to moving multiple API requests into a single action, you can also consolidate multiple table updates into a single Query. Simply modify the query to perform multiple reads or updates, and return the results you want back to your calling code. Like custom actions, you'll only incur a usage charge for a single call, even if the query is making dozens of updates each time it is called.
+
+### Keeping an eye to resource utilization
+Backand Compute Units can be troublesome to manage, but if you treat them like any other computing resource they are capable of being optimized along a number of vectors. If none of the strategies above help your specific use case, [contact us](#contact-us) to discuss other alternative solutions - we are always willing to help, and want to help you get the most out of your usage of the Backand platform.
 
 ## Contact us
 We'd love to hear how you use Backand, and if you have any development or usage patterns that you have found useful! Send us a message with feedback, bug reports, or anything else at [support@backand.com](mailto:support@backand.com) for more info.
