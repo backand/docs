@@ -1452,7 +1452,7 @@ Finally, you'll want to update your authentication tokens to never expire. This 
 ### Building from here
 This approach opens a number of options for authentication, supporting use cases more complex than "user is sitting at a computer with a web browser open". You can easily use this approach to implement a two-factor authentication model, for example - by requiring the session token in addition to the user's username and password, you can get more granular control over the user's access to your data. You can also use this to implement persistent authentication in a more private application environment, such as when running an app on a user's mobile device.
 
-## Reducing Backand Compute usage
+## Reducing Backand Compute Usage
 
 One common cost center for developers using the Backand platform is the Backand Compute Unit. These Units accrue as a result of API calls and other requests to the Backand platform, and reflect the computing effort expended by Backand to perform the requested operations. Below, we'll look at some strategies you can use to mitigate the accrual of Backand Compute Units, letting you more easily mitigate costs and resource usage within your Backand application.
 
