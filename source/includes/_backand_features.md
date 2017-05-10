@@ -640,6 +640,8 @@ The function parameters are:
 * `CONSTS`: Primarily used to obtain the API URL from `CONSTS.apiUrl`
 * `config`: Global configuration. You can maintain a global JSON configuration for your app. Your JSON configuration is consumed in the Config action. To update the configuration JSON, go to section `General` in the `Settings` menu on the Backand dashboard.
 * `socket`: `socket` is an object that allows you to send real-time communication events and data to the client. `socket` has 3 methods: `emitUsers`, `emitRole`, and `emitAll`. Refer back to our documentation on [Realtime Database Communication here](#realtime-database-communications) for more information.
+* `files`: A file handler, which performs uploads and deletion of files
+* `request`: Details of the current HTTP request
 
 #### Making HTTP Requests from a custom action
 ```javascript
