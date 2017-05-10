@@ -637,11 +637,14 @@ The function parameters are:
 * `dbRow`: This parameter is populated in After Create, Update, and Delete automated actions, and if you supply an optional ID to an On Demand action. The dbRow parameter will contain the row's entry in the database prior to any changes made.
 * `parameters`: This parameter represents the variables sent in the query string for the action.
 * `userProfile`: This parameter stores the current username, the user's role, and the access token used by the user to perform the action. It is of the format {"username": "string", "role": "string", "token": "string"}.
+* `files`: A file handler, which performs uploads and deletion of files
+* `request`: Details of the current HTTP request
+
+Additionally, you have access to some global utility objects:
+
 * `CONSTS`: Primarily used to obtain the API URL from `CONSTS.apiUrl`
 * `config`: Global configuration. You can maintain a global JSON configuration for your app. Your JSON configuration is consumed in the Config action. To update the configuration JSON, go to section `General` in the `Settings` menu on the Backand dashboard.
 * `socket`: `socket` is an object that allows you to send real-time communication events and data to the client. `socket` has 3 methods: `emitUsers`, `emitRole`, and `emitAll`. Refer back to our documentation on [Realtime Database Communication here](#realtime-database-communications) for more information.
-* `files`: A file handler, which performs uploads and deletion of files
-* `request`: Details of the current HTTP request
 
 #### Making HTTP Requests from a custom action
 ```javascript
