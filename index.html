@@ -994,14 +994,14 @@ Missing client code example:</p>
 </code></pre>
 <p>You can run standard JavaScript on the server. It runs on the <a href="http://en.wikipedia.org/wiki/V8_(JavaScript_engine)">V8 engine</a>. To execute the JavaScript action, put your code into the following function:</p>
 
-<p>The function parameters are:</p>
+<p>The function parameters are selected from the following list:</p>
 
 <ul>
 <li><code class="prettyprint">userInput</code>: This parameter is only provided for Create and Update actions, and is the object that was sent to the action. It is null for Delete actions, as well as for On Demand actions.</li>
 <li><code class="prettyprint">dbRow</code>: This parameter is populated in After Create, Update, and Delete automated actions, and if you supply an optional ID to an On Demand action. The dbRow parameter will contain the row&rsquo;s entry in the database prior to any changes made.</li>
 <li><code class="prettyprint">parameters</code>: This parameter represents the variables sent in the query string for the action.</li>
 <li><code class="prettyprint">userProfile</code>: This parameter stores the current username, the user&rsquo;s role, and the access token used by the user to perform the action. It is of the format {&ldquo;username&rdquo;: &ldquo;string&rdquo;, &ldquo;role&rdquo;: &ldquo;string&rdquo;, &ldquo;token&rdquo;: &ldquo;string&rdquo;}.</li>
-<li><code class="prettyprint">files</code>: A file handler, which performs uploads and deletion of files</li>
+<li><code class="prettyprint">files</code>: A file handler, which performs uploads and deletion of files (file actions)</li>
 <li><code class="prettyprint">request</code>: Details of the current HTTP request</li>
 </ul>
 
