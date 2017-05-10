@@ -631,13 +631,13 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 You can run standard JavaScript on the server. It runs on the [V8 engine](http://en.wikipedia.org/wiki/V8_(JavaScript_engine)). To execute the JavaScript action, put your code into the following function:
 
 
-The function parameters are:
+The function parameters are selected from the following list:
 
 * `userInput`: This parameter is only provided for Create and Update actions, and is the object that was sent to the action. It is null for Delete actions, as well as for On Demand actions.
 * `dbRow`: This parameter is populated in After Create, Update, and Delete automated actions, and if you supply an optional ID to an On Demand action. The dbRow parameter will contain the row's entry in the database prior to any changes made.
 * `parameters`: This parameter represents the variables sent in the query string for the action.
 * `userProfile`: This parameter stores the current username, the user's role, and the access token used by the user to perform the action. It is of the format {"username": "string", "role": "string", "token": "string"}.
-* `files`: A file handler, which performs uploads and deletion of files
+* `files`: A file handler, which performs uploads and deletion of files (file actions)
 * `request`: Details of the current HTTP request
 
 Additionally, you have access to some global utility objects:
