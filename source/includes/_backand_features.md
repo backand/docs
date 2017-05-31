@@ -10,10 +10,10 @@ This section contains documentation on the features offered by Backand. We will 
 
 ## The User Object and Security
 
-This section describes how to manage your app's users within Backand's user security paradigm. An important element to note up front is that, by default, [Backand](https://www.backand.com) provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand's database, and as such cannot partake of your app's custom logic. The second user object is offered in the default data model for a Backand application, and is titled 'users'. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see [Link your app's users with Backand's registered users](#link-your-apps-users-with-backands-registered-users) for more info). We highly recommend running the [todos-with-users app](https://github.com/backand/todos-with-users) in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app's data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application's objects.
+This section describes how to manage your app's users within Backand's user security paradigm. An important element to note up front is that, by default, [Backand](https://www.backand.com) provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand's database, and as such cannot partake of your app's custom logic. The second user object is offered in the default data model for a Backand application, and is titled `users`. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see [Link your app's users with Backand's registered users](#link-your-apps-users-with-backands-registered-users) for more info). We highly recommend running the [todos-with-users app](https://github.com/backand/todos-with-users) in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app's data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application's objects.
 
 ### Authentication with OAuth 2.0
-```shell
+```shell--persistent
 # To obtain an access token using a username and password, use the following
 # command. This uses environment variables to ease presentation of the
 # information, and supplies the fields as data arguments to the cURL command.
@@ -45,7 +45,7 @@ The default authentication setup for [Backand](https://www.backand.com) applicat
 ```json
 // Sample response
 {
-  "access_token": "ThuuBiuTS9grkzbPW-yL5z3dd_Q48-Ml4oHCffgbWRUDr1rFIY_nYIqaL-he09sCicEVNE_wJCxZ4QS0E3SlG-fZOSOOHDlzORrVagcGvBtZoqTByvhiXgcwXPOkmeD8U1bZaAi8vLEr_wUY6f_rse9o8GKs5cjRpBZENurSytsXhXsv6XpSFcZUr5n7Za_nu5HDth2bOuM_2e-Kn3yOc2GDz9qXjZm_UQ9oMfvJnzjY16Qsw7_ynZAbRa4m6lRtXwsHunqv_R_8uhMGNwTxyg",
+  "access_token": "access token string here",
   "token_type": "bearer",
   "expires_in": 86399,
   "appName": "bkndkickstart",
@@ -59,25 +59,33 @@ The default authentication setup for [Backand](https://www.backand.com) applicat
 }
 ```
 
-The call to the token endpoint returns all of the information you need to use a token to connect to your Backand application. The access_token provided is authenticated with a single user in your app, and is provided an expiration time in seconds. You are also given details of the authenticated user, including their username, first and last name, user ID, and their security role.
+The call to the token endpoint returns all of the information you need to use a token to connect to your Backand application. The `access_token` provided is authenticated with a single user in your app, and is provided an expiration time in seconds. You are also given details of the authenticated user, including their username, first and last name, user ID, and their security role.
 ### Basic authentication
+> You can perform basic authentication via an authorization header:
+
 ```shell
-# Perform basic authentication via header
 curl https://api.backand.com/1/objects/items -u <master key>:<user key>
-# Perform basic authentication using URL parameters
+```
+> You can also send the authorization header as a query param
+
+```shell
 curl https://api.backand.com/1/objects/items?authorization=basic+<master key>:<user key>
 ```
 
-You can use [basic auth](https://en.wikipedia.org/wiki/Basic_access_authentication) to ease working with other servers - simply enter the master key as the username, and the user key as the password. You can use this approach to obtain a list of Items by using the following API call:
+```javascript
+// Javascript requests made through the SDK handle authentication automatically.
+// Simply use the backand.signin method to authenticate your user, or specify
+// an anonymous access token in backand.init()
+```
 
-You can also send the basic authorization token through as a query string.
+You can use [basic auth](https://en.wikipedia.org/wiki/Basic_access_authentication) to ease working with other servers - simply enter the master key as the username, and the user key as the password. You can use this approach to obtain a list of Items by using the cURL commands to the right.
 
-<aside class="warning">Do not use this method from the client side as it exposes your app's secret token, which can be used to perform any action in your system. This method is for server-side calls only.</aside>
+<aside class="warning"><strong>Do not use this method from the client side</strong> as it exposes your app's secret token, which can be used to perform any action in your system. This method is for server-side calls only.</aside>
 
 ### Obtaining the user key
 Our Basic authentication relies upon a User key, which is then used as a password while authenticating with the app's Master token. To obtain the user key:
 
-* Navigate to **Security & Auth -> Registered Users**
+* Navigate to **Security -> Registered Users**
 * Select the user who will own the action about to take place
 * Click on the "key" icon to obtain the user key
 
@@ -91,7 +99,9 @@ curl https://api.backand.com/1/objects/items -H "AnonymousToken: <anonymous toke
 curl https://api.backand.com/1/objects/items?AnonymousToken=<anonymous token>
 ```
 
-Backand also offers Anonymous Access, which allows you to access your application without the need to authenticate via username and password. By passing this value in a request header (e.g. AnonymousToken=<your token here>) you can perform api actions for your application
+Backand also offers Anonymous Access, which allows you to access your application without the need to authenticate via username and password. By passing this value in a request header (e.g. AnonymousToken=<your token here>) you can perform api actions for your application. You can find your anonymous access token in the application dashboard at **Security -> Configuration**
+
+![image](images/anonymous_token.png)
 
 ### User Registration
 
@@ -106,7 +116,7 @@ These users are assigned a default role 'User', which has full CRUD access to yo
   userInput.Role = 'Public';
 ```
 <aside class="notice">
-For security reasons you cannot change the role from the sign-up API - this can only be accomplished either by having an admin change the appropriate settings on the Security & Auth -&gt; Registered Users page, or by creating a custom server-side action with Admin rights (see JavaScript tab).
+For security reasons you cannot change the role from the sign-up API - this can only be accomplished either by having an admin change the appropriate settings on the <strong>Security -&gt; Registered Users</strong> page, or by creating a custom server-side action with Admin rights (see JavaScript tab).
 </aside>
 
 ### Saving Additional Parameters During Sign-up
@@ -123,31 +133,31 @@ For security reasons you cannot change the role from the sign-up API - this can 
 In many cases, we would like to collect additional information from the user during sign up. We can automatically populate the related fields on the Users object as a part of the sign-up request by using the `parameters` parameter for the sign-up call. The server, during the 'Create My App User' action, will translate these key-value pairs into the appropriate fields on the 'Users' object - as such, it is important that all fields provided already exist on the Users object. The following example demonstrates specifying a user's "company" name as a part of the sign-up:
 
 1. Update the Model and add the field `company` to the `users` object:
-    1. Go to `Objects` --> `Model`
+    1. Go to **Database --> Model**
     2. Add this line as a data field in the `users` object model: `"company": {"type": "string"}`
     3. Click on `Validate & Update`
 2. When calling `Backand.signup()`, send the `parameters` object through as the last input parameter for the request. The code will resemble the call on the right:
-3. There's no need for server-side modifications - values for "parameters" are handled automatically by the action 'Create My App User' (found in the `Security Actions` section, under `Security & Auth`).
+3. There's no need for server-side modifications - values for "parameters" are handled automatically by the action 'Create My App User' (found on the **Security -> Security Actions** page).
 4. Modify the UI to collect the `company` name for the user.
 
 Now, when sign-up is completed, you can see the company name in the `users` object's Data tab.
 
 ### Private app
 
-You can change your app, which is public by default, to be private. This can be changed in the dashboard by setting the Public flag for your application to 'false' in the Security & Auth --> Configuration menu. For a private app, the registration steps are as follow:
+You can change your app, which is public by default, to be private. This prevents users from signing up via your web application, meaning that all users must be invited in order to authenticate with your app. This can be changed in the dashboard by setting the Public flag for your application to 'false' on the **Security --> Configuration** page. For a private app, the registration steps are as follow:
 
-* First, set your app's registration page on the Security & Auth --> Configuration page.
+* First, set your app's registration page on the **Security --> Configuration** page.
 * Next, if you wish to use automated email verification, enable Sign-up Email Verification on the Security & Auth --> Configuration page
-* Once you have a registration page, enter the emails to invite on the Security & Auth --> Users page.
+* Once you have a registration page, enter the emails to invite on the **Security --> Registered Users** page.
 * Once you have entered the emails you wish to invite, click the 'Invite User(s)' button. This will send an email to each new user with a link to the registration page that you created.
 
 ### Email verification process
 
-The user enters his/her email, name and password on your registration page:
+To start with, the user enters his/her email, name and password on your registration page:
 
 * After the user submits their registration, Backand sends a verification email to authenticate the user's identity if Sign-up Email Verification is enabled
 * If Sign-up Email Verification is not enabled, at this point registration is complete.
-* If Sign-up Email Verification is enabled, after the user clicks on the link in the verification email, Backand completes the registration process and redirects to the 'Custom Verified Email Page' URL for your application. Configure this on the Security & Auth --> Configuration page  
+* If Sign-up Email Verification is enabled, after the user clicks on the link in the verification email, Backand completes the registration process and redirects to the 'Custom Verified Email Page' URL for your application. Configure this on the **Security --> Configuration** page  
 
 For more information, see our [Vanilla SDK documentation](#vanilla-sdk)
 
