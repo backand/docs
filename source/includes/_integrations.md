@@ -31,7 +31,7 @@ Once you've published your application on a web server, you have a few more step
 This tutorial gives you a quick look at the power offered by Backand's back end tools and APIs. You'll explore creating a database and implementing a RESTful API for that data with zero effort. You'll customize your application's security and learn how to restrict users based on role and based on endpoint. You'll even spend some time working with custom server-side actions that execute on-demand. By the time you have finished the tutorial, you will have implemented a secure ToDo list application with user authentication – and all with minimal effort!
 
 ## Ionic With Backand
-Today many AngularJS developers are using Ionic to build the user interface for their mobile apps.  AngularJS provides the app structure.  But these mobile apps still need a backend.  In this blog we’ll give you the recipe you need to build an Ionic mobile app with Backand’s Backend as a Service (BaaS). Review the working demo [here](https://github.com/backand/simple-rest-ionic).
+Today many AngularJS developers are using Ionic to build the user interface for their mobile apps.  AngularJS provides the app structure.  But these mobile apps still need a backend.  In this section we’ll give you the recipe you need to build an Ionic mobile app with Backand’s Backend as a Service (BaaS). Review the working demo [here](https://github.com/backand/simple-rest-ionic).
 
 ### What is Ionic?
 
@@ -264,7 +264,7 @@ Once you've integrated with Facebook, you can use Facebook's [Graph API](https:/
 ### Obtaining the Facebook User ID
 To store the user's Facebook user ID (FUID) in Backand, follow these steps:
 
-1. Open Security & Auth >> Security actions menu and edit the **"beforeSocialSignup"** action
+1. Open **Security --> Security Actions** menu and edit the **"beforeSocialSignup"** action
 1. Change the **Where Condition** of this action to "true" (this is set at the bottom of the content pane)
 1. Uncomment the provided code that saves the Facebook user id: `userInput.fuid = parameters.socialProfile.additionalValues.id;`
 1. Save the Action
@@ -785,7 +785,7 @@ return $http ({
 
 ```
 
-Next, add the client-side JavaScript code to your app's code base. Replace ``<your object name>`` with the object associated with the action you created and `<your destination email>` with the target recipient.
+Next, add the client-side JavaScript code to your app's code base. Replace `<your object name>` with the object associated with the action you created and `<your destination email>` with the target recipient.
 
 Once this is done, you'll be able to easily trigger emails via SendGrid using Backand's custom action API.
 
@@ -795,12 +795,6 @@ Once you've decided how you want to monetize your web app, you'll likely begin l
 A quick note: The below text was adapted from the [PayPal developer docs](https://developer.paypal.com/docs/integration/direct/make-your-first-call/#make-an-api-call), and as such may not be directly usable without some modification. Please study the code to understand the content, rather than simply trying to cut-and-paste the client-side components.
 
 PayPal provides many options for accepting payments, including Express Checkout, transactions, refunds, payment with agreementId, and so on. In this example, we will implement Express Chackout as it is the simplest and most straightforward method to enable.
-
-### Why use a vendor?
-
-The first question that you are likely asking is "Why should I use a third-party vendor for my payment system?" The short answer, albeit not a very good one, is that a solid and reliable payments platform is not only extremely challenging, but extremely expensive as well. Setting aside the data concerns (which we have covered elsewhere), you'll need significant liquid assets available to even begin working with financial systems directly. Furthermore, you'll be accepting full fraud risk for your users – if any of your users tries to use your payments system for illegal or unethical ends, then you will be liable for the damages caused. These are just a few of the many concerns that would come with building a payment system from the ground up without using a payment vendor.
-
-With a payment vendor, on the other hand, you are able to offload all of the above issues to the vendor, allowing you to focus instead on integrating payments into your application. PayPal performs underwriting (which handles any potentially fraudulent individuals by simply preventing them from accepting payments), payment processing, communication with financial systems, and all necessary reporting as the transactions move through the various banks and financial APIs. While it would be possible to perform all of this work yourself, you'll save yourself years of labor by simply leveraging someone else's efforts.
 
 ### Server-side Action
 > Server-side Action Code
@@ -1117,7 +1111,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 Twilio has an API that you can use to send SMS. By translating their provided cURL commands to Angular $http calls, you can easily integrate Twilio with Backand.
 
-To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The example code demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](#custom-actions). Name the action `TwilioSendSMS`, add `to` and `message` to the Input Parameters, and paste the server-side code in the code editor.
+To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The example code demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects (**Database --> Objects --> <object name>, actions tab**), and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](#custom-actions). Name the action `TwilioSendSMS`, add `to` and `message` to the Input Parameters, and paste the server-side code in the code editor.
 
 In the example app we're building, the app's users can send a SMS message to a phone number. The phone number is sent, from the client side, in the `to` parameter, while the message content is sent in the `message` parameter.
 
@@ -1148,7 +1142,8 @@ return $http ({
 Next, add the client-side JavaScript code to your app's code base. Replace `<your object name>` with the object associated with the action you created and `<your destination phone number>` with a vaild phone number (when using Twilio trial account you first need to validate this phone number), Once this is done, you'll be able to easily trigger SMS via Twilio using Backand's custom action API.
 
 ## Netmera
-Netmera is a cloud based service that can be used to send Push Notifications to various platforms, among other services such as Exception reporting. It offers a friendly site where campaigns ()push notifications) can be managed and customized and a REST API to send push notifications automatically. In this guide you can find out how to get started on Netmera and send push notifications with Backand.
+Netmera is a cloud based service that can be used to send Push Notifications to various platforms, among other services such as Exception reporting. It offers a friendly site where campaigns (push notifications) can be managed and customized and a REST API to send push notifications automatically. In this guide you can find out how to get started on Netmera and send push notifications with Backand.
+
 ### Get Started with Netmera
 1. Register to Netmera
 2. Download the Netmera SDK from [here](https://netmera.readme.io/docs/android-sdk-download) or their [starter app](https://cp.netmera.com/nm/admin/sdkDownload/overview/android/final?isNewProject=true).
@@ -1182,6 +1177,7 @@ Replace ‘your object name’ with the object associated with the action you cr
 
 ## PushWoosh
 Pushwoosh is a cloud based service that can be used to send Push Notifications to various platforms. It offers a friendly site where push notifications can be sent and customized and an API to send push notifications automatically. In this guide you can find out how to get started on PushWoosh with an example app for Android and send push notifications with Backand.
+
 ### Get Started with PushWoosh
 
 1. Register an account in PushWoosh and proceed to create an application. Using the PushWoosh control panel, configure your application to support Android including [configuring GCM (Google Cloud Messaging](http://docs.pushwoosh.com/docs/gcm-configuration))
@@ -1244,7 +1240,7 @@ Follow these steps to build out the back-end to your bot:
 
 2. Create a new app in the Backand dashboard, then navigate to that app's management page.
 
-3. In the new app, open menu **Objects --> Items**, and click on the **Actions** tab. In the **Actions** tab, click on the **Facebook Messenger Bot** template.
+3. In the new app, open menu **Database --> Objects --> Items**, and click on the **Actions** tab. In the **Actions** tab, click on the **Facebook Messenger Bot** template.
 
 4. Click **Save**
 
@@ -1288,8 +1284,8 @@ Once the app page is created, and the app is registered, you need to tell Facebo
 
 
 <aside class="notice">The webhook URL uses Backand's <a href="#basic-authentication">basic authentication</a>.
-You can find the '&lt;master token&gt;' in the <strong>'Security & Auth --> Social & Keys'</strong> section.
-It also requires a '&lt;user key&gt;' for your app - you can find this in the 'Security & Auth --> Team' section. Simply click on the key icon near one of the Admins to obtain the user key.</aside>
+You can find the '&lt;master token&gt;' in the <strong>Security --> Social & Keys</strong> section.
+It also requires a '&lt;user key&gt;' for your app - you can find this in the <strong>Admin --> Team</strong> section. Simply click on the key icon near one of the Admins to obtain the user key.</aside>
 
 * Verify Token: `my_test_token`
 
@@ -1568,7 +1564,7 @@ function receivedPostback(event) {
 
 ## SalesforceIQ
 
-Building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this article, we'll look at integrating a Backand application with Salesforce IQ, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.
+Building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this section, we'll look at integrating a Backand application with Salesforce IQ, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.
 
 ### What is SalesforceIQ?
 [SalesforceIQ](https://www.salesforceiq.com/) is an out-of-the-box CRM solution that quickly gives you access to dynamic information tied into a full CRM solution. With Automatic Data Capture and enterprise-level intelligence under the hood, SalesforceIQ acts like your own personal assistant so you can focus on what matters most: selling. SalesforceIQ, in addition to providing easy integrations with tools like Google and Microsoft Exchange, also gives you the capability to dynamically access and manage your data through a series of robust APIs.
@@ -1640,7 +1636,7 @@ Once you've configured the action to connect to SalesforceIQ, you'll need to cal
 With these changes, you're now able to pull in any and all SalesforceIQ accounts available via their API! You can use a similar pattern to construct additional calls to the SalesforceIQ API - simply replace the URL and parameters in the custom SalesforceIQ action with the URL and parameters for the object you want to retrieve.
 
 ## Salesforce CRM
-As mentioned in our article on integrating with SalesforceIQ, building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this article, we'll look at integrating a Backand application with Salesforce CRM, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.
+As mentioned in our section on integrating with [SalesforceIQ](#salesforceIQ), building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this section, we'll look at integrating a Backand application with Salesforce CRM, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.
 
 ### What is Salesforce CRM?
 [Salesforce CRM](https://www.salesforce.com/crm) is the world's foremost CRM solution, and gives your sales teams the tools they need to close deals. Salesforce CRM is also built in the cloud, meaning that your sales team can increase their productivity and keep the sales pipeline filled with solid leads, all without the need to deploy additional hardware or work around speed limitations. Through Salesforce's [REST API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm ) you can get easy programmatic access to all of your customer data.
@@ -1711,8 +1707,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 }
 ```
 
-We have created an action template that will give you jump start with salesforceCRM. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following is the content of the ready action template call
-**Salesforce CRM** under the **CRM & ERP** section:
+We have created an action template that will give you jump start with salesforceCRM. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following is the content of the ready action template call **Salesforce CRM** under the **CRM & ERP** section:
 
 <aside class="notice">The above code fetches the access token every time you call the action. You can improve the performance of this call by caching the token into a Backand Server-Side Cookie, and only performing the retrieval when the token has expired.</aside>
 
@@ -1822,7 +1817,7 @@ public class BackandConnector {
 }
 ```
 
-As Backand is a web API, it can be used by any application that is built on top of a programming language that can make HTTP requests. As an example of this, in this article we'll look at how to connect a native Android application to a Backand back-end using HTTP calls. We'll cover configuring the connection headers, authenticating with Backand, sending requests, and receiving responses. We'll also take a brief look at how to integrate with other Backand SDK functionality.
+As Backand is a web API, it can be used by any application that is built on top of a programming language that can make HTTP requests. As an example of this, in this section we'll look at how to connect a native Android application to a Backand back-end using HTTP calls. We'll cover configuring the connection headers, authenticating with Backand, sending requests, and receiving responses. We'll also take a brief look at how to integrate with other Backand SDK functionality.
 ### Configuring the Connection
 >This code takes three arguments - appName, userToken, and masterToken - and populates class member variables with this data. These values are then used in constructing the authentication header for each request.
 
@@ -1840,7 +1835,7 @@ public class BackandConnector {
     }
 }
 ```
-To integrate with Backand, you'll need three pieces of information. The first is the app name, which can be found in the Backand dashboard. The second is the app's Master key. This is found in the application dashboard, under Security & Auth -> Social & Keys. Once you've obtained this, you'll also need the User Key. This is a key that is unique to each registered user in your application. It is used to associate the actions being taken in your app with a user, so that you can apply security templates appropriately. Obtain the User Key from Security & Auth -> Registered Users - simply click on the "key" icon next to a user record to obtain the key:
+To integrate with Backand, you'll need three pieces of information. The first is the app name, which can be found in the Backand dashboard. The second is the app's Master key. This is found in the application dashboard, under **Security --> Social & Keys**. Once you've obtained this, you'll also need the User Key. This is a key that is unique to each registered user in your application. It is used to associate the actions being taken in your app with a user, so that you can apply security templates appropriately. Obtain the User Key from **Security -> Registered Users** - simply click on the "key" icon next to a user record to obtain the key:
 
 ![image](images/user_key_icon.png)
 

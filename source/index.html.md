@@ -16,6 +16,7 @@ includes:
   - platform_specific
   - common_use_cases
   - integrations
+  - lambda_launcher
 
 search: true
 ---
@@ -24,6 +25,7 @@ search: true
 
 ##What is Backand?
 Backand is a serverless development and deployment platform. Our goal is to take over the server side, letting you focus on the look, feel, and behavior of your application. We utilize Amazon Lambda and other tools to provide a full-featured back end for your web or mobile application.
+
 Backand's goal is to free up the front end development of web applications by providing a rich, robust, and scalable back end with minimal impact on the development process. Backand provides you with most of what your application needs automatically, offering features like tracking data changes, logging, role-based security, back-office connectivity, and much more. You can even create your own server side actions with JavaScript, running custom server side queries and easily integrating with third party services.
 
 ### Serverless in Every Respect
@@ -40,7 +42,7 @@ Backand [ORM](http://en.wikipedia.org/wiki/Object-relational_mapping) automatica
 Through the flexibility of Backand's API, you have the ability to work with your data at whatever level you desire. You can perform basic [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) operations in a couple ways. In one way you can mimic a SQL database by simply returning a shallow representation of the object, with foreign key references remaining as simple IDs in the response data. However, you can also perform deep queries that resolve all of the underlying data objects into a single set of response data, giving you the level of object detail that you often see with NoSQL databases. With a simple parameter change, you can switch between the two patterns at will.
 
 ## Using cURL with Backand
-```shell
+```shell--persistent
 # Retrieve a list of items from your app
 # This call stores the MASTER_KEY and USER_KEY into environment variables
 # Following this pattern will enhance the security and reliability of any console
@@ -56,7 +58,7 @@ All calls made by our API can also be made on the command line using cURL. You s
 <aside class="warning">Using the "master key" approach is very risky, as it completely bypasses the configured security in your application. We recommend only doing this while troubleshooting and exploring on the server - you should <strong>never</strong> use this technique on the client side unless you are fully aware of the consequences.</aside>
 
 ## Using our SDK with Backand
-```javascript
+```javascript--persistent
 // Initialize the SDK
 backand.init({
   appName: 'APP_NAME',
