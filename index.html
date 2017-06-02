@@ -232,8 +232,9 @@
 
 <h2 id="what-is-backand">What is Backand?</h2>
 
-<p>Backand is a serverless development and deployment platform. Our goal is to take over the server side, letting you focus on the look, feel, and behavior of your application. We utilize Amazon Lambda and other tools to provide a full-featured back end for your web or mobile application.
-Backand&rsquo;s goal is to free up the front end development of web applications by providing a rich, robust, and scalable back end with minimal impact on the development process. Backand provides you with most of what your application needs automatically, offering features like tracking data changes, logging, role-based security, back-office connectivity, and much more. You can even create your own server side actions with JavaScript, running custom server side queries and easily integrating with third party services.</p>
+<p>Backand is a serverless development and deployment platform. Our goal is to take over the server side, letting you focus on the look, feel, and behavior of your application. We utilize Amazon Lambda and other tools to provide a full-featured back end for your web or mobile application.</p>
+
+<p>Backand&rsquo;s goal is to free up the front end development of web applications by providing a rich, robust, and scalable back end with minimal impact on the development process. Backand provides you with most of what your application needs automatically, offering features like tracking data changes, logging, role-based security, back-office connectivity, and much more. You can even create your own server side actions with JavaScript, running custom server side queries and easily integrating with third party services.</p>
 
 <h3 id="serverless-in-every-respect">Serverless in Every Respect</h3>
 
@@ -252,7 +253,7 @@ Backand&rsquo;s goal is to free up the front end development of web applications
 <p>Through the flexibility of Backand&rsquo;s API, you have the ability to work with your data at whatever level you desire. You can perform basic <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> operations in a couple ways. In one way you can mimic a SQL database by simply returning a shallow representation of the object, with foreign key references remaining as simple IDs in the response data. However, you can also perform deep queries that resolve all of the underlying data objects into a single set of response data, giving you the level of object detail that you often see with NoSQL databases. With a simple parameter change, you can switch between the two patterns at will.</p>
 
 <h2 id="using-curl-with-backand">Using cURL with Backand</h2>
-<pre class="highlight shell tab-shell"><code><span class="c"># Retrieve a list of items from your app</span>
+<pre class="highlight shell tab-shell--persistent"><code><span class="c"># Retrieve a list of items from your app</span>
 <span class="c"># This call stores the MASTER_KEY and USER_KEY into environment variables</span>
 <span class="c"># Following this pattern will enhance the security and reliability of any console</span>
 <span class="c"># calls made to the API</span>
@@ -266,7 +267,7 @@ curl https://api.backand.com/1/objects/items?authorization<span class="o">=</spa
 <aside class="warning">Using the &ldquo;master key&rdquo; approach is very risky, as it completely bypasses the configured security in your application. We recommend only doing this while troubleshooting and exploring on the server - you should <strong>never</strong> use this technique on the client side unless you are fully aware of the consequences.</aside>
 
 <h2 id="using-our-sdk-with-backand">Using our SDK with Backand</h2>
-<pre class="highlight javascript tab-javascript"><code><span class="c1">// Initialize the SDK</span>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="c1">// Initialize the SDK</span>
 <span class="nx">backand</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
   <span class="na">appName</span><span class="p">:</span> <span class="s1">'APP_NAME'</span><span class="p">,</span>
   <span class="na">anonymousToken</span><span class="p">:</span> <span class="s1">'ANONYMOUS_TOKEN'</span>
@@ -378,10 +379,10 @@ curl https://api.backand.com/1/objects/items?authorization<span class="o">=</spa
 
 <h2 id="the-user-object-and-security">The User Object and Security</h2>
 
-<p>This section describes how to manage your app&rsquo;s users within Backand&rsquo;s user security paradigm. An important element to note up front is that, by default, <a href="https://www.backand.com">Backand</a> provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand&rsquo;s database, and as such cannot partake of your app&rsquo;s custom logic. The second user object is offered in the default data model for a Backand application, and is titled &lsquo;users&rsquo;. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see <a href="#link-your-apps-users-with-backands-registered-users">Link your app&rsquo;s users with Backand&rsquo;s registered users</a> for more info). We highly recommend running the <a href="https://github.com/backand/todos-with-users">todos-with-users app</a> in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app&rsquo;s data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application&rsquo;s objects.</p>
+<p>This section describes how to manage your app&rsquo;s users within Backand&rsquo;s user security paradigm. An important element to note up front is that, by default, <a href="https://www.backand.com">Backand</a> provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand&rsquo;s database, and as such cannot partake of your app&rsquo;s custom logic. The second user object is offered in the default data model for a Backand application, and is titled <code class="prettyprint">users</code>. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see <a href="#link-your-apps-users-with-backands-registered-users">Link your app&rsquo;s users with Backand&rsquo;s registered users</a> for more info). We highly recommend running the <a href="https://github.com/backand/todos-with-users">todos-with-users app</a> in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app&rsquo;s data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application&rsquo;s objects.</p>
 
 <h3 id="authentication-with-oauth-2-0">Authentication with OAuth 2.0</h3>
-<pre class="highlight shell tab-shell"><code><span class="c"># To obtain an access token using a username and password, use the following</span>
+<pre class="highlight shell tab-shell--persistent"><code><span class="c"># To obtain an access token using a username and password, use the following</span>
 <span class="c"># command. This uses environment variables to ease presentation of the</span>
 <span class="c"># information, and supplies the fields as data arguments to the cURL command.</span>
 <span class="c"># $USERNAME - user name (email address) to authenticate</span>
@@ -412,7 +413,7 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 <h4 id="sample-response">Sample response</h4>
 <pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ThuuBiuTS9grkzbPW-yL5z3dd_Q48-Ml4oHCffgbWRUDr1rFIY_nYIqaL-he09sCicEVNE_wJCxZ4QS0E3SlG-fZOSOOHDlzORrVagcGvBtZoqTByvhiXgcwXPOkmeD8U1bZaAi8vLEr_wUY6f_rse9o8GKs5cjRpBZENurSytsXhXsv6XpSFcZUr5n7Za_nu5HDth2bOuM_2e-Kn3yOc2GDz9qXjZm_UQ9oMfvJnzjY16Qsw7_ynZAbRa4m6lRtXwsHunqv_R_8uhMGNwTxyg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"access token string here"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">86399</span><span class="p">,</span><span class="w">
   </span><span class="s2">"appName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bkndkickstart"</span><span class="p">,</span><span class="w">
@@ -425,26 +426,33 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
   </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>The call to the token endpoint returns all of the information you need to use a token to connect to your Backand application. The access_token provided is authenticated with a single user in your app, and is provided an expiration time in seconds. You are also given details of the authenticated user, including their username, first and last name, user ID, and their security role.</p>
+<p>The call to the token endpoint returns all of the information you need to use a token to connect to your Backand application. The <code class="prettyprint">access_token</code> provided is authenticated with a single user in your app, and is provided an expiration time in seconds. You are also given details of the authenticated user, including their username, first and last name, user ID, and their security role.</p>
 
 <h3 id="basic-authentication">Basic authentication</h3>
-<pre class="highlight shell tab-shell"><code><span class="c"># Perform basic authentication via header</span>
-curl https://api.backand.com/1/objects/items -u &lt;master key&gt;:&lt;user key&gt;
-<span class="c"># Perform basic authentication using URL parameters</span>
-curl https://api.backand.com/1/objects/items?authorization<span class="o">=</span>basic+&lt;master key&gt;:&lt;user key&gt;
+
+<blockquote>
+<p>You can perform basic authentication via an authorization header:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl https://api.backand.com/1/objects/items -u &lt;master key&gt;:&lt;user key&gt;
 </code></pre>
-<p>You can use <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">basic auth</a> to ease working with other servers - simply enter the master key as the username, and the user key as the password. You can use this approach to obtain a list of Items by using the following API call:</p>
+<blockquote>
+<p>You can also send the authorization header as a query param</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl https://api.backand.com/1/objects/items?authorization<span class="o">=</span>basic+&lt;master key&gt;:&lt;user key&gt;
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="c1">// Javascript requests made through the SDK handle authentication automatically.</span>
+<span class="c1">// Simply use the backand.signin method to authenticate your user, or specify</span>
+<span class="c1">// an anonymous access token in backand.init()</span>
+</code></pre>
+<p>You can use <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">basic auth</a> to ease working with other servers - simply enter the master key as the username, and the user key as the password. You can use this approach to obtain a list of Items by using the cURL commands to the right.</p>
 
-<p>You can also send the basic authorization token through as a query string.</p>
-
-<aside class="warning">Do not use this method from the client side as it exposes your app&rsquo;s secret token, which can be used to perform any action in your system. This method is for server-side calls only.</aside>
+<aside class="warning"><strong>Do not use this method from the client side</strong> as it exposes your app&rsquo;s secret token, which can be used to perform any action in your system. This method is for server-side calls only.</aside>
 
 <h3 id="obtaining-the-user-key">Obtaining the user key</h3>
 
 <p>Our Basic authentication relies upon a User key, which is then used as a password while authenticating with the app&rsquo;s Master token. To obtain the user key:</p>
 
 <ul>
-<li>Navigate to <strong>Security &amp; Auth -&gt; Registered Users</strong></li>
+<li>Navigate to <strong>Security -&gt; Registered Users</strong></li>
 <li>Select the user who will own the action about to take place</li>
 <li>Click on the &ldquo;key&rdquo; icon to obtain the user key</li>
 </ul>
@@ -457,7 +465,9 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"AnonymousToken
 <span class="c"># You can also send the anonymous token through in a query string:</span>
 curl https://api.backand.com/1/objects/items?AnonymousToken<span class="o">=</span>&lt;anonymous token&gt;
 </code></pre>
-<p>Backand also offers Anonymous Access, which allows you to access your application without the need to authenticate via username and password. By passing this value in a request header (e.g. AnonymousToken=<your token here>) you can perform api actions for your application</p>
+<p>Backand also offers Anonymous Access, which allows you to access your application without the need to authenticate via username and password. By passing this value in a request header (e.g. AnonymousToken=<your token here>) you can perform api actions for your application. You can find your anonymous access token in the application dashboard at <strong>Security -&gt; Configuration</strong></p>
+
+<p><img src="images/anonymous_token.png" alt="image" /></p>
 
 <h3 id="user-registration">User Registration</h3>
 
@@ -469,7 +479,7 @@ curl https://api.backand.com/1/objects/items?AnonymousToken<span class="o">=</sp
   <span class="nx">userInput</span><span class="p">.</span><span class="nx">Role</span> <span class="o">=</span> <span class="s1">'Public'</span><span class="p">;</span>
 </code></pre>
 <aside class="notice">
-For security reasons you cannot change the role from the sign-up API - this can only be accomplished either by having an admin change the appropriate settings on the Security & Auth -&gt; Registered Users page, or by creating a custom server-side action with Admin rights (see JavaScript tab).
+For security reasons you cannot change the role from the sign-up API - this can only be accomplished either by having an admin change the appropriate settings on the <strong>Security -&gt; Registered Users</strong> page, or by creating a custom server-side action with Admin rights (see JavaScript tab).
 </aside>
 
 <h3 id="saving-additional-parameters-during-sign-up">Saving Additional Parameters During Sign-up</h3>
@@ -489,12 +499,12 @@ For security reasons you cannot change the role from the sign-up API - this can 
 <li>Update the Model and add the field <code class="prettyprint">company</code> to the <code class="prettyprint">users</code> object:
 
 <ol>
-<li>Go to <code class="prettyprint">Objects</code> &ndash;&gt; <code class="prettyprint">Model</code></li>
+<li>Go to <strong>Database &ndash;&gt; Model</strong></li>
 <li>Add this line as a data field in the <code class="prettyprint">users</code> object model: <code class="prettyprint">&quot;company&quot;: {&quot;type&quot;: &quot;string&quot;}</code></li>
 <li>Click on <code class="prettyprint">Validate &amp; Update</code></li>
 </ol></li>
 <li>When calling <code class="prettyprint">Backand.signup()</code>, send the <code class="prettyprint">parameters</code> object through as the last input parameter for the request. The code will resemble the call on the right:</li>
-<li>There&rsquo;s no need for server-side modifications - values for &ldquo;parameters&rdquo; are handled automatically by the action &lsquo;Create My App User&rsquo; (found in the <code class="prettyprint">Security Actions</code> section, under <code class="prettyprint">Security &amp; Auth</code>).</li>
+<li>There&rsquo;s no need for server-side modifications - values for &ldquo;parameters&rdquo; are handled automatically by the action &lsquo;Create My App User&rsquo; (found on the <strong>Security -&gt; Security Actions</strong> page).</li>
 <li>Modify the UI to collect the <code class="prettyprint">company</code> name for the user.</li>
 </ol>
 
@@ -502,23 +512,23 @@ For security reasons you cannot change the role from the sign-up API - this can 
 
 <h3 id="private-app">Private app</h3>
 
-<p>You can change your app, which is public by default, to be private. This can be changed in the dashboard by setting the Public flag for your application to &lsquo;false&rsquo; in the Security &amp; Auth &ndash;&gt; Configuration menu. For a private app, the registration steps are as follow:</p>
+<p>You can change your app, which is public by default, to be private. This prevents users from signing up via your web application, meaning that all users must be invited in order to authenticate with your app. This can be changed in the dashboard by setting the Public flag for your application to &lsquo;false&rsquo; on the <strong>Security &ndash;&gt; Configuration</strong> page. For a private app, the registration steps are as follow:</p>
 
 <ul>
-<li>First, set your app&rsquo;s registration page on the Security &amp; Auth &ndash;&gt; Configuration page.</li>
+<li>First, set your app&rsquo;s registration page on the <strong>Security &ndash;&gt; Configuration</strong> page.</li>
 <li>Next, if you wish to use automated email verification, enable Sign-up Email Verification on the Security &amp; Auth &ndash;&gt; Configuration page</li>
-<li>Once you have a registration page, enter the emails to invite on the Security &amp; Auth &ndash;&gt; Users page.</li>
+<li>Once you have a registration page, enter the emails to invite on the <strong>Security &ndash;&gt; Registered Users</strong> page.</li>
 <li>Once you have entered the emails you wish to invite, click the &lsquo;Invite User(s)&rsquo; button. This will send an email to each new user with a link to the registration page that you created.</li>
 </ul>
 
 <h3 id="email-verification-process">Email verification process</h3>
 
-<p>The user enters his/her email, name and password on your registration page:</p>
+<p>To start with, the user enters his/her email, name and password on your registration page:</p>
 
 <ul>
 <li>After the user submits their registration, Backand sends a verification email to authenticate the user&rsquo;s identity if Sign-up Email Verification is enabled</li>
 <li>If Sign-up Email Verification is not enabled, at this point registration is complete.</li>
-<li>If Sign-up Email Verification is enabled, after the user clicks on the link in the verification email, Backand completes the registration process and redirects to the &lsquo;Custom Verified Email Page&rsquo; URL for your application. Configure this on the Security &amp; Auth &ndash;&gt; Configuration page<br></li>
+<li>If Sign-up Email Verification is enabled, after the user clicks on the link in the verification email, Backand completes the registration process and redirects to the &lsquo;Custom Verified Email Page&rsquo; URL for your application. Configure this on the <strong>Security &ndash;&gt; Configuration</strong> page<br></li>
 </ul>
 
 <p>For more information, see our <a href="#vanilla-sdk">Vanilla SDK documentation</a></p>
@@ -528,23 +538,23 @@ For security reasons you cannot change the role from the sign-up API - this can 
 <p>Many organizations make use of tools like Active Directory in order to provide a central source of user-based authentication. This system is often used to drive a Single Sign On (SSO) feature in the organization, allowing users to simply use one set of credentials for all of the apps that they need to work with. Backand provides a method to incorporate SSO functionality using an override server-side action. This action allows you to perform your own authentication (via web-service calls to the domain controller, for example), and lets you return one of three actions.</p>
 
 <ul>
-<li>Returning &lsquo;allow&rsquo; allows the user access to the requested resource = in this case, you can return additional information in the &lsquo;additionalTokenInfo&rsquo; variable, which is added to the Backand authentication result. You may access this later by using the getUserDetails function of the Backand SDK.</li>
-<li>Returning &ldquo;deny&rdquo; overrides Backand&rsquo;s auth, and provides an &lsquo;Access Denied&rsquo; mesage.</li>
-<li>Returning &lsquo;ignore&rsquo; allows you to ignore the custom action, instead relying upon Backand&rsquo;s default authentication methods.</li>
+<li>Returning <code class="prettyprint">allow</code> allows the user access to the requested resource = in this case, you can return additional information in the <code class="prettyprint">additionalTokenInfo</code> variable, which is added to the Backand authentication result. You may access this later by using the <code class="prettyprint">getUserDetails</code> function of the Backand SDK.</li>
+<li>Returning <code class="prettyprint">deny</code> overrides Backand&rsquo;s auth, and provides an &lsquo;Access Denied&rsquo; message.</li>
+<li>Returning <code class="prettyprint">ignore</code> allows you to ignore the custom action, instead relying upon Backand&rsquo;s default authentication methods.</li>
 </ul>
 
-<p>You can configure this action in the Backand dashboard, under Security &amp; Auth =&gt; Security Actions.</p>
+<p>You can configure this action in the Backand dashboard, under <strong>Security &ndash;&gt; Security Actions</strong>.</p>
 
 <h3 id="remove-user-from-the-app">Remove user from the app</h3>
 
-<p>There are two ways to remove a user from the application. You can permanently remove a user from the application by deleting a user from the Registered Users grid. This requires the user to register again if they wish to continue using your app. Alternatively, you can un-check the &lsquo;approved&rsquo; checkbox in the user&rsquo;s row on the Security &amp; Auth &ndash;&gt; Users page. This allows you to reinstate the user simply by re-checking the &lsquo;approved&rsquo; column.</p>
+<p>There are two ways to remove a user from the application. You can permanently remove a user from the application by deleting a user from the Registered Users grid. This requires the user to register again if they wish to continue using your app. Alternatively, you can un-check the &lsquo;approved&rsquo; checkbox in the user&rsquo;s row on the <strong>Security &ndash;&gt; Registered Users</strong> page. This allows you to reinstate the user simply by re-checking the &lsquo;approved&rsquo; column.</p>
 
 <h3 id="anonymous-access">Anonymous Access</h3>
 
 <p>By default the anonymous access is turned on with &lsquo;User&rsquo; role access, which mean any one can register to your app and make CRUD actions on any object.
-If you wish to disable anonymous access to your application, go to Security &amp; Auth &ndash;&gt; Configuration and set &lsquo;Anonymous Access&rsquo; to off.</p>
+If you wish to disable anonymous access to your application, go to <strong>Security &ndash;&gt; Configuration</strong> and set &lsquo;Anonymous Access&rsquo; to off.</p>
 
-<aside class="notice">To better control the permission of your app we recommend to change the anonymous users role to have less access. For more information on anonymous access, see the <a href="#backand-init">API Description</a>.</aside>
+<aside class="notice">To better control the permission of your app we recommend to change the default anonymous user role to have less access. For more information on anonymous access, see the <a href="#backand-init">API Description</a>.</aside>
 
 <h3 id="link-your-apps-users-with-backands-registered-users">Link your app&rsquo;s users with Backand&rsquo;s registered users</h3>
 <pre class="highlight javascript tab-javascript"><code><span class="c1">// Validate Backand Registered User Action</span>
@@ -599,11 +609,11 @@ If you wish to disable anonymous access to your application, go to Security &amp
     <span class="k">return</span> <span class="p">{</span> <span class="p">};</span>
 <span class="p">}</span>
 </code></pre>
-<p><a href="https://www.backand.com">Backand</a> maintains an internal registered users object which is used to manage your app&rsquo;s security. However, most apps will have their own &lsquo;users&rsquo; object, which is used when implementing the app&rsquo;s business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two objects. If you have an object in your system named &lsquo;users&rsquo;, and if that object has the fields &lsquo;email&rsquo;, &lsquo;firstName&rsquo;, and &lsquo;lastName&rsquo;, then every user that is registered with <a href="https://www.backand.com">Backand</a> for your app will automatically have an entry created in your custom &lsquo;users&rsquo; object. This takes place no matter how the user is added - both the sign-up API and the <a href="https://www.backand.com">Backand</a> dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand&rsquo;s internal registered users object. This new user will be given a randomized password, which can then be provided to the user for access to your application.</p>
+<p><a href="https://www.backand.com">Backand</a> maintains an internal registered users object which is used to manage your app&rsquo;s security. However, most apps will have their own &lsquo;users&rsquo; object, which is used when implementing the app&rsquo;s business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two objects. If you have an object in your system named <code class="prettyprint">users</code>, and if that object has the fields <code class="prettyprint">email</code>, <code class="prettyprint">firstName</code>, and <code class="prettyprint">lastName</code>, then every user that is registered with <a href="https://www.backand.com">Backand</a> for your app will automatically have an entry created in your custom <code class="prettyprint">users</code> object. This takes place no matter how the user is added - both the sign-up API and the <a href="https://www.backand.com">Backand</a> dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand&rsquo;s internal registered users object. This new user will be given a randomized password, which can then be provided to the user for access to your application.</p>
 
-<p>Below we&rsquo;ll look more in-depth at how this process is managed. Additionally, we&rsquo;ll explore what happens when the users object has an unexpected name (i.e. something other than &lsquo;users&rsquo;), or if the fields of the users object are named differently.</p>
+<p>Below we&rsquo;ll look more in-depth at how this process is managed. Additionally, we&rsquo;ll explore what happens when the <code class="prettyprint">users</code> object has an unexpected name (i.e. something other than <code class="prettyprint">users</code>), or if the fields of the <code class="prettyprint">users</code> object are named differently.</p>
 
-<p>There are 3 sync actions located in Configuration -&gt; Security &amp; Auth that are triggered by Backand user registration:</p>
+<p>There are 3 sync actions located in <strong>Security &ndash;&gt; Security Actions</strong> that are triggered by Backand user registration:</p>
 
 <ol>
 <li>Create My App User</li>
@@ -622,23 +632,23 @@ If you wish to disable anonymous access to your application, go to Security &amp
 <li>During Create: Create Backand Register User</li>
 </ul>
 
-<p>This action implements the other side of the relationship - after creating an instance in your custom &lsquo;users&rsquo; object, this code creates the corresponding entry in Backand&rsquo;s internal users object. If have named your custom user object anything other than &lsquo;users&rsquo;, you can add the above action into that object manually to achieve the same functionality. You will need to adjust the backandUser object creation to use the columns in your specific object, as the userInput object may have a different structure than that assumed above.</p>
+<p>This action implements the other side of the relationship - after creating an instance in your custom <code class="prettyprint">users</code> object, this code creates the corresponding entry in Backand&rsquo;s internal users object. If have named your custom user object anything other than <code class="prettyprint">users</code>, you can add the above action into that object manually to achieve the same functionality. You may also need to adjust the general <code class="prettyprint">Create My App User</code> action to use the columns in your specific object structure, as the <code class="prettyprint">userInput</code> object may have a different structure than that assumed by the default action.</p>
 
 <h3 id="roles-security-templates">Roles &amp; Security Templates</h3>
 
-<p>Each user has a role. When you created your app, you were automatically assigned with an &lsquo;Admin&rsquo; role. The &lsquo;Admin&rsquo; role is a special role that allows you to make configuration changes in your app with Backand&rsquo;s administration tools. Non-admin roles, which should be used to secure your application, are used to define the permissions for each of the <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions for your objects and queries. Each Object and Query in your application is associated with a Security Template. In the security template, you assign different permissions for the possible <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions to each user role, allowing you to control your user&rsquo;s access to the system&rsquo;s create, read, update and delete actions for your objects. Template configuration is found on the Security &amp; Auth &ndash;&gt; Security Template page.</p>
+<p>Each user has a role. When you created your app, you were automatically assigned with an <code class="prettyprint">Admin</code> role. The <code class="prettyprint">Admin</code> role is a special role that allows you to make configuration changes in your app with Backand&rsquo;s administration tools. Non-admin roles, which should be used to secure your application, are used to define the permissions for each of the <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions for your objects and queries. Each Object and Query in your application is associated with a Security Template. In the security template, you assign different permissions for the possible <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions to each user role, allowing you to control your user&rsquo;s access to the system&rsquo;s create, read, update and delete actions for your objects. Template configuration is found on the <strong>Security &ndash;&gt; Security Templates</strong> page.</p>
 
 <p>While Security Templates provide reusable permissions platforms that can be spread across a number of roles, you can also override security template settings and provide specific permissions for each individual role. This allows you to have more granular control over the <a href="http://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> actions that can be performed by the users in your system. When a user with insufficient security access tries to perform an action for which they do not have permission, a 403 (Forbidden) error response is returned.</p>
 
 <h3 id="security-actions">Security Actions</h3>
 
-<p>Backand offers a number of pre-defined security actions that can be used to manage your application&rsquo;s security processes. These are available in the app dashboard under <strong>Security &amp; Auth -&gt; Security Actions</strong>. See <a href="#security-actions-backand-dashboard">the Security Actions Documentation</a> for more details.</p>
+<p>Backand offers a number of pre-defined security actions that can be used to manage your application&rsquo;s security processes. These are available in the app dashboard under <strong>Security -&gt; Security Actions</strong>. See <a href="#security-actions-backand-dashboard">the Security Actions Documentation</a> for more details.</p>
 
 <h2 id="backand-storage">Backand Storage</h2>
 
 <p>Backand provides you with the ability to upload and delete files to and from Backand&rsquo;s robust storage. This is done on the server-side through Backand&rsquo;s Actions. It doesn&rsquo;t require any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage counts of the amount of files per user.</p>
 
-<p>The files.upload command returns a url that links to the file you uploaded. This is a public url. The storage is managed per Backand app.  </p>
+<p>The <code class="prettyprint">files.upload</code> command returns a url that links to the file you uploaded. This is a public url. The storage bucket is managed with the Backand app.  </p>
 
 <h3 id="custom-server-side-action-code">Custom Server-Side Action Code</h3>
 <pre class="highlight javascript tab-javascript"><code><span class="c1">//Use the following JavaScript as the basis for your file upload action.</span>
@@ -659,7 +669,7 @@ If you wish to disable anonymous access to your application, go to Security &amp
 
 <span class="p">}</span>
 </code></pre>
-<p>Both upload and delete are written in the same action and the method you use to call it determines the functionality. When the method is POST then the action performs upload and when it is DELETE the action performs delete. You can use the userProfile for restrictions or file name manipulations. You do not need to copy this code. It is ready for you when you click on the Backand <em>File Storage</em> action template.</p>
+<p>Both upload and delete are written in the same function, and the method you use when you call the function determines which task is performed.. When the method is <code class="prettyprint">POST</code> then the action performs an upload, and when it is <code class="prettyprint">DELETE</code> the action performs a deletion. You can use the <code class="prettyprint">userProfile</code> parameter for restrictions or file name manipulations. You do not need to copy this code. It is ready for you when you click on the Backand <em>File Storage</em> action template.</p>
 
 <h3 id="angular-client-side-code">Angular Client-Side Code</h3>
 <pre class="highlight html tab-html"><code><span class="c">&lt;!-- Angular HTML --&gt;</span>
@@ -786,8 +796,7 @@ If you wish to disable anonymous access to your application, go to Security &amp
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<p>We created a simple example in Angular to experience the upload functionality.
-You can see the code in action at <a href="http://codepen.io/backand/pen/ZQaYEV">codepen</a>. The relevant parts of the code are available in the JavaScript pane to the right.</p>
+<p>We&rsquo;ve created a simple example in AngularJS to demonstrate the upload functionality. You can see the code in action at <a href="http://codepen.io/backand/pen/ZQaYEV">codepen</a>. The relevant parts of the code are available in the JavaScript pane to the right.</p>
 
 <h2 id="backand-hosting">Backand Hosting</h2>
 
@@ -803,18 +812,18 @@ The Backand CLI (command-line interface) requires Node.js and Node Package Manag
 <pre class="highlight shell"><code>  <span class="nv">$ </span>npm install -g backand
   <span class="c"># or use sudo (with caution)</span>
 </code></pre>
-<p>The hosting and deployment functionality is provided with the Backand node package. Simply install the package from the command line as follows:</p>
+<p>The hosting and deployment functionality is provided with the Backand CLI tool. Simply install the tool from the command line using the command on the right.</p>
 
 <h3 id="updating-a-prior-version">Updating a Prior Version</h3>
 <pre class="highlight shell"><code>  <span class="nv">$ </span>npm update -g backand
   <span class="c"># or use sudo (with caution)</span>
 </code></pre>
-<p>If you&rsquo;ve installed the Backand node package before, you will need to perform an update to get the new hosting and deployment functionality. Follow these steps to update your locally-installed version of Backand</p>
+<p>If you&rsquo;ve installed the Backand node package before, you will need to perform an update to get the new hosting and deployment functionality. Use the command on the right to update your locally-installed version of Backand</p>
 
 <h3 id="deploying-the-angular-project">Deploying the Angular Project</h3>
 <pre class="highlight shell"><code>  backand sync --app <span class="o">{{</span>appName<span class="o">}}</span> --master <span class="o">{{</span>master-token<span class="o">}}</span> --user <span class="o">{{</span>user-token<span class="o">}}</span> --folder /path/to/project/folder
 </code></pre>
-<p>The Backand CLI, which we installed using NPM, provides the capability to deploy your project, as well as sync your local project folder. To deploy and sync, use the following command from the command line:</p>
+<p>The Backand CLI provides the capability to deploy your app&rsquo;s code, as well as sync your local project folder. To deploy and sync, use thecommand on the right.</p>
 
 <p>The parameters for this call are:</p>
 
@@ -828,12 +837,14 @@ The Backand CLI (command-line interface) requires Node.js and Node Package Manag
 
 <h3 id="browsing-to-your-app">Browsing to your app</h3>
 
-<p>Your app is now on air, just browse to <strong>https://hosting.backand.com/YourAppName</strong> and see it live.</p>
+<p>Your app is now available at <strong>https://hosting.backand.com/YourAppName</strong> to see it live.</p>
+
+<aside class="notice"> Be sure to replace <strong>YourAppName</strong> above with the name of your Backand app.</aside>
 
 <h3 id="configuring-sync-in-gulp">Configuring Sync in Gulp</h3>
 <pre class="highlight shell"><code>  <span class="c"># Install the backand hosting gulp plugin with NPM</span>
   npm install backand-hosting-s3
-</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="c1">// Include the sync module in your project</span>
+</code></pre><pre class="highlight javascript tab-javascript--persistent"><code>  <span class="c1">// Include the sync module in your project</span>
   <span class="kd">var</span> <span class="nx">backandSync</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../sync-module'</span><span class="p">);</span>
 
   <span class="c1">// add your app's credentials to the sts task</span>
@@ -864,7 +875,7 @@ The Backand CLI (command-line interface) requires Node.js and Node Package Manag
 <li><p>Set your Backand credentials for the task. Credentials will be stored in file <code class="prettyprint">.backand-credentials.json</code>:</p></li>
 <li><p>Configure the task to Sync folder &lsquo;./src&rsquo;:</p></li>
 <li><p>Syncing is performed via a local cache file named &lsquo;.awspublish-<bucketname>&rsquo;. This file cache can become corrupted
-after multiple uses, so we need to create one more task to perform cleanup after the deployment has completed:</p></li>
+after multiple uses, so we need to create one more task to perform cleanup after the deployment has completed - you can see this in the JavaScript on the right.</p></li>
 </ol>
 
 <h2 id="realtime-database-communications">Realtime Database Communications</h2>
@@ -910,14 +921,15 @@ Missing client code example:</p>
 
 <h3 id="setup">Setup</h3>
 
+<p>To start working with our real-time functionality, follow these three steps:</p>
+
 <ol>
 <li>Upgrade to Backand SDK 1.9.5 or above.</li>
 <li>Include the Backand SDK and Socket.io in your index.html file</li>
 <li>Update Angular configuration section</li>
 </ol>
-<pre class="highlight shell tab-shell--persistent"><code>bower install socket.io-client
-</code></pre>
-<aside class="notice">You can also install socket using a package manager like bower</aside>
+
+<p>You can also install socket using a package manager like bower by using the command <code class="prettyprint">bower install socket.io-client</code> in the terminal.</p>
 
 <h3 id="angular-client-code-sockets">Angular client code - Sockets</h3>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="nx">Backand</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'items_updated'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
@@ -969,13 +981,13 @@ Missing client code example:</p>
 
 <h2 id="custom-actions">Custom Actions</h2>
 
-<p>In Backand&rsquo;s system, you can create server-side activity called Actions. These actions can be used for the purpose of security, integration, performance, notification and data integrity, among others, providing you with more flexibility in your app&rsquo;s design. There are two types of Actions that can be created. The first are initiated via a direct web request. These are known as &ldquo;On Demand&rdquo; actions. Additionally, you can create automated actions that take place based upon a data interaction event. These automated actions can occur whenever you create, update, or delete an item in your system. On Demand actions are associated with a specific object, and can be found on the <code class="prettyprint">Object --&gt; {name}</code> page in the Actions tab. The automated Create, Update and Delete actions are associated with a specific object that is compatible with a specific row in a table, while On Demand actions make association with a specific role optional.</p>
+<p>In Backand&rsquo;s system, you can implement server-side activity using our Custom Actions. These actions can be used for the purpose of security, integration, performance, notification and data integrity, among others, providing you with more flexibility in your app&rsquo;s design. There are two types of Actions that can be created. The first are initiated via a direct web request. These are known as &ldquo;On Demand&rdquo; actions. Additionally, you can create automated actions that take place based upon a data interaction event. These automated actions can occur whenever you create, update, or delete an item in your system. On Demand actions are associated with a specific object, and can be found on the <code class="prettyprint">Object --&gt; {name}</code> page, in the <code class="prettyprint">Actions</code> tab. The automated Create, Update, and Delete actions are associated with a specific object that is compatible with a specific row in a table, while On Demand actions make association with a specific role optional.</p>
 
 <p>There are 4 kinds of actions that can be created:</p>
 
 <ul>
 <li>Server side JavaScript code actions</li>
-<li>Server side node.js code actions</li>
+<li>AWS Node.js Lambda actions</li>
 <li>Transactional database script actions</li>
 <li>Send Email actions</li>
 </ul>
@@ -983,17 +995,17 @@ Missing client code example:</p>
 <p>All 4 types of actions use the following common parameters:</p>
 
 <ul>
-<li>A Where condition - a SQL where clause that determines if the action will be performed.</li>
+<li>A <code class="prettyprint">Where</code> condition - a SQL where clause that determines if the action will be performed.</li>
 <li>Input Parameters, added to the query string of the request that triggers the action, that will serve as variable values that you can supply to your action&rsquo;s code. These parameters will serve as tokens in the action definition and will be replaced with the actual values when the code executes.</li>
 </ul>
 
 <h3 id="server-side-javascript-code">Server-side JavaScript Code</h3>
-<pre class="highlight javascript tab-javascript"><code><span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="kd">function</span> <span class="nx">backandCallback</span><span class="p">(</span><span class="nx">userInput</span><span class="p">,</span> <span class="nx">dbRow</span><span class="p">,</span> <span class="nx">parameters</span><span class="p">,</span> <span class="nx">userProfile</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// write your code here</span>
     <span class="k">return</span> <span class="p">{};</span>
 <span class="p">}</span>
 </code></pre>
-<p>You can run standard JavaScript on the server. It runs on the <a href="http://en.wikipedia.org/wiki/V8_(JavaScript_engine)">V8 engine</a>. To execute the JavaScript action, put your code into the following function:</p>
+<p>You can run standard JavaScript on the server. It runs on the <a href="http://en.wikipedia.org/wiki/V8_(JavaScript_engine)">V8 engine</a>. To execute the JavaScript action, use the function prototype on the right to encapsulate your code.</p>
 
 <p>The function parameters are selected from the following list:</p>
 
@@ -1015,7 +1027,7 @@ Missing client code example:</p>
 </ul>
 
 <h4 id="making-http-requests-from-a-custom-action">Making HTTP Requests from a custom action</h4>
-<pre class="highlight javascript tab-javascript"><code><span class="c1">// GET example:</span>
+<pre class="highlight javascript tab-javascript--persistent"><code><span class="c1">// GET example:</span>
 <span class="kd">var</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">$http</span><span class="p">({</span><span class="na">method</span><span class="p">:</span><span class="s2">"GET"</span><span class="p">,</span><span class="na">url</span><span class="p">:</span><span class="nx">CONSTS</span><span class="p">.</span><span class="nx">apiUrl</span> <span class="o">+</span> <span class="s2">"/1/objects/objectexample"</span><span class="p">,</span>
                        <span class="na">params</span><span class="p">:{</span><span class="na">filter</span><span class="p">:[{</span><span class="na">fieldName</span><span class="p">:</span><span class="s2">"fieldexample"</span><span class="p">,</span> <span class="na">operator</span><span class="p">:</span><span class="s2">"contains"</span><span class="p">,</span> <span class="na">value</span><span class="p">:</span><span class="s2">"somestring"</span><span class="p">}]},</span>
                       <span class="na">headers</span><span class="p">:</span> <span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span><span class="nx">userProfile</span><span class="p">.</span><span class="nx">token</span><span class="p">}});</span>
@@ -1050,11 +1062,11 @@ Missing client code example:</p>
 
 <h4 id="a-note-about-the-authorization-header">A Note About The Authorization Header:</h4>
 
-<p>Sending the authorization header to the $http function is optional. When you make a $http request with an authorization header and the value of the userProfile.token (as in the examples above), the request will run in the context of the current user and with his assigned role. Alternatively, if you choose not to send an authorization header, the action will run in the context of an admin role. Send the authorization header with the request if you are going to use information about the current user in the action, otherwise you do not need to do so.</p>
+<p>Sending the <code class="prettyprint">authorization</code> header to the <code class="prettyprint">$http</code> function is optional. When you make a <code class="prettyprint">$http</code> request with an <code class="prettyprint">authorization</code> header and the value of the <code class="prettyprint">userProfile.token</code> (as in the examples above), the request will run in the context of the current user and with their assigned role. Alternatively, if you choose not to send an <code class="prettyprint">authorization</code> header, the action will run in the context of an admin role. Send the <code class="prettyprint">authorization</code> header with the request if you are going to use information about the current user in the action, otherwise you do not need to do so.</p>
 
 <h4 id="debugging">Debugging</h4>
 
-<p>Debugging should be done using either console.log or console.error. For example, to dump the contents of variable
+<p>Debugging should be done using either <code class="prettyprint">console.log</code> or <code class="prettyprint">console.error</code>. For example, to dump the contents of variable
 <code class="prettyprint">object</code>:</p>
 
 <p><code class="prettyprint">console.log(object)</code></p>
@@ -1063,11 +1075,13 @@ Missing client code example:</p>
 
 <p>These are sent to the Logging section of the Backand dashboard, under <code class="prettyprint">Log</code> -&gt; <code class="prettyprint">Console</code>.</p>
 
+<aside class="warning">NOTE: You must enable debug mode in <strong>Admin &ndash;&gt; General</strong> in order to see the console output in your application&rsquo;s logs. This output will always be shown when testing a function in the Backand App Dashboard, using the provided UI.</aside>
+
 <h4 id="error-handling">Error Handling</h4>
 
 <p>If your code results in an error (for example, if you write the following: <code class="prettyprint">throw new Error(&quot;An error occurred!&quot;)</code>), the request will return HTTP status 417, and the response body will contain the associated error message.</p>
 
-<p>These are also sent to the Logging section of the Backand dashboard, under <code class="prettyprint">Log</code> -&gt; <code class="prettyprint">Server Side Exceptions</code>.</p>
+<p>These are also sent to the Logging section of the Backand dashboard, under <strong>Admin &ndash;&gt; All Logs &ndash;&gt; Server Side Exceptions</strong>.</p>
 
 <h4 id="return-values">Return values</h4>
 
@@ -1092,11 +1106,11 @@ Missing client code example:</p>
 <p>Follow these steps to create and run a Server-Side Node.js Code Action:</p>
 
 <ul>
-<li>First name the action, and use the init command by copy-pasting &ldquo;backand action init&hellip;&rdquo; to a command line within the folder in which you&rsquo;ll be developing your action. The action init command creates two folder levels on your local file system. The top level folder will be the name of the object controlling the action, while its child folder is the name of the action you are working with. We recommend that you always run the <strong>action init</strong> command from the root folder of the app&rsquo;s project when creating additional actions. This means you will have a sub-folder for each object, and under it, a sub -folder for each action.</li>
+<li>First name the action, and use the init command by copy-pasting <code class="prettyprint">backand action init...</code> to a command line within the folder in which you&rsquo;ll be developing your action. The action init command creates two folder levels on your local file system. The top level folder will be the name of the object controlling the action, while its child folder is the name of the action you are working with. We recommend that you always run the <strong>action init</strong> command from the root folder of the app&rsquo;s project when creating additional actions. This means you will have a sub-folder for each object, and under it, a sub -folder for each action.</li>
 <li>Next, build your Node.js code in the <code class="prettyprint">action</code> folder like any Node other project using your preferred IDE. Add as many npm
 packages as you need. Note - Your code <strong>must</strong> start with the index.js file - Backand uses this as the starting point for your Node.JS action.</li>
 <li>To debug your code locally, run the debug.js file. Debug.js is provided by the init command, and is ignored when deploying the code to Backand.</li>
-<li>To run your code on the Back&amp; server, use the deploy command by copy-pasting &ldquo;backand action deploy&hellip;&rdquo; into the command line used in the first step. The
+<li>To run your code on the Back&amp; server, use the deploy command by copy-pasting <code class="prettyprint">backand action deploy...</code> into the command line used in the first step. The
 deploy command will be available on the action page <strong>after</strong> the action has been initialized with &ldquo;backand action init&hellip;&rdquo;.</li>
 </ul>
 
@@ -1121,8 +1135,8 @@ deploy command will be available on the action page <strong>after</strong> the a
 <li> <code class="prettyprint">--app</code>:       The current app name<br></li>
 <li> <code class="prettyprint">--object</code>:      The object that the action belongs to<br></li>
 <li> <code class="prettyprint">--action</code>:      The action name<br></li>
-<li> <code class="prettyprint">--master</code>:      The master token of the app (obtained from the Social &amp; Keys section of the app&rsquo;s Security &amp; Auth configuration)<br></li>
-<li> <code class="prettyprint">--user</code>:          The token of the current user (available from the TEam section of the app&rsquo;s Security &amp; Auth configuration - simply click on key icon next to an authorized user)<br></li>
+<li> <code class="prettyprint">--master</code>:      The master token of the app (obtained from <strong>Security &ndash;&gt; Social &amp; Keys</strong>)<br></li>
+<li> <code class="prettyprint">--user</code>:          The token of the current user (available from <strong>Admin &ndash;&gt; Team</strong> - simply click on key icon next to an authorized user)<br></li>
 </ul>
 
 <h3 id="deploy-action">Deploy action</h3>
@@ -1136,13 +1150,13 @@ deploy command will be available on the action page <strong>after</strong> the a
 <li> <code class="prettyprint">--app</code>:       The current app name<br></li>
 <li> <code class="prettyprint">--object</code>:      The object that the action belongs to<br></li>
 <li> <code class="prettyprint">--action</code>:      The action name<br></li>
-<li> <code class="prettyprint">--master</code>:   The master token of the app (obtained from the Social &amp; Keys section of the app&rsquo;s Security &amp; Auth configuration)<br></li>
-<li> <code class="prettyprint">--user</code>:     The token of the current user (available from the TEam section of the app&rsquo;s Security &amp; Auth configuration - simply click on key icon next to an authorized user)<br></li>
+<li> <code class="prettyprint">--master</code>:   The master token of the app (obtained from <strong>Security &ndash;&gt; Social &amp; Keys</strong>)<br></li>
+<li> <code class="prettyprint">--user</code>:     The token of the current user (available from <strong>Admin &ndash;&gt; Team</strong> - simply click on key icon next to an authorized user)</li>
 <li> <code class="prettyprint">--folder</code>:   (Optional) The folder to deploy. By default the deployment occurs in the current folder</li>
 </ul>
 
 <h3 id="add-backand-sdk-to-node-js">Add Backand SDK to Node.js</h3>
-<pre class="highlight shell"><code>    <span class="nv">$ </span>npm install backandsdk --save
+<pre class="highlight shell"><code><span class="gp">$ </span>npm install backandsdk --save
 </code></pre>
 <p>To work with objects or other actions in Backand, you need to install the Backand SDK for Node.js. The Backand SDK ships with several code samples that demonstrate how to access other Backand functionality.</p>
 
@@ -1201,10 +1215,10 @@ use common MySQL syntax.</p>
 <li>fields to be extracted</li>
 <li>table to extract the records from</li>
 <li>expression for filtering the table rows</li>
-<li>groupby - fields to group the data under</li>
+<li><code class="prettyprint">groupby</code> - fields to group the data under</li>
 <li>aggregate functions to be applied to columns in fields</li>
-<li>orderby - fields to order the return data by</li>
-<li>limit - an integer number of records to return.</li>
+<li><code class="prettyprint">orderby</code> - fields to order the return data by</li>
+<li><code class="prettyprint">limit</code> - an integer number of records to return.</li>
 </ol>
 
 <p>Only the table and expression parameters are mandatory. These objects are created using JSON to establish each of the elements in the query. The NoSQL JSON is then converted into a SQL query. Each component of a NoSQL query hash corresponds to a different portion of the SQL query that ends up being run against your database. See the query template to the right to get a feeling of how the query translates into SQL statements.</p>
@@ -2579,7 +2593,7 @@ curl -X POST -H <span class="s2">"Authorization: AUTH_TOKEN"</span> -d <span cla
 </code></pre>
 <p>Initiates the password reset request. Sends an email to the specified user providing a link to your reset password form. Also provides a reset token, to be used to finalize the password reset.</p>
 
-<aside class="warning">You must configure a custom reset password URL to use the password reset functionality. This is done in the app dashboard, under <strong>Security & Auth -> Configuration</strong></aside>
+<aside class="warning">You must configure a custom reset password URL to use the password reset functionality. This is done in the app dashboard, under <strong>Security -> Configuration</strong></aside>
 
 <h4 id="parameters">Parameters</h4>
 
@@ -3522,7 +3536,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
 
 <h2 id="file">.file</h2>
 
-<p>This property allows you to work with file actions, interacting with the related files directly. You can use this after you have finished creating a server-side action in the Back&amp; dashboard, in the Actions tab of an object (object -&gt; actions tab -&gt; Backand Files icon -&gt; name: &lsquo;files&rsquo;)</p>
+<p>This property allows you to work with file actions, interacting with the related files directly. You can use this after you have finished creating a server-side action in the Back&amp; dashboard, in the Actions tab of an object (<strong>Database &ndash;&gt; Object &ndash;&gt; actions tab -&gt; Backand Files icon -&gt; name: &lsquo;files&rsquo;</strong>)</p>
 
 <h3 id="upload">.upload()</h3>
 <pre class="highlight shell tab-shell"><code>curl -X POST  -d <span class="s2">"{'filename':'test.txt','filedata':'sample data'}"</span> -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOKEN</span><span class="s2">"</span> <span class="s2">"https://api.backand.com/1/objects/action/items?name=files"</span>
@@ -4206,8 +4220,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
 
 <h3 id="overview">Overview</h3>
 
-<p>This is the documentation for Back&amp;&lsquo;s Angular 1 SDK. This SDK enables you to communicate comfortably and quickly with your Backand app.
-It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to allow you to work with Back&amp; more easily when working on projects based on Angular.js 1.</p>
+<p>This SDK enables you to communicate comfortably and quickly with your Backand app using AngularJS and Ionic Framework. It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to allow you to work with Back&amp; more easily when working on projects based on Angular.js 1.</p>
 
 <h3 id="installation">Installation</h3>
 
@@ -4268,8 +4281,7 @@ It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to
 
 <h3 id="overview">Overview</h3>
 
-<p>This is the documentation for Back&amp;&rsquo;s Angular 1 SDK. This SDK enables you to communicate comfortably and quickly with your Backand app.
-It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to allow you to work with Back&amp; more easily when working on projects based on Angular.js 1.</p>
+<p>This SDK enables you to communicate comfortably and quickly with your Backand app using Angular 2 and the Ionic Framework version 2. It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to allow you to work with Back&amp; more easily when working on projects based on Angular.js.</p>
 
 <h3 id="installation">Installation</h3>
 
@@ -4350,8 +4362,7 @@ It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to
 
 <h3 id="overview">Overview</h3>
 
-<p>This is the documentation for Back&amp;&rsquo;s Redux SDK. This SDK enables you to communicate comfortably and quickly with your Backand app.
-It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to allow you to work with Back&amp; more easily when working on projects based on Redux.</p>
+<p>This SDK enables you to communicate comfortably and quickly with your Backand app when building on top of React or Redux. It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to allow you to work with Back&amp; more easily when working on projects based on Redux.</p>
 
 <h3 id="installation">Installation</h3>
 
@@ -4398,13 +4409,13 @@ It wraps the <a href="https://github.com/backand/vanilla-sdk">vanilla-sdk</a> to
 </code></pre>
 <p>Next, Include the new <em>Reducers</em> in <a href="http://redux.js.org/docs/api/combineReducers.html">combineReducers()</a> (see JavaScript tab)</p>
 
-<p>Next, we nede to configure the middleware stack to work with the SDK. Pick the section that applies to your chosen middleware stack - either <a href="https://github.com/gaearon/redux-thunk">redux-thunk</a> or <a href="https://github.com/redux-saga/redux-saga">redux-saga</a> - then follow the corresponding instructions:</p>
+<p>After this, we need to configure the middleware stack to work with the SDK. Pick the section that applies to your chosen middleware stack - either <a href="https://github.com/gaearon/redux-thunk">redux-thunk</a> or <a href="https://github.com/redux-saga/redux-saga">redux-saga</a> - then follow the corresponding instructions:</p>
 
 <h4 id="redux-thunk"><a href="https://github.com/gaearon/redux-thunk">redux-thunk</a></h4>
 
 <p>Download <a href="https://github.com/gaearon/redux-thunk">redux-thunk</a> and include it in <a href="http://redux.js.org/docs/api/createStore.html">createStore()</a>:
 &ldquo;`javascript
-import { createStore, applyMiddleware } from &#39;redux&rsquo;
+import { createStore, applyMiddleware } from &lsquo;redux&rsquo;
 import thunk from &lsquo;redux-thunk&rsquo;</p>
 
 <p>createStore(rootReducer, initialState, applyMiddleware(thunk))
@@ -4442,7 +4453,7 @@ sagaMiddleware.run(rootSaga)
 
 <h2 id="vue-js">Vue.js</h2>
 
-<p>Vue.js is a progressive framework designed to provide an intuitive means by which a front-end developer can build their application. It is designed to be incrementally adaptable, allowing you to use it as often as you like, and provides a lightweight set of tools for adding dynamic functionality to a web app. By providing dynamic backing to the view model, you can easily make a Vue.js-based application into a large and feature-rich web app. In this post, we&rsquo;ll look at how we can use Backand&rsquo;s Vanilla SDK in a Vue.js-based application to provide the backing for that data service.</p>
+<p>Vue.js is a progressive framework designed to provide an intuitive means by which a front-end developer can build their application. It is designed to be incrementally adaptable, allowing you to use it as often as you like, and provides a lightweight set of tools for adding dynamic functionality to a web app. By providing dynamic backing to the view model, you can easily make a Vue.js-based application into a large and feature-rich web app. In this section, we&rsquo;ll look at how we can use Backand&rsquo;s Vanilla SDK in a Vue.js-based application to provide the backing for that data service.</p>
 
 <p>Note: This example is also available on <a href="http://codepen.io/backand/pen/ZLwwZg/?editors=1010">Codepen</a></p>
 
@@ -4463,9 +4474,9 @@ sagaMiddleware.run(rootSaga)
   <span class="c1">// Other constructor code here</span>
 <span class="p">});</span>
 </code></pre>
-<p>Once you&rsquo;ve included the SDK, you&rsquo;ll have access to the functionality via the global object backand. You&rsquo;ll next use this to initialize our connection to Backand in the constructor for your app&rsquo;s Vue instance. We recommend putting the initialization in the beforeMount lifecycle hook, but any location or hook that initializes the SDK before it is used should be sufficient:</p>
+<p>Once you&rsquo;ve included the SDK, you&rsquo;ll have access to the functionality via the global object <code class="prettyprint">backand</code>. You&rsquo;ll next use this to initialize our connection to Backand in the constructor for your app&rsquo;s Vue instance. We recommend putting the initialization in the <code class="prettyprint">beforeMount</code> lifecycle hook, but any location or hook that initializes the SDK before it is used should be sufficient:</p>
 
-<p>With that, the Backand SDK is initialized. This post uses a pre-built demo app, reactnativetodoexample, and its associated keys. If you wish to connect this demo to your own Backand application, simply replace appName, signUpToken, and anonymousToken with the correct values from your Backand application&rsquo;s dashboard. Aside from updating the data model to include the ToDo object, the only thing you will need to do to ensure your app operates in the same way is to add the relevant custom actions when editing a ToDo item (see below).</p>
+<p>With that, the Backand SDK is initialized. This post uses a pre-built demo app, <code class="prettyprint">reactnativetodoexample</code>, and its associated keys. If you wish to connect this demo to your own Backand application, simply replace <code class="prettyprint">appName</code>, <code class="prettyprint">signUpToken</code>, and <code class="prettyprint">anonymousToken</code> with the correct values from your Backand application&rsquo;s dashboard. Aside from updating the data model to include the <code class="prettyprint">ToDo</code> object, the only thing you will need to do to ensure your app operates in the same way is to add the relevant custom actions when editing a <code class="prettyprint">ToDo</code> item (see below).</p>
 
 <h3 id="loading-the-object-data">Loading the object data</h3>
 
@@ -4506,10 +4517,10 @@ sagaMiddleware.run(rootSaga)
   <span class="c1">// Other constructor code here</span>
 <span class="p">});</span>
 </code></pre>
-<p>This function first clears out the todos data member, then defines a set of filter params using helper methods in the SDK (refer to our documentation for more information). Then, it calls backand.user.getUserDetails() to determine if the list should be restricted to the currently logged-in user. Finally, the method calls backand.object.getList() to fetch the list of objects in the SDK, and then updates the todos data container in the promise resolution block.</p>
+<p>This function first clears out the <code class="prettyprint">todos</code> data member, then defines a set of filter params using helper methods in the SDK (refer to our documentation for more information). Then, it calls <code class="prettyprint">backand.user.getUserDetails()</code> to determine if the list should be restricted to the currently logged-in user. Finally, the method calls <code class="prettyprint">backand.object.getList()</code> to fetch the list of objects in the SDK, and then updates the todos data container in the promise resolution block.</p>
 
 <blockquote>
-<p>Now, you simply need to call fetchTodos() in the appropriate location in the Vue lifecycle. To load the data when mounting is complete, you can add it to the &ldquo;mounted&rdquo; handler like so:</p>
+<p>Now, you simply need to call <code class="prettyprint">fetchTodos()</code> in the appropriate location in the Vue lifecycle. To load the data when mounting is complete, you can add it to the <code class="prettyprint">mounted</code> handler like so:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="kd">var</span> <span class="nx">myApp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
   <span class="c1">// Other constructor code here</span>
@@ -4522,7 +4533,7 @@ sagaMiddleware.run(rootSaga)
 <h3 id="creating-editing-and-deleting-objects">Creating, Editing, and Deleting Objects</h3>
 
 <blockquote>
-<p>The following code is a handler for an x-template component titled todo-form, which is used to create a new ToDo entry in the application:</p>
+<p>The following code is a handler for an x-template component titled <code class="prettyprint">todo-form</code>, which is used to create a new <code class="prettyprint">ToDo</code> entry in the application:</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">'todo-form'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">template</span><span class="p">:</span> <span class="s1">'#todo-form'</span><span class="p">,</span>
@@ -4551,7 +4562,7 @@ sagaMiddleware.run(rootSaga)
 </code></pre>
 <p>Once you&rsquo;ve got the basic display up and running, you&rsquo;ll want to add methods to create, update, and delete the ToDo items based on user actions.</p>
 
-<p>Following a similar pattern to the initial load, this code first checks for a user context. If a user is not logged in, this call will have a value of null. Otherwise, we can use the userId of the active user to assign ownership of the new ToDo item. The code then calls backand.object.create() to create the record in your Backand application.</p>
+<p>Following a similar pattern to the initial load, this code first checks for a user context. If a user is not logged in, this call will have a value of <code class="prettyprint">null</code>. Otherwise, we can use the <code class="prettyprint">userId</code> of the active user to assign ownership of the new <code class="prettyprint">ToDo</code> item. The code then calls <code class="prettyprint">backand.object.create()</code> to create the record in your Backand application.</p>
 
 <blockquote>
 <p>You can follow a similar pattern when updating an object:</p>
@@ -4573,7 +4584,7 @@ sagaMiddleware.run(rootSaga)
   <span class="p">}</span>
 <span class="p">};</span>
 </code></pre>
-<p>This function demonstrates how to update a ToDo item&rsquo;s completion date using backand.object.update() - simply provide the object name, the object ID, and the collection of changes to be made. The above method also provides deletion functionality with the remove method. Simply provide the object name and the ID of the ToDo item to delete the entry from your database.</p>
+<p>This function demonstrates how to update a <code class="prettyprint">ToDo</code> item&rsquo;s completion date using <code class="prettyprint">backand.object.update()</code> - simply provide the object name, the object ID, and the collection of changes to be made. The above method also provides deletion functionality with the remove method. Simply provide the object name and the ID of the <code class="prettyprint">ToDo</code> item to delete the entry from your database.</p>
 
 <h3 id="keeping-the-app-up-to-date">Keeping the app up-to-date</h3>
 
@@ -4582,16 +4593,16 @@ sagaMiddleware.run(rootSaga)
 </blockquote>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="nx">socket</span><span class="p">.</span><span class="nx">emitAll</span><span class="p">(</span><span class="s2">"update_todos"</span><span class="p">,</span> <span class="p">{});</span>
 </code></pre>
-<p>While you now have a fully-functional CRUD interface for the &ldquo;todo&rdquo; object, you have not yet built a way for your application to receive - and respond to - updates. You can accomplish this using Backand&rsquo;s Realtime Communications capability.</p>
+<p>While you now have a fully-functional CRUD interface for the <code class="prettyprint">todo</code> object, you have not yet built a way for your application to receive - and respond to - updates. You can accomplish this using Backand&rsquo;s Realtime Communications capability.</p>
 
-<p>This will send a socket message to all connected clients. At the moment we do not provide any parameters to this call (just an empty object - {}), but you can replace this with any of the variables available to your custom action, such as the dbRow that was just modified.</p>
+<p>This will send a socket message to all connected clients. At the moment we do not provide any parameters to this call (just an empty object - <code class="prettyprint">{}</code>), but you can replace this with any of the variables available to your custom action, such as the <code class="prettyprint">dbRow</code> that was just modified.</p>
 
 <blockquote>
 <p>First, include the Socket.io library in the appropriate location in your code:</p>
 </blockquote>
 <pre class="highlight html tab-html"><code>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdn.backand.net/socket.io/1.4.5/socket.io.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
-<p>Now that you have a set of actions designed to announce changes to your ToDo database object, we need to configure the client side to receive socket communications.</p>
+<p>Now that you have a set of actions designed to announce changes to your <code class="prettyprint">ToDo</code> database object, we need to configure the client side to receive socket communications.</p>
 
 <blockquote>
 <p>Once that&rsquo;s done, we need to set the SDK to enable socket mode:</p>
@@ -4632,9 +4643,9 @@ sagaMiddleware.run(rootSaga)
 
 <h2 id="jquery">jQuery</h2>
 
-<p>JQuery is the most widely-deployed JavaScript library. It provides a comprehensive set of responsive tools for dynamically working with an HTML page&rsquo;s DOM, and is responsible for establishing and guiding a lot of the patterns that are the standard in web development. In this article, we&rsquo;ll look at how you can integrate the Back&amp; Vanilla SDK with an app built with JQuery.</p>
+<p>JQuery is the most widely-deployed JavaScript library. It provides a comprehensive set of responsive tools for dynamically working with an HTML page&rsquo;s DOM, and is responsible for establishing and guiding a lot of the patterns that are the standard in web development. In this section, we&rsquo;ll look at how you can integrate the Back&amp; Vanilla SDK with an app built with JQuery.</p>
 
-<p>Note: The code for this article is available on <a href="http://codepen.io/backand/pen/VPRpBN?editors=1010">CodePen</a></p>
+<p>Note: The code for this section is also available on <a href="http://codepen.io/backand/pen/VPRpBN?editors=1010">CodePen</a></p>
 
 <h3 id="including-and-initializing-the-sdk">Including and Initializing the SDK</h3>
 <pre class="highlight html tab-html"><code><span class="c">&lt;!-- Include the Back&amp; SDK --&gt;</span>
@@ -4656,11 +4667,11 @@ sagaMiddleware.run(rootSaga)
   <span class="c1">// Other code here</span>
 <span class="p">};</span>
 </code></pre>
-<p>Once you&rsquo;ve included the SDK, you&rsquo;ll have access to the functionality via the global object backand. To integrate Back&amp; with a JQuery-based web app, we&rsquo;ll make use of a global service variable that will wrap the SDK. This service will handle initialization of the sdk, and provide all of the tools necessary to work with a Backand application. We&rsquo;ll start by declaring the service and initializing Backand with the following code:</p>
+<p>Once you&rsquo;ve included the SDK, you&rsquo;ll have access to the functionality via the global object <code class="prettyprint">backand</code>. To integrate Back&amp; with a JQuery-based web app, we&rsquo;ll make use of a global service variable that will wrap the SDK. This service will handle initialization of the sdk, and provide all of the tools necessary to work with a Backand application. We&rsquo;ll start by declaring the service and initializing Backand with the following code:</p>
 
-<p>This defines an object - dataService - that can be used to interact with the Backand SDK. In the data service, we define a method - init - that is used to initialize the SDK&rsquo;s connection to a Backand application. Simply call dataService.init() at the approrpriate location in your app&rsquo;s initialization code, and the SDK is ready to use (in the example, we do this in the $(document).ready handler, but this is not required).</p>
+<p>This defines an object - <code class="prettyprint">dataService</code> - that can be used to interact with the Backand SDK. In the data service, we define a method - <code class="prettyprint">init</code> - that is used to initialize the SDK&rsquo;s connection to a Backand application. Simply call <code class="prettyprint">dataService.init()</code> at the appropriate location in your app&rsquo;s initialization code, and the SDK is ready to use (in the example, we do this in the $(document).ready handler, but this is not required).</p>
 
-<p>This content uses a pre-built demo app, reactnativetodoexample, and its associated keys. If you wish to connect this demo to your own Backand application, simply replace appName, signUpToken, and anonymousToken with the correct values from your Backand application&rsquo;s dashboard. Aside from updating the data model to include the ToDo object, the only thing you will need to do to ensure your app operates in the same way is to add the relevant custom actions when editing a ToDo item (see below).</p>
+<p>This content uses a pre-built demo app, <code class="prettyprint">reactnativetodoexample</code>, and its associated keys. If you wish to connect this demo to your own Backand application, simply replace <code class="prettyprint">appName</code>, <code class="prettyprint">signUpToken</code>, and <code class="prettyprint">anonymousToken</code> with the correct values from your Backand application&rsquo;s dashboard. Aside from updating the data model to include the <code class="prettyprint">ToDo</code> object, the only thing you will need to do to ensure your app operates in the same way is to add the relevant custom actions when editing a <code class="prettyprint">ToDo</code> item (see below).</p>
 
 <h3 id="fetching-and-manipulating-the-data">Fetching and Manipulating the Data</h3>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="kd">var</span> <span class="nx">dataService</span> <span class="o">=</span> <span class="p">{</span>
@@ -4678,9 +4689,9 @@ sagaMiddleware.run(rootSaga)
   <span class="c1">// Other code here</span>
 <span class="p">};</span>
 </code></pre>
-<p>Now that our app is wired up to Backand, we&rsquo;ll want to start writing code to work with our Backand application&rsquo;s objects. We can retrieve a list of &ldquo;todo&rdquo; objects from the server by adding a property to the dataService object, getList, that calls the appropriate SDK method</p>
+<p>Now that our app is wired up to Backand, we&rsquo;ll want to start writing code to work with our Backand application&rsquo;s objects. We can retrieve a list of <code class="prettyprint">todo</code> objects from the server by adding a property to the <code class="prettyprint">dataService</code> object, <code class="prettyprint">getList</code>, that calls the appropriate SDK method</p>
 
-<p>This function first defines a set of filter params using helper methods in the SDK (refer to our documentation for more information). It then calls backand.object.getList() to fetch the list of objects in the SDK. The result of this call - a promise - is then passed back to the calling code. The calling code can then create its own success and failure handlers, using .then and .catch, and update internal state appropriately.</p>
+<p>This function first defines a set of filter params using helper methods in the SDK (refer to our documentation for more information). It then calls <code class="prettyprint">backand.object.getList()</code> to fetch the list of objects in the SDK. The result of this call - a promise - is then passed back to the calling code. The calling code can then create its own success and failure handlers, using <code class="prettyprint">.then</code> and <code class="prettyprint">.catch</code>, and update internal state appropriately.</p>
 
 <blockquote>
 <p>You can use this technique to wrap every call in the Backand SDK, providing your JQuery code with full access to the server.</p>
@@ -4694,7 +4705,7 @@ sagaMiddleware.run(rootSaga)
   <span class="c1">// Other code here</span>
 <span class="p">};</span>
 </code></pre>
-<p>From this point onward, working with the SDK is a matter of writing wrapper methods in the dataService object for each SDK method with which you wish to interact. Backand provides interfaces for all of the common database manipulation tasks. For example, the call in the sidebar defines a method - create - that creates a new entry in the database:</p>
+<p>From this point onward, working with the SDK is a matter of writing wrapper methods in the <code class="prettyprint">dataService</code> object for each SDK method with which you wish to interact. Backand provides interfaces for all of the common database manipulation tasks. For example, the call in the sidebar defines a method - <code class="prettyprint">create</code> - that creates a new entry in the database.</p>
 
 <h3 id="handling-responses">Handling Responses</h3>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="kd">var</span> <span class="nx">loadList</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span>
@@ -4706,9 +4717,9 @@ sagaMiddleware.run(rootSaga)
    <span class="p">})</span>
 <span class="p">}</span>
 </code></pre>
-<p>All Backand SDK methods return a promise, performing the tasks requested asynchronously. To handle the responses, we simply need to write the appropriate handlers for the .then and .catch calls. In the code to the side, for example, we write a simple set of handlers for the getList call.</p>
+<p>All Backand SDK methods return a promise, performing the tasks requested asynchronously. To handle the responses, we simply need to write the appropriate handlers for the <code class="prettyprint">.then</code> and <code class="prettyprint">.catch</code> calls. In the code to the side, for example, we write a simple set of handlers for the <code class="prettyprint">getList</code> call.</p>
 
-<p>As JQuery is a very flexible framework, it is hard to provide concrete guidance on exactly where SDK should take place in terms of the program&rsquo;s execution. The CodePen example demonstrates one method of creating this component, but you do not need to mimic the code structure there exactly. The key component is to ensure that backand.init() is called prior to any SDK calls taking place, otherwise the calls from the SDK will fail.</p>
+<p>As JQuery is a very flexible framework, it is hard to provide concrete guidance on exactly where SDK should take place in terms of the program&rsquo;s execution. The CodePen example demonstrates one method of creating this component, but you do not need to mimic the code structure there exactly. The key component is to ensure that <code class="prettyprint">backand.init()</code> is called prior to any SDK calls taking place, otherwise the calls from the SDK will fail.</p>
 
 <h3 id="conclusion">Conclusion</h3>
 
@@ -6257,7 +6268,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 <h2 id="ionic-with-backand">Ionic With Backand</h2>
 
-<p>Today many AngularJS developers are using Ionic to build the user interface for their mobile apps.  AngularJS provides the app structure.  But these mobile apps still need a backend.  In this blog we’ll give you the recipe you need to build an Ionic mobile app with Backand’s Backend as a Service (BaaS). Review the working demo <a href="https://github.com/backand/simple-rest-ionic">here</a>.</p>
+<p>Today many AngularJS developers are using Ionic to build the user interface for their mobile apps.  AngularJS provides the app structure.  But these mobile apps still need a backend.  In this section we’ll give you the recipe you need to build an Ionic mobile app with Backand’s Backend as a Service (BaaS). Review the working demo <a href="https://github.com/backand/simple-rest-ionic">here</a>.</p>
 
 <h3 id="what-is-ionic">What is Ionic?</h3>
 
@@ -6460,7 +6471,7 @@ You can use the following JSON mode:</p>
 <p>To store the user&rsquo;s Facebook user ID (FUID) in Backand, follow these steps:</p>
 
 <ol>
-<li>Open Security &amp; Auth &gt;&gt; Security actions menu and edit the <strong>&ldquo;beforeSocialSignup&rdquo;</strong> action</li>
+<li>Open <strong>Security &ndash;&gt; Security Actions</strong> menu and edit the <strong>&ldquo;beforeSocialSignup&rdquo;</strong> action</li>
 <li>Change the <strong>Where Condition</strong> of this action to &ldquo;true&rdquo; (this is set at the bottom of the content pane)</li>
 <li>Uncomment the provided code that saves the Facebook user id: <code class="prettyprint">userInput.fuid = parameters.socialProfile.additionalValues.id;</code></li>
 <li>Save the Action</li>
@@ -6977,12 +6988,6 @@ You can use the following JSON mode:</p>
 
 <p>PayPal provides many options for accepting payments, including Express Checkout, transactions, refunds, payment with agreementId, and so on. In this example, we will implement Express Chackout as it is the simplest and most straightforward method to enable.</p>
 
-<h3 id="why-use-a-vendor">Why use a vendor?</h3>
-
-<p>The first question that you are likely asking is &ldquo;Why should I use a third-party vendor for my payment system?&rdquo; The short answer, albeit not a very good one, is that a solid and reliable payments platform is not only extremely challenging, but extremely expensive as well. Setting aside the data concerns (which we have covered elsewhere), you&rsquo;ll need significant liquid assets available to even begin working with financial systems directly. Furthermore, you&rsquo;ll be accepting full fraud risk for your users – if any of your users tries to use your payments system for illegal or unethical ends, then you will be liable for the damages caused. These are just a few of the many concerns that would come with building a payment system from the ground up without using a payment vendor.</p>
-
-<p>With a payment vendor, on the other hand, you are able to offload all of the above issues to the vendor, allowing you to focus instead on integrating payments into your application. PayPal performs underwriting (which handles any potentially fraudulent individuals by simply preventing them from accepting payments), payment processing, communication with financial systems, and all necessary reporting as the transactions move through the various banks and financial APIs. While it would be possible to perform all of this work yourself, you&rsquo;ll save yourself years of labor by simply leveraging someone else&rsquo;s efforts.</p>
-
 <h3 id="server-side-action">Server-side Action</h3>
 
 <blockquote>
@@ -7302,7 +7307,7 @@ You can use the following JSON mode:</p>
 </code></pre>
 <p>Twilio has an API that you can use to send SMS. By translating their provided cURL commands to Angular $http calls, you can easily integrate Twilio with Backand.</p>
 
-<p>To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The example code demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions <a href="#custom-actions">here</a>. Name the action <code class="prettyprint">TwilioSendSMS</code>, add <code class="prettyprint">to</code> and <code class="prettyprint">message</code> to the Input Parameters, and paste the server-side code in the code editor.</p>
+<p>To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The example code demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application&rsquo;s objects (<strong>Database &ndash;&gt; Objects &ndash;&gt; <object name>, actions tab</strong>), and create a new on-demand server-side JavaScript action. Learn more how to create actions <a href="#custom-actions">here</a>. Name the action <code class="prettyprint">TwilioSendSMS</code>, add <code class="prettyprint">to</code> and <code class="prettyprint">message</code> to the Input Parameters, and paste the server-side code in the code editor.</p>
 
 <p>In the example app we&rsquo;re building, the app&rsquo;s users can send a SMS message to a phone number. The phone number is sent, from the client side, in the <code class="prettyprint">to</code> parameter, while the message content is sent in the <code class="prettyprint">message</code> parameter.</p>
 
@@ -7337,7 +7342,7 @@ You can use the following JSON mode:</p>
 
 <h2 id="netmera">Netmera</h2>
 
-<p>Netmera is a cloud based service that can be used to send Push Notifications to various platforms, among other services such as Exception reporting. It offers a friendly site where campaigns ()push notifications) can be managed and customized and a REST API to send push notifications automatically. In this guide you can find out how to get started on Netmera and send push notifications with Backand.</p>
+<p>Netmera is a cloud based service that can be used to send Push Notifications to various platforms, among other services such as Exception reporting. It offers a friendly site where campaigns (push notifications) can be managed and customized and a REST API to send push notifications automatically. In this guide you can find out how to get started on Netmera and send push notifications with Backand.</p>
 
 <h3 id="get-started-with-netmera">Get Started with Netmera</h3>
 
@@ -7450,7 +7455,7 @@ You can use the following JSON mode:</p>
 <ol>
 <li><p>Sign up for free at <a href="https://www.backand.com">backand.com</a> (if you don&rsquo;t already have an account).</p></li>
 <li><p>Create a new app in the Backand dashboard, then navigate to that app&rsquo;s management page.</p></li>
-<li><p>In the new app, open menu <strong>Objects &ndash;&gt; Items</strong>, and click on the <strong>Actions</strong> tab. In the <strong>Actions</strong> tab, click on the <strong>Facebook Messenger Bot</strong> template.</p></li>
+<li><p>In the new app, open menu <strong>Database &ndash;&gt; Objects &ndash;&gt; Items</strong>, and click on the <strong>Actions</strong> tab. In the <strong>Actions</strong> tab, click on the <strong>Facebook Messenger Bot</strong> template.</p></li>
 <li><p>Click <strong>Save</strong></p></li>
 </ol>
 
@@ -7499,8 +7504,8 @@ You can use the following JSON mode:</p>
 </ul>
 
 <aside class="notice">The webhook URL uses Backand&rsquo;s <a href="#basic-authentication">basic authentication</a>.
-You can find the &lsquo;&lt;master token&gt;&rsquo; in the <strong>&lsquo;Security & Auth &ndash;> Social & Keys&rsquo;</strong> section.
-It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find this in the &lsquo;Security & Auth &ndash;> Team&rsquo; section. Simply click on the key icon near one of the Admins to obtain the user key.</aside>
+You can find the &lsquo;&lt;master token&gt;&rsquo; in the <strong>Security &ndash;> Social & Keys</strong> section.
+It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find this in the <strong>Admin &ndash;> Team</strong> section. Simply click on the key icon near one of the Admins to obtain the user key.</aside>
 
 <ul>
 <li><p>Verify Token: <code class="prettyprint">my_test_token</code></p></li>
@@ -7778,7 +7783,7 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 
 <h2 id="salesforceiq">SalesforceIQ</h2>
 
-<p>Building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this article, we&rsquo;ll look at integrating a Backand application with Salesforce IQ, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.</p>
+<p>Building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this section, we&rsquo;ll look at integrating a Backand application with Salesforce IQ, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.</p>
 
 <h3 id="what-is-salesforceiq">What is SalesforceIQ?</h3>
 
@@ -7852,7 +7857,7 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 
 <h2 id="salesforce-crm">Salesforce CRM</h2>
 
-<p>As mentioned in our article on integrating with SalesforceIQ, building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this article, we&rsquo;ll look at integrating a Backand application with Salesforce CRM, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.</p>
+<p>As mentioned in our section on integrating with <a href="#salesforceIQ">SalesforceIQ</a>, building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this section, we&rsquo;ll look at integrating a Backand application with Salesforce CRM, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.</p>
 
 <h3 id="what-is-salesforce-crm">What is Salesforce CRM?</h3>
 
@@ -7922,8 +7927,7 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
     <span class="k">return</span> <span class="nx">opps</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre>
-<p>We have created an action template that will give you jump start with salesforceCRM. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The following is the content of the ready action template call
-<strong>Salesforce CRM</strong> under the <strong>CRM &amp; ERP</strong> section:</p>
+<p>We have created an action template that will give you jump start with salesforceCRM. You can either trigger this action with an object&rsquo;s CRUD event handler, or call it on-demand from your client code. The following is the content of the ready action template call <strong>Salesforce CRM</strong> under the <strong>CRM &amp; ERP</strong> section:</p>
 
 <aside class="notice">The above code fetches the access token every time you call the action. You can improve the performance of this call by caching the token into a Backand Server-Side Cookie, and only performing the retrieval when the token has expired.</aside>
 
@@ -8040,7 +8044,7 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
-<p>As Backand is a web API, it can be used by any application that is built on top of a programming language that can make HTTP requests. As an example of this, in this article we&rsquo;ll look at how to connect a native Android application to a Backand back-end using HTTP calls. We&rsquo;ll cover configuring the connection headers, authenticating with Backand, sending requests, and receiving responses. We&rsquo;ll also take a brief look at how to integrate with other Backand SDK functionality.</p>
+<p>As Backand is a web API, it can be used by any application that is built on top of a programming language that can make HTTP requests. As an example of this, in this section we&rsquo;ll look at how to connect a native Android application to a Backand back-end using HTTP calls. We&rsquo;ll cover configuring the connection headers, authenticating with Backand, sending requests, and receiving responses. We&rsquo;ll also take a brief look at how to integrate with other Backand SDK functionality.</p>
 
 <h3 id="configuring-the-connection">Configuring the Connection</h3>
 
@@ -8060,7 +8064,7 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
-<p>To integrate with Backand, you&rsquo;ll need three pieces of information. The first is the app name, which can be found in the Backand dashboard. The second is the app&rsquo;s Master key. This is found in the application dashboard, under Security &amp; Auth -&gt; Social &amp; Keys. Once you&rsquo;ve obtained this, you&rsquo;ll also need the User Key. This is a key that is unique to each registered user in your application. It is used to associate the actions being taken in your app with a user, so that you can apply security templates appropriately. Obtain the User Key from Security &amp; Auth -&gt; Registered Users - simply click on the &ldquo;key&rdquo; icon next to a user record to obtain the key:</p>
+<p>To integrate with Backand, you&rsquo;ll need three pieces of information. The first is the app name, which can be found in the Backand dashboard. The second is the app&rsquo;s Master key. This is found in the application dashboard, under <strong>Security &ndash;&gt; Social &amp; Keys</strong>. Once you&rsquo;ve obtained this, you&rsquo;ll also need the User Key. This is a key that is unique to each registered user in your application. It is used to associate the actions being taken in your app with a user, so that you can apply security templates appropriately. Obtain the User Key from <strong>Security -&gt; Registered Users</strong> - simply click on the &ldquo;key&rdquo; icon next to a user record to obtain the key:</p>
 
 <p><img src="images/user_key_icon.png" alt="image" /></p>
 
@@ -8139,6 +8143,213 @@ It also requires a &lsquo;&lt;user key&gt;&rsquo; for your app - you can find th
 <h2 id="calling-backand-from-native-ios-code">Calling Backand from Native iOS Code</h2>
 
 <p>While you can use a pattern similar to the method used when <a href="#calling-backand-from-native-android-code">integrating Backand with a native Android application</a>, Haijian Huo - a developer using Backand in an iOS app - has helpfully developed an SDK wrapper that reduces the complexity of calling the Backand SDK on iOS. See the project on Github at <a href="https://github.com/haijianhuo/HHBackand-iOS-SDK">https://github.com/haijianhuo/HHBackand-iOS-SDK</a>!</p>
+
+          <h1 id="the-backand-lambda-launcher">The Backand Lambda Launcher</h1>
+
+<p>The Backand Lambda Launcher is a tool we developed to ease the process of executing your AWS Lambda functions. Through use of the Lambda Launcher, you can easily execute any AWS Lambda function in your AWS account. This provides a number of benefits over traditional Lambda execution:</p>
+
+<ul>
+<li>You can provide users with a simple interface to your Lambda function library, allowing for execution of a function with a single click</li>
+<li>You can use non-AWS security systems to control user access to your AWS Lambda functions, allowing you to expose these functions without also needing to grant a user access to the AWS Console</li>
+<li>You can dynamically show and hide functions in the interface based upon user authentication and authorization, giving you full control over access to your Lambda functions</li>
+<li>You can integrate this functionality within a Backand application to give you ready-made devops, allowing you to perform reporting and maintenance tags from anywhere you have an internet connection</li>
+</ul>
+
+<h2 id="configuration">Configuration</h2>
+
+<p>In order to work with your Lambda functions in Backand, you&rsquo;ll first need to connect Backand to your AWS account. Below, we walk through the process of creating a security policy to govern your integration of AWS Lambda with Backand, creating a user with the security access necessary to connect to your Lambda functions from Backand, and finally configuring Backand to communicate with your AWS Lambda functions.</p>
+
+<p>These next sections focus on configuring the Lambda Launcher tool from a number of different locations. In all cases, the process will have three primary steps:</p>
+
+<ol>
+<li>Create an IAM Policy to control access to your account&rsquo;s Lambda functions</li>
+<li>Create an IAM User that you can use to connect Backand to your AWS account</li>
+<li>Connect AWS to Backand using the IAM User&rsquo;s access keys</li>
+</ol>
+
+<p>In all cases, step 3 - pasting the credentials into Backand - is the same, and as such we present the instructions for that step in a section after the AWS-specific configuration instructions. To create the AWS IAM Policy and User, choose the section most appropriate to your organizational practices from the options below.</p>
+
+<h3 id="iam-policy-json">IAM Policy JSON</h3>
+
+<blockquote>
+<p>The following JSON is to be used when creating the IAM security policy, to manage Backand&rsquo;s access to your AWS Lambda functions</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stmt1495964947000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"lambda:GetFunction"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lambda:InvokeAsync"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lambda:InvokeFunction"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lambda:ListFunctions"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"*"</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The Backand Lambda integration relies on the policy JSON provided to the right. This grants Backand the capability to fetch a list of functions, fetch an individual functions, and invoke a function both synchronously and asynchronously.</p>
+
+<h3 id="from-the-aws-console">From the AWS Console</h3>
+
+<p>If you&rsquo;re already logged into the AWS Console for your region, use the following steps to connect your AWS Lambda functions to Backand:</p>
+
+<h4 id="create-the-iam-security-policy">Create the IAM Security Policy</h4>
+
+<ol>
+<li>Open the IAM service panel</li>
+<li>In the navigation menu on the left, select <code class="prettyprint">Policies</code></li>
+<li>Click the <code class="prettyprint">Create Policy</code> button
+<img src="images/aws_console/aws-IAM-Policy-add.png" alt="image" /></li>
+<li>For &ldquo;Step 1 : Create Policy,&rdquo; select <code class="prettyprint">Create Your Own Policy</code></li>
+<li>Set the policy name to <code class="prettyprint">BackandLambdaReadExecuteAccess</code></li>
+<li>Paste the <a href="#iam-policy-json">policy JSON</a> into the area provided for the Policy Document
+<img src="images/aws_console/aws-IAM-Policy-add-3.png" alt="image" /></li>
+<li>Once the JSON is ready, click <code class="prettyprint">Create Policy</code></li>
+</ol>
+
+<h4 id="create-the-iam-user">Create the IAM User</h4>
+
+<ol>
+<li>On the navigation menu on the left, select <code class="prettyprint">Users</code></li>
+<li>Click <code class="prettyprint">Add User</code>
+<img src="images/aws_console/aws-IAM-users-add.png" alt="image" /></li>
+<li>Enter <code class="prettyprint">backand_lambda_user</code> as the user name</li>
+<li>Check the <code class="prettyprint">Programmatic access</code> option
+<img src="images/aws_console/aws-IAM-users-add-1.png" alt="image" /></li>
+<li>Click on <code class="prettyprint">Next: Permissions</code></li>
+<li>Click on <code class="prettyprint">Attach existing policies directly</code></li>
+<li>Search for <code class="prettyprint">BackandLambdaReadExecuteAccess</code>, and select it from the search results using the provided checkbox</li>
+<li>Click <code class="prettyprint">Next : Review</code></li>
+<li>click <code class="prettyprint">Create User</code></li>
+<li>On the <code class="prettyprint">Complete</code> page of the wizard, click the <code class="prettyprint">Show</code> link in the table column <code class="prettyprint">Secret access key</code></li>
+<li>Copy the &ldquo;Access key ID&rdquo; and &ldquo;Secret access key&rdquo; values to use with Backand.</li>
+</ol>
+
+<h3 id="from-the-aws-lambda-service-panel">From the AWS Lambda Service panel</h3>
+
+<p>Using AWS Lambda, you can leverage a python script that we created which goes through the process of creating the IAM Policy and User on your behalf.</p>
+
+<h4 id="lambda-python-script">Lambda Python Script</h4>
+<pre class="highlight python tab-python"><code><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">boto3</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">'Loading function'</span><span class="p">)</span>
+
+<span class="n">s3</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s">'s3'</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+
+    <span class="n">settings</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"name"</span> <span class="p">:</span><span class="s">"backand_lambda_user"</span><span class="p">,</span>
+        <span class="s">"policyName"</span><span class="p">:</span><span class="s">"BackandLambdaReadExecuteAccess"</span><span class="p">,</span>
+        <span class="s">"policy"</span><span class="p">:</span> <span class="s">""</span>
+    <span class="p">}</span>
+    <span class="n">settings</span><span class="p">[</span><span class="s">"policy"</span><span class="p">]</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span>
+          <span class="s">'Version'</span><span class="p">:</span> <span class="s">'2012-10-17'</span><span class="p">,</span>
+          <span class="s">'Statement'</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="s">'Sid'</span><span class="p">:</span> <span class="s">'Stmt1494926726830'</span><span class="p">,</span>
+              <span class="s">'Action'</span><span class="p">:</span> <span class="p">[</span>
+                <span class="s">'lambda:GetFunction'</span><span class="p">,</span>
+                <span class="s">'lambda:InvokeAsync'</span><span class="p">,</span>
+                <span class="s">'lambda:InvokeFunction'</span><span class="p">,</span>
+                <span class="s">'lambda:ListFunctions'</span>
+              <span class="p">],</span>
+              <span class="s">'Effect'</span><span class="p">:</span> <span class="s">'Allow'</span><span class="p">,</span>
+              <span class="s">'Resource'</span><span class="p">:</span> <span class="s">'*'</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">})</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s">'iam'</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span>
+        <span class="n">UserName</span><span class="o">=</span><span class="n">settings</span><span class="p">[</span><span class="s">"name"</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">);</span>
+    <span class="n">accessReponse</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_access_key</span><span class="p">(</span>
+        <span class="n">UserName</span><span class="o">=</span><span class="n">settings</span><span class="p">[</span><span class="s">"name"</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">accessReponse</span><span class="p">)</span>
+    <span class="n">policy</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_policy</span><span class="p">(</span>
+        <span class="n">PolicyName</span><span class="o">=</span> <span class="n">settings</span><span class="p">[</span><span class="s">"policyName"</span><span class="p">],</span>
+        <span class="n">PolicyDocument</span><span class="o">=</span><span class="n">settings</span><span class="p">[</span><span class="s">"policy"</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">policy</span><span class="p">)</span>
+    <span class="n">user_policy</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">attach_user_policy</span><span class="p">(</span>
+        <span class="n">UserName</span><span class="o">=</span><span class="n">settings</span><span class="p">[</span><span class="s">"name"</span><span class="p">],</span>
+        <span class="n">PolicyArn</span><span class="o">=</span><span class="n">policy</span><span class="p">[</span><span class="s">"Policy"</span><span class="p">][</span><span class="s">"Arn"</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s">'AccessKey'</span><span class="p">:</span> <span class="n">accessReponse</span><span class="p">[</span><span class="s">"AccessKey"</span><span class="p">][</span><span class="s">"AccessKeyId"</span><span class="p">],</span>
+        <span class="s">"SecretKey"</span><span class="p">:</span><span class="n">accessReponse</span><span class="p">[</span><span class="s">"AccessKey"</span><span class="p">][</span><span class="s">"SecretAccessKey"</span><span class="p">]</span>
+
+    <span class="p">}</span>
+</code></pre>
+<p>This approach uses a python script to create the appropriate IAM resources. This script is provided in the right-hand panel, and should be used as the body of the Lambda action that will perform the required resource allocation in IAM.</p>
+
+<h4 id="create-the-lambda-function">Create the Lambda Function</h4>
+
+<ol>
+<li>go to Lambda service panel</li>
+<li>Select the &ldquo;Blank Function and click &quot;Next&rdquo;</li>
+<li>name your function &ldquo;createBackandLambdaUser&rdquo;</li>
+<li>Select the &ldquo;Python 3.6&rdquo; runtime</li>
+<li>paste the <a href="#lambda-python-script">lambda python code</a> into the provided area.
+<img src="images/aws_lambda/aws-lambda-config-1.png" alt="image" /></li>
+<li>in the Role dropdown select &ldquo;Create Custome Role&rdquo;</li>
+<li>in the &ldquo;AWS Lambda requires access to your resources&rdquo; window, select &ldquo;Create new Role Policy&rdquo;</li>
+<li>click &ldquo;View Policy Document&rdquo; and click the Edit button on the right
+<img src="images/aws_lambda/aws-lambda-role.png" alt="image" /></li>
+<li>approve the &ldquo;Edit Policy&rdquo; pop-up
+<img src="images/aws_lambda/aws-lambda-role-1.png" alt="image" /></li>
+<li>Paste the <a href="#iam-policy-json">policy JSON</a> into the area provided for the Policy Document and click &ldquo;Allow&rdquo;
+<img src="images/aws_lambda/aws-lambda-role-2.png" alt="image" /></li>
+<li>click &ldquo;Next&rdquo;</li>
+<li>click &ldquo;Create  Function&rdquo;</li>
+<li>after the function was created , click &ldquo;Test&rdquo;,
+<img src="images/aws_lambda/aws-lambda-config-2.png" alt="image" /></li>
+<li>Copy the &ldquo;Access key ID&rdquo; and &ldquo;Secret access key&rdquo; values to use with Backand.</li>
+</ol>
+
+<h3 id="from-the-aws-cli">From the AWS CLI</h3>
+
+<p>If you primarily use the AWS CLI to interact with AWS, you can easily connect Backand to your AWS account using the following steps:</p>
+
+<h4 id="create-the-iam-policy-and-user">Create the IAM Policy and User</h4>
+
+<p>First, ensure that all files involved are saved in an ASCII-encoded format. Before starting, you&rsquo;ll need to create a new file in the current directroy - <code class="prettyprint">createBackandLambdaUser.json</code> - and populate it with the <a href="#iam-policy-json">policy JSON</a> before starting. Then, run the following series of commands to create the IAM Policy and User in your account:</p>
+
+<aside class="notice">Be sure to replace &lt;&lt;ACCOUNT_NUMBER&gt;&gt; with your AWS Account Number.</aside>
+
+<ol>
+<li>aws iam create-policy &ndash;policy-name BackandLambdaReadExecuteAccess &ndash;policy-document file://createBackandLambdaUser.json ( and copy the policy arn for step 4)arn:aws:iam::&lt;<ACCOUNT_NUMBER>&gt;:policy/BackandLambdaReadExecuteAccess</li>
+<li>aws iam create-user &ndash;user-name backand_lambda_user</li>
+<li>aws iam attach-user-policy &ndash;user-name backand_lambda_user &ndash;policy-arn arn:aws:iam::&lt;<ACCOUNT_NUMBER>&gt;:policy/BackandLambdaReadExecuteAccess</li>
+<li>aws iam create-access-key &ndash;user-name backand_lambda_user</li>
+<li>Copy the &ldquo;Access key ID&rdquo; and &ldquo;Secret access key&rdquo; values to use with Backand.</li>
+</ol>
+
+<h3 id="connect-the-iam-user-to-backand">Connect the IAM User to Backand</h3>
+
+<p>If you are configuring your Lambda Launcher access for the first time, via the modal dialog, you can simply paste your Access Key ID and Secret Access Key into the provided fields. If you have an existing app, you can update those from the External Functions page:</p>
+
+<ol>
+<li>Open the Backand App Dashboard</li>
+<li>Select the <code class="prettyprint">Functions &amp; Integrations</code> tab, if it is not already selected</li>
+<li>Select <code class="prettyprint">External Functions</code>, under <code class="prettyprint">Functions</code> in the left-hand navigation menu</li>
+<li>Provide the Access Key, Secret Key, and Region in the provided fields</li>
+<li>Press <code class="prettyprint">Link</code></li>
+</ol>
+
+<p>At this point, your AWS Lambda functions should be listed in the Backand interface.</p>
 
       </div>
       <div class="dark-box">
