@@ -1111,7 +1111,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 Twilio has an API that you can use to send SMS. By translating their provided cURL commands to Angular $http calls, you can easily integrate Twilio with Backand.
 
-To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The example code demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects (**Database --> Objects --> <object name>, actions tab**), and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](#custom-actions). Name the action `TwilioSendSMS`, add `to` and `message` to the Input Parameters, and paste the server-side code in the code editor.
+To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The example code demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects (**Database --> Objects --> &lt;object name&gt;, actions tab**), and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](#custom-actions). Name the action `TwilioSendSMS`, add `to` and `message` to the Input Parameters, and paste the server-side code in the code editor.
 
 In the example app we're building, the app's users can send a SMS message to a phone number. The phone number is sent, from the client side, in the `to` parameter, while the message content is sent in the `message` parameter.
 
