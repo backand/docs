@@ -164,20 +164,20 @@ For more information, see our [Vanilla SDK documentation](#vanilla-sdk)
 ### SSO (Single Sign On)
 Many organizations make use of tools like Active Directory in order to provide a central source of user-based authentication. This system is often used to drive a Single Sign On (SSO) feature in the organization, allowing users to simply use one set of credentials for all of the apps that they need to work with. Backand provides a method to incorporate SSO functionality using an override server-side action. This action allows you to perform your own authentication (via web-service calls to the domain controller, for example), and lets you return one of three actions.
 
-* Returning 'allow' allows the user access to the requested resource = in this case, you can return additional information in the 'additionalTokenInfo' variable, which is added to the Backand authentication result. You may access this later by using the getUserDetails function of the Backand SDK.
-* Returning "deny" overrides Backand's auth, and provides an 'Access Denied' mesage.
-* Returning 'ignore' allows you to ignore the custom action, instead relying upon Backand's default authentication methods.
+* Returning `allow` allows the user access to the requested resource = in this case, you can return additional information in the `additionalTokenInfo` variable, which is added to the Backand authentication result. You may access this later by using the `getUserDetails` function of the Backand SDK.
+* Returning `deny` overrides Backand's auth, and provides an 'Access Denied' message.
+* Returning `ignore` allows you to ignore the custom action, instead relying upon Backand's default authentication methods.
 
-You can configure this action in the Backand dashboard, under Security & Auth => Security Actions.
+You can configure this action in the Backand dashboard, under **Security --> Security Actions**.
 
 ### Remove user from the app
-There are two ways to remove a user from the application. You can permanently remove a user from the application by deleting a user from the Registered Users grid. This requires the user to register again if they wish to continue using your app. Alternatively, you can un-check the 'approved' checkbox in the user's row on the Security & Auth --> Users page. This allows you to reinstate the user simply by re-checking the 'approved' column.
+There are two ways to remove a user from the application. You can permanently remove a user from the application by deleting a user from the Registered Users grid. This requires the user to register again if they wish to continue using your app. Alternatively, you can un-check the 'approved' checkbox in the user's row on the **Security --> Registered Users** page. This allows you to reinstate the user simply by re-checking the 'approved' column.
 
 ### Anonymous Access
 By default the anonymous access is turned on with 'User' role access, which mean any one can register to your app and make CRUD actions on any object.
-If you wish to disable anonymous access to your application, go to Security & Auth --> Configuration and set 'Anonymous Access' to off.
+If you wish to disable anonymous access to your application, go to **Security --> Configuration** and set 'Anonymous Access' to off.
 
-<aside class="notice">To better control the permission of your app we recommend to change the anonymous users role to have less access. For more information on anonymous access, see the <a href="#backand-init">API Description</a>.</aside>
+<aside class="notice">To better control the permission of your app we recommend to change the default anonymous user role to have less access. For more information on anonymous access, see the <a href="#backand-init">API Description</a>.</aside>
 
 ### Link your app's users with Backand's registered users
 ```javascript
@@ -233,11 +233,11 @@ function backandCallback(userInput, dbRow, params, userProfile) {
     return { };
 }
 ```
-[Backand](https://www.backand.com) maintains an internal registered users object which is used to manage your app's security. However, most apps will have their own 'users' object, which is used when implementing the app's business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two objects. If you have an object in your system named 'users', and if that object has the fields 'email', 'firstName', and 'lastName', then every user that is registered with [Backand](https://www.backand.com) for your app will automatically have an entry created in your custom 'users' object. This takes place no matter how the user is added - both the sign-up API and the [Backand](https://www.backand.com) dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand's internal registered users object. This new user will be given a randomized password, which can then be provided to the user for access to your application.
+[Backand](https://www.backand.com) maintains an internal registered users object which is used to manage your app's security. However, most apps will have their own 'users' object, which is used when implementing the app's business logic. Recognizing this, we have created automatic and custom trigger actions that can be used to synchronize the two objects. If you have an object in your system named `users`, and if that object has the fields `email`, `firstName`, and `lastName`, then every user that is registered with [Backand](https://www.backand.com) for your app will automatically have an entry created in your custom `users` object. This takes place no matter how the user is added - both the sign-up API and the [Backand](https://www.backand.com) dashboard will create an automated user record! Additionally, every time you add a user instance to your users object, a new user is created in Backand's internal registered users object. This new user will be given a randomized password, which can then be provided to the user for access to your application.
 
-Below we'll look more in-depth at how this process is managed. Additionally, we'll explore what happens when the users object has an unexpected name (i.e. something other than 'users'), or if the fields of the users object are named differently.
+Below we'll look more in-depth at how this process is managed. Additionally, we'll explore what happens when the `users` object has an unexpected name (i.e. something other than `users`), or if the fields of the `users` object are named differently.
 
-There are 3 sync actions located in Configuration -> Security & Auth that are triggered by Backand user registration:
+There are 3 sync actions located in **Security --> Security Actions** that are triggered by Backand user registration:
 
 1. Create My App User
 1. Update My App User
@@ -253,20 +253,20 @@ If you have a users object in your model, Backand adds the following actions, wh
 * During Create: Create Backand Register User
 
 
-This action implements the other side of the relationship - after creating an instance in your custom 'users' object, this code creates the corresponding entry in Backand's internal users object. If have named your custom user object anything other than 'users', you can add the above action into that object manually to achieve the same functionality. You will need to adjust the backandUser object creation to use the columns in your specific object, as the userInput object may have a different structure than that assumed above.
+This action implements the other side of the relationship - after creating an instance in your custom `users` object, this code creates the corresponding entry in Backand's internal users object. If have named your custom user object anything other than `users`, you can add the above action into that object manually to achieve the same functionality. You may also need to adjust the general `Create My App User` action to use the columns in your specific object structure, as the `userInput` object may have a different structure than that assumed by the default action.
 
 ### Roles & Security Templates
-Each user has a role. When you created your app, you were automatically assigned with an 'Admin' role. The 'Admin' role is a special role that allows you to make configuration changes in your app with Backand's administration tools. Non-admin roles, which should be used to secure your application, are used to define the permissions for each of the [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions for your objects and queries. Each Object and Query in your application is associated with a Security Template. In the security template, you assign different permissions for the possible [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions to each user role, allowing you to control your user's access to the system's create, read, update and delete actions for your objects. Template configuration is found on the Security & Auth --> Security Template page.
+Each user has a role. When you created your app, you were automatically assigned with an `Admin` role. The `Admin` role is a special role that allows you to make configuration changes in your app with Backand's administration tools. Non-admin roles, which should be used to secure your application, are used to define the permissions for each of the [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions for your objects and queries. Each Object and Query in your application is associated with a Security Template. In the security template, you assign different permissions for the possible [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions to each user role, allowing you to control your user's access to the system's create, read, update and delete actions for your objects. Template configuration is found on the **Security --> Security Templates** page.
 
 While Security Templates provide reusable permissions platforms that can be spread across a number of roles, you can also override security template settings and provide specific permissions for each individual role. This allows you to have more granular control over the [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions that can be performed by the users in your system. When a user with insufficient security access tries to perform an action for which they do not have permission, a 403 (Forbidden) error response is returned.
 
 ### Security Actions
-Backand offers a number of pre-defined security actions that can be used to manage your application's security processes. These are available in the app dashboard under **Security & Auth -> Security Actions**. See [the Security Actions Documentation](#security-actions-backand-dashboard) for more details.
+Backand offers a number of pre-defined security actions that can be used to manage your application's security processes. These are available in the app dashboard under **Security -> Security Actions**. See [the Security Actions Documentation](#security-actions-backand-dashboard) for more details.
 
 ## Backand Storage
 Backand provides you with the ability to upload and delete files to and from Backand's robust storage. This is done on the server-side through Backand's Actions. It doesn't require any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage counts of the amount of files per user.
 
-The files.upload command returns a url that links to the file you uploaded. This is a public url. The storage is managed per Backand app.  
+The `files.upload` command returns a url that links to the file you uploaded. This is a public url. The storage bucket is managed with the Backand app.  
 
 ### Custom Server-Side Action Code
 ```javascript
@@ -288,7 +288,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 }
 ```
-Both upload and delete are written in the same action and the method you use to call it determines the functionality. When the method is POST then the action performs upload and when it is DELETE the action performs delete. You can use the userProfile for restrictions or file name manipulations. You do not need to copy this code. It is ready for you when you click on the Backand *File Storage* action template.
+Both upload and delete are written in the same function, and the method you use when you call the function determines which task is performed.. When the method is `POST` then the action performs an upload, and when it is `DELETE` the action performs a deletion. You can use the `userProfile` parameter for restrictions or file name manipulations. You do not need to copy this code. It is ready for you when you click on the Backand *File Storage* action template.
 
 ### Angular Client-Side Code
 ```html
@@ -420,8 +420,7 @@ function DemoCtrl($scope, $http, Backand) {
 }
 ```
 
-We created a simple example in Angular to experience the upload functionality.
-You can see the code in action at [codepen](http://codepen.io/backand/pen/ZQaYEV). The relevant parts of the code are available in the JavaScript pane to the right.
+We've created a simple example in AngularJS to demonstrate the upload functionality. You can see the code in action at [codepen](http://codepen.io/backand/pen/ZQaYEV). The relevant parts of the code are available in the JavaScript pane to the right.
 
 ## Backand Hosting
 Backand offers high-performance, reliable, and secure hosting for AngularJS applications through the hosting and deployment tool. Built as a cloud-based service, Backand Hosting gives you an effortless way to deploy your Angular project to a hosted server.
@@ -439,7 +438,7 @@ The Backand CLI (command-line interface) requires Node.js and Node Package Manag
   # or use sudo (with caution)
 ```
 
-The hosting and deployment functionality is provided with the Backand node package. Simply install the package from the command line as follows:
+The hosting and deployment functionality is provided with the Backand CLI tool. Simply install the tool from the command line using the command on the right.
 
 
 ### Updating a Prior Version
@@ -447,15 +446,14 @@ The hosting and deployment functionality is provided with the Backand node packa
   $ npm update -g backand
   # or use sudo (with caution)
 ```
-If you've installed the Backand node package before, you will need to perform an update to get the new hosting and deployment functionality. Follow these steps to update your locally-installed version of Backand
+If you've installed the Backand node package before, you will need to perform an update to get the new hosting and deployment functionality. Use the command on the right to update your locally-installed version of Backand
 
 
 ### Deploying the Angular Project
 ```bash
   backand sync --app {{appName}} --master {{master-token}} --user {{user-token}} --folder /path/to/project/folder
 ```
-The Backand CLI, which we installed using NPM, provides the capability to deploy your project, as well as sync your local project folder. To deploy and sync, use the following command from the command line:
-
+The Backand CLI provides the capability to deploy your app's code, as well as sync your local project folder. To deploy and sync, use thecommand on the right.
 
 The parameters for this call are:
 
@@ -468,15 +466,16 @@ The parameters for this call are:
   **--folder**: The path of the local Angular folder to sync and deploy
 
 ### Browsing to your app
-Your app is now on air, just browse to **https://hosting.backand.com/YourAppName** and see it live.
+Your app is now available at **https://hosting.backand.com/YourAppName** to see it live.
+
+<aside class="notice"> Be sure to replace <strong>YourAppName</strong> above with the name of your Backand app.</aside>
 
 ### Configuring Sync in Gulp
-
 ```bash
   # Install the backand hosting gulp plugin with NPM
   npm install backand-hosting-s3
 ```
-```javascript
+```javascript--persistent
   // Include the sync module in your project
   var backandSync = require('../sync-module');
 
@@ -504,16 +503,14 @@ To create the new Gulp deployment task:
 
 1. Install the Backand hosting gulp plugin using NPM
 
-
 2. At the top of gulpfile.js add the `require` call
-
 
 3. Set your Backand credentials for the task. Credentials will be stored in file `.backand-credentials.json`:
 
 4. Configure the task to Sync folder './src':
 
 5. Syncing is performed via a local cache file named '.awspublish-<bucketname>'. This file cache can become corrupted
- after multiple uses, so we need to create one more task to perform cleanup after the deployment has completed:
+ after multiple uses, so we need to create one more task to perform cleanup after the deployment has completed - you can see this in the JavaScript on the right.
 
 ## Realtime Database Communications
 > To begin, you'll need to include the socket.io library. This can be obtained from their CDN, or using a package manager like NPM or bower
@@ -557,16 +554,13 @@ Backand’s real-time database communications are completely secure. They provid
 Using the real-time capability can enhance your app with instant updates to any Angular page, including updating charts, counters, logs, and other data-driven elements.
 
 ###Setup
-
+To start working with our real-time functionality, follow these three steps:
 
 1. Upgrade to Backand SDK 1.9.5 or above.
 2. Include the Backand SDK and Socket.io in your index.html file
 3. Update Angular configuration section
 
-```shell--persistent
-bower install socket.io-client
-```
-<aside class="notice">You can also install socket using a package manager like bower</aside>
+You can also install socket using a package manager like bower by using the command `bower install socket.io-client` in the terminal.
 
 ### Angular client code - Sockets
 ```javascript--persistent
@@ -615,31 +609,30 @@ This command sends the event to all the users in a specified role. Be aware that
 This command sends event to all connected users, regardless of their role or permission settings. Be aware that this command vertices any data security filters you may have configured for your application. Use this emit type for general event broadcasting.
 
 ## Custom Actions
-In Backand's system, you can create server-side activity called Actions. These actions can be used for the purpose of security, integration, performance, notification and data integrity, among others, providing you with more flexibility in your app's design. There are two types of Actions that can be created. The first are initiated via a direct web request. These are known as "On Demand" actions. Additionally, you can create automated actions that take place based upon a data interaction event. These automated actions can occur whenever you create, update, or delete an item in your system. On Demand actions are associated with a specific object, and can be found on the `Object --> {name}` page in the Actions tab. The automated Create, Update and Delete actions are associated with a specific object that is compatible with a specific row in a table, while On Demand actions make association with a specific role optional.
+In Backand's system, you can implement server-side activity using our Custom Actions. These actions can be used for the purpose of security, integration, performance, notification and data integrity, among others, providing you with more flexibility in your app's design. There are two types of Actions that can be created. The first are initiated via a direct web request. These are known as "On Demand" actions. Additionally, you can create automated actions that take place based upon a data interaction event. These automated actions can occur whenever you create, update, or delete an item in your system. On Demand actions are associated with a specific object, and can be found on the `Object --> {name}` page, in the `Actions` tab. The automated Create, Update, and Delete actions are associated with a specific object that is compatible with a specific row in a table, while On Demand actions make association with a specific role optional.
 
 There are 4 kinds of actions that can be created:
 
 * Server side JavaScript code actions
-* Server side node.js code actions
+* AWS Node.js Lambda actions
 * Transactional database script actions
 * Send Email actions
 
 All 4 types of actions use the following common parameters:
 
-* A Where condition - a SQL where clause that determines if the action will be performed.
+* A `Where` condition - a SQL where clause that determines if the action will be performed.
 * Input Parameters, added to the query string of the request that triggers the action, that will serve as variable values that you can supply to your action's code. These parameters will serve as tokens in the action definition and will be replaced with the actual values when the code executes.
 
 ### Server-side JavaScript Code
 
-```javascript
+```javascript--persistent
 function backandCallback(userInput, dbRow, parameters, userProfile) {
     // write your code here
     return {};
 }
 ```
 
-You can run standard JavaScript on the server. It runs on the [V8 engine](http://en.wikipedia.org/wiki/V8_(JavaScript_engine)). To execute the JavaScript action, put your code into the following function:
-
+You can run standard JavaScript on the server. It runs on the [V8 engine](http://en.wikipedia.org/wiki/V8_(JavaScript_engine)). To execute the JavaScript action, use the function prototype on the right to encapsulate your code.
 
 The function parameters are selected from the following list:
 
@@ -657,7 +650,7 @@ Additionally, you have access to some global utility objects:
 * `socket`: `socket` is an object that allows you to send real-time communication events and data to the client. `socket` has 3 methods: `emitUsers`, `emitRole`, and `emitAll`. Refer back to our documentation on [Realtime Database Communication here](#realtime-database-communications) for more information.
 
 #### Making HTTP Requests from a custom action
-```javascript
+```javascript--persistent
 // GET example:
 var response = $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample",
                        params:{filter:[{fieldName:"fieldexample", operator:"contains", value:"somestring"}]},
@@ -691,10 +684,10 @@ To make a request, simply feed a parameter hash into the $http object. The avail
 * headers - the headers to use with the request, typically just the authorization header
 
 #### A Note About The Authorization Header:  
-Sending the authorization header to the $http function is optional. When you make a $http request with an authorization header and the value of the userProfile.token (as in the examples above), the request will run in the context of the current user and with his assigned role. Alternatively, if you choose not to send an authorization header, the action will run in the context of an admin role. Send the authorization header with the request if you are going to use information about the current user in the action, otherwise you do not need to do so.
+Sending the `authorization` header to the `$http` function is optional. When you make a `$http` request with an `authorization` header and the value of the `userProfile.token` (as in the examples above), the request will run in the context of the current user and with their assigned role. Alternatively, if you choose not to send an `authorization` header, the action will run in the context of an admin role. Send the `authorization` header with the request if you are going to use information about the current user in the action, otherwise you do not need to do so.
 
 #### Debugging
-Debugging should be done using either console.log or console.error. For example, to dump the contents of variable
+Debugging should be done using either `console.log` or `console.error`. For example, to dump the contents of variable
 `object`:
 
 `console.log(object)`
@@ -703,10 +696,12 @@ Debugging should be done using either console.log or console.error. For example,
 
 These are sent to the Logging section of the Backand dashboard, under `Log` -> `Console`.
 
+<aside class="warning">NOTE: You must enable debug mode in <strong>Admin --&gt; General</strong> in order to see the console output in your application's logs. This output will always be shown when testing a function in the Backand App Dashboard, using the provided UI.</aside>
+
 #### Error Handling
 If your code results in an error (for example, if you write the following: `throw new Error("An error occurred!")`), the request will return HTTP status 417, and the response body will contain the associated error message.
 
-These are also sent to the Logging section of the Backand dashboard, under `Log` -> `Server Side Exceptions`.
+These are also sent to the Logging section of the Backand dashboard, under **Admin --> All Logs --> Server Side Exceptions**.
 
 #### Return values
 Triggered actions will have a response that matches the format expected by the triggering call (such as the return value of a `CREATE` call).
@@ -729,11 +724,11 @@ For Server-Side Node.js Code actions, you develop the code on your local machine
 
 Follow these steps to create and run a Server-Side Node.js Code Action:
 
-* First name the action, and use the init command by copy-pasting "backand action init..." to a command line within the folder in which you'll be developing your action. The action init command creates two folder levels on your local file system. The top level folder will be the name of the object controlling the action, while its child folder is the name of the action you are working with. We recommend that you always run the **action init** command from the root folder of the app's project when creating additional actions. This means you will have a sub-folder for each object, and under it, a sub -folder for each action.
+* First name the action, and use the init command by copy-pasting `backand action init...` to a command line within the folder in which you'll be developing your action. The action init command creates two folder levels on your local file system. The top level folder will be the name of the object controlling the action, while its child folder is the name of the action you are working with. We recommend that you always run the **action init** command from the root folder of the app's project when creating additional actions. This means you will have a sub-folder for each object, and under it, a sub -folder for each action.
 * Next, build your Node.js code in the `action` folder like any Node other project using your preferred IDE. Add as many npm
 packages as you need. Note - Your code **must** start with the index.js file - Backand uses this as the starting point for your Node.JS action.
 * To debug your code locally, run the debug.js file. Debug.js is provided by the init command, and is ignored when deploying the code to Backand.
-* To run your code on the Back& server, use the deploy command by copy-pasting "backand action deploy..." into the command line used in the first step. The
+* To run your code on the Back& server, use the deploy command by copy-pasting `backand action deploy...` into the command line used in the first step. The
 deploy command will be available on the action page **after** the action has been initialized with "backand action init...".
 
 You are now ready to develop your code locally, and test the action on the Backand Dashboard for your application!
@@ -745,7 +740,6 @@ You are now ready to develop your code locally, and test the action on the Backa
 ```
 
 Backand uses the Backand CLI to control deployment and initialization. The CLI requires that Node.js and NPM are both installed. You can install them on your local machine by following the instructions at [https://nodejs.org/](https://nodejs.org/).
-
 
 Once you've set up Node and NPM, use NPM to install the Backand CLI as a global package.
 
@@ -761,8 +755,8 @@ The parameters for this call are:
 *  `--app`:		  The current app name  
 *  `--object`:		The object that the action belongs to  
 *  `--action`:		The action name  
-*  `--master`:		The master token of the app (obtained from the Social & Keys section of the app's Security & Auth configuration)  
-*  `--user`:		  The token of the current user (available from the TEam section of the app's Security & Auth configuration - simply click on key icon next to an authorized user)  
+*  `--master`:		The master token of the app (obtained from **Security --> Social & Keys**)  
+*  `--user`:		  The token of the current user (available from **Admin --> Team** - simply click on key icon next to an authorized user)  
 
 
 ### Deploy action
@@ -777,13 +771,13 @@ The parameters for this call are:
 *  `--app`:		  The current app name  
 *  `--object`:		The object that the action belongs to  
 *  `--action`:		The action name  
-*  `--master`:   The master token of the app (obtained from the Social & Keys section of the app's Security & Auth configuration)  
-*  `--user`:     The token of the current user (available from the TEam section of the app's Security & Auth configuration - simply click on key icon next to an authorized user)  
+*  `--master`:   The master token of the app (obtained from **Security --> Social & Keys**)   
+*  `--user`:     The token of the current user (available from **Admin --> Team** - simply click on key icon next to an authorized user)
 *  `--folder`:   (Optional) The folder to deploy. By default the deployment occurs in the current folder
 
 ### Add Backand SDK to Node.js
 ```bash
-    $ npm install backandsdk --save
+$ npm install backandsdk --save
 ```
 
 To work with objects or other actions in Backand, you need to install the Backand SDK for Node.js. The Backand SDK ships with several code samples that demonstrate how to access other Backand functionality.
@@ -845,10 +839,10 @@ A query consists of these parts:
 1. fields to be extracted
 2. table to extract the records from
 3. expression for filtering the table rows
-4. groupby - fields to group the data under
+4. `groupby` - fields to group the data under
 5. aggregate functions to be applied to columns in fields
-6. orderby - fields to order the return data by
-7. limit - an integer number of records to return.
+6. `orderby` - fields to order the return data by
+7. `limit` - an integer number of records to return.
 
 Only the table and expression parameters are mandatory. These objects are created using JSON to establish each of the elements in the query. The NoSQL JSON is then converted into a SQL query. Each component of a NoSQL query hash corresponds to a different portion of the SQL query that ends up being run against your database. See the query template to the right to get a feeling of how the query translates into SQL statements.
 
