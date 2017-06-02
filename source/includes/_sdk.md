@@ -294,7 +294,7 @@ backand.requestResetPassword(email);
 
 Initiates the password reset request. Sends an email to the specified user providing a link to your reset password form. Also provides a reset token, to be used to finalize the password reset.
 
-<aside class="warning">You must configure a custom reset password URL to use the password reset functionality. This is done in the app dashboard, under <strong>Security & Auth -> Configuration</strong></aside>
+<aside class="warning">You must configure a custom reset password URL to use the password reset functionality. This is done in the app dashboard, under <strong>Security -> Configuration</strong></aside>
 #### Parameters
 | name | type | description |
 | ---- | ---- | ----------- |
@@ -1018,7 +1018,7 @@ Triggers on-demand custom actions that operate via HTTP POST requests
 
 
 ## .file
-This property allows you to work with file actions, interacting with the related files directly. You can use this after you have finished creating a server-side action in the Back& dashboard, in the Actions tab of an object (object -> actions tab -> Backand Files icon -> name: 'files')
+This property allows you to work with file actions, interacting with the related files directly. You can use this after you have finished creating a server-side action in the Back& dashboard, in the Actions tab of an object (**Database --> Object --> actions tab -> Backand Files icon -> name: 'files'**)
 
 ### .upload()
 ```shell
