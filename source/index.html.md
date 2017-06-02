@@ -16,6 +16,7 @@ includes:
   - platform_specific
   - common_use_cases
   - integrations
+  - lambda_launcher
 
 search: true
 ---
