@@ -17,25 +17,25 @@ To install the Angular 1 SDK, use the correct command for your dependency manage
 As a part of this, you'll also want to remove any of the previous SDK includes from the *vendor* directory (or wherever your package manager stores JavaScript dependencies). Keeping these older versions around can pose problems when sending HTTP requests.
 
 ### Step 2: Include the SDK in your project
-
-The Serverless SDK requires two includes for Angular 1 apps. The first is our Vanilla SDK, and contains all of our core SDK functionality. The second is our Angular 1 SDK, which wraps the Vanilla SDK and provides setup and access to its functionality. Start with removing the old SDK by commenting out - or deleting - the following line (or related lines, based on your project structure):
+> Start by deleting any existing Backand includes.
 
 ```html
      <script src="lib/angularbknd-sdk/dist/backand.min.js"></script>
 ```
-Then, replace it with the new SDK links:
+> Then, include the new SDK links
 
 ```html
 <script src="lib/backand-vanilla-sdk/dist/backand.js"></script>
 <script src="lib/backand-angular1-sdk/dist/backand.provider.js"></script>
 ```
-
-You can also use our SDK directly via our Content Distribution Network. Include the CDN links as follows, instead of the local *\\lib* links specified above:
+>You can also use our SDK directly via our Content Distribution Network (CDN). Include the CDN links as follows, instead of the local *\\lib* links specified above:
 
 ```html
 <script src="//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"></script>
 <script src="//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"></script>
 ```
+
+The Serverless SDK requires two includes for Angular 1 apps. The first is our Vanilla SDK, and contains all of our core SDK functionality. The second is our Angular 1 SDK, which wraps the Vanilla SDK and provides setup and access to its functionality. Start with removing the old SDK by commenting out - or deleting - any prior includes of older Backand SDKs. Once the older includes have been deleted, replace the dependencies with the new SDK links.
 
 ### Step 3: Authentication
 
@@ -46,7 +46,7 @@ The authentication functionality in the SDK has not changed considerably with th
 
 ### Step 4: Update unauthorized user detection
 
-The *getToken()* method has been expanded, to use a promise. Originally this method would return undefined when a user was unauthorized, but this functionality can now be managed via the promise method. In the new SDK, the *getToken()* method is not as prominent as it was in previous versions, and you are likely to not need it as you work on your app.
+The `getToken()` method has been expanded, to use a promise. Originally this method would return undefined when a user was unauthorized, but this functionality can now be managed via the promise method. In the new SDK, the `getToken()` method is not as prominent as it was in previous versions, and you are likely to not need it as you work on your app.
 
 ### Step 5: Use the new SDK methods in place of $http calls
 
@@ -63,10 +63,9 @@ The Serverless SDK features wrapper methods that can be used in place of the dir
 | URL built with Backand.getApiUrl() | No URL necessary |
 
 ### Step 6: Update handling of the response object
+> Fetching data, old method:
 
-The old SDK would use code similar to the following when handling responses from Back& API calls:
-
-```javascript
+```javascript--persistent
 function getAll() {
  ItemsModel.all()
    .then(function (result) {
@@ -74,15 +73,16 @@ function getAll() {
    });
 }
 ```
+> New method of obtaining result data
 
-The new sdk does not store the results in a nested data member, but rather in a root data element. The old SDK stored the response contents in a root property, meaning that the actual data was a subset of this *data* property - hence the use of *result.data.data* in the old SDK. With the new SDK, you no longer need the extra level of disambiguation, and can store the data in your application's object with the following code:
-
-```javascript
+```javascript--persistent
      vm.data = result.data;
 ```
 
+The new sdk does not store the results in a nested data member, but rather in a root data element. The old SDK stored the response contents in a root property, meaning that the actual data was a subset of this *data* property - hence the use of *result.data.data* in the old SDK. With the new SDK, you no longer need the extra level of disambiguation, and can store the data in your application's object with the code on the right.
+
 ### Conclusion
-In this post, we covered the new SDK. We touched briefly on the features the new SDK has to offer, and walked through the process necessary to convert an existing Backand-powered app to the new API. Most importantly, though, is that we built this SDK based on your feedback, and we want more! Connect with us via social media, or on StackOverflow, or even directly via comments on our Git repos and contacting customer support - we’d love to incorporate your thoughts and suggestions into the next version.
+In this section, we covered the new SDK. We touched briefly on the features the new SDK has to offer, and walked through the process necessary to convert an existing Backand-powered app to the new API. Most importantly, though, is that we built this SDK based on your feedback, and we want more! Connect with us via social media, or on StackOverflow, or even directly via comments on our Git repos and contacting customer support - we’d love to incorporate your thoughts and suggestions into the next version.
 
 ## Setting up and Configuring a database
 Backand users typically fall into one of two categories. The first category works with the underlying data system as a series of objects, and doesn't spend a lot of time focused on the database underpinning the application. The second category, though, work with databases as a matter of course. Often they have existing databases that they want to build an interface on top of, with complex existing relationships that need to be modeled accurately by any framework put in front of it. Below we'll cover the database connectivity functionality offered by Backand, and how it can fit even the most complex of database needs.
@@ -130,7 +130,7 @@ Interacting with the data in your application is something that is crucial to th
 
 
 ## Configuring Role-based Security
-One of the core concerns of any application that deals with sensitive user and business data is security. In this article we'll cover how Backand handles security for your application, covering the entire stack – from user registration to security templates. We'll also discuss anonymous access to your application, which can greatly enhance your application's adoption by the world at large. Backand takes your application's security seriously, and with the following we'll show you how we protect your data effectively.
+One of the core concerns of any application that deals with sensitive user and business data is security. In this section we'll cover how Backand handles security for your application, covering the entire stack – from user registration to security templates. We'll also discuss anonymous access to your application, which can greatly enhance your application's adoption by the world at large. Backand takes your application's security seriously, and with the following we'll show you how we protect your data effectively.
 
 ### User Registration
 
@@ -142,7 +142,7 @@ Once your app is stable and your security is fully configured (or even before if
 
 Backand uses role-based security to secure access to your application data. This is accomplished by assigning each user in your application a role. Roles have varying permission levels throughout your app, from object-specific restrictions on record modification all the way up to full access to your application's configuration. Each role's permission set is configurable at a macro level as well as at an object level, allowing you true flexibility in securing your application.
 
-New users created from the admin dashboard are created in the "admin" role. One of your first steps should be adding an additional security role for new users – whether invited in private mode or registering organically in public mode – that will serve as the default for user sign-ups. Once this default role is set, all new users are assigned the new role automatically. You can then make any permission or access changes you need to from the administrative dashboard.
+New users created from the admin dashboard are created in the `admin` role. One of your first steps should be adding an additional security role for new users – whether invited in private mode or registering organically in public mode – that will serve as the default for user sign-ups. Once this default role is set, all new users are assigned the new role automatically. You can then make any permission or access changes you need to from the administrative dashboard.
 
 ### Security Templates
 
@@ -158,11 +158,8 @@ In many cases, particularly when working with your application as an API, it is 
 
 Securing your application is a priority task, and crucial to ensuring your application's success. Through Backand's use of two-factor authentication to drive registration, you can be sure that the users coming into your application are a low fraud risk, and that both their experience – and your data – are protected. Additionally, you can secure your app through the use of user roles and security templates, which allow you to quickly and easily manage the permissions in your application. Finally, you can grant some use cases anonymous access to your application, easing integration with third parties and handling organic traffic with ease. With Backand's security offerings, you can rest assured that your application is safe and protected.
 
-
-
-
 ## Integrating with Third Party APIs
-Libraries have built the modern world. In a post originally on Google Plus, Steve Yegge detailed how it was [platform development](https://gist.github.com/chitchcock/1281611) that provided the basis for success of a lot of the major technology companies, using Amazon, Microsoft, and Facebook as examples. True platform-based development isn't possible without a mechanism to integrate with those platforms, though. Below we'll look at the options available to you when developing a Backand-backed web app, detailing which APIs work best at each stage of the application.
+In a post originally on Google Plus, Steve Yegge detailed how it was [platform development](https://gist.github.com/chitchcock/1281611) that provided the basis for success of a lot of the major technology companies, using Amazon, Microsoft, and Facebook as examples. However, True platform-based development isn't possible without a mechanism to integrate with those platforms. Below we'll look at the options available to you when developing a Backand-backed web app, detailing which APIs work best at each stage of the application.
 
 ### Guidelines on Integrations
 As a general rule, you'll see two overall ideas put forth in this article:
@@ -185,36 +182,22 @@ Server-side integrations of third party libraries are restricted to those librar
 
 While many of these libraries have code that can exist in either the client or the server, the approach above is ideal when security is a consideration. If you're dealing with a customer's sensitive personal info, a client side-based implementation may expose your users to unnecessary risk. By moving these calls to server-side custom actions, you can protect your users' information by encrypting the communications with HTTPS web requests (already provided by Backand), and put the sensitive code behind your application's administrative dashboard.
 
-
-
-
-
-
-
-
-
 ## Working with Geographic Data
-Backand lets you store geography points as fields as part of any object. Geography point is an array of latitude and longitude which represents a location on a map.
+Backand lets you store geography points as fields as part of any object. A geography point is an array two floats, representing the latitude and longitude of a position on a map.
 
-With Backand geography query you can easily find distance between points or objects that match a distance to a specific location.
+With Backand's geography query you can easily find distances between points or objects, within a range from a specific location that you specify.
 
 ### Add a Point
-
-To add new point field, open Backand Model, select add field with *point* type. To POST new data point for latitude 10 and longitude 20 just send the following array:
+> To POST a new data point for latitude 10 and longitude 20 in column `geo`, you can use the following JSON:
 
 ```json
   "geo": [10,20]
 ```
 
+To add new point field, open Backand's Model UI (**Database --> Model**). Find an object to which you wish to add the geometry data, and select `Add Field`, giving the new field the `point` data type.
+
 ### Query Point
-
-To query a distance within a geography point you can use any of the follow commands:
-`$withinMiles`
-`$withinFeet`
-`$withinKilometers`
-`$within (in meters)`
-
-To get all the restaurants within 25 Miles of San Francisco Marina District [37.8019859, -122.4414805]:
+> To get all the restaurants within 25 Miles of San Francisco's Marina District [37.8019859, -122.4414805]:
 
 ```json
   {
@@ -224,40 +207,38 @@ To get all the restaurants within 25 Miles of San Francisco Marina District [37.
     }
   }
 ```
-
-The above noSql is translated into MySQL syntax using the new ST_Distance() function:
+> The above NoSQL is translated into MySQL syntax using the new ST_Distance() function:
 
 ```SQL
-
   SELECT * FROM `restaurants` WHERE (ST_Distance ( `restaurants`.`location`, ST_GeomFromText('POINT( 37.8019859 -122.4414805 )') ) <= 25 /(69))
-
 ```
+
+To query a distance within a geography point you can use any of the follow commands:
+`$withinMiles`
+`$withinFeet`
+`$withinKilometers`
+`$within (in meters)`
 
 ### Query Point with Parameters
 
-In order to query get geography points dynamically, use [Query](http://docs.backand
-.com/en/latest/getting_started/queries/index.html) with parameters:
+In order to query get geography points dynamically, use [Queries](http://docs.backand.com/#queries) with parameters:
 
-1. Add this *Input Parameters*: lan, lon, dist
-2. In the Query use tokens ("&#123;&#123;lan}}", "&#123;&#123;lon}}" and "&#123;&#123;dist}}") to represent the input parameters:
+1. Add the following *Input Parameters*: lan, lon, dist
+2. In the Query use tokens ("{{lan}}", "{{lon}}" and "{{dist}}") to represent the input parameters:
 3.
 
   {
     "object": "restaurants",
     "q": {
-      "location" : { "$withinMiles" : [["&#123;&#123;lan}}", "&#123;&#123;lon}}"], "&#123;&#123;dist}}"] }
+      "location" : { "$withinMiles" : [["{{lan}}", "{{lon}}"], "{{dist}}"] }
     }
   }
 
 
 ### Filter Point
+> Filter all the restaurants within 25 Miles of San Francisco's Marina District [37.8019859, -122.4414805]:
 
-Using Backand noSql filter you can filter object based on a distance to a specific point using $within command.
-
-Filter all the restaurants within 25 Miles of San Francisco Marina District [37.8019859, -122.4414805]:
-
-```javascript
-
+```javascript--persistent
   return $http ({
     method: 'GET',
     url: Backand.getApiUrl() + '/1/objects/restaurants',
@@ -269,8 +250,9 @@ Filter all the restaurants within 25 Miles of San Francisco Marina District [37.
       }
     }
   });
-
 ```
+
+Using a Backand NoSQL filter, you can filter objects based on a distance to a specific point (using the appropriate `$within` command).
 
 ## Bulk Operations
 ```shell
@@ -312,9 +294,7 @@ backand.bulk.general(data)
 ```
 >The value for `YOUR_ACCESS_TOKEN` is obtained via a call to `https://api.backand.com/token` - simply replace `YOUR_ACCESS_TOKEN` with the bearer token returned by this endpoint, and `YOUR_APP_NAME` with your application's name that was specified during app creation. Each action hash can accept a different header parameter, allowing multiple operations to be undertaken by multiple users as a part of the same bulk request. If the 'headers' parameter is not included, the headers used for the call to the bulk operations endpoint are used for the relevant action instead.
 
-Backand's bulk operations endpoint can be used to operate on multiple items in a single request. The request has the following general form:
-
-The above represents an array of parameter hashes. Each parameter hash represents a different action to be performed as a part of the bulk operaation. The parameter hashes are broken down as follows:
+Backand's bulk operations endpoint can be used to operate on multiple items in a single request. The request has the general form provided in the right-hand pane. This an array of parameter hashes. Each parameter hash represents a different action to be performed as a part of the bulk operaation. The parameter hashes are broken down as follows:
 
 | Field name | Possible Values | Required? | Description |
 | ----- | ----------- |------|-----|
@@ -326,7 +306,7 @@ The above represents an array of parameter hashes. Each parameter hash represent
 
 Requests to perform bulk actions are sent as HTTP POST requests to the bulk operations URL: `Bulk operations URL: https://api.backand.com/1/bulk`. You can also use [the SDK](#bulk) to send your operations list to your app.
 
-<aside class="notice">Backand's Bulk Endpoint accommodates up to 1,000 operations in a single request. Operations in excess of 1,000 will need to be sent in a separate request </aside>
+<aside class="notice">Backand's Bulk Endpoint accommodates up to 1,000 operations in a single request. Operations in excess of 1,000 will need to be sent in a separate request</aside>
 
 ### Constructing Bulk Requests
 > Performing each of the standard non-retrieval CRUD operations in bulk is as simple as specifying the appropriate actions to take with each request. We start by constructing the URL we need in order to manipulate each object. This is done with the Backand SDK using the following code:
@@ -349,7 +329,7 @@ var object_path = Backand.defaults.apiUrl
   }
 ```
 
-> For example, if you wanted to update two records in the same request (using the PUT method), you would send the following:
+> If you wanted to update two records in the same request (using the PUT method), you would send the following:
 
 ```json
 [
@@ -404,7 +384,7 @@ var object_path = Backand.defaults.apiUrl
 ]
 ```
 
-Bulk requests are implemented as arrays of request object hashes.In this hash, we specify the HTTP verb to be used - POST, in this case, which will create a new record. We set the "url" parameter to the calculated URL from above, and then provide the new record's data as a JSON hash in the "data" parameter. Simply provide the list of key and value pairs that represent your object's data, and you're set.
+Bulk requests are implemented as arrays of request object hashes.In this hash, we specify the HTTP verb to be used - POST, in this case, which will create a new record. We set the `url` parameter to the calculated URL from above, and then provide the new record's data as a JSON hash in the `data` parameter. Simply provide the list of key and value pairs that represent your object's data, and you're set.
 
 Once you have a single request hash, you can add others by simply appending them to the request.
 
@@ -435,6 +415,8 @@ Refer to our documentation on user security (http://docs.backand.com/#the-user-o
 Below are several examples of the types of bulk actions that can be performed using this functionality.
 
 ### Example 1: Adding multiple rows
+> This adds multiple rows in a single request.
+
 ```json
 [
   {
@@ -453,8 +435,7 @@ Below are several examples of the types of bulk actions that can be performed us
   }
 ]
 ```
-To add multiple objects to your application, simply provide multiple POST action hashes in your request's data array. The general form of the request is:
-
+> You simply change the URL and data hashes for each record. Here's a sample request that adds two new news items to an application:
 
 ```json
 [
@@ -479,11 +460,13 @@ To add multiple objects to your application, simply provide multiple POST action
 ]
 
 ```
-Simply change the 'url' parameter of each action hash to match your object's endpoint in your application. Let's look at a specific example that adds multiple 'news' objects to an application:
+> As you can see above, this bulk operation will add two new objects of type 'news' to your application. The first will have the heading of "Breaking News", while the second will have the heading of "Politics".
 
-As you can see above, this bulk operation will add two new objects of type 'news' to your application. The first will have the heading of "Breaking News", while the second will have the heading of "Politics".
+To add multiple objects to your application, simply provide multiple POST action hashes in your request's data array. The general form of the request is in the pane on the right. Simply change the 'url' parameter of each action hash to match your object's endpoint in your application.
 
 ### Example 2: Deleting multiple rows
+> The general form of the delete request will be:
+
 ```json
 [
   {
@@ -495,9 +478,8 @@ As you can see above, this bulk operation will add two new objects of type 'news
     "url": "https://api.backand.com/1/objects/YOUR_OBJECT_NAME/OBJECT_ID2"
   }
 ]
-
 ```
-To delete multiple objects from your application, simply provide multiple DELETE action hashes in your request's data array. The general form of the request will be:
+> For example, if you wanted to delete 'news' objects with IDs of 2 and 3, you would use the following set of action hashes:
 
 ```json
 [
@@ -510,9 +492,10 @@ To delete multiple objects from your application, simply provide multiple DELETE
         "url":"https://api.backand.com/1/objects/news/3"
     }
 ]
-
 ```
-By changing the YOUR_OBJECT_NAME and OBJECT_ID# parameters, you can select which specific IDs will be deleted in your application. For example, if you wanted to delete 'news' objects with IDs of 2 and 3, you would use the following set of action hashes:
+
+To delete multiple objects from your application, simply provide multiple DELETE action hashes in your request's data array.
+By changing the `YOUR_OBJECT_NAME` and `OBJECT_ID` parameters, you can select which specific IDs will be deleted in your application.
 
 
 ### Example 3: Multiple commands
@@ -549,21 +532,16 @@ By changing the YOUR_OBJECT_NAME and OBJECT_ID# parameters, you can select which
 ]
 
 ```
-You can mix and match operations to be performed to match whatever actions you need to take. For example, the following set of action hashes will create a new 'news' object, create a new 'authors' object, update an existing 'authors' object with an ID of 1, and delete a 'news' object with an ID of 3:
+You can mix and match operations to be performed to match whatever actions you need to take. For example, the action hashes on the right will create a new `news` object, create a new `authors` object, update an existing `authors` object with an ID of 1, and delete a `news` object with an ID of 3.
 
 ## Retrieving Data
-A Complex object is an object that has relationships to other objects in the database. For example, the default model provided when you create a new Backand application has two objects: users and items. There is a one-to-many relationship between users and items, meaning that a specific user may have many different related items. In this example, both users and items are complex objects. The relationship between the two tables, represented as the User object having a collection of Item objects, can be retrieved from the database by loading them through the object's API.
-
-There are two ways in which you can load complex objects: Deep Loading, or Lazy Loading. Deep loading pulls back both the object and all of its related objects. In the Users/Items example, this would pull back both the user, and all items related to that user. Lazy loading, by comparison, only pulls back the parent object, allowing you to more closely control when you pull in the rest of the data. This is important when the number of related objects is large, meaning a significant load time would be necessary.
-
-An example of another complex object would be 'email':
-
+>Seeing as most objects in a Backand application tend to  be complex objects, we added an easy way to enable deep
+loading of objects. Simply append '?deep=true' to the object fetch URL, like so.
 
 ```shell
 curl https://api.backand.com/1/objects/users/5?deep=true
 ```
-Seeing as most objects in a Backand application tend to  be complex objects, we added an easy way to enable deep
-loading of objects. Simply append '?deep=true' to the object fetch URL, like so:
+> An example of another complex object would be 'email'. Requesting a user using the `deep` parameter would result in JSON resembling the following:
 
 ```json
 {
@@ -572,46 +550,44 @@ loading of objects. Simply append '?deep=true' to the object fetch URL, like so:
   "items":[{"title":"....",...},...]
 }
 ```
-This will result in the following JSON:
-
+>It takes two requests to perform a Lazy Load. The first request is a shallow request for users or a specific user.
 
 ```shell
 curl https://api.backand.com/1/objects/users
 #or
 curl https://api.backand.com/1/objects/users/5
 ```
-It takes two requests to perform a Lazy Load. The first request is a shallow request for users or a specific user.
-
+>The second request is for all the items of a specific user.
 
 ```shell
 curl https://api.backand.com/1/objects/users/5/items
 ```
-The second request is for all the items of a specific user.
-
+>This request is similar to fetching the entire list of items, which would be done as follows:
 
 ```shell
 curl https://api.backand.com/1/objects/items
 ```
-This request is similar to fetching the entire list of items, which would be done as follows:
+>You can also supply other query string parameters (such as paging, filtering, and sorting). See [the getList function](#getlist) for more details.
 
+A Complex object is an object that has relationships to other objects in the database. For example, the default model provided when you create a new Backand application has two objects: `users` and `items`. There is a one-to-many relationship between `users` and `items`, meaning that a specific `user` may have many different related `items`. In this example, both `users` and `items` are complex objects. The relationship between the two tables, represented as the `User` object having a collection of `Item` objects, can be retrieved from the database by loading them through the object's API.
 
-You can also supply other query string parameters (such as paging, filtering, and sorting). See [the getList function](#getlist) for more details.
+There are two ways in which you can load complex objects: Deep Loading, or Lazy Loading. Deep loading pulls back both the object and all of its related objects. In the Users/Items example, this would pull back both the user, and all items related to that user. Lazy loading, by comparison, only pulls back the parent object, allowing you to more closely control when you pull in the rest of the data. This is important when the number of related objects is large, meaning a significant load time would be necessary.
 
 Regarding which approach to use - lazy or deep loading - there is no clear answer. It will be dependent upon the individual programming situation. If you need to present all of the relevant data at once, then deep loading is the right approach. However, if the object has a large number of relations to pull down, it might make more sense to do a lazy load, then selectively load related objects as needed.
 
 ### Filter and Predefined Filter
+> This JSON provides a fieldName, an operator, and a value to define a filter. Apply multiple fields by appending to the JSON array.
+
 ```json
 [{"fieldName":"firstName","operator":"contains","value":"oh"}]
 ```
 
 You can supply a query string parameter named 'filter' to filter your objects during fetch. This could be useful in
-developm situations, or as a part of a UI with search functionality, allowing your users to see whatever they wish. You can either create a filter with NoSQL syntax (see [NoSQL Query Language](#nosql-query-language) for syntax), or with JSON containing a field name, an operator, and a value:
-
-See [the getList function](#getlist) for full details on filters.
+development and debugging situations, or as a part of a UI with search functionality that allowing your users to see configurable results. You can either create a filter with NoSQL syntax (see [NoSQL Query Language](#nosql-query-language) for syntax), or with JSON containing a field name, an operator, and a value. See [the getList function](#getlist) for full details on filters.
 
 #### Predefined Filter
 
-Sometimes, for security reasons you may want to enforce partial reading of object data, usually based upon the current user or their role. This can be accomplished on the server-side using a Predefined Filter. Predefined Filters can be found in the Security tab of each object. They act as a SQL 'where' condition. Filters are combined using the 'AND' operator. You can write the filter using either a SQL statement or the NoSQL Query Language reading of partial data, usually depending on the current user or current user role. The option to force it from the server side is called Predefined Filter and you can find it at the Security tab of each object. The predefined filter acts as a SQL where statement condition. If you add additional filter that were described above then they will be added with an "AND" logic. You can write the predefined filter either as a SQL statement or as a [NoSQL Query Language](#nosql-query-language) statement.
+For security reasons, you may sometimes want to enforce partial reading of object data - usually based upon the current user or their role. This can be accomplished on the server-side using a Predefined Filter. Predefined Filters can be found in the Security tab of each object. They act as a SQL `where` condition. The option to force it from the server side is called Predefined Filter and you can find it at the Security tab of each object. If you add any additional filters, such as those described above, then they will be combined using a boolean `AND` operation. You can write the predefined filter either as a SQL statement or as a [NoSQL Query Language](#nosql-query-language) statement.
 
 ### Queries and On Demand Actions
 
@@ -629,7 +605,7 @@ So far we have discussed how to read objects that were defined in the database m
             EXECUTE stmt USING @offset,@records;
 ```
 
-The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on [JavaScript action](#custom-actions) or by using a prepared statement:
+The LIMIT clause can be used to constrain the number of rows returned by the SELECT statement. LIMIT takes one or two numeric arguments (number of records and offset), which must both be nonnegative integer constants. We can compute the constants either on [JavaScript action](#custom-actions) or by using a prepared statement like that on the right
 
 ## Continuous Deployment and Versioning
 A common use case is separate development and production environments, often with several stages in between (testing, qa, staging), which allows phased deployment (rollout) and rollback in case of problems.The goal of Continuous Deployment is to enable a constant flow of changes from development to production.
@@ -638,19 +614,20 @@ The following explains the flow of deploying server-side and databases changes f
 
 ### Deployment Steps
 1. First, you need to sync model changes
-    1. Go to your dev app and copy the JSON model ( Objects => Model => Model JSON) to the clipboard
-    2. Go to your QA app and paste the JSON model in the Edit model pan.
+    1. Go to your dev app and copy the JSON model ( **Database --> Model --> Model JSON** ) to the clipboard
+    2. Go to your QA app and paste the JSON model in the Edit Model pane of the **Database --> Model --> Model JSON** tab.
     3. Click 'Validate & Update'
 
 Now the schemas are synced.
 
- (If you get errors when applying the schema to the QA app, you'll need to fix them before you can upload the dev configuration)
+(If you get errors when applying the schema to the QA app, you'll need to fix them before you can upload the dev configuration)
 
-2. Loading the dev configuration into the QA environment
-    1. Go to Settings => Configuration
-    2. Click 'Export Current Settings' button, which will download the app configuration zip file to your file system.
-    3. In the QA app go to Settings => Configuration and click the 'Import External Settings' button to upload the configuration zip file you just downloaded from the dev app.
-    4. In Settings => General click the 'Clear Cache' icon in the upper-right corner (swirly arrow refresh icon near the trashcan icon), and approve the popup message.
+2. Next, you need to load the dev app configuration into the QA environment
+    1. Go to **Admin --> App Configuration**
+    2. Click the 'Export Settings' button, which will download the app configuration zip file to your file system.
+    3. In the QA app, go to **Admin --> App Configuration** and click the 'Import Settings' button to upload the configuration zip file you just downloaded from the dev app.
+    4. In **Admin --> General**,x click the 'Clear Cache' icon in the upper-right corner (swirly arrow refresh icon near the trashcan icon - see the image below), and approve the popup message.
+    ![image](clear_cache_button.png)
 
 The QA app is now deployed with all the changes you made in the dev app.
 
@@ -658,55 +635,49 @@ Apply this process again when deploying QA to Production.
 
 ### Versions
 
-On every change you make to your app, Backand saves a copy (version) of the app before the change.
-You can use this feature to rollback, if needed.
+With every change you make to your app, Backand saves a copy (version) of the app before the change.
+You can use this feature to rollback your configuration changes, if needed.
 
 To rollback to a previous version:
 
-1. Go to Settings => Configuration
-2. Click the 'Set' link which corresponds to the version you want to rollback to.
+1. Go to **Admin --> App Configuration**
+2. Click the `Set` link corresponding to the version to which you wish to roll back.
 
-To save a backup of a version just click the 'Export' link, this will save a backup of the app configuration to your file system.
-
+To save a backup of a version just click the `Export` link. This will save a backup of the app configuration to your file system.
 
 ## Internationalization
-Supporting multiple languages often requires supporting multi-byte character sets. In order to allow for wider international character sets, you will need to run the following MySQL command against your database:
-
-For the following scripts you'll need your schema_name , you can find it here : https://www.backand.com/#/app/<YOUR_APP_NAME>/database
+>For the following scripts you'll need your schema_name  you can find it here : https://www.backand.com/#/app/<YOUR_APP_NAME>/database
 
 ```sql
 ALTER SCHEMA `<YOUR_SCHEMA_NAME>`  DEFAULT CHARACTER SET utf8;
 ```
-
-On the table where you want to use multi-languages run:
+>On the table where you want to use multi-byte languages run:
 
 ```sql
 ALTER TABLE `<YOUR_SCHEMA_NAME>`.`<YOUR_TABLE_NAME>` CONVERT TO CHARACTER SET utf8;
 ```
-
-On each VARCHAR column on that table run:
+> On each VARCHAR column on that table run:
 
 ```sql
 ALTER TABLE `<YOUR_SCHEMA_NAME>`.`<YOUR_TABLE_NAME>` MODIFY COLUMN col VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
 
-The Last step is to edit the connection details
+Supporting multiple languages often requires supporting multi-byte character sets. In order to allow for wider international character sets, you will need to run the MySQL command to the right against your database.
 
- 1. Go to Setting => Database
- 2. Click Get Password and save it to the clipboard
- 2. If you don't see the "Edit Connection" button then add "/edit" to the browser url
- 3. On the username text box  add ;CharSet=utf8;
+Once you've done this, the final step is to edit the connection details:
+
+ 1. Go to **Database --> Database Settings**
+ 2. Click `Get Password` and save it to the clipboard
+ 2. If you don't see the `Edit Connection` button then add "/edit" to the browser url
+ 3. On the username text box,  add `;CharSet=utf8;`
  4. Paste the password from the clipboard
- 5. Click Save
+ 5. Click `Save`
 
 ## Integrating with Ionic Creator
 [Ionic Creator](https://creator.ionic.io) is an online IDE for Ionic apps that can greatly speed the development of your cross-platform mobile and web application. However, like any IDE, it can pose problems when integrating with some external service providers like Backand. Below, we’ll look at the steps needed to get your Ionic Creator app up and running with the Backand SDK, allowing you to implement serverless apps in the Ionic framework with ease.
 
 ### Configuring the connection to Backand
-
-To Enable Back with, you’ll need to update your Ionic Creator app’s **Other JS** section to include a new file name - bkndconfig.js. In this file, replace the entire contents with the following code:
-
-```javascript
+```javascript--persistent
 angular.module('app.config', [])
 // remember to add 'app.config' to your angular modules in Code Settings
 
@@ -719,27 +690,22 @@ angular.module('app.config', [])
 })
 ```
 
-Once the code has been modified, replace the values above with the appropriate values from your Backand application:
+To Enable Back with Ionic Creator, you’ll need to update your Ionic Creator app’s **Other JS** section to include a new file name - `bkndconfig.js`. In this file, replace the entire contents with the javascript code to the right.
+
+Once the code has been modified, replace the placeholder values in the code with the appropriate values from your Backand application as follows:
 
 * `BACKAND_APP_NAME` - This is your app's name in Backand
+* `BACKAND_API_SIGNUP_TOKEN` - This is your app's signup token. It is available in the **Security --> Social and Keys** section.
+* `BACKAND_ANONYMOUS_ACCESS_TOKEN` - This is your app's anonymous access token. It is available in **Security --> Configuration**.
 
-* `BACKAND_API_SIGNUP_TOKEN` - This is your app's signup token. It is available in the **Security & Auth -> Social & Keys** section.
-
-* `BACKAND_ANONYMOUS_ACCESS_TOKEN` - This is your app's anonymous access token. It is available in **Security & Auth -> Configuration**.
-
-Once these changes have been made, you'll need to update your application's code settings
+Once these changes have been made, you'll then need to update your Ionic application's code settings.
 
 ### Code Settings
-
-Next, we'll update the app's Code Settings to import the Backand SDK. In **Code Settings**, under the **External JS** tab, add these two script URLs:
-
 ```html
 https://cdn.backand.net/vanilla-sdk/1.1.0/backand.js
 https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js
 ```
-
-Once you've finished, the  External JS tab will have the following content:
-
+> Once you've finished, the  External JS tab will have the following content:
 
 ```html
 <script src='https://cdn.backand.net/vanilla-sdk/1.1.0/backand.js'></script>
@@ -748,11 +714,9 @@ Once you've finished, the  External JS tab will have the following content:
 <script src='js/services.js'></script>
 <script src='js/bkndconfig.js'></script>
 ```
+> Then, update **Angular Modules**
 
-Next, under **Angular Modules**, add `backand` and `app.config`. The end result will have the following content:
-
-
-```javascript
+```javascript--persistent
 angular.module('app', [
 'ionic',
 'app.controllers',
@@ -764,12 +728,13 @@ angular.module('app', [
 ])
 ```
 
+Now, we need to update your Ionic app's **Code Settings** so that we can import the Backand SDK. In **Code Settings**, under the **External JS** tab, add the script URLs to the right.
+
+Then, under **Angular Modules**, add `backand` and `app.config`. The end result is visible in the right-hand pane.
+
+
 ### Working with the Backand provider
-
-Now that the external code has been configured, you can start working with the Backand provider in your service class. For example, you can use the following code to pull rows from an `items` object in a Backand application:
-
-
-```javascript
+```javascript--persistent
 .service('ItemsModel', function(Backand){
 
     var service = this;
@@ -782,13 +747,10 @@ Now that the external code has been configured, you can start working with the B
 });
 ```
 
-Next, we'll add this function call into a page for display.
+Now that the external code has been configured, you can start working with the Backand provider in your service class. For example, you can use the code on the right to pull rows from an `items` object in a Backand application. Next, we'll add this function call into a page for display.
 
 ### Updating the Page Controller
-
-To access this data, we'll update the page controller to call our `ItemsModel` and return the relevant rows. To do so, use the following JavaScript to define a `getAll()` function and store the results in `$scope`:
-
-```javascript
+```javascript--persistent
 $scope.getAll = function() {
     ItemsModel.all()
         .then(function (result) {
@@ -800,12 +762,12 @@ $scope.getAll = function() {
 $scope.getAll();
 ```
 
+To access this data, we'll update the page controller to call our `ItemsModel` and return the relevant rows. To do so, use the JavaScript to the right to define a `getAll()` function and store the results in `$scope`.
+
 Now, we'll need to update the page's design to display the new information. To show a list of all the items you've obtained:
 
 * Drag a **List Item** element onto your UI
-
 * In the page list pane (upper left hand corner), click on **List**
-
 * On the right side of the pane, click on **Angular Directives** and add a new directive with the following details:
 
     * Directive: ng-repeat
@@ -816,21 +778,19 @@ Now, we'll need to update the page's design to display the new information. To s
 And with that, your Ionic Creator app is now connected to Backand!
 
 ### Learning more
-
 At this point, you have the full power of the [Backand SDK](#vanilla-sdk) available in your Ionic Creator app. You can use the SDK to add more services to your app, providing CRUD functionality, real-time communications, server-side code execution, and more! Simply head over to [our documentation](http://docs.backand.com) to get started.
 
 ## Working with Custom Actions
 Actions are a powerful tool that allow you to perform customized tasks when a number of different types of events occur within your application. They provide a great alternative to server-side custom code, and can add a lot of flexibility to how your application interacts with outside services. Below we're going to look at the types of actions that Backand offers application developers, and how they can easily be used.
 
 ### Server-Side Activity in a Front-End App
-
 One of the challenges facing Angular developers focused on front-end development is what you need to do when you hit the limits of what the front-end has to offer. Many calls that you might like to make from your JavaScript might expose security issues, such as specific formats for requests to external vendors like PayPal, that leave you vulnerable to hackers who are looking for any way to hijack your application. The traditional solution to this has been to move the calls themselves server-side, which is a lot harder to gain access to than the JavaScript code running your website. However, having custom server actions requires building up the surrounding infrastructure to handle web requests, trigger the actions, handle the responses, and perform authentication – among a number of other actions you need to control for – all just to send a single server-side call.
 
 With Backand's server-side actions, you completely sidestep the need for all of the setup, implementation, and deployment headaches you would have with a custom server-side framework like Rails or Django. It allows you to do things that would typically demand custom server code – such as authenticating with a third party vendor, or sending sensitive payment data – without having to build the server infrastructure. By providing simple hooks into Backand's API for your back end, you can quickly add new actions that can do anything from sending a simple email all the way up to running custom JavaScript that can perform any arbitrary action you like – all behind the server-side call to Backand!
 
 ### Triggers
+Actions are activated via triggers in your application. Generally speaking, there are two types of action triggers in Backand – database-related triggers, and "On Demand" triggers. Database triggers fire under certain conditions when your application interacts with your database. You can add custom triggers to each of the standard database actions that update the database – record creation (`Create`), record updating (`Update`), and record deletion (`Delete`). Furthermore, you can assign your actions to occur either before the action takes place (such as `Before Update`), while the action is taking place as part of the same transaction (such as `During Create`), or after the action has completed (such as `After Deletion`). Through clever use of these actions, you can create a very complex database experience with a deceptively simple front-end.
 
-Actions are activated via triggers in your application. Generally speaking, there are two types of action triggers in Backand – database-related triggers, and "On Demand" triggers. Database triggers fire under certain conditions when your application interacts with your database. You can add custom triggers to each of the standard database actions that update the database – record creation (Create), record updating (Update), and record deletion (Delete). Furthermore, you can assign your actions to occur either before the action takes place (such as "Before Update"), while the action is taking place as part of the same transaction (such as "During Create"), or after the action has completed (such as "After Deletion"). Through clever use of these actions, you can create a very complex database experience with a deceptively simple front-end.
 On Demand triggers, on the other hand, happen whenever you like. These are associated with a specific object, and are performed in the context of a row via a simple call to an associated URL. These actions operate within the context of the provided row, allowing you to perform any custom actions you need to on that specific object. This allows you to build out a true API, providing the hooks for many custom server actions that would often need a framework surrounding them.
 
 ### Types of Actions
@@ -845,12 +805,12 @@ One of the common concerns with outsourcing the back end of an application is "W
 While the schema editor offered by Backand's app dashboard can be a powerful tool for managing your application's data schema, sometimes there are ideas that the schema editor can't express. For these situations, it's often best to revert to a SQL interface, either using command-line SQL or a dedicated database administration tool like MySQL Workbench. In this post, we'll look at how you can access your Backand application's database using any third-party MySQL compatible database tool you desire, and how you can sync the changes with your Backand application once you've made your changes.
 
 ###Connecting to Your Database
-Backand hosts all application databases as schemas in Amazon RDS. The benefit of this approach is that it easily allows us to make your database available to any third-party tool you like. In the Backand App Dashboard, you can find your application's database server information in the **Settings -> Database** panel. This contains the host URL, username, password, and schema name for your application. Simply input these connection values into your database administration tool of choice, and you are free to make changes to your database schema.
+Backand hosts all application databases as schemas in Amazon RDS. The benefit of this approach is that it easily allows us to make your database available to any third-party tool you like. In the Backand App Dashboard, you can find your application's database server information in the **Database -> Database Settings** panel. This contains the host URL, username, password, and schema name for your application. Simply input these connection values into your database administration tool of choice, and you are free to make changes to your database schema.
 
 ###Synchronizing Changes
 Once you've made the necessary changes in your schema, you'll need to synchronize the changes with your Backand application. This is accomplished in the Backand Application Dashboard as follows:
 
-* Navigate to the **Model** panel, under **Objects**
+* Navigate to the **Model** panel, under **Database**
 * Select the **Model Database** tab
 * After reviewing the text, click on the **Sync with Database** button
 
@@ -957,8 +917,6 @@ This method works like any other custom JavaScript action, allowing you to easil
 The security landscape for internet apps is wide and varied. While we'd love to be able to support every possible method of authentication available to developers, after a while it is far more beneficial and flexible to provide the developer with tools to manage their own authentication integrations. Using our provided override functions - `backandAuthOverride`, `socialAuthOverride`, and `accessFilter` - you can integrate with any authentication or authorization provider that can communicate over the web.
 
 
-The "Objects" section of the dashboard allows you to modify the specific objects in your application's database. A menu entry is created for each table in your database, and allows you to configure your application at the object level. For each object in your system, you are given access to the following areas to modify and work with.
-
 ## Managing the Application Model with JSON
 > Below is an example model
 
@@ -999,7 +957,7 @@ The "Objects" section of the dashboard allows you to modify the specific objects
 ]
 ```
 
-The Model JSON tab in the Object menu allows you to modify the JSON schema of your database's model structure, adding new objects and establishing the relationship between them. Below is a brief overview of how to use this interface:
+The Model JSON tab in the **Database --> Model** menu allows you to modify the JSON schema of your database's model structure, adding new objects and establishing the relationship between them. Below is a brief overview of how to use this interface.
 
 <aside class="notice"> In addition to the fields supplied by the user, Backand defines an 'id' field, of type integer, which will be used as a primary key for the table.</aside>
 <aside class="warning"> Renaming fields can only be done from the Fields tab in the application dashboard. Renaming a field or an object in a model will delete the data associated with that field or object.</aside>
@@ -1437,7 +1395,7 @@ Replace the code of the action `backandAuthOverride` with the JavaScript on the 
 ### Restricting access to the token object
 As the token object gives users a lot of power within your application, it is important that you restrict access to the `token` object in your app's API. Follow these steps to update the `token` object's security, restricting access to administrators only:
 
-1. Open the Security tab of `token` object
+1. Open the Security tab of the `token` object
 
 2. Click on 'Override the Security Template' and set it to `true`
 
@@ -1446,14 +1404,13 @@ As the token object gives users a lot of power within your application, it is im
 ###Disable token expiration
 Finally, you'll want to update your authentication tokens to never expire. This allows your SMS-based authentication to be persistent, meaning the user won't need to periodically respond to a new text message requesting re-authorization unless you explicitly choose so. To modify the token expiration length:
 
-    a. Open the `Security & Auth --> Social & Keys` menu
+    a. Open the **Security --> Social & Keys** menu
     b. Change Session Length to `Never - use refresh token`
 
 ### Building from here
 This approach opens a number of options for authentication, supporting use cases more complex than "user is sitting at a computer with a web browser open". You can easily use this approach to implement a two-factor authentication model, for example - by requiring the session token in addition to the user's username and password, you can get more granular control over the user's access to your data. You can also use this to implement persistent authentication in a more private application environment, such as when running an app on a user's mobile device.
 
 ## Reducing Backand Compute Usage
-
 One common cost center for developers using the Backand platform is the Backand Compute Unit. These Units accrue as a result of API calls and other requests to the Backand platform, and reflect the computing effort expended by Backand to perform the requested operations. Below, we'll look at some strategies you can use to mitigate the accrual of Backand Compute Units, letting you more easily mitigate costs and resource usage within your Backand application.
 
 ### Strategy 1 - Reduce the number of calls
