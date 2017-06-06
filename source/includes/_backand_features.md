@@ -1134,7 +1134,6 @@ You can call the function by using the Javascript call `transformJson`. The para
 4. `callback` - 'function(err, result)', called upon completion
 
 #### Escaping
-
 All constants appearing in the JSON query are escaped when transformed into SQL.
 
 #### Filters
