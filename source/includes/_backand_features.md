@@ -8,6 +8,15 @@ This section contains documentation on the features offered by Backand. We will 
 * Queries - an overview of the on-demand query functionality
 * NoSQL Query Language - an overview of our NoSQL-style query language
 
+The user interface, in recognition of the most popular actions undertaken by our users, is split into four tabs. Each tab has the listed subsections:
+
+| Tab | Purpose | Contained Functionality |
+| --- | ------- | ----------------------- |
+| Functions & Integrations | Manages custom action, function, and general event-based functionality. | Functions, Custom, Cron Jobs, API Log, Console Log |
+| Database | Manages your application's database and REST API | Model, Object, Queries, Database Settings |
+| Security | Manages your application's security and authorization data | Configuration, Social & Keys, Registered Users, Security Actions, Security Templates |
+| Admin | Allows you to administer your application, changing configuration and providing hosting. | General, team, Hosting (and Storage), App Configuration, Billing, Reports, Logs |
+
 ## The User Object and Security
 
 This section describes how to manage your app's users within Backand's user security paradigm. An important element to note up front is that, by default, [Backand](https://www.backand.com) provides two independent user objects. One user object is handled entirely by Backand, and is responsible for authentication and role-based security. The data for this user object is stored in Backand's database, and as such cannot partake of your app's custom logic. The second user object is offered in the default data model for a Backand application, and is titled `users`. This object represents a user of your application, as opposed to a generic Backand user, and allows you to associate the user with various other objects in your application. Backand provides sync actions that allow you to keep these two user object lists up-to-date (see [Link your app's users with Backand's registered users](#link-your-apps-users-with-backands-registered-users) for more info). We highly recommend running the [todos-with-users app](https://github.com/backand/todos-with-users) in addition to reading this documentation. This simple app covers most of the user management use cases for a Backand application, such as allowing users to read all of your app's data but only allowing them to create and update their own objects, or restricting anonymous users to read-only access, or creating an Admin role that has full read-write-update-delete access to your application's objects.
@@ -85,7 +94,7 @@ You can use [basic auth](https://en.wikipedia.org/wiki/Basic_access_authenticati
 ### Obtaining the user key
 Our Basic authentication relies upon a User key, which is then used as a password while authenticating with the app's Master token. To obtain the user key:
 
-* Navigate to **Security -> Registered Users**
+* Navigate to **Security --> Registered Users**
 * Select the user who will own the action about to take place
 * Click on the "key" icon to obtain the user key
 
@@ -99,7 +108,7 @@ curl https://api.backand.com/1/objects/items -H "AnonymousToken: <anonymous toke
 curl https://api.backand.com/1/objects/items?AnonymousToken=<anonymous token>
 ```
 
-Backand also offers Anonymous Access, which allows you to access your application without the need to authenticate via username and password. By passing this value in a request header (e.g. AnonymousToken=<your token here>) you can perform api actions for your application. You can find your anonymous access token in the application dashboard at **Security -> Configuration**
+Backand also offers Anonymous Access, which allows you to access your application without the need to authenticate via username and password. By passing this value in a request header (e.g. AnonymousToken=<your token here>) you can perform api actions for your application. You can find your anonymous access token in the application dashboard at **Security --> Configuration**
 
 ![image](images/anonymous_token.png)
 
@@ -116,7 +125,7 @@ These users are assigned a default role 'User', which has full CRUD access to yo
   userInput.Role = 'Public';
 ```
 <aside class="notice">
-For security reasons you cannot change the role from the sign-up API - this can only be accomplished either by having an admin change the appropriate settings on the <strong>Security -&gt; Registered Users</strong> page, or by creating a custom server-side action with Admin rights (see JavaScript tab).
+For security reasons you cannot change the role from the sign-up API - this can only be accomplished either by having an admin change the appropriate settings on the <strong>Security --&gt; Registered Users</strong> page, or by creating a custom server-side action with Admin rights (see JavaScript tab).
 </aside>
 
 ### Saving Additional Parameters During Sign-up
@@ -137,7 +146,7 @@ In many cases, we would like to collect additional information from the user dur
     2. Add this line as a data field in the `users` object model: `"company": {"type": "string"}`
     3. Click on `Validate & Update`
 2. When calling `Backand.signup()`, send the `parameters` object through as the last input parameter for the request. The code will resemble the call on the right:
-3. There's no need for server-side modifications - values for "parameters" are handled automatically by the action 'Create My App User' (found on the **Security -> Security Actions** page).
+3. There's no need for server-side modifications - values for "parameters" are handled automatically by the action 'Create My App User' (found on the **Security --> Security Actions** page).
 4. Modify the UI to collect the `company` name for the user.
 
 Now, when sign-up is completed, you can see the company name in the `users` object's Data tab.
@@ -261,7 +270,7 @@ Each user has a role. When you created your app, you were automatically assigned
 While Security Templates provide reusable permissions platforms that can be spread across a number of roles, you can also override security template settings and provide specific permissions for each individual role. This allows you to have more granular control over the [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) actions that can be performed by the users in your system. When a user with insufficient security access tries to perform an action for which they do not have permission, a 403 (Forbidden) error response is returned.
 
 ### Security Actions
-Backand offers a number of pre-defined security actions that can be used to manage your application's security processes. These are available in the app dashboard under **Security -> Security Actions**. See [the Security Actions Documentation](#security-actions-backand-dashboard) for more details.
+Backand offers a number of pre-defined security actions that can be used to manage your application's security processes. These are available in the app dashboard under **Security --> Security Actions**. See [the Security Actions Documentation](#security-actions-backand-dashboard) for more details.
 
 ## Backand Storage
 Backand provides you with the ability to upload and delete files to and from Backand's robust storage. This is done on the server-side through Backand's Actions. It doesn't require any additional authentication and it is up to you to decide if and under what restrictions to expose this functionality to the client side. For example, you can restrict certain roles, handle the name of the files, associate the files with objects and manage counts of the amount of files per user.
@@ -720,16 +729,15 @@ Send Email actions, in addition to common parameters, allow you to also supply t
 ## Server-Side Node.js Lambda Actions
 Using Backand, you can develop distributed Node.js actions and host them with your Backand application - no additional servers needed! You can use the Server-Side Node.js action to work with any NPM package, build sophisticated action behaviors, perform complex coding tasks, and more.
 
-For Server-Side Node.js Code actions, you develop the code on your local machine. The code is then deployed to, and runs on, Backand's server. It functions just like any other Node.js project and can be fully debugged locally and, once you've finished making changes, you can use the "deploy" command to publish the changes to your Backand application.
+For Server-Side Node.js Lambda actions, you develop the code on your local machine. The code is then deployed to, and runs on, Backand's server. It functions just like any other Node.js project and can be fully debugged locally and, once you've finished making changes, you can use the "deploy" command to publish the changes to your Backand application.
 
-Follow these steps to create and run a Server-Side Node.js Code Action:
+Follow these steps to create and run a Server-Side Node.js Lambda Action:
 
-* First name the action, and use the init command by copy-pasting `backand action init...` to a command line within the folder in which you'll be developing your action. The action init command creates two folder levels on your local file system. The top level folder will be the name of the object controlling the action, while its child folder is the name of the action you are working with. We recommend that you always run the **action init** command from the root folder of the app's project when creating additional actions. This means you will have a sub-folder for each object, and under it, a sub -folder for each action.
+* First name the action, and use the init command by copy-pasting `backand action init...` to a command line within the folder in which you'll be developing your action. The `action init` command creates two folder levels on your local file system. The top level folder will be the name of the object controlling the action, while its child folder is the name of the action you are working with. We recommend that you always run the `action init` command from the root folder of the app's project when creating additional actions. This means you will have a sub-folder for each object, and under it, a sub-folder for each action.
 * Next, build your Node.js code in the `action` folder like any Node other project using your preferred IDE. Add as many npm
-packages as you need. Note - Your code **must** start with the index.js file - Backand uses this as the starting point for your Node.JS action.
-* To debug your code locally, run the debug.js file. Debug.js is provided by the init command, and is ignored when deploying the code to Backand.
-* To run your code on the Back& server, use the deploy command by copy-pasting `backand action deploy...` into the command line used in the first step. The
-deploy command will be available on the action page **after** the action has been initialized with "backand action init...".
+packages as you need. Note - Your code **must** start with the `index.js` file - Backand uses this as the starting point for your Node.JS action.
+* To debug your code locally, run the `debug.js` file. `Debug.js` is provided by the `init` command, and is ignored when deploying the code to Backand.
+* To run your code on the Back& server, use the deploy command by copy-pasting `backand action deploy...` into the command line used in the first step. The deploy command will be available on the action page **after** the action has been initialized with `backand action init...`.
 
 You are now ready to develop your code locally, and test the action on the Backand Dashboard for your application!
 
@@ -781,8 +789,6 @@ $ npm install backandsdk --save
 ```
 
 To work with objects or other actions in Backand, you need to install the Backand SDK for Node.js. The Backand SDK ships with several code samples that demonstrate how to access other Backand functionality.
-
-
 
 ## Queries
 You can create and call your own custom queries in your application. You can use parameters as tokens that will be replaced with the actual parameter values, similar to how [custom actions](#custom-actions) work. You can create your own filters, sorting, and paging, as well as use aggregation to summarize information.
