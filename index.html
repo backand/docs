@@ -1128,23 +1128,25 @@ Missing client code example:</p>
 
 <p>Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.</p>
 
-<h2 id="server-side-node-js-lambda-actions">Server-Side Node.js Lambda Actions</h2>
+<h2 id="server-side-node-js-lambda-functions">Server-Side Node.js Lambda Functions</h2>
 
-<p>Using Backand, you can develop distributed Node.js actions and host them with your Backand application - no additional servers needed! You can use the Server-Side Node.js action to work with any NPM package, build sophisticated action behaviors, perform complex coding tasks, and more.</p>
+<p>Using Backand, you can develop distributed Node.js functions and host them with your Backand application - no additional servers needed! You can use the Server-Side Node.js Lambda function to work with any NPM package, build sophisticated action behaviors, perform complex coding tasks, and more.</p>
 
-<p>For Server-Side Node.js Lambda actions, you develop the code on your local machine. The code is then deployed to, and runs on, Backand&rsquo;s server. It functions just like any other Node.js project and can be fully debugged locally and, once you&rsquo;ve finished making changes, you can use the &ldquo;deploy&rdquo; command to publish the changes to your Backand application.</p>
+<p>For Server-Side Node.js Lambda functions, you develop the code on your local machine. The code is then deployed to, and runs on, AWS Lambda. It functions just like any other Node.js project and can be fully debugged locally and, once you&rsquo;ve finished making changes, you can use the &ldquo;deploy&rdquo; command to publish the changes to your Backand application.</p>
 
-<p>Follow these steps to create and run a Server-Side Node.js Lambda Action:</p>
+<p>Follow these steps to create and run a Server-Side Node.js Lambda Function:</p>
 
 <ul>
-<li>First name the action, and use the init command by copy-pasting <code class="prettyprint">backand action init...</code> to a command line within the folder in which you&rsquo;ll be developing your action. The <code class="prettyprint">action init</code> command creates two folder levels on your local file system. The top level folder will be the name of the object controlling the action, while its child folder is the name of the action you are working with. We recommend that you always run the <code class="prettyprint">action init</code> command from the root folder of the app&rsquo;s project when creating additional actions. This means you will have a sub-folder for each object, and under it, a sub-folder for each action.</li>
+<li>First name the action, and use the init command by copy-pasting <code class="prettyprint">backand function init...</code> to a command line within the folder in which you&rsquo;ll be developing your action. The <code class="prettyprint">function init</code> command creates a folder with the name of your action - this is populated with the Node.JS application skeleton used for developing custom Lambda functions. We recommend that you always run the <code class="prettyprint">function init</code> command from the root folder of the app&rsquo;s project when creating additional actions. This means you will have a sub-folder for each object, for object-based actions, and dedicated folders for your on-demand functions.</li>
 <li>Next, build your Node.js code in the <code class="prettyprint">action</code> folder like any Node other project using your preferred IDE. Add as many npm
 packages as you need. Note - Your code <strong>must</strong> start with the <code class="prettyprint">index.js</code> file - Backand uses this as the starting point for your Node.JS action.</li>
 <li>To debug your code locally, run the <code class="prettyprint">debug.js</code> file. <code class="prettyprint">Debug.js</code> is provided by the <code class="prettyprint">init</code> command, and is ignored when deploying the code to Backand.</li>
-<li>To run your code on the Back&amp; server, use the deploy command by copy-pasting <code class="prettyprint">backand action deploy...</code> into the command line used in the first step. The deploy command will be available on the action page <strong>after</strong> the action has been initialized with <code class="prettyprint">backand action init...</code>.</li>
+<li>To run your code on the Back&amp; server, use the deploy command by copy-pasting <code class="prettyprint">backand function deploy...</code> into the command line used in the first step. The deploy command will be available on the action page <strong>after</strong> the action has been initialized with <code class="prettyprint">backand function init...</code>.</li>
 </ul>
 
 <p>You are now ready to develop your code locally, and test the action on the Backand Dashboard for your application!</p>
+
+<aside class="notice">Backand also offers Lambda functions tied to a specific object in your application&rsquo;s database. Simply replace the word <strong>function</strong> with <strong>action</strong>, and choose an object to govern your new action.</aside>
 
 <h3 id="backand-cli">Backand CLI</h3>
 <pre class="highlight shell"><code>    <span class="nv">$ </span>npm install -g backand
@@ -1154,32 +1156,30 @@ packages as you need. Note - Your code <strong>must</strong> start with the <cod
 
 <p>Once you&rsquo;ve set up Node and NPM, use NPM to install the Backand CLI as a global package.</p>
 
-<h3 id="initialize-action">Initialize action</h3>
-<pre class="highlight shell"><code>    <span class="nv">$ </span>backand action init --app &lt;app name&gt; --object &lt;object name&gt; --action &lt;action name&gt;  --master &lt;master token&gt; --user &lt;user token&gt;
+<h3 id="initialize-function">Initialize function</h3>
+<pre class="highlight shell"><code>    <span class="nv">$ </span>backand <span class="k">function </span>init --app &lt;app name&gt; --action &lt;action name&gt;  --master &lt;master token&gt; --user &lt;user token&gt;
 </code></pre>
-<p>To initialize the node.js code for the action on your local machine, use the <code class="prettyprint">action</code> command on the command line in the folder that will host your action&rsquo;s code</p>
+<p>To initialize the node.js code for the action on your local machine, use the <code class="prettyprint">function</code> command on the command line in the folder that will host your function&rsquo;s code</p>
 
 <p>The parameters for this call are:</p>
 
 <ul>
-<li> <code class="prettyprint">--app</code>:       The current app name<br></li>
-<li> <code class="prettyprint">--object</code>:      The object that the action belongs to<br></li>
-<li> <code class="prettyprint">--action</code>:      The action name<br></li>
+<li> <code class="prettyprint">--app</code>:       The current app name</li>
+<li> <code class="prettyprint">--action</code>:      The function name<br></li>
 <li> <code class="prettyprint">--master</code>:      The master token of the app (obtained from <strong>Security &ndash;&gt; Social &amp; Keys</strong>)<br></li>
 <li> <code class="prettyprint">--user</code>:          The token of the current user (available from <strong>Admin &ndash;&gt; Team</strong> - simply click on key icon next to an authorized user)<br></li>
 </ul>
 
 <h3 id="deploy-action">Deploy action</h3>
-<pre class="highlight shell"><code>    <span class="nv">$ </span>backand action deploy --app &lt;app name&gt; --object &lt;object name&gt; --action &lt;action name&gt;  --master &lt;master token&gt; --user &lt;user token&gt;
+<pre class="highlight shell"><code>    <span class="nv">$ </span>backand <span class="k">function </span>deploy --app &lt;app name&gt; --name &lt;<span class="k">function </span>name&gt;  --master &lt;master token&gt; --user &lt;user token&gt;
 </code></pre>
 <p>To deploy your local Node.js code to Back&amp;, use the <code class="prettyprint">deploy</code> command with the Backand CLI</p>
 
 <p>The parameters for this call are:</p>
 
 <ul>
-<li> <code class="prettyprint">--app</code>:       The current app name<br></li>
-<li> <code class="prettyprint">--object</code>:      The object that the action belongs to<br></li>
-<li> <code class="prettyprint">--action</code>:      The action name<br></li>
+<li> <code class="prettyprint">--app</code>:       The current app name</li>
+<li> <code class="prettyprint">--name</code>:        The function name<br></li>
 <li> <code class="prettyprint">--master</code>:   The master token of the app (obtained from <strong>Security &ndash;&gt; Social &amp; Keys</strong>)<br></li>
 <li> <code class="prettyprint">--user</code>:     The token of the current user (available from <strong>Admin &ndash;&gt; Team</strong> - simply click on key icon next to an authorized user)</li>
 <li> <code class="prettyprint">--folder</code>:   (Optional) The folder to deploy. By default the deployment occurs in the current folder</li>
