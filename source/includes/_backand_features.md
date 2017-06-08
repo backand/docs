@@ -726,20 +726,22 @@ Transactional database scripts are SQL scripts that run within the same transact
 
 Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.
 
-## Server-Side Node.js Lambda Actions
-Using Backand, you can develop distributed Node.js actions and host them with your Backand application - no additional servers needed! You can use the Server-Side Node.js action to work with any NPM package, build sophisticated action behaviors, perform complex coding tasks, and more.
+## Server-Side Node.js Lambda Functions
+Using Backand, you can develop distributed Node.js functions and host them with your Backand application - no additional servers needed! You can use the Server-Side Node.js Lambda function to work with any NPM package, build sophisticated action behaviors, perform complex coding tasks, and more.
 
-For Server-Side Node.js Lambda actions, you develop the code on your local machine. The code is then deployed to, and runs on, Backand's server. It functions just like any other Node.js project and can be fully debugged locally and, once you've finished making changes, you can use the "deploy" command to publish the changes to your Backand application.
+For Server-Side Node.js Lambda functions, you develop the code on your local machine. The code is then deployed to, and runs on, AWS Lambda. It functions just like any other Node.js project and can be fully debugged locally and, once you've finished making changes, you can use the "deploy" command to publish the changes to your Backand application.
 
-Follow these steps to create and run a Server-Side Node.js Lambda Action:
+Follow these steps to create and run a Server-Side Node.js Lambda Function:
 
-* First name the action, and use the init command by copy-pasting `backand action init...` to a command line within the folder in which you'll be developing your action. The `action init` command creates two folder levels on your local file system. The top level folder will be the name of the object controlling the action, while its child folder is the name of the action you are working with. We recommend that you always run the `action init` command from the root folder of the app's project when creating additional actions. This means you will have a sub-folder for each object, and under it, a sub-folder for each action.
+* First name the action, and use the init command by copy-pasting `backand function init...` to a command line within the folder in which you'll be developing your action. The `function init` command creates a folder with the name of your action - this is populated with the Node.JS application skeleton used for developing custom Lambda functions. We recommend that you always run the `function init` command from the root folder of the app's project when creating additional actions. This means you will have a sub-folder for each object, for object-based actions, and dedicated folders for your on-demand functions.
 * Next, build your Node.js code in the `action` folder like any Node other project using your preferred IDE. Add as many npm
 packages as you need. Note - Your code **must** start with the `index.js` file - Backand uses this as the starting point for your Node.JS action.
 * To debug your code locally, run the `debug.js` file. `Debug.js` is provided by the `init` command, and is ignored when deploying the code to Backand.
-* To run your code on the Back& server, use the deploy command by copy-pasting `backand action deploy...` into the command line used in the first step. The deploy command will be available on the action page **after** the action has been initialized with `backand action init...`.
+* To run your code on the Back& server, use the deploy command by copy-pasting `backand function deploy...` into the command line used in the first step. The deploy command will be available on the action page **after** the action has been initialized with `backand function init...`.
 
 You are now ready to develop your code locally, and test the action on the Backand Dashboard for your application!
+
+<aside class="notice">Backand also offers Lambda functions tied to a specific object in your application's database. Simply replace the word <strong>function</strong> with <strong>action</strong>, and choose an object to govern your new action.</aside>
 
 ### Backand CLI
 ```bash
