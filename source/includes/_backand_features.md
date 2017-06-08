@@ -768,7 +768,7 @@ The parameters for this call are:
 *  `--user`:		  The token of the current user (available from **Admin --> Team** - simply click on key icon next to an authorized user)  
 
 
-### Deploy action
+### Deploy function
 ```bash
     $ backand function deploy --app <app name> --name <function name>  --master <master token> --user <user token>
 ```
