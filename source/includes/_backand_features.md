@@ -753,34 +753,32 @@ Backand uses the Backand CLI to control deployment and initialization. The CLI r
 
 Once you've set up Node and NPM, use NPM to install the Backand CLI as a global package.
 
-### Initialize action
+### Initialize function
 ```bash
-    $ backand action init --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
+    $ backand function init --app <app name> --action <action name>  --master <master token> --user <user token>
 ```
 
-To initialize the node.js code for the action on your local machine, use the `action` command on the command line in the folder that will host your action's code
+To initialize the node.js code for the action on your local machine, use the `function` command on the command line in the folder that will host your function's code
 
 The parameters for this call are:
 
-*  `--app`:		  The current app name  
-*  `--object`:		The object that the action belongs to  
-*  `--action`:		The action name  
+*  `--app`:		  The current app name
+*  `--action`:		The function name  
 *  `--master`:		The master token of the app (obtained from **Security --> Social & Keys**)  
 *  `--user`:		  The token of the current user (available from **Admin --> Team** - simply click on key icon next to an authorized user)  
 
 
 ### Deploy action
 ```bash
-    $ backand action deploy --app <app name> --object <object name> --action <action name>  --master <master token> --user <user token>
+    $ backand function deploy --app <app name> --name <function name>  --master <master token> --user <user token>
 ```
 
 To deploy your local Node.js code to Back&, use the `deploy` command with the Backand CLI
 
 The parameters for this call are:
 
-*  `--app`:		  The current app name  
-*  `--object`:		The object that the action belongs to  
-*  `--action`:		The action name  
+*  `--app`:		  The current app name
+*  `--name`:		The function name  
 *  `--master`:   The master token of the app (obtained from **Security --> Social & Keys**)   
 *  `--user`:     The token of the current user (available from **Admin --> Team** - simply click on key icon next to an authorized user)
 *  `--folder`:   (Optional) The folder to deploy. By default the deployment occurs in the current folder
