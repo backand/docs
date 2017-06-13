@@ -198,7 +198,7 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+      <script src="javascripts/all_nosearch.js"></script>
   </head>
 
   <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
@@ -214,10 +214,6 @@
               <a href="#" data-language-name="shell">cURL</a>
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
-        <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
-        </div>
-        <ul class="search-results"></ul>
       <div id="toc">
       </div>
         <ul class="toc-footer">
@@ -1170,7 +1166,7 @@ packages as you need. Note - Your code <strong>must</strong> start with the <cod
 <li> <code class="prettyprint">--user</code>:          The token of the current user (available from <strong>Admin &ndash;&gt; Team</strong> - simply click on key icon next to an authorized user)<br></li>
 </ul>
 
-<h3 id="deploy-action">Deploy action</h3>
+<h3 id="deploy-function">Deploy function</h3>
 <pre class="highlight shell"><code>    <span class="nv">$ </span>backand <span class="k">function </span>deploy --app &lt;app name&gt; --name &lt;<span class="k">function </span>name&gt;  --master &lt;master token&gt; --user &lt;user token&gt;
 </code></pre>
 <p>To deploy your local Node.js code to Back&amp;, use the <code class="prettyprint">deploy</code> command with the Backand CLI</p>
