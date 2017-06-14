@@ -661,23 +661,23 @@ Additionally, you have access to some global utility objects:
 #### Making HTTP Requests from a custom action
 ```javascript--persistent
 // GET example:
-var response = $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/objectexample",
+var response = $http({method:"GET",url:CONSTS.apiUrl + "1/objects/objectexample",
                        params:{filter:[{fieldName:"fieldexample", operator:"contains", value:"somestring"}]},
                       headers: {"Authorization":userProfile.token}});
 
 // POST example:
-var response = $http({method:"POST",url:CONSTS.apiUrl + "/1/objects/objectexample",
+var response = $http({method:"POST",url:CONSTS.apiUrl + "1/objects/objectexample",
                       data:{fieldexample1:"somevalue",fieldexample2:"somevalue"},
                       headers: {"Authorization":userProfile.token}});
 
 // PUT example:
-var response = $http({method:"PUT",url:CONSTS.apiUrl + "/1/objects/objectexample/5",
+var response = $http({method:"PUT",url:CONSTS.apiUrl + "1/objects/objectexample/5",
                       data:{fieldexample1:"somevalue",fieldexample2:"somevalue"},
                       headers: {"Authorization":userProfile.token}});
 
 // DELETE example:
 var response = $http({method:"DELETE",
-                      url:CONSTS.apiUrl + "/1/objects/objectexample/5",
+                      url:CONSTS.apiUrl + "1/objects/objectexample/5",
                       fieldexample2:"somevalue"},
                       headers: {"Authorization":userProfile.token}});
 ```
