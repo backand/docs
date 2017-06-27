@@ -660,11 +660,9 @@ For Server-Side Node.js Code actions, you develop the code on your local machine
 Follow these steps to create and run a Server-Side Node.js Code Action:
 
 * First name the action, and use the init command by copy-pasting "backand action init..." to a command line within the folder in which you'll be developing your action. The action init command creates two folder levels on your local file system. The top level folder will be the name of the object controlling the action, while its child folder is the name of the action you are working with. We recommend that you always run the **action init** command from the root folder of the app's project when creating additional actions. This means you will have a sub-folder for each object, and under it, a sub -folder for each action.
-* Next, build your Node.js code in the `action` folder like any Node other project using your preferred IDE. Add as many npm
-packages as you need. Note - Your code **must** start with the index.js file - Backand uses this as the starting point for your Node.JS action.
+* Next, build your Node.js code in the `action` folder like any Node other project using your preferred IDE. Add as many npm packages as you need. Note - Your code **must** start with the index.js file - Backand uses this as the starting point for your Node.JS action.
 * To debug your code locally, run the debug.js file. Debug.js is provided by the init command, and is ignored when deploying the code to Backand.
-* To run your code on the Back& server, use the deploy command by copy-pasting "backand action deploy..." into the command line used in the first step. The
-deploy command will be available on the action page **after** the action has been initialized with "backand action init...".
+* To run your code on the Back& server, use the deploy command by copy-pasting "backand action deploy..." into the command line used in the first step. The deploy command will be available on the action page **after** the action has been initialized with "backand action init...".
 
 You are now ready to develop your code locally, and test the action on the Backand Dashboard for your application!
 
