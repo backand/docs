@@ -150,16 +150,16 @@ Below is a list of the properties offered by the SDK, a description of the funct
 
 | Name | Methods | Description |
 | ---- | ----------- | ------- |
-| constants | EVENTS, URLS, SOCIALS | Provides access to constants in the SDK |
-| helpers | *filter*, *sort*, *exclude*, *StorageAbstract* | Provides helper methods for working with the SDK |
-| direct properties | *useAnonymousAuth*, *signin*, *signup*, *socialSignin*, *socialSigninWithToken*, *socialSignup*, *requestResetPassword*, *resetPassword*, *changePassword*, *signout*, *getSocialProviders* | These are properties available directly on the Backand SDK object, mostly focused on Authentication |
-| defaults | *none* | This stores the current app's configuration in the SDK |
-| object | *getList*, *create*, *getOne*, *update*, *remove*, *get* (action), *post* (action) | This encapsulates all methods used to manipulate objects |
-| file | *upload*, *remove* | Provides helper methods for working with files |
-| query | *get*, *post* | Allows you to work with custom query objects |
-| user | *getUserDetails*, *getUsername*, *getUserRole*, *getToken*, *getRefreshToken* | Provides information on the current authenticated user |
-| on | *none* | This is the event handler for socket.io functions, replacing socket.on |
-| offline | `cache`, `queue`, `setOfflineMode` |  provides management for offline execution capabilities |
+| [constants](#constants) | EVENTS, URLS, SOCIALS | Provides access to constants in the SDK |
+| [helpers](#helpers) | *filter*, *sort*, *exclude*, *StorageAbstract* | Provides helper methods for working with the SDK |
+| [root properties](#root-properties) | *useAnonymousAuth*, *signin*, *signup*, *socialSignin*, *socialSigninWithToken*, *socialSignup*, *requestResetPassword*, *resetPassword*, *changePassword*, *signout*, *getSocialProviders* | These are properties available directly on the Backand SDK object, mostly focused on Authentication |
+| [defaults](#defaults) | *none* | This stores the current app's configuration in the SDK |
+| [object](#object-property) | *getList*, *create*, *getOne*, *update*, *remove*, *get* (action), *post* (action) | This encapsulates all methods used to manipulate objects |
+| [file](#file) | *upload*, *remove* | Provides helper methods for working with files |
+| [query](#query) | *get*, *post* | Allows you to work with custom query objects |
+| [user](#user) | *getUserDetails*, *getUsername*, *getUserRole*, *getToken*, *getRefreshToken* | Provides information on the current authenticated user |
+| [on](#on) | *none* | This is the event handler for socket.io functions, replacing socket.on |
+| [offline](#offline) | `cache`, `queue`, `setOfflineMode` |  provides management for offline execution capabilities |
 
 ### Default Events
 By default, the Back& SDK emits the following events that your code can respond to:
@@ -939,7 +939,7 @@ This contains constants used by the SDK, and is provided for reference.
 ## .helpers
 The `.helpers` property provides helper methods for constructing some of the more complex objects in the SDK. This includes filters and sort clauses for queries, as well as exclude clauses. It also provides a helper for obtaining a storageAbstract object.
 
-### .helpers.filter()
+### .filter()
 ```shell
 # There is no cURL equivalent
 ```
@@ -983,7 +983,7 @@ Here's a list of the available operators and the data types on which they operat
 | endsWith | text |
 | contains | text |
 
-### .helpers.sort()
+### .sort()
 ```shell
 # There is no cURL equivalent
 ```
@@ -1008,7 +1008,7 @@ Constructs a "sort" clause for a GET request
 | fieldName | the name of the field to apply a filter to |
 | order | the order to sort ('asc' for ascending, 'desc' for descending) |
 
-### .helpers.exclude()
+### .exclude()
 
 ```shell
 # There is no cURL equivalent
@@ -1027,7 +1027,7 @@ backand.helpers.exclude.options
 
 The exclude option gives you a number of constants you can use to exclude system objects from results.
 
-### .helpers.storageAbstract()
+### .storageAbstract()
 ```javascript
 export class MyStorage extends StorageAbstract{
   constructor () {
