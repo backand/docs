@@ -1,4 +1,5 @@
 # Backand Features
+
 This section contains documentation on the features offered by Backand. We will cover the following functional areas:
 
 * Security and Authentication - a summary of the security features offered by Backand
@@ -59,6 +60,7 @@ Parameters:
 ```
 
 The call to the token endpoint returns all of the information you need to use a token to connect to your backand application. The access_token provided is authenticated with a signle user in your app, and is provided an expiration time in seconds. You are also given details of the authenticated user, including their username, first and last name, user ID, and their security role.
+
 ### Basic authentication
 ```shell
 # Perform basic authentication via header
