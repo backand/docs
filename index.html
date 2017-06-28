@@ -1045,7 +1045,7 @@
                     <a href="#helpers" class="toc-h2 toc-link" data-title="Vanilla SDK">.helpers</a>
                       <ul class="toc-list-h3">
                           <li>
-                            <a href="#helpers-filter" class="toc-h3 toc-link" data-title="Vanilla SDK">.helpers.filter()</a>
+                            <a href="#filter" class="toc-h3 toc-link" data-title="Vanilla SDK">.filter()</a>
                             <!-- Nest 4 levels -->
                               <ul class="toc-list-h4">
                                   <li>
@@ -1055,7 +1055,7 @@
                               </ul>
                           </li>
                           <li>
-                            <a href="#helpers-sort" class="toc-h3 toc-link" data-title="Vanilla SDK">.helpers.sort()</a>
+                            <a href="#sort" class="toc-h3 toc-link" data-title="Vanilla SDK">.sort()</a>
                             <!-- Nest 4 levels -->
                               <ul class="toc-list-h4">
                                   <li>
@@ -1065,11 +1065,11 @@
                               </ul>
                           </li>
                           <li>
-                            <a href="#helpers-exclude" class="toc-h3 toc-link" data-title="Vanilla SDK">.helpers.exclude()</a>
+                            <a href="#exclude" class="toc-h3 toc-link" data-title="Vanilla SDK">.exclude()</a>
                             <!-- Nest 4 levels -->
                           </li>
                           <li>
-                            <a href="#helpers-storageabstract" class="toc-h3 toc-link" data-title="Vanilla SDK">.helpers.storageAbstract()</a>
+                            <a href="#storageabstract" class="toc-h3 toc-link" data-title="Vanilla SDK">.storageAbstract()</a>
                             <!-- Nest 4 levels -->
                           </li>
                       </ul>
@@ -3508,52 +3508,52 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 </tr>
 </thead><tbody>
 <tr>
-<td>constants</td>
+<td><a href="#constants">constants</a></td>
 <td>EVENTS, URLS, SOCIALS</td>
 <td>Provides access to constants in the SDK</td>
 </tr>
 <tr>
-<td>helpers</td>
+<td><a href="#helpers">helpers</a></td>
 <td><em>filter</em>, <em>sort</em>, <em>exclude</em>, <em>StorageAbstract</em></td>
 <td>Provides helper methods for working with the SDK</td>
 </tr>
 <tr>
-<td>direct properties</td>
+<td><a href="#root-properties">root properties</a></td>
 <td><em>useAnonymousAuth</em>, <em>signin</em>, <em>signup</em>, <em>socialSignin</em>, <em>socialSigninWithToken</em>, <em>socialSignup</em>, <em>requestResetPassword</em>, <em>resetPassword</em>, <em>changePassword</em>, <em>signout</em>, <em>getSocialProviders</em></td>
 <td>These are properties available directly on the Backand SDK object, mostly focused on Authentication</td>
 </tr>
 <tr>
-<td>defaults</td>
+<td><a href="#defaults">defaults</a></td>
 <td><em>none</em></td>
 <td>This stores the current app&#39;s configuration in the SDK</td>
 </tr>
 <tr>
-<td>object</td>
+<td><a href="#object-property">object</a></td>
 <td><em>getList</em>, <em>create</em>, <em>getOne</em>, <em>update</em>, <em>remove</em>, <em>get</em> (action), <em>post</em> (action)</td>
 <td>This encapsulates all methods used to manipulate objects</td>
 </tr>
 <tr>
-<td>file</td>
+<td><a href="#file">file</a></td>
 <td><em>upload</em>, <em>remove</em></td>
 <td>Provides helper methods for working with files</td>
 </tr>
 <tr>
-<td>query</td>
+<td><a href="#query">query</a></td>
 <td><em>get</em>, <em>post</em></td>
 <td>Allows you to work with custom query objects</td>
 </tr>
 <tr>
-<td>user</td>
+<td><a href="#user">user</a></td>
 <td><em>getUserDetails</em>, <em>getUsername</em>, <em>getUserRole</em>, <em>getToken</em>, <em>getRefreshToken</em></td>
 <td>Provides information on the current authenticated user</td>
 </tr>
 <tr>
-<td>on</td>
+<td><a href="#on">on</a></td>
 <td><em>none</em></td>
 <td>This is the event handler for socket.io functions, replacing socket.on</td>
 </tr>
 <tr>
-<td>offline</td>
+<td><a href="#offline">offline</a></td>
 <td><code>cache</code>, <code>queue</code>, <code>setOfflineMode</code></td>
 <td>provides management for offline execution capabilities</td>
 </tr>
@@ -4628,7 +4628,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
 </tbody></table>
 <h2 id='helpers'>.helpers</h2>
 <p>The <code>.helpers</code> property provides helper methods for constructing some of the more complex objects in the SDK. This includes filters and sort clauses for queries, as well as exclude clauses. It also provides a helper for obtaining a storageAbstract object.</p>
-<h3 id='helpers-filter'>.helpers.filter()</h3><pre class="highlight shell tab-shell"><code><span class="c"># There is no cURL equivalent</span>
+<h3 id='filter'>.filter()</h3><pre class="highlight shell tab-shell"><code><span class="c"># There is no cURL equivalent</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">helpers</span><span class="p">.</span><span class="nx">filter</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span> <span class="s2">"notEquals"</span><span class="p">,</span> <span class="s2">"John"</span><span class="p">)</span>
 </code></pre>
 <blockquote>
@@ -4719,7 +4719,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
 <td>text</td>
 </tr>
 </tbody></table>
-<h3 id='helpers-sort'>.helpers.sort()</h3><pre class="highlight shell tab-shell"><code><span class="c"># There is no cURL equivalent</span>
+<h3 id='sort'>.sort()</h3><pre class="highlight shell tab-shell"><code><span class="c"># There is no cURL equivalent</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">helpers</span><span class="p">.</span><span class="nx">sort</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s2">"name"</span><span class="p">,</span> <span class="s2">"asc"</span><span class="p">)</span>
 </code></pre>
 <blockquote>
@@ -4747,7 +4747,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
 <td>the order to sort (&#39;asc&#39; for ascending, &#39;desc&#39; for descending)</td>
 </tr>
 </tbody></table>
-<h3 id='helpers-exclude'>.helpers.exclude()</h3><pre class="highlight shell tab-shell"><code><span class="c"># There is no cURL equivalent</span>
+<h3 id='exclude'>.exclude()</h3><pre class="highlight shell tab-shell"><code><span class="c"># There is no cURL equivalent</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">helpers</span><span class="p">.</span><span class="nx">exclude</span><span class="p">.</span><span class="nx">options</span>
 </code></pre>
 <blockquote>
@@ -4759,7 +4759,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
   </span><span class="s2">"all"</span><span class="p">:</span><span class="w"> </span><span class="s2">"metadata,totalRows"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>The exclude option gives you a number of constants you can use to exclude system objects from results.</p>
-<h3 id='helpers-storageabstract'>.helpers.storageAbstract()</h3><pre class="highlight javascript tab-javascript"><code><span class="kr">export</span> <span class="kr">class</span> <span class="nx">MyStorage</span> <span class="kr">extends</span> <span class="nx">StorageAbstract</span><span class="p">{</span>
+<h3 id='storageabstract'>.storageAbstract()</h3><pre class="highlight javascript tab-javascript"><code><span class="kr">export</span> <span class="kr">class</span> <span class="nx">MyStorage</span> <span class="kr">extends</span> <span class="nx">StorageAbstract</span><span class="p">{</span>
   <span class="nx">constructor</span> <span class="p">()</span> <span class="p">{</span>
     <span class="kr">super</span><span class="p">();</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">data</span> <span class="o">=</span> <span class="p">{};</span>
