@@ -1078,6 +1078,45 @@
                     <a href="#defaults" class="toc-h2 toc-link" data-title="Vanilla SDK">.defaults</a>
                   </li>
                   <li>
+                    <a href="#offline" class="toc-h2 toc-link" data-title="Vanilla SDK">.offline</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#setofflinemode" class="toc-h3 toc-link" data-title="Vanilla SDK">.setOfflineMode</a>
+                            <!-- Nest 4 levels -->
+                              <ul class="toc-list-h4">
+                                  <li>
+                                    <a href="#parameters-21" class="toc-h4 toc-link" data-title="Vanilla SDK">Parameters</a>
+                                    <!-- Nest 5 levels -->
+                                  </li>
+                                  <li>
+                                    <a href="#sample-code" class="toc-h4 toc-link" data-title="Vanilla SDK">Sample Code</a>
+                                    <!-- Nest 5 levels -->
+                                  </li>
+                              </ul>
+                          </li>
+                          <li>
+                            <a href="#cache" class="toc-h3 toc-link" data-title="Vanilla SDK">.cache</a>
+                            <!-- Nest 4 levels -->
+                              <ul class="toc-list-h4">
+                                  <li>
+                                    <a href="#sample-code-2" class="toc-h4 toc-link" data-title="Vanilla SDK">Sample Code</a>
+                                    <!-- Nest 5 levels -->
+                                  </li>
+                              </ul>
+                          </li>
+                          <li>
+                            <a href="#queue" class="toc-h3 toc-link" data-title="Vanilla SDK">.queue</a>
+                            <!-- Nest 4 levels -->
+                              <ul class="toc-list-h4">
+                                  <li>
+                                    <a href="#sample-code-3" class="toc-h4 toc-link" data-title="Vanilla SDK">Sample Code</a>
+                                    <!-- Nest 5 levels -->
+                                  </li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
                     <a href="#examples-and-further-reading" class="toc-h2 toc-link" data-title="Vanilla SDK">Examples and further reading</a>
                   </li>
               </ul>
@@ -3513,6 +3552,11 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 <td><em>none</em></td>
 <td>This is the event handler for socket.io functions, replacing socket.on</td>
 </tr>
+<tr>
+<td>offline</td>
+<td><code>cache</code>, <code>queue</code>, <code>setOfflineMode</code></td>
+<td>provides management for offline execution capabilities</td>
+</tr>
 </tbody></table>
 <h3 id='default-events'>Default Events</h3>
 <p>By default, the Back&amp; SDK emits the following events that your code can respond to:</p>
@@ -3538,6 +3582,16 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 <td>SIGNUP</td>
 <td>dispatched on signup</td>
 <td>window.addEventListener(backand.constants.EVENTS.SIGNUP, (e)=&gt;{}, false);</td>
+</tr>
+<tr>
+<td>START_OFFLINE_MODE</td>
+<td>dispatched on start offline mode</td>
+<td>window.addEventListener(backand.constants.EVENTS.START_OFFLINE_MODE, (e)=&gt;{}, false);</td>
+</tr>
+<tr>
+<td>END_OFFLINE_MODE</td>
+<td>dispatched on end offline mode</td>
+<td>window.addEventListener(backand.constants.EVENTS.END_OFFLINE_MODE, (e)=&gt;{}, false);</td>
 </tr>
 </tbody></table>
 <h2 id='sdk-methods'>SDK Methods</h2>
@@ -3658,6 +3712,34 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 <td>sets the platform used to build the mobile application (&#39;ionic&#39;/&#39;react-native&#39;)</td>
 <td><em>optional</em></td>
 <td>&#39;ionic&#39;</td>
+</tr>
+<tr>
+<td><strong>runOffline</strong></td>
+<td>boolean</td>
+<td>Determines whether the sdk should run pending offline actions. (cached data and queued requests)</td>
+<td><em>optional</em></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><strong>allowUpdatesinOfflineMode</strong></td>
+<td>boolean</td>
+<td>Determines whether the sdk will allow object updates or deletion while in offline mode. When set to &quot;true&quot;, all objects must contain a field, &quot;updatedAt&quot;, that needs to be before the SDK entered offline mode. Any update/delete operations on fields with an &quot;updatedAt&quot; that occurs after the SDK entered offline mode will fail.</td>
+<td><em>optional</em></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><strong>beforeExecuteOfflineItem</strong></td>
+<td>function</td>
+<td>Sets the function to be called before each cached request. In order to determines whether to dispatch the next request or drop it, you must call return with a valid boolean.</td>
+<td><em>optional</em></td>
+<td><code>(request) =&gt; { return true }</code></td>
+</tr>
+<tr>
+<td><strong>afterExecuteOfflineItem</strong></td>
+<td>function</td>
+<td>Sets the function to be called after each cached request.</td>
+<td><em>optional</em></td>
+<td><code>(response, request) =&gt; { }</code></td>
 </tr>
 </tbody></table>
 <h3 id='on'>.on()</h3><pre class="highlight shell tab-shell"><code><span class="c"># This call has no cURL equivalent</span>
@@ -4793,7 +4875,35 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
 <td>&#39;ionic&#39;</td>
 </tr>
 </tbody></table>
-<h2 id='examples-and-further-reading'>Examples and further reading</h2>
+<h2 id='offline'>.offline</h2>
+<p>The <code>offline</code> property allows you to control the SDK&#39;s offline mode. When the SDK detects that it has lost internet connection, it will queue requests internally. Based on the configuration provided to the init() function, this can result in either a delay prior to call execution or an error response to any update or delete calls. Once internet connection is restored, the queued commands are sent to the server, and the responses should be handled asynchronously through standard promise resolution</p>
+<h3 id='setofflinemode'>.setOfflineMode</h3>
+<p>This function is used to enable and disable offline mode for debugging purposes. When true, the SDK will operate in offline mode. When false, the SDK will communicate over the web. <br/></p>
+<h4 id='parameters-21'>Parameters</h4>
+<table><thead>
+<tr>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>force</td>
+<td>boolean</td>
+<td>Sets the SDK to operate in - or exit from - offline mode.. <strong>Default: TRUE</strong></td>
+</tr>
+</tbody></table>
+<h4 id='sample-code'>Sample Code</h4><pre class="highlight javascript tab-javascript"><code><span class="c1">// Enter offline mode</span>
+<span class="nx">backand</span><span class="p">.</span><span class="nx">offline</span><span class="p">.</span><span class="nx">setOfflineMode</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="c1">// Exit offline mode</span>
+<span class="nx">backand</span><span class="p">.</span><span class="nx">offline</span><span class="p">.</span><span class="nx">setOfflineMode</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</code></pre><h3 id='cache'>.cache</h3>
+<p>An object in which the cached data is stored<br/></p>
+<h4 id='sample-code-2'>Sample Code</h4><pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">offline</span><span class="p">.</span><span class="nx">cache</span><span class="p">;</span>
+</code></pre><h3 id='queue'>.queue</h3>
+<p>All requests queued during offline mode are stored here. These operations will be dispatched when offline mode ends.<br/></p>
+<h4 id='sample-code-3'>Sample Code</h4><pre class="highlight javascript tab-javascript"><code><span class="nx">backand</span><span class="p">.</span><span class="nx">offline</span><span class="p">.</span><span class="nx">queue</span><span class="p">;</span>
+</code></pre><h2 id='examples-and-further-reading'>Examples and further reading</h2>
 <p><strong><em>To view the demo web page, pull down a sample from our <a href="https://github.com/backand/vanilla-sdk/blob/master/example/">example page</a> and run <code>npm start.</code></em></strong></p>
 <h1 id='platform-specific-sdks'>Platform-specific SDKs</h1>
 <p>This section covers our platform-specific SDKs. These SDKs are optimized for the named platform, and wrap the <a href="#sdk-documentation">Vanilla SDK</a> to provide access to Backand.</p>
