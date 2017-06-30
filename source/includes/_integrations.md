@@ -1,12 +1,6 @@
 # Integrations
 The following set of documentation looks at integrating Backand with a number of different types of providers. Also included are some simple Backand-powered applications that can be used either as a starting point for your development, or as a guide for integrating Backand into a larger application.
 
-## Simple Web App with REST API
-We are currently developing this scenario - watch this space for future updates!
-
-## Simple ToDo App
-We are currently developing this scenario - watch this space for future updates!
-
 ## ToDo App with users
 Recently, we released a tutorial on the [Backand GitHub page](https://github.com/backand/angular-yeoman-todos/tree/todo-with-users) that shows off a lot of the features available by default in a Backand-powered application. After completing the tutorial, you'll have a simple ToDo list application with full support for user and role-based security. Below we'll discuss each of the features demonstrated in the tutorial, and cover any items remaining that are necessary for a full deployment.
 
@@ -37,7 +31,7 @@ Once you've published your application on a web server, you have a few more step
 This tutorial gives you a quick look at the power offered by Backand's back end tools and APIs. You'll explore creating a database and implementing a RESTful API for that data with zero effort. You'll customize your application's security and learn how to restrict users based on role and based on endpoint. You'll even spend some time working with custom server-side actions that execute on-demand. By the time you have finished the tutorial, you will have implemented a secure ToDo list application with user authentication – and all with minimal effort!
 
 ## Ionic With Backand
-Today many AngularJS developers are using Ionic to build the user interface for their mobile apps.  AngularJS provides the app structure.  But these mobile apps still need a backend.  In this blog we’ll give you the recipe you need to build an Ionic mobile app with Backand’s Backend as a Service (BaaS). Review the working demo [here](https://github.com/backand/simple-rest-ionic).
+Today many AngularJS developers are using Ionic to build the user interface for their mobile apps.  AngularJS provides the app structure.  But these mobile apps still need a backend.  In this section we’ll give you the recipe you need to build an Ionic mobile app with Backand’s Backend as a Service (BaaS). Review the working demo [here](https://github.com/backand/simple-rest-ionic).
 
 ### What is Ionic?
 
@@ -119,15 +113,15 @@ Now create your mobile app, naming it ‘PlaylistsApp’, with the Ionic command
 
 #### JS Libraries
 
-Your Ionic app has a ‘www’ folder which is a single page application (SPA) built with AngularJS.  You will need to include the Backand libraries in your application. Either download them or use bower to obtain them. Then, copy them into your 'index.html'.
+Your Ionic app has a `www` folder which is a single page application (SPA) built with AngularJS.  You will need to include the Backand libraries in your application. Either download them or use bower to obtain them. Then, copy them into your `index.html`.
 
-* [angularbknd-sdk](https://github.com/backand/angularbknd-sdk), install with bower using:
+* [angular1-sdk](https://github.com/backand/angular1-sdk), install with bower using:
 
   ```bash
-    bower install angularbknd-sdk
+    bower install angular1-sdk
   ```
 
-* Include in your 'index.html':
+* Include in your `index.html`:
 
   ```html
      <script src="lib/angularbknd-sdk/dist/backand.min.js"></script>
@@ -136,16 +130,16 @@ Your Ionic app has a ‘www’ folder which is a single page application (SPA) b
 
 #### Authorization
 
-Backand uses authorization headers in HTTP requests. The token for authorization is obtained upon sign in to Backand and is then stored using cookies via 'ngCookies'. The Backand sdk adds authorization headers to each HTTP request using an ‘$http’ interceptor.
+Backand uses authorization headers in HTTP requests. The token for authorization is obtained upon sign in to Backand and is then stored using cookies via `ngCookies`. The Backand SDK adds authorization headers to each HTTP request using an `$http` interceptor.
 
-In your main 'js' file, 'app.js' requires ‘backand':
+In your main JavaScript file, `app.js` requires `backand`:
 
 ```javascript
      var myApp = angular.module('starter', ['ionic',
        'starter.controllers', 'backand', 'starter.services']);
 ```
 
-And in your app ‘config’ add:
+And in your app's `config` add:
 
 ```javascript
      myApp.config(function($stateProvider, $urlRouterProvider,
@@ -153,6 +147,7 @@ And in your app ‘config’ add:
         $httpProvider.interceptors.push(httpInterceptor);
      });
 ```
+
 Defining the interceptor as:
 ```javascript
      function httpInterceptor($q, $log, $cookieStore) {
@@ -166,21 +161,21 @@ Defining the interceptor as:
      }
 ```
 
-Sign In
+#### Sign In
 
-#### In your controllers module require ‘Backand’ and ‘ngCookies':
+In your controllers module require `Backand` and `ngCookies`:
 
 
 ```javascript
     var myModule = angular.module('starter.controllers', ['backand', 'ngCookies']);
 ```
 
-In your login controller require ‘Backand':
+In your login controller require `Backand`:
 
 ```javascript
     myModule.controller('loginCtrl', function($scope, Backand) {});
 ```
-To perform the login call, remember that ‘playlists’ is our Backand database name:
+To perform the login call, remember that `playlists` is our Backand database name:
 
 
 ```javascript
@@ -191,14 +186,14 @@ To perform the login call, remember that ‘playlists’ is our Backand database
 
 #### CRUD
 
-Now you will need to define a service to make the database operations.  In your services module require ‘backand':
+Now you will need to define a service to make the database operations.  In your services module require `backand`:
 
 
 ```javascript
     var myServices = angular.module('starter.services', ['backand'])
 ```
 
-Define a ‘DatabaseService’, require ‘Backand':
+Define a `DatabaseService`, require `Backand`:
 
 ```javascript
     .service('DatabaseService', function($http, Backand){    
@@ -235,7 +230,7 @@ Define a ‘DatabaseService’, require ‘Backand':
 
 #### Using Backand Data
 
-In your controller, require ‘DatabaseService’, and make calls like:
+In your controller, require `DatabaseService`, and make calls like:
 
 ```javascript
     myModule.controller('playlistsCtrl',    
@@ -264,12 +259,12 @@ To review in Github: [ionic demo](https://github.com/backand/simple-rest-ionic).
 
 ## Retrieving data from Facebook using the Graph API
 
-Once you've integrated with facebook, you can use Facebook's [Graph API](https://developers.facebook.com/docs/graph-api) to augment your user data with information directly from the user's Facebook account. To do so, you'll just need to grab the user's Facebook User ID, and use the Graph API to retrieve data, update or publish new content, or any of the other functionality Facebook has to offer.
+Once you've integrated with Facebook, you can use Facebook's [Graph API](https://developers.facebook.com/docs/graph-api) to augment your user data with information directly from the user's Facebook account. To do so, you'll just need to grab the user's Facebook User ID, and use the Graph API to retrieve data, update or publish new content, or any of the other functionality Facebook has to offer.
 
 ### Obtaining the Facebook User ID
 To store the user's Facebook user ID (FUID) in Backand, follow these steps:
 
-1. Open Security & Auth >> Security actions menu and edit the **"beforeSocialSignup"** action
+1. Open **Security --> Security Actions** menu and edit the **"beforeSocialSignup"** action
 1. Change the **Where Condition** of this action to "true" (this is set at the bottom of the content pane)
 1. Uncomment the provided code that saves the Facebook user id: `userInput.fuid = parameters.socialProfile.additionalValues.id;`
 1. Save the Action
@@ -281,6 +276,27 @@ Next, you need to add the FUID field to the "users" object:
 1. Click **Validate & Update** to validate the model, then **Ok** in the confirmation dialog to save your changes.
 
 From this point onward, any user that signs up to your app using Facebook as their social media provider will have their FUID automatically populated in the **users** object.
+
+### Obtaining the Facebook Access token
+> Modify the security action "socialAuthOverride" to return "Allow"
+
+```javascript--persistent
+  return { "result": "allow", "message": "", "additionalTokenInfo": additionalTokenInfo };
+```
+> Now, Backand returns the Facebook access token from getUserDetails, under data.providerAccessToken
+
+```json
+{
+  ...
+  "data": {
+    ...
+    "providerAccessToken": "EAAWqshXVWMMBANSpEtxBuvGTucyOoiCYIbrNNuQnULqZAJqvNpBKJTZBV660NGQ6Ge6ZA0X0kr3mGEMpvqUX4vldM7n2iatOTZB8JjoinqaIfZCT9Lz8uAlt6LBZBqxAmmxTYLRFLgktVFzYhSxuCtzYc4COyG6DMZD",
+    ...
+  },
+  ...
+}
+```
+Once you've authenticated with Facebook, you can easily record your user's Facebook access token. This can be used to re-authenticate the user with Facebook when performing API calls, such as fetching additional user data using the Facebook Graph API.
 
 ### Getting Facebook data into Backand code
 ```javascript--persistent
@@ -298,10 +314,10 @@ From this point onward, any user that signs up to your app using Facebook as the
 
     console.log(response);
 ```
-Once you have the Facebook user ID, you can use the Graph API to access any available Facebook data.
+Once you have the Facebook user ID and access token, you can use the Graph API to access any available Facebook data.
 
 * See the Facebook Graph API docs at [https://developers.facebook.com/docs/graph-api](https://developers.facebook.com/docs/graph-api)
-* You'll also need a valid Facebook Access Token for your application. Use [Facebook's access token tool](https://developers.facebook.com/tools/accesstoken/) to obtain one.
+* You'll also need a valid Facebook Access Token for your application. See the [section above](#obtaining-the-facebook-access-token), or use [Facebook's access token tool](https://developers.facebook.com/tools/accesstoken/) to obtain one.
 * Facebook offers [additional tools](https://developers.facebook.com/tools-and-support/)
 
 At this point, you're ready to work with the API. For example, you can use this sample code to get a list of a user's friends in Facebook:
@@ -312,17 +328,14 @@ At this point, you're ready to work with the API. For example, you can use this 
 ```html
 <a href="#">http://graph.facebook.com/{fuid}/picture</a>
 ```
-You can easily obtain a user's Facebook profile using a single URL reference. Here is the template:
-
-Simply replace **{fuid}** with the user's Facebook User ID.
+You can easily obtain a user's Facebook profile using a single URL reference. The template is available on the right - simply replace **{fuid}** with the user's Facebook User ID.
 
 
 ```html
 <a href="http://graph.facebook.com/{fuid}/picture?type=large" target="_blank">http://graph.facebook
 .com/{fuid}/picture?type=large</a>
 ```
-You can pull in a larger version of the profile picutre using the following HTML:
-
+You can pull in a larger version of the profile picture using the HTML to the right:
 
 Finally, you can refer to [Facebook's Docs](https://developers.facebook.com/docs/graph-api/reference/user/picture/) on their Graph API, and use the information to create whatever type of integration with Facebook that you desire.
 
@@ -361,7 +374,7 @@ var response = $http({method:"PUT",url:CONSTS.apiUrl + "/1/file/s3" ,
 return response;
 ```
 
-The above code is inserted into a new Custom Server-Side JavaScript Action created using the Backand dashboard. It pulls the file information from the parameters passed to the action, then sends a request to S3's file upload endpoint, putting the file into the bucket 'backand-free-upload'. By customizing the above code, you can achieve any underlying file structure you desire.
+The above code is inserted into a new Custom Server-Side JavaScript Action created using the Backand dashboard. It pulls the file information from the parameters passed to the action, then sends a request to S3's file upload endpoint, putting the file into the bucket `backand-free-upload`. By customizing the above code, you can achieve any underlying file structure you desire.
 
 ### Client-side Integration
 
@@ -386,7 +399,7 @@ self.s3FileUpload = function(filename, filedata, success, error)
 };
 ```
 
-The above code is pretty straightforward. It defines a function – s3FileUpload – that takes input from your application in the form of file data, and then communicates with your new custom JavaScript action via an HTTP POST request using JavaScript's built-in AJAX capabilities. Simply call this function from your Angular code, and you will be uploading files in no time!
+The above code is pretty straightforward. It defines a function – `s3FileUpload` – that takes input from your application in the form of file data, and then communicates with your new custom JavaScript action via an HTTP POST request using JavaScript's built-in AJAX capabilities. Simply call this function from your Angular code, and you will be uploading files in no time!
 
 ## Stripe Integration
 Once you've decided how you want to monetize your web app, you'll likely begin looking at ways to integrate your code with a vendor that will accept and process payments on your behalf. While this would be a daunting effort to perform in a custom-built environment, Backand's built-in security and stability help to ease many of the requirements that are imposed upon payment applications. Below we'll look at using a third-party vendor – [Stripe](http://www.stripe.com/) – to process payments, and examine how to integrate Stripe with a Backand application.
@@ -475,9 +488,7 @@ Once you've set your publishable key, you're ready to start tokenizing payment m
   }
 ```
 
-Once this code has been created, we need to write one additional function. This function wraps a HTTP request to the
-custom action we created previously. It assumes that the action's name is 'makePayment', so be sure to change it to
-something that matches your actual implementation:
+Once this code has been created, we need to write one additional function. This function wraps a HTTP request to the custom action we created previously. It assumes that the action's name is `makePayment`, so be sure to change it to something that matches your actual implementation:
 
 ```javascript
 factory.makePayment = function(amount, token){
@@ -505,10 +516,9 @@ Mandrill is an email infrastructure service that focuses on transactional emails
 
 ### Send Email with Mandrill API (No Attachment)
 Mandrill has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate Mandrill with Backand.
+> Server side action code
 
-To send an email with Mandrill, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action mandrillapp, add message and name to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
-
-```javascript
+```javascript--persistent
 /* globals
   $http - Service for AJAX calls
   CONSTS - CONSTS.apiUrl for Backands API URL
@@ -530,11 +540,14 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 	return {};
 }
 ```
-In the example app we're building, the app's users can send messages to themselves. This is done through the use of userProfile.username, which is the email address used to register with the application. Make sure to replace the 'key' property above with your Mandrill API key.
 
-Next, add the following JavaScript code to your app's client-side code base:
+To send an email with Mandrill, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more about how to create actions [here](#custom-actions). Name the action `mandrillapp`, add `message` and `name` to the Input Parameters, and paste the code on the right into the code editor.
 
-```javascript
+In the example app we're building, the app's users can send messages to themselves. This is done through the use of `userProfile.username`, which is the email address used to register with the application. Make sure to replace the `key` property above with your Mandrill API key.
+
+> Client-side code
+
+```javascript--persistent
 return $http ({
   method: 'GET',
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>/1',
@@ -546,13 +559,8 @@ return $http ({
     }
   }
 });
-
 ```
-
-Replace <your object name> with the object associated with the action you created.
-
-Once this is done, you'll be able to easily trigger emails via Mandrill using Backand's custom action API.
-
+Next, add the JavaScript code to the right to your app's client-side code base. Replace `<your object name>` with the object associated with the action you created. Once this is done, you'll be able to easily trigger emails via Mandrill using Backand's custom action API.
 
 ### Send Email with Mandrill API (with Attachments)
 
@@ -567,19 +575,17 @@ To get started with a Mandrill action, you’ll need to first create a new Serve
 Once you have the Server-Side Node.js action ready to go, the next step is to create an action in Mandrill. Navigate to [http://www.mandrill.com/](http://www.mandrill.com/) and create a new action in the MailChimp dashboard provided when you log in. Once the action is ready, copy down the Mandrill API Key value and save it somewhere safe. This API key will be used by the Node.js action to connect and communicate with Mandrill.
 
 ### Updating the Code
-
-Next, we’ll need to update the action’s code to communicate with Mandrill. We’ll start by  configuring the mandrill SDK requirements in index.js. Add these lines into index.js in your Node.js action folder structure, before the function exports.backandCallback:
-
-```javascript
+```javascript--persistent
 var mandrill = require('node-mandrill')(MANDRILL_API_KEY);
 var request = require('request').defaults({ encoding: null });
 ```
 
-**Note:** Be sure to replace MANDRILL_API_KEY with the value copied down from the Mandrill dashboard.
+Next, we’ll need to update the action’s code to communicate with Mandrill. We’ll start by  configuring the mandrill SDK requirements in `index.js`. Add these lines into `index.js` in your Node.js action folder structure, before the function `exports.backandCallback`:
 
-Next, we’ll modify the backandCallback function to send a message with Mandrill. Replace the contents of this function with the following code:
 
-```javascript
+<aside class="notice">Be sure to replace MANDRILL_API_KEY with the value copied down from the Mandrill dashboard.</aside>
+
+```javascript--persistent
     var filePath = 'PATH_TO_ATTACHMENT_INCLUDING_FILENAME';
     var fileName = 'FILENAME_OF_ATTACHMENT';
 
@@ -619,35 +625,27 @@ Next, we’ll modify the backandCallback function to send a message with Mandril
     }
 ```
 
-This code does two things:
+Next, we’ll modify the `backandCallback` function to send a message with Mandrill. Replace the contents of this function with the code on the right. This code does two things:
 
-1. The initial code fetches the attachment data from the server on which it is stored. If this code succeeds, it calls sendEmail with the file data provided as a Base 64 string.
-
-2. sendEmail then takes this data and contacts Mandrill to send the message.
+1. The initial code fetches the attachment data from the server on which it is stored. If this code succeeds, it calls `sendEmail` with the file data provided as a Base 64 string.
+2. `sendEmail` then takes this data and contacts Mandrill to send the message.
 
 ### Configuring the Code
 
 To tie the project together and finalize the above code, simply replace each of the placeholders with the appropriate value:
 
-* PATH_TO_ATTACHMENT_INCLUDING_FILENAME - this is the URL to the attachment you wish to send. If fetching this fails, sending the message will not succeed.
-
-* FILENAME_OF_ATTACHMENT - this is the file name that will be given to the attachment.
-
-* RECIPIENT_EMAIL - This is the email for the message’s intended recipient.
-
-* RECIPIENT_DISPLAY_NAME - This is the recipient’s display name.
-
-* SENDER - This is the email from which the message was sent.
-
-* EMAIL_SUBJECT - This is the subject of the email.
-
-* MESSAGE_BODY - This is the content of the email.
+* `PATH_TO_ATTACHMENT_INCLUDING_FILENAME` - this is the URL to the attachment you wish to send. If fetching this fails, sending the message will not succeed.
+* `FILENAME_OF_ATTACHMENT` - this is the file name that will be given to the attachment.
+* `RECIPIENT_EMAIL` - This is the email for the message’s intended recipient.
+* `RECIPIENT_DISPLAY_NAME` - This is the recipient’s display name.
+* `SENDER` - This is the email from which the message was sent.
+* `EMAIL_SUBJECT` - This is the subject of the email.
+* `MESSAGE_BODY` - This is the content of the email.
 
 You can also use the parameters argument to the action to send additional message data, whether that data originates in your app’s database or via the API call. Once these changes are made, your server-side action is ready to deploy!
 
 ### Testing and Deployment
-
-You can debug and run the action locally using the provided debug.js file. Simply enter node debug.js on the command line to debug. Once you’ve finished your local testing, you can then deploy the action via the documentation provided in the Server-Side Action’s UI in your app’s dashboard at Backand.com - head to the Actions tab for the relevant object, and follow the instructions on using backand action deploy to deploy your code.
+You can debug and run the action locally using the provided `debug.js` file. Simply enter node `debug.js` on the command line to debug. Once you’ve finished your local testing, you can then deploy the action via the documentation provided in the Server-Side Action’s UI in your app’s dashboard at Backand.com - head to the Actions tab for the relevant object, and follow the instructions on using `backand action deploy` to deploy your code.
 
 ### Calling the Action
 
@@ -659,17 +657,15 @@ To call the action in your client-side code, simply use the Backand SDK’s acti
   })
 ```
 
-Simply replace OBJECT_NAME with the name of the object controlling your action, and ACTION_NAME with the Server-Side Node.js Action’s name in Backand. You can provide any extra information or detail using the provided parameters object - this will be passed into the parameters argument of your action.
+Simply replace `OBJECT_NAME` with the name of the object controlling your action, and `ACTION_NAME` with the Server-Side Node.js Action’s name in Backand. You can provide any extra information or detail using the provided `parameters` object - this will be passed into the parameters argument of your action.
 
 ## Mailgun
 Mailgun is an email automation service provided by Rackspace. It offers a complete cloud-based email service for sending, receiving, and tracking email messages sent by your registered websites and applications.
 
 ### Send Email with Mailgun API
-Mailgun provides an API that can be used to easily send email, among many other features. By translating Mailgun's provided cURL examples to JavaScript $http calls, you can easily integrate Mailgun with Backand.
+> Server-side Action
 
-To send an email with Mailgun, you need to create a server side action.You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action ,ao;gim, add message and name to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
-
-```javascript
+```javascript--persistent
 /* globals
   $http - service for AJAX calls - $http({method:"GET",url:CONSTS.apiUrl + "/1/objects/yourObject" , headers: {"Authorization":userProfile.token}});
   CONSTS - CONSTS.apiUrl for Backand's API URL
@@ -707,11 +703,12 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 	return {};
 }
 ```
-in this example the app user can send any message that he wants to himself. Please replace the "apiKey" property, as well as the sandbox URL, with your associated mailgun values.
+Mailgun provides an API that can be used to easily send email, among many other features. By translating Mailgun's provided cURL examples to JavaScript $http calls, you can easily integrate Mailgun with Backand.
 
-Next, add the following JavaScript code to your app's client-side code base:
+To send an email with Mailgun, you need to create a server side action.You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](#custom-actions). Name the action `mailgun`, add `message` and `name` to the Input Parameters, and paste the code on the right in the code editor. In this example the app user can send any message that he wants to himself. Please replace the "apiKey" property, as well as the sandbox URL, with your associated mailgun values.
+> Client-side code
 
-```javascript
+```javascript--persistent
 return $http ({
   method: 'GET',
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>/1',
@@ -725,7 +722,8 @@ return $http ({
 });
 
 ```
-Replace <your object name> with the object associated with the action you created, and you are ready to send messages via Mailgun!
+
+Next, add the client-side JavaScript code to your app's code base. Replace `<your object name>` with the object associated with the action you created, and you are ready to send messages via Mailgun!
 
 ## SendGrid
 SendGrid is a cloud-based SMTP provider that allows you to send email without having to maintain email servers. SendGrid manages all of the technical details, from scaling the infrastructure to ISP outreach and reputation monitoring to whitelist services and real time analytics.
@@ -734,11 +732,9 @@ SendGrid is a cloud-based SMTP provider that allows you to send email without ha
 SendGrid is for anyone that needs to send email, whether it’s transactional email or marketing emails and campaigns. We send billions of emails each month, so we can handle your email regardless of volume.
 
 ### Send Email with SendGrid API
-SendGrid has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate SendGrid with Backand.
+> Server-Side Code
 
-To send an email with SendGrid, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action SendGrid, add 'to'' and 'message' to the Input Parameters (like that: to, message ), and paste the following code in the code editor. When finished, the code editor window will contain the following:
-
-```javascript
+```javascript--persistent
 /* globals
   $http - Service for AJAX calls
   CONSTS - CONSTS.apiUrl for Backands API URL
@@ -766,11 +762,15 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
      return res;
 }
 ```
+
+SendGrid has an API that you can use to send emails, along with a lot of other functionality. By translating their provided cURL commands to Angular $http calls, you can easily integrate SendGrid with Backand.
+
+To send an email with SendGrid, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](#custom-actions). Name the action `SendGrid`, add `to` and `message` to the Input Parameters (like that: to, message ), and paste the server-side code into the code editor.
+
 In the example app we're building, the app's users can send messages to an email sent by the client side in the 'to' parameter.  Make sure to replace the 'Authorization' header above with your SendGrid API key (after you register with SendGrid you should waite for your account to be provisioned and than you'll see the API KEY under Settings/ API Keys).
+> Client-Side code
 
-Next, add the following JavaScript code to your app's client-side code base:
-
-```javascript
+```javascript--persistent
 return $http ({
   method: 'GET',
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>',
@@ -785,7 +785,7 @@ return $http ({
 
 ```
 
-Replace <your object name> with the object associated with the action you created and <your destination email> .
+Next, add the client-side JavaScript code to your app's code base. Replace `<your object name>` with the object associated with the action you created and `<your destination email>` with the target recipient.
 
 Once this is done, you'll be able to easily trigger emails via SendGrid using Backand's custom action API.
 
@@ -796,19 +796,10 @@ A quick note: The below text was adapted from the [PayPal developer docs](https:
 
 PayPal provides many options for accepting payments, including Express Checkout, transactions, refunds, payment with agreementId, and so on. In this example, we will implement Express Chackout as it is the simplest and most straightforward method to enable.
 
-### Why use a vendor?
-
-The first question that you are likely asking is "Why should I use a third-party vendor for my payment system?" The short answer, albeit not a very good one, is that a solid and reliable payments platform is not only extremely challenging, but extremely expensive as well. Setting aside the data concerns (which we have covered elsewhere), you'll need significant liquid assets available to even begin working with financial systems directly. Furthermore, you'll be accepting full fraud risk for your users – if any of your users tries to use your payments system for illegal or unethical ends, then you will be liable for the damages caused. These are just a few of the many concerns that would come with building a payment system from the ground up without using a payment vendor.
-
-With a payment vendor, on the other hand, you are able to offload all of the above issues to the vendor, allowing you to focus instead on integrating payments into your application. PayPal performs underwriting (which handles any potentially fraudulent individuals by simply preventing them from accepting payments), payment processing, communication with financial systems, and all necessary reporting as the transactions move through the various banks and financial APIs. While it would be possible to perform all of this work yourself, you'll save yourself years of labor by simply leveraging someone else's efforts.
-
 ### Server-side Action
+> Server-side Action Code
 
-We'll begin the application by adding a custom server-side action. This action will execute JavaScript that implements a 2 stage process. It performs the payment API call, and then the Approval API call. Each step uses an access token obtained from PayPal's oauth2/token call. To save a call to the oauth endpoint for an extra token, we'll cache the oauth token in a server side cookie (although if the cookie expires, you'll need to refresh the token from the oauth2/token endpoint. See the try-catch block below). The first stage prepares the payment and returns a url for redirecting the user to PayPal site. The second stage occurs after the user has acknowledged the payment and been brought back to your application, at which point you call the Approval API to complete the payment. THe code example below is a server-side action that implements all of the functionality necessary to register an Express Checkout payment with PayPal.
-
-Please note: Don't forget to change the PayPal credentials in the code below. These credentials represent your association with PayPal, and must be correct in order for your customer's funds to be correctly routed. To obtain these credentials, you can [create a PayPal sandbox account](https://developer.paypal.com/developer/accounts/). Note that you will first need to register for PayPal if you have not already done so.
-
-```javascript
+```javascript--persistent
 
    var paypalUrl = 'https://api.sandbox.paypal.com/';
 
@@ -923,11 +914,14 @@ Please note: Don't forget to change the PayPal credentials in the code below. Th
 
 ```
 
-The above code takes the payment stage information in parameters.process, and executes the approprite PayPal API call. In the first stage, when directing the user to PayPal to confirm the payment, parameters.process will contain "Payment". This results in the function postPayment being called, which sends a POST command to PayPal with the payment information, along with a URL to redirect to when the user either accepts or cancels the payment. In the second payment stage, when contacting the Approval API to complete the payment, parameters.process will contain "Approval". This will result in the code calling postApproval, which issues a POST call to PayPal using the PayerID and PaymentID stored in the query string of the return URL. This function will return a PayPal payment object including all of the relevant payment details and the payment status.
+We'll begin the application by adding a custom server-side action. This action will execute JavaScript that implements a 2 stage process. It performs the payment API call, and then the Approval API call. Each step uses an access token obtained from PayPal's OAuth2/token call. To save a call to the OAuth endpoint for an extra token, we'll cache the OAuth token in a server side cookie (although if the cookie expires, you'll need to refresh the token from the OAuth2/token endpoint. See the try-catch block). The first stage prepares the payment and returns a url for redirecting the user to PayPal site. The second stage occurs after the user has acknowledged the payment and been brought back to your application, at which point you call the Approval API to complete the payment. The code example  is a server-side action that implements all of the functionality necessary to register an Express Checkout payment with PayPal.
+
+<aside class="notice">Please note: Don't forget to change the PayPal credentials in the code below. These credentials represent your association with PayPal, and must be correct in order for your customer's funds to be correctly routed. To obtain these credentials, you can <a href="https://developer.paypal.com/developer/accounts/">create a PayPal sandbox account</a>. Note that you will first need to register for PayPal if you have not already done so.</aside>
+
+The code takes the payment stage information in `parameters.process`, and executes the appropriate PayPal API call. In the first stage, when directing the user to PayPal to confirm the payment, `parameters.process` will contain "Payment". This results in the function `postPayment` being called, which sends a `POST` command to PayPal with the payment information, along with a URL to redirect to when the user either accepts or cancels the payment. In the second payment stage, when contacting the Approval API to complete the payment, `parameters.process` will contain "Approval". This will result in the code calling `postApproval`, which issues a `POST` call to PayPal using the `PayerID` and `PaymentID` stored in the query string of the return URL. This function will return a PayPal payment object including all of the relevant payment details and the payment status.
 
 ### Client-side Integration
-
-Once you've got the server-side action, you are just about ready to start accepting payments. The code below performs two tasks. It first calls a service to prepare the payment (the Payment API in PayPal), which returns a URL to which the user is redirected.
+> Client-side prepare payment code.
 
 ```javascript
       var self = this;
@@ -955,31 +949,31 @@ Once you've got the server-side action, you are just about ready to start accept
             });
         }
   ```
+Once you've got the server-side action, you are just about ready to start accepting payments. The code to the right performs two tasks. It first calls a service to prepare the payment (the Payment API in PayPal), which returns a URL to which the user is redirected.
+> Client-side finalize payment code
 
-  Once the user has accepted or cenceled the payment, PayPal redirects them back to the URL that was provided to the server-side action. In this example, we use the same page by checking the query string parameter paymentid. This allows the code to detect which stage of the payment process we are at.
+```javascript--persistent
+      //check if this is a redirect from PayPal , after the user approves the payment
+      // PayPal adds PayerID and  paymentId to the return url we give them
 
-  ```javascript
-        //check if this is a redirect from PayPal , after the user approves the payment
-        // PayPal adds PayerID and  paymentId to the return url we give them
+      if ($location.search().PayerID && $location.search().paymentId) {
 
-        if ($location.search().PayerID && $location.search().paymentId) {
-
-          //Call Backand action to approve the payment by the facilitator
-          BackandService.makePayPalApproval($location.search().PayerID, $location.search().paymentId)
-            .then(function (payment) {
-              // remove PayPal query string from url
-              $location.url($location.path());
-              self.success = 'successfully submitted payment for $' + payment.data.transactions[0].amount.total;
-            }
-          )
-      }
+        //Call Backand action to approve the payment by the facilitator
+        BackandService.makePayPalApproval($location.search().PayerID, $location.search().paymentId)
+          .then(function (payment) {
+            // remove PayPal query string from url
+            $location.url($location.path());
+            self.success = 'successfully submitted payment for $' + payment.data.transactions[0].amount.total;
+          }
+        )
+    }
 ```
+Once the user has accepted or canceled the payment, PayPal redirects them back to the URL that was provided to the server-side action. In this example, we use the same page by checking the query string parameter `paymentid`. This allows the code to detect which stage of the payment process we are at.
+> Client-side code to contact custom actions for paypal
 
-Once this code has been added to your project, we need to implement the service that calls Backand's server side payment action. This service wraps a HTTP request to the on-demand custom action that we created earlier in the tutorial. It assumes the action name is 'PayPalPayment', so be sure to change it as appropriate to match your actual implementation:
-
-```javascript
-/Call PayPalPayment on demand action
-    factory.makePayPalPayment = function (amount) {
+```javascript--persistent
+  //Call PayPalPayment on demand action
+  factory.makePayPalPayment = function (amount) {
 
       return $http({
         method: 'GET',
@@ -1011,7 +1005,7 @@ Once this code has been added to your project, we need to implement the service 
     };
 ```
 
-And with that, we've added the basic code necessary to contact PayPal and record a payment.
+Once this code has been added to your project, we need to implement the service that calls Backand's server side payment action. This service wraps a HTTP request to the on-demand custom action that we created earlier in the tutorial. It assumes the action name is `PayPalPayment`, so be sure to change it as appropriate to match your actual implementation. With that, we've added the basic code necessary to contact PayPal and record a payment.
 
 ### Conclusion
 
@@ -1021,11 +1015,10 @@ The above code gives us the basis of a payments system. It can accept payments f
 There are a large number of web analytics tools available that can help your marketing team understand both how many users are using your product, and what they are doing while they use it. Implementing these services in your Backand application is as simple as any other third-party API integration. Segment.io allows you to implement an analytics API and send it to almost any notification tool available, depending on your infrastructure needs. Normally this type of integration would be done on the client side, but there are some instances where a server-side integration is useful. In this example, we will look at implementing a Segment.io integration with your Backand application using a custom server-side action.
 
 ### Server-side Action
+> Server-Side Action Code
 
-We'll start by adding a new custom server-side action.  This action will execute JavaScript code that sends user identification data to segment.io (and, from there, to Woopra, or Intercom, or any other interested service):
-
-```javascript
-* globals
+```javascript--persistent
+/* globals
  $http - Service for AJAX calls
  CONSTS - CONSTS.apiUrl for Backands API URL
  */
@@ -1063,7 +1056,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 }
 ```
 
-The above code takes two parameters - userId and activeApp, with the userId being the user's email address. You can also send Segment.io data collected from Backand using a query to obtain the data you have stored on a given user.
+We'll start by adding a new custom server-side action.  This action will execute JavaScript code that sends user identification data to segment.io (and, from there, to Woopra, or Intercom, or any other interested service). The code takes two parameters - `userId` and `activeApp`, with the `userId` being the user's email address. You can also send Segment.io data collected from Backand using a query to obtain the data you have stored on a given user.
 
 ### Client-side Integration
 
@@ -1077,11 +1070,9 @@ This code has no client-side component.
 Twilio is for anyone that needs to send SMS, MMS, or VoIP, along with a lot of other communication channels embedded into web, desktop, and mobile software.
 
 ### Send SMS with Twilio API
-Twilio has an API that you can use to send SMS. By translating their provided cURL commands to Angular $http calls, you can easily integrate Twilio with Backand.
+> Server-Side Action code
 
-To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following example demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](http://docs.backand.com/en/latest/apidocs/customactions/index.html). Name the action TwilioSendSMS, add to and message to the Input Parameters, and paste the following code in the code editor. When finished, the code editor window will contain the following:
-
-```javascript
+```javascript--persisitent
 /* globals
   $http - Service for AJAX calls
   CONSTS - CONSTS.apiUrl for Backands API URL
@@ -1117,20 +1108,25 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 
 }
 ```
-In the example app we're building, the app's users can send a SMS message to a phone number. The phone number is sent, from the client side, in the 'to' parameter, while the message content is sent in the 'message' parameter.
+
+Twilio has an API that you can use to send SMS. By translating their provided cURL commands to Angular $http calls, you can easily integrate Twilio with Backand.
+
+To send SMS with Twilio, you need to create a server side action. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The example code demonstrates the on-demand option. In the Backand dashboard, open the Actions tab for one of your application's objects (**Database --> Objects --> &lt;object name&gt;, actions tab**), and create a new on-demand server-side JavaScript action. Learn more how to create actions [here](#custom-actions). Name the action `TwilioSendSMS`, add `to` and `message` to the Input Parameters, and paste the server-side code in the code editor.
+
+In the example app we're building, the app's users can send a SMS message to a phone number. The phone number is sent, from the client side, in the `to` parameter, while the message content is sent in the `message` parameter.
 
 ### Setup a FREE account in Twilio
 
 After you register with Twilio, you can get your Twilio phone number [here]( https://www.twilio.com/user/account/phone-numbers/getting-started):
+
 1. To choose a different phone number from the one provided, click on *'Don't like this one? Search for a different number.'* and select SMS in capabilities.
-2. Replace the FROM_PHONE_NUM in the code with the Twilio phone number obtained in the prior step (dont forget the (+) sign before the number)
-3. Make sure you replace the 'ACCOUNT_SID' and 'AUTH_TOKEN' in the code with your Twilio API keys (from the getting started page). Simply click on 'Show API Credentials' on the right side of  'Get Started with Phone Numbers,' and than you'll see the ACCOUNT SID and AUTH TOKEN values.
+2. Replace the `FROM_PHONE_NUM` in the code with the Twilio phone number obtained in the prior step (dont forget the (+) sign before the number)
+3. Make sure you replace the '`ACCOUNT_SID`' and '`AUTH_TOKEN`' in the code with your Twilio API keys (from the getting started page). Simply click on 'Show API Credentials' on the right side of  'Get Started with Phone Numbers,' and than you'll see the `ACCOUNT SID` and `AUTH TOKEN` values.
 
 ### Setup client-side code:
+> Client-Side Code
 
-Next, add the following JavaScript code to your app's client-side code base:
-
-```javascript
+```javascript--persisitent
 return $http ({
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>',
     params: {
@@ -1143,13 +1139,11 @@ return $http ({
 });
 
 ```
-
-Replace 'your object name' with the object associated with the action you created and 'your destination phone number' with a vaild phone number (when using Twilio trial account you first need to validate this phone number)
-
-Once this is done, you'll be able to easily trigger SMS via Twilio using Backand's custom action API.
+Next, add the client-side JavaScript code to your app's code base. Replace `<your object name>` with the object associated with the action you created and `<your destination phone number>` with a vaild phone number (when using Twilio trial account you first need to validate this phone number), Once this is done, you'll be able to easily trigger SMS via Twilio using Backand's custom action API.
 
 ## Netmera
-Netmera is a cloud based service that can be used to send Push Notifications to various platforms, among other services such as Exception reporting. It offers a friendly site where campaigns ()push notifications) can be managed and customized and a REST API to send push notifications automatically. In this guide you can find out how to get started on Netmera and send push notifications with Backand.
+Netmera is a cloud based service that can be used to send Push Notifications to various platforms, among other services such as Exception reporting. It offers a friendly site where campaigns (push notifications) can be managed and customized and a REST API to send push notifications automatically. In this guide you can find out how to get started on Netmera and send push notifications with Backand.
+
 ### Get Started with Netmera
 1. Register to Netmera
 2. Download the Netmera SDK from [here](https://netmera.readme.io/docs/android-sdk-download) or their [starter app](https://cp.netmera.com/nm/admin/sdkDownload/overview/android/final?isNewProject=true).
@@ -1160,13 +1154,12 @@ Netmera is a cloud based service that can be used to send Push Notifications to 
 ### Integrating Netmera with Backand
 Netmera has a rest API that can be used to remotely send push notifications. You can integrate Netmera with Backand by using Backand server-side actions. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code.
 
-In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action by clicking on 'Netmera' under 'Push Notifications'.
+In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action by clicking on `Netmera` under 'Push Notifications'.
 
 **You have just created your first push notification action!**
+> Client-Side code
 
-In order to call the function from your angular app, use the following code:
-
-```javascript
+```javascript--persistent
 return $http ({
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>',
     params: {
@@ -1178,22 +1171,26 @@ return $http ({
     }
 });
 ```
+In order to call the function from your angular app, use the following code:
+
 Replace ‘your object name’ with the object associated with the action you created, set a title for the 'notificationTitle' field, write any message you want in ‘notificationContent’ field and you’re good to go. Now you can start sending push notifications dynamically using Backand and Netmera.
 
 ## PushWoosh
 Pushwoosh is a cloud based service that can be used to send Push Notifications to various platforms. It offers a friendly site where push notifications can be sent and customized and an API to send push notifications automatically. In this guide you can find out how to get started on PushWoosh with an example app for Android and send push notifications with Backand.
+
 ### Get Started with PushWoosh
 
 1. Register an account in PushWoosh and proceed to create an application. Using the PushWoosh control panel, configure your application to support Android including [configuring GCM (Google Cloud Messaging](http://docs.pushwoosh.com/docs/gcm-configuration))
 2. You can either get the starter app or to integrate in an existing app.
-To get a starter app: clone the PushWoosh Android SDK:
- ```
-  git clone https://github.com/Pushwoosh/pushwoosh-android-sdk.git
- ```
- open /Samples/Android-Simple directory in Android Studio and build the app.
+> To get a starter app: clone the PushWoosh Android SDK:
+
+```bash
+git clone https://github.com/Pushwoosh/pushwoosh-android-sdk.git
+```
+> Then, open /Samples/Android-Simple directory in Android Studio and build the app.
 
 3. To integrate in an existing app use the following [Android guide](http://docs.pushwoosh.com/docs/native-android-sdk) – include the SDK.jar and add the relevant code to your application.
-  [Make the relevant changes to your AndroidManifest.xml file](http://docs.pushwoosh.com/docs/androidmanifestxml-modifications) – if you're using the starter app just change the App ID and Project ID.
+  * [Make the relevant changes to your AndroidManifest.xml file](http://docs.pushwoosh.com/docs/androidmanifestxml-modifications) – if you're using the starter app just change the App ID and Project ID.
 4. To integrate in an existing app use the following [iOS guide](http://docs.pushwoosh.com/docs/apns-configuration)
 5. For Ionic you would need to implement the SDK for [Cordova / PhoneGap](http://docs.pushwoosh.com/docs/cordova-phonegap) and check this example for [PhoneGap Build](http://docs.pushwoosh.com/docs/phonegap-build)
 
@@ -1203,10 +1200,9 @@ PushWoosh has an API that can be used to send Push Notifications. You can integr
 In the Backand dashboard, open the Actions tab for one of your application's objects, and create a new on-demand server-side JavaScript action by clicking on 'PushWoosh' under 'Push Notifications'.
 
 **You have just created your first push notification action!**
+> Client-side code
 
-In order to call the function from your angular app, use the following code:
-
-```javascript
+```javascript--persistent
 return $http ({
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>',
     params: {
@@ -1217,7 +1213,7 @@ return $http ({
     }
 });
 ```
-Replace ‘your object name’ with the object associated with the action you created and write any message you want in ‘notificationContent’ field and you’re good to go. Now you can start sending push notifications dynamically using Backand.
+In order to call the function from your angular app, use the provided code. Replace `<your object name>` with the object associated with the action you created, write any message you want in `‘notificationContent’` field, and you’re good to go. Now you can start sending push notifications dynamically using Backand.
 
 ## Facebook Messenger Bot
 <img align="right" src="https://www.backand.com/wp-content/uploads/2016/09/bot-iphone.png">
@@ -1228,7 +1224,7 @@ Facebook recently opened up their Messenger platform to enable bots to converse 
 In this tutorial, we'll walk through creating your own messenger bot on the Backand backend-as-a-service system, and make it live - all in 10 minutes.
 
 ### Demo
-You can chat with the simple bot example to see the end result at <a hreh="http://m.me/1150283998341709" target="\_blank">http://m.me/1150283998341709</a>
+You can chat with the simple bot example to see the end result at <a href="http://m.me/1150283998341709" target="\_blank">http://m.me/1150283998341709</a>
 
 ### Getting Started
 
@@ -1244,9 +1240,9 @@ Follow these steps to build out the back-end to your bot:
 
 2. Create a new app in the Backand dashboard, then navigate to that app's management page.
 
-3. In the new app, open menu 'Objects --> Items', and click on the 'Actions' tab. In the Actions tab, click on the 'Facebook Messenger Bot' template.
+3. In the new app, open menu **Database --> Objects --> Items**, and click on the **Actions** tab. In the **Actions** tab, click on the **Facebook Messenger Bot** template.
 
-4. Click 'Save'
+4. Click **Save**
 
 At this point you have a back-end server that is ready to integrate with Facebook Messenger. However, you need to make a few more configuration changes before you're ready to test.
 
@@ -1267,42 +1263,43 @@ Once you have the app's page up and running, you need to configure the Facebook 
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-create-new-app-info.png)
 
-* Next, skip the quick start and go to the App Dashboard and click 'Add Product' under the heading 'Product Settings'. Once there, select 'Messenger' from the available options:
+* Next, skip the quick start and go to the App Dashboard and click **Add Product** under the heading **Product Settings**. Once there, select **Messenger** from the available options:
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-add-new-product-1.png)
 
 ##### *Setup Webhooks*
-
-Once the app page is created, and the app is registered, you need to tell Facebook where to send its messages for processing. You can do this with the following steps:
-
-* In the 'Webhooks' section, click 'Setup Webhooks'.
-
-![image](https://www.backand.com/wp-content/uploads/2016/09/bot-set-webhook1.png)
-
-* Enter the URL for the webhook - this should link back to your Backand application, and will resemble the below:
 
 ```bash
 https://api.backand.com/1/objects/action/items?
 name=FBMessengerBot&Authorization=basic+<master token>:<user key>
 ```
 
-_Note:_ The webhook URL uses Backand's [basic authentication](http://docs.backand.com/en/latest/apidocs/security/index.html#basic-authentication).
-You can find the '&lt;master token&gt;' in the 'Security & Auth --> Social & Keys' section.
-It also requires a '&lt;user key&gt;' for your app - you can find this in the 'Security & Auth --> Team' section. Simply click on the key icon near one of the Admins to obtain the user key.
+Once the app page is created, and the app is registered, you need to tell Facebook where to send its messages for processing. You can do this with the following steps:
 
-* Verify Token: my_test_token
+* In the **Webhooks** section, click **Setup Webhooks**.
 
-* Select *message_deliveries*, *messages*, *messaging_optins*, and *messaging_postbacks* under Subscription Fields.
+![image](https://www.backand.com/wp-content/uploads/2016/09/bot-set-webhook1.png)
+
+* Enter the URL for the webhook - this should link back to your Backand application, and will resemble the URL to the right
+
+
+<aside class="notice">The webhook URL uses Backand's <a href="#basic-authentication">basic authentication</a>.
+You can find the '&lt;master token&gt;' in the <strong>Security --> Social & Keys</strong> section.
+It also requires a '&lt;user key&gt;' for your app - you can find this in the <strong>Admin --> Team</strong> section. Simply click on the key icon near one of the Admins to obtain the user key.</aside>
+
+* Verify Token: `my_test_token`
+
+* Select `message_deliveries`, `messages`, `messaging_options`, and `messaging_postbacks` under Subscription Fields.
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-setup-webhook.png)
 
 ##### *Get a Page Access Token*
-Once you've configured the app in Facebook, it's time to tie it back into your Backand application. In the Token Generation section, select your Page. A 'Page Access Token' will be generated for you. Copy this 'Page Access Token', and navigate back to your Backand app. Open the 'Action' section of your 'Items' object, and paste the token into the Backand Action where indicated (PAGE_ACCESS_TOKEN).
+Once you've configured the app in Facebook, it's time to tie it back into your Backand application. In the Token Generation section, select your Page. A 'Page Access Token' will be generated for you. Copy this 'Page Access Token', and navigate back to your Backand app. Open the **Action** section of your **Items** object, and paste the token into the Backand Action where indicated (`PAGE_ACCESS_TOKEN`).
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-select-page.png)
 
 ##### *Subscribe the App to the Page*
-Finally, you need to subscribe to the webhooks available for your page. This is managed in the 'Webhooks' section of the Facebook configuration:
+Finally, you need to subscribe to the webhooks available for your page. This is managed in the **Webhooks** section of the Facebook configuration:
 
 ![image](https://www.backand.com/wp-content/uploads/2016/09/bot-page-subscribe.png)
 
@@ -1336,13 +1333,10 @@ Eventually, you'll want to get your bot approved for use by the public. You can 
 
 Finally, you can enhance your app's intelligence with an AI integration. Find out how to get started at [Wit.ai](https://wit.ai)!
 
-### Customizing the Bot's Code in a Backand Action
+### Customizing the Bot's Code to *Receive Messages*
+> Code to receive messages from Facebook
 
-#### *Receive Messages*
-
-All callbacks and webhooks from Facebook will end up in your object's Facebook Action code. The JavaScript for this action is solely responsible for listening to the incoming POST calls, and responding appropriately. The template code handles all webhooks from Facebook by default. For example, receiving messages is handled by looking for the 'messagingEvent.message' field in the webhook, and then calling the 'receivedMessage()' function as follows:
-
-```javascript
+```javascript--persistent
 if (request.method == "POST"){
 
     var data = request.body;
@@ -1374,11 +1368,13 @@ if (request.method == "POST"){
 }
 ```
 
-#### *Send a Text Message*
+All callbacks and webhooks from Facebook will end up in your object's Facebook Action code. The JavaScript for this action is solely responsible for listening to the incoming `POST` calls, and responding appropriately. The template code handles all webhooks from Facebook by default. For example, receiving messages is handled by looking for the `messagingEvent.message` field in the webhook, and then calling the `receivedMessage()` function as seen to the right:
 
-In receivedMessage, we've added logic that can send a message back to the user. The default behavior is to echo back the text that was received, with some static modifications ('Back& bot says'...):
 
-```javascript
+### Customizing the Bot's Code to *Send a Text Message*
+> Sending a message to the user
+
+```javascript--persistent
 function receivedMessage(event) {
 
     var senderID = event.sender.id;
@@ -1427,9 +1423,11 @@ function receivedMessage(event) {
 };
 ```
 
-*sendTextMessage* formats the message to be sent to Facebook, then calls the appropriate API endpoint:
+In receivedMessage, we've added logic that can send a message back to the user. The default behavior is to echo back the text that was received, with some static modifications ('Back& bot says'...)
 
-```javascript
+> `sendTextMessage` formats the message to be sent to Facebook, then calls the appropriate API endpoint:
+
+```javascript--persistent
 function sendTextMessage(recipientId, messageText) {
     var messageData = {
         recipient: {
@@ -1444,9 +1442,9 @@ function sendTextMessage(recipientId, messageText) {
 };
 ```
 
-*callSendAPI* calls the Send API to send the message back to the user:
+> `callSendAPI` calls the Send API to send the message back to the user:
 
-```javascript
+```javascript--persistent
 function callSendAPI(messageData) {
     try{
 
@@ -1473,11 +1471,10 @@ function callSendAPI(messageData) {
 }
 ```
 
-#### *Send a Structured Message*
+### Customizing the Bot's Code to *Send a Structured Message*
+> Sending a structured response
 
-*receivedMessage* can also send back other kinds of messages if it sees certain keywords. For example, if you send the message 'backand', it will call `sendGenericMessage()` - a function that sends back a Structured Message with a generic template.
-
-```javascript
+```javascript--persistent
 function sendGenericMessage(recipientId) {
     var messageData = {
         recipient: {
@@ -1525,12 +1522,13 @@ function sendGenericMessage(recipientId) {
 };
 ```
 
-#### *Handle Postbacks*
-Structured messages use 'postbacks' to communicate with your application when a user clicks on one of the provided enhanced objects. The postback message contains the payload that was created for the button in the original Structured Message. Buttons on Structured Messages support both opening URLs and communicating via postbacks.
+`receivedMessage` can also send back other kinds of messages if it sees certain keywords. For example, if you send the message 'backand', it will call `sendGenericMessage()` - a function that sends back a Structured Message with a generic template.
 
-In our webhook handler, we handle the postback by calling the function 'receivedPostback()':
 
-```javascript
+### Customizing the Bot's Code to *Handle Postbacks*
+> In our webhook handler, we handle the postback by calling the function `receivedPostback():`
+
+```javascript--persistent
 ....
 else if (messagingEvent.postback) {
     receivedPostback(messagingEvent);
@@ -1538,9 +1536,12 @@ else if (messagingEvent.postback) {
 ...
 ```
 
-This function sends a message back saying that the postback was called:
+Structured messages use `postbacks` to communicate with your application when a user clicks on one of the provided enhanced objects. The `postback` message contains the payload that was created for the button in the original Structured Message. Buttons on Structured Messages support both opening URLs and communicating via `postbacks`.
 
-```javascript
+
+> This function sends a message back saying that the postback was called:
+
+```javascript--persistent
 function receivedPostback(event) {
     var senderID = event.sender.id;
     var recipientID = event.recipient.id;
@@ -1559,11 +1560,11 @@ function receivedPostback(event) {
 };
 ```
 
-From here, you can expand the bot to provide a wealth of functionality to your page's users. Simply expand upon the above code until it meets your requirements.
+> From here, you can expand the bot to provide a wealth of functionality to your page's users. Simply expand upon the above code until it meets your requirements.
 
 ## SalesforceIQ
 
-Building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this article, we'll look at integrating a Backand application with Salesforce IQ, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.
+Building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this section, we'll look at integrating a Backand application with Salesforce IQ, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.
 
 ### What is SalesforceIQ?
 [SalesforceIQ](https://www.salesforceiq.com/) is an out-of-the-box CRM solution that quickly gives you access to dynamic information tied into a full CRM solution. With Automatic Data Capture and enterprise-level intelligence under the hood, SalesforceIQ acts like your own personal assistant so you can focus on what matters most: selling. SalesforceIQ, in addition to providing easy integrations with tools like Google and Microsoft Exchange, also gives you the capability to dynamically access and manage your data through a series of robust APIs.
@@ -1603,22 +1604,21 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 }
 ```
 
-We have created an action template that will give you jump start with salesforceIQ. You can either trigger this action from an object's database transaction event actions, or create a new on-demand action that you can call from your app's client code. The sample JavaScript is provided by the template action, which is available as "SalesforceIQ" in the "CRM & ERP" section of action templates.:
+We have created an action template that will give you jump start with salesforceIQ. You can either trigger this action from an object's database transaction event actions, or create a new on-demand action that you can call from your app's client code. The sample JavaScript is provided by the template action, which is available as **SalesforceIQ** in the **CRM & ERP** section of action templates.
 
-This code provides you with all of the basic tools you need to get connected to the SalesforceIQ API. It takes in your SalesforceIQ API Key and API Secret, and performs a call to the "/accounts" endpoint to fetch accounts.
+This code provides you with all of the basic tools you need to get connected to the SalesforceIQ API. It takes in your SalesforceIQ API Key and API Secret, and performs a call to the `/accounts` endpoint to fetch accounts.
 
 ### Connecting this action to your SalesforceIQ account
 To connect to SalesforceIQ, you'll first need to register for an account if you haven't done so. Once you've signed up, follow these steps to obtain your API Key and API Secret:
 
 1. Open Settings under the gear icon
-2. Open the 'Integration' tab under 'My Account Settings'
-3. Under 'Create New Custom Integration,' click 'Custom'
-4. Set the name to 'Backand API,' and provide a description
-5. Copy the 'API Key' and 'API Secret' from the integration page into the JavaScript Action code
-6. Click 'Save'
+2. Open the **Integration** tab under **My Account Settings**
+3. Under **Create New Custom Integration**, click **Custom**
+4. Set the name to **Backand API**, and provide a description
+5. Copy the **API Key** and **API Secret** from the integration page into the JavaScript Action code
+6. Click **Save**
 
 When this is completed, you should now be able to access all of your SalesforceIQ accounts from the custom JavaScript action.
-
 
 ### Setup client-side code:
 ```javascript--persistent
@@ -1631,14 +1631,12 @@ return $http ({
 
 ```
 
-Once you've configured the action to connect to SalesforceIQ, you'll need to call the action from your client-side code. To do so, use the following JavaScript to construct a GET request and trigger your SalesforceIQ action:
-
-Simply replace 'your object name' with the object that contains your SalesforceIQ custom action, and replace 'your action name' with the name of the action that you provided while creating the integration.
+Once you've configured the action to connect to SalesforceIQ, you'll need to call the action from your client-side code. To do so, use the JavaScript to the right to construct a GET request and trigger your SalesforceIQ action. Simply replace `<your object name>` with the object that contains your SalesforceIQ custom action, and replace `<your action name>` with the name of the action that you provided while creating the integration.
 
 With these changes, you're now able to pull in any and all SalesforceIQ accounts available via their API! You can use a similar pattern to construct additional calls to the SalesforceIQ API - simply replace the URL and parameters in the custom SalesforceIQ action with the URL and parameters for the object you want to retrieve.
 
 ## Salesforce CRM
-As mentioned in our article on integrating with SalesforceIQ, building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this article, we'll look at integrating a Backand application with Salesforce CRM, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.
+As mentioned in our section on integrating with [SalesforceIQ](#salesforceIQ), building and maintaining customer relationships is crucial for driving sales to your platform. However, it can also be a complex process requiring integrating data from multiple sources and, more importantly, ensuring that data is accessible when it is needed. Customer Relationship Management (CRM) software is designed to make this data management and integration process much easier, providing you with the tools you need to drive customers through your sales funnel. In this section, we'll look at integrating a Backand application with Salesforce CRM, providing you with all of the tools you need to effectively leverage your customer data in your Backand application.
 
 ### What is Salesforce CRM?
 [Salesforce CRM](https://www.salesforce.com/crm) is the world's foremost CRM solution, and gives your sales teams the tools they need to close deals. Salesforce CRM is also built in the cloud, meaning that your sales team can increase their productivity and keep the sales pipeline filled with solid leads, all without the need to deploy additional hardware or work around speed limitations. Through Salesforce's [REST API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm ) you can get easy programmatic access to all of your customer data.
@@ -1709,8 +1707,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 }
 ```
 
-We have created an action template that will give you jump start with salesforceCRM. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following is the content of the ready action template call
-"salesforce CRM" under the "CRM & ERP" section:
+We have created an action template that will give you jump start with salesforceCRM. You can either trigger this action with an object's CRUD event handler, or call it on-demand from your client code. The following is the content of the ready action template call **Salesforce CRM** under the **CRM & ERP** section:
 
 <aside class="notice">The above code fetches the access token every time you call the action. You can improve the performance of this call by caching the token into a Backand Server-Side Cookie, and only performing the retrieval when the token has expired.</aside>
 
@@ -1718,29 +1715,28 @@ We have created an action template that will give you jump start with salesforce
 Follow these steps to obtain your Salesforce CRM authentication information:
 
 1. Sign in to Salesforce CRM as a user with Admin rights
-2. Open Setup, found under the gear icon
-3. Open App Manager
-4. Click on 'New Connected App'
-5. Provide 'Connected App Name', 'API Name' and 'Contact Email'
-6. Check 'Enable OAuth Settings'
-  1. Check 'Enable for Device Flow'
-  2. Under 'Selected OAuth Scopes' select 'Full Access,' or any other permissions you need
-7. Click 'Save'
-8. Copy 'Consumer Key' into the client variable in the code
-9. Copy 'Consumer Secret' into the secret variable in the code
+2. Open **Setup**, found under the gear icon
+3. Open **App Manager**
+4. Click on **New Connected App**
+5. Provide **Connected App Name**, **API Name**, and **Contact Email**
+6. Check **Enable OAuth Settings**
+  1. Check **Enable for Device Flow**
+  2. Under **Selected OAuth Scopes**, select **Full Access** (or any other permissions you need)
+7. Click **Save**
+8. Copy **Consumer Key** into the client variable in the code
+9. Copy **Consumer Secret** into the secret variable in the code
 
 Once you've obtained the consumer key and the consumer secret, you'll need to enable server-side security in Salesforce. To do so, follow these steps:
 
-1. From App Manager, select your new App and Click 'Manage'
-2. Click 'Edit Polices'
-3. Change 'IP Relaxation' to 'Relax IP Restriction,' or add Backand's IP to your organization's IP restrictions
-4. Change 'Timeout Value' to 24 hours
-5. Click 'Save'
+1. From App Manager, select your new App and Click **Manage**
+2. Click **Edit Polices**
+3. Change **IP Relaxation** to **Relax IP Restriction**, or add Backand's IP to your organization's IP restrictions
+4. Change **Timeout Value** to 24 hours
+5. Click **Save**
 
 With that completed, you should now have full access to your CRM objects using the Salesforce REST API.
 
 ### Setup client-side code:
-
 ```javascript--persistent
 return $http ({
   url: Backand.getApiUrl() + '/1/objects/action/<your object name>',
@@ -1754,4 +1750,167 @@ Once you've configured the action to connect to Salesforce, you'll need to call 
 
 Simply replace 'your object name' with the object that contains your Salesforce custom action, and replace 'your action name' with the name of the action that you provided while creating the integration.
 
-With these changes, you're now able to pull in any and all Salesforce accounts available via their API! You can use a similar pattern to construct additional calls to the Salesforce API - simply replace the URL and parameters in the custom SalesforceIQ action with the URL and parameters for the object you want to retrieve.
+With these changes, you're now able to pull in any and all Salesforce accounts available via their API! You can use a similar pattern to construct additional calls to the Salesforce API - simply replace the URL and parameters in the custom SalesforceCRM action with the URL and parameters for the object you want to retrieve.
+
+## Calling Backand from Native Android Code
+> This is a simple class you can use to easily construct API requests to any Backand API URL
+
+```java
+com.backand.backandandroidsample;
+
+import android.util.Base64;
+import android.util.Log;
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
+
+public class BackandConnector {
+    private String masterToken;
+    private String userToken;
+    private String appName;
+
+    private final String TAG = "Backand";
+    public BackandConnector(String appName, String userToken, String masterToken) {
+        this.masterToken = masterToken;
+        this.userToken = userToken;
+        this.appName = appName;
+    }
+
+    public String sendGetRequest(URL url) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String userNamePasswordCombination = this.masterToken + ":" + this.userToken;
+        final String basicAuth = "Basic " +  Base64.encodeToString(userNamePasswordCombination.getBytes(), Base64.NO_WRAP);
+
+        try {
+
+            HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Authorization", basicAuth);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("AppName", this.appName);
+
+            int responseCode = conn.getResponseCode();
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                String line;
+                InputStream in = conn.getInputStream();
+
+                InputStreamReader isw = new InputStreamReader(in);
+
+                int data = isw.read();
+                while (data != -1) {
+                    char current = (char) data;
+                    data = isw.read();
+                    stringBuilder.append(current);
+                }
+            } else {
+                Log.d(TAG, "readRemoteJson: " + conn.getResponseMessage());
+                return "";
+            }
+        } catch (Exception e) {
+            Log.e(TAG, "readRemoteJson error: " + e.getMessage());
+        }
+        return  stringBuilder.toString();
+    }
+}
+```
+
+As Backand is a web API, it can be used by any application that is built on top of a programming language that can make HTTP requests. As an example of this, in this section we'll look at how to connect a native Android application to a Backand back-end using HTTP calls. We'll cover configuring the connection headers, authenticating with Backand, sending requests, and receiving responses. We'll also take a brief look at how to integrate with other Backand SDK functionality.
+### Configuring the Connection
+>This code takes three arguments - appName, userToken, and masterToken - and populates class member variables with this data. These values are then used in constructing the authentication header for each request.
+
+```java
+public class BackandConnector {
+    private String masterToken;
+    private String userToken;
+    private String appName;
+
+    private final String TAG = "Backand";
+    public BackandConnector(String appName, String userToken, String masterToken) {
+        this.masterToken = masterToken;
+        this.userToken = userToken;
+        this.appName = appName;
+    }
+}
+```
+To integrate with Backand, you'll need three pieces of information. The first is the app name, which can be found in the Backand dashboard. The second is the app's Master key. This is found in the application dashboard, under **Security --> Social & Keys**. Once you've obtained this, you'll also need the User Key. This is a key that is unique to each registered user in your application. It is used to associate the actions being taken in your app with a user, so that you can apply security templates appropriately. Obtain the User Key from **Security -> Registered Users** - simply click on the "key" icon next to a user record to obtain the key:
+
+![image](images/user_key_icon.png)
+
+You can store this information in a wrapper class, which you will use to govern all calls to the Backand service. Start by defining the class, along with a constructor that accepts the three authentication values.
+
+###Authenticating
+> To authenticate your requests with Backand, you'll need to construct an authentication header. This consists of a Base 64-encoded string consisting of your application's master key and user key, coupled with the word "Basic". The code to construct this header is as follows:
+
+```java
+StringBuilder stringBuilder = new StringBuilder();
+String userNamePasswordCombination = this.masterToken + ":" + this.userToken;
+final String basicAuth = "Basic " +  Base64.encodeToString(userNamePasswordCombination.getBytes(), Base64.NO_WRAP);
+```
+
+You can use Backand's [Basic Authentication](http://docs.backand.com/#basic-authentication) to authenticate with your app. This uses your app's master key and a user key to authenticate API requests. This works well for server-side (and other non-visible) code, but you should be careful to ensure that your app's Master key is not exposed in source control or via your app - this key bypasses all user authentication, and can be used to perform administrative actions in your app without your knowledge.
+
+
+
+###Sending the Request
+>This code uses the HttpsUrlConnection object from javax.net.ssl to construct a basic HTTP request to the URL specified. Set the Authorization header to the authorization value you calculated in the previous section, then use the app's name to populate the AppName header. Finally, set the content type to "application/json", and open the connection.
+
+```java
+public String sendGetRequest(URL url) {
+    //Auth header generation code here
+    try {
+
+        HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Authorization", basicAuth);
+        conn.setRequestProperty("Content-Type", "application/json");
+        conn.setRequestProperty("AppName", this.appName);
+
+        // handle response here.
+    } catch (Exception e) {
+        Log.e(TAG, "readRemoteJson error: " + e.getMessage());
+    }
+   //return your desired result here
+}
+```
+
+Once you've built out the authentication header, you're ready to fire requests at the API. The Backand API is built as a web API, meaning that you simply need to send HTTP requests to the API URLs in order to obtain and modify your application's data. To the right is some sample code that implements a basic request to a Backand API URL
+
+<aside class="notice"> Refer to our documentation for information on obtaining the URL for your request (in the cURL language tab). We also offer URLs for all actions taken in the app dashboard's data grid for objects, as well as URLs for calling custom actions and queries - find them in the right-hand pane when testing or performing actions in the app dashboard.</aside>
+
+###Handling the Response
+> Below is sample code for handling a response from our API:
+
+```java
+  int responseCode = conn.getResponseCode();
+  if (responseCode == HttpsURLConnection.HTTP_OK) {
+      String line;
+      InputStream in = conn.getInputStream();
+
+      InputStreamReader isw = new InputStreamReader(in);
+
+      int data = isw.read();
+      while (data != -1) {
+          char current = (char) data;
+          data = isw.read();
+          stringBuilder.append(current);
+      }
+  } else {
+      Log.d(TAG, "readRemoteJson: " + conn.getResponseMessage());
+      return "";
+  }
+```
+
+Backand responds to your request with JSON that can be adapted however you wish. The sample code starts by obtaining the response code from the HTTP Request. If the response code indicates success, it uses InputStreamReader to read in the JSON response, to be used elsewhere in your application. Otherwise, it logs the failed request details for later debugging.
+
+###Adding New Functionality
+At this point you have a fully-functional wrapper for calls to any Backand API. Simply create a new instance of this class, supply it with the connection information, and then make your API calls by sending URLs to the method sendGetRequest. You can easily modify this pattern to send POST, PUT, and DELETE requests as you need. Additionally, if you wish to save computation time and effort, you can abstract away the authorization header construction, saving the constructed header instead of rebuilding it every time.
+
+###Conclusion
+As Backand is a web API, it can be easily integrated with nearly every programming language available. While this example focuses on Android, you can use similar code in any popular development language to communicate with Backand's API. Simply construct an authorization header using basic authentication, specify the request URL, and fire the request. Consult [our documentation](http://docs.backand.com) to get started!
+
+## Calling Backand from Native iOS Code
+
+While you can use a pattern similar to the method used when [integrating Backand with a native Android application](#calling-backand-from-native-android-code), Haijian Huo - a developer using Backand in an iOS app - has helpfully developed an SDK wrapper that reduces the complexity of calling the Backand SDK on iOS. See the project on Github at [https://github.com/haijianhuo/HHBackand-iOS-SDK](https://github.com/haijianhuo/HHBackand-iOS-SDK)!

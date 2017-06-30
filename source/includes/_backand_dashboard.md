@@ -85,11 +85,9 @@ The "Objects" section of the dashboard allows you to modify the specific objects
 
 The Model parent tab allows you to modify your database's model structure, adding new objects and establishing the relationship between them. This can be done using either our GUI model editor, or the JSON schema editor. We also provide a tab demonstrating how to make - and sync - changes to your database using an external database tool (like MySQL Workbench). Below is a brief overview of how to use this interface.
 
-<aside class="notice">
-In addition to the fields supplied by the user, Backand defines an 'id' field, of type integer, which will be used as a primary key for the table.
-</aside>
-
 <aside class="notice">Backand offers support for automated population of created and updated timestamps. Simply add the `createdAt` or `updatedAt` fields to your model, and if they are present Backand will automatically populate them with the timestamp of the most recent POST or PUT request to that object.</aside>
+
+<aside class="warning">In addition to the fields supplied by the user, Backand defines an 'id' field, of type integer, which will be used as a primary key for the table. Backand uses auto-incrementing integers as the default for IDs in your objects, meaning in the default case values provided in the ID field by the SDK or via another API call will be overwritten with the next sequential ID. You'll need to remove this constraint in order to successfully populate the ID field with other data. You can also use an alternative field in the object as the primary key - simply make the designation in SQL, and Backand will update once you sync the database changes.</aside>
 
 #### Model Diagram
 The Model Diagram tab provides a GUI editor for working with your app's database schema. It works with the model JSON in the background to orchestrate changes to your database. Using the GUI you can easily add new objects, update existing objects, create relations between objects, and all other related database modification tasks.
@@ -244,6 +242,11 @@ The API Signup Token is used whenever you contact the Backand API to register a 
 #### Social Configuration
 In this section you can configure the social app for each company (GitHub, Google and Facebook). By default you can use Backand as the social app, unless you add your own client and secret ids.
 
+##### Social Redirect URIs
+Following sign-in with social media, your user will be redirected to a Redirect URI that is then tasked with obtaining the full details of the authentication that occurred. This URI is called automatically by Backand, and is specified as the redirectUrl parameter to the socialMediaSignup call in the API. In order to support this more secure pattern of working with social media authentication, all URLs that can be redirected to must be present in this Social Redirect URI list. If a URL is not present in this list, then the redirect request will not be honored.
+
+<aside class="notice">This field accepts a comma-separated list of URIs, to allow for multiple endpoints in your application. Simply add each new URI by adding a comma to the previous value, then pasting the new URI into the text box.</aside>
+
 ##### GitHub App Configuration
 In order to enable signing in with GitHub credentials, follow these steps:
 
@@ -264,11 +267,9 @@ In order to add Google app sign-in, follow these steps:
 1. Check the 'Use your credentials for signing in with Google' toggle/
 1. Open the <a href="https://console.developers.google.com/project" target="\_blank">Google Developer's Console</a>.
     1. In the Google Developer's Console, Click **Create Project**.
-    1. Enter a name and a project ID, or accept the defaults, and click **Create**.
-    1. After the project has been created, expand the **APIs & auth** section on the left sidebar.
-    1. Click **APIs** to view the API Library, which lists all available APIs. The APIs are grouped by product family and popularity. Click on **Google+ API** under **Social APIs**
-    1. Click **Enable API** (You should see this under the Google+ API button).
-    1. In the sidebar on the left, select **Consent screen** and enter your product name (this can be your Backand app name).
+    1. Enter a name, or accept the defaults, and click **Create**.
+    1. Click **Library** to view the API Library, which lists all available APIs. The APIs are grouped by product family and popularity. Click on **Google+ API** under **Social APIs**
+    1. Click **Enable** (You should see this to the right of the Google+ API button).
     1. In the sidebar on the left, select **Credentials**.
     1. Click **Create credentials** and select  **OAuth client ID**
     1. Click  **Configure consents screen** tab on the right panel and enter the Product name, Privacy policy URL (https://www.backand.com)
@@ -280,7 +281,7 @@ In order to add Google app sign-in, follow these steps:
             * **Authorized redirect URIs**: Replace the default example URL with 'https://api.backand.com/1/user/google/auth'
         1. Click **Create** and **Create** again
         1. Record the **Client ID** and **Client secret** from the popup window and click **OK**
-    1. On the left side bar click **Dasboard** make sure Google+ API is listed under the **API** list.
+    1. On the left side bar click **Dasboard** make sure Google+ API is listed under the **API** list. On the right side of the list, make sure that the displayed action text is **disable**, indicating that the API is currently enabled.
 1. Finally, on the **Social & Keys** section of the Backand app management dashboard, copy the Client ID and Client Secret you copied down in the last step.
 
 For more details on integrating with Google, review their <a href="https://developers.google.com/console/help/new/" target="\_blank">developer documentation</a>.
@@ -371,11 +372,32 @@ The registered users page lists all users currently registered for your app. You
 ### Team
 The Team section allows you to add new administrative users to your application. Admin users have full access to the application dashboard, and your application's configuration. You can perform all of the same actions available on the Users page on the Team page as well.
 
-### Security Actions
+### Security Actions (Backand Dashboard)
 The actions on this page, much like those on the other pages of the application, allow you to define custom actions to occur at each point in the transactional CRUD conversation against an object, or when called by accessing a specific URL. These actions, though, are tied specifically to the internal Backand Users object, which manages your application''s security. All of the standard custom action options are available for use in this section, and you can easily create new actions, edit existing actions, and test the actions you have created.
 
-There are several actions provided by default by Backand. The User Invitation Email and Admin Invitation Email actions allow you to modify the emails sent to a user when they are invited to the application. The User Approval action allows you to modify the approval email received by the user after email verification. The New User Verification action allows you to modify the generic verification email sent when sign-up verification is enabled. Finally, the Request Reset Password action allows you to modify the email sent when a user requests a password reset token.
+The following actions are provided by default for a Backand application. You can edit these actions as you desire, or add new actions that occur during the database transaction that modifies your app's `registered_users` table:
 
+| Action Name | When it Runs | What it Does |
+| ----------- | ------------ | ------------ |
+| accessFilter | Automatic, after successful authentication | See [our post on third-party security](#integrating-third-party-security) |
+| backandAuthOverride | Automatic, prior to user authentication | See [our post on third-party security](#integrating-third-party-security) |
+| beforeSocialSignup | Automatic, prior to social media registration | This allows you to run additional code prior to signing up a user through social media-based authentication |
+| ChangePasswordOverride | Automatic, during password change | **not currently used** |
+| newUserVerification | Automatic, during user registration | This verification message is sent to new users if email address verification is enabled |
+| requestResetPassword | Automatic, after a call to `requestResetPassword` | This email is sent in response to initiating a password reset |
+| socialAuthOverride | Automatic, after social media authentication *and* registration | See [our post on third-party security](#integrating-third-party-security) |
+| userApproval | Automatic, after user registration | This email is sent to users to inform them that they have been successfully added to an app |
+| Admin Invitation Email | Automatic, during user creation | This email is used to invite administrators to your application |
+| Create My App User | Automatic, during user creation | This function takes the user input from the sdk `signup` call, and uses it to populate a custom `users` object in your application. |
+| User Invitation Email | Automatic, during user creation | This email is used to invite standard users to your application |
+| Update My App User | Automatic, during user update | This action occurs whenever a registered user is modified. It attempts to make the appropriate modifications in your app's custom `users` object |
+| Delete My App User | Automatic, during user deletion | This action occurs whenever a registered user is deleted. It attempts to remove the associated `users` record for the user being deleted. |
+
+<aside class="warning">It is important to note that security actions, like <code>requestResetPassword</code>, require that emails provided be in a valid email format, such as recipient@example.com. If the addresses are not in the correct format, then calls to the security action will fail, resulting in the emails not being sent in a timely fashion.</aside>
+
+Here's a general informational graphic demonstrating how authentication-related actions integrate with the system:
+
+![image](images/security_diagram.png)
 ### Security Templates
 Security templates allow you to create a template that is used to set permissions on objects. You can create new templates, update existing templates, and rename security templates as you see fit. Each of the checkboxes corresponds to the REST API action indicated by the column header. When you check "Create" for a user role, for example, and then assign that security template to an object, all users with the specified role will be granted "Create" access to the object.
 
