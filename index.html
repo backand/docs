@@ -3836,7 +3836,7 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 </tr>
 <tr>
 <td><a href="#root-properties">root properties</a></td>
-<td><em>useAnonymousAuth</em>, <em>signin</em>, <em>signup</em>, <em>socialSignin</em>, <em>socialSigninWithToken</em>, <em>socialSignup</em>, <em>requestResetPassword</em>, <em>resetPassword</em>, <em>changePassword</em>, <em>signout</em>, <em>getSocialProviders</em></td>
+<td><em>useAnonymousAuth</em>, <em>useBasicAuth</em>, <em>signin</em>, <em>signup</em>, <em>socialSignin</em>, <em>socialSigninWithToken</em>, <em>socialSignup</em>, <em>requestResetPassword</em>, <em>resetPassword</em>, <em>changePassword</em>, <em>signout</em>, <em>getSocialProviders</em></td>
 <td>These are properties available directly on the Backand SDK object, mostly focused on Authentication</td>
 </tr>
 <tr>
@@ -5718,8 +5718,9 @@ sagaMiddleware.run(rootSaga)
 <p>The authentication functionality in the SDK has not changed considerably with the new release. Here are a few notes on authentication elements that may be important to your application:</p>
 
 <ul>
-<li>If you have previously disabled anonymous auth in your app, you can re-enable it using <em>Backand.useAnonymousAuth()</em>. This value defaults to true, so if you do not modify the default value you do not need to make any changes.</li>
-<li>We’ve added new social media authentication functions:  <em>socialSignin</em>, and <em>socialSignup</em>. Please note that while some of the examples in our github repos - and some of our documentation - used <em>socialSignUp</em>  to refer to the specified function in the Backand SDK, this is no longer valid - the &quot;up&quot; will not be capitalized in the new SDK.</li>
+<li>If you have previously disabled anonymous auth in your app, you can re-enable it using <code>Backand.useAnonymousAuth()</code>. This value defaults to true, so if you do not modify the default value you do not need to make any changes.</li>
+<li>If you have previously disabled basic auth in your app, and have entered a user token and master token in the arguments to <code>backand.init()</code>, you can re-enable basic auth using <code>Backand.useBasicAuth()</code>. This value defaults to true, so if you do not modify the default value you do not need to make any changes.</li>
+<li>We’ve added new social media authentication functions:  <code>socialSignin</code>, and <code>socialSignup</code>. Please note that while some of the examples in our github repos - and some of our documentation - used <code>socialSignUp</code>  to refer to the specified function in the Backand SDK, this is no longer valid - the &quot;up&quot; will not be capitalized in the new SDK.</li>
 </ul>
 <h3 id='step-4-update-unauthorized-user-detection'>Step 4: Update unauthorized user detection</h3>
 <p>The <code>getToken()</code> method has been expanded, to use a promise. Originally this method would return undefined when a user was unauthorized, but this functionality can now be managed via the promise method. In the new SDK, the <code>getToken()</code> method is not as prominent as it was in previous versions, and you are likely to not need it as you work on your app.</p>
