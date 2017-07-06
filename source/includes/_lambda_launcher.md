@@ -19,6 +19,16 @@ These next sections focus on configuring the Lambda Launcher tool from a number 
 
 In all cases, step 3 - pasting the credentials into Backand - is the same, and as such we present the instructions for that step in a section after the AWS-specific configuration instructions. To create the AWS IAM Policy and User, choose the section most appropriate to your organizational practices from the options below.
 
+##Setting up IAM Access for the Lambda Launcher
+The Backand Lambda Launcher requires the following IAM policies in order to work with your lambda functions:
+
+* lambda:GetFunction - this is used to retrieve a specific function's details from your account
+* lambda:InvokeAsync - this is used to asynchronously run your lambda functions
+* lambda:InvokeFunction - this is used to run your lambda functions synchronously
+* lambda:ListFunctions - this is used to populate the list of Lambda functions available in your AWS account.
+
+Backand takes security very seriously - all credentials entered are encrypted, and never used for any purpose other than executing your Lambda functions. If you would like further assistance in setting up the security policy, please [contact us](https://www.backand.com/contact).
+
 ### IAM Policy JSON
 > The following JSON is to be used when creating the IAM security policy, to manage Backand's access to your AWS Lambda functions
 
