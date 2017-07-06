@@ -51,10 +51,15 @@
       }
 
       var best = null;
+
       for (var name in headerHeights) {
         if ((headerHeights[name] < currentTop && headerHeights[name] > headerHeights[best]) || best === null) {
           best = name;
         }
+      }
+      if(window.location.hash != best && currentTop == scrollOffset)
+      {
+        best = window.location.hash;
       }
 
       var $best = $toc.find("[href='" + best + "']").first();
@@ -95,8 +100,8 @@
         }, 0);
       });
 
-      $(window).scroll(debounce(refreshToc, 200));
-      $(window).resize(debounce(recacheHeights, 200));
+      $(window).scroll(debounce(refreshToc, 0));
+      $(window).resize(debounce(recacheHeights, 0));
     };
 
     makeToc();
