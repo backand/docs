@@ -2118,6 +2118,9 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#configuration" class="toc-h2 toc-link" data-title="The Backand Lambda Launcher">Configuration</a>
+                  </li>
+                  <li>
+                    <a href="#setting-up-iam-access-for-the-lambda-launcher" class="toc-h2 toc-link" data-title="The Backand Lambda Launcher">Setting up IAM Access for the Lambda Launcher</a>
                       <ul class="toc-list-h3">
                           <li>
                             <a href="#iam-policy-json" class="toc-h3 toc-link" data-title="The Backand Lambda Launcher">IAM Policy JSON</a>
@@ -8760,6 +8763,17 @@ It also requires a '&lt;user key&gt;' for your app - you can find this in the <s
 </ol>
 
 <p>In all cases, step 3 - pasting the credentials into Backand - is the same, and as such we present the instructions for that step in a section after the AWS-specific configuration instructions. To create the AWS IAM Policy and User, choose the section most appropriate to your organizational practices from the options below.</p>
+<h2 id='setting-up-iam-access-for-the-lambda-launcher'>Setting up IAM Access for the Lambda Launcher</h2>
+<p>The Backand Lambda Launcher requires the following IAM policies in order to work with your lambda functions:</p>
+
+<ul>
+<li>lambda:GetFunction - this is used to retrieve a specific function&#39;s details from your account</li>
+<li>lambda:InvokeAsync - this is used to asynchronously run your lambda functions</li>
+<li>lambda:InvokeFunction - this is used to run your lambda functions synchronously</li>
+<li>lambda:ListFunctions - this is used to populate the list of Lambda functions available in your AWS account.</li>
+</ul>
+
+<p>Backand takes security very seriously - all credentials entered are encrypted, and never used for any purpose other than executing your Lambda functions. If you would like further assistance in setting up the security policy, please <a href="https://www.backand.com/contact">contact us</a>.</p>
 <h3 id='iam-policy-json'>IAM Policy JSON</h3>
 <blockquote>
 <p>The following JSON is to be used when creating the IAM security policy, to manage Backand&#39;s access to your AWS Lambda functions</p>
