@@ -57,6 +57,9 @@
           best = name;
         }
       }
+      // Catch the initial load case, where currentTop is equal to scrollOffset.
+      // If the "best" location does not match the requested hash on the initial
+      // load, we should default to simply using the user's entered hash.
       if(window.location.hash != best && currentTop == scrollOffset)
       {
         best = window.location.hash;

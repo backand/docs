@@ -144,22 +144,22 @@ The SDK is built around a global service object exported from the JavaScript cal
 
 
 
-### SDK Properties - overview
+### SDK Properties - Overview
 
 Below is a list of the properties offered by the SDK, a description of the functionality handled by that property, and the list of methods provided by that property:
 
 | Name | Methods | Description |
 | ---- | ----------- | ------- |
 | [constants](#constants) | EVENTS, URLS, SOCIALS | Provides access to constants in the SDK |
-| [helpers](#helpers) | *filter*, *sort*, *exclude*, *StorageAbstract* | Provides helper methods for working with the SDK |
+| [helpers](#helpers) | [filter](#filter), [sort](#sort), [exclude](#exclude), [storageAbstract](#storageabstract) | Provides helper methods for working with the SDK |
 | [root properties](#root-properties) | *useAnonymousAuth*, *useBasicAuth*, *signin*, *signup*, *socialSignin*, *socialSigninWithToken*, *socialSignup*, *requestResetPassword*, *resetPassword*, *changePassword*, *signout*, *getSocialProviders* | These are properties available directly on the Backand SDK object, mostly focused on Authentication |
 | [defaults](#defaults) | *none* | This stores the current app's configuration in the SDK |
-| [object](#object-property) | *getList*, *create*, *getOne*, *update*, *remove*, *get* (action), *post* (action) | This encapsulates all methods used to manipulate objects |
-| [file](#file) | *upload*, *remove* | Provides helper methods for working with files |
-| [query](#query) | *get*, *post* | Allows you to work with custom query objects |
-| [user](#user) | *getUserDetails*, *getUsername*, *getUserRole*, *getToken*, *getRefreshToken* | Provides information on the current authenticated user |
+| [object](#object-property) | [getList](#getList), [create](#create), [getOne](#getOne), [update](#update), [remove](#remove), [.action.get](#action-get), [.action.post](#action-post) | This encapsulates all methods used to manipulate objects |
+| [file](#file) | [upload](#upload), [remove](#remove-2) | Provides helper methods for working with files |
+| [query](#query) | [get](#get), [post](#post) | Allows you to work with custom query objects |
+| [user](#user) | [getUserDetails](#getuserdetails), getUsername, getUserRole, getToken, getRefreshToken | Provides information on the current authenticated user |
 | [on](#on) | *none* | This is the event handler for socket.io functions, replacing socket.on |
-| [offline](#offline) | `cache`, `queue`, `setOfflineMode` |  provides management for offline execution capabilities |
+| [offline](#offline) | [cache](#cache), [queue](#queue), [setOfflineMode](#setofflinemode) |  provides management for offline execution capabilities |
 
 ### Default Events
 By default, the Back& SDK emits the following events that your code can respond to:
@@ -381,6 +381,117 @@ Signs the user into a Back& application using a social media provider as the aut
 | name | type | description |
 | ---- | ---- | ----------- |
 | provider | string | Name of the provider to authenticate with. The full list can be obtained by calling *backand.getSocialProviders(scb)* |
+
+### .useAnonymousAuth()
+```javascript
+// enable anonymous auth
+backand.useAnonymousAuth(true);
+
+// disable anonymous auth
+backand.useAnonymousAuth(false);
+```
+
+This configures the SDK to use Anonymous Authentication when authenticating web requests with the Backand servers.
+#### Parameters
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| flag | boolean | If true, this application will use Anonymous Authentication. |
+
+### .useBasicAuth()
+
+```javascript
+// enable basic auth
+backand.useBasicAuth(true);
+
+// disable basic auth
+backand.useBasicAuth(false);
+```
+
+This configures the SDK to use Basic Authentication when authenticating web requests with the Backand servers.
+#### Parameters
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| flag | boolean | If true, this application will use Basic Authentication. |
+
+### .socialSigninWithToken()
+```javascript
+backand.socialSigninWithToken(provider_name, token_from_provider);
+```
+
+Authenticates a user with Backand using a token provided by a social media provider's authentication schema.
+
+#### Parameters
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| provider | string | Name of the provider to authenticate with. The full list can be obtained by calling *backand.getSocialProviders()* |
+| token | string | the authentication token provided by the social media provider |
+
+
+### .socialSignup()
+```javascript
+backand.socialSignup(provider_name, "test@example.com")
+```
+This creates a new user in your application using a social media provider.
+
+#### Parameters
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| provider | string | Name of the provider to use for registration |
+| email | string | The new user's email address. |
+
+### .requestResetPassword()
+```javascript
+// Initiate a password reset. This results in a call to your Custom Password Reset URL with a reset token.
+backand.requestResetPassword("email@domain.com");
+```
+This method initiates a password reset request. Please note that if you have not configured your custom registration page, custom verified email page, or custom password reset URLs in **[Security & Auth -> Configuration](#custom-pages)**, this process will not function properly.
+
+#### Parameters
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| username | string | The username requesting the password reset |
+
+### .resetPassword()
+```javascript
+//This uses the provided reset token to reset the user's Backand password.
+backand.resetPassword("hunter2", "123abc");
+```
+This method resets the password for the user associated with the provided reset token. This reset token is provided by Backand in a call to your configured password reset URL.
+
+#### Parameters
+
+| name | type | description |
+| ---- | ---- | ----------- |
+| newPassword | string | The user's chosen new password |
+| resetToken | string | The reset token provided by Backand |
+
+
+### .signout()
+```javascript
+backand.signout();
+```
+
+Resets authentication in the SDK, logging out the current user. Call this method prior to authenticating a new user.
+
+#### Parameters
+
+None
+
+### .getSocialProviders()
+```javascript
+// Obtains a list of valid social media providers supported by Backand's social signin functionality.
+```
+
+This method obtains a list of supported social media providers from Backand. These social media provider names can then be used with any social media authentication method.
+
+#### Parameters
+
+None
 
 ## .object property
 The `.object` property contains functions related to basic database operations that can be performed on an object. You can also use this property to call the on-demand actions governed by an object in your system.
