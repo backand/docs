@@ -225,7 +225,7 @@ The Public App settings determines whether users can sign up for your app, or if
 #### Custom pages
 These custom pages are pages within your application code that are used for user registration and login. The Custom Registration Page URL is supplied in the invitation email sent to new users. The Custom Verified Email Page URL is sent to the user after they have verified their email address. The Custom Password Reset URL is used as a part of the password reset process - the user is sent to this page with a reset token, which needs to be provided in order to perform the password reset with the SDK.
 
-<aside class="notice">Note that these are pages on your own servers, and not a part of Backand. These pages are only sent when Sign-up Email Verification is enabled.</class>
+<aside class="notice">Note that these are pages on your own servers, and not a part of Backand. These pages are only sent when Sign-up Email Verification is enabled.</aside>
 
 #### Sign-up Email Verification
 This enables or disables automated user email verification. When enabled, users are sent a verification email by Backand which they must use to verify their account. When disabled, this action is not performed and users are immediately able to use their account.
