@@ -668,6 +668,20 @@
                                     <!-- Nest 5 levels -->
                                   </li>
                                   <li>
+                                    <a href="#sign-up-email-verification" class="toc-h4 toc-link" data-title="Backand Dashboard">Sign-up Email Verification</a>
+                                    <!-- Nest 5 levels -->
+                                  </li>
+                              </ul>
+                          </li>
+                          <li>
+                            <a href="#social-amp-keys" class="toc-h3 toc-link" data-title="Backand Dashboard">Social &amp; Keys</a>
+                            <!-- Nest 4 levels -->
+                              <ul class="toc-list-h4">
+                                  <li>
+                                    <a href="#master-token" class="toc-h4 toc-link" data-title="Backand Dashboard">Master Token</a>
+                                    <!-- Nest 5 levels -->
+                                  </li>
+                                  <li>
                                     <a href="#api-signup-token" class="toc-h4 toc-link" data-title="Backand Dashboard">API Signup Token</a>
                                     <!-- Nest 5 levels -->
                                   </li>
@@ -3465,18 +3479,14 @@ We provide a platform selector, which allows you to only view the kickstarts, ex
 <h4 id='custom-pages'>Custom pages</h4>
 <p>These custom pages are pages within your application code that are used for user registration and login. The Custom Registration Page URL is supplied in the invitation email sent to new users. The Custom Verified Email Page URL is sent to the user after they have verified their email address. The Custom Password Reset URL is used as a part of the password reset process - the user is sent to this page with a reset token, which needs to be provided in order to perform the password reset with the SDK.</p>
 
-<aside class="notice">Note that these are pages on your own servers, and not a part of Backand. These pages are only sent when Sign-up Email Verification is enabled.</class>
-
-#### Sign-up Email Verification
-This enables or disables automated user email verification. When enabled, users are sent a verification email by Backand which they must use to verify their account. When disabled, this action is not performed and users are immediately able to use their account.
-
-### Social & Keys
-The Social & Keys page consists of two parts - the tokens, and the social media configurations. These settings are used in your app to enable integration with social media providers, allowing your users to sign into your app using their social media accounts.
-
-#### Master Token
-
-The master Token is a token that you can use to access your Backand app without a username or password.
-<aside class="warning">Use this token carefully, as it gives the user full access to your application.. This token mast be sent with the user's GUID key. The master key is used with <a href="https://en.wikipedia.org/wiki/Basic_access_authentication" target="\_blank">basic authentication</a>, simply enter the master key as the username, and the user's GUID key as the password.</aside>
+<aside class="notice">Note that these are pages on your own servers, and not a part of Backand. These pages are only sent when Sign-up Email Verification is enabled.</aside>
+<h4 id='sign-up-email-verification'>Sign-up Email Verification</h4>
+<p>This enables or disables automated user email verification. When enabled, users are sent a verification email by Backand which they must use to verify their account. When disabled, this action is not performed and users are immediately able to use their account.</p>
+<h3 id='social-amp-keys'>Social &amp; Keys</h3>
+<p>The Social &amp; Keys page consists of two parts - the tokens, and the social media configurations. These settings are used in your app to enable integration with social media providers, allowing your users to sign into your app using their social media accounts.</p>
+<h4 id='master-token'>Master Token</h4>
+<p>The master Token is a token that you can use to access your Backand app without a username or password.
+<aside class="warning">Use this token carefully, as it gives the user full access to your application.. This token mast be sent with the user&#39;s GUID key. The master key is used with <a href="https://en.wikipedia.org/wiki/Basic_access_authentication" target="\_blank">basic authentication</a>, simply enter the master key as the username, and the user&#39;s GUID key as the password.</aside></p>
 <h4 id='api-signup-token'>API Signup Token</h4>
 <p>The API Signup Token is used whenever you contact the Backand API to register a new user with your application.</p>
 <h4 id='social-configuration'>Social Configuration</h4>
