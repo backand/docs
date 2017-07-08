@@ -42,7 +42,7 @@ Parameters:
 --signupIfNotSignedIn - (Optional, default false) - If the user tries to sign in without first registering for the application, the user will receive an error message ("The user is not signed up to {appName}"). If this value is set to true, then the user will be automatically registered with the app if they have not yet been signed up
 
 #### Sample response
-```json
+```json--persistent
 // Sample response
 {
   "access_token": "ThuuBiuTS9grkzbPW-yL5z3dd_Q48-Ml4oHCffgbWRUDr1rFIY_nYIqaL-he09sCicEVNE_wJCxZ4QS0E3SlG-fZOSOOHDlzORrVagcGvBtZoqTByvhiXgcwXPOkmeD8U1bZaAi8vLEr_wUY6f_rse9o8GKs5cjRpBZENurSytsXhXsv6XpSFcZUr5n7Za_nu5HDth2bOuM_2e-Kn3yOc2GDz9qXjZm_UQ9oMfvJnzjY16Qsw7_ynZAbRa4m6lRtXwsHunqv_R_8uhMGNwTxyg",
@@ -764,7 +764,7 @@ Only the table and expression parameters are mandatory.
 The NoSQL queries are then constructed into a SQL query. Each component of a NoSQL query hash corresponds to a different portion of the SQL query that ends up being run against your database. See the example query to the right to get a feeling of how the query translates into SQL statements.
 
 ### Format
-```JSON
+```json--persistent
 {
   "object": "String",
   "q": "Expression",
@@ -782,7 +782,7 @@ This NoSQL object is converted into the following SQL
 `SELECT * FROM table WHERE query`
 
 ### Example - String Comparison
-```JSON
+```json--persistent
 {
     "object": "employees",
     "q": {
@@ -795,7 +795,7 @@ This NoSQL object is converted into the following SQL
 A simple query can pluck the `name` and `salary` fields from an object named `employees`. The query sample to the right executes this query for all employees with a position of "Sales Manager"
 
 ### Example - Constant Value Comparison
-```JSON
+```json--persistent
 {
     "object": "employees",
     "q": {
@@ -806,7 +806,7 @@ A simple query can pluck the `name` and `salary` fields from an object named `em
 Queries can also be used to compare an object's  fields to constant values using common comparison operators. For example, to retrieve all fields for all employees under the age of 25, you can use the query to the right.
 
 ### Example - Range-based comparison
-```JSON
+```json--persistent
 {
   "object": "employees",
   "q": {
@@ -819,7 +819,7 @@ Queries can also be used to compare an object's  fields to constant values using
 You can use the `$between` operator to retrieve all records with values that lie between two specified endpoints. For example, the query to the right retrieves all employees with an age between 25 and 40.
 
 ### Example - Geographic Data Comparison
-```JSON
+```json--persistent
 {
     "object": "city",
     "q": {
@@ -836,7 +836,7 @@ You can use the `$within` operator to locate all records within a geographic ran
 An expression can be either an AND expression, an OR expression, or a UNION query.
 
 #### AND expressions
-```JSON
+```json--persistent
 { "position": "Sales Manager", "age" : { "$lt" : 25 }, "city": "Boston" }
 ```
 
@@ -846,7 +846,7 @@ For example, to retrieve all employees that are 25-years-old, a Sales manager, A
 
 
 #### OR expressions
-```JSON
+```json--persistent
 { "$or": [ { "num_employees": { "$gt": 30 } }, { "location": "Palo Alto" }  ]  }
 ```
 
@@ -856,7 +856,7 @@ For example, use the query to the right to find all offices that are either larg
 
 
 #### UNION queries
-```JSON
+```json--persistent
 {
     "$union":   [
         {
@@ -919,13 +919,13 @@ Another option is to use a not-equal operator: `{ "location": { "$neq": "Paris" 
 ### Sub Queries
 > This JSON can be used as a sub-query to retrieve the ID of all departments in the city of New York.
 
-```JSON
+```json--persistent
 { "object": "department", "q": { "city" : "New York" }, "fields" : ["id"]}
 ```
 
 >Using the above sub-query, we can now test a new field - dept_id - with respect to the results of the sub-query. We simply use the `$in` operator, and the query, as seen below.
 
-```JSON
+```json--persistent
 {
   "dept_id": {
     "$in": {  
@@ -938,7 +938,7 @@ Another option is to use a not-equal operator: `{ "location": { "$neq": "Paris" 
 ```
 > In this example, the '`deptId` field is a reference field referring the employees table to the department table. We can now use this sub-query as a part of a larger query retrieving all employees employed in departments that are located in New York.
 
-```JSON
+```json--persistent
 {
   "object": "employees",
   "q" : {
@@ -956,7 +956,7 @@ Another option is to use a not-equal operator: `{ "location": { "$neq": "Paris" 
 ```
 >If we wanted to look at a more complex query, we could modify this a bit. Let's say we wanted to retrieve all employees whose department is located in New York, but the employee is located in Boston. To accomplish this, we use an AND expression to combine the two conditions:
 
-```JSON
+```json--persistent
 {
     "object": "employees",
     "q" : {
@@ -981,7 +981,7 @@ You can use sub-queries to established a reduced scope of your objects to work w
 ### Group By Queries
 > To group by 'Country', and then concatenate the 'Location' field, use the following example code:
 
-```JSON
+```json--persistent
 {
     "object" : "Employees",
     "q" : {
@@ -1016,7 +1016,7 @@ A group by query aggregates on fields, and then applies aggregation operators to
 ```    
 >The result is a structure with the following fields:
 
-```JSON
+```json--persistent
 {
     "str": "<SQL statement for query>",
     "select": "<select clause>",

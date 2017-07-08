@@ -32,7 +32,7 @@ Backand takes security very seriously - all credentials entered are encrypted, a
 ### IAM Policy JSON
 > The following JSON is to be used when creating the IAM security policy, to manage Backand's access to your AWS Lambda functions
 
-```json
+```json--persistent
 {
     "Version": "2012-10-17",
     "Statement": [

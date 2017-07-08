@@ -191,7 +191,7 @@ With Backand's geography query you can easily find distances between points or o
 ### Add a Point
 > To POST a new data point for latitude 10 and longitude 20 in column `geo`, you can use the following JSON:
 
-```json
+```json--persistent
   "geo": [10,20]
 ```
 
@@ -200,7 +200,7 @@ To add new point field, open Backand's Model UI (**Database --> Model**). Find a
 ### Query Point
 > To get all the restaurants within 25 Miles of San Francisco's Marina District [37.8019859, -122.4414805]:
 
-```json
+```json--persistent
   {
     "object": "restaurants",
     "q": {
@@ -268,7 +268,7 @@ backand.bulk.general(data)
 ```
 > Data is an array of operation objects, which are constructed with the general format below:
 
-```json
+```json--persistent
 {
   "method": "POST",
   "url": object_path,
@@ -287,7 +287,7 @@ backand.bulk.general(data)
 
 > The key element of this operation is the "headers" parameter. This represents the HTTP headers used to perform the request, and are used to uniquely identify your application as each request as made.
 
-```json
+```json--persistent
   headers:{
     "Authorization": "Bearer **YOUR_ACCESS_TOKEN**",
     "AppName": "**YOUR_APP_NAME**"
@@ -320,7 +320,7 @@ var object_path = Backand.defaults.apiUrl
 ```
 > Simply replace "YOUR_OBJECT_NAME" with the name of the object you wish to manipulate. Once you have the object URL, you simply need to provide the appropriate command. To create a new record, for example, use the following hash as a starting point:
 
-```json
+```json--persistent
 {
     "method": "POST",
     "url": object_path,
@@ -332,7 +332,7 @@ var object_path = Backand.defaults.apiUrl
 
 > If you wanted to update two records in the same request (using the PUT method), you would send the following:
 
-```json
+```json--persistent
 [
   {
     "method": "PUT",
@@ -352,7 +352,7 @@ var object_path = Backand.defaults.apiUrl
 ```
 > The following request will create two new records (one news article, one author), update an author record, then delete a news record:
 
-```json
+```json--persistent
 [
   {
     "method": "POST",
@@ -396,7 +396,7 @@ You can also mix and match operations, varying the objects updated, the authoriz
 > YOUR_ACCESS_TOKEN - an access token, obtained via a call to https://api.backand.com/token
 > YOUR_APP_NAME - the app name to operate on
 
-```json
+```json--persistent
   {
     "method": "DELETE",
     "url": "https://api.backand.com/1/objects/news/3"
@@ -418,7 +418,7 @@ Below are several examples of the types of bulk actions that can be performed us
 ### Example 1: Adding multiple rows
 > This adds multiple rows in a single request.
 
-```json
+```json--persistent
 [
   {
     "method": "POST",
@@ -438,7 +438,7 @@ Below are several examples of the types of bulk actions that can be performed us
 ```
 > You simply change the URL and data hashes for each record. Here's a sample request that adds two new news items to an application:
 
-```json
+```json--persistent
 [
   {
     "method": "POST",
@@ -468,7 +468,7 @@ To add multiple objects to your application, simply provide multiple POST action
 ### Example 2: Deleting multiple rows
 > The general form of the delete request will be:
 
-```json
+```json--persistent
 [
   {
     "method": "DELETE",
@@ -482,7 +482,7 @@ To add multiple objects to your application, simply provide multiple POST action
 ```
 > For example, if you wanted to delete 'news' objects with IDs of 2 and 3, you would use the following set of action hashes:
 
-```json
+```json--persistent
 [
     {
         "method":"DELETE",
@@ -500,7 +500,7 @@ By changing the `YOUR_OBJECT_NAME` and `OBJECT_ID` parameters, you can select wh
 
 
 ### Example 3: Multiple commands
-```json
+```json--persistent
 [
   {
     "method": "POST",
@@ -544,7 +544,7 @@ curl https://api.backand.com/1/objects/users/5?deep=true
 ```
 > An example of another complex object would be 'email'. Requesting a user using the `deep` parameter would result in JSON resembling the following:
 
-```json
+```json--persistent
 {
   "email":"....",
   // other users fields...
@@ -579,7 +579,7 @@ Regarding which approach to use - lazy or deep loading - there is no clear answe
 ### Filter and Predefined Filter
 > This JSON provides a fieldName, an operator, and a value to define a filter. Apply multiple fields by appending to the JSON array.
 
-```json
+```json--persistent
 [{"fieldName":"firstName","operator":"contains","value":"oh"}]
 ```
 
@@ -921,7 +921,7 @@ The security landscape for internet apps is wide and varied. While we'd love to 
 ## Managing the Application Model with JSON
 > Below is an example model
 
-```json
+```json--persistent
 [
   {
     "name": "items",
@@ -966,22 +966,22 @@ The Model JSON tab in the **Database --> Model** menu allows you to modify the J
 ###Definitions
 > The model represents a database schema that is defined as a JSON array of one or more object (Table) definitions.
 
-```json
+```json--persistent
 <model> = [  <object>, <object>, ... ]
 ```
 > An object definition is a JSON object with a name entry and a fields entry:
 
-```json
+```json--persistent
 <object> = { "name":  <string>, "fields" : <fields> }
 ```
 > The fields definition is a JSON list of field attributes:
 
-```json
+```json--persistent
 <fields> =  { "field1" : <field>, "field2": <field>, ... }
 ```
 >A field is defined by its type and a set of optional properties. The field definition is a JSON object:
 
-```json
+```json--persistent
 <field> = { "type": <type>, <optional properties>}
 ```
 
@@ -1007,20 +1007,20 @@ several pets, but a pet has a single owner (user). Thus, the users-pets relation
 creating a collection of pets objects for each user in the model.
 > In 'users', add this field:
 
-```json
+```json--persistent
 "pets": { "collection": "pets", "via": "owner" }
 ```
 > The 'pets' object will have an 'owner' relationship field, which establishes the 'one' side of the relationship by
 linking each pet back to an individual owner.
 > In 'pets', add the following new field to complete the linkage:
 
-```json
+```json--persistent
 "owner": { "object": "users" }
 ```
 
 > Here is the full sample model for this relationship:
 
-```json
+```json--persistent
 [
   {
     "name": "pets",
@@ -1075,7 +1075,7 @@ In the database, a foreign-key constraint will be added between tables S and R (
 > First we need to add a new object - 'users-pets' - with one-to-many relationships to both 'pets' and 'users' objects.
 > In 'users-pets':
 
-```json
+```json--persistent
 "pet": { "object": "pets" }
 "owner": { "object": "users" }
 ```
@@ -1083,18 +1083,18 @@ In the database, a foreign-key constraint will be added between tables S and R (
 one-to-many relationship:
 >In 'pets':
 
-```json
+```json--persistent
 "owners": {"collection": "users-pets", "via": "pet"}
 ```
 >In 'users':
 
-```json
+```json--persistent
 "pets": {"collection": "users-pets", "via": "owner"}
 ```
 > Stated another way: To build a many-to-many model of many-to-many Model:
 > * Start with a Model that contains 2 objects that have no relations between them:
 
-```json
+```json--persistent
 [
   {
     "name": "pets",
@@ -1122,7 +1122,7 @@ one-to-many relationship:
 ```
 > Add the new object and the relationship fields:
 
-```json
+```json--persistent
 [
   {
     "name": "pets",
@@ -1202,7 +1202,7 @@ For multiple device authentication, you can use the same process - even keeping 
 
 ### Creating the Token object
 
-```JSON
+```json--persistent
 {
   "name": "tokens",
   "fields": {

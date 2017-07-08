@@ -52,7 +52,7 @@ Create an app in Backand using the free database feature. For this example we wi
 You can use the following JSON mode:
 
 
-```json
+```json--persistent
 [
   {
     "name": "users",
@@ -285,7 +285,7 @@ From this point onward, any user that signs up to your app using Facebook as the
 ```
 > Now, Backand returns the Facebook access token from getUserDetails, under data.providerAccessToken
 
-```json
+```json--persistent
 {
   ...
   "data": {

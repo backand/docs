@@ -46,7 +46,7 @@ The "Objects" section of the dashboard allows you to modify the specific objects
 ### Model
 > This sample model JSON creates two objects - Items and Users
 
-```json
+```json--persistent
 [
   {
     "name": "items",

@@ -252,8 +252,6 @@ backand.signin(username, password)
     console.log(err);
   });
 ```
-> Sample Response
-
 ```json
 {
   "access_token": "TGvnEBfhreaVwJspg0s_uDKppvjaA9jICQGsHSocmHnt8s98_rkMQIkf4fvd25j3i5QOJKPpZTpoCpdu7duxcjsUyLRYihLBhcyiSAv6PxeY4zG6SpL5CtfDl6PSpqJx571k_fSphmIha40bb0wvks3O-21E85hV7GdD3D0TJtSR0U4twJhaJl-HJmeGCEEmfr27FFtRu2Hb9pwkCNnlUNQast4s5fTlTOEiapspgUgfWT9s4V47t5TUuD6onMtDNQmXfekr-Yj2i_Q68L8a_Q",
@@ -297,7 +295,6 @@ backand.signup(firstName, lastName, email, password, confirmPassword, parameters
     console.log(err);
   });
 ```
-> Sample Response
 
 ```json
 {
@@ -349,7 +346,9 @@ backand.changePassword(oldPassword, newPassword)
     console.log(err);
   });
 ```
-> This call returns no data, only an HTTP Status Code
+```json
+This call returns no data, only an HTTP Status Code
+```
 
 Changes the password of the current user
 
@@ -528,7 +527,6 @@ backand.object.getList(object, params)
   });
 
 ```
-> Sample response
 
 ```json
 {
@@ -635,7 +633,6 @@ backand.object.getOne(object, id, params)
     console.log(err);
   });
 ```
-> Sample response
 
 ```json
 {
@@ -700,7 +697,6 @@ backand.object.create(object, data, params)
     console.log(err);
   });
 ```
-> Sample response
 
 ```json
 {"__metadata":{"id":"75"}}
@@ -730,7 +726,9 @@ backand.object.update(object, id, data, params)
     console.log(err);
   });
 ```
-> This call has no response other than the status code by default.
+```json
+This call has no response other than the status code by default.
+```
 
 Updates a record with the specified ID in the specified object with the provided data.
 
@@ -758,7 +756,6 @@ backand.object.remove(object, id)
     console.log(err);
   });
 ```
-> Sample response
 
 ```json
 {"__metadata":{"id":"77"}}⏎
@@ -788,8 +785,6 @@ backand.object.action.get(object, action, params)
     console.log(err);
   });
 ```
-> Sample response (depends on action)
-
 ```json
 {"response":"Hello world!"}
 ```
@@ -820,7 +815,6 @@ backand.object.action.post(object, action, data, params)
     console.log(err);
   });
 ```
-> Sample response (depends on action)
 
 ```json
 {"response":"Hello world!"}
@@ -885,7 +879,6 @@ backand.file.remove(object, 'files', filename)
     console.log(err);
   });
 ```
-> Sample Response
 
 ```json
 {}
@@ -917,7 +910,6 @@ backand.user.getUserDetails(force)
     console.log(err);
   });
 ```
-> Sample response
 
 ```json
 // From SDK
@@ -979,7 +971,6 @@ backand.query.get(name, params)
     console.log(err);
   });
 ```
-> Sample response varies based on query return values
 
 ```json
 [
@@ -1015,7 +1006,6 @@ backand.query.post(name, data, params)
     console.log(err);
   });
 ```
-> Sample response varies based on query return values
 
 ```json
 [
