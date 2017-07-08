@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;,&quot;json&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -213,6 +213,7 @@
         <div class="lang-selector">
               <a href="#" data-language-name="shell">cURL</a>
               <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="json">Response</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -2295,83 +2296,83 @@ curl https://api.backand.com/1/objects/items?authorization<span class="o">=</spa
   <span class="p">});</span>
 </code></pre>
 <p>We also offer a full-featured SDK that you can use to communicate with your Backand application. Getting started with the SDK is as simple as configuring your application access details, initializing the SDK, and calling a <code>getList()</code> function for one of the objects in your system. You configure the SDK with your application&#39;s <code>APP_NAME</code> and <code>ANONYMOUS_TOKEN</code>. Once you&#39;ve called <code>init()</code> with these values, the SDK will use this data to automaticaly manage authentication headers for API requests to your app&#39;s REST API. See our <a href="#vanilla-sdk">Vanilla SDK documentation</a> for more details.</p>
-<h2 id='response-format'>Response format</h2><pre class="highlight plaintext"><code>// Sample response
-{
-  "totalRows": 2,
-  "data": [
-    {
-      "__metadata": {
-        "id": "1",
-        "fields": {
-          "id": {
-            "type": "int",
-            "unique": true
-          },
-          "items": {
-            "collection": "items",
-            "via": "user"
-          },
-          "email": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          }
-        },
-        "descriptives": {
+<h2 id='response-format'>Response format</h2><pre class="highlight json tab-json--persistent"><code><span class="err">//</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"totalRows"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"__metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"unique"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"descriptives"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        },
-        "dates": {
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        }
-      },
-      "id": 1,
-      "items": null,
-      "email": "matt@backand.com",
-      "firstName": "Matt",
-      "lastName": "Billock"
-    },
-    {
-      "__metadata": {
-        "id": "2",
-        "fields": {
-          "id": {
-            "type": "int",
-            "unique": true
-          },
-          "items": {
-            "collection": "items",
-            "via": "user"
-          },
-          "email": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          }
-        },
-        "descriptives": {
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matt@backand.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matt"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Billock"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"__metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"int"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"unique"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"descriptives"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        },
-        "dates": {
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"dates"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 
-        }
-      },
-      "id": 2,
-      "items": null,
-      "email": "start@backand.io",
-      "firstName": "Start",
-      "lastName": "Backand"
-    }
-  ]
-}
-</code></pre>
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"items"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"start@backand.io"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Start"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Backand"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>Our SDK will always respond to your requests with well-formed JSON representing the results of an action taken. We include metadata that can be used to parse the response where applicable, and this metadata is provided with each object in your system. Responses from the SDK wrap the HTTP response in a promise, allowing you to handle the results in an asynchronous manner.</p>
 <h1 id='backand-features'>Backand Features</h1>
 <p>This section contains documentation on the features offered by Backand. We will cover the following functional areas:</p>
@@ -2410,7 +2411,7 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
 
 <p>Parameters:
 --signupIfNotSignedIn - (Optional, default false) - If the user tries to sign in without first registering for the application, the user will receive an error message (&quot;The user is not signed up to {appName}&quot;). If this value is set to true, then the user will be automatically registered with the app if they have not yet been signed up</p>
-<h4 id='sample-response'>Sample response</h4><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">response</span><span class="w">
+<h4 id='sample-response'>Sample response</h4><pre class="highlight json tab-json--persistent"><code><span class="err">//</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">response</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ThuuBiuTS9grkzbPW-yL5z3dd_Q48-Ml4oHCffgbWRUDr1rFIY_nYIqaL-he09sCicEVNE_wJCxZ4QS0E3SlG-fZOSOOHDlzORrVagcGvBtZoqTByvhiXgcwXPOkmeD8U1bZaAi8vLEr_wUY6f_rse9o8GKs5cjRpBZENurSytsXhXsv6XpSFcZUr5n7Za_nu5HDth2bOuM_2e-Kn3yOc2GDz9qXjZm_UQ9oMfvJnzjY16Qsw7_ynZAbRa4m6lRtXwsHunqv_R_8uhMGNwTxyg"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
@@ -3036,14 +3037,14 @@ use common MySQL syntax.</p>
   LIMIT limit
 </code></pre>
 <p>The NoSQL queries are then constructed into a SQL query. Each component of a NoSQL query hash corresponds to a different portion of the SQL query that ends up being run against your database. See the example query to the right to get a feeling of how the query translates into SQL statements.</p>
-<h3 id='format'>Format</h3><pre class="highlight plaintext"><code>{
-  "object": "String",
-  "q": "Expression",
-  "fields": "Array of String",
-  "groupBy": "Array of String",
-  "aggregation": "Object mapping fields to aggregate functions"
-}
-</code></pre>
+<h3 id='format'>Format</h3><pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"String"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Expression"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Array of String"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"groupBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Array of String"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"aggregation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Object mapping fields to aggregate functions"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>NoSQL queries are constructed using JSON objects. The keys are mapped into their respective SQL keywords in the back-end before interacting with your database.</p>
 
 <p>For example, the shortest query you can write would be <code>{ &quot;object&quot;: &quot;table&quot;, &quot;q&quot;: &quot;query expression&quot; }</code>    </p>
@@ -3051,85 +3052,85 @@ use common MySQL syntax.</p>
 <p>This NoSQL object is converted into the following SQL</p>
 
 <p><code>SELECT * FROM table WHERE query</code></p>
-<h3 id='example-string-comparison'>Example - String Comparison</h3><pre class="highlight plaintext"><code>{
-    "object": "employees",
-    "q": {
-        "position" : "Sales Manager"  
-    },
-    "fields": ["name", "salary"]
-}
-</code></pre>
+<h3 id='example-string-comparison'>Example - String Comparison</h3><pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"position"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Sales Manager"</span><span class="w">  
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"name"</span><span class="p">,</span><span class="w"> </span><span class="s2">"salary"</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>A simple query can pluck the <code>name</code> and <code>salary</code> fields from an object named <code>employees</code>. The query sample to the right executes this query for all employees with a position of &quot;Sales Manager&quot;</p>
-<h3 id='example-constant-value-comparison'>Example - Constant Value Comparison</h3><pre class="highlight plaintext"><code>{
-    "object": "employees",
-    "q": {
-        "age": { "$lt" : 25 }
-    }  
-}
-</code></pre>
+<h3 id='example-constant-value-comparison'>Example - Constant Value Comparison</h3><pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"$lt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">  
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>Queries can also be used to compare an object&#39;s  fields to constant values using common comparison operators. For example, to retrieve all fields for all employees under the age of 25, you can use the query to the right.</p>
-<h3 id='example-range-based-comparison'>Example - Range-based comparison</h3><pre class="highlight plaintext"><code>{
-  "object": "employees",
-  "q": {
-    "age": {
-      "$between": [25, 40]
-    }
-  }  
-}
-</code></pre>
+<h3 id='example-range-based-comparison'>Example - Range-based comparison</h3><pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"age"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"$between"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">  
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>You can use the <code>$between</code> operator to retrieve all records with values that lie between two specified endpoints. For example, the query to the right retrieves all employees with an age between 25 and 40.</p>
-<h3 id='example-geographic-data-comparison'>Example - Geographic Data Comparison</h3><pre class="highlight plaintext"><code>{
-    "object": "city",
-    "q": {
-        "location" : { "$within" : [[32.0638130, 34.7745390], 25000]
-    }
-  }
-}
-</code></pre>
+<h3 id='example-geographic-data-comparison'>Example - Geographic Data Comparison</h3><pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"location"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"$within"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mf">32.0638130</span><span class="p">,</span><span class="w"> </span><span class="mf">34.7745390</span><span class="p">],</span><span class="w"> </span><span class="mi">25000</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>You can use the <code>$within</code> operator to locate all records within a geographic range. The parameters for this comparison are provided as an array of two elements. The first element is a tuple containing latitude and longitude, e.g. <code>[32.0638130, 34.7745390]</code>, while the second is a distance in meters. To retrieve all cities within 25 km (25000m) of a given latitude and longitude, you can use a query like the one to the right.</p>
 <h3 id='expressions'>Expressions</h3>
 <p>An expression can be either an AND expression, an OR expression, or a UNION query.</p>
-<h4 id='and-expressions'>AND expressions</h4><pre class="highlight plaintext"><code>{ "position": "Sales Manager", "age" : { "$lt" : 25 }, "city": "Boston" }
-</code></pre>
+<h4 id='and-expressions'>AND expressions</h4><pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w"> </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sales Manager"</span><span class="p">,</span><span class="w"> </span><span class="s2">"age"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"$lt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boston"</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>An AND expression is a conjunction of conditions on fields. An AND expression is JSON of the form <code>{ A: condition, B: condition, ... }</code></p>
 
 <p>For example, to retrieve all employees that are 25-years-old, a Sales manager, AND live in Boston, you could use the query on the right.</p>
-<h4 id='or-expressions'>OR expressions</h4><pre class="highlight plaintext"><code>{ "$or": [ { "num_employees": { "$gt": 30 } }, { "location": "Palo Alto" }  ]  }
-</code></pre>
+<h4 id='or-expressions'>OR expressions</h4><pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w"> </span><span class="s2">"$or"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"num_employees"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"$gt"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Palo Alto"</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="p">]</span><span class="w">  </span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>An OR expression is a disjunction of conditions, <code>{ $or: [ Expression1, Expression2, ...   ] }</code></p>
 
 <p>For example, use the query to the right to find all offices that are either larger than 30 employees, or located in Palo Alto.</p>
-<h4 id='union-queries'>UNION queries</h4><pre class="highlight plaintext"><code>{
-    "$union":   [
-        {
-            "object" : "Employees",
-            "q" : {
-                "$or" : [
-                    {
-                        "Budget" : {
-                            "$gt" : 20
-                        }
-                    },
-                    {
-                        "Location" : {
-                            "$like" :  "Palo Alto"
-                        }
-                    }
-                ]
-            },
-            "fields": ["Location", "country"]
-        },
-        {
-            "object" : "Person",
-            "q" : {
-                "name": "john"
-            },
-            "fields": ["City", "country"],
-            "limit": 11
-        }
-    ]
-}
-</code></pre>
+<h4 id='union-queries'>UNION queries</h4><pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"$union"</span><span class="p">:</span><span class="w">   </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Employees"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"q"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"$or"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"Budget"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"$gt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"Location"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"$like"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Palo Alto"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Location"</span><span class="p">,</span><span class="w"> </span><span class="s2">"country"</span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Person"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"q"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"john"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"City"</span><span class="p">,</span><span class="w"> </span><span class="s2">"country"</span><span class="p">],</span><span class="w">
+            </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>A UNION query is a union of the results of queries, and will have the general format of <code>{ $union: [ Query1, Query2, ...   ] }</code>. The query to the right, for example, combines a query looking for employees with a budget of 20 OR a location like Palo Alto with a query that retrieves the city and country fields for all entries in the <code>Person</code> table with the name &quot;john&quot;, limiting the results to 11 records. The end result will combine both queries into a single response object.</p>
 <h3 id='conditions-on-fields'>Conditions on Fields</h3>
 <p>Formally, a condition on a field is a key-value expression of the form <code>{ Key : ValueExpression }</code>, where the fields are defined as follows:</p>
@@ -3163,59 +3164,59 @@ use common MySQL syntax.</p>
 <blockquote>
 <p>This JSON can be used as a sub-query to retrieve the ID of all departments in the city of New York.</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{ "object": "department", "q": { "city" : "New York" }, "fields" : ["id"]}
-</code></pre>
+<pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w"> </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"department"</span><span class="p">,</span><span class="w"> </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="s2">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id"</span><span class="p">]}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>Using the above sub-query, we can now test a new field - dept_id - with respect to the results of the sub-query. We simply use the <code>$in</code> operator, and the query, as seen below.</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "dept_id": {
-    "$in": {  
-      "object": "department",
-      "q": { "city" : "New York" },
-      "fields" : ["id"]
-    }
-  }
-}
-</code></pre>
+<pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"dept_id"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"$in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">  
+      </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"department"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="w"> </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>In this example, the &#39;<code>deptId</code> field is a reference field referring the employees table to the department table. We can now use this sub-query as a part of a larger query retrieving all employees employed in departments that are located in New York.</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-  "object": "employees",
-  "q" : {
-    "deptId" : {
-      "$in": {
-        "object": "department",
-        "q": {
-          "city" : "New York"
-        },
-        "fields" : ["id"]
-      }
-    }
-  }
-}
-</code></pre>
+<pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"q"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"deptId"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"$in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"department"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>If we wanted to look at a more complex query, we could modify this a bit. Let&#39;s say we wanted to retrieve all employees whose department is located in New York, but the employee is located in Boston. To accomplish this, we use an AND expression to combine the two conditions:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-    "object": "employees",
-    "q" : {
-        "deptId":
-        {
-            "$in": {
-                "object": "department",
-                "q": {
-                    "city" : "New York"
-                },
-                "fields" : ["id"]
-            }
-        },
-        "location": "Boston"
-    }
-}
-</code></pre>
+<pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"employees"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"deptId"</span><span class="p">:</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"$in"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"department"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"New York"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"id"</span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boston"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>You can use sub-queries to established a reduced scope of your objects to work with. They can then be composed into larger queries, providing you with extra flexibility in retrieving objects from your app.</p>
 
 <aside class="notice">This technique relies upon retrieving a single field from the sub-query. Using more than one field would prove more complex and is neither recommended nor supported.</aside>
@@ -3223,46 +3224,46 @@ use common MySQL syntax.</p>
 <blockquote>
 <p>To group by &#39;Country&#39;, and then concatenate the &#39;Location&#39; field, use the following example code:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-    "object" : "Employees",
-    "q" : {
-        "$or" : [
-            {
-                "Budget" : {
-                    "$gt" : 20
-                }
-            },
-            {
-                "Location" : {
-                    "$like" :  "Palo Alto"
-                }
-            }
-        ]
-    },
-    "fields": ["Location", "Country"],
-    "order": [["Budget", "desc"]],
-    "groupBy": ["Country"],
-    "aggregate": {
-        "Location": "$concat"
-    }
-}
-</code></pre>
+<pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"object"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Employees"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"q"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"$or"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"Budget"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"$gt"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"Location"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"$like"</span><span class="w"> </span><span class="p">:</span><span class="w">  </span><span class="s2">"Palo Alto"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Location"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Country"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="s2">"Budget"</span><span class="p">,</span><span class="w"> </span><span class="s2">"desc"</span><span class="p">]],</span><span class="w">
+    </span><span class="s2">"groupBy"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Country"</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"aggregate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"$concat"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>A group by query aggregates on fields, and then applies aggregation operators to the specified fields.</p>
 <h3 id='algorithm-to-generate-sql-from-json-queries'>Algorithm to Generate SQL from JSON Queries</h3><pre class="highlight javascript tab-javascript"><code>  <span class="nx">transformJson</span><span class="p">(</span><span class="nx">json</span><span class="p">,</span> <span class="nx">sqlSchema</span><span class="p">,</span> <span class="nx">isFilter</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span>
 </code></pre>
 <blockquote>
 <p>The result is a structure with the following fields:</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-    "str": "&lt;SQL statement for query&gt;",
-    "select": "&lt;select clause&gt;",
-    "from": "&lt;from clause&gt;",
-    "where": "&lt;where clause&gt;",
-    "group": "&lt;group by clause&gt;",
-    "order": "&lt;order by clause&gt;",
-    "limit": "&lt;limit clause&gt;"
-}
-</code></pre>
+<pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;SQL statement for query&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"select"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;select clause&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;from clause&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"where"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;where clause&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;group by clause&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"order"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;order by clause&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;limit clause&gt;"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>The algorithm transforms from JSON to SQL using a top-down transformation.</p>
 <h4 id='usage'>Usage</h4>
 <p>You can call the function by using the Javascript call <code>transformJson</code>. The parameters to this are as follows:</p>
@@ -3329,7 +3330,7 @@ We provide a platform selector, which allows you to only view the kickstarts, ex
 <blockquote>
 <p>This sample model JSON creates two objects - Items and Users</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4179,11 +4180,7 @@ curl https://api.backand.com/1/objects/items -H <span class="s2">"Authorization:
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TGvnEBfhreaVwJspg0s_uDKppvjaA9jICQGsHSocmHnt8s98_rkMQIkf4fvd25j3i5QOJKPpZTpoCpdu7duxcjsUyLRYihLBhcyiSAv6PxeY4zG6SpL5CtfDl6PSpqJx571k_fSphmIha40bb0wvks3O-21E85hV7GdD3D0TJtSR0U4twJhaJl-HJmeGCEEmfr27FFtRu2Hb9pwkCNnlUNQast4s5fTlTOEiapspgUgfWT9s4V47t5TUuD6onMtDNQmXfekr-Yj2i_Q68L8a_Q"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">86399</span><span class="p">,</span><span class="w">
@@ -4232,11 +4229,7 @@ curl -X POST -d <span class="s2">"{'email':'user email','password':'user passwor
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matt+test5@backand.com"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"currentStatus"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The user is ready to sign in"</span><span class="p">,</span><span class="w">
@@ -4305,11 +4298,8 @@ curl -X POST -d <span class="s2">"{'email':'user email','password':'user passwor
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>This call returns no data, only an HTTP Status Code</p>
-</blockquote>
-
+</code></pre><pre class="highlight json tab-json"><code><span class="err">This</span><span class="w"> </span><span class="err">call</span><span class="w"> </span><span class="err">returns</span><span class="w"> </span><span class="err">no</span><span class="w"> </span><span class="err">data</span><span class="p">,</span><span class="w"> </span><span class="err">only</span><span class="w"> </span><span class="err">an</span><span class="w"> </span><span class="err">HTTP</span><span class="w"> </span><span class="err">Status</span><span class="w"> </span><span class="err">Code</span><span class="w">
+</span></code></pre>
 <p>Changes the password of the current user</p>
 <h4 id='parameters-5'>Parameters</h4>
 <table><thead>
@@ -4520,11 +4510,7 @@ curl -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOK
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
 
-</code></pre>
-<blockquote>
-<p>Sample response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"totalRows"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -4633,11 +4619,7 @@ curl -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOK
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Sample response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"__metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"73"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4709,11 +4691,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Sample response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"__metadata"</span><span class="p">:{</span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"75"</span><span class="p">}}</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"__metadata"</span><span class="p">:{</span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"75"</span><span class="p">}}</span><span class="w">
 </span></code></pre>
 <p>Creates a record with the provided data in the specified object</p>
 <h4 id='parameters-17'>Parameters</h4>
@@ -4749,11 +4727,8 @@ curl -X PUT -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYM
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>This call has no response other than the status code by default.</p>
-</blockquote>
-
+</code></pre><pre class="highlight json tab-json"><code><span class="err">This</span><span class="w"> </span><span class="err">call</span><span class="w"> </span><span class="err">has</span><span class="w"> </span><span class="err">no</span><span class="w"> </span><span class="err">response</span><span class="w"> </span><span class="err">other</span><span class="w"> </span><span class="err">than</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">status</span><span class="w"> </span><span class="err">code</span><span class="w"> </span><span class="err">by</span><span class="w"> </span><span class="err">default.</span><span class="w">
+</span></code></pre>
 <p>Updates a record with the specified ID in the specified object with the provided data.</p>
 <h4 id='parameters-18'>Parameters</h4>
 <table><thead>
@@ -4793,11 +4768,7 @@ curl -X DELETE -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANO
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Sample response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"__metadata"</span><span class="p">:{</span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"77"</span><span class="p">}}</span><span class="err">⏎</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"__metadata"</span><span class="p">:{</span><span class="s2">"id"</span><span class="p">:</span><span class="s2">"77"</span><span class="p">}}</span><span class="err">⏎</span><span class="w">
 </span></code></pre>
 <p>Deletes a record from the specified object with the specified ID</p>
 <h4 id='parameters-19'>Parameters</h4>
@@ -4828,11 +4799,7 @@ curl -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOK
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Sample response (depends on action)</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"response"</span><span class="p">:</span><span class="s2">"Hello world!"</span><span class="p">}</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"response"</span><span class="p">:</span><span class="s2">"Hello world!"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Triggers on-demand custom actions that operate via HTTP GET requests</p>
 <h4 id='parameters-20'>Parameters</h4>
@@ -4868,11 +4835,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Sample response (depends on action)</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"response"</span><span class="p">:</span><span class="s2">"Hello world!"</span><span class="p">}</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"response"</span><span class="p">:</span><span class="s2">"Hello world!"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Triggers on-demand custom actions that operate via HTTP POST requests</p>
 <h4 id='parameters-21'>Parameters</h4>
@@ -4958,11 +4921,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{}</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{}</span><span class="w">
 </span></code></pre>
 <p>Removes a file from a server-side action file set.</p>
 <h4 id='parameters-23'>Parameters</h4>
@@ -4999,11 +4958,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Sample response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">From</span><span class="w"> </span><span class="err">SDK</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="err">//</span><span class="w"> </span><span class="err">From</span><span class="w"> </span><span class="err">SDK</span><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
   </span><span class="s2">"statusText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
@@ -5061,11 +5016,7 @@ curl -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONYMOUS_TOK
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Sample response varies based on query return values</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"support@backand.com"</span><span class="p">,</span><span class="w">
@@ -5104,11 +5055,7 @@ curl -X POST -H <span class="s2">"AnonymousToken: </span><span class="nv">$ANONY
   <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
   <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Sample response varies based on query return values</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+</code></pre><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"support@backand.com"</span><span class="p">,</span><span class="w">
@@ -6071,14 +6018,14 @@ sagaMiddleware.run(rootSaga)
 <blockquote>
 <p>To POST a new data point for latitude 10 and longitude 20 in column <code>geo</code>, you can use the following JSON:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="w">  </span><span class="s2">"geo"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>To add new point field, open Backand&#39;s Model UI (<strong>Database --&gt; Model</strong>). Find an object to which you wish to add the geometry data, and select <code>Add Field</code>, giving the new field the <code>point</code> data type.</p>
 <h3 id='query-point'>Query Point</h3>
 <blockquote>
 <p>To get all the restaurants within 25 Miles of San Francisco&#39;s Marina District [37.8019859, -122.4414805]:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"restaurants"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"q"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"location"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"$withinMiles"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mf">37.8019859</span><span class="p">,</span><span class="w"> </span><span class="mf">-122.4414805</span><span class="p">],</span><span class="w"> </span><span class="mi">25</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w">
@@ -6136,7 +6083,7 @@ sagaMiddleware.run(rootSaga)
 <blockquote>
 <p>Data is an array of operation objects, which are constructed with the general format below:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="err">object_path</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -6153,7 +6100,7 @@ sagaMiddleware.run(rootSaga)
 <blockquote>
 <p>The key element of this operation is the &quot;headers&quot; parameter. This represents the HTTP headers used to perform the request, and are used to uniquely identify your application as each request as made.</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="err">headers</span><span class="p">:{</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="w">  </span><span class="err">headers</span><span class="p">:{</span><span class="w">
     </span><span class="s2">"Authorization"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer **YOUR_ACCESS_TOKEN**"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"AppName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"**YOUR_APP_NAME**"</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -6219,7 +6166,7 @@ sagaMiddleware.run(rootSaga)
 <blockquote>
 <p>Simply replace &quot;YOUR_OBJECT_NAME&quot; with the name of the object you wish to manipulate. Once you have the object URL, you simply need to provide the appropriate command. To create a new record, for example, use the following hash as a starting point:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="err">object_path</span><span class="p">,</span><span class="w">
     </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -6230,7 +6177,7 @@ sagaMiddleware.run(rootSaga)
 <blockquote>
 <p>If you wanted to update two records in the same request (using the PUT method), you would send the following:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="err">object_url</span><span class="p">,</span><span class="w">
@@ -6250,7 +6197,7 @@ sagaMiddleware.run(rootSaga)
 <blockquote>
 <p>The following request will create two new records (one news article, one author), update an author record, then delete a news record:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.backand.com/1/objects/news"</span><span class="p">,</span><span class="w">
@@ -6292,7 +6239,7 @@ sagaMiddleware.run(rootSaga)
 YOUR_ACCESS_TOKEN - an access token, obtained via a call to https://api.backand.com/token
 YOUR_APP_NAME - the app name to operate on</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.backand.com/1/objects/news/3"</span><span class="w">
     </span><span class="p">{</span><span class="w">
@@ -6310,7 +6257,7 @@ YOUR_APP_NAME - the app name to operate on</p>
 <blockquote>
 <p>This adds multiple rows in a single request.</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.backand.com/1/objects/YOUR_OBJECT_NAME"</span><span class="p">,</span><span class="w">
@@ -6330,7 +6277,7 @@ YOUR_APP_NAME - the app name to operate on</p>
 <blockquote>
 <p>You simply change the URL and data hashes for each record. Here&#39;s a sample request that adds two new news items to an application:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.backand.com/1/objects/news"</span><span class="p">,</span><span class="w">
@@ -6361,7 +6308,7 @@ YOUR_APP_NAME - the app name to operate on</p>
 <blockquote>
 <p>The general form of the delete request will be:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.backand.com/1/objects/YOUR_OBJECT_NAME/OBJECT_ID1"</span><span class="w">
@@ -6375,7 +6322,7 @@ YOUR_APP_NAME - the app name to operate on</p>
 <blockquote>
 <p>For example, if you wanted to delete &#39;news&#39; objects with IDs of 2 and 3, you would use the following set of action hashes:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="s2">"method"</span><span class="p">:</span><span class="s2">"DELETE"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://api.backand.com/1/objects/news/2"</span><span class="w">
@@ -6388,7 +6335,7 @@ YOUR_APP_NAME - the app name to operate on</p>
 </span></code></pre>
 <p>To delete multiple objects from your application, simply provide multiple DELETE action hashes in your request&#39;s data array.
 By changing the <code>YOUR_OBJECT_NAME</code> and <code>OBJECT_ID</code> parameters, you can select which specific IDs will be deleted in your application.</p>
-<h3 id='example-3-multiple-commands'>Example 3: Multiple commands</h3><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<h3 id='example-3-multiple-commands'>Example 3: Multiple commands</h3><pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://api.backand.com/1/objects/news"</span><span class="p">,</span><span class="w">
@@ -6431,7 +6378,7 @@ loading of objects. Simply append &#39;?deep=true&#39; to the object fetch URL, 
 <blockquote>
 <p>An example of another complex object would be &#39;email&#39;. Requesting a user using the <code>deep</code> parameter would result in JSON resembling the following:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"...."</span><span class="p">,</span><span class="w">
   </span><span class="err">//</span><span class="w"> </span><span class="err">other</span><span class="w"> </span><span class="err">users</span><span class="w"> </span><span class="err">fields...</span><span class="w">
   </span><span class="s2">"items"</span><span class="p">:[{</span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"...."</span><span class="p">,</span><span class="err">...</span><span class="p">},</span><span class="err">...</span><span class="p">]</span><span class="w">
@@ -6467,7 +6414,7 @@ curl https://api.backand.com/1/objects/users/5
 <blockquote>
 <p>This JSON provides a fieldName, an operator, and a value to define a filter. Apply multiple fields by appending to the JSON array.</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[{</span><span class="s2">"fieldName"</span><span class="p">:</span><span class="s2">"firstName"</span><span class="p">,</span><span class="s2">"operator"</span><span class="p">:</span><span class="s2">"contains"</span><span class="p">,</span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"oh"</span><span class="p">}]</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[{</span><span class="s2">"fieldName"</span><span class="p">:</span><span class="s2">"firstName"</span><span class="p">,</span><span class="s2">"operator"</span><span class="p">:</span><span class="s2">"contains"</span><span class="p">,</span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"oh"</span><span class="p">}]</span><span class="w">
 </span></code></pre>
 <p>You can supply a query string parameter named &#39;filter&#39; to filter your objects during fetch. This could be useful in
 development and debugging situations, or as a part of a UI with search functionality that allowing your users to see configurable results. You can either create a filter with NoSQL syntax (see <a href="#nosql-query-language">NoSQL Query Language</a> for syntax), or with JSON containing a field name, an operator, and a value. See <a href="#getlist">the getList function</a> for full details on filters.</p>
@@ -6775,7 +6722,7 @@ While this function works similarly to backandAuthOverride, there are a couple m
 <blockquote>
 <p>Below is an example model</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"items"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -6819,22 +6766,22 @@ While this function works similarly to backandAuthOverride, there are a couple m
 <blockquote>
 <p>The model represents a database schema that is defined as a JSON array of one or more object (Table) definitions.</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">&lt;model&gt;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="err">&lt;object&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">&lt;object&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="err">&lt;model&gt;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">[</span><span class="w">  </span><span class="err">&lt;object&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">&lt;object&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>An object definition is a JSON object with a name entry and a fields entry:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">&lt;object&gt;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w">  </span><span class="err">&lt;string&gt;</span><span class="p">,</span><span class="w"> </span><span class="s2">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&lt;fields&gt;</span><span class="w"> </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="err">&lt;object&gt;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"name"</span><span class="p">:</span><span class="w">  </span><span class="err">&lt;string&gt;</span><span class="p">,</span><span class="w"> </span><span class="s2">"fields"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&lt;fields&gt;</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>The fields definition is a JSON list of field attributes:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">&lt;fields&gt;</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">"field1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&lt;field&gt;</span><span class="p">,</span><span class="w"> </span><span class="s2">"field2"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;field&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="err">&lt;fields&gt;</span><span class="w"> </span><span class="err">=</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">"field1"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="err">&lt;field&gt;</span><span class="p">,</span><span class="w"> </span><span class="s2">"field2"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;field&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>A field is defined by its type and a set of optional properties. The field definition is a JSON object:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">&lt;field&gt;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;type&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">&lt;optional</span><span class="w"> </span><span class="err">properties&gt;</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="err">&lt;field&gt;</span><span class="w"> </span><span class="err">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;type&gt;</span><span class="p">,</span><span class="w"> </span><span class="err">&lt;optional</span><span class="w"> </span><span class="err">properties&gt;</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>A JSON schema consist of three types of objects:</p>
 
@@ -6860,19 +6807,19 @@ several pets, but a pet has a single owner (user). Thus, the users-pets relation
 creating a collection of pets objects for each user in the model.
 In &#39;users&#39;, add this field:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="p">,</span><span class="w"> </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="w"> </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="p">,</span><span class="w"> </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>The &#39;pets&#39; object will have an &#39;owner&#39; relationship field, which establishes the &#39;one&#39; side of the relationship by
 linking each pet back to an individual owner.
 In &#39;pets&#39;, add the following new field to complete the linkage:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="w"> </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Here is the full sample model for this relationship:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -6922,7 +6869,7 @@ In &#39;pets&#39;, add the following new field to complete the linkage:</p>
 First we need to add a new object - &#39;users-pets&#39; - with one-to-many relationships to both &#39;pets&#39; and &#39;users&#39; objects.
 In &#39;users-pets&#39;:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="w"> </span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="s2">"pet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">"object"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -6930,18 +6877,18 @@ In &#39;users-pets&#39;:</p>
 one-to-many relationship:
 In &#39;pets&#39;:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="s2">"owners"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users-pets"</span><span class="p">,</span><span class="w"> </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="s2">"owners"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users-pets"</span><span class="p">,</span><span class="w"> </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pet"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>In &#39;users&#39;:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users-pets"</span><span class="p">,</span><span class="w"> </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="s2">"pets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="s2">"collection"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users-pets"</span><span class="p">,</span><span class="w"> </span><span class="s2">"via"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Stated another way: To build a many-to-many model of many-to-many Model:
 * Start with a Model that contains 2 objects that have no relations between them:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -6969,7 +6916,7 @@ In &#39;pets&#39;:</p>
 <blockquote>
 <p>Add the new object and the relationship fields:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pets"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -7040,25 +6987,25 @@ In &#39;pets&#39;:</p>
 </ol>
 
 <p>For multiple device authentication, you can use the same process - even keeping the same username. See an example of the code at work in CodePen: <a href="http://codepen.io/backand/pen/GZdYgy">http://codepen.io/backand/pen/GZdYgy</a></p>
-<h3 id='creating-the-token-object'>Creating the Token object</h3><pre class="highlight plaintext"><code>{
-  "name": "tokens",
-  "fields": {
-    "token": {
-      "type": "string",
-      "required": true
-    },
-    "sessionId": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "used": {
-      "type": "boolean",
-      "defaultValue": false
-    }
-  }
-}
-</code></pre>
+<h3 id='creating-the-token-object'>Creating the Token object</h3><pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tokens"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"token"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"sessionId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"required"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"unique"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"used"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"boolean"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>The JSON to create a token object is provided to the right. This consists of three columns:</p>
 
 <ul>
@@ -7285,7 +7232,7 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
 <p>Create an app in Backand using the free database feature. For this example we will demonstrate simple ‘playlists’ app
  with 3 objects: users, playlists and songs.
 You can use the following JSON mode:</p>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"users"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -7477,7 +7424,7 @@ You can use the following JSON mode:</p>
 <blockquote>
 <p>Now, Backand returns the Facebook access token from getUserDetails, under data.providerAccessToken</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
   </span><span class="err">...</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="err">...</span><span class="w">
@@ -8997,7 +8944,7 @@ It also requires a '&lt;user key&gt;' for your app - you can find this in the <s
 <blockquote>
 <p>The following JSON is to be used when creating the IAM security policy, to manage Backand&#39;s access to your AWS Lambda functions</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -9161,6 +9108,7 @@ It also requires a '&lt;user key&gt;' for your app - you can find this in the <s
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">cURL</a>
                 <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="json">Response</a>
           </div>
       </div>
     </div>
