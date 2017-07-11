@@ -2208,6 +2208,10 @@
                             <!-- Nest 4 levels -->
                           </li>
                           <li>
+                            <a href="#from-aws-cloudformation" class="toc-h3 toc-link" data-title="The Backand Lambda Launcher">From AWS CloudFormation</a>
+                            <!-- Nest 4 levels -->
+                          </li>
+                          <li>
                             <a href="#from-the-aws-console" class="toc-h3 toc-link" data-title="The Backand Lambda Launcher">From the AWS Console</a>
                             <!-- Nest 4 levels -->
                               <ul class="toc-list-h4">
@@ -8964,6 +8968,23 @@ It also requires a '&lt;user key&gt;' for your app - you can find this in the <s
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>The Backand Lambda integration relies on the policy JSON provided to the right. This grants Backand the capability to fetch a list of functions, fetch an individual functions, and invoke a function both synchronously and asynchronously.</p>
+<h3 id='from-aws-cloudformation'>From AWS CloudFormation</h3>
+<p>If you have admin access to your organization&#39;s AWS account, you can use this process to easily create the appropriate IAM policies and users for Backand&#39;s external function links.</p>
+
+<aside class="success">Please note: if you do not have admin access to your AWS account, we can walk you through a modified version of this process. Contact us over intercom in the lower-right-hand corner of your screen, or send us a message at <a href="mailto:support@backand.com">support@backand.com</a> for further assistance.</aside>
+
+<ol>
+<li>Download the <a href="https://s3.amazonaws.com/cdn.backand.net/cloudformation/templates/1/CFbackandaccess">BackandUserCreation JSON</a> from our CDN.</li>
+<li>Log into the Amazon Web Services dashboard, and navigate to Cloud Formation (listed under &quot;Management&quot;).</li>
+<li>Select &quot;Create New Stack&quot;.</li>
+<li>Choose &quot;Upload a template to Amazon S3&quot;, and provide the <a href="https://s3.amazonaws.com/cdn.backand.net/cloudformation/templates/1/CFbackandaccess">BackandUserCreation JSON</a> downloaded in the first step.</li>
+<li>Provide a name for the stack (e.g. &quot;CreateBackandUser&quot;), and click &quot;Next&quot;.</li>
+<li>You&#39;re presented with an Options page at this point. No changes are needed here - click &quot;Next&quot;.</li>
+<li>Review the stack, and check the &quot;I acknowledge that AWS CloudFormation might create IAM Resources&quot; check box.</li>
+<li>Click &quot;Create&quot;.</li>
+<li>Select the stack you created, and navigate to the &quot;Outputs&quot; tab. Once the Stack creation has finished, you will be provided with the Access Key ID and Secret Key.</li>
+<li>Use these credentials to link your AWS account to Backand in the &quot;Connection Details&quot; area of <strong>Functions &amp; Integrations -&gt; Functions -&gt; External Functions</strong></li>
+</ol>
 <h3 id='from-the-aws-console'>From the AWS Console</h3>
 <p>If you&#39;re already logged into the AWS Console for your region, use the following steps to connect your AWS Lambda functions to Backand:</p>
 <h4 id='create-the-iam-security-policy'>Create the IAM Security Policy</h4>
