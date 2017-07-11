@@ -59,7 +59,7 @@ The Backand Lambda integration relies on the policy JSON provided to the right. 
 
 If you have admin access to your organization's AWS account, you can use this process to easily create the appropriate IAM policies and users for Backand's external function links.
 
-<aside class="success">Please note: if you do not have admin access to your AWS account, we can walk you through a modified version of this process. Contact us over intercom in the lower-right-hand corner of your screen, or send us a message at <a href="mailto:support@backand.com">support@backand.com</a> for further assistance.</aside>
+<aside class="success">Please note: if you do not have admin access to your AWS account, we can walk you through a modified version of this process. Contact us at <a href="mailto:support@backand.com">support@backand.com</a> for further assistance.</aside>
 
 1. Download the [BackandUserCreation JSON](https://s3.amazonaws.com/cdn.backand.net/cloudformation/templates/1/CFbackandaccess) from our CDN.
 1. Log into the Amazon Web Services dashboard, and navigate to Cloud Formation (listed under "Management").
