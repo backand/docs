@@ -57,21 +57,17 @@ The Backand Lambda integration relies on the policy JSON provided to the right. 
 
 ### From AWS CloudFormation
 
-If you have admin access to your organization's AWS account, you can use this process to easily create the appropriate IAM policies and users for Backand's external function links.
+If you have admin access to your organization's AWS account, you can use **AWS CloudFormation** to easily create the appropriate IAM policies and users for Backand's external function links.
 
 <aside class="success">Please note: if you do not have admin access to your AWS account, we can walk you through a modified version of this process. Contact us at <a href="mailto:support@backand.com">support@backand.com</a> for further assistance.</aside>
 
-1. Download the [BackandUserCreation JSON](https://s3.amazonaws.com/cdn.backand.net/cloudformation/templates/1/CFbackandaccess) from our CDN.
-1. Log into the Amazon Web Services dashboard, and navigate to Cloud Formation (listed under "Management").
-1. Select "Create New Stack".
-1. Choose "Upload a template to Amazon S3", and provide the [BackandUserCreation JSON](https://s3.amazonaws.com/cdn.backand.net/cloudformation/templates/1/CFbackandaccess) downloaded in the first step.
-1. Provide a name for the stack (e.g. "CreateBackandUser"), and click "Next".
-1. You're presented with an Options page at this point. No changes are needed here - click "Next".
-1. Review the stack, and check the "I acknowledge that AWS CloudFormation might create IAM Resources" check box.
-1. Click "Create".
-1. Select the stack you created, and navigate to the "Outputs" tab. Once the Stack creation has finished, you will be provided with the Access Key ID and Secret Key.
-1. Use these credentials to link your AWS account to Backand in the "Connection Details" area of **Functions & Integrations -> Functions -> External Functions**
+Run this command using the AWS CLI, and we create an IAM user that only has the 'GetFunction', 'InvokeFunction' and 'ListFunctions' policies:
 
+`aws cloudformation create-stack --template-url https://cdn.backand.net/cf/1/backand-rc --stack-name createbackanduser --capabilities CAPABILITY_IAM`
+
+Once the IAM user has been created, use this command to obtain the user's access and secret keys, then copy these values into the **Connection Details** dialog in the Backand dashboard, under **Functions & Integrations -> Functions -> External Functions**:
+
+`aws cloudformation describe-stacks --stack-name createbackanduser`
 
 ### From the AWS Console
 If you're already logged into the AWS Console for your region, use the following steps to connect your AWS Lambda functions to Backand:
