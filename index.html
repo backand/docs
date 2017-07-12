@@ -8975,7 +8975,7 @@ It also requires a '&lt;user key&gt;' for your app - you can find this in the <s
 
 <p>Run this command using the AWS CLI, and we create an IAM user that only has the &#39;GetFunction&#39;, &#39;InvokeFunction&#39; and &#39;ListFunctions&#39; policies:</p>
 
-<p><code>aws cloudformation create-stack --template-url https://cdn.backand.net/cf/1/backand-rc --stack-name createbackanduser --capabilities CAPABILITY_IAM</code></p>
+<p><code>aws cloudformation create-stack --template-url https://s3.amazonaws.com/cdn.backand.net/cf/1/backand-rc --stack-name createbackanduser --capabilities CAPABILITY_IAM</code></p>
 
 <p>Once the IAM user has been created, use this command to obtain the user&#39;s access and secret keys, then copy these values into the <strong>Connection Details</strong> dialog in the Backand dashboard, under <strong>Functions &amp; Integrations -&gt; Functions -&gt; External Functions</strong>:</p>
 
