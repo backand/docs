@@ -63,7 +63,7 @@ If you have admin access to your organization's AWS account, you can use **AWS C
 
 Run this command using the AWS CLI, and we create an IAM user that only has the 'GetFunction', 'InvokeFunction' and 'ListFunctions' policies:
 
-`aws cloudformation create-stack --template-url https://cdn.backand.net/cf/1/backand-rc --stack-name createbackanduser --capabilities CAPABILITY_IAM`
+`aws cloudformation create-stack --template-url https://s3.amazonaws.com/cdn.backand.net/cf/1/backand-rc --stack-name createbackanduser --capabilities CAPABILITY_IAM`
 
 Once the IAM user has been created, use this command to obtain the user's access and secret keys, then copy these values into the **Connection Details** dialog in the Backand dashboard, under **Functions & Integrations -> Functions -> External Functions**:
 
