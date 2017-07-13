@@ -718,7 +718,6 @@ The parameters for this call are:
 
 To work with objects or other actions in Backand, you need to install the Backand SDK for Node.js. The Backand SDK ships with several code samples that demonstrate how to access other Backand functionality.
 
-
 ### Transactional Database Scripts
 
 Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided that the event occurs during the object event "During the data save before the object is committed". This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.
@@ -728,7 +727,33 @@ Transactional database scripts are SQL scripts that run within the same transact
 
 Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.
 
+## External Lambda Functions
 
+With the release of the [Lambda Launcher](https://backand.com/aws-lambda-launcher-easy-button/), Backand also added the capability to connect with arbitrary Amazon Web Services (AWS) accounts. These are managed in the **Functions & Integrations -> Functions** section of the Backand App dashboard, on the "External Functions" tab. Below is an overview of the UI elements that support this in the Backand app dashboard. If you would like help using the utility itself, navigate to [the Backand Lambda Launcher](#the-backand-lambda-launcher) section of this documentation below.
+
+### Connecting your AWS account
+
+Upon first navigating to this page, you'll be presented with a dialog requesting your AWS account connection details. Provide the API Secret Key ID, the Secret Key, and the AWS Regions you wish to connect to Backand, and we will use these credentials to fetch a list of the AWS Lambda functions located in each connected region.
+
+<aside class="notice">Backand takes security very seriously - all credentials entered are encrypted, and never used for any purpose other than executing your Lambda functions. If you would like further assistance in setting up the security policy, please [contact us](https://www.backand.com/contact).</aside>
+
+### Importing Lambda Functions
+
+Once an accounts AWS credentials have been entered and confirmed, a list of external Lambda functions are imported. These Lambda functions exist exclusively on the connected account, and are not owned or managed by Backand. However, we allow you to easily import these functions into the Backand platform. This allows you to then call these functions using the Backand SDK, easily integrating your application's vital Lambda functions with the rest of your application's back end. These calls are additionally subject to your application's security settings, giving you more tools to restrict access to your vital company infrastructure.
+
+To import an external AWS Lambda function, first navigate to **Functions & Integrations -> Functions -> External Functions**. Enter the requested connection details, and press the "Connect with AWS" button. Once this is complete, you are presented with a list of functions that resembles the following:
+
+![image](images/external-functions.png)
+
+All functions not yet imported to your Backand application are located next to an orange "Link" button. Simply press this button, and the external Lambda function is connected to your Backand application. Once this is done, the "Link" button changes into a two button set that allows you to either test the function using our user interface, or unlink the function and prevent it from being called again over our API.
+
+<aside class="notice">As a courtesy, we automatically import the first three functions in the list when we successfully connect to your AWS account. You can unlink these functions using the provided "unlink" button.</aside>
+
+### Accessing the Lambda Launcher
+
+Once you've imported your desired external functions, you can access the Lambda Launcher from the "Lambda Launcher" tab in the External Functions user interface. This provides instructions on security the application, and a link to the Lambda Launcher application itself.
+
+<aside class="notice">By default, the Lambda Launcher operates using Anonymous Access if it is enabled for your application. You can change this in your application's security settings, under <strong>Security -> Configuration</strong>.</aside>
 
 ## Queries
 You can create and call your own custom queries in your application. You can use parameters as tokens that will be replaced with the actual parameter values, similar to how [custom actions](#custom-actions) work. You can create your own filters, sorting, and paging, as well as use aggregation to summarize information.
