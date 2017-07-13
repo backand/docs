@@ -426,6 +426,23 @@
                       </ul>
                   </li>
                   <li>
+                    <a href="#external-lambda-functions" class="toc-h2 toc-link" data-title="Backand Features">External Lambda Functions</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#connecting-your-aws-account" class="toc-h3 toc-link" data-title="Backand Features">Connecting your AWS account</a>
+                            <!-- Nest 4 levels -->
+                          </li>
+                          <li>
+                            <a href="#importing-lambda-functions" class="toc-h3 toc-link" data-title="Backand Features">Importing Lambda Functions</a>
+                            <!-- Nest 4 levels -->
+                          </li>
+                          <li>
+                            <a href="#accessing-the-lambda-launcher" class="toc-h3 toc-link" data-title="Backand Features">Accessing the Lambda Launcher</a>
+                            <!-- Nest 4 levels -->
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
                     <a href="#queries" class="toc-h2 toc-link" data-title="Backand Features">Queries</a>
                   </li>
                   <li>
@@ -3012,6 +3029,26 @@ after multiple uses, so we need to create one more task to perform cleanup after
 <p>Transactional database scripts are SQL scripts that run within the same transaction context as the triggering action, provided that the event occurs during the object event &quot;During the data save before the object is committed&quot;. This means that if the Create, Update or Delete request fails then your script will be rolled back like any other transaction.</p>
 <h3 id='send-emails'>Send Emails</h3>
 <p>Send Email actions, in addition to common parameters, allow you to also supply the usual email fields: To, Cc, Bcc, From, Subject and Message. You can additionally provide an object ID to obtain a deep object to use in the action.</p>
+<h2 id='external-lambda-functions'>External Lambda Functions</h2>
+<p>With the release of the <a href="https://backand.com/aws-lambda-launcher-easy-button/">Lambda Launcher</a>, Backand also added the capability to connect with arbitrary Amazon Web Services (AWS) accounts. These are managed in the <strong>Functions &amp; Integrations -&gt; Functions</strong> section of the Backand App dashboard, on the &quot;External Functions&quot; tab. Below is an overview of the UI elements that support this in the Backand app dashboard. If you would like help using the utility itself, navigate to <a href="#the-backand-lambda-launcher">the Backand Lambda Launcher</a> section of this documentation below.</p>
+<h3 id='connecting-your-aws-account'>Connecting your AWS account</h3>
+<p>Upon first navigating to this page, you&#39;ll be presented with a dialog requesting your AWS account connection details. Provide the API Secret Key ID, the Secret Key, and the AWS Regions you wish to connect to Backand, and we will use these credentials to fetch a list of the AWS Lambda functions located in each connected region.</p>
+
+<aside class="notice">Backand takes security very seriously - all credentials entered are encrypted, and never used for any purpose other than executing your Lambda functions. If you would like further assistance in setting up the security policy, please [contact us](https://www.backand.com/contact).</aside>
+<h3 id='importing-lambda-functions'>Importing Lambda Functions</h3>
+<p>Once an accounts AWS credentials have been entered and confirmed, a list of external Lambda functions are imported. These Lambda functions exist exclusively on the connected account, and are not owned or managed by Backand. However, we allow you to easily import these functions into the Backand platform. This allows you to then call these functions using the Backand SDK, easily integrating your application&#39;s vital Lambda functions with the rest of your application&#39;s back end. These calls are additionally subject to your application&#39;s security settings, giving you more tools to restrict access to your vital company infrastructure.</p>
+
+<p>To import an external AWS Lambda function, first navigate to <strong>Functions &amp; Integrations -&gt; Functions -&gt; External Functions</strong>. Enter the requested connection details, and press the &quot;Connect with AWS&quot; button. Once this is complete, you are presented with a list of functions that resembles the following:</p>
+
+<p><img src="images/images/external-functions.png" alt="image" /></p>
+
+<p>All functions not yet imported to your Backand application are located next to an orange &quot;Link&quot; button. Simply press this button, and the external Lambda function is connected to your Backand application. Once this is done, the &quot;Link&quot; button changes into a two button set that allows you to either test the function using our user interface, or unlink the function and prevent it from being called again over our API.</p>
+
+<aside class="notice">As a courtesy, we automatically import the first three functions in the list when we successfully connect to your AWS account. You can unlink these functions using the provided "unlink" button.</aside>
+<h3 id='accessing-the-lambda-launcher'>Accessing the Lambda Launcher</h3>
+<p>Once you&#39;ve imported your desired external functions, you can access the Lambda Launcher from the &quot;Lambda Launcher&quot; tab in the External Functions user interface. This provides instructions on security the application, and a link to the Lambda Launcher application itself.</p>
+
+<aside class="notice">By default, the Lambda Launcher operates using Anonymous Access if it is enabled for your application. You can change this in your application's security settings, under <strong>Security -> Configuration</strong>.</aside>
 <h2 id='queries'>Queries</h2>
 <p>You can create and call your own custom queries in your application. You can use parameters as tokens that will be replaced with the actual parameter values, similar to how <a href="#custom-actions">custom actions</a> work. You can create your own filters, sorting, and paging, as well as use aggregation to summarize information.</p>
 
