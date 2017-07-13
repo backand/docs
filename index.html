@@ -528,6 +528,27 @@
             <a href="#backand-dashboard" class="toc-h1 toc-link" data-title="Backand Dashboard">Backand Dashboard</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#navigation-mapping" class="toc-h2 toc-link" data-title="Backand Dashboard">Navigation mapping</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#functions-amp-integrations" class="toc-h3 toc-link" data-title="Backand Dashboard">Functions &amp; Integrations</a>
+                            <!-- Nest 4 levels -->
+                          </li>
+                          <li>
+                            <a href="#database" class="toc-h3 toc-link" data-title="Backand Dashboard">Database</a>
+                            <!-- Nest 4 levels -->
+                          </li>
+                          <li>
+                            <a href="#security" class="toc-h3 toc-link" data-title="Backand Dashboard">Security</a>
+                            <!-- Nest 4 levels -->
+                          </li>
+                          <li>
+                            <a href="#admin" class="toc-h3 toc-link" data-title="Backand Dashboard">Admin</a>
+                            <!-- Nest 4 levels -->
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
                     <a href="#docs-amp-api" class="toc-h2 toc-link" data-title="Backand Dashboard">Docs &amp; API</a>
                       <ul class="toc-list-h3">
                           <li>
@@ -800,7 +821,7 @@
                             <!-- Nest 4 levels -->
                           </li>
                           <li>
-                            <a href="#database" class="toc-h3 toc-link" data-title="Backand Dashboard">Database</a>
+                            <a href="#database-2" class="toc-h3 toc-link" data-title="Backand Dashboard">Database</a>
                             <!-- Nest 4 levels -->
                           </li>
                           <li>
@@ -3040,7 +3061,7 @@ after multiple uses, so we need to create one more task to perform cleanup after
 
 <p>To import an external AWS Lambda function, first navigate to <strong>Functions &amp; Integrations -&gt; Functions -&gt; External Functions</strong>. Enter the requested connection details, and press the &quot;Connect with AWS&quot; button. Once this is complete, you are presented with a list of functions that resembles the following:</p>
 
-<p><img src="images/images/external-functions.png" alt="image" /></p>
+<p><img src="images/external-functions.png" alt="image" /></p>
 
 <p>All functions not yet imported to your Backand application are located next to an orange &quot;Link&quot; button. Simply press this button, and the external Lambda function is connected to your Backand application. Once this is done, the &quot;Link&quot; button changes into a two button set that allows you to either test the function using our user interface, or unlink the function and prevent it from being called again over our API.</p>
 
@@ -3341,6 +3362,114 @@ use common MySQL syntax.</p>
 </ul>
 
 <p>Let&#39;s take a quick look at each available action in the Backand dashboard, and get started with focusing on the front-end of your application!</p>
+<h2 id='navigation-mapping'>Navigation mapping</h2>
+<p>Below is a list of pages in the Backand dashboard, and links to the specific section of the dashboard documentation that is relevant for each. We recommend using this as your starting point - it is designed to represent the hierarchy of pages as they currently appear in the Backand dashboard</p>
+<h3 id='functions-amp-integrations'>Functions &amp; Integrations</h3>
+<p>The Functions &amp; Integrations section of the Backand dashboard is dedicated to managing serverless functions in your Backand application. You&#39;ll find all object-independent functions here, as well as Cron Job management.</p>
+
+<ul>
+<li>Docs &amp; API
+
+<ul>
+<li><a href="https://www.backand.com/app-examples/">Examples</a> - A set of examples built on top of the Backand platform</li>
+<li><a href="http://docs.backand.com/">Documentation</a> - This documentation</li>
+</ul></li>
+<li>Functions
+
+<ul>
+<li>External Functions - This tab allows you to connect your AWS account and import external AWS Lambda functions.</li>
+<li><a href="#server-side-node-js-code">Add Lambda Function</a> - This governs adding a new Backand-owned Lambda function. Please note that these are different from external Lambda functions, which are owned by you.</li>
+<li><a href="#custom-actions">Add Javascript Function</a> - This governs adding a new Backand Server-side JavaScript function.</li>
+<li><a href="#custom-actions">Function list</a></li>
+</ul></li>
+<li><a href="#background-jobs">Cron Jobs</a> - This governs the list of scheduled tasks currently being used by your application
+
+<ul>
+<li>New Job - Use this page to create a new <a href="#background-jobs">Cron Job</a></li>
+<li>Cron Job list - This lists all scheduled jobs currently available in your application</li>
+</ul></li>
+<li><a href="#api-requests">API Log</a> - This is a log of your application&#39;s API requests</li>
+<li><a href="#console">Console Log</a> - This is a log of all console output from your application&#39;s functions and actions</li>
+</ul>
+<h3 id='database'>Database</h3>
+<p>The Database section of the Backand dashboard is used to manage your application&#39;s data store and schema. You can update your application&#39;s model, work with your object data, or construct custom queries against your database that can be called on-demand.</p>
+
+<ul>
+<li><a href="http://localhost:4567/#docs-amp-api">Docs &amp; API</a> - Product documentation
+
+<ul>
+<li><a href="#examples">Examples</a> - A set of example programs you can use to boost your development</li>
+<li><a href="#kickstart-tutorials">Kickstart Tutorials</a> - A set of kickstart apps, already connected to a demonstration Backand application</li>
+<li><a href="#existing-app-tutorials">Existing app</a> - A set of tutorials for connecting Backand with a pre-existing app built on any of a number of popular JavaScript frameworks</li>
+<li><a href="#realtime-database">Realtime Database</a> - Documentation on using our real-time database functionality, built on top of Socket.IO</li>
+<li><a href="#documentation">Documentation</a> - A link to this documentation</li>
+<li><a href="#rest-api-playground">REST API Playground</a> - Swagger-generated documentation for your application&#39;s REST API</li>
+</ul></li>
+<li><a href="#model">Model</a> - This provides tools for managing your application&#39;s data model</li>
+<li><a href="#objects">Objects</a> - This is a list of objects available in your application. Each object page contains data management, custom actions, security configuration, and an API playground.
+
+<ul>
+<li>New Object - Use this tab to create a new object in your system. It redirects you to the <a href="#model">Model</a> editor.</li>
+<li><a href="#object-list">Object List</a></li>
+</ul></li>
+<li><a href="#queries">Queries</a> - This section allows you to manage your application&#39;s custom queries.
+
+<ul>
+<li><a href="#create-a-query">New Query</a> - Use this tab to create a new custom query in your application.</li>
+<li><a href="#query-list">Query list</a> - A list of all queries in your system. Each query has a UI for testing.</li>
+</ul></li>
+<li><a href="#log">All logs</a>
+
+<ul>
+<li><a href="#api-requests">API Log</a> - This is a log of your application&#39;s API requests</li>
+<li><a href="#console">Console Log</a> - This is a log of all console output from your application&#39;s functions and actions</li>
+<li><a href="#data-history">Data History log</a> - This is a log of data changes in your application. This is only active if data logging is enabled on an object&#39;s configuration page</li>
+<li><a href="#server-side-exceptions">Server Exceptions</a> - This lists all server-side exceptions that have occurred in your application.</li>
+<li><a href="#configuration-2">Configuration</a> - This is a log of all configuration changes that have been applied to your application</li>
+</ul></li>
+<li><a href="#setting-up-and-configuring-a-database">Database Settings</a> - This contains all settings related to managing your application&#39;s database connection</li>
+</ul>
+<h3 id='security'>Security</h3>
+<p>The Security section of the Backand Dashboard is used to manage user and access restrictions for your application. You also obtain the API keys for your Backand application here.</p>
+
+<ul>
+<li><a href="#security-configuration">Configuration</a> - Use this to configure security-related functionality (like password resets) and obtain your anonymous access token</li>
+<li><a href="#social-amp-keys">Social &amp; Keys</a> - Use this to configure your connection with social media providers, and obtain your application&#39;s master and API signup keys</li>
+<li><a href="#registered-users">Registered Users</a> - This datagrid is used to manage your application&#39;s registered users</li>
+<li><a href="#security-actions-backand-dashboard">Security Actions</a> - This set of custom actions provides you the capability to perform various application updates after each user registration or security action. You can also use these actions to implement <a href="#integrating-third-party-security">third-party security mechanisms</a>.</li>
+<li><a href="#security-templates">Security Templates</a> - Use this section to manage your application&#39;s security templates and user security roles</li>
+</ul>
+<h3 id='admin'>Admin</h3>
+<p>The Admin section contains all the tools you need to administer your Backand account, and manage your application&#39;s hosting and environment variables.</p>
+
+<ul>
+<li><a href="#general">General</a> - This section allows you to manage your application&#39;s global configuration settings</li>
+<li><a href="#team">Team</a> - Use this datagrid to add or remove administrators in your Backand application</li>
+<li><a href="#hosting">Hosting</a> - This section governs Backand-provided hosting and file storage access
+
+<ul>
+<li><a href="#configuration">Configuration</a> - This is used to set up your application&#39;s usage for Backand hosting</li>
+<li><a href="#storage-files">Storage</a> - This provides an interface to manage all files stored in S3 on behalf of your application</li>
+</ul></li>
+<li><a href="#configuration-3">App Configuration</a> - This allows you to create versions of your application&#39;s configuration settings</li>
+<li>Billing
+
+<ul>
+<li><a href="#billing-portal">Billing Portal</a> - This allows you to review billing information that you have provided to Backand</li>
+<li><a href="#upgrade-plan">Upgrade Plan</a> - Use this page to perform an account upgrade</li>
+<li><a href="#payment-method">Payment Method</a> - This page allows you to update and change your application&#39;s payment methods</li>
+</ul></li>
+<li><a href="#analytics">Reports</a> - This section provides access to your application&#39;s analytics</li>
+<li><a href="#log">All logs</a>
+
+<ul>
+<li><a href="#api-requests">API Log</a> - This is a log of your application&#39;s API requests</li>
+<li><a href="#console">Console Log</a> - This is a log of all console output from your application&#39;s functions and actions</li>
+<li><a href="#data-history">Data History log</a> - This is a log of data changes in your application. This is only active if data logging is enabled on an object&#39;s configuration page</li>
+<li><a href="#server-side-exceptions">Server Exceptions</a> - This lists all server-side exceptions that have occurred in your application.</li>
+<li><a href="#configuration-2">Configuration</a> - This is a log of all configuration changes that have been applied to your application</li>
+</ul></li>
+</ul>
 <h2 id='docs-amp-api'>Docs &amp; API</h2>
 <p>The Docs &amp; API tab contains links to kickstart tutorials, tutorials on converting existing applications to use Backand, and other useful documentation. let&#39;s take a look at each menu category below.</p>
 <h3 id='examples'>Examples</h3>
@@ -3788,7 +3917,7 @@ Set-AdfsProperties -EnableKmsi <span class="nv">$True</span> –KmsiLifetimeMins
 <p>The General section contains global configuration settings for your application. You can change the app name and title, enable debug mode, adjust the date format, adjust default pagination and object retrieval parameters, and provide global configuration values available throughout your application.</p>
 
 <aside class="warning">You can also delete your Backand application from this screen using the "trash can" icon in the upper-right-hand corner of the page. Be careful - this action is irreversible. </aside>
-<h3 id='database'>Database</h3>
+<h3 id='database-2'>Database</h3>
 <p>The Database section contains information on your app&#39;s Backand database. If you have not yet entered any data or modified the default model, you are also given the capability to connect to an existing database platform on this tab. You can use the connection data provided to connect any third-party DB management tool to your database, allowing you to modify or migrate your database as you desire.</p>
 <h3 id='configuration-3'>Configuration</h3>
 <p>The Configuration tab allows you to version your app&#39;s configuration. You can export and import settings, or work with previous application configurations.</p>
