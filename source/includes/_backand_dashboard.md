@@ -23,7 +23,7 @@ The Functions & Integrations section of the Backand dashboard is dedicated to ma
     - [Examples](https://www.backand.com/app-examples/) - A set of examples built on top of the Backand platform
     - [Documentation](http://docs.backand.com/) - This documentation
 - Functions
-    - External Functions - This tab allows you to connect your AWS account and import external AWS Lambda functions.
+    - [External Functions](#external-lambda-functions) - This tab allows you to connect your AWS account and import external AWS Lambda functions.
     - [Add Lambda Function](#server-side-node-js-code) - This governs adding a new Backand-owned Lambda function. Please note that these are different from external Lambda functions, which are owned by you.
     - [Add Javascript Function](#custom-actions) - This governs adding a new Backand Server-side JavaScript function.
     - [Function list](#custom-actions)
