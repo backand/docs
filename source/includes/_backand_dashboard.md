@@ -11,6 +11,87 @@ Backand's REST API allows you to fully access and manipulate the backend data fo
 
 Let's take a quick look at each available action in the Backand dashboard, and get started with focusing on the front-end of your application!
 
+## Navigation mapping
+
+Below is a list of pages in the Backand dashboard, and links to the specific section of the dashboard documentation that is relevant for each. We recommend using this as your starting point - it is designed to represent the hierarchy of pages as they currently appear in the Backand dashboard
+
+### Functions & Integrations
+
+The Functions & Integrations section of the Backand dashboard is dedicated to managing serverless functions in your Backand application. You'll find all object-independent functions here, as well as Cron Job management.
+
+- Docs & API
+    - [Examples](https://www.backand.com/app-examples/) - A set of examples built on top of the Backand platform
+    - [Documentation](http://docs.backand.com/) - This documentation
+- Functions
+    - External Functions - This tab allows you to connect your AWS account and import external AWS Lambda functions.
+    - [Add Lambda Function](#server-side-node-js-code) - This governs adding a new Backand-owned Lambda function. Please note that these are different from external Lambda functions, which are owned by you.
+    - [Add Javascript Function](#custom-actions) - This governs adding a new Backand Server-side JavaScript function.
+    - [Function list](#custom-actions)
+- [Cron Jobs](#background-jobs) - This governs the list of scheduled tasks currently being used by your application
+    - New Job - Use this page to create a new [Cron Job](#background-jobs)
+    - Cron Job list - This lists all scheduled jobs currently available in your application
+- [API Log](#api-requests) - This is a log of your application's API requests
+- [Console Log](#console) - This is a log of all console output from your application's functions and actions
+
+### Database
+
+The Database section of the Backand dashboard is used to manage your application's data store and schema. You can update your application's model, work with your object data, or construct custom queries against your database that can be called on-demand.
+
+- [Docs & API](http://localhost:4567/#docs-amp-api) - Product documentation
+    - [Examples](#examples) - A set of example programs you can use to boost your development
+    - [Kickstart Tutorials](#kickstart-tutorials) - A set of kickstart apps, already connected to a demonstration Backand application
+    - [Existing app](#existing-app-tutorials) - A set of tutorials for connecting Backand with a pre-existing app built on any of a number of popular JavaScript frameworks
+    - [Realtime Database](#realtime-database) - Documentation on using our real-time database functionality, built on top of Socket.IO
+    - [Documentation](#documentation) - A link to this documentation
+    - [REST API Playground](#rest-api-playground) - Swagger-generated documentation for your application's REST API
+- [Model](#model) - This provides tools for managing your application's data model
+- [Objects](#objects) - This is a list of objects available in your application. Each object page contains data management, custom actions, security configuration, and an API playground.
+    - New Object - Use this tab to create a new object in your system. It redirects you to the [Model](#model) editor.
+    - [Object List](#object-list)
+- [Queries](#queries) - This section allows you to manage your application's custom queries.
+    - [New Query](#create-a-query) - Use this tab to create a new custom query in your application.
+    - [Query list](#query-list) - A list of all queries in your system. Each query has a UI for testing.
+- [All logs](#log)
+    - [API Log](#api-requests) - This is a log of your application's API requests
+    - [Console Log](#console) - This is a log of all console output from your application's functions and actions
+    - [Data History log](#data-history) - This is a log of data changes in your application. This is only active if data logging is enabled on an object's configuration page
+    - [Server Exceptions](#server-side-exceptions) - This lists all server-side exceptions that have occurred in your application.
+    - [Configuration](#configuration-2) - This is a log of all configuration changes that have been applied to your application
+- [Database Settings](#setting-up-and-configuring-a-database) - This contains all settings related to managing your application's database connection
+
+### Security
+
+The Security section of the Backand Dashboard is used to manage user and access restrictions for your application. You also obtain the API keys for your Backand application here.
+
+- [Configuration](#security-configuration) - Use this to configure security-related functionality (like password resets) and obtain your anonymous access token
+- [Social & Keys](#social-amp-keys) - Use this to configure your connection with social media providers, and obtain your application's master and API signup keys
+- [Registered Users](#registered-users) - This datagrid is used to manage your application's registered users
+- [Security Actions](#security-actions-backand-dashboard) - This set of custom actions provides you the capability to perform various application updates after each user registration or security action. You can also use these actions to implement [third-party security mechanisms](#integrating-third-party-security).
+- [Security Templates](#security-templates) - Use this section to manage your application's security templates and user security roles
+
+### Admin
+
+The Admin section contains all the tools you need to administer your Backand account, and manage your application's hosting and environment variables.
+
+- [General](#general) - This section allows you to manage your application's global configuration settings
+- [Team](#team) - Use this datagrid to add or remove administrators in your Backand application
+- [Hosting](#hosting) - This section governs Backand-provided hosting and file storage access
+    - [Configuration](#configuration) - This is used to set up your application's usage for Backand hosting
+    - [Storage](#storage-files) - This provides an interface to manage all files stored in S3 on behalf of your application
+- [App Configuration](#configuration-3) - This allows you to create versions of your application's configuration settings
+- Billing
+    - [Billing Portal](#billing-portal) - This allows you to review billing information that you have provided to Backand
+    - [Upgrade Plan](#upgrade-plan) - Use this page to perform an account upgrade
+    - [Payment Method](#payment-method) - This page allows you to update and change your application's payment methods
+- [Reports](#analytics) - This section provides access to your application's analytics
+- [All logs](#log)
+    - [API Log](#api-requests) - This is a log of your application's API requests
+    - [Console Log](#console) - This is a log of all console output from your application's functions and actions
+    - [Data History log](#data-history) - This is a log of data changes in your application. This is only active if data logging is enabled on an object's configuration page
+    - [Server Exceptions](#server-side-exceptions) - This lists all server-side exceptions that have occurred in your application.
+    - [Configuration](#configuration-2) - This is a log of all configuration changes that have been applied to your application
+
+
 ## Docs & API
 The Docs & API tab contains links to kickstart tutorials, tutorials on converting existing applications to use Backand, and other useful documentation. let's take a look at each menu category below.
 ### Examples
