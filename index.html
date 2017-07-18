@@ -9146,6 +9146,8 @@ It also requires a '&lt;user key&gt;' for your app - you can find this in the <s
 <p>Once the IAM user has been created, use this command to obtain the user&#39;s access and secret keys, then copy these values into the <strong>Connection Details</strong> dialog in the Backand dashboard, under <strong>Functions &amp; Integrations -&gt; Functions -&gt; External Functions</strong>:</p>
 
 <p><code>aws cloudformation describe-stacks --stack-name createbackanduser</code></p>
+
+<aside class="notice">IAM user creation can take up to a minute. Check the StackStatus parameter for the new stack - it will report "CREATE_IN_PROGRESS" while the creation is still underway. Once creation is completed, you will receive the IAM credentials for the user after calling describe-stacks</aside>
 <h3 id='from-the-aws-console'>From the AWS Console</h3>
 <p>If you&#39;re already logged into the AWS Console for your region, use the following steps to connect your AWS Lambda functions to Backand:</p>
 <h4 id='create-the-iam-security-policy'>Create the IAM Security Policy</h4>
