@@ -69,6 +69,8 @@ Once the IAM user has been created, use this command to obtain the user's access
 
 `aws cloudformation describe-stacks --stack-name createbackanduser`
 
+<aside class="notice">IAM user creation can take up to a minute. Check the StackStatus parameter for the new stack - it will report "CREATE_IN_PROGRESS" while the creation is still underway. Once creation is completed, you will receive the IAM credentials for the user after calling describe-stacks</aside>
+
 ### From the AWS Console
 If you're already logged into the AWS Console for your region, use the following steps to connect your AWS Lambda functions to Backand:
 
