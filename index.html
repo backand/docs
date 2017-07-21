@@ -2288,6 +2288,36 @@
                               </ul>
                           </li>
                           <li>
+                            <a href="#creating-cross-account-access-for-aws-lambda" class="toc-h3 toc-link" data-title="The Backand Lambda Launcher">Creating Cross-Account Access for AWS Lambda</a>
+                            <!-- Nest 4 levels -->
+                              <ul class="toc-list-h4">
+                                  <li>
+                                    <a href="#obtaining-the-aws-account-id" class="toc-h4 toc-link" data-title="The Backand Lambda Launcher">Obtaining the AWS Account ID</a>
+                                    <!-- Nest 5 levels -->
+                                  </li>
+                                  <li>
+                                    <a href="#aws-cli" class="toc-h4 toc-link" data-title="The Backand Lambda Launcher">AWS CLI</a>
+                                    <!-- Nest 5 levels -->
+                                  </li>
+                                  <li>
+                                    <a href="#aws-management-console" class="toc-h4 toc-link" data-title="The Backand Lambda Launcher">AWS Management Console</a>
+                                    <!-- Nest 5 levels -->
+                                      <ul class="toc-list-h5">
+                                          <li>
+                                            <a href="#step-1-create-policy" class="toc-h5 toc-link" data-title="The Backand Lambda Launcher">Step 1 - Create Policy</a>
+                                          </li>
+                                          <li>
+                                            <a href="#step-2-create-a-role" class="toc-h5 toc-link" data-title="The Backand Lambda Launcher">Step 2 - Create a Role</a>
+                                          </li>
+                                      </ul>
+                                  </li>
+                                  <li>
+                                    <a href="#reference-documentation" class="toc-h4 toc-link" data-title="The Backand Lambda Launcher">Reference documentation</a>
+                                    <!-- Nest 5 levels -->
+                                  </li>
+                              </ul>
+                          </li>
+                          <li>
                             <a href="#connect-the-iam-user-to-backand" class="toc-h3 toc-link" data-title="The Backand Lambda Launcher">Connect the IAM User to Backand</a>
                             <!-- Nest 4 levels -->
                           </li>
@@ -9274,6 +9304,84 @@ It also requires a '&lt;user key&gt;' for your app - you can find this in the <s
 <li>aws iam create-access-key --user-name backand_lambda_user</li>
 <li>Copy the &quot;Access key ID&quot; and &quot;Secret access key&quot; values to use with Backand.</li>
 </ol>
+<h3 id='creating-cross-account-access-for-aws-lambda'>Creating Cross-Account Access for AWS Lambda</h3>
+<p>You can create an IAM role and user that span multiple AWS accounts, allowing you to bring your lambda functions from multiple AWS accounts into a single interface. This method creates a restricted linkage between your AWS account and Backand, allowing you to import your personal Lambda functions into your Backand application.</p>
+<h4 id='obtaining-the-aws-account-id'>Obtaining the AWS Account ID</h4>
+<p>This approach relies upon obtaining your AWS Account ID. To do this:</p>
+
+<ul>
+<li>Navigate to the AWS Console for your region.</li>
+<li>In the top navigation bar, select <strong>Support</strong>, then <strong>Support Center</strong>.</li>
+<li>Your AWS Account ID is located in the upper-right-hand corner, immediately below the <strong>Support</strong> menu. It is a 12-digit number.</li>
+</ul>
+
+<p>Save this ID for use in later configuration steps.</p>
+<h4 id='aws-cli'>AWS CLI</h4>
+<p>Using CloudFormation, we&#39;ll create a stack that we&#39;ll use to drive cross-account integration with Backand. Use the following AWS CLI command to get started:</p>
+
+<aside class="notice">You'll need to replace the value <code>{{appMasterToken}}</code> in this command with your application's <a href="#social-amp-keys">master token</a>.</aside>
+
+<p><code>aws cloudformation create-stack --template-url https://s3.amazonaws.com/cdn.backand.net/cf/1/backand-cc --parameters  ParameterKey=ExternalId,ParameterValue=bknd_{{appMasterToken}} --stack-name createBkndCrossAccess --capabilities CAPABILITY_NAMED_IAM</code></p>
+<h4 id='aws-management-console'>AWS Management Console</h4>
+<p>Once you&#39;ve created the stack, open the AWS Management Console as an account administrator, and pull up the IAM console. Before you create the role, you&#39;ll need to create a managed policy that defines the permissions required by the IAM role to be created. You will attach this policy to the new role in a later step.</p>
+
+<p>In the navigation pane, on the left side of the screen, select <strong>Policies</strong>, and then select <strong>Create Policy</strong></p>
+<h5 id='step-1-create-policy'>Step 1 - Create Policy</h5><pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"Version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2012-10-17"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Statement"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Sid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stmt1500562449000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Effect"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Action"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"lambda:CreateFunction"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lambda:GetFunction"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lambda:InvokeFunction"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lambda:InvokeAsync"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lambda:ListFunctions"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lambda:ListVersionsByFunction"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"Resource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"*"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>For <strong>Step 1: Create Policy</strong>, select <strong>Create Your own Policy</strong>. Name the policy <code>BackandCrossAccountPolicy</code>.</p>
+
+<p>Next, set the Policy Document to the JSON on the right. Once this is done, the policy should appear in your list of managed policies.</p>
+
+<p>When you&#39;ve completed your changes, the screen should look like the following:</p>
+
+<p><img src="images/images/AWS-CAA-CreatePolicy.png" alt="image" /></p>
+<h5 id='step-2-create-a-role'>Step 2 - Create a Role</h5>
+<p>The next step is to create an IAM Role.</p>
+
+<ol>
+<li>Open the IAM Console for this account</li>
+<li>Click <strong>Roles</strong></li>
+<li>For <strong>Step 1: Select Role Type</strong>, select and expand the &quot;Role for cross-account access&quot; option.</li>
+<li>Select <strong>Provide access between your AWS account and a third party AWS account</strong>
+​<img src="images/images/AWS-CAA-roleType.png" alt="image" /></li>
+<li>On the next page, set Backand&#39;s account ID and external ID to the following values:
+
+<ul>
+<li><strong>Account ID</strong>: <code>328923390206</code></li>
+<li><strong>External ID</strong>: <code>bknd_{{appsMasterToken}}</code>
+<img src="images/images/AWS-CAA-AccountID.png" alt="image" />
+<aside class="success"> Note that for now, you do not need to require users to have Multi-Factor Authentication enabled in order to assume the cross-account role</aside></li>
+</ul></li>
+<li>Click <strong>Next Step</strong></li>
+<li>Attach the policy created above by selecting it from the provided list</li>
+<li>Click <strong>Next Step</strong></li>
+<li>Set the role name to <code>BackandCrossAccountRole</code>
+<img src="images/images/AWS-CAA-Createe.png" alt="image" /></li>
+<li>Click <strong>Create Role</strong></li>
+</ol>
+<h4 id='reference-documentation'>Reference documentation</h4>
+<ul>
+<li>http://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html</li>
+<li>https://aws.amazon.com/blogs/security/enable-a-new-feature-in-the-aws-management-console-cross-account-access/</li>
+<li>http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html</li>
+</ul>
 <h3 id='connect-the-iam-user-to-backand'>Connect the IAM User to Backand</h3>
 <p>If you are configuring your Lambda Launcher access for the first time, via the modal dialog, you can simply paste your Access Key ID and Secret Access Key into the provided fields. If you have an existing app, you can update those from the External Functions page:</p>
 
