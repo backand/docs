@@ -9351,7 +9351,7 @@ It also requires a '&lt;user key&gt;' for your app - you can find this in the <s
 
 <p>When you&#39;ve completed your changes, the screen should look like the following:</p>
 
-<p><img src="images/images/AWS-CAA-CreatePolicy.png" alt="image" /></p>
+<p><img src="images/AWS-CAA-CreatePolicy.png" alt="image" /></p>
 <h5 id='step-2-create-a-role'>Step 2 - Create a Role</h5>
 <p>The next step is to create an IAM Role.</p>
 
@@ -9360,20 +9360,20 @@ It also requires a '&lt;user key&gt;' for your app - you can find this in the <s
 <li>Click <strong>Roles</strong></li>
 <li>For <strong>Step 1: Select Role Type</strong>, select and expand the &quot;Role for cross-account access&quot; option.</li>
 <li>Select <strong>Provide access between your AWS account and a third party AWS account</strong>
-​<img src="images/images/AWS-CAA-roleType.png" alt="image" /></li>
+​<img src="images/AWS-CAA-roleType.png" alt="image" /></li>
 <li>On the next page, set Backand&#39;s account ID and external ID to the following values:
 
 <ul>
 <li><strong>Account ID</strong>: <code>328923390206</code></li>
 <li><strong>External ID</strong>: <code>bknd_{{appsMasterToken}}</code>
-<img src="images/images/AWS-CAA-AccountID.png" alt="image" />
+<img src="images/AWS-CAA-AccountID.png" alt="image" />
 <aside class="success"> Note that for now, you do not need to require users to have Multi-Factor Authentication enabled in order to assume the cross-account role</aside></li>
 </ul></li>
 <li>Click <strong>Next Step</strong></li>
 <li>Attach the policy created above by selecting it from the provided list</li>
 <li>Click <strong>Next Step</strong></li>
 <li>Set the role name to <code>BackandCrossAccountRole</code>
-<img src="images/images/AWS-CAA-Createe.png" alt="image" /></li>
+<img src="images/AWS-CAA-Createe.png" alt="image" /></li>
 <li>Click <strong>Create Role</strong></li>
 </ol>
 <h4 id='reference-documentation'>Reference documentation</h4>
