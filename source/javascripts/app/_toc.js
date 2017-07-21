@@ -3,6 +3,8 @@
 ;(function () {
   'use strict';
 
+  var loaded = false;
+
   var debounce = function(func, waitTime) {
     var timeout = false;
     return function() {
@@ -51,18 +53,16 @@
       }
 
       var best = null;
-
       for (var name in headerHeights) {
         if ((headerHeights[name] < currentTop && headerHeights[name] > headerHeights[best]) || best === null) {
           best = name;
         }
       }
-      // Catch the initial load case, where currentTop is equal to scrollOffset.
-      // If the "best" location does not match the requested hash on the initial
-      // load, we should default to simply using the user's entered hash.
-      if(window.location.hash != best && currentTop == scrollOffset)
-      {
+
+      // Catch the initial load case
+      if (currentTop == scrollOffset && !loaded) {
         best = window.location.hash;
+        loaded = true;
       }
 
       var $best = $toc.find("[href='" + best + "']").first();
@@ -103,8 +103,8 @@
         }, 0);
       });
 
-      $(window).scroll(debounce(refreshToc, 0));
-      $(window).resize(debounce(recacheHeights, 0));
+      $(window).scroll(debounce(refreshToc, 200));
+      $(window).resize(debounce(recacheHeights, 200));
     };
 
     makeToc();

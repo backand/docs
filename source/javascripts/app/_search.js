@@ -79,7 +79,7 @@
         highlight.call(searchInput);
       } else {
         searchResults.html('<li></li>');
-        $('.search-results li').text('No Results Found for "' + this.value + '"');
+        $('.search-results li').text('No Results Found for "' + searchInput.value + '"');
       }
     } else {
       unhighlight();
@@ -95,3 +95,4 @@
     content.unhighlight(highlightOpts);
   }
 })();
+

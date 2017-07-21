@@ -176,34 +176,32 @@ html, body {
     font-size: 12px;
   }
 
-  .toc-h3 {
-    padding-left: $nav-padding + $nav-padding + $nav-indent;
-    font-size: 12px;
-  }
-
   .toc-list-h3 {
     display: none;
     background-color: $nav-subitem-bg;
   }
-
-  .toc-h4 {
-    padding-left: $nav-padding + $nav-padding + $nav-padding + $nav-indent;
-    font-size: 12px;
-  }
-
   .toc-list-h4 {
     display: none;
     background-color: $nav-subitem-bg;
   }
-
-  .toc-h5 {
-    padding-left: $nav-padding + $nav-padding + $nav-padding + $nav-padding + $nav-indent;
-    font-size: 12px;
-  }
-
   .toc-list-h5 {
     display: none;
     background-color: $nav-subitem-bg;
+  }
+
+  .toc-h3 {
+    padding-left: $nav-padding + $nav-indent;
+    font-size: 12px;
+  }
+
+  .toc-h4 {
+    padding-left: $nav-padding + $nav-indent + $nav-indent;
+    font-size: 12px;
+  }
+
+  .toc-h5 {
+    padding-left: $nav-padding + $nav-indent + $nav-indent + $nav-indent;
+    font-size: 12px;
   }
 
   .toc-footer {

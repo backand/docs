@@ -201,6 +201,128 @@ First, ensure that all files involved are saved in an ASCII-encoded format. Befo
 4. aws iam create-access-key --user-name backand_lambda_user
 5. Copy the "Access key ID" and "Secret access key" values to use with Backand.
 
+### Creating Cross-Account Access for AWS Lambda
+
+You can create an IAM role and user that span multiple AWS accounts, allowing you to bring your lambda functions from multiple AWS accounts into a single interface.
+
+#### Obtaining the AWS Account ID
+
+This approach relies upon obtaining your AWS Account ID. To do this:
+
+- Navigate to the AWS Console for your region.
+- In the top navigation bar, select **Support**, then **Support Center**.
+- Your AWS Account ID is located in the upper-right-hand corner, immediately below the **Support** menu. It is a 12-digit number.
+
+Save this ID for use in later configuration steps.
+
+#### AWS CLI
+
+Using CloudFormation, we'll create a stack that we'll use to drive cross-account integration with Backand. Use the following AWS CLI command to get started:
+
+<aside class="notice">You'll need to replace the value <code>{{appMasterToken}}</code> in this command with your application's <a href="#social-amp-keys">master token</a>.</aside>
+
+`aws cloudformation create-stack --template-url https://s3.amazonaws.com/cdn.backand.net/cf/1/backand-cc --parameters  ParameterKey=ExternalId,ParameterValue=bknd_{{appMasterToken}} --stack-name createBkndCrossAccess --capabilities CAPABILITY_NAMED_IAM`
+
+#### AWS Management Console
+
+Once you've created the stack, open the AWS Management Console as an account administrator, and pull up the IAM console. Before you create the role, you'll need to create a managed policy that defines the permissions required by the IAM role to be created. You will attach this policy to the new role in a later step.
+
+In the navigation pane, on the left side of the screen, select **Policies**, and then select **Create Policy**
+
+##### Step 1 - Create Policy
+
+For **Step 1: Create Policy**, select **Create Your own Policy**. Name the policy `BackandCrossAccountPolicy`.
+
+Next, set the Policy Document to the following JSON:
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1500562449000",
+            "Effect": "Allow",
+            "Action": [
+                "lambda:CreateFunction",
+                "lambda:GetFunction",
+                "lambda:InvokeFunction",
+                "lambda:InvokeAsync",
+                "lambda:ListFunctions",
+                "lambda:ListVersionsByFunction"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+##### Step 2 - Create a Role
+
+
+ AWS  management console
+  Sign in to the AWS Management Console as an administrator of your account, and open the IAM console.
+Before creating the role, prepare a managed policy that defines the permissions that the role requires. You attach this policy to the role in a later step.
+In the navigation pane on the left, choose Policies and then click  "Create policy".
+1. create Policy
+In "Step 1 : Create Policy" select "Create Your Own Policy"
+for the Policy name type "BackandCrossAccountPolicy"
+
+then you want to set the following Policy Document:
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1500562449000",
+            "Effect": "Allow",
+            "Action": [
+                "lambda:CreateFunction",
+                "lambda:GetFunction",
+                "lambda:InvokeFunction",
+                "lambda:InvokeAsync",
+                "lambda:ListFunctions",
+                "lambda:ListVersionsByFunction"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+​
+Now the new policy appears in the list of managed policies.
+
+
+2. Create a Role
+
+
+ In the IAM console for this account, click "Roles"
+Click "Create New Role".
+In "Step 1 : Select role type" select and expand the "Role for cross-account access"
+Select "Provide access between your AWS account and a 3rd party AWS account"
+Inline image 1
+On the next page, set Backands account id: 328923390206,  External Id   : bknd_{{appsMasterToken}}
+Inline image 2
+  For now, you do not need to require users to have multi-factor authentication (MFA) in order to assume the role,
+
+  click "Next Step"
+Now attach the policy you have created above by checking them from the list and click "Next Step"
+  Set the Role name BackandCrossAccountRole
+Inline image 3
+  click "create Role"
+
+
+
+
+
+
+reference :[
+http://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html
+https://aws.amazon.com/blogs/security/enable-a-new-feature-in-the-aws-management-console-cross-account-access/
+http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html
+
+]
+
+
+
 
 ### Connect the IAM User to Backand
 If you are configuring your Lambda Launcher access for the first time, via the modal dialog, you can simply paste your Access Key ID and Secret Access Key into the provided fields. If you have an existing app, you can update those from the External Functions page:
