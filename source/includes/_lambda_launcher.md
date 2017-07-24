@@ -225,7 +225,7 @@ Using CloudFormation, we'll create a stack that we'll use to drive cross-account
 
 #### AWS Management Console
 
-Once you've created the stack, open the AWS Management Console as an account administrator, and pull up the IAM console. Before you create the role, you'll need to create a managed policy that defines the permissions required by the IAM role to be created. You will attach this policy to the new role in a later step.
+Instead of achieving the above via CLI, you can perform the same actions in the AWS Management console. To get started, open the AWS Management Console as an account administrator, and pull up the IAM console. Before you create the role, you'll need to create a managed policy that defines the permissions required by the IAM role to be created. You will attach this policy to the new role in a later step.
 
 In the navigation pane, on the left side of the screen, select **Policies**, and then select **Create Policy**
 
@@ -279,6 +279,8 @@ The next step is to create an IAM Role.
 9. Set the role name to `BackandCrossAccountRole`
 ![image](images/AWS-CAA-Createe.png)
 10. Click **Create Role**
+
+<aside class="notice">You'll need to replace the value <code>{{appsMasterToken}}</code> in this command with your application's <a href="#social-amp-keys">master token</a>.</aside>
 
 #### Reference documentation
 
