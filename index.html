@@ -9323,7 +9323,7 @@ It also requires a '&lt;user key&gt;' for your app - you can find this in the <s
 
 <p><code>aws cloudformation create-stack --template-url https://s3.amazonaws.com/cdn.backand.net/cf/1/backand-cc --parameters  ParameterKey=ExternalId,ParameterValue=bknd_{{appMasterToken}} --stack-name createBkndCrossAccess --capabilities CAPABILITY_NAMED_IAM</code></p>
 <h4 id='aws-management-console'>AWS Management Console</h4>
-<p>Once you&#39;ve created the stack, open the AWS Management Console as an account administrator, and pull up the IAM console. Before you create the role, you&#39;ll need to create a managed policy that defines the permissions required by the IAM role to be created. You will attach this policy to the new role in a later step.</p>
+<p>Instead of achieving the above via CLI, you can perform the same actions in the AWS Management console. To get started, open the AWS Management Console as an account administrator, and pull up the IAM console. Before you create the role, you&#39;ll need to create a managed policy that defines the permissions required by the IAM role to be created. You will attach this policy to the new role in a later step.</p>
 
 <p>In the navigation pane, on the left side of the screen, select <strong>Policies</strong>, and then select <strong>Create Policy</strong></p>
 <h5 id='step-1-create-policy'>Step 1 - Create Policy</h5><pre class="highlight json tab-json--persistent"><code><span class="p">{</span><span class="w">
@@ -9376,6 +9376,8 @@ It also requires a '&lt;user key&gt;' for your app - you can find this in the <s
 <img src="images/AWS-CAA-Createe.png" alt="image" /></li>
 <li>Click <strong>Create Role</strong></li>
 </ol>
+
+<aside class="notice">You'll need to replace the value <code>{{appsMasterToken}}</code> in this command with your application's <a href="#social-amp-keys">master token</a>.</aside>
 <h4 id='reference-documentation'>Reference documentation</h4>
 <ul>
 <li>http://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html</li>
