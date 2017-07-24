@@ -271,6 +271,7 @@ The next step is to create an IAM Role.
 5. On the next page, set Backand's account ID and external ID to the following values:
   - **Account ID**: `328923390206`
   - **External ID**: `bknd_{{appsMasterToken}}`
+  <aside class="notice">You'll need to replace the value <code>{{appsMasterToken}}</code> in this command with your application's <a href="#social-amp-keys">master token</a>.</aside>
   ![image](images/AWS-CAA-AccountID.png)
 <aside class="success"> Note that for now, you do not need to require users to have Multi-Factor Authentication enabled in order to assume the cross-account role</aside>
 6. Click **Next Step**
