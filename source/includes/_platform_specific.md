@@ -218,7 +218,7 @@ Note: This example is also available on [Codepen](http://codepen.io/backand/pen/
 ###Including and Initializing the SDK
 ```html
 <!-- Include the Back& SDK -->
-<script type="text/javascript" src="https://cdn.backand.net/vanilla-sdk/1.1.2/backand.min.js"></script>
+<script type="text/javascript" src="https://cdn.backand.net/vanilla-sdk/1.2.9/backand.min.js"></script>
 ```
 
 The first step in connecting your Vue.js app to Backand is to import the JavaScript file containing the Backand SDK. You can either do this through a package manager, or via our CDN.
@@ -410,7 +410,7 @@ Note: The code for this section is also available on [CodePen](http://codepen.io
 ### Including and Initializing the SDK
 ```html
 <!-- Include the Back& SDK -->
-<script type="text/javascript" src="https://cdn.backand.net/vanilla-sdk/1.1.2/backand.min.js"></script>
+<script type="text/javascript" src="https://cdn.backand.net/vanilla-sdk/1.2.9/backand.min.js"></script>
 ```
 The first step in connecting your JQuery-based web app to Backand is to include the JavaScript file containing the Backand SDK. You can either do this through a package manager, or via our CDN.
 

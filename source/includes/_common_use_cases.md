@@ -31,8 +31,8 @@ As a part of this, you'll also want to remove any of the previous SDK includes f
 >You can also use our SDK directly via our Content Distribution Network (CDN). Include the CDN links as follows, instead of the local *\\lib* links specified above:
 
 ```html
-<script src="//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"></script>
-<script src="//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"></script>
+<script src="//cdn.backand.net/vanilla-sdk/1.2.9/backand.js"></script>
+<script src="//cdn.backand.net/angular1-sdk/2.0.10/backand.provider.js"></script>
 ```
 
 The Serverless SDK requires two includes for Angular 1 apps. The first is our Vanilla SDK, and contains all of our core SDK functionality. The second is our Angular 1 SDK, which wraps the Vanilla SDK and provides setup and access to its functionality. Start with removing the old SDK by commenting out - or deleting - any prior includes of older Backand SDKs. Once the older includes have been deleted, replace the dependencies with the new SDK links.
@@ -703,14 +703,14 @@ Once these changes have been made, you'll then need to update your Ionic applica
 
 ### Code Settings
 ```html
-https://cdn.backand.net/vanilla-sdk/1.1.0/backand.js
-https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js
+https://cdn.backand.net/vanilla-sdk/1.2.9/backand.js
+https://cdn.backand.net/angular1-sdk/2.0.10/backand.provider.js
 ```
 > Once you've finished, the  External JS tab will have the following content:
 
 ```html
-<script src='https://cdn.backand.net/vanilla-sdk/1.1.0/backand.js'></script>
-<script src='https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js'></script>
+<script src='https://cdn.backand.net/vanilla-sdk/1.2.9/backand.js'></script>
+<script src='https://cdn.backand.net/angular1-sdk/2.0.10/backand.provider.js'></script>
 <script src='js/directives.js'></script>
 <script src='js/services.js'></script>
 <script src='js/bkndconfig.js'></script>

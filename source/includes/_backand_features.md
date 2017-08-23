@@ -502,8 +502,8 @@ Using the real-time capability can enhance your app with instant updates to any 
 <!-- Backand Socket Client -->
 <script src="lib/socket.io-client/dist/socket.io.js"></script>
 <!-- Backand SDK -->
-<script src="//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"></script>
-<script src="//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"></script>   
+<script src="//cdn.backand.net/vanilla-sdk/1.2.9/backand.js"></script>
+<script src="//cdn.backand.net/angular1-sdk/2.0.10/backand.provider.js"></script>   
 ```
 ```javascript
   // Configure the SDK to run the socket
