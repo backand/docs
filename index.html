@@ -2884,8 +2884,8 @@ after multiple uses, so we need to create one more task to perform cleanup after
 <h3 id='setup'>Setup</h3><pre class="highlight html tab-html"><code><span class="c">&lt;!-- Backand Socket Client --&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"lib/socket.io-client/dist/socket.io.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="c">&lt;!-- Backand SDK --&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"</span><span class="nt">&gt;&lt;/script&gt;</span>   
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/vanilla-sdk/1.2.9/backand.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/angular1-sdk/2.0.10/backand.provider.js"</span><span class="nt">&gt;&lt;/script&gt;</span>   
 </code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="c1">// Configure the SDK to run the socket</span>
   <span class="nx">BackandProvider</span><span class="p">.</span><span class="nx">runSocket</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 </code></pre>
@@ -5787,7 +5787,7 @@ sagaMiddleware.run(rootSaga)
 
 <p>Note: This example is also available on <a href="http://codepen.io/backand/pen/ZLwwZg/?editors=1010">Codepen</a></p>
 <h3 id='including-and-initializing-the-sdk'>Including and Initializing the SDK</h3><pre class="highlight html tab-html"><code><span class="c">&lt;!-- Include the Back&amp; SDK --&gt;</span>
-<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdn.backand.net/vanilla-sdk/1.1.2/backand.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdn.backand.net/vanilla-sdk/1.2.9/backand.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
 <p>The first step in connecting your Vue.js app to Backand is to import the JavaScript file containing the Backand SDK. You can either do this through a package manager, or via our CDN.</p>
 <pre class="highlight javascript tab-javascript--persistent"><code><span class="kd">var</span> <span class="nx">myApp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
@@ -5965,7 +5965,7 @@ sagaMiddleware.run(rootSaga)
 
 <p>Note: The code for this section is also available on <a href="http://codepen.io/backand/pen/VPRpBN?editors=1010">CodePen</a></p>
 <h3 id='including-and-initializing-the-sdk-2'>Including and Initializing the SDK</h3><pre class="highlight html tab-html"><code><span class="c">&lt;!-- Include the Back&amp; SDK --&gt;</span>
-<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdn.backand.net/vanilla-sdk/1.1.2/backand.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://cdn.backand.net/vanilla-sdk/1.2.9/backand.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
 <p>The first step in connecting your JQuery-based web app to Backand is to include the JavaScript file containing the Backand SDK. You can either do this through a package manager, or via our CDN.</p>
 <h3 id='creating-the-service'>Creating the Service</h3><pre class="highlight javascript tab-javascript--persistent"><code><span class="kd">var</span> <span class="nx">dataService</span> <span class="o">=</span> <span class="p">{</span>
@@ -6079,8 +6079,8 @@ sagaMiddleware.run(rootSaga)
 <blockquote>
 <p>You can also use our SDK directly via our Content Distribution Network (CDN). Include the CDN links as follows, instead of the local <em>\lib</em> links specified above:</p>
 </blockquote>
-<pre class="highlight html tab-html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/vanilla-sdk/1.0.9/backand.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/angular1-sdk/1.9.5/backand.provider.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/vanilla-sdk/1.2.9/backand.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.backand.net/angular1-sdk/2.0.10/backand.provider.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre>
 <p>The Serverless SDK requires two includes for Angular 1 apps. The first is our Vanilla SDK, and contains all of our core SDK functionality. The second is our Angular 1 SDK, which wraps the Vanilla SDK and provides setup and access to its functionality. Start with removing the old SDK by commenting out - or deleting - any prior includes of older Backand SDKs. Once the older includes have been deleted, replace the dependencies with the new SDK links.</p>
 <h3 id='step-3-authentication'>Step 3: Authentication</h3>
@@ -6730,14 +6730,14 @@ You can use this feature to rollback your configuration changes, if needed.</p>
 </ul>
 
 <p>Once these changes have been made, you&#39;ll then need to update your Ionic application&#39;s code settings.</p>
-<h3 id='code-settings'>Code Settings</h3><pre class="highlight html tab-html"><code>https://cdn.backand.net/vanilla-sdk/1.1.0/backand.js
-https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js
+<h3 id='code-settings'>Code Settings</h3><pre class="highlight html tab-html"><code>https://cdn.backand.net/vanilla-sdk/1.2.9/backand.js
+https://cdn.backand.net/angular1-sdk/2.0.10/backand.provider.js
 </code></pre>
 <blockquote>
 <p>Once you&#39;ve finished, the  External JS tab will have the following content:</p>
 </blockquote>
-<pre class="highlight html tab-html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'https://cdn.backand.net/vanilla-sdk/1.1.0/backand.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'https://cdn.backand.net/angular1-sdk/1.9.6/backand.provider.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'https://cdn.backand.net/vanilla-sdk/1.2.9/backand.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'https://cdn.backand.net/angular1-sdk/2.0.10/backand.provider.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'js/directives.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'js/services.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">'js/bkndconfig.js'</span><span class="nt">&gt;&lt;/script&gt;</span>
