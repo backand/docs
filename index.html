@@ -1777,6 +1777,19 @@
                       </ul>
                   </li>
                   <li>
+                    <a href="#export-import-your-hosted-database-backup" class="toc-h2 toc-link" data-title="Common Use cases">Export Import your hosted database (backup).</a>
+                      <ul class="toc-list-h3">
+                          <li>
+                            <a href="#export" class="toc-h3 toc-link" data-title="Common Use cases">Export</a>
+                            <!-- Nest 4 levels -->
+                          </li>
+                          <li>
+                            <a href="#import" class="toc-h3 toc-link" data-title="Common Use cases">Import</a>
+                            <!-- Nest 4 levels -->
+                          </li>
+                      </ul>
+                  </li>
+                  <li>
                     <a href="#reducing-backand-compute-usage" class="toc-h2 toc-link" data-title="Common Use cases">Reducing Backand Compute Usage</a>
                       <ul class="toc-list-h3">
                           <li>
@@ -7384,6 +7397,36 @@ function backandCallback(userInput, dbRow, parameters, userProfile) {
     b. Change Session Length to <code>Never - use refresh token</code></p>
 <h3 id='building-from-here'>Building from here</h3>
 <p>This approach opens a number of options for authentication, supporting use cases more complex than &quot;user is sitting at a computer with a web browser open&quot;. You can easily use this approach to implement a two-factor authentication model, for example - by requiring the session token in addition to the user&#39;s username and password, you can get more granular control over the user&#39;s access to your data. You can also use this to implement persistent authentication in a more private application environment, such as when running an app on a user&#39;s mobile device.</p>
+<h2 id='export-import-your-hosted-database-backup'>Export Import your hosted database (backup).</h2>
+<p>In order to backup your backand DB, you&#39;ll need to use the export and import commands in MySQL, you can either run it from a CLI or from a GUI tool such as <a href="https://dev.mysql.com/downloads/workbench/">MySQL workbench</a>
+( in both cases you&#39;ll need to operate under an elevated user)</p>
+<h3 id='export'>Export</h3>
+<ul>
+<li>First, open Mysql Workbench and connect to backand MySQL server - all connection parameters are under Settings &gt;&gt; Database, on your apps backand panel.</li>
+<li>On the Management panel click &quot;Data Export&quot;</li>
+<li>On the &quot;Object Selection&quot; tab check your DB</li>
+<li>Select &quot;Dump Structure and Data&quot; on the bottom drop-down</li>
+<li>Select the &quot;Export to a self-contained file&quot; radio</li>
+<li>Enter the backup file name and path</li>
+<li>Click &quot;Start Export&quot;</li>
+</ul>
+
+<p>You&#39;ll be switched to the &quot;Export progress&quot; tab and the log will show the exact CLI command that the above steps produce it should look like this:
+ mysqldump --user=DATABASEUSER --password=PASSWORD --host=bk-prod-us1.cd2junihlkms.us-east-1.rds.amazonaws.com --protocol=tcp --port=3306 --default-character-set=utf8 --result-file=YOUR_BACKUP_FILE_NAME.sql &quot;YOUR_DATABASENAME&quot;</p>
+<h3 id='import'>Import</h3>
+<ul>
+<li>First, open a new Mysql Workbench connection and connect to your target Mysql server - (you&#39;ll need to get connection parameters from your DB admin)</li>
+<li>On the Management panel click &quot;Data Import/Restore&quot;</li>
+<li>Select the &quot;Import from self-contained file&quot; radio</li>
+<li>Enter the backup file name and path</li>
+<li>Use  &quot;default Schema to be Imported To&quot; to select an existing or new DB which will be loaded with you&#39;re backed up DB </li>
+<li>Select &quot;Dump Structure and Data&quot; on the bottom dropdown</li>
+<li>Click &quot;Start Import&quot;</li>
+</ul>
+
+<p>For the full Dump command options please visit the </p>
+
+<p>​<a href="https://dev.mysql.com/doc/refman/5.7/en/mysqldump.html">option guide</a></p>
 <h2 id='reducing-backand-compute-usage'>Reducing Backand Compute Usage</h2>
 <p>One common cost center for developers using the Backand platform is the Backand Compute Unit. These Units accrue as a result of API calls and other requests to the Backand platform, and reflect the computing effort expended by Backand to perform the requested operations. Below, we&#39;ll look at some strategies you can use to mitigate the accrual of Backand Compute Units, letting you more easily mitigate costs and resource usage within your Backand application.</p>
 <h3 id='strategy-1-reduce-the-number-of-calls'>Strategy 1 - Reduce the number of calls</h3>
