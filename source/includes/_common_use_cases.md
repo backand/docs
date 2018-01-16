@@ -1411,6 +1411,39 @@ Finally, you'll want to update your authentication tokens to never expire. This 
 ### Building from here
 This approach opens a number of options for authentication, supporting use cases more complex than "user is sitting at a computer with a web browser open". You can easily use this approach to implement a two-factor authentication model, for example - by requiring the session token in addition to the user's username and password, you can get more granular control over the user's access to your data. You can also use this to implement persistent authentication in a more private application environment, such as when running an app on a user's mobile device.
 
+
+## Export Import your hosted database (backup).
+In order to backup your backand DB, you'll need to use the export and import commands in MySQL, you can either run it from a CLI or from a GUI tool such as [MySQL workbench](https://dev.mysql.com/downloads/workbench/)
+( in both cases you'll need to operate under an elevated user)
+
+### Export 
+
+* First, open Mysql Workbench and connect to backand MySQL server - all connection parameters are under Settings >> Database, on your apps backand panel.
+* On the Management panel click "Data Export"
+* On the "Object Selection" tab check your DB
+* Select "Dump Structure and Data" on the bottom drop-down
+* Select the "Export to a self-contained file" radio
+* Enter the backup file name and path
+* Click "Start Export"
+
+You'll be switched to the "Export progress" tab and the log will show the exact CLI command that the above steps produce it should look like this:
+ mysqldump --user=DATABASEUSER --password=PASSWORD --host=bk-prod-us1.cd2junihlkms.us-east-1.rds.amazonaws.com --protocol=tcp --port=3306 --default-character-set=utf8 --result-file=YOUR_BACKUP_FILE_NAME.sql "YOUR_DATABASENAME"
+
+### Import 
+
+* First, open a new Mysql Workbench connection and connect to your target Mysql server - (you'll need to get connection parameters from your DB admin)
+* On the Management panel click "Data Import/Restore"
+* Select the "Import from self-contained file" radio
+* Enter the backup file name and path
+* Use  "default Schema to be Imported To" to select an existing or new DB which will be loaded with you're backed up DB 
+* Select "Dump Structure and Data" on the bottom dropdown
+* Click "Start Import"
+ 
+ For the full Dump command options please visit the 
+
+​[option guide](https://dev.mysql.com/doc/refman/5.7/en/mysqldump.html)
+
+
 ## Reducing Backand Compute Usage
 One common cost center for developers using the Backand platform is the Backand Compute Unit. These Units accrue as a result of API calls and other requests to the Backand platform, and reflect the computing effort expended by Backand to perform the requested operations. Below, we'll look at some strategies you can use to mitigate the accrual of Backand Compute Units, letting you more easily mitigate costs and resource usage within your Backand application.
 
